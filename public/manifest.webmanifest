@@ -1,0 +1,15 @@
+{
+  "name": "Azad's Story World",
+  "short_name": "Azad's Stories",
+  "description": "Interactive stories made just for Azad",
+  "start_url": "/read",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FBF4E6",
+  "theme_color": "#1e1b4b",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

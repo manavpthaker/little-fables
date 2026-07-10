@@ -1,0 +1,63 @@
+/* Little Fables — radius, shadow, motion, touch tokens.
+   Sources: app/globals.css (touch-feedback, page-shadow, animations),
+   read app markup (rounded-2xl/3xl, active:scale-95), shadcn --radius. */
+
+:root {
+  /* ---- Corner radii ---- */
+  /* Kid app (Dream Paper: everything soft + round) */
+  --radius-hero: 24px;    /* scene art, sheets */
+  --radius-card: 20px;    /* story/text cards */
+  --radius-cover: 18px;   /* cover art squircles */
+  --radius-pill: 9999px;  /* buttons, chips, search, nav */
+  --radius-arch: 170px 170px 20px 20px; /* @kind radius */ /* arch-top hero art */
+  --radius-scallop: 12px 12px 22px 22px; /* @kind radius */ /* category chip labels */
+  /* Parent app (shadcn --radius: 0.5rem) */
+  --radius-p: 8px;
+  --radius-p-md: 6px;     /* buttons, inputs */
+  --radius-p-sm: 4px;
+  --radius-p-card: 12px;  /* rounded-xl shadcn Card */
+
+  /* ---- Shadows (tailwind values used in source) ---- */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  /* Story page card (composer canvas) */
+  --shadow-page: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1),
+                 inset 0 0 0 1px rgb(0 0 0 / 0.05);
+  /* Emoji illustration */
+  --shadow-emoji: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  /* Dream Paper warm shadows — never cool gray on cream */
+  --shadow-warm: 0 10px 24px rgba(94, 62, 26, 0.12);
+  --shadow-warm-lg: 0 14px 30px rgba(94, 62, 26, 0.16);
+  --shadow-coral-glow: 0 6px 14px rgba(244, 129, 60, 0.35);
+  --shadow-butter-glow: 0 6px 14px rgba(251, 191, 36, 0.35);
+
+  /* ---- Motion ---- */
+  --press-scale: 0.95; /* @kind other */          /* active:scale-95 — every tappable thing */
+  --press-opacity: 0.8; /* @kind other */         /* active:opacity-80 on touch devices */
+  --duration-press: 150ms; /* @kind other */
+  --duration-panel: 300ms; /* @kind other */      /* sheets, slideUp, fadeIn */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1); /* @kind other */
+
+  /* ---- Touch ---- */
+  --touch-target: 44px;         /* .touch-target min size */
+
+  /* ---- Spacing (tailwind steps actually used) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+}
+
+/* Motion primitives from app/globals.css */
+@keyframes lf-slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes lf-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
