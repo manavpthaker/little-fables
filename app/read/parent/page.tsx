@@ -28,6 +28,15 @@ import {
   saveUniverse,
   type Universe,
 } from '@/lib/universe/azad-verse'
+import { useAuth } from '@/lib/auth/AuthProvider'
+import {
+  deleteRetellRemote,
+  isSignedIn,
+  pullAll,
+  pushUniverse,
+  sendMagicLink,
+  signOut,
+} from '@/lib/read/sync'
 import type { Story } from '@/types/story'
 
 const GATE_MIN_A = 3, GATE_MAX_A = 8
@@ -454,6 +463,7 @@ function StoryRow({ s, onDelete }: { s: Story; onDelete?: () => void }) {
 
 // ---------- Parent Corner ----------
 function ParentCorner() {
+  const { user } = useAuth()
   const [universe, setUniverse] = useState<Universe | null>(null)
   const [retells, setRetells] = useState<Retell[]>([])
   const [savedStories, setSavedStories] = useState<Story[]>([])
@@ -462,14 +472,28 @@ function ParentCorner() {
   const [newMeaning, setNewMeaning] = useState('')
 
   useEffect(() => {
-    setUniverse(loadUniverse())
-    setSavedStories(loadStories())
-    listRetells().then(setRetells).catch(() => {})
-  }, [])
+    let cancelled = false
+    const load = async () => {
+      // If signed in, pull cross-device state first so local reflects everything.
+      if (user) await pullAll()
+      if (cancelled) return
+      setUniverse(loadUniverse())
+      setSavedStories(loadStories())
+      try {
+        setRetells(await listRetells())
+      } catch {
+        /* ignore */
+      }
+    }
+    load()
+    return () => { cancelled = true }
+  }, [user])
 
   const persist = useCallback((next: Universe) => {
     setUniverse(next)
     saveUniverse(next)
+    // Fire-and-forget: sync layer no-ops if not signed in.
+    void pushUniverse(next)
   }, [])
 
   const readsThisMonth = useMemo(() => {
@@ -561,9 +585,21 @@ function ParentCorner() {
               {readsThisMonth > 0 ? ` · ${readsThisMonth} retells this month` : ''}
             </p>
           </div>
-          <PButton as="link" href="/read/create">
-            <Plus size={16} /> New story
-          </PButton>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            {user && (
+              <>
+                <span style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+                  Synced as {user.email}
+                </span>
+                <PButton variant="ghost" onClick={() => { void signOut() }}>
+                  Sign out
+                </PButton>
+              </>
+            )}
+            <PButton as="link" href="/read/create">
+              <Plus size={16} /> New story
+            </PButton>
+          </div>
         </div>
 
         <div
@@ -605,6 +641,7 @@ function ParentCorner() {
                           rec={rec}
                           onDelete={async () => {
                             await deleteRetell(rec.id)
+                            void deleteRetellRemote(rec.id)
                             setRetells(await listRetells())
                           }}
                         />
@@ -758,8 +795,124 @@ function ParentCorner() {
   )
 }
 
+// ---------- Sign-in (magic link) ----------
+function SignIn({ onSkip }: { onSkip: () => void }) {
+  const [email, setEmail] = useState('')
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [error, setError] = useState<string | null>(null)
+
+  const send = async () => {
+    const v = email.trim()
+    if (!v) return
+    setState('sending')
+    setError(null)
+    try {
+      const redirectTo = window.location.origin + '/read/parent'
+      await sendMagicLink(v, redirectTo)
+      setState('sent')
+    } catch (e) {
+      setState('error')
+      setError(e instanceof Error ? e.message : 'Could not send the link.')
+    }
+  }
+
+  return (
+    <div
+      style={{
+        minHeight: '100dvh',
+        background: 'var(--lf-p-muted)',
+        color: 'var(--lf-p-foreground)',
+        fontFamily: 'var(--font-ui)',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <div style={{ padding: '22px 28px' }}>
+        <Link
+          href="/read"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            color: 'var(--lf-p-muted-foreground)',
+            textDecoration: 'none',
+            font: '500 14px var(--font-ui)',
+            padding: '8px 10px',
+            marginLeft: -10,
+          }}
+        >
+          <ChevronLeft size={16} /> Back to Story World
+        </Link>
+      </div>
+      <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 24px 90px' }}>
+        <div style={{ width: 420, maxWidth: '100%' }}>
+          <PCard
+            title="Sign in to sync"
+            description="Papa's laptop and Azad's iPad share one library when you sign in with the same email on both."
+          >
+            {state === 'sent' ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div style={{ font: '500 15px/1.4 var(--font-ui)', color: 'var(--lf-p-foreground)' }}>
+                  Check {email} for a sign-in link.
+                </div>
+                <div style={{ font: '400 13px/1.5 var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+                  Open the link on this device — it will finish signing you in and bring you back here.
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div>
+                  <div style={{ font: '500 13px var(--font-ui)', marginBottom: 6 }}>Email</div>
+                  <PInput
+                    type="email"
+                    autoComplete="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && send()}
+                    style={{ width: '100%' }}
+                  />
+                </div>
+                <PButton onClick={send} disabled={state === 'sending' || !email.trim()}>
+                  {state === 'sending' ? 'Sending…' : 'Send magic link'}
+                </PButton>
+                {error && (
+                  <div style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-danger, #ef4444)' }}>{error}</div>
+                )}
+                <button
+                  type="button"
+                  onClick={onSkip}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    font: '400 13px var(--font-ui)',
+                    color: 'var(--lf-p-muted-foreground)',
+                    textDecoration: 'underline',
+                    cursor: 'pointer',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  Use without syncing on this device
+                </button>
+              </div>
+            )}
+          </PCard>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function Parent() {
+  const { user, loading } = useAuth()
   const [passed, setPassed] = useState(false)
+  const [skippedAuth, setSkippedAuth] = useState(false)
+
+  if (loading) return null
+  // Not signed in and hasn't opted to skip → magic link flow.
+  if (!user && !skippedAuth) return <SignIn onSkip={() => setSkippedAuth(true)} />
+  // Signed in (or skipped) but hasn't passed the math gate this session.
   if (!passed) return <Gate onPass={() => setPassed(true)} />
   return <ParentCorner />
 }

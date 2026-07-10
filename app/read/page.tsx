@@ -10,6 +10,7 @@ import { STARTER_STORIES } from '@/lib/read/starter-stories'
 import { loadStories } from '@/lib/read/storage'
 import { listRetells } from '@/lib/read/storage'
 import { loadUniverse } from '@/lib/universe/azad-verse'
+import { pullAll } from '@/lib/read/sync'
 import type { Story } from '@/types/story'
 import { CircleBtn, Doodles, OfflineBanner, PillNav } from './components'
 import { useSwApp } from './SwApp'
@@ -123,11 +124,25 @@ export default function Home() {
   const [childInitial, setChildInitial] = useState('A')
 
   useEffect(() => {
-    setSaved(loadStories())
-    const u = loadUniverse()
-    setInterests(u.interests.slice(0, 4))
-    setChildInitial((u.childName || 'A').charAt(0).toUpperCase())
-    listRetells().then((rs) => setStarCount(rs.length)).catch(() => {})
+    let cancelled = false
+    const boot = async () => {
+      // Pull any cross-device state first so shelf + universe + star count are
+      // fresh. No-op when the device isn't signed in.
+      await pullAll()
+      if (cancelled) return
+      setSaved(loadStories())
+      const u = loadUniverse()
+      setInterests(u.interests.slice(0, 4))
+      setChildInitial((u.childName || 'A').charAt(0).toUpperCase())
+      try {
+        const rs = await listRetells()
+        if (!cancelled) setStarCount(rs.length)
+      } catch {
+        /* ignore */
+      }
+    }
+    boot()
+    return () => { cancelled = true }
   }, [])
 
   const shelf = useMemo<Story[]>(

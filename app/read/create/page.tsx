@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { loadUniverse, type Universe } from '@/lib/universe/azad-verse'
 import { saveStory, uid } from '@/lib/read/storage'
+import { pushStory } from '@/lib/read/sync'
 import { listen, recognitionAvailable, speak } from '@/lib/read/speech'
 import type { GenerateResponse, Story } from '@/types/story'
 
@@ -80,6 +81,7 @@ export default function CreateStory() {
         idea: idea || undefined,
       }
       saveStory(story)
+      void pushStory(story)
       router.push(`/read/story/${story.id}`)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'The story machine hiccuped. Try again!')

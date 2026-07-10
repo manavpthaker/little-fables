@@ -10,6 +10,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useParams } from 'next/navigation'
 import { STARTER_STORIES } from '@/lib/read/starter-stories'
 import { getStory, saveStory } from '@/lib/read/storage'
+import { pushStory } from '@/lib/read/sync'
 import { loadUniverse } from '@/lib/universe/azad-verse'
 import {
   listen,
@@ -258,6 +259,7 @@ function ReaderStory({ story, onStoryUpdate }: { story: Story; onStoryUpdate: (s
             data.done && data.retellPrompts?.length ? data.retellPrompts : story.retellPrompts,
         }
         saveStory(updated)
+        void pushStory(updated)
         onStoryUpdate(updated)
         setPageIdx(pageIdx + 1)
       } catch {

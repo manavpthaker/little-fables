@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { Story } from '@/types/story'
 import { createRecorder, speak, type RecorderHandle, type SpeakHandle } from '@/lib/read/speech'
 import { saveRetell, uid } from '@/lib/read/storage'
+import { pushRetell } from '@/lib/read/sync'
 import { Doodles, VocabStar } from '../../components'
 
 function fmt(s: number): string {
@@ -68,14 +69,17 @@ export function EndPhase({ story }: { story: Story }) {
     try {
       const blob = await recorderRef.current.stop()
       recorderRef.current = null
-      await saveRetell({
+      const retell = {
         id: uid(),
         storyId: story.id,
         storyTitle: story.title,
         createdAt: Date.now(),
         mimeType: blob.type,
         blob,
-      })
+      }
+      await saveRetell(retell)
+      // Fire-and-forget upload to Supabase Storage + metadata insert.
+      void pushRetell(retell, blob)
       setRecState('saved')
     } catch {
       setRecState('idle')
