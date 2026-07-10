@@ -18,10 +18,14 @@ const AuthContext = createContext<AuthContextType>({
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState(true)
+  // If Supabase isn't configured (kid-app-only deployment), stop the loading
+  // spinner immediately so consumers can render.
   const supabase = createClient()
+  const [loading, setLoading] = useState(!!supabase)
 
   useEffect(() => {
+    if (!supabase) return
+
     // Get initial session
     const getInitialSession = async () => {
       const { data: { session } } = await supabase.auth.getSession()
@@ -33,16 +37,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (_event, session) => {
         setUser(session?.user ?? null)
         setLoading(false)
       }
     )
 
     return () => subscription.unsubscribe()
-  }, [supabase.auth])
+  }, [supabase])
 
   const signOut = async () => {
+    if (!supabase) return
     await supabase.auth.signOut()
   }
 

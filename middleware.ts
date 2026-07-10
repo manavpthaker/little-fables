@@ -15,6 +15,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // Kid-app-only deployments have no Supabase env vars. If that's the case,
+  // skip the auth pipeline entirely — the creator app will simply be inert.
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return NextResponse.next()
+  }
+
   // Update the session first
   const supabaseResponse = await updateSession(request)
 
