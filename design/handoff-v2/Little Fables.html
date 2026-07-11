@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Fables — Azad's Story World</title>
+<link rel="stylesheet" href="_ds/little-fables-design-system-36f5e713-a4d2-4fb8-b704-a9b275902431/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/little-fables-design-system-36f5e713-a4d2-4fb8-b704-a9b275902431/tokens/colors.css">
+<link rel="stylesheet" href="_ds/little-fables-design-system-36f5e713-a4d2-4fb8-b704-a9b275902431/tokens/typography.css">
+<link rel="stylesheet" href="_ds/little-fables-design-system-36f5e713-a4d2-4fb8-b704-a9b275902431/tokens/geometry.css">
+<link rel="stylesheet" href="_ds/little-fables-design-system-36f5e713-a4d2-4fb8-b704-a9b275902431/styles.css">
+<style>
+  :root { color-scheme: light; }
+  html, body { margin: 0; padding: 0; height: 100%; background: #1c1712; }
+  * { box-sizing: border-box; }
+  button { font-family: inherit; color: inherit; }
+  a { color: var(--lf-coral-deep); }
+  a:hover { color: var(--lf-coral); }
+
+  .lf-press { transition: transform var(--duration-press,150ms), opacity var(--duration-press,150ms); user-select: none; -webkit-user-select: none; }
+  .lf-press:active { transform: scale(var(--press-scale,.95)); }
+
+  @keyframes lf-screen-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .lf-screen-in { animation: lf-screen-in 300ms var(--ease-out) both; }
+
+  @keyframes lf-wiggle { 0%, 62%, 100% { transform: rotate(0); } 66% { transform: rotate(-5deg); } 72% { transform: rotate(5deg); } 78% { transform: rotate(-4deg); } 84% { transform: rotate(3deg); } 90% { transform: rotate(0); } }
+  .lf-wiggle { animation: lf-wiggle 2.6s ease-in-out infinite; transform-origin: 50% 90%; display: inline-block; }
+
+  @keyframes lf-shudder { 0%,100% { transform: translateX(0) rotate(0); } 20% { transform: translateX(-4px) rotate(-2deg); } 40% { transform: translateX(4px) rotate(2deg); } 60% { transform: translateX(-3px) rotate(-1.5deg); } 80% { transform: translateX(3px) rotate(1.5deg); } }
+  .lf-shudder { animation: lf-shudder .5s ease-in-out infinite; display: inline-block; }
+
+  @keyframes lf-pop-in { 0% { transform: scale(.3); opacity: 0; } 70% { transform: scale(1.06); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+  .lf-pop-in { animation: lf-pop-in 550ms var(--ease-out) both; }
+
+  @keyframes lf-mic-pulse { 0%,100% { box-shadow: 0 6px 14px rgba(244,129,60,.35); } 50% { box-shadow: 0 6px 26px rgba(244,129,60,.62); } }
+  .lf-mic-pulse { animation: lf-mic-pulse 1.8s ease-in-out infinite; }
+
+  @keyframes lf-breathe { 0%,100% { transform: scale(1); box-shadow: 0 6px 14px rgba(244,129,60,.35); } 50% { transform: scale(1.045); box-shadow: 0 8px 26px rgba(244,129,60,.55); } }
+  .lf-breathe { animation: lf-breathe 2.4s ease-in-out infinite; }
+
+  @keyframes lf-ring { 0% { transform: scale(.92); opacity: .9; } 100% { transform: scale(1.25); opacity: 0; } }
+  .lf-ring { animation: lf-ring 1.2s ease-out infinite; }
+
+  @keyframes lf-dot { 0%,100% { transform: translateY(0); opacity: .5; } 50% { transform: translateY(-6px); opacity: 1; } }
+  .lf-dot { display: inline-block; animation: lf-dot .9s ease-in-out infinite; }
+
+  @keyframes lf-confetti { 0% { transform: translateY(-10px) rotate(0); opacity: 0; } 8% { opacity: 1; } 100% { transform: translateY(860px) rotate(340deg); opacity: .15; } }
+  .lf-confetti { animation: lf-confetti 3s linear infinite; }
+
+  @keyframes lf-shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-9px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-6px); } 80% { transform: translateX(4px); } }
+  .lf-shake { animation: lf-shake .45s ease-in-out 1; }
+
+  @keyframes lf-sun-today { 0%,100% { box-shadow: 0 2px 8px rgba(251,191,36,.3); } 50% { box-shadow: 0 2px 16px rgba(251,191,36,.65); } }
+  .lf-sun-today { animation: lf-sun-today 2.2s ease-in-out infinite; }
+
+  @keyframes lf-play-progress { from { width: 0; } to { width: 100%; } }
+  .lf-play-progress { animation: lf-play-progress 42s linear forwards; }
+
+  @keyframes lf-breathe-slow { 0%,100% { transform: scale(.8); } 50% { transform: scale(1.12); } }
+  .lf-breathe-slow { animation: lf-breathe-slow 5.2s ease-in-out infinite; }
+
+  @keyframes lf-spin { to { transform: rotate(360deg); } }
+  .lf-spin { animation: lf-spin 1.1s linear infinite; }
+
+  .lf-rm *, .lf-rm *::before, .lf-rm *::after { animation: none !important; transition: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/little-fables-design-system-36f5e713-a4d2-4fb8-b704-a9b275902431/_ds_bundle.js"></script>
+<script src="lib/image-slot.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="app/data.js"></script>
+<script type="text/babel" src="lib/tweaks-panel.jsx"></script>
+<script type="text/babel" src="app/shared.jsx"></script>
+<script type="text/babel" src="app/screens-a.jsx"></script>
+<script type="text/babel" src="app/screens-b.jsx"></script>
+<script type="text/babel" src="app/screens-c.jsx"></script>
+<script type="text/babel" src="app/screens-parent.jsx"></script>
+<script type="text/babel" src="app/main.jsx"></script>
+</body>
+</html>

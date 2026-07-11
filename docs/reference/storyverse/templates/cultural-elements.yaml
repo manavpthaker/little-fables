@@ -1,0 +1,486 @@
+# Storyverse Cultural Elements Template
+#
+# This template defines the cultural heritage, languages, traditions, foods,
+# and customs that appear in your universe's stories.
+#
+# Use this for detailed cultural integration beyond the basic universe config.
+# Save as: cultural-elements/[culture-name].yaml
+#
+# Example: cultural-elements/colombian.yaml, cultural-elements/indian-gujarati.yaml
+#
+# See examples/maya-verse/cultural-elements/ for complete examples.
+# Read docs/05-cultural-integration.md for authenticity guidelines.
+
+################################################################################
+# CULTURAL IDENTITY
+################################################################################
+
+cultural_heritage:
+  # Which culture does this represent?
+  culture_name: ""  # e.g., "Colombian", "Indian (Gujarati)", "Nigerian (Igbo)", "Chinese"
+
+  # More specific regional/ethnic identity?
+  regional_specificity: ""  # e.g., "Colombian (Bogotá)", "Gujarati from Gujarat state", "Cantonese from Hong Kong"
+
+  # Which family members represent this heritage?
+  represented_by:
+    - ""  # e.g., "Mama's side of family", "Papa's parents", "Both parents"
+
+  # How present is this culture in daily life?
+  integration_level: ""  # daily/weekly/special_occasions/seasonal
+
+################################################################################
+# LANGUAGE INTEGRATION
+################################################################################
+
+  languages:
+    # Primary language(s) for this cultural heritage
+    primary_languages:
+      - language_name: ""  # e.g., "Spanish", "Hindi", "Mandarin"
+        iso_code: ""       # ISO 639-1 code: e.g., "es", "hi", "zh"
+
+        proficiency_in_family:
+          fluent_speakers:
+            - ""  # e.g., "Mama", "Grandma", "Papa"
+
+          passive_understanders:
+            - ""  # e.g., "[Child name] (understands but doesn't speak fluently)"
+
+          learning_speakers:
+            - ""  # e.g., "[Child name] (learning)", "Papa (basic phrases)"
+
+        # When is this language used in family?
+        usage_contexts:
+          - ""  # e.g., "Daily at home for simple questions"
+          - ""  # e.g., "With grandparents always"
+          - ""  # e.g., "When talking about emotions or endearments"
+          - ""  # e.g., "For counting, food names, cultural items"
+
+        # Specific code-switching patterns
+        code_switching_patterns:
+          # Terms of endearment always in this language?
+          endearments:
+            - word: ""       # e.g., "mi amor", "meri jaan", "bao bei"
+              meaning: ""    # English meaning
+              when_used: ""  # Context: e.g., "Parents to child", "Affectionate moments"
+
+          # Common questions/commands in this language?
+          common_phrases:
+            - phrase: ""      # e.g., "¿Qué quieres?", "Chalo", "Kya hua?"
+              meaning: ""     # English meaning
+              when_used: ""   # Context: e.g., "Asking what child wants", "Let's go", "What happened?"
+              who_says: ""    # e.g., "Mama", "Grandparents"
+
+          # Exclamations/reactions
+          exclamations:
+            - expression: ""  # e.g., "¡Ay!", "Aiyah!", "Arre!"
+              emotion: ""     # e.g., "surprise", "frustration", "amazement"
+              when_used: ""   # Context
+
+          # Cultural-specific words (no English equivalent)
+          untranslatable_words:
+            - word: ""
+              concept: |
+                What does this word mean? Why no direct English translation?
+
+                Example: "Sobremesa - the time spent talking at table after eating.
+                Not just 'after dinner chat' - it's a cultural concept of valuing
+                time together over efficiency."
+
+              usage_in_stories: |
+                How might this appear in stories?
+
+################################################################################
+# CULTURAL TRADITIONS & PRACTICES
+################################################################################
+
+  traditions:
+    # Daily or routine traditions
+    daily_practices:
+      - name: ""  # e.g., "Morning greeting ritual", "Bedtime prayer", "Meal blessing"
+
+        description: |
+          Describe what happens and why it matters.
+
+          Example: "Every morning, child touches elders' feet for blessing
+          (traditional Indian respect gesture). Grandparents bless with
+          'Ayushman bhava' (may you have long life)."
+
+        who_participates: ""  # e.g., "Whole family", "Child and grandparents"
+
+        frequency: ""  # e.g., "daily", "every morning", "before meals"
+
+        story_integration: |
+          How can this appear in stories naturally?
+
+          Example: "Stories set at Grandma's house can begin with this greeting.
+          Shows respect and connection without explaining 'this is a tradition.'"
+
+    # Weekly or regular traditions
+    weekly_practices:
+      - name: ""
+        description: |
+          Weekly tradition description.
+
+        frequency: ""  # e.g., "every Sunday", "Friday evenings"
+
+        story_integration: |
+          How to integrate naturally.
+
+    # Seasonal or annual traditions
+    celebrations_and_holidays:
+      - name: ""  # e.g., "Diwali", "Navidad", "Lunar New Year"
+
+        when_celebrated: ""  # e.g., "October/November (lunar calendar)", "December 25th"
+
+        how_family_celebrates: |
+          Describe YOUR family's specific way of celebrating.
+          Not generic "how culture celebrates" but how YOUR family does it.
+
+          Example: "Our Diwali: Grandma visits week before to help prepare.
+          We make ladoos together. Night of Diwali, light diyas around house,
+          eat special dinner, video call India family. No fireworks (child
+          doesn't like loud noise). Focus on lights, sweets, family time."
+
+        key_elements:
+          foods:
+            - ""  # Specific foods for this celebration
+
+          activities:
+            - ""  # What family does during celebration
+
+          decorations:
+            - ""  # How space is decorated
+
+          special_clothing:
+            - ""  # Traditional dress worn (if any)
+
+          meaning_for_child: |
+            What does this celebration mean to your child specifically?
+
+            Example: "Diwali means Grandma visits, making sweets together,
+            house full of pretty lights, staying up a little later."
+
+        story_integration: |
+          How can stories incorporate this celebration?
+
+          Examples:
+          - Preparation stories (getting ready, cooking, decorating)
+          - Celebration day stories
+          - After-celebration stories (tired but happy)
+          - Explaining to friends stories (cultural sharing)
+
+################################################################################
+# FOOD & CUISINE
+################################################################################
+
+  food_culture:
+    # Foods eaten regularly (not just special occasions)
+    everyday_foods:
+      - name: ""  # e.g., "arepas", "dosas", "dumplings"
+
+        description: |
+          What is this food? How does it look/smell/taste?
+
+          Example: "Arepas - round, flat corn cakes. Golden outside,
+          soft inside. Mama makes them fresh; smell fills kitchen.
+          Can split open and put butter, cheese, or beans inside."
+
+        when_eaten: ""  # e.g., "breakfast", "snack", "with dinner"
+
+        who_makes_it: ""  # e.g., "Mama", "Grandma", "Papa on weekends"
+
+        child_association: |
+          What does child think/feel about this food?
+
+          Example: "Maya loves watching batter spread on griddle.
+          Likes them with just butter, melting inside warm arepa."
+
+        story_integration: |
+          How to include in stories naturally?
+
+          Example: "Smell of fresh arepas can signal morning, home,
+          Mama in kitchen. Comfort food when characters need energy
+          or comfort. Making them together can be bonding activity."
+
+    # Special occasion foods
+    celebration_foods:
+      - name: ""
+        description: |
+          Special food description.
+
+        when_served: ""  # Which celebrations/occasions?
+
+        significance: |
+          Why is this food special?
+
+          Example: "Ladoos for Diwali - traditional sweet. Making them
+          with Grandma is ritual. Gifting them to neighbors is sharing
+          celebration. Eating them is part of festival joy."
+
+    # Comfort foods
+    comfort_foods:
+      - name: ""
+
+        comfort_association: |
+          When is this food particularly comforting?
+
+          Example: "Warm milk with turmeric when sick (Grandma's remedy).
+          Means care, healing, Grandma's wisdom."
+
+    # Food traditions and rules
+    food_customs:
+      - custom: ""  # e.g., "Always share food with guests", "Offer food before eating"
+
+        description: |
+          Explain the custom and why it matters.
+
+          Example: "In our house, always ask if guest wants food/drink
+          before you eat. Sign of hospitality and respect. Even child
+          knows to ask friends 'Want snack?' before eating hers."
+
+################################################################################
+# MUSIC & SONGS
+################################################################################
+
+  music_culture:
+    # Genres or styles important to this culture
+    music_genres:
+      - genre: ""  # e.g., "Cumbia", "Bollywood", "Cantopop"
+
+        when_played: ""  # e.g., "Weekend mornings", "Cleaning days", "Celebrations"
+
+        family_association: |
+          What does this music mean to family?
+
+          Example: "Cumbia plays Saturday mornings while Papa makes breakfast.
+          Signals weekend, relaxation, dancing in kitchen while cooking."
+
+        story_integration: |
+          How can music appear in stories?
+
+          Example: "Background music when family is cooking together.
+          Dance breaks during long activities. Characters might hum tunes."
+
+    # Specific meaningful songs
+    important_songs:
+      - title: ""  # Song name
+
+        language: ""  # Which language is it in?
+
+        significance: |
+          Why is this song special?
+
+          Examples:
+          - "Lullaby Mama sings every night (learned from her mother)"
+          - "Grandma's prayer song (sings while cooking)"
+          - "Celebration song everyone knows (family gatherings)"
+
+        lyrics_snippet: |
+          Optional: Key lyrics (with translation if not English)
+
+        when_sung: ""  # e.g., "Bedtime", "Celebrations", "While cooking"
+
+        emotional_connection: |
+          What emotion does this song evoke?
+
+          Example: "Safety, comfort, Mama's voice, sleep coming"
+
+        story_integration: |
+          How to include in stories?
+
+          Example: "Can be bedtime ritual. Characters might hum it.
+          Hearing it signals comfort and care."
+
+################################################################################
+# VALUES & WORLDVIEW
+################################################################################
+
+  cultural_values:
+    # What values are central to this culture (as lived by YOUR family)?
+    core_values:
+      - value: ""  # e.g., "Respect for elders", "Community over individual", "Education"
+
+        how_demonstrated: |
+          How does this value show up in daily family life?
+
+          Example: "Respect for elders: Child touches grandparents' feet
+          for blessing. Uses respectful terms (Dada-Dadi, not first names).
+          Elders are consulted for important decisions."
+
+        story_integration: |
+          How can stories model this value without preaching?
+
+          Example: "Characters naturally defer to elder companion's wisdom.
+          Consult Pandies (wise elder figure) when stuck. Show through
+          action, not announcement."
+
+    # Communication styles
+    communication_norms:
+      - norm: ""  # e.g., "Indirect communication", "High context", "Storytelling to teach"
+
+        description: |
+          How does your family communicate based on cultural background?
+
+          Example: "Colombian indirect communication - asking 'Are you hungry?'
+          often means 'I'm about to feed you.' Not really a question. Child
+          is learning to read these cues."
+
+    # Conflict resolution
+    conflict_approach:
+      description: |
+        How does your cultural background influence how family handles disagreements?
+
+        Example: "Avoid direct confrontation; conflicts resolved through
+        discussion after cooling down. Elder family members mediate if needed.
+        Harmony valued over 'winning' argument."
+
+      story_integration: |
+        How can stories model healthy conflict resolution in culturally authentic way?
+
+################################################################################
+# COMMUNITY & SOCIAL STRUCTURES
+################################################################################
+
+  community:
+    # Extended family structure
+    family_structure:
+      description: |
+        How is family organized in your cultural context?
+
+        Examples:
+        - "Multigenerational household (grandparents live with us)"
+        - "Nuclear family but close extended family nearby"
+        - "Collectivist culture - aunts/uncles heavily involved in child-rearing"
+
+      story_implications: |
+        How does this show up in stories?
+
+        Example: "Grandparents are regular story characters, not occasional
+        visitors. Their house is accessible setting. Their wisdom is valued."
+
+    # Community connections
+    community_ties:
+      - connection: ""  # e.g., "Temple/church community", "Cultural association"
+
+        role_in_life: |
+          How does this community connection function?
+
+          Example: "Monthly gathering at cultural center - child plays with
+          other [culture] children, adults speak heritage language, traditional
+          foods. Maintains connection to culture."
+
+        story_integration: |
+          Can stories reference these community connections?
+
+################################################################################
+# MATERIAL CULTURE
+################################################################################
+
+  cultural_objects:
+    # Important objects that represent heritage
+    significant_items:
+      - object: ""  # e.g., "Prayer beads", "Traditional clothing", "Family heirloom"
+
+        description: |
+          What is this object and why does it matter?
+
+          Example: "Mama's sari from India - bright silk, special occasion wear.
+          Child loves how it flows, sparkles. Associated with celebration,
+          beauty, Mama's heritage."
+
+        when_used: ""  # e.g., "Special celebrations", "Religious occasions"
+
+        story_integration: |
+          How might this appear in stories?
+
+          Example: "Characters might notice Mama wearing sari, know something
+          special happening. Can describe colors, texture, flow of fabric.
+          Cultural representation without explanation."
+
+################################################################################
+# INTERGENERATIONAL TRANSMISSION
+################################################################################
+
+  passing_down_culture:
+    # How is cultural knowledge shared across generations?
+    transmission_methods:
+      - method: ""  # e.g., "Cooking together", "Storytelling", "Songs/prayers"
+
+        description: |
+          How does this transmission happen in your family?
+
+          Example: "Grandma teaches through doing. Child helps make dosas,
+          watches and learns. Grandma doesn't lecture - just invites child
+          to participate, corrects gently, shares stories while cooking.
+          Cultural transmission through action and presence."
+
+        story_integration: |
+          Stories can show this transmission happening.
+
+          Example: "Cooking together scenes. Grandma's gentle corrections.
+          Stories shared while hands are busy. Cultural knowledge embedded
+          in activity."
+
+################################################################################
+# AVOIDING STEREOTYPES
+################################################################################
+
+  authenticity_notes:
+    # What stereotypes should be AVOIDED for this culture?
+    stereotypes_to_avoid:
+      - stereotype: ""  # e.g., "All Mexican food is spicy", "All Asians are good at math"
+
+        why_problematic: |
+          Why is this stereotype harmful?
+
+        authentic_alternative: |
+          What's the authentic reality for YOUR family?
+
+          Example: "Not all Colombian food is spicy - much is mild and
+          savory. Our family cooking has subtle spice, not heat. Focus
+          on actual flavors: corn, plantain, fresh ingredients."
+
+    # Cultural diversity within culture
+    internal_diversity: |
+      Acknowledge that your culture is not monolithic.
+
+      Example: "Colombian culture varies by region. Bogotá (our family
+      heritage) has different traditions than coastal Colombia or Medellín.
+      We represent OUR family's specific Colombian experience, not all
+      Colombians."
+
+################################################################################
+# META INFORMATION
+################################################################################
+
+  meta:
+    creation_date: ""  # YYYY-MM-DD
+
+    # Who validated this cultural representation?
+    cultural_consultants:
+      - name: ""  # Optional: Who reviewed this for authenticity?
+        relationship: ""  # e.g., "Family elder", "Community member"
+        expertise: ""  # e.g., "Native speaker", "Lived in [country] for 30 years"
+
+    # Living document note
+    evolution_note: |
+      Cultural elements evolve as child grows and family practices change.
+      Update this document to reflect current reality.
+
+      Example: "As child learns more Spanish, add more words they understand.
+      As we celebrate more holidays, add details about how we do them."
+
+################################################################################
+# REVISION HISTORY
+################################################################################
+
+revision_history:
+  - version: "1.0"
+    date: ""  # YYYY-MM-DD
+    changes: "Initial cultural elements documented"
+
+  # Add entries as you refine
+  # - version: "1.1"
+  #   date: "YYYY-MM-DD"
+  #   changes: "Added new holiday celebration after first experience"

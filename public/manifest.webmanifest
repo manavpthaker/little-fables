@@ -1,7 +1,7 @@
 {
-  "name": "Azad's Story World",
-  "short_name": "Azad's Stories",
-  "description": "Interactive stories made just for Azad",
+  "name": "Little Fables",
+  "short_name": "Little Fables",
+  "description": "Interactive stories, chapter books, and buddies — made for Azad.",
   "start_url": "/read",
   "scope": "/",
   "display": "standalone",

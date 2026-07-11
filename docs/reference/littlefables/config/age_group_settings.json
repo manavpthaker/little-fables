@@ -1,0 +1,84 @@
+{
+  "ages_0_2": {
+    "vocabulary": ["dog", "ball", "tree", "jump", "cat", "run"],
+    "sentence_structure": "single_words",
+    "themes": ["sensory", "daily_routines", "animals"],
+    "tone": "calming",
+    "examples": [
+      "Dog runs.",
+      "Big tree!",
+      "Cat jumps."
+    ]
+  },
+  "ages_2_3": {
+    "vocabulary": ["happy", "big", "play", "hug", "red", "blue"],
+    "sentence_structure": "two_word_phrases",
+    "themes": ["exploration", "basic_emotions", "friendship"],
+    "tone": "playful",
+    "examples": [
+      "Max jumps.",
+      "Play, Max!",
+      "Big red ball."
+    ]
+  },
+  "ages_4_5": {
+    "vocabulary": ["castle", "brave", "magic", "run", "hide", "seek"],
+    "sentence_structure": "simple_sentences",
+    "themes": ["adventure", "imagination", "teamwork"],
+    "tone": "adventurous",
+    "examples": [
+      "The brave knight runs to the castle.",
+      "The children play hide and seek."
+    ]
+  },
+  "ages_6_7": {
+    "vocabulary": ["explore", "discover", "mystery", "hero", "solve", "friend"],
+    "sentence_structure": "expanded_sentences",
+    "themes": ["problem-solving", "teamwork", "mystery"],
+    "tone": "engaging",
+    "examples": [
+      "The young hero and their friend solved the mystery together.",
+      "Exploring the forest was their favorite adventure."
+    ]
+  },
+  "ages_8_10": {
+    "vocabulary": ["courage", "journey", "wisdom", "challenge", "quest", "imagine"],
+    "sentence_structure": "descriptive_sentences",
+    "themes": ["growth", "perseverance", "friendship"],
+    "tone": "inspirational",
+    "examples": [
+      "The courageous adventurer began their journey to the enchanted land.",
+      "Every challenge was a lesson in courage and wisdom."
+    ]
+  },
+  "ages_11_12": {
+    "vocabulary": ["strategy", "bravery", "resolve", "imagination", "growth", "harmony"],
+    "sentence_structure": "multi-paragraph_narratives",
+    "themes": ["self-discovery", "overcoming_odds", "cooperation"],
+    "tone": "thought-provoking",
+    "examples": [
+      "She strategized her approach, understanding the value of teamwork.",
+      "The journey taught them about friendship and inner strength."
+    ]
+  },
+  "ages_13_15": {
+    "vocabulary": ["identity", "conflict", "resolution", "philosophy", "passion", "adversity"],
+    "sentence_structure": "character-focused_essays",
+    "themes": ["self-discovery", "morality", "relationships"],
+    "tone": "emotionally_resonant",
+    "examples": [
+      "Through adversity, the protagonist learned the meaning of resilience.",
+      "Their identity unfolded as they confronted their deepest fears."
+    ]
+  },
+  "ages_16_18": {
+    "vocabulary": ["justice", "autonomy", "existential", "nuance", "ambiguity", "insight"],
+    "sentence_structure": "complex_layers",
+    "themes": ["philosophical_questions", "identity_crisis", "social_impact"],
+    "tone": "layered_and_dramatic",
+    "examples": [
+      "The moral ambiguity of the situation challenged their beliefs.",
+      "Every choice carried weight, shaping a path toward self-definition."
+    ]
+  }
+}

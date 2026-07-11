@@ -1,0 +1,106 @@
+/* Little Fables — color tokens.
+   Sources: app/read/* (Story World, kid-facing), lib/read/starter-stories.ts
+   (scene palette), app/globals.css (parent shadcn neutrals), README.md (brand). */
+
+:root {
+  /* ---- Night canvas (Story World, kid app) ---- */
+  --lf-night-deep: #0f172a;      /* midnight scenes, rocket launches */
+  --lf-night: #1e1b4b;           /* indigo-950 — PWA theme color */
+  --lf-night-mid: #312e81;       /* indigo-900 */
+  --lf-night-plum: #3b0764;      /* purple-950 */
+  --lf-night-sky: linear-gradient(to bottom, #1e1b4b, #312e81, #3b0764); /* @kind color */
+
+  /* Text on night */
+  --lf-text-on-night: #ffffff;
+  --lf-text-on-night-heading: #c7d2fe;  /* indigo-200 — section headings */
+  --lf-text-on-night-soft: #a5b4fc;     /* indigo-300 — subtitles, links */
+
+  /* ---- Magic CTA (make-a-story) ---- */
+  --lf-magic-1: #f59e0b;
+  --lf-magic-2: #ef4444;
+  --lf-magic-3: #ec4899;
+  --lf-magic: linear-gradient(135deg, #f59e0b, #ef4444, #ec4899); /* @kind color */
+
+  /* ---- Scene palette (story page gradients + covers) ---- */
+  --lf-scene-sky: #38bdf8;
+  --lf-scene-mint: #a7f3d0;
+  --lf-scene-sun: #fbbf24;
+  --lf-scene-flame: #f97316;
+  --lf-scene-coral: #fb7185;
+  --lf-scene-violet: #a78bfa;
+  --lf-scene-orchid: #f0abfc;
+  --lf-scene-periwinkle: #818cf8;
+  --lf-scene-leaf: #34d399;
+  --lf-scene-ocean: #1e3a8a;
+  --lf-scene-royal: #7c3aed;
+  --lf-scene-cobalt: #4338ca;
+
+  /* Canonical scene gradient pairs (160deg) from starter stories */
+  --lf-scene-day: linear-gradient(160deg, #38bdf8, #a7f3d0); /* @kind color */      /* default/fallback */
+  --lf-scene-sunset: linear-gradient(160deg, #fbbf24, #f97316); /* @kind color */
+  --lf-scene-warm: linear-gradient(160deg, #f97316, #fbbf24); /* @kind color */
+  --lf-scene-worry: linear-gradient(160deg, #fb7185, #fbbf24); /* @kind color */
+  --lf-scene-calm: linear-gradient(160deg, #a78bfa, #f0abfc); /* @kind color */
+  --lf-scene-cool: linear-gradient(160deg, #818cf8, #38bdf8); /* @kind color */
+  --lf-scene-meadow: linear-gradient(160deg, #34d399, #a7f3d0); /* @kind color */
+  --lf-scene-starry: linear-gradient(160deg, #1e3a8a, #7c3aed); /* @kind color */
+  --lf-scene-space: linear-gradient(160deg, #0f172a, #4338ca); /* @kind color */
+
+  /* ---- Dream Paper (canonical kid-app system, decided 2026-07) ---- */
+  --lf-cream: #FBF4E6;           /* app background */
+  --lf-cream-card: #FFFDF7;      /* cards on cream */
+  --lf-cream-line: #F0E4CD;      /* warm borders */
+  --lf-espresso: #3B3227;        /* warm ink — text */
+  --lf-espresso-soft: #8A7B68;   /* meta, subtitles */
+  --lf-espresso-faint: #B9A98F;  /* placeholders, inactive nav */
+  --lf-coral: #F4813C;           /* THE action color — one per screen */
+  --lf-coral-deep: #D96A28;      /* pressed */
+  --lf-pastel-peach: #FFE8CF;    /* pastel tints — chips + washes only, never actions */
+  --lf-pastel-mint: #DFEEDD;
+  --lf-pastel-lilac: #E9E6F6;
+  --lf-pastel-blush: #FBE1E4;
+  /* Bedtime flip: cream→night indigo, coral→butter */
+  --lf-butter: #fbbf24;
+  --lf-butter-deep: #b98a1a;
+
+  /* ---- Heirloom paper (logo + printed books; storybook direction) ---- */
+  --lf-paper: #f7f1e3;           /* cream page */
+  --lf-paper-bright: #fffdf6;    /* card on paper */
+  --lf-paper-edge: #d8cdb8;      /* book-mat border */
+  --lf-ink: #1c2527;             /* logo/charcoal ink */
+  --lf-ink-soft: #6b6154;        /* pencil notes */
+  --lf-wc-sage: #a8b59a;         /* watercolor accents from the books */
+  --lf-wc-dustyblue: #93aebd;
+  --lf-wc-ochre: #d9a05b;
+
+  /* ---- Brand accents (README.md) ---- */
+  --lf-brand-purple: #8b5cf6;
+  --lf-brand-blue: #3b82f6;
+  --lf-brand-green: #10b981;
+
+  /* ---- Feedback ---- */
+  --lf-danger: #ef4444;          /* delete badge, destructive */
+  --lf-praise: #34d399;          /* correct answer glow */
+  --lf-hint: #fbbf24;            /* gentle hint */
+
+  /* ---- Parent surfaces (composer + parent corner; shadcn neutrals) ---- */
+  --lf-p-background: #ffffff;            /* hsl(0 0% 100%) */
+  --lf-p-foreground: #0a0a0a;            /* hsl(0 0% 3.9%) */
+  --lf-p-primary: #171717;               /* hsl(0 0% 9%) */
+  --lf-p-primary-foreground: #fafafa;    /* hsl(0 0% 98%) */
+  --lf-p-muted: #f5f5f5;                 /* hsl(0 0% 96.1%) */
+  --lf-p-muted-foreground: #737373;      /* hsl(0 0% 45.1%) */
+  --lf-p-border: #e5e5e5;                /* hsl(0 0% 89.8%) */
+  --lf-p-card: #ffffff;
+
+  /* ---- Semantic aliases (Dream Paper) ---- */
+  --surface-app: var(--lf-cream); /* @kind color */
+  --surface-card: var(--lf-cream-card);
+  --surface-scrim: rgba(0, 0, 0, 0.3);
+  --surface-bedtime: var(--lf-night);
+  --text-hero: var(--lf-espresso);
+  --text-heading: var(--lf-espresso);
+  --text-soft: var(--lf-espresso-soft);
+  --cta-accent: var(--lf-coral);
+  --cta-magic: var(--lf-magic); /* @kind color */ /* legacy gradient — retired from UI */
+}

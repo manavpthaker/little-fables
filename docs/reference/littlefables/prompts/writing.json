@@ -1,0 +1,52 @@
+{
+    "drafting_prompts": [
+      "How would you like to start your story? (e.g., a peaceful morning, an exciting discovery, or a mysterious event?)",
+      "What is your main character doing at the beginning of the story? (e.g., playing in the forest, solving a puzzle, meeting a new friend?)",
+      "How does the main character feel at this moment? (e.g., happy, curious, nervous?)",
+      "Would you like to include dialogue to make this scene more engaging?",
+      "What is the key event that moves the story forward in this scene?"
+    ],
+    "refinement_prompts": [
+      "Does this section capture the tone you’re aiming for? Would you like to make it more whimsical, adventurous, or calming?",
+      "Are there any details you’d like to add to make the scene more vivid? (e.g., sights, sounds, smells?)",
+      "Would you like to simplify or enhance the vocabulary for the intended audience?",
+      "Is the pacing of this section just right, or should it move faster or slower?",
+      "Does this scene flow naturally into the next one? Would you like to adjust the transitions?"
+    ],
+    "dialogue_prompts": [
+      "What would your character say in this situation? (e.g., something funny, wise, or heartfelt?)",
+      "Would you like to add dialogue to highlight the character’s personality?",
+      "Should the dialogue include hints about the story’s conflict or resolution?",
+      "Do you want the dialogue to be short and snappy, or longer and descriptive?",
+      "Would you like to include a fun or memorable quote from this scene?"
+    ],
+    "age_specific_prompts": {
+      "children": [
+        "Are the sentences short and easy to understand?",
+        "Would you like to include playful rhymes or repetition in this section?",
+        "Does this section include engaging actions or funny moments to capture attention?"
+      ],
+      "young_adults": [
+        "Does this section include relatable themes for a young adult audience?",
+        "Would you like to add more emotional depth or thought-provoking dialogue?",
+        "Are the characters’ actions and decisions realistic and meaningful?"
+      ]
+    },
+    "lesson_integration_prompts": [
+      "What lesson or message should this part of the story convey? (e.g., kindness, bravery, curiosity?)",
+      "Would you like to emphasize the lesson with a specific event or dialogue?",
+      "Does this section naturally lead to the story’s moral or resolution?",
+      "Would you like to add a moment where the character learns something important?"
+    ],
+    "interactive_prompts": [
+      "Would you like to include a question for the reader to think about? (e.g., 'What would you do in this situation?')",
+      "Should this section include a fun challenge or puzzle for the reader?",
+      "Would you like to add interactive elements, such as actions the reader can mimic or choices they can make?"
+    ],
+    "finalizing_prompts": [
+      "Does this section of the story feel complete, or would you like to add more details?",
+      "Would you like to read the entire draft to check the flow and tone?",
+      "Do you feel this scene connects well with the rest of the story?",
+      "Would you like to adjust anything before moving to the next phase?"
+    ]
+  }

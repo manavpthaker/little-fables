@@ -1,0 +1,376 @@
+# Storyverse Character/Companion Profile Template
+#
+# This template defines a single companion character (plush toy, doll, imaginary friend)
+# that appears in stories with your child.
+#
+# Copy this file for each companion in your universe.
+# Save as: characters/[companion-name].yaml
+#
+# See examples/maya-verse/characters/ for complete examples.
+# Read docs/04-character-development.md for step-by-step creation guide.
+
+################################################################################
+# BASIC IDENTITY
+################################################################################
+
+character:
+  id: ""  # (REQUIRED) Unique identifier, e.g., "jujy", "pandies", "companion_001"
+  name: ""  # (REQUIRED) Companion's name as child knows it
+
+  # What kind of character is this?
+  physical_description:
+    species: ""  # e.g., "lion", "panda", "ball", "robot", "doll", "dragon"
+
+    colors:
+      primary: ""    # Main color, e.g., "golden", "blue", "purple"
+      secondary: ""  # Secondary color, e.g., "brown mane", "white belly"
+
+    distinctive_features:
+      - ""  # e.g., "Tuxedo pattern on chest", "One ear is floppy", "Missing button eye"
+      - ""  # Physical details that make this character unique and recognizable
+
+    size: ""  # e.g., "small (fits in hand)", "medium (child can hug)", "large (toddler-sized)"
+
+    texture: ""  # Optional: e.g., "soft fur", "smooth plastic", "crinkly fabric"
+
+  # How did this character enter your child's life?
+  origin_story:
+    how_entered_universe: |
+      Describe when and how this companion came into your child's world.
+      Was it a gift? Found? Made? First day home?
+
+    special_significance: |
+      What makes this companion special to your child?
+      First plush they named? Constant companion? Comfort object?
+
+################################################################################
+# PERSONALITY & ARCHETYPE
+################################################################################
+
+  personality:
+    # Core personality traits (3-5 traits that define this character)
+    core_traits:
+      - trait: ""  # e.g., "confident", "patient", "playful", "cautious"
+        manifestation: |
+          How does this trait show up in stories?
+          Be specific about behaviors, speech, actions.
+
+      - trait: ""
+        manifestation: |
+          Another trait and how it manifests.
+
+      # Add 1-3 more traits
+
+    # Which archetype does this companion represent?
+    # Common archetypes: Leader, Guide, Musician, Observer, Worrier, Trickster, Healer, Builder
+    archetype: ""
+
+    # What can this character learn vs. what stays fixed?
+    growth_boundary: |
+      FIXED: What core traits never change (these define the character)
+      CAN LEARN: What skills/behaviors can develop over time
+
+      Example:
+      Fixed: Always confident and devoted
+      Can learn: To listen more before deciding, to ask for help
+
+################################################################################
+# THERAPEUTIC FUNCTION
+################################################################################
+
+  therapeutic_function:
+    # What emotional/developmental role does this character serve?
+    primary_role: ""  # e.g., "Leadership modeling with humility", "Externalizing anxiety", "Expressing joy freely"
+
+    # When should this companion be featured prominently in stories?
+    when_to_feature: |
+      Describe situations where this character's presence is most valuable.
+
+      Examples:
+      - Stories about building confidence
+      - When child is feeling anxious
+      - Bedtime stories needing calm energy
+      - Adventures requiring careful observation
+
+    # Which skills does this character model, and how?
+    skill_modeling:
+      - skill: ""  # e.g., "critical thinking", "patience", "emotional expression"
+        how_modeled: |
+          Specific behaviors this character demonstrates.
+
+          Example: "Asks clarifying questions before jumping to conclusions.
+          Pauses to think before acting. Considers multiple solutions."
+
+      - skill: ""
+        how_modeled: |
+          Another skill and how it's shown through action.
+
+      # Add more skills as appropriate (2-4 skills per companion)
+
+################################################################################
+# VOICE & SPEECH
+################################################################################
+
+  voice_and_speech:
+    speaking_style: ""  # e.g., "Slow and thoughtful", "Quick and enthusiastic", "Musical and rhythmic"
+
+    vocabulary_level: ""  # e.g., "simple for age", "moderate", "advanced but clear"
+
+    signature_phrases:
+      - ""  # Phrases this character says repeatedly
+      - ""  # e.g., "I have a plan!", "Hmm... interesting...", "Let's think about this..."
+
+    verbal_tics:
+      - ""  # Speech patterns unique to this character
+      - ""  # e.g., "Speaks slowly with pauses", "Repeats last word", "Hums before speaking"
+
+    # When does this character go silent?
+    when_silent: |
+      Describe moments when this character doesn't speak.
+
+      Examples:
+      - When overwhelmed by loud noise
+      - After making mistake (brief pause before recovering)
+      - During thinking time (thoughtful silence)
+      - When sad or disappointed
+
+################################################################################
+# RELATIONSHIPS
+################################################################################
+
+  relationships:
+    # Relationship with the child character
+    with_child:
+      bond_type: ""  # e.g., "Devoted best friend", "Wise mentor", "Playful sibling"
+
+      typical_interactions: |
+        How does this companion typically interact with [your child's name]?
+
+        Examples:
+        - Asks what adventure they should go on
+        - Offers suggestions gently
+        - Defers to child's decisions
+        - Initiates playful games
+
+      conflict_potential: |
+        How might this companion create gentle conflict/learning moments?
+
+        Example: "Might charge ahead without listening, needs gentle
+        reminder to pause and include others."
+
+    # Relationships with other companions (add one entry per companion)
+    with_other_companions:
+      - companion: ""  # Name of other companion
+        dynamic: |
+          Describe the relationship between these two characters.
+
+          Examples:
+          - "Best friends who balance each other (one plans, one goes with flow)"
+          - "Friendly rivals in playful competition"
+          - "Teacher-student dynamic (patient guide helps eager learner)"
+          - "Comic pair (one forgets, other remembers)"
+
+      - companion: ""
+        dynamic: |
+          Another companion relationship.
+
+      # Add more companion relationships as needed
+
+################################################################################
+# STORY PATTERNS
+################################################################################
+
+  story_patterns:
+    # What roles does this character typically play in stories?
+    typical_story_roles:
+      - ""  # e.g., "Announces the plan or adventure"
+      - ""  # e.g., "Notices small details others miss"
+      - ""  # e.g., "Provides comic relief when tension is high"
+      - ""  # e.g., "Offers calm wisdom in chaotic moments"
+
+    # How does this character approach problems?
+    problem_solving_approach: |
+      Describe this companion's typical problem-solving style.
+
+      Examples:
+      - Enthusiastic! Charges in with confidence, sometimes too quickly
+      - Slow and steady; thinks through all angles before acting
+      - Creative; suggests unusual solutions others wouldn't think of
+      - Methodical; makes lists and plans before starting
+
+    # What emotional range is this character comfortable with?
+    emotional_range:
+      comfortable_with:
+        - ""  # Emotions this character expresses easily
+        - ""  # e.g., "joy", "curiosity", "determination", "frustration"
+
+      struggles_with:
+        - ""  # Emotions this character finds difficult
+        - ""  # e.g., "uncertainty", "sadness", "asking for help", "admitting mistakes"
+
+    # How can this character grow across stories?
+    growth_opportunities: |
+      How might this character develop over time (while maintaining core personality)?
+
+      Example: "Across stories, learning to ask others' opinions before
+      deciding. Still confident, but more collaborative."
+
+################################################################################
+# CULTURAL CONNECTIONS (if applicable)
+################################################################################
+
+  cultural_connections:
+    # Multilingual aspects (if companion speaks/understands heritage languages)
+    multilingual_aspects:
+      languages_understood:
+        - ""  # e.g., "English", "Spanish", "Hindi"
+
+      languages_spoken:
+        - ""  # e.g., "English primarily", "Basic Spanish phrases"
+
+      translation_role: |
+        Does this companion help with language bridging?
+
+        Examples:
+        - Repeats heritage language words for child to learn
+        - Translates for other companions who only speak one language
+        - None - companion just speaks English
+
+    # Cultural significance (if companion represents specific cultural heritage)
+    cultural_significance: |
+      Optional: If this companion has special connection to cultural heritage:
+
+      Examples:
+      - Gift from grandparents representing [culture]
+      - Traditional toy from [culture] (describe significance)
+      - Character who loves [cultural music/food/traditions]
+
+################################################################################
+# SENSORY ELEMENTS
+################################################################################
+
+  sensory_elements:
+    # How does this companion feel?
+    texture: ""  # e.g., "Soft golden fur, slightly worn from constant hugs", "Smooth plastic", "Crinkly fabric"
+
+    # What temperature associations?
+    temperature: ""  # e.g., "warm", "cool", "room temperature"
+
+    # What sounds does this companion make?
+    sounds_made:
+      - ""  # e.g., "Gentle roar (playful)", "Squeaks when squeezed", "Rhythmic drumming sounds"
+      - ""  # Natural sounds OR sounds child makes for them in play
+
+    # Does this companion have a scent?
+    scent: ""  # Optional: e.g., "Smells like lavender (from child's room)", "Faint smell of honey", "No scent"
+
+    # Visual distinctiveness
+    visual_presence: |
+      How would you describe seeing this companion in a room?
+
+      Example: "Bright blue with sparkly fabric catches light;
+      impossible to miss in a pile of toys."
+
+################################################################################
+# LIMITATIONS & BOUNDARIES
+################################################################################
+
+  limitations:
+    # What CAN'T this character do?
+    # (Limitations make characters relatable and create learning opportunities)
+    cannot_do:
+      - ""  # e.g., "Remember complex multi-step plans without help"
+      - ""  # e.g., "Stay patient when excited or frustrated"
+      - ""  # e.g., "Speak loudly (always quiet and soft-spoken)"
+
+    # What do these limitations teach?
+    these_limitations_teach: |
+      How do this character's limitations create learning moments?
+
+      Example: "Even confident leaders need help remembering details.
+      It's okay to forget—just ask for reminders. Everyone has strengths
+      and weaknesses."
+
+################################################################################
+# META INFORMATION
+################################################################################
+
+  meta:
+    creation_date: ""  # YYYY-MM-DD when you created this character profile
+
+    # What inspired this character?
+    inspired_by: |
+      Describe the real-world companion this character is based on.
+
+      Example: "Actual plush lion that child adores. Child assigned
+      leadership role naturally through play. Forgetting aspect added
+      to model that everyone makes mistakes."
+
+    # How often should this companion appear in stories?
+    usage_frequency: ""  # high/medium/low
+
+    # How has your child responded to this character in stories?
+    child_response: |
+      Track what your child says about this companion.
+
+      Examples:
+      - Often requests "[Name] stories"
+      - Mimics character's signature phrase in daily life
+      - Uses character's coping strategy when upset
+      - Talks about character like a real friend
+
+    # Notes for story generation
+    story_generation_notes: |
+      Any special instructions for when this character appears in stories?
+
+      Examples:
+      - Always pairs well with [other companion]
+      - Works best in calm/reflective stories, not high-action
+      - Should appear in any story dealing with [specific emotion/skill]
+      - Avoid featuring in same story as [companion] (too similar roles)
+
+################################################################################
+# EXAMPLES OF THIS CHARACTER IN ACTION
+################################################################################
+
+# Optional but helpful: Include 2-3 short scene examples showing this character
+
+example_scenes:
+  - scene_title: ""
+    context: ""  # What's happening in this scene?
+    dialogue_and_action: |
+      Show how this character would act/speak in this situation.
+
+      Example:
+      ---
+      Jujy stood at the edge of the garden, paws on hips.
+
+      "I have a plan!" he announced. "We'll search the left side,
+      then the right side, then... wait, what are we looking for again?"
+
+      Maya giggled. "The red ball, Jujy."
+
+      "Right! The red ball!" Jujy's ears perked up. "Okay, NEW plan:
+      We'll look for the RED ball on the left side, then the right side!"
+      ---
+
+  - scene_title: ""
+    context: ""
+    dialogue_and_action: |
+      Another example scene.
+
+  # Add 1-2 more scene examples
+
+################################################################################
+# REVISION HISTORY
+################################################################################
+
+revision_history:
+  - version: "1.0"
+    date: ""  # YYYY-MM-DD
+    changes: "Initial character profile created"
+
+  # Add new entries as you update this character
+  # - version: "1.1"
+  #   date: "YYYY-MM-DD"
+  #   changes: "Refined speaking style based on child's response to stories"

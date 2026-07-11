@@ -1,0 +1,38 @@
+{
+    "narrative_consistency": [
+      "Would you like to adjust the narrative based on proofing feedback?",
+      "Does the story flow smoothly from scene to scene? Are there any sections that feel rushed or too slow?",
+      "Are there any inconsistencies in the storyline, such as unresolved conflicts or missing details?",
+      "Would you like to add smoother transitions between key moments in the story?"
+    ],
+    "character_consistency": [
+      "Are the character designs consistent across all scenes? (e.g., outfit, pose, or expression)",
+      "Would you like to adjust any character’s dialogue or actions to better match their personality?",
+      "Do the relationships between characters feel believable and engaging?",
+      "Would you like to refine any supporting characters or their interactions with the main character?"
+    ],
+    "visual_alignment": [
+      "Do the illustrations align with the story’s tone and descriptions? Would you like any adjustments?",
+      "Are there any specific details in the visuals that you’d like to enhance or change?",
+      "Would you like to add more dynamic elements to the illustrations, such as action poses or vibrant props?",
+      "Are the backgrounds consistent with the story's setting and atmosphere?"
+    ],
+    "vocabulary_and_readability": [
+      "Does the vocabulary level match the intended audience? Would you like to simplify or enrich the text?",
+      "Are there any sentences or phrases that could be clearer or more engaging?",
+      "Would you like to adjust the pacing or tone of the story to better match its theme?",
+      "Does the moral or message of the story come through clearly in the text?"
+    ],
+    "interactive_review": [
+      "Would you like to preview your storybook to see how it looks and feels?",
+      "Do you want to make interactive adjustments, such as tweaking dialogue or rearranging scenes?",
+      "Would you like feedback on specific sections of the story or visuals?",
+      "Are there any final edits you’d like to make before finalizing the story?"
+    ],
+    "final_feedback": [
+      "Do you feel the story captures your vision? If not, what would you like to improve?",
+      "Are there any lingering issues or concerns you'd like to address before moving forward?",
+      "Would you like to save your current progress and return to proofing later?",
+      "Is there any additional feedback you'd like to provide about this phase?"
+    ]
+  }

@@ -1,0 +1,408 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/learning/**",
+              "components/parent/**",
+              "components/story-world/**",
+              "ui_kits/composer/**",
+              "ui_kits/story-world/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Fredoka|Quicksand|Inter|Baloo 2))/i]",
+        "message": "Font not provided by the design system. Available: Fredoka, Quicksand, Inter, Baloo 2."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AskBubble'] > JSXAttribute > JSXIdentifier[name!=/^(?:question|praise|hint|skill|state|listening|onMicTap|standalone|style|key|ref|className|style|children)$/]",
+        "message": "<AskBubble> doesn't accept that prop. Declared props: question, praise, hint, skill, state, listening, onMicTap, standalone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AskBubble'] > JSXAttribute[name.name='state'] > Literal[value!=/^(?:question|praise|hint)$/]",
+        "message": "<AskBubble> state must be one of 'question' | 'praise' | 'hint'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Avatar'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|fallback|size|style|key|ref|className|style|children)$/]",
+        "message": "<Avatar> doesn't accept that prop. Declared props: src, fallback, size, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|secondary|outline|ghost|destructive|link)$/]",
+        "message": "<Button> variant must be one of 'default' | 'secondary' | 'outline' | 'ghost' | 'destructive' | 'link'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:default|sm|lg|icon)$/]",
+        "message": "<Button> size must be one of 'default' | 'sm' | 'lg' | 'icon'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|description|children|footer|padded|style|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: title, description, children, footer, padded, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChoiceOption'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|emoji|keywords|key|ref|className|style|children)$/]",
+        "message": "<ChoiceOption> doesn't accept that prop. Declared props: label, emoji, keywords."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MagicButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:emoji|children|sub|onClick|size|tone|style|key|ref|className|style|children)$/]",
+        "message": "<MagicButton> doesn't accept that prop. Declared props: emoji, children, sub, onClick, size, tone, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MagicButton'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:lg|sm)$/]",
+        "message": "<MagicButton> size must be one of 'lg' | 'sm'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MagicButton'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:coral|butter)$/]",
+        "message": "<MagicButton> tone must be one of 'coral' | 'butter'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SceneStage'] > JSXAttribute > JSXIdentifier[name!=/^(?:image|bg|emojis|text|highlightWord|children|style|key|ref|className|style|children)$/]",
+        "message": "<SceneStage> doesn't accept that prop. Declared props: image, bg, emojis, text, highlightWord, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StoryCover'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|image|emoji|bg|meta|badge|editMode|onDelete|onClick|style|key|ref|className|style|children)$/]",
+        "message": "<StoryCover> doesn't accept that prop. Declared props: title, image, emoji, bg, meta, badge, editMode, onDelete, onClick, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VocabStar'] > JSXAttribute > JSXIdentifier[name!=/^(?:word|active|onTap|style|key|ref|className|style|children)$/]",
+        "message": "<VocabStar> doesn't accept that prop. Declared props: word, active, onTap, style."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "AskBubble": {
+        "replaces": []
+      },
+      "Avatar": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "ChoiceOption": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "MagicButton": {
+        "replaces": []
+      },
+      "SceneStage": {
+        "replaces": []
+      },
+      "StoryCover": {
+        "replaces": []
+      },
+      "VocabStar": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--cta-accent",
+      "--cta-magic",
+      "--duration-panel",
+      "--duration-press",
+      "--ease-out",
+      "--font-body",
+      "--font-display",
+      "--font-legacy-fredoka",
+      "--font-ui",
+      "--lf-brand-blue",
+      "--lf-brand-green",
+      "--lf-brand-purple",
+      "--lf-butter",
+      "--lf-butter-deep",
+      "--lf-coral",
+      "--lf-coral-deep",
+      "--lf-cream",
+      "--lf-cream-card",
+      "--lf-cream-line",
+      "--lf-danger",
+      "--lf-espresso",
+      "--lf-espresso-faint",
+      "--lf-espresso-soft",
+      "--lf-hint",
+      "--lf-ink",
+      "--lf-ink-soft",
+      "--lf-magic",
+      "--lf-magic-1",
+      "--lf-magic-2",
+      "--lf-magic-3",
+      "--lf-night",
+      "--lf-night-deep",
+      "--lf-night-mid",
+      "--lf-night-plum",
+      "--lf-night-sky",
+      "--lf-p-background",
+      "--lf-p-border",
+      "--lf-p-card",
+      "--lf-p-foreground",
+      "--lf-p-muted",
+      "--lf-p-muted-foreground",
+      "--lf-p-primary",
+      "--lf-p-primary-foreground",
+      "--lf-paper",
+      "--lf-paper-bright",
+      "--lf-paper-edge",
+      "--lf-pastel-blush",
+      "--lf-pastel-lilac",
+      "--lf-pastel-mint",
+      "--lf-pastel-peach",
+      "--lf-praise",
+      "--lf-scene-calm",
+      "--lf-scene-cobalt",
+      "--lf-scene-cool",
+      "--lf-scene-coral",
+      "--lf-scene-day",
+      "--lf-scene-flame",
+      "--lf-scene-leaf",
+      "--lf-scene-meadow",
+      "--lf-scene-mint",
+      "--lf-scene-ocean",
+      "--lf-scene-orchid",
+      "--lf-scene-periwinkle",
+      "--lf-scene-royal",
+      "--lf-scene-sky",
+      "--lf-scene-space",
+      "--lf-scene-starry",
+      "--lf-scene-sun",
+      "--lf-scene-sunset",
+      "--lf-scene-violet",
+      "--lf-scene-warm",
+      "--lf-scene-worry",
+      "--lf-text-on-night",
+      "--lf-text-on-night-heading",
+      "--lf-text-on-night-soft",
+      "--lf-wc-dustyblue",
+      "--lf-wc-ochre",
+      "--lf-wc-sage",
+      "--press-opacity",
+      "--press-scale",
+      "--radius-arch",
+      "--radius-card",
+      "--radius-cover",
+      "--radius-hero",
+      "--radius-p",
+      "--radius-p-card",
+      "--radius-p-md",
+      "--radius-p-sm",
+      "--radius-pill",
+      "--radius-scallop",
+      "--shadow",
+      "--shadow-butter-glow",
+      "--shadow-coral-glow",
+      "--shadow-emoji",
+      "--shadow-lg",
+      "--shadow-page",
+      "--shadow-sm",
+      "--shadow-warm",
+      "--shadow-warm-lg",
+      "--shadow-xl",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-6",
+      "--space-8",
+      "--surface-app",
+      "--surface-bedtime",
+      "--surface-card",
+      "--surface-scrim",
+      "--text-cover-title",
+      "--text-cta",
+      "--text-greeting",
+      "--text-heading",
+      "--text-hero",
+      "--text-label",
+      "--text-meta",
+      "--text-section",
+      "--text-soft",
+      "--text-story-page",
+      "--text-story-title",
+      "--text-ui-body",
+      "--text-ui-caption",
+      "--text-ui-label",
+      "--text-ui-title",
+      "--touch-target"
+    ],
+    "tokenKinds": {
+      "--lf-night-deep": "color",
+      "--lf-night": "color",
+      "--lf-night-mid": "color",
+      "--lf-night-plum": "color",
+      "--lf-night-sky": "color",
+      "--lf-text-on-night": "font",
+      "--lf-text-on-night-heading": "font",
+      "--lf-text-on-night-soft": "font",
+      "--lf-magic-1": "color",
+      "--lf-magic-2": "color",
+      "--lf-magic-3": "color",
+      "--lf-magic": "color",
+      "--lf-scene-sky": "color",
+      "--lf-scene-mint": "color",
+      "--lf-scene-sun": "color",
+      "--lf-scene-flame": "color",
+      "--lf-scene-coral": "color",
+      "--lf-scene-violet": "color",
+      "--lf-scene-orchid": "color",
+      "--lf-scene-periwinkle": "color",
+      "--lf-scene-leaf": "color",
+      "--lf-scene-ocean": "color",
+      "--lf-scene-royal": "color",
+      "--lf-scene-cobalt": "color",
+      "--lf-scene-day": "color",
+      "--lf-scene-sunset": "color",
+      "--lf-scene-warm": "color",
+      "--lf-scene-worry": "color",
+      "--lf-scene-calm": "color",
+      "--lf-scene-cool": "color",
+      "--lf-scene-meadow": "color",
+      "--lf-scene-starry": "color",
+      "--lf-scene-space": "color",
+      "--lf-cream": "color",
+      "--lf-cream-card": "color",
+      "--lf-cream-line": "color",
+      "--lf-espresso": "color",
+      "--lf-espresso-soft": "color",
+      "--lf-espresso-faint": "color",
+      "--lf-coral": "color",
+      "--lf-coral-deep": "color",
+      "--lf-pastel-peach": "color",
+      "--lf-pastel-mint": "color",
+      "--lf-pastel-lilac": "color",
+      "--lf-pastel-blush": "color",
+      "--lf-butter": "color",
+      "--lf-butter-deep": "color",
+      "--lf-paper": "color",
+      "--lf-paper-bright": "color",
+      "--lf-paper-edge": "color",
+      "--lf-ink": "color",
+      "--lf-ink-soft": "color",
+      "--lf-wc-sage": "color",
+      "--lf-wc-dustyblue": "color",
+      "--lf-wc-ochre": "color",
+      "--lf-brand-purple": "color",
+      "--lf-brand-blue": "color",
+      "--lf-brand-green": "color",
+      "--lf-danger": "color",
+      "--lf-praise": "color",
+      "--lf-hint": "color",
+      "--lf-p-background": "color",
+      "--lf-p-foreground": "color",
+      "--lf-p-primary": "color",
+      "--lf-p-primary-foreground": "color",
+      "--lf-p-muted": "color",
+      "--lf-p-muted-foreground": "color",
+      "--lf-p-border": "color",
+      "--lf-p-card": "color",
+      "--surface-app": "color",
+      "--surface-card": "color",
+      "--surface-scrim": "color",
+      "--surface-bedtime": "color",
+      "--text-hero": "font",
+      "--text-heading": "font",
+      "--text-soft": "font",
+      "--cta-accent": "color",
+      "--cta-magic": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-ui": "font",
+      "--font-legacy-fredoka": "font",
+      "--text-greeting": "font",
+      "--text-story-title": "font",
+      "--text-section": "font",
+      "--text-story-page": "font",
+      "--text-cover-title": "font",
+      "--text-cta": "font",
+      "--text-meta": "font",
+      "--text-label": "font",
+      "--text-ui-title": "font",
+      "--text-ui-body": "font",
+      "--text-ui-label": "font",
+      "--text-ui-caption": "font",
+      "--radius-hero": "radius",
+      "--radius-card": "radius",
+      "--radius-cover": "radius",
+      "--radius-pill": "radius",
+      "--radius-arch": "radius",
+      "--radius-scallop": "radius",
+      "--radius-p": "radius",
+      "--radius-p-md": "radius",
+      "--radius-p-sm": "radius",
+      "--radius-p-card": "radius",
+      "--shadow-sm": "shadow",
+      "--shadow": "shadow",
+      "--shadow-lg": "shadow",
+      "--shadow-xl": "shadow",
+      "--shadow-page": "shadow",
+      "--shadow-emoji": "shadow",
+      "--shadow-warm": "shadow",
+      "--shadow-warm-lg": "shadow",
+      "--shadow-coral-glow": "shadow",
+      "--shadow-butter-glow": "shadow",
+      "--press-scale": "other",
+      "--press-opacity": "other",
+      "--duration-press": "other",
+      "--duration-panel": "other",
+      "--ease-out": "other",
+      "--touch-target": "spacing",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing"
+    },
+    "fontFamilies": [
+      "Baloo 2",
+      "Fredoka",
+      "Inter",
+      "Quicksand"
+    ]
+  }
+}

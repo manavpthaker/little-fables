@@ -1,0 +1,44 @@
+{
+    "art_style_prompts": [
+      "What tone should the illustrations have? Bright and bold, soft and dreamy, or something entirely unique?",
+      "Would you like to upload inspiration or describe styles that resonate with you? (e.g., art from favorite books or movies)",
+      "Should the story’s visuals lean towards playful cartoons, elegant minimalism, or a classic storybook vibe?",
+      "Would you like to explore examples like ‘Dreamy Watercolors’ or ‘Bold Adventure Art’ for inspiration?",
+      "Do you have any specific preferences for colors or textures? (e.g., pastels, vibrant hues, or natural tones?)"
+    ],
+    "narrative_style_prompts": [
+      "What narrative style feels right for your story? (e.g., simple and direct, poetic, or detailed and descriptive?)",
+      "Should the story rhyme, use short sentences, or focus on engaging prose?",
+      "Would you like to experiment with storytelling techniques, such as alliteration or dialogue-heavy narration?",
+      "Would you like the text to interact with illustrations (e.g., weaving through the visuals or highlighting key details)?",
+      "Do you prefer a first-person perspective, third-person narration, or something else entirely?"
+    ],
+    "layout_prompts": [
+      "Would you like to see layout suggestions based on your chosen art style? (e.g., full-page illustrations or split panels)",
+      "Should the visuals be immersive and span the whole page, or include space for additional text?",
+      "Do you prefer symmetrical layouts, free-form designs, or something unconventional?",
+      "Would you like to add subtle visual elements to frame the text? (e.g., borders, vines, or sparkles)",
+      "Should the layout guide the reader’s eye with movement, like dynamic poses or flowing lines?"
+    ],
+    "interactive_design_prompts": [
+      "Would you like to add interactive visual elements? (e.g., flaps in a physical book or clickable sections in an eBook?)",
+      "Should illustrations include small hidden details or Easter eggs for readers to discover?",
+      "Would you like characters to break the fourth wall, interacting directly with the reader?",
+      "Could props or objects in the scene tell part of the story visually?",
+      "Would you like certain scenes to feel alive with dynamic actions or serene and reflective?"
+    ],
+    "style_enhancement_prompts": [
+      "Do you want to refine the art style further? (e.g., adding texture, softening colors, or increasing detail?)",
+      "Should the colors evoke specific emotions, like warmth, mystery, or excitement?",
+      "Would you like to highlight specific moments with unique illustration techniques? (e.g., bold outlines or glowing effects?)",
+      "Should the scenes include elements that change over time (e.g., day to night, seasons shifting)?",
+      "Would you like the visuals to focus on characters, environments, or a mix of both?"
+    ],
+    "finalization_prompts": [
+      "Does the current visual and narrative style align with your vision for the story?",
+      "Would you like to make any adjustments before moving forward?",
+      "Are there specific scenes you want to highlight or expand with additional details?",
+      "Would you like to preview the overall style applied to one scene before continuing?",
+      "Do the style choices feel consistent with the story’s tone and themes?"
+    ]
+  }

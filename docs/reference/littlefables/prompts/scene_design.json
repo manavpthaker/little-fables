@@ -1,0 +1,49 @@
+{
+    "scene_overview_prompts": [
+      "What’s happening in this scene? Describe the main event or action.",
+      "What emotions or themes should this scene convey? (e.g., excitement, mystery, warmth, courage)",
+      "What role does this scene play in the overall story? (e.g., introducing a challenge, resolving a conflict, or showcasing growth)"
+    ],
+    "layout_prompts": [
+      "Here are some layout suggestions for this scene. Which one resonates with you?",
+      "Would you like a close-up of the characters, a wide-angle view of the setting, or a mix of both?",
+      "Should the scene focus on the main action, include background details, or balance both?",
+      "Would you prefer symmetrical layouts, dynamic perspectives, or something unconventional?",
+      "Should the layout guide the reader’s eye with visual flow, like leading lines or character poses?"
+    ],
+    "character_design_prompts": [
+      "What is the main character doing in this scene? (e.g., running, thinking, interacting with others)",
+      "Should the supporting characters appear in this scene? What are they doing?",
+      "How do you imagine the characters’ expressions or poses? (e.g., happy, determined, surprised)",
+      "Do the characters’ appearances (e.g., outfits, props) reflect the events or themes of this scene?",
+      "Would you like the characters to interact with the environment? (e.g., holding objects, sitting on furniture, climbing)"
+    ],
+    "environment_prompts": [
+      "What is the setting for this scene? (e.g., a cozy room, a magical forest, a bustling city)",
+      "What kind of atmosphere should this scene have? (e.g., warm and inviting, eerie and mysterious, lively and bustling)",
+      "What specific details would you like to include in the environment? (e.g., glowing lanterns, scattered books, magical sparkles)",
+      "Should the environment feature dynamic elements? (e.g., moving water, fluttering leaves, glowing lights)",
+      "Would you like to highlight the time of day or weather? (e.g., morning sun, starry night, rainstorm)"
+    ],
+    "continuity_prompts": [
+      "Are there locked designs or elements from previous scenes that need to be included here?",
+      "Do the character appearances and props align with earlier scenes?",
+      "Should this scene visually transition from the previous one? (e.g., continuation of action, similar environment)",
+      "Does this scene include key objects or motifs from the story? (e.g., a magical artifact, a recurring symbol)",
+      "Would you like to review continuity details to ensure consistency across scenes?"
+    ],
+    "interaction_prompts": [
+      "Would you like to add interactive elements for readers? (e.g., hidden details, puzzles, or questions)",
+      "Should any visual elements encourage exploration, like small surprises in the background?",
+      "Could this scene include dynamic storytelling, such as split perspectives or simultaneous actions?",
+      "Do you want the characters to directly engage with the reader (e.g., breaking the fourth wall)?",
+      "Should props or objects tell part of the story visually?"
+    ],
+    "finalization_prompts": [
+      "Does this scene align with your vision for the story?",
+      "Would you like to refine any elements, such as character poses, layout, or environmental details?",
+      "Are there additional details or visual touches you’d like to include before finalizing?",
+      "Should this scene emphasize the emotional tone or advance the plot in a specific way?",
+      "Would you like to preview the scene before moving forward?"
+    ]
+  }

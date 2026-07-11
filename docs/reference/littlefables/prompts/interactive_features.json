@@ -1,0 +1,72 @@
+{
+    "dynamic_prompts": [
+      "Based on your choices so far, here’s a suggestion: Would you like to explore a whimsical adventure with a playful tone?",
+      "Your last input was adventurous. Should we include a daring challenge for the hero to overcome?",
+      "You mentioned a cozy theme. How about adding a warm, friendly setting like a library or a cabin in the woods?",
+      "Since you’ve chosen an animal hero, would you like to explore traits like curiosity, bravery, or cleverness?",
+      "Would you like your story to rhyme, use playful alliteration, or follow a simple narrative style?"
+    ],
+    "interactive_guides": [
+      "Need inspiration? Let’s explore some examples from classic tales or unique character archetypes.",
+      "Not sure where to begin? I can suggest story templates or visual styles based on your preferences.",
+      "Would you like a quick walkthrough of how to use Little Fables? (e.g., setting up your story, designing characters, creating scenes).",
+      "Feeling stuck? Try answering a fun question: What if your hero could talk to animals or travel through time?",
+      "Should I show you some examples of completed stories for ideas?"
+    ],
+    "character_customization": [
+      "Here’s how your character looks so far: {character_snapshot}. Would you like to adjust their outfit, pose, or expression?",
+      "Your hero has been described as {traits}. Should we emphasize their bravery, playfulness, or creativity?",
+      "Would you like to preview your character in different settings? (e.g., forest, city, magical castle).",
+      "Should the supporting characters have a unique style that complements or contrasts with your hero?",
+      "What special details should we add to make your character truly one-of-a-kind? (e.g., a magical accessory or quirky habit)."
+    ],
+    "scene_design_tools": [
+      "Would you like to add dynamic props to the scene? (e.g., glowing lanterns, fluttering leaves, or magical sparkles).",
+      "Here’s a suggested layout for your scene: {layout_name}. Does this match your vision, or would you like to try another?",
+      "Let’s adjust the lighting for the scene. Should it feel warm and sunny, cool and mysterious, or dreamy and magical?",
+      "Should the scene focus more on the hero’s actions, the background’s mood, or a balance of both?",
+      "Would you like to include subtle details in the background that hint at the story’s twist or lesson?"
+    ],
+    "visual_previews": [
+      "Here’s a sneak peek of your story so far: {visual_preview}. Does it match your expectations?",
+      "Would you like to preview your storybook with different layouts or color palettes?",
+      "Should I generate an animated version of your story’s key scenes for a dynamic preview?",
+      "Would you like to compare your current scene design with similar examples for inspiration?",
+      "Would you like a side-by-side comparison of your original draft and the refined version?"
+    ],
+    "interactive_tweaks": [
+      "Would you like to adjust the pacing of the story? (e.g., slow it down for reflective moments, speed it up for action scenes).",
+      "Let’s refine your narrative! Should we add more dialogue, descriptive imagery, or action-oriented sentences?",
+      "Would you like to add fun interactive elements to the story? (e.g., questions for the reader, puzzles, or riddles).",
+      "Should we include subtle emotional cues in the narrative to make it more relatable and engaging?",
+      "Would you like to add Easter eggs to the story, like recurring symbols or hidden references?"
+    ],
+    "collaborative_features": [
+      "Would you like to share your draft with friends or family for feedback?",
+      "Should we include a collaborative mode where multiple people can co-create the story?",
+      "Would you like to save and share specific scenes or characters as standalone previews?",
+      "Should I suggest edits or refinements based on feedback you’ve received?",
+      "Would you like to include acknowledgments for collaborators in the final storybook?"
+    ],
+    "usability_enhancements": [
+      "Would you like to enable tooltips or quick guides for each phase of the process?",
+      "Should I show you shortcuts to quickly navigate between phases (e.g., skip to writing or illustrations)?",
+      "Would you like to turn on a progress tracker to see how far you’ve come and what’s next?",
+      "Should we save your current progress automatically so you can resume from this exact spot later?",
+      "Would you like an option to revert to a previous version if you’re not happy with the latest changes?"
+    ],
+    "gamification_elements": [
+      "Congratulations! You’ve completed the first phase of your story. Here’s a badge for your progress: 🎖️.",
+      "You’re halfway through the process! Would you like to unlock a sneak peek of your completed story?",
+      "Would you like to earn points for completing each phase and exchange them for bonus templates or visuals?",
+      "Should we track your achievements (e.g., milestones like first draft, final story) in a personal dashboard?",
+      "Would you like to play a fun mini-game to generate creative ideas for your story?"
+    ],
+    "feedback_integration": [
+      "Would you like to provide feedback on this phase? Your input helps make Little Fables even better!",
+      "Is there anything missing from this phase that would make it more engaging or helpful?",
+      "What feature did you enjoy most in this phase? What could we improve?",
+      "Would you like to review feedback from other creators who’ve completed similar stories?",
+      "Should we include a feature to submit feedback anonymously to improve the experience?"
+    ]
+  }

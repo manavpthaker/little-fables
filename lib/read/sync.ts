@@ -1,20 +1,37 @@
 // Cross-device sync for the kid app.
-// The local stores (localStorage for stories/universe, IndexedDB for retell
-// audio) stay the read source — sync is write-through. Every mutation calls
-// push*; startup calls pullAll(). When Supabase isn't configured or the user
-// isn't signed in, every function silently no-ops (kid app works offline /
-// unpaired exactly as it did before).
+// Local stores stay the read source — sync is write-through, silently no-op
+// when Supabase isn't configured or the user isn't signed in. v2 stores the
+// full Book as a jsonb blob so schema changes on the app side don't require
+// a migration on the Supabase side.
 
 import { createClient } from '@/lib/supabase/client'
-import type { Story } from '@/types/story'
+import type {
+  Book,
+  BuddyState,
+  EarnedBadges,
+  ReadingDays,
+  Retell,
+  WordBook,
+  WorldState,
+} from '@/types/story'
 import type { Universe } from '@/lib/universe/azad-verse'
 import { saveUniverse as saveLocalUniverse } from '@/lib/universe/azad-verse'
-import { listRetells, loadStories, saveStory as saveLocalStory, saveRetell as saveLocalRetell, type Retell } from './storage'
+import {
+  listRetells,
+  loadBadges,
+  loadBuddy,
+  loadReadingDays,
+  loadStories,
+  loadWorldState,
+  loadWordBook,
+  saveBuddy as saveLocalBuddy,
+  saveRetell as saveLocalRetell,
+  saveStory as saveLocalBook,
+  saveWorldState as saveLocalWorldState,
+} from './storage'
 
 const BUCKET = 'reader-retells'
 
-// Return { supabase, userId } if we can reach the DB with an authenticated
-// session, otherwise null. Every sync helper starts with this guard.
 async function session() {
   const supabase = createClient()
   if (!supabase) return null
@@ -24,27 +41,23 @@ async function session() {
   return { supabase, userId }
 }
 
-// ---------- Stories ----------
+// ---------- Books ----------
 
-export async function pushStory(story: Story): Promise<void> {
+export async function pushStory(book: Book): Promise<void> {
   const s = await session()
   if (!s) return
   const { error } = await s.supabase.from('reader_stories').upsert(
     {
-      id: story.id,
+      id: book.id,
       user_id: s.userId,
-      title: story.title,
-      by: story.by ?? null,
-      cover_image: story.coverImage ?? null,
-      cover_emoji: story.coverEmoji,
-      cover_bg: story.coverBg,
-      status: story.status,
-      source: story.source,
-      teaching_goals: story.teachingGoals,
-      vocab: story.vocab,
-      pages: story.pages,
-      retell_prompts: story.retellPrompts,
-      idea: story.idea ?? null,
+      title: book.title,
+      by: book.by ?? null,
+      cover_image: book.coverImage ?? null,
+      cover_emoji: book.coverEmoji,
+      cover_bg: book.coverBg ?? null,
+      status: book.status,
+      source: book.source,
+      book,
       updated_at: new Date().toISOString(),
     },
     { onConflict: 'id' }
@@ -57,35 +70,16 @@ export async function pullStories(): Promise<void> {
   if (!s) return
   const { data, error } = await s.supabase
     .from('reader_stories')
-    .select('*')
+    .select('book')
     .eq('user_id', s.userId)
   if (error) {
     console.warn('[sync] pullStories failed:', error.message)
     return
   }
   if (!data) return
-  const localIds = new Set(loadStories().map((s) => s.id))
   for (const row of data) {
-    const story: Story = {
-      id: row.id,
-      title: row.title,
-      by: row.by ?? undefined,
-      coverImage: row.cover_image ?? undefined,
-      coverEmoji: row.cover_emoji,
-      coverBg: row.cover_bg,
-      status: row.status,
-      source: row.source,
-      teachingGoals: row.teaching_goals ?? [],
-      vocab: row.vocab ?? [],
-      pages: row.pages,
-      retellPrompts: row.retell_prompts ?? [],
-      idea: row.idea ?? undefined,
-      createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now(),
-    }
-    // Always write the remote row into local — remote is the source of truth
-    // for cross-device merges. Fine because saveLocalStory already dedupes by id.
-    saveLocalStory(story)
-    localIds.add(story.id)
+    const book = (row as { book: Book | null }).book
+    if (book && book.id) saveLocalBook(book)
   }
 }
 
@@ -126,7 +120,7 @@ export async function pullUniverse(): Promise<void> {
   if (data?.data) saveLocalUniverse(data.data as Universe)
 }
 
-// ---------- Retells (metadata + audio) ----------
+// ---------- Retells ----------
 
 export async function pushRetell(r: Retell, blob: Blob): Promise<void> {
   const s = await session()
@@ -144,10 +138,11 @@ export async function pushRetell(r: Retell, blob: Blob): Promise<void> {
     {
       id: r.id,
       user_id: s.userId,
-      story_id: r.storyId,
-      story_title: r.storyTitle,
+      story_id: r.bookId,
+      story_title: r.bookTitle,
       mime_type: r.mimeType,
       audio_path: path,
+      transcript: r.transcript ?? null,
       created_at: new Date(r.createdAt).toISOString(),
     },
     { onConflict: 'id' }
@@ -182,12 +177,91 @@ export async function pullRetells(): Promise<void> {
     if (dl.error || !dl.data) continue
     await saveLocalRetell({
       id: row.id,
-      storyId: row.story_id,
-      storyTitle: row.story_title,
+      bookId: row.story_id,
+      bookTitle: row.story_title,
       createdAt: row.created_at ? new Date(row.created_at).getTime() : Date.now(),
       mimeType: row.mime_type ?? dl.data.type,
       blob: dl.data,
+      transcript: row.transcript ?? undefined,
     })
+  }
+}
+
+// ---------- v2 state blob (buddy / badges / reading days / wordbook / worldstate) ----------
+//
+// The reader_state table stores a single per-user jsonb blob. Sync is dumb:
+// on push we send the whole thing, on pull we merge the whole thing back into
+// local. Localhost stays authoritative for last-write-wins because we compare
+// updated_at.
+
+interface StateBlob {
+  buddy?: BuddyState
+  badges?: EarnedBadges
+  readingDays?: ReadingDays
+  wordBook?: WordBook
+  worldState?: WorldState
+}
+
+export async function pushState(): Promise<void> {
+  const s = await session()
+  if (!s) return
+  const blob: StateBlob = {
+    buddy: loadBuddy(),
+    badges: loadBadges(),
+    readingDays: loadReadingDays(),
+    wordBook: loadWordBook(),
+    worldState: loadWorldState(),
+  }
+  const { error } = await s.supabase.from('reader_state').upsert(
+    {
+      user_id: s.userId,
+      data: blob,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id' }
+  )
+  if (error) console.warn('[sync] pushState failed:', error.message)
+}
+
+export async function pullState(): Promise<void> {
+  const s = await session()
+  if (!s) return
+  const { data, error } = await s.supabase
+    .from('reader_state')
+    .select('data')
+    .eq('user_id', s.userId)
+    .maybeSingle()
+  if (error) {
+    console.warn('[sync] pullState failed:', error.message)
+    return
+  }
+  const blob = data?.data as StateBlob | undefined
+  if (!blob) return
+  if (blob.buddy) saveLocalBuddy(blob.buddy)
+  if (blob.worldState) saveLocalWorldState(blob.worldState)
+  // Badges / reading days / wordbook: merge locally by union. Writing them all
+  // through the storage module keeps the shape valid.
+  if (blob.badges) {
+    const local = loadBadges()
+    const ids = Array.from(new Set([...local.ids, ...blob.badges.ids]))
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('lf-badges-v2', JSON.stringify({ ids, pendingEarn: local.pendingEarn }))
+    }
+  }
+  if (blob.readingDays) {
+    const local = loadReadingDays()
+    const daysLit = Array.from(new Set([...local.daysLit, ...blob.readingDays.daysLit]))
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('lf-reading-days-v2', JSON.stringify({ daysLit }))
+    }
+  }
+  if (blob.wordBook) {
+    const local = loadWordBook()
+    const byWord = new Map(local.words.map((w) => [w.word, w]))
+    for (const w of blob.wordBook.words) if (!byWord.has(w.word)) byWord.set(w.word, w)
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('lf-wordbook-v2', JSON.stringify({ words: Array.from(byWord.values()) }))
+    }
   }
 }
 
@@ -196,7 +270,7 @@ export async function pullRetells(): Promise<void> {
 export async function pullAll(): Promise<void> {
   const s = await session()
   if (!s) return
-  await Promise.all([pullStories(), pullUniverse(), pullRetells()])
+  await Promise.all([pullStories(), pullUniverse(), pullRetells(), pullState()])
 }
 
 // ---------- Sign-in helpers surfaced to Parent Corner ----------
@@ -223,3 +297,6 @@ export async function signOut(): Promise<void> {
   if (!supabase) return
   await supabase.auth.signOut()
 }
+
+// Silence unused vars until callers of loadStories are wired.
+void loadStories

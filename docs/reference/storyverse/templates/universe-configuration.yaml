@@ -1,0 +1,348 @@
+# Storyverse Universe Configuration Template
+#
+# This file defines your child's personalized story universe.
+# Fill out each section below. Required fields marked with (REQUIRED).
+# Optional fields can be left blank and added later.
+#
+# See examples/ directory for complete examples.
+# Read docs/03-universe-design-guide.md for step-by-step instructions.
+
+################################################################################
+# UNIVERSE IDENTITY
+################################################################################
+
+universe:
+  name: ""  # (REQUIRED) e.g., "The Azi-Verse", "Maya's World"
+  version: "1.0"
+  created: "YYYY-MM-DD"  # Today's date
+
+################################################################################
+# YOUR CHILD
+################################################################################
+
+child:
+  name: ""  # (REQUIRED) Your child's name
+  age_years: 0  # (REQUIRED) Age in years
+  age_months: 0  # Optional: Age in months (helps with development stage)
+  birthday: "MM-DD"  # Optional: For story integration
+
+  personality:
+    # Pick 3-5 words that describe your child
+    primary_traits:
+      - ""  # e.g., "thoughtful", "energetic", "curious"
+      - ""
+      - ""
+
+    # How does your child process challenges? Pick one:
+    # - "through music and rhythm"
+    # - "through building and creation"
+    # - "through movement and physical activity"
+    # - "through talking and storytelling"
+    # - "through quiet observation"
+    processing_style: ""
+
+    # Current interests/obsessions (top 3-5)
+    interests:
+      - ""  # e.g., "dinosaurs", "cooking", "music"
+      - ""
+      - ""
+
+    # Optional: Specific developmental notes or challenges
+    developmental_notes: |
+      Write any relevant details about your child's current stage,
+      challenges they're facing, or strengths to build on.
+
+################################################################################
+# CULTURAL IDENTITY
+################################################################################
+
+cultural_identity:
+  # List ALL cultural backgrounds in your family
+  primary_heritage:
+
+    - culture: ""  # e.g., "Colombian", "Chinese", "Nigerian"
+
+      languages:
+        - code: ""  # ISO 639-1 code (e.g., "es" for Spanish, "zh" for Chinese)
+          name: ""  # Language name (e.g., "Spanish")
+          usage_frequency: ""  # high/medium/low
+          typical_contexts:  # When is this language used?
+            - ""  # e.g., "daily routines", "emotional expressions"
+            - ""
+
+      # Cultural traditions that appear in family life
+      traditions:
+        - name: ""
+          frequency: ""  # daily/weekly/seasonal/annual
+          description: |
+            Describe how this tradition happens in your family
+
+      # Important foods for this culture
+      foods:
+        comfort_foods:
+          - ""  # Foods eaten regularly
+        celebration_foods:
+          - ""  # Foods for special occasions
+
+      # Music from this culture
+      music:
+        genres:
+          - ""  # e.g., "cumbia", "Bollywood", "reggae"
+        meaningful_songs:
+          - title: ""
+            emotional_context: ""  # When/why this song matters
+
+    # Add more cultural backgrounds as needed
+    # - culture: "Another Culture"
+    #   languages: [...]
+
+  # How does your family naturally mix languages?
+  code_switching_rules:
+    max_heritage_words_per_page: 2  # Recommend 1-2 to avoid overwhelm
+    context_requirement: "immediate"  # immediate/next-sentence/visual
+
+    # Describe actual patterns you use:
+    natural_patterns: |
+      Example: "I say '¿Qué quieres?' when asking what she wants,
+      then translate in next sentence. Terms of endearment always
+      in Spanish: 'mi amor', 'mi cielo'."
+
+################################################################################
+# FAMILY STRUCTURE
+################################################################################
+
+family_structure:
+  parents:
+    - name: ""  # e.g., "Mama", "Papa", "Mom", "Dad"
+      primary_language: ""
+      cultural_connection: ""  # Which heritage they represent
+      personality_sketch: |
+        Brief description for story characterization
+      terms_of_endearment:
+        - ""  # e.g., "sweetheart", "mi amor"
+      special_activities:
+        - ""  # e.g., "cooking", "gardening"
+
+    # Add second parent if applicable
+    # - name: ""
+
+  extended_family:
+    grandparents:
+      - names: ""  # e.g., "Grandma & Grandpa", "Dada & Dadi"
+        location: ""  # e.g., "local", "Colombia", "video calls from India"
+        connection_type: ""  # in-person/video calls/phone
+        cultural_role: ""  # Which cultural elements they represent
+
+        # What makes their space special?
+        special_elements:
+          home_description: |
+            Describe what makes their home distinctive
+          signature_foods:
+            - ""
+          traditions:
+            - ""
+          language_used: ""
+
+    # Optional: Aunts, uncles, cousins who appear in stories
+    aunts_uncles: []
+    cousins: []
+
+  # Optional: Neighbors, family friends who might appear
+  community:
+    neighbors: []
+    friends: []
+
+################################################################################
+# STORY COMPANIONS
+################################################################################
+
+companions:
+  enabled: true  # Set false if not using companion characters
+
+  # Philosophy: Why do companions exist in your universe?
+  companion_philosophy: |
+    Example: "Plush toys come alive to help [child] process emotions
+    and solve problems. Each has a distinct personality and therapeutic function."
+
+  # List your companions (link to detailed character files)
+  companion_list:
+    - id: "companion_001"
+      name: ""  # e.g., "Pandies"
+      type: ""  # e.g., "panda", "ball", "robot"
+      brief_personality: ""  # One-line: e.g., "Calm guide who speaks slowly"
+      config_file: "characters/COMPANION_NAME.yaml"  # Detailed profile
+
+    # Add more companions (recommended: 3-9 total)
+
+  # How do companions appear in stories?
+  opening_ritual: |
+    Example: "Whisker-wiggle roll call!" where each companion
+    announces themselves before adventures begin.
+
+################################################################################
+# SETTINGS & LOCATIONS
+################################################################################
+
+primary_setting:
+  home:
+    name: ""  # Optional: Does your home have a name?
+    description: |
+      Physical description that makes it visually recognizable
+
+    # Key rooms that appear in stories (2-4 recommended)
+    key_rooms:
+      - name: ""  # e.g., "Playroom", "Bedroom"
+        purpose: ""  # e.g., "where adventures begin", "calm endings"
+        signature_elements:
+          - ""  # Distinctive features
+          - ""
+        emotional_tone: ""  # welcoming/cozy/energetic/calm
+        cultural_items:
+          - ""  # e.g., "Hindi books", "family photos"
+
+    # Outdoor spaces
+    outdoor_spaces:
+      - name: ""  # e.g., "Backyard", "Garden"
+        description: |
+          What happens here? What grows/changes?
+        seasonal_changes: ""
+        special_activities:
+          - ""
+
+  # Other locations (grandparents' house, park, school, etc.)
+  extended_locations:
+    - name: ""
+      access: ""  # how child gets there (walk/car/bus)
+      frequency: ""  # how often visited
+      what_makes_it_special: |
+        Why does this location matter to stories?
+      signature_elements:
+        - ""
+
+################################################################################
+# STORY PREFERENCES
+################################################################################
+
+story_preferences:
+  # Which age bands are you targeting?
+  age_bands_to_target:
+    - "0-3"   # Board books (100 words, simple)
+    - "4-8"   # Picture books (500 words, adventure)
+    - "7-10"  # Chapter books (5000+ words, complex)
+
+  # Which skills matter most to your family? (Pick top 5-7)
+  # See docs/06-skill-embedding.md for complete framework
+  priority_skills:
+    # Cognitive Skills
+    - skill: "critical_thinking"
+      priority: "high"  # high/medium/low
+    - skill: "ai_literacy"
+      priority: "medium"
+
+    # Socio-Emotional Skills
+    - skill: "emotional_intelligence"
+      priority: "high"
+    - skill: "cultural_intelligence"
+      priority: "high"
+
+    # Add more skills...
+
+  # Specific therapeutic needs (optional)
+  therapeutic_focuses:
+    - need: "bedtime_routine"
+      urgency: "high"
+      notes: |
+        Specific challenges or approaches
+
+    - need: "emotional_regulation"
+      urgency: "medium"
+      techniques_preferred:
+        - "externalization"
+        - "breathing_cues"
+
+  # How should stories sound?
+  tone_preferences:
+    narrator_voice: ""  # gentle/playful/matter-of-fact/lyrical
+    humor_style: ""     # silly/wordplay/situational/gentle
+    pacing: ""          # leisurely/moderate/brisk
+
+    # How do stories typically end?
+    ending_rituals:
+      - ""  # e.g., "comfort food", "moon-gazing", "song"
+
+################################################################################
+# RECURRING MOTIFS
+################################################################################
+
+recurring_motifs:
+  # Symbols that appear across stories for continuity
+  symbols:
+    - symbol: ""  # e.g., "the moon watches over all children"
+      meaning: |
+        What does this represent?
+      usage_frequency: ""  # every story/often/occasionally
+
+  # Rituals that create universe consistency
+  rituals:
+    - ritual: ""  # e.g., "whisker-wiggle roll call"
+      when_used: ""  # beginning/ending/transitions
+      description: |
+        How does this happen in stories?
+
+  # Sensory anchors (sounds, smells, textures)
+  sensory_anchors:
+    sounds:
+      - sound: ""
+        emotional_association: ""  # e.g., "comfort", "excitement"
+    smells:
+      - smell: ""
+        emotional_association: ""
+    tactile:
+      - texture: ""
+        emotional_association: ""
+
+################################################################################
+# UNIVERSE RULES
+################################################################################
+
+universe_rules:
+  # How much magical realism?
+  magical_realism_level: ""  # none/subtle/moderate/high
+
+  # What's possible in your universe?
+  what_is_possible: |
+    Define boundaries: Can toys talk? Can characters fly?
+    Can magical places appear? What's the internal logic?
+
+  # What MUST stay consistent?
+  what_stays_consistent: |
+    Non-negotiable: Character personalities? Physical laws?
+    Emotional realism?
+
+  # Tone boundaries
+  tone_boundaries:
+    avoid:
+      - ""  # e.g., "scary without resolution"
+    embrace:
+      - ""  # e.g., "quiet wisdom", "earned understanding"
+
+################################################################################
+# METADATA
+################################################################################
+
+metadata:
+  created_by: ""  # Your name(s)
+
+  cultural_consultants:
+    - name: ""
+      expertise: ""  # Cultural background/area
+      role: ""  # What they review
+
+  version_history:
+    - version: "1.0"
+      date: "YYYY-MM-DD"
+      changes: "Initial universe creation"
+
+  privacy_notes: |
+    Any privacy considerations? Anonymization needed?
+    What's okay to share if showcasing universe?

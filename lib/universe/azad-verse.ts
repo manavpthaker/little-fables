@@ -1,124 +1,274 @@
-// Azad-verse — default universe config (Storyverse framework)
-// Editable in the Parent Corner (/read/parent); edits are stored in localStorage
-// and merged over these defaults. Update freely as Azad grows.
+// Azi-Verse — the canonical universe for Little Fables v2.
+// Source of truth: docs/reference/azi-verse/universe-guide.md.
+// Editable in the Parent Corner; edits are stored in localStorage and merged
+// over these defaults. Kept at the historical path `azad-verse.ts` so existing
+// imports keep resolving.
 
 export interface Companion {
   name: string
   emoji: string
-  species: string
+  role: string
   personality: string
   loves: string
-  catchphrase: string
+  catchphrase?: string
+}
+
+export interface Setting {
+  name: string
+  description: string
+}
+
+export interface CultureWord {
+  term: string
+  language: 'Spanish' | 'Gujarati' | 'Hindi' | 'Creole' | 'English'
+  meaning: string
 }
 
 export interface Universe {
   childName: string
   age: number
-  /** Reads/plays above age level — stories target this band */
+  /** Story-level target — reads/plays above age (e.g. "5–6 year old"). */
   storyLevel: string
   interests: string[]
   companions: Companion[]
-  settings: string[]
+  settings: Setting[]
   teachingGoals: string[]
   values: string[]
-  /** Cultural + language layer. words: { term, language, meaning } */
   culture: {
     languages: string[]
-    words: { term: string; language: string; meaning: string }[]
+    words: CultureWord[]
     notes: string
   }
-  /** Things to avoid in stories */
+  rituals: string[]
+  /** Things to avoid in stories. */
   avoid: string[]
 }
 
 export const DEFAULT_UNIVERSE: Universe = {
   childName: 'Azad',
   age: 4,
-  storyLevel: '5-6 year old (reads and reasons above age level)',
+  storyLevel: '5–6 year old (reads and reasons above age level)',
   interests: [
-    'motorcycles ("motos")',
-    'soccer',
-    'hockey',
-    'space and rockets',
-    'trucks and construction',
-    'dinosaurs',
-    'animals and nature',
-    'spider-heroes and web-swinging rescues',
-    'living vs nonliving things',
-    'music, art, and building/inventing things',
+    'guitar and music (Azi\'s three-chord C-G-Am progression)',
+    'puzzles — fitting pieces together',
+    'AKAI keyboard, patience while learning',
+    'motorcycles, dinosaurs, bridges',
+    'the moon and stars',
+    'snow, honey, gardens, bees',
+    'trains and yellow buses',
+    'family video calls to Colombia',
+    'code-switching — Spanish, English, Gujarati, Hindi, Creole',
   ],
   companions: [
+    // Plush companions (source: universe-guide.md).
     {
-      name: 'Papa',
-      emoji: '👨🏽',
-      species: 'Azad’s papa — glasses, beard, loves his record collection and music',
-      personality: 'warm, playful, loves explaining how things work',
-      loves: 'playing records, building things with Azi, big bear hugs',
-      catchphrase: 'Let’s figure it out together!',
+      name: 'Jujy',
+      emoji: '🐈',
+      role: 'the loyal leader — black-and-white tuxedo cat',
+      personality: 'confident, sometimes forgets the plan halfway through announcing it',
+      loves: 'expeditions, roll call, leading Wardlaw Hartridge trips',
+      catchphrase: 'Whisker-wiggle roll call!',
     },
     {
-      name: 'Dadi',
-      emoji: '👵🏽',
-      species: 'Azad’s grandmother — glasses, the best cook in the whole family',
-      personality: 'gentle, patient, tells the oldest and best stories',
-      loves: 'cooking sweet things with Azi, teaching Gujarati words',
-      catchphrase: 'Chalo, beta!',
+      name: 'Dory',
+      emoji: '🐱',
+      role: 'the dreamy scout — soft gray-and-white cat',
+      personality: 'cheerful, spacey, lives in the moment (and often revisits it)',
+      loves: 'Flo\'s Creole drifting through the window, big feelings, small snacks',
+      catchphrase: 'Um… what were we doing?',
     },
+    {
+      name: 'Pandies',
+      emoji: '🐼',
+      role: 'the calm guide / bus driver — wise, slow-speaking panda',
+      personality: 'patient, quiet, always ready with the right question',
+      loves: 'driving the yellow bus, invisible ranger hat, arriving on time',
+      catchphrase: '¿Todos listos?',
+    },
+    {
+      name: 'Citie',
+      emoji: '🧸',
+      role: 'the steady rider — the quiet noticer',
+      personality: 'observant, patient, sees small things others miss',
+      loves: 'watching out the bus window, being present',
+    },
+    {
+      name: 'Clappy',
+      emoji: '🎺',
+      role: 'the joyful musician — red, round, full of rhythm',
+      personality: 'claps before thinking, sings when it\'s quiet, feels loud',
+      loves: 'Colombian cumbia, Indian tabla, tambourines in still rooms',
+    },
+    {
+      name: 'Slothie',
+      emoji: '🦥',
+      role: 'the stillness — moves slowly, speaks rarely',
+      personality: 'feels everything, brings calm and warmth',
+      loves: 'presence, video calls with faraway grandparents',
+    },
+    {
+      name: 'Monkie',
+      emoji: '🐒',
+      role: 'the practical fisherman — planner in footie pajamas',
+      personality: 'a worrier and a fixer; knows when to cast a line and when to sit',
+      loves: 'the dock, Spanish words for feelings that have no English name',
+    },
+    {
+      name: 'Peter',
+      emoji: '🐾',
+      role: 'the quiet trickster — small, brown, thoughtful',
+      personality: 'a sparkle behind the silence; starts games no one knew they were playing',
+      loves: 'Gujarati letters (possibly secret codes), curiosity',
+    },
+    {
+      name: 'Pooh',
+      emoji: '🐻',
+      role: 'the slow farmer — tends honey, speaks like dusk',
+      personality: 'a warm cup, a long exhale',
+      loves: 'bees, humming vallenatos and ragas, old lullabies that cross oceans',
+    },
+    // Story-series companions (Miko et al.) kept for the Zoomtown storybook line.
     {
       name: 'Miko',
       emoji: '🦊',
-      species: 'a quick red fox who rides a tiny blue moto',
-      personality: 'brave, curious, sometimes goes too fast and has to slow down and breathe',
-      loves: 'zooming, helping friends, checking if things are living or nonliving',
-      catchphrase: 'Vroom vroom, let’s zoom!',
+      role: 'quick red fox on a tiny blue moto (Zoomtown series)',
+      personality: 'brave, curious, remembers to breathe when the tummy tightens',
+      loves: 'zooming, helping friends, checking living vs nonliving',
+      catchphrase: 'Vroom vroom, let\'s zoom!',
     },
     {
       name: 'Tara',
       emoji: '🕷️',
-      species: 'a tiny friendly spider who spins super-strong silver webs',
-      personality: 'clever, patient, great at making plans and catching falling things',
-      loves: 'swinging between buildings, weaving web-goals for soccer practice',
+      role: 'friendly spider who spins silver webs (Zoomtown series)',
+      personality: 'clever, patient, plan-maker',
+      loves: 'web-goals, catching falling things',
       catchphrase: 'A web can fix it!',
     },
     {
       name: 'Boulder',
       emoji: '🦕',
-      species: 'a gentle giant brontosaurus who works construction',
-      personality: 'calm, strong, grateful for small things, a little slow but always steady',
-      loves: 'building, lifting beams with his long neck, saying thank you',
+      role: 'gentle brontosaurus in construction (Zoomtown series)',
+      personality: 'calm, strong, grateful for small things',
+      loves: 'lifting beams with his long neck, saying thank you',
       catchphrase: 'Slow and steady builds it best.',
     },
   ],
   settings: [
-    'Home — the kitchen with Dadi, Papa’s record corner, Azi’s room full of teddy bears',
-    'Zoomtown — a busy little city with moto lanes, a soccer field, and a hockey rink',
-    'The Star Garage — a workshop where rockets and motos get built and fixed',
-    'Dino Canyon — wild nature full of animals, fossils, and mystery caves',
+    {
+      name: 'The Westfield',
+      description:
+        'Home — green clapboard, red door, white picket fence. Sits slightly sideways to the sun. Spanish flows like honey in the morning; Hindi books wait for bedtime discoveries.',
+    },
+    {
+      name: 'Azi\'s Playroom',
+      description:
+        'Circular rug, cozy shelves, guitar, felt-covered stool, record player, AKAI keyboard, Papa\'s Gujarati tablet on the windowsill. Whisker-wiggle roll call happens here.',
+    },
+    {
+      name: 'Azi\'s Bedroom',
+      description:
+        'Twilight-toned room with a moon-view window, books tucked under pillows (some en español), a little sofa with slumped companions. Where endings and soft questions happen.',
+    },
+    {
+      name: 'The Backyard',
+      description:
+        'Kale, beans, tomatoes, herbs, the trampoline, the BBQ grill. Honeybees hum like gentle neighbors. April 21st birthdays under spring sun.',
+    },
+    {
+      name: 'Pooh\'s Honey Farm',
+      description:
+        'Beyond the backyard fence, down a path that sometimes isn\'t there. Bees hum in a language older than words. Red tractor idles patiently.',
+    },
+    {
+      name: 'Monkie\'s Dock and Boat',
+      description:
+        'The dock appears when needed. Sometimes beside water that sparkles like the Caribbean, sometimes streams that whisper like mountain rivers. Monkie knows the knots.',
+    },
+    {
+      name: 'The Yellow Bus',
+      description:
+        'Driven by Pandies. Stops for Wardlaw Hartridge (camp), Apple Montessori (school), and anywhere a story needs to begin.',
+    },
+    {
+      name: 'Liberty Science Center (Brady\'s World)',
+      description:
+        'Where questions become adventures. Brady\'s gentle scientist heart meets Azi\'s drumming curiosity.',
+    },
+    {
+      name: 'Video Call Spaces',
+      description:
+        'The laptop screen that becomes a window to Colombia — Lito and Lita\'s voices carry sunshine. Where "te amo" travels through screens.',
+    },
+    {
+      name: 'Dada & Dadi\'s House in Howell',
+      description:
+        'An hour-long car ride that feels like traveling to a land of abundance. Dosas cooking, Gujarati floating through rooms, Dada\'s Hess trucks parading on shelves.',
+    },
+    {
+      name: 'The Neighborhood Circle',
+      description:
+        'Brady and Anne next door, Flo\'s warm Haitian welcome across the way, walking routes that connect houses and hearts.',
+    },
+    // Zoomtown (Miko series) kept as a distinct storybook place.
+    {
+      name: 'Zoomtown / Dino Canyon',
+      description:
+        'The Miko series — moto lanes, soccer field, wobbly bridge over Dino Canyon. Storybook-only; not part of the Azi-Verse proper.',
+    },
   ],
   teachingGoals: [
-    'early literacy: letter sounds, rhymes, new words',
-    'early numeracy: counting, patterns, simple adding',
-    'curiosity and critical thinking: predicting, asking why, cause and effect',
+    'counting and simple numeracy',
+    'star words (vocabulary + meaning)',
+    'naming feelings and belly breaths',
+    'flexible thinking (plan changes → new possibilities)',
     'living vs nonliving classification',
-    'emotional regulation: naming feelings, belly breaths, trying again',
-    'kindness, gratefulness, and friendship',
+    'letter sounds, rhymes, code-switching between languages',
+    'kindness, sharing, gratefulness, trying again',
+    'family words: Gujarati, Spanish, Hindi',
   ],
-  values: ['kindness', 'gratefulness', 'courage', 'sharing', 'trying again'],
+  values: ['kindness', 'gratefulness', 'courage', 'sharing', 'trying again', 'family'],
   culture: {
-    languages: ['English', 'Gujarati'],
+    languages: ['English', 'Spanish', 'Gujarati', 'Hindi', 'Creole'],
     words: [
+      { term: 'agua', language: 'Spanish', meaning: 'water' },
+      { term: 'lechita', language: 'Spanish', meaning: 'a little milk' },
+      { term: 'mi cielo', language: 'Spanish', meaning: 'my sky (endearment)' },
+      { term: 'mi amor', language: 'Spanish', meaning: 'my love' },
+      { term: 'te amo', language: 'Spanish', meaning: 'I love you' },
+      { term: 'celebración', language: 'Spanish', meaning: 'celebration' },
+      { term: '¿todos listos?', language: 'Spanish', meaning: 'everyone ready?' },
       { term: 'bhen', language: 'Gujarati', meaning: 'little sister' },
       { term: 'beta', language: 'Gujarati', meaning: 'child (term of endearment)' },
-      { term: 'chalo', language: 'Gujarati', meaning: 'come on / let’s go' },
-      { term: 'Dada', language: 'Gujarati', meaning: 'grandfather (father’s side)' },
-      { term: 'Dadi', language: 'Gujarati', meaning: 'grandmother (father’s side)' },
-      { term: 'Kaka', language: 'Gujarati', meaning: 'uncle (father’s brother)' },
-      { term: 'Kaki', language: 'Gujarati', meaning: 'aunt (Kaka’s wife)' },
+      { term: 'chalo', language: 'Gujarati', meaning: 'come on / let\'s go' },
+      { term: 'Dada', language: 'Gujarati', meaning: 'grandfather (father\'s side)' },
+      { term: 'Dadi', language: 'Gujarati', meaning: 'grandmother (father\'s side)' },
+      { term: 'Kaka', language: 'Gujarati', meaning: 'uncle (father\'s brother)' },
+      { term: 'Kaki', language: 'Gujarati', meaning: 'aunt (Kaka\'s wife)' },
+      { term: 'jaldi', language: 'Gujarati', meaning: 'quick!' },
+      { term: 'ek do teen', language: 'Hindi', meaning: 'one, two, three' },
     ],
     notes:
-      'The family cast is real: Mama, Papa, Dada, Dadi, Kaka, Kaki, and Azad ("Azi") — soon a big brother to his little bhen. Weave family words in naturally the way the family actually speaks - a character says the word, another responds so meaning is clear from context. Never translate like a dictionary. Family members can appear in stories alongside the animal companions.',
+      'Colombian sunshine + Indian curiosity + neighborhood Creole. Code-switch naturally (1–2 heritage words per page max); a character says the word and another responds so meaning is clear from context. Never dictionary translations. Mama\'s Spanish is warm; Papa is learning Gujarati alongside Azi.',
   },
-  avoid: ['real violence', 'scary imagery for its own sake', 'brand characters (make our own heroes)'],
+  rituals: [
+    '"Whisker-wiggle roll call!" — opens each adventure',
+    'Azi\'s three-chord progression (C-G-Am) signals thinking',
+    'Puzzle-corner-pieces metaphor when life feels complicated',
+    'Dosas / arepas / honey mark emotional calm',
+    'The moon watches over all the children of the world — story endings',
+    'AKAI keyboard humming — patience waiting for understanding to grow',
+    'Snack-song-moon closings',
+    'April 21 birthday celebrations on the deck',
+    'Hess truck parades at Dada and Dadi\'s house',
+  ],
+  avoid: [
+    'real violence',
+    'scary imagery for its own sake',
+    'brand characters (make our own)',
+    'moralizing or explicit teaching',
+    'cultural tokenism (superficial heritage words / traditions)',
+    'loss states, streaks-with-punishment, leaderboards, currencies',
+  ],
 }
 
 const STORAGE_KEY = 'azad-universe-v1'

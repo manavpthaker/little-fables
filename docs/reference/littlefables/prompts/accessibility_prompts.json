@@ -1,0 +1,59 @@
+{
+    "text_adjustments": {
+      "font_size": [
+        "Would you like to use a larger font size for easier readability?",
+        "Choose from these font sizes: Small, Medium, Large, Extra Large."
+      ],
+      "font_style": [
+        "Would you prefer a playful, classic, or sans-serif font style?",
+        "We can also use a dyslexia-friendly font. Would you like that?"
+      ],
+      "line_spacing": [
+        "Should we increase the spacing between lines for better readability?",
+        "Choose your preferred line spacing: Standard, Relaxed, or Wide."
+      ]
+    },
+    "color_contrast": {
+      "themes": [
+        "Would you like to use a high-contrast color theme for better visibility?",
+        "Choose a background color: Light (default), Dark, or Sepia."
+      ],
+      "custom_palette": [
+        "Do you have specific color preferences for text and background?",
+        "Would you like to explore color palettes optimized for visual impairments (e.g., grayscale or colorblind-friendly)?"
+      ]
+    },
+    "illustration_adjustments": {
+      "alt_text_prompts": [
+        "Provide a brief description of the illustration for visually impaired readers.",
+        "Describe the main action or emotion depicted in this scene."
+      ],
+      "detail_level": [
+        "Should we simplify illustrations to reduce visual clutter?",
+        "Would you like more focus on the characters or the background?"
+      ],
+      "contrast_and_brightness": [
+        "Would you like to adjust the brightness or contrast of the illustrations?",
+        "Should we apply a filter to make the visuals more accessible (e.g., grayscale or high contrast)?"
+      ]
+    },
+    "audio_and_interactivity": {
+      "audio_narration": [
+        "Would you like to enable audio narration for the story?",
+        "Should the narration include sound effects to match the story’s scenes?"
+      ],
+      "interactive_feedback": [
+        "Would you like the story to ask interactive questions to engage the reader?",
+        "Include accessible question prompts, such as 'What do you think happens next?'"
+      ],
+      "captions": [
+        "Should we add captions to audio-based features for accessibility?",
+        "Would you like descriptions of non-verbal audio elements (e.g., sound effects)?"
+      ]
+    },
+    "accessibility_modes": [
+      "Enable an accessibility mode with simplified navigation and larger icons?",
+      "Would you like keyboard navigation support for easier control?",
+      "Enable voice control or screen reader support for enhanced accessibility?"
+    ]
+  }

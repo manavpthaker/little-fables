@@ -1,0 +1,44 @@
+{
+    "character_creation_prompts": [
+      "Who is the main character of your story? (e.g., a curious fox, a brave child, a wise turtle)",
+      "What is your main character’s personality like? (e.g., adventurous, thoughtful, mischievous)",
+      "Does your character have any unique traits or quirks? (e.g., a love for riddles, a magical skill, or a favorite object)",
+      "What motivates your main character? (e.g., solving a mystery, making friends, or overcoming a fear)",
+      "What is your character’s biggest challenge or fear?"
+    ],
+    "plot_development_prompts": [
+      "What is the central conflict or challenge in your story? (e.g., finding a lost treasure, learning to share, saving a forest)",
+      "How does your main character encounter this challenge? (e.g., by accident, through a friend, or as part of a quest)",
+      "Does your story have a lesson or moral? (e.g., teamwork, bravery, kindness, perseverance)",
+      "Are there moments of surprise or excitement in your story? (e.g., a sudden twist, a new discovery, or an unexpected helper)",
+      "How will the story resolve? Does your character achieve their goal, learn something new, or grow in a meaningful way?"
+    ],
+    "setting_prompts": [
+      "Where does your story take place? (e.g., a magical forest, a bustling town, a cozy kitchen)",
+      "What details make this setting unique or memorable? (e.g., glowing trees, a secret library, or playful animals)",
+      "Does the setting reflect the tone of your story? (e.g., mysterious, whimsical, adventurous, calming)",
+      "Are there specific props or elements in the setting that are important to the story? (e.g., a magical map, a hidden door, or a glowing lantern)",
+      "Would you like the setting to change as the story progresses? (e.g., moving from a forest to a castle, or from day to night)"
+    ],
+    "supporting_characters_prompts": [
+      "Does your main character have any companions or helpers? (e.g., a loyal friend, a wise mentor, a mischievous sidekick)",
+      "What role do the supporting characters play in the story? (e.g., guiding the main character, providing comic relief, creating challenges)",
+      "How would you describe their personality or appearance? (e.g., cheerful and bright, mysterious and shadowy)",
+      "Do the supporting characters have their own goals or challenges?",
+      "Would you like to include a rival or antagonist? What makes them a compelling character?"
+    ],
+    "structure_prompts": [
+      "Would you like your story to follow a classic structure? (e.g., beginning, middle, end with a clear climax)",
+      "Should the story include flashbacks, parallel events, or other creative structures?",
+      "How does the story begin? Does it start with action, description, or dialogue?",
+      "What happens in the middle of the story to create tension or excitement?",
+      "How does the story transition smoothly from one event to the next?"
+    ],
+    "finalization_prompts": [
+      "Does the story reflect the themes and tone you envisioned?",
+      "Are there any parts you’d like to expand or simplify?",
+      "Would you like to add a memorable opening line or a heartfelt conclusion?",
+      "Are there any specific moments you’d like to highlight or enhance?",
+      "Does the story leave the reader with a sense of wonder, excitement, or inspiration?"
+    ]
+  }

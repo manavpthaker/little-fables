@@ -396,6 +396,581 @@ export function VocabStar({ word, active, onTap }: VocabStarProps) {
   )
 }
 
+// ============================================================
+// v2 components (Dream Paper handoff-v2)
+// ============================================================
+
+import type { BuddyDef, BadgeDef, WashKey } from '@/types/story'
+
+// ---- Wash background helper ----
+export function washBg(key: WashKey | undefined): string {
+  const k = key ?? 'canyon'
+  // Three radial gradients composed over paper, matching design/handoff-v2/app/shared.jsx washBg().
+  const stops: Record<WashKey, [string, string, string]> = {
+    canyon: ['rgba(147,174,189,.55)', 'rgba(168,181,154,.45)', 'rgba(217,160,91,.30)'],
+    sunset: ['rgba(217,160,91,.50)',  'rgba(251,225,228,.60)', 'rgba(168,181,154,.28)'],
+    meadow: ['rgba(168,181,154,.55)', 'rgba(223,238,221,.65)', 'rgba(147,174,189,.28)'],
+    lilac:  ['rgba(233,230,246,.75)', 'rgba(147,174,189,.35)', 'rgba(251,225,228,.45)'],
+    blush:  ['rgba(251,225,228,.70)', 'rgba(217,160,91,.30)',  'rgba(233,230,246,.50)'],
+    river:  ['rgba(147,174,189,.60)', 'rgba(223,238,221,.55)', 'rgba(233,230,246,.40)'],
+    snow:   ['rgba(233,230,246,.65)', 'rgba(147,174,189,.40)', 'rgba(255,255,255,.60)'],
+    honey:  ['rgba(217,160,91,.45)',  'rgba(255,232,207,.70)', 'rgba(168,181,154,.30)'],
+  }
+  const c = stops[k]
+  return [
+    `radial-gradient(90% 75% at 18% 12%, ${c[0]} 0%, rgba(0,0,0,0) 62%)`,
+    `radial-gradient(85% 80% at 85% 30%, ${c[1]} 0%, rgba(0,0,0,0) 60%)`,
+    `radial-gradient(110% 85% at 50% 105%, ${c[2]} 0%, rgba(0,0,0,0) 58%)`,
+    'var(--lf-cream, #f7f1e3)',
+  ].join(', ')
+}
+
+// ---- WashScene: painting placeholder tile ----
+type WashSceneProps = {
+  wash?: WashKey
+  img?: string
+  emojis?: string[]
+  doodle?: boolean
+  slotLabel?: string
+  children?: ReactNode
+  style?: CSSProperties
+}
+export function WashScene({ wash = 'canyon', img, emojis = [], doodle = true, children, style }: WashSceneProps) {
+  const baseH = (style?.height as number | undefined) ?? 200
+  const k = Math.min(1, (typeof baseH === 'number' ? baseH : 200) / 200)
+  const sizes = [96, 60, 44, 34, 30].map((s) => Math.max(12, Math.round(s * k)))
+  return (
+    <div
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        background: img ? `center / cover no-repeat url("${img}")` : washBg(wash),
+        ...style,
+      }}
+    >
+      {!img && doodle && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            color: 'var(--lf-espresso)',
+            opacity: 0.07,
+            font: '700 20px var(--font-body)',
+          }}
+        >
+          <span style={{ position: 'absolute', top: '12%', right: '14%' }}>✦</span>
+          <span style={{ position: 'absolute', bottom: '16%', left: '10%' }}>〰</span>
+          <span style={{ position: 'absolute', top: '30%', left: '22%', fontSize: 13 }}>✦</span>
+        </div>
+      )}
+      {!img && emojis.length > 0 && (
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: Math.max(3, Math.round(14 * k)),
+            filter: 'var(--shadow-emoji)',
+          }}
+        >
+          {emojis.map((e, i) => (
+            <span
+              key={i}
+              style={{
+                fontSize: sizes[i] || sizes[sizes.length - 1],
+                transform: `translateY(${(i % 2 ? -10 : 8) * k}px) rotate(${i % 2 ? 4 : -3}deg)`,
+              }}
+            >
+              {e}
+            </span>
+          ))}
+        </div>
+      )}
+      {children}
+    </div>
+  )
+}
+
+// ---- BuddyFace ----
+export function BuddyFace({
+  buddy,
+  size = 88,
+  tag = false,
+  style,
+}: {
+  buddy: BuddyDef
+  size?: number
+  tag?: boolean
+  style?: CSSProperties
+}) {
+  return (
+    <div style={{ position: 'relative', width: size, height: size, flexShrink: 0, ...style }}>
+      <div
+        style={{
+          width: size,
+          height: size,
+          borderRadius: '50%',
+          background: washBg(buddy.wash),
+          border: '3px solid var(--lf-cream-card)',
+          boxShadow: 'var(--shadow-warm)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: size * 0.52,
+        }}
+      >
+        <span style={{ filter: 'var(--shadow-emoji)' }}>{buddy.emoji}</span>
+      </div>
+      {tag && <NatureTag nature={buddy.nature} style={{ position: 'absolute', bottom: -6, left: '50%', transform: 'translateX(-50%)' }} />}
+    </div>
+  )
+}
+
+export function NatureTag({ nature, style }: { nature: 'living' | 'nonliving'; style?: CSSProperties }) {
+  const living = nature === 'living'
+  return (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 5,
+        whiteSpace: 'nowrap',
+        background: living ? 'var(--lf-pastel-mint)' : 'var(--lf-pastel-peach)',
+        color: 'var(--lf-espresso)',
+        borderRadius: 'var(--radius-scallop)',
+        padding: '4px 11px',
+        font: 'var(--text-label)',
+        ...style,
+      }}
+    >
+      <span aria-hidden="true" style={{ fontSize: 12 }}>{living ? '🌿' : '🪨'}</span>
+      {living ? 'living' : 'nonliving'}
+    </span>
+  )
+}
+
+// ---- SpeechBubble ----
+export function SpeechBubble({
+  children,
+  tail = 'left',
+  big = false,
+  style,
+}: {
+  children: ReactNode
+  tail?: 'left' | 'bottom' | 'right'
+  big?: boolean
+  style?: CSSProperties
+}) {
+  const tailPos: Record<string, CSSProperties> = {
+    left: { left: -7, top: 26 },
+    bottom: { bottom: -7, left: 34 },
+    right: { right: -7, top: 26 },
+  }
+  return (
+    <div
+      style={{
+        position: 'relative',
+        background: 'var(--lf-cream-card)',
+        border: '1.5px solid var(--lf-cream-line)',
+        borderRadius: 18,
+        padding: big ? '16px 20px' : '12px 16px',
+        boxShadow: 'var(--shadow-warm)',
+        font: big ? '700 21px/1.45 var(--font-body)' : '700 16px/1.45 var(--font-body)',
+        color: 'var(--lf-espresso)',
+        maxWidth: 480,
+        ...style,
+      }}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          width: 14,
+          height: 14,
+          background: 'var(--lf-cream-card)',
+          borderLeft: '1.5px solid var(--lf-cream-line)',
+          borderBottom: '1.5px solid var(--lf-cream-line)',
+          transform:
+            tail === 'bottom' ? 'rotate(-45deg)' : tail === 'right' ? 'rotate(135deg)' : 'rotate(45deg)',
+          ...tailPos[tail],
+        }}
+      />
+      <span aria-hidden="true" style={{ marginRight: 8, fontSize: big ? 18 : 14 }}>🔊</span>
+      {children}
+    </div>
+  )
+}
+
+// ---- SunRow: weekly reading suns ----
+export function SunRow({
+  suns,
+  size = 30,
+  style,
+}: {
+  suns: Array<{ letter: string; lit: boolean; today: boolean }>
+  size?: number
+  style?: CSSProperties
+}) {
+  return (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end', ...style }}>
+      {suns.map((s, i) => (
+        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+          <div
+            className={s.today && s.lit ? 'lf-sun-today' : ''}
+            style={{
+              width: size,
+              height: size,
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: size * 0.62,
+              background: s.lit ? 'rgba(251,191,36,.18)' : 'transparent',
+              border: s.lit ? '1.5px solid rgba(251,191,36,.55)' : '1.5px solid var(--lf-cream-line)',
+              boxShadow: s.lit ? '0 2px 8px rgba(251,191,36,.30)' : 'none',
+            }}
+          >
+            <span style={{ opacity: s.lit ? 1 : 0.28, filter: s.lit ? 'none' : 'grayscale(1)' }}>☀️</span>
+          </div>
+          <span
+            style={{
+              font: '700 10.5px var(--font-body)',
+              color: s.lit ? 'var(--lf-espresso-soft)' : 'var(--lf-espresso-faint)',
+            }}
+          >
+            {s.letter}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ---- ProgressRing (used on chapter-book covers) ----
+export function ProgressRing({
+  value = 0,
+  size = 44,
+  stroke = 5,
+  style,
+}: {
+  value?: number
+  size?: number
+  stroke?: number
+  style?: CSSProperties
+}) {
+  const r = (size - stroke) / 2
+  const c = 2 * Math.PI * r
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={style} aria-hidden="true">
+      <circle cx={size / 2} cy={size / 2} r={r} fill="var(--lf-cream-card)" stroke="var(--lf-cream-line)" strokeWidth={stroke} />
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={r}
+        fill="none"
+        stroke="var(--lf-coral)"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+        strokeDasharray={`${c * value} ${c}`}
+        transform={`rotate(-90 ${size / 2} ${size / 2})`}
+      />
+    </svg>
+  )
+}
+
+// ---- ChapterDots: ● done / ▶ current / ○ future ----
+export function ChapterDots({
+  chapters,
+  style,
+}: {
+  chapters: Array<{ status?: 'done' | 'current' | 'painting' }>
+  style?: CSSProperties
+}) {
+  return (
+    <span style={{ display: 'inline-flex', gap: 7, alignItems: 'center', ...style }}>
+      {chapters
+        .filter((c) => c.status !== 'painting')
+        .map((ch, i) => (
+          <span
+            key={i}
+            aria-hidden="true"
+            style={{
+              font: '700 13px var(--font-body)',
+              color:
+                ch.status === 'current'
+                  ? 'var(--lf-coral)'
+                  : ch.status === 'done'
+                    ? 'var(--lf-espresso-soft)'
+                    : 'var(--lf-espresso-faint)',
+            }}
+          >
+            {ch.status === 'current' ? '▶' : ch.status === 'done' ? '●' : '○'}
+          </span>
+        ))}
+    </span>
+  )
+}
+
+// ---- MatCover: story cover in a cream mat ----
+type MatCoverStory = {
+  id: string
+  title: string
+  wash?: WashKey
+  coverImage?: string
+  coverEmoji?: string
+  meta?: string
+}
+export function MatCover({
+  story,
+  size = 128,
+  onClick,
+  ring,
+  badge,
+}: {
+  story: MatCoverStory
+  size?: number
+  onClick?: () => void
+  ring?: number
+  badge?: string
+}) {
+  return (
+    <button
+      type="button"
+      className="lf-press"
+      onClick={onClick}
+      style={{
+        border: '1.5px solid var(--lf-cream-line)',
+        background: 'var(--lf-cream-card)',
+        borderRadius: 'var(--radius-cover)',
+        padding: 9,
+        cursor: 'pointer',
+        position: 'relative',
+        boxShadow: 'var(--shadow-warm)',
+        display: 'block',
+        textAlign: 'left',
+        flexShrink: 0,
+      }}
+    >
+      <WashScene
+        wash={story.wash}
+        img={story.coverImage}
+        emojis={story.coverEmoji ? [story.coverEmoji] : []}
+        doodle={!story.coverImage}
+        style={{ width: size, height: size, borderRadius: 12 }}
+      />
+      {ring !== undefined && (
+        <span style={{ position: 'absolute', top: 2, right: 2 }}>
+          <ProgressRing value={ring} size={36} stroke={4.5} />
+        </span>
+      )}
+      {badge && (
+        <span
+          style={{
+            position: 'absolute',
+            left: '50%',
+            bottom: 44,
+            transform: 'translateX(-50%)',
+            whiteSpace: 'nowrap',
+            background: 'var(--lf-cream-card)',
+            border: '1.5px solid var(--lf-cream-line)',
+            borderRadius: 'var(--radius-pill)',
+            padding: '3px 10px',
+            font: '700 11px var(--font-body)',
+            color: 'var(--lf-espresso-soft)',
+          }}
+        >
+          {badge}
+        </span>
+      )}
+      <div style={{ width: size, marginTop: 7 }}>
+        <div style={{ font: '700 14px/1.25 var(--font-display)', color: 'var(--lf-espresso)' }}>{story.title}</div>
+        {story.meta && (
+          <div style={{ font: 'var(--text-meta)', color: 'var(--lf-espresso-soft)', marginTop: 2 }}>{story.meta}</div>
+        )}
+      </div>
+    </button>
+  )
+}
+
+// ---- Medallion: watercolor badge disc ----
+export function Medallion({
+  badge,
+  size = 108,
+  silhouette = false,
+  style,
+}: {
+  badge: BadgeDef
+  size?: number
+  silhouette?: boolean
+  style?: CSSProperties
+}) {
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        position: 'relative',
+        flexShrink: 0,
+        background: silhouette ? 'var(--lf-cream)' : washBg(badge.wash),
+        border: silhouette ? '2px dashed var(--lf-cream-line)' : '3px solid var(--lf-cream-card)',
+        boxShadow: silhouette ? 'none' : 'var(--shadow-warm)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        ...style,
+      }}
+    >
+      <span
+        style={{
+          fontSize: size * 0.42,
+          filter: silhouette ? 'grayscale(1) opacity(.35)' : 'var(--shadow-emoji)',
+        }}
+      >
+        {badge.emoji}
+      </span>
+      {!silhouette && (
+        <span
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 5, borderRadius: '50%', border: '1.5px solid rgba(255,253,247,.8)' }}
+        />
+      )}
+    </div>
+  )
+}
+
+// ---- Confetti: cheap CSS-only celebration ----
+export function Confetti({ n = 14 }: { n?: number }) {
+  const bits = ['✦', '●', '▲', '✶']
+  const colors = ['var(--lf-coral)', 'var(--lf-wc-sage)', 'var(--lf-wc-dustyblue)', 'var(--lf-wc-ochre)', '#fbbf24']
+  return (
+    <div aria-hidden="true" style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+      {Array.from({ length: n }).map((_, i) => (
+        <span
+          key={i}
+          className="lf-confetti-piece"
+          style={{
+            position: 'absolute',
+            left: `${6 + (i * 89) % 90}%`,
+            top: -20,
+            color: colors[i % colors.length],
+            fontSize: 12 + (i * 7) % 14,
+            animationDelay: `${(i * 0.17) % 1.4}s`,
+            animationDuration: `${2.6 + (i % 4) * 0.5}s`,
+          }}
+        >
+          {bits[i % bits.length]}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+// ---- Dots: three little bouncing pips ("listening…") ----
+export function Dots({ color = 'var(--lf-coral)' }: { color?: string }) {
+  return (
+    <span style={{ display: 'inline-flex', gap: 5, alignItems: 'center' }} aria-hidden="true">
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          className="lf-dot"
+          style={{ width: 8, height: 8, borderRadius: '50%', background: color, animationDelay: `${i * 0.18}s` }}
+        />
+      ))}
+    </span>
+  )
+}
+
+// ---- KidScreen: full-bleed screen shell (paper doodles baked in) ----
+export function KidScreen({
+  label,
+  children,
+  style,
+}: {
+  label?: string
+  children: ReactNode
+  style?: CSSProperties
+}) {
+  return (
+    <div
+      data-screen-label={label}
+      className="lf-screen-in"
+      style={{
+        position: 'relative',
+        minHeight: '100dvh',
+        background: 'var(--lf-cream)',
+        color: 'var(--lf-espresso)',
+        fontFamily: 'var(--font-body)',
+        ...style,
+      }}
+    >
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          color: 'var(--lf-espresso)',
+          opacity: 0.05,
+          pointerEvents: 'none',
+          font: '700 22px var(--font-body)',
+        }}
+      >
+        <span style={{ position: 'absolute', top: 26, right: 60 }}>✦</span>
+        <span style={{ position: 'absolute', bottom: 90, left: 36 }}>〰</span>
+        <span style={{ position: 'absolute', top: '44%', right: 24, fontSize: 14 }}>✦</span>
+      </div>
+      {children}
+    </div>
+  )
+}
+
+// ---- BuddyPicker: pill list, tap to pick ----
+export function BuddyPicker({
+  buddies,
+  activeId,
+  onPick,
+}: {
+  buddies: BuddyDef[]
+  activeId: string | null
+  onPick: (id: string) => void
+}) {
+  return (
+    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+      {buddies.map((b) => {
+        const active = b.id === activeId
+        return (
+          <button
+            key={b.id}
+            type="button"
+            className="lf-press"
+            onClick={() => onPick(b.id)}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+              background: active ? 'var(--lf-pastel-peach)' : 'var(--lf-cream-card)',
+              border: active ? '2.5px solid var(--lf-coral)' : '1.5px solid var(--lf-cream-line)',
+              borderRadius: 'var(--radius-card)',
+              padding: '14px 18px',
+              cursor: 'pointer',
+              boxShadow: active ? 'var(--shadow-coral-glow)' : 'var(--shadow-warm)',
+              minHeight: 56,
+            }}
+          >
+            <BuddyFace buddy={b} size={72} />
+            <span style={{ font: '700 15px var(--font-display)', color: 'var(--lf-espresso)' }}>{b.name}</span>
+            <span style={{ font: '600 12px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>{b.trait}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 // ---- Progress bar with a knob (Reader footer) ----
 export function ProgressBar({ value }: { value: number }) {
   const pct = Math.max(0, Math.min(1, value)) * 100

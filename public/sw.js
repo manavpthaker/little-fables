@@ -1,17 +1,21 @@
-// Service worker for Azad's Story World
-// Shell: network-first with cache fallback (so saved stories still open offline).
+// Service worker for Little Fables (v2).
+// Shell: network-first with cache fallback so saved books still open offline.
+// Precaches shell, pack JSON assets, art, and generated audio.
 // Never caches /api calls.
 
-const CACHE = 'azad-read-v2'
+const CACHE = 'lf-read-v3'
 const PRECACHE = [
   '/read',
   '/read/create',
+  '/read/buddy',
+  '/read/badges',
+  '/read/words',
   '/manifest.webmanifest',
   '/icons/icon-192.png',
   '/icons/icon-512.png',
   '/logo-tree-ink.png',
   '/logo-tree-white.png',
-  // Starter story art (the shelf must open offline)
+  // Miko art (starter series)
   '/art/miko-cover.jpg',
   '/art/miko-01-zoomtown.jpg',
   '/art/miko-02-bridge.jpg',
@@ -21,6 +25,7 @@ const PRECACHE = [
   '/art/miko-05-fixed-moto.jpg',
   '/art/miko-06-night.jpg',
   '/art/jujy-02-village.jpg',
+  // Book illustrations
   '/books/azis-little-bhen/scene-01.jpg',
   '/books/azis-little-bhen/scene-02.jpg',
   '/books/azis-little-bhen/scene-03.jpg',
@@ -33,8 +38,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches
       .open(CACHE)
-      // addAll fails atomically; some precache entries may 404 in older builds.
-      // Cache what we can and don't block install on missing shelf art.
       .then((c) => Promise.all(PRECACHE.map((u) => c.add(u).catch(() => {}))))
       .then(() => self.skipWaiting())
   )
@@ -49,6 +52,23 @@ self.addEventListener('activate', (event) => {
   )
 })
 
+// Cacheable-response predicate.
+function isCacheable(url) {
+  const p = url.pathname
+  return (
+    p.startsWith('/read') ||
+    p.startsWith('/_next/static') ||
+    p.startsWith('/icons') ||
+    p.startsWith('/art') ||
+    p.startsWith('/books') ||
+    p.startsWith('/illustration') ||
+    p.startsWith('/audio') || // pre-generated ElevenLabs audio + timestamps
+    p === '/logo-tree-ink.png' ||
+    p === '/logo-tree-white.png' ||
+    p === '/manifest.webmanifest'
+  )
+}
+
 self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url)
   if (event.request.method !== 'GET') return
@@ -57,18 +77,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((res) => {
-        if (
-          res.ok &&
-          (url.pathname.startsWith('/read') ||
-            url.pathname.startsWith('/_next/static') ||
-            url.pathname.startsWith('/icons') ||
-            url.pathname.startsWith('/art') ||
-            url.pathname.startsWith('/books') ||
-            url.pathname.startsWith('/illustration') ||
-            url.pathname === '/logo-tree-ink.png' ||
-            url.pathname === '/logo-tree-white.png' ||
-            url.pathname === '/manifest.webmanifest')
-        ) {
+        if (res.ok && isCacheable(url)) {
           const clone = res.clone()
           caches.open(CACHE).then((c) => c.put(event.request, clone))
         }

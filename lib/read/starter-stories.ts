@@ -1,11 +1,17 @@
-import type { Story } from '@/types/story'
+import type { Book } from '@/types/story'
+import { legacyToBook } from './migrate'
 
 // Baked-in stories so the shelf is never empty and the app works offline.
 // Text, asks, choices, vocab, and retell prompts for the first three stories
 // come verbatim from design/handoff/app/story-data.js — the family library.
 // The rocket story is kept as an emoji-scene test case (no art yet).
+//
+// These are authored in the compact "v1-flat" shape (`pages` at the top level)
+// and normalized into the v2 `Book` shape (with `chapters[]`) at module load.
+// One conversion, no duplication.
 
-export const STARTER_STORIES: Story[] = [
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RAW_STARTERS: any[] = [
   {
     id: 'miko-bridge',
     title: 'Miko and the Wobbly Bridge',
@@ -287,3 +293,5 @@ export const STARTER_STORIES: Story[] = [
     ],
   },
 ]
+
+export const STARTER_STORIES: Book[] = RAW_STARTERS.map(legacyToBook)

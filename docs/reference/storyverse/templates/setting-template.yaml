@@ -1,0 +1,374 @@
+# Storyverse Setting/Location Template
+#
+# This template defines a specific location where stories can take place.
+# Settings should be vivid, sensory-rich, and meaningful to your child's experience.
+#
+# Copy this file for each important location in your universe.
+# Save as: settings/[location-name].yaml
+#
+# Common settings: home (with rooms), backyard, grandparents' house, park, school
+#
+# See examples/maya-verse/settings/ for complete examples.
+# Read docs/03-universe-design-guide.md (Phase 3) for guidance.
+
+################################################################################
+# BASIC IDENTITY
+################################################################################
+
+setting:
+  id: ""  # (REQUIRED) Unique identifier, e.g., "home", "backyard", "grandmas_house"
+  name: ""  # (REQUIRED) Name of location as child knows it, e.g., "Home", "The Big Park", "Pooh's Farm"
+
+  # What type of setting is this?
+  setting_type: ""  # e.g., "home", "outdoor", "community", "magical", "family_member"
+
+  # How often does child experience this place in real life?
+  real_world_frequency: ""  # daily/weekly/monthly/seasonal/rarely/imaginary
+
+  # Can child access this place independently, or does it require travel?
+  accessibility: ""  # e.g., "always accessible", "short walk", "car ride needed", "special occasions only"
+
+################################################################################
+# PHYSICAL DESCRIPTION
+################################################################################
+
+  physical_description:
+    # Overall description of this place
+    overview: |
+      Describe what this location looks like at first glance.
+
+      Example: "A cozy two-story house with a blue door and a small
+      front garden. Inside, warm wood floors and lots of natural light.
+      Toys scattered in friendly piles, not messy chaos."
+
+    # Key visual elements that make this place recognizable
+    distinctive_features:
+      - ""  # e.g., "Big oak tree in center of yard"
+      - ""  # e.g., "Red front door with brass knocker"
+      - ""  # e.g., "Window seat with colorful cushions"
+      - ""  # Specific details that appear in stories
+
+    # Size and layout
+    size_and_layout: |
+      How big is this place? How is it organized?
+
+      Examples:
+      - "Medium-sized house; two floors connected by creaky stairs"
+      - "Small backyard with garden in back corner, shed on side"
+      - "Large park with playground in center, walking paths around edges"
+
+    # What's the lighting like?
+    lighting: ""  # e.g., "Bright and sunny", "Soft and cozy", "Dappled shade", "Warm lamp-light"
+
+    # Color palette
+    colors:
+      primary: ""  # Dominant color, e.g., "warm browns", "soft greens", "bright blues"
+      accents: ""  # Secondary colors, e.g., "pops of yellow", "red and orange leaves"
+
+################################################################################
+# SENSORY DETAILS
+################################################################################
+
+  sensory_details:
+    # What does this place smell like?
+    smells:
+      - ""  # e.g., "Fresh-baked bread", "Cut grass", "Pine trees", "Mama's cooking"
+      - ""  # Characteristic scents that evoke this place
+
+    # What sounds are typical here?
+    sounds:
+      - ""  # e.g., "Birds chirping", "Distant traffic hum", "Refrigerator buzzing", "Wind in leaves"
+      - ""  # Background sounds and distinctive noises
+
+    # Temperature and atmosphere
+    temperature: ""  # e.g., "Warm and cozy", "Cool and shaded", "Variable (warm sun, cool breeze)"
+
+    # Tactile elements
+    textures:
+      - ""  # e.g., "Soft carpet", "Smooth wooden floors", "Rough bark on tree", "Squishy mud"
+      - ""  # Textures child might experience in this setting
+
+    # Time-of-day variations
+    time_variations:
+      morning: ""  # How does this place feel/look/sound in morning?
+      afternoon: ""  # During afternoon?
+      evening: ""  # In evening/dusk?
+      night: ""  # At night (if applicable)?
+
+################################################################################
+# EMOTIONAL ASSOCIATIONS
+################################################################################
+
+  emotional_tone:
+    # What emotions does this place evoke?
+    primary_feeling: ""  # e.g., "safe and cozy", "exciting and adventurous", "calm and peaceful", "warm and welcoming"
+
+    # What activities happen here?
+    typical_activities:
+      - ""  # e.g., "Playing with toys", "Reading stories", "Eating meals", "Exploring nature"
+      - ""  # Common actions in this setting
+
+    # What role does this place serve in stories?
+    narrative_purpose: |
+      When should stories be set here, and why?
+
+      Examples:
+      - "Home is where adventures begin and end; safe base"
+      - "Park is for physical play, discovery, meeting friends"
+      - "Grandma's house is for intergenerational wisdom, comfort, traditions"
+
+    # What challenges or problems might arise here?
+    potential_conflicts:
+      - ""  # e.g., "Lost toy needs finding", "Garden needs tending", "Mess needs cleaning"
+      - ""  # Setting-specific problems that drive stories
+
+################################################################################
+# SPECIFIC AREAS/ROOMS (if applicable)
+################################################################################
+
+# For complex locations like homes, list sub-areas with their own details
+
+  sub_locations:
+    - name: ""  # e.g., "Playroom", "Kitchen", "Backyard Garden", "Under the Big Tree"
+
+      purpose: |
+        What happens in this specific area?
+
+        Example: "Playroom is where adventures begin. Toys come alive here.
+        Creative play and imagination central."
+
+      distinctive_elements:
+        - ""  # Specific features of this sub-location
+        - ""  # e.g., "Toy chest in corner", "Reading nook with pillows", "Secret hiding spot"
+
+      emotional_tone: ""  # e.g., "energetic and creative", "calm and focused"
+
+      when_featured: |
+        When do stories use this sub-location?
+
+        Example: "Morning stories often start here. Adventure planning
+        and companion gatherings."
+
+    # Add more sub-locations as needed
+
+################################################################################
+# INHABITANTS & REGULAR VISITORS
+################################################################################
+
+  who_lives_here:
+    residents:
+      - ""  # e.g., "[Child name], Mama, Papa"
+      - ""  # Who actually lives/belongs in this setting?
+
+    frequent_visitors:
+      - ""  # e.g., "Grandma and Grandpa (weekly visits)"
+      - ""  # Regular visitors who appear in stories set here
+
+    animal_life: |
+      Optional: Are there pets, wildlife, or animal characters associated with this place?
+
+      Examples:
+      - "Birds nest in the oak tree; squirrels visit the bird feeder"
+      - "Neighbor's dog sometimes visible through fence"
+      - "Family cat naps in sunny window spots"
+
+################################################################################
+# CULTURAL ELEMENTS (if applicable)
+################################################################################
+
+  cultural_significance:
+    # Does this setting represent specific cultural heritage?
+    cultural_connections: |
+      Optional: If this place has cultural significance, describe it.
+
+      Examples:
+      - "Grandma's house features traditional [culture] decor, foods, music"
+      - "Kitchen has spices and ingredients from both Colombian and Indian cooking"
+      - "Living room displays family photos showing cultural celebrations"
+
+    # Cultural items present
+    cultural_items:
+      - ""  # e.g., "Hindi books on shelf", "Family photos from India/Colombia"
+      - ""  # Items that reflect cultural heritage
+
+    # Cultural activities
+    cultural_activities:
+      - ""  # e.g., "Cooking traditional foods", "Celebrating cultural holidays"
+      - ""  # What cultural practices happen here?
+
+################################################################################
+# SEASONAL & TEMPORAL CHANGES
+################################################################################
+
+  changes_over_time:
+    # How does this place change with seasons?
+    seasonal_variations:
+      spring: |
+        What's different in spring?
+        Example: "Garden blooms; flowers everywhere; bees return"
+
+      summer: |
+        What's different in summer?
+        Example: "Hot and bright; play outside more; garden vegetables growing"
+
+      fall: |
+        What's different in fall?
+        Example: "Leaves change colors; cooler air; harvest vegetables"
+
+      winter: |
+        What's different in winter?
+        Example: "Cold; stay inside more; cozy blankets and warm drinks"
+
+    # Time-based changes
+    time_based_changes: |
+      How has this place changed over time (or how might it)?
+
+      Examples:
+      - "Garden grows bigger each year as child helps plant more"
+      - "New room being painted for baby sibling"
+      - "Tree house built last summer"
+
+################################################################################
+# STORY INTEGRATION GUIDELINES
+################################################################################
+
+  story_guidelines:
+    # When is this setting most appropriate?
+    best_for_story_types:
+      - ""  # e.g., "Bedtime stories (calm, familiar, safe)"
+      - ""  # e.g., "Adventure stories (lots to explore)"
+      - ""  # e.g., "Emotional stories (comfort and processing)"
+
+    # What age bands work well here?
+    age_appropriateness:
+      board_books: ""  # Yes/No - Simple enough for 0-3?
+      picture_books: ""  # Yes/No - Rich enough for 4-8?
+      chapter_books: ""  # Yes/No - Complex enough for 7-10?
+
+    # Opening/transition language for this setting
+    how_to_introduce: |
+      Suggested opening lines for stories set here.
+
+      Examples:
+      - "At home, Maya woke up to sunshine streaming through her window..."
+      - "The park was busy this afternoon, full of children playing..."
+      - "Grandma's house smelled like fresh cookies when they arrived..."
+
+    # Common story endings here
+    typical_endings: |
+      How do stories set here typically end?
+
+      Examples:
+      - "Back home, safe and cozy, time for snack and rest"
+      - "Waving goodbye to the park, heading home for dinner"
+      - "Hugging Grandma goodbye, sleepy in the car ride home"
+
+################################################################################
+# SPECIAL RULES OR MAGIC (if applicable)
+################################################################################
+
+  universe_rules:
+    # Is this a realistic or magical place?
+    magical_elements: |
+      Optional: If your universe includes magical realism, what happens here?
+
+      Examples:
+      - "Toys come alive in the playroom when child isn't looking"
+      - "Garden has magic growing spots where wishes can be planted"
+      - "None - realistic setting"
+
+    # What's possible vs. impossible here?
+    what_is_possible: |
+      Define boundaries of what can happen in this setting.
+
+      Examples:
+      - "Companions can talk and move; otherwise realistic"
+      - "Completely realistic; no magic"
+      - "Subtle magic: things work out in gentle, fortunate ways"
+
+################################################################################
+# CONNECTIONS TO OTHER SETTINGS
+################################################################################
+
+  connections:
+    # How do characters get here from other locations?
+    access_from:
+      - location: ""  # e.g., "home"
+        method: ""    # e.g., "walk through backyard gate"
+        travel_time: ""  # e.g., "instant", "short walk", "car ride"
+
+      - location: ""
+        method: ""
+        travel_time: ""
+
+    # What other locations are nearby or visible?
+    nearby_locations:
+      - ""  # e.g., "Can see neighbor's yard from backyard"
+      - ""  # e.g., "Park is two blocks away"
+
+################################################################################
+# META INFORMATION
+################################################################################
+
+  meta:
+    creation_date: ""  # YYYY-MM-DD
+
+    # Based on real location?
+    real_world_basis: |
+      Describe the actual place this setting represents.
+
+      Example: "Our actual backyard; garden is simplified but layout is accurate.
+      Oak tree is real; sandbox added for stories."
+
+    # How often should this setting appear in stories?
+    usage_frequency: ""  # high/medium/low
+
+    # Any special notes for story generation?
+    generation_notes: |
+      Guidance for when/how to use this setting in stories.
+
+      Examples:
+      - "Use for calming bedtime stories; familiar and safe"
+      - "Great for adventure stories; lots of exploration potential"
+      - "Feature when cultural elements are story focus"
+
+################################################################################
+# EXAMPLE SCENE SNIPPETS
+################################################################################
+
+# Optional: Include 2-3 short scene examples set in this location
+
+example_scenes:
+  - scene_context: ""  # What's happening in this scene?
+    scene_text: |
+      Show how this setting comes alive in story.
+
+      Example:
+      ---
+      Maya pushed open the blue door and stepped into the playroom.
+      Sunlight streamed through the big window, making the toy chest
+      glow. Jujy was already there, sitting on the soft carpet, tail
+      swishing with excitement.
+
+      "Adventure time?" Maya asked.
+
+      Jujy's eyes sparkled. "Adventure time!"
+      ---
+
+  - scene_context: ""
+    scene_text: |
+      Another scene example.
+
+################################################################################
+# REVISION HISTORY
+################################################################################
+
+revision_history:
+  - version: "1.0"
+    date: ""  # YYYY-MM-DD
+    changes: "Initial setting profile created"
+
+  # Add new entries as you update this setting
+  # - version: "1.1"
+  #   date: "YYYY-MM-DD"
+  #   changes: "Added seasonal variations after experiencing first fall in stories"

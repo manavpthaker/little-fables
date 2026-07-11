@@ -1,0 +1,40 @@
+{
+  "themes": [
+    "Adventure",
+    "Kindness",
+    "Courage",
+    "Teamwork",
+    "Imagination",
+    "Friendship",
+    "Perseverance",
+    "Creativity",
+    "Exploration",
+    "Community",
+    "Discovery",
+    "Environmental Care",
+    "Family",
+    "Acceptance",
+    "Problem-Solving",
+    "Curiosity",
+    "Self-Confidence",
+    "Empathy"
+  ],
+  "tones": [
+    "Whimsical",
+    "Adventurous",
+    "Gentle",
+    "Funny",
+    "Calm",
+    "Exciting",
+    "Mystical",
+    "Inspiring",
+    "Uplifting",
+    "Mysterious",
+    "Heartwarming",
+    "Reflective",
+    "Cheerful",
+    "Soothing",
+    "Playful",
+    "Serene"
+  ]
+}

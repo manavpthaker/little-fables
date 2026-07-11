@@ -8,6 +8,9 @@ export async function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/read') ||
     pathname.startsWith('/api/story') ||
+    pathname.startsWith('/api/tts') ||
+    pathname.startsWith('/api/listen') ||
+    pathname.startsWith('/api/respond') ||
     pathname === '/sw.js' ||
     pathname === '/manifest.webmanifest' ||
     pathname.startsWith('/icons/')

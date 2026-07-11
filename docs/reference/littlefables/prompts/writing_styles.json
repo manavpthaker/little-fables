@@ -1,0 +1,76 @@
+{
+    "writing_styles": {
+      "early_readers": {
+        "description": "Simple, repetitive sentences and vivid imagery to captivate the youngest readers.",
+        "examples": [
+          "Look at the bunny. The bunny is hopping.",
+          "The cat says 'Meow.' The dog says 'Woof!'"
+        ],
+        "suggestions": [
+          "Use bright and engaging imagery with large text.",
+          "Include onomatopoeia and repetitive phrases for emphasis.",
+          "Keep sentences short and easy to follow."
+        ]
+      },
+      "young_children": {
+        "description": "Engaging dialogue, playful rhymes, and simple plots that delight and educate.",
+        "examples": [
+          "Hi, I’m Ava! What’s your name?",
+          "Up, up goes the kite, flying high into the night!"
+        ],
+        "suggestions": [
+          "Introduce basic dialogue and rhyming patterns.",
+          "Focus on relatable adventures and gentle lessons.",
+          "Encourage interaction through questions or prompts."
+        ]
+      },
+      "tweens": {
+        "description": "Adventurous storylines with relatable characters and humorous dialogue.",
+        "examples": [
+          "Zara raced through the forest, her heart pounding like a drum.",
+          "Why did you take the map, Jake? Now we're totally lost!"
+        ],
+        "suggestions": [
+          "Add light humor and character-driven dialogue.",
+          "Incorporate problem-solving or team-based challenges.",
+          "Balance action with descriptive moments to build suspense."
+        ]
+      },
+      "teens": {
+        "description": "Complex narratives with emotional depth and thought-provoking themes.",
+        "examples": [
+          "Lila stared at the city lights, wondering where she truly belonged.",
+          "‘It’s not about winning,’ he said. ‘It’s about standing for what’s right.’"
+        ],
+        "suggestions": [
+          "Explore nuanced relationships and identity struggles.",
+          "Use descriptive prose to create immersive settings.",
+          "Introduce moral dilemmas or significant personal growth arcs."
+        ]
+      },
+      "family_readers": {
+        "description": "Heartwarming stories with universal themes that bring all ages together.",
+        "examples": [
+          "The family gathered around the campfire, sharing stories under the stars.",
+          "‘Love is like a quilt,’ Grandma said. ‘It’s stitched together with memories.’"
+        ],
+        "suggestions": [
+          "Focus on themes of connection, kindness, and shared experiences.",
+          "Use nostalgic imagery to appeal to older readers.",
+          "Encourage discussion or reflection through open-ended questions."
+        ]
+      },
+      "general": {
+        "description": "Flexible writing styles that can adapt to any audience or tone.",
+        "examples": [
+          "Once upon a time, in a land far away, there was a magical tree.",
+          "The wind whispered secrets to the curious child."
+        ],
+        "suggestions": [
+          "Blend simple language with imaginative settings.",
+          "Use storytelling techniques that suit a wide range of readers.",
+          "Experiment with tone and pacing based on the audience."
+        ]
+      }
+    }
+  }

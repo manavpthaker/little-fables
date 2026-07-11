@@ -1,0 +1,14 @@
+{
+    "flows": {
+      "tone_selection": {
+        "welcome": "Let’s choose a tone for your story!",
+        "question": "Would you like it to feel adventurous, calm, or whimsical?",
+        "fallback": "I didn’t understand that. Please choose from adventurous, calm, or whimsical."
+      },
+      "theme_selection": {
+        "welcome": "Themes add depth to your story.",
+        "question": "Which theme appeals to you most: friendship, courage, or discovery?",
+        "fallback": "Could you try again? Themes include friendship, courage, and discovery."
+      }
+    }
+  }
