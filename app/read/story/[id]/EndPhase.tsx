@@ -13,7 +13,7 @@
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import type { Book, BuddyDef, VocabWord } from '@/types/story'
+import type { Book, BuddyDef, ComfortRitual, VocabWord } from '@/types/story'
 import { createRecorder, speak, type RecorderHandle, type SpeakHandle } from '@/lib/read/speech'
 import { saveRetell, uid, markChapterFinished, loadBadges } from '@/lib/read/storage'
 import { pushRetell } from '@/lib/read/sync'
@@ -208,6 +208,112 @@ export function ChapterEnd({
           </button>
         </div>
       </div>
+    </KidScreen>
+  )
+}
+
+/* ================= ComfortRitualBeat (v2.2 item 7) =================
+ * Quiet closing beat rendered between ChapterEnd and BookComplete when the
+ * book carries a `comfortRitual` and it isn't `alreadyClosed`. Full-screen,
+ * one big motif emoji + spoken line, auto-advances after 4s. Tap anywhere to
+ * advance faster. Reduced-motion safe (breathe animation lives in read.css
+ * and is disabled under prefers-reduced-motion).
+ */
+const RITUAL_EMOJI: Record<ComfortRitual['motif'], string> = {
+  moon: '🌙',
+  snack: '🍯',
+  song: '🎵',
+  lullaby: '💤',
+}
+
+const RITUAL_BG: Record<ComfortRitual['motif'], string> = {
+  moon: 'linear-gradient(180deg, #1e1b4b, #312e81)',
+  snack: 'linear-gradient(180deg, #fef3c7, #fde68a)',
+  song: 'linear-gradient(180deg, #e9e6f6, #c7d2fe)',
+  lullaby: 'linear-gradient(180deg, #e0f2fe, #f8fafc)',
+}
+
+export function ComfortRitualBeat({
+  ritual,
+  onDone,
+}: {
+  ritual: ComfortRitual
+  onDone: () => void
+}) {
+  const speakRef = useRef<SpeakHandle | null>(null)
+  const doneRef = useRef(false)
+
+  const finish = useCallback(() => {
+    if (doneRef.current) return
+    doneRef.current = true
+    speakRef.current?.cancel()
+    onDone()
+  }, [onDone])
+
+  useEffect(() => {
+    // Fable speaks the line on mount.
+    speakRef.current = speak(ritual.line)
+    const t = setTimeout(finish, 4000)
+    return () => {
+      clearTimeout(t)
+      speakRef.current?.cancel()
+    }
+  }, [ritual.line, finish])
+
+  const emoji = RITUAL_EMOJI[ritual.motif]
+  const bg = RITUAL_BG[ritual.motif]
+  const darkText = ritual.motif === 'moon'
+  const textColor = darkText ? '#FBF4E6' : 'var(--lf-espresso)'
+  const softColor = darkText ? '#c7d2fe' : 'var(--lf-espresso-soft)'
+
+  return (
+    <KidScreen label="Closing beat" style={{ background: bg, height: '100dvh' }}>
+      <button
+        type="button"
+        onClick={finish}
+        aria-label="Tap to continue"
+        className="lf-press"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          border: 'none',
+          background: 'transparent',
+          cursor: 'pointer',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 28,
+          padding: 32,
+          textAlign: 'center',
+          color: textColor,
+        }}
+      >
+        <span
+          aria-hidden="true"
+          className="lf-comfort-breathe"
+          style={{
+            fontSize: 140,
+            filter: 'var(--shadow-emoji)',
+            lineHeight: 1,
+          }}
+        >
+          {emoji}
+        </span>
+        <p
+          style={{
+            margin: 0,
+            font: '700 26px/1.35 var(--font-display)',
+            color: textColor,
+            maxWidth: 520,
+          }}
+        >
+          {ritual.line}
+        </p>
+        <p style={{ margin: 0, font: '600 14px var(--font-body)', color: softColor }}>
+          tap anywhere to keep going
+        </p>
+      </button>
     </KidScreen>
   )
 }

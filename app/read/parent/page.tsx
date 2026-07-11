@@ -40,7 +40,33 @@ import {
   sendMagicLink,
   signOut,
 } from '@/lib/read/sync'
-import type { Book } from '@/types/story'
+import type { Book, SkillTag } from '@/types/story'
+import {
+  DEFAULT_PROFILE,
+  loadProfile,
+  saveProfile,
+  type ChildProfile,
+  type ContentPreferences,
+  type CurrentBand,
+} from '@/lib/read/profile'
+
+// Defensive skill-label lookup. Agent A creates `lib/read/skills.ts` with a
+// `SKILL_TAXONOMY` export; while it's absent (or during type-only tsc runs)
+// this falls back to the raw id string so the UI keeps rendering.
+type SkillLookupModule = {
+  SKILL_TAXONOMY?: Record<string, { label?: string }>
+}
+let SKILL_TAXONOMY: Record<string, { label?: string }> | undefined
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const mod = require('@/lib/read/skills') as SkillLookupModule
+  SKILL_TAXONOMY = mod?.SKILL_TAXONOMY
+} catch {
+  SKILL_TAXONOMY = undefined
+}
+function skillLabel(id: SkillTag): string {
+  return SKILL_TAXONOMY?.[id]?.label ?? id
+}
 
 // ---------- Gate math ----------
 const GATE_MIN_A = 3, GATE_MAX_A = 8
@@ -313,8 +339,45 @@ function LifecyclePill({ book }: { book: Book }) {
   )
 }
 
+// ---------- QA badge (v2.2 — visible on books with a qaRecord) ----------
+function QaBadge({
+  book,
+  open,
+  onToggle,
+}: {
+  book: Book
+  open: boolean
+  onToggle: () => void
+}) {
+  if (!book.qaRecord) return null
+  const { softScore, revisions } = book.qaRecord
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={open}
+      aria-label={`QA breakdown for ${book.title}`}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 6,
+        padding: '2px 9px',
+        borderRadius: 999,
+        font: '500 11.5px var(--font-ui)',
+        background: softScore >= 90 ? '#eff6ff' : '#fef3c7',
+        color: softScore >= 90 ? '#1d4ed8' : '#92400e',
+        border: `1px solid ${softScore >= 90 ? '#bfdbfe' : '#fde68a'}`,
+        cursor: 'pointer',
+      }}
+    >
+      QA {softScore}/100 · {revisions} revision{revisions === 1 ? '' : 's'}
+    </button>
+  )
+}
+
 // ---------- Story row ----------
 function StoryRow({ book, onDelete }: { book: Book; onDelete?: () => void }) {
+  const [qaOpen, setQaOpen] = useState(false)
   const hasCover = !!book.coverImage
   const meta =
     book.kind === 'chapter'
@@ -322,68 +385,151 @@ function StoryRow({ book, onDelete }: { book: Book; onDelete?: () => void }) {
       : `${book.chapters[0]?.pages.length ?? 0} pages`
   const by = book.by ?? (book.source === 'starter' ? 'Little Fables' : 'Made by you')
   const teaches = book.teachingGoals.length ? book.teachingGoals.slice(0, 2).join(', ') : '—'
+  const skillTags = (book.skillTags ?? []).slice(0, 3)
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '11px 0' }}>
-      {hasCover ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={book.coverImage}
-          alt=""
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: 8,
-            objectFit: 'cover',
-            border: '1px solid var(--lf-p-border)',
-            flexShrink: 0,
-          }}
-        />
-      ) : (
-        <span
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: 8,
-            border: '1px solid var(--lf-p-border)',
-            background: book.coverBg ?? 'var(--lf-p-muted)',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 22,
-            flexShrink: 0,
-          }}
-          aria-hidden
-        >
-          {book.coverEmoji || <Pencil size={15} />}
-        </span>
-      )}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ font: '500 14px/1.4 var(--font-ui)' }}>{book.title}</div>
-        <div style={{ font: '400 12.5px/1.4 var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
-          by {by} · {meta} · teaches {teaches}
+    <div style={{ padding: '11px 0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        {hasCover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={book.coverImage}
+            alt=""
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 8,
+              objectFit: 'cover',
+              border: '1px solid var(--lf-p-border)',
+              flexShrink: 0,
+            }}
+          />
+        ) : (
+          <span
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 8,
+              border: '1px solid var(--lf-p-border)',
+              background: book.coverBg ?? 'var(--lf-p-muted)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 22,
+              flexShrink: 0,
+            }}
+            aria-hidden
+          >
+            {book.coverEmoji || <Pencil size={15} />}
+          </span>
+        )}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ font: '500 14px/1.4 var(--font-ui)' }}>{book.title}</div>
+          <div style={{ font: '400 12.5px/1.4 var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+            by {by} · {meta} · teaches {teaches}
+          </div>
+          {(skillTags.length > 0 || book.qaRecord) && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 6, alignItems: 'center' }}>
+              {skillTags.map((id) => (
+                <span
+                  key={id}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '2px 8px',
+                    borderRadius: 999,
+                    font: '500 11px var(--font-ui)',
+                    background: 'var(--lf-p-muted)',
+                    color: 'var(--lf-p-foreground)',
+                    border: '1px solid var(--lf-p-border)',
+                  }}
+                >
+                  {skillLabel(id)}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
+        <QaBadge book={book} open={qaOpen} onToggle={() => setQaOpen((v) => !v)} />
+        <LifecyclePill book={book} />
+        {onDelete && (
+          <button
+            type="button"
+            aria-label={`Delete ${book.title}`}
+            onClick={onDelete}
+            className="lf-press"
+            style={{
+              width: 30,
+              height: 30,
+              border: 'none',
+              background: 'transparent',
+              color: 'var(--lf-p-muted-foreground)',
+              cursor: 'pointer',
+              borderRadius: 'var(--radius-p-md)',
+              flexShrink: 0,
+            }}
+          >
+            <Trash2 size={14} />
+          </button>
+        )}
       </div>
-      <LifecyclePill book={book} />
-      {onDelete && (
-        <button
-          type="button"
-          aria-label={`Delete ${book.title}`}
-          onClick={onDelete}
-          className="lf-press"
+      {qaOpen && book.qaRecord && (
+        <div
           style={{
-            width: 30,
-            height: 30,
-            border: 'none',
-            background: 'transparent',
-            color: 'var(--lf-p-muted-foreground)',
-            cursor: 'pointer',
+            marginTop: 10,
+            marginLeft: 58,
+            padding: 12,
+            background: 'var(--lf-p-muted)',
+            border: '1px solid var(--lf-p-border)',
             borderRadius: 'var(--radius-p-md)',
-            flexShrink: 0,
+            font: '400 12.5px/1.5 var(--font-ui)',
+            color: 'var(--lf-p-foreground)',
           }}
         >
-          <Trash2 size={14} />
-        </button>
+          <div style={{ font: '600 12.5px var(--font-ui)', marginBottom: 6 }}>
+            QA breakdown
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '2px 12px' }}>
+            <span>Hard gates</span>
+            <span style={{ color: book.qaRecord.hardGates.passed ? '#15803d' : '#b91c1c' }}>
+              {book.qaRecord.hardGates.passed ? 'passed' : 'failed'}
+            </span>
+            <span>Soft score</span>
+            <span>{book.qaRecord.softScore}/100</span>
+            <span>Revisions</span>
+            <span>{book.qaRecord.revisions}</span>
+          </div>
+          {book.qaRecord.breakdown && (
+            <div style={{ marginTop: 8 }}>
+              <div style={{ font: '600 12px var(--font-ui)', marginBottom: 4 }}>Weighted breakdown</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '2px 12px' }}>
+                {Object.entries(book.qaRecord.breakdown).map(([k, v]) => (
+                  <div key={k} style={{ display: 'contents' }}>
+                    <span style={{ textTransform: 'capitalize' }}>{k}</span>
+                    <span>{v}/10</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {book.qaRecord.hardGates.violations && book.qaRecord.hardGates.violations.length > 0 && (
+            <div style={{ marginTop: 8 }}>
+              <div style={{ font: '600 12px var(--font-ui)', marginBottom: 4, color: '#b91c1c' }}>
+                Violations
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 18 }}>
+                {book.qaRecord.hardGates.violations.map((v, i) => (
+                  <li key={i}>{v}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {book.qaRecord.notes && (
+            <div style={{ marginTop: 8, color: 'var(--lf-p-muted-foreground)' }}>
+              {book.qaRecord.notes}
+            </div>
+          )}
+        </div>
       )}
     </div>
   )
@@ -782,11 +928,345 @@ function UniverseTab({
   )
 }
 
+// ---------- Profile tab (v2.2 item #4) ----------
+const BAND_OPTIONS: Array<{ id: CurrentBand; label: string }> = [
+  { id: '0-3', label: '0–3' },
+  { id: '4-8-early', label: '4–8 (early)' },
+  { id: '4-8-late', label: '4–8 (late)' },
+  { id: '7-10', label: '7–10' },
+]
+
+const TONE_OPTIONS: Array<{ id: NonNullable<ContentPreferences['toneCalibration']>; label: string }> = [
+  { id: 'lighter-playful', label: 'Lighter, playful' },
+  { id: 'gentle-serious', label: 'Gentle, serious' },
+  { id: 'balanced', label: 'Balanced' },
+]
+
+function ChipList({
+  values,
+  onRemove,
+  emptyHint,
+}: {
+  values: string[]
+  onRemove: (v: string) => void
+  emptyHint?: string
+}) {
+  if (!values.length && emptyHint) {
+    return (
+      <div style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+        {emptyHint}
+      </div>
+    )
+  }
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+      {values.map((v) => (
+        <span
+          key={v}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '4px 10px',
+            borderRadius: 999,
+            border: '1px solid var(--lf-p-border)',
+            font: '500 13px var(--font-ui)',
+            color: 'var(--lf-p-foreground)',
+            background: 'var(--lf-p-background)',
+          }}
+        >
+          {v}
+          <button
+            type="button"
+            aria-label={`Remove ${v}`}
+            onClick={() => onRemove(v)}
+            style={{
+              border: 'none',
+              background: 'none',
+              padding: 0,
+              cursor: 'pointer',
+              color: 'var(--lf-p-muted-foreground)',
+              display: 'inline-flex',
+            }}
+          >
+            <X size={12} />
+          </button>
+        </span>
+      ))}
+    </div>
+  )
+}
+
+function ChipAdder({
+  placeholder,
+  onAdd,
+}: {
+  placeholder: string
+  onAdd: (v: string) => void
+}) {
+  const [val, setVal] = useState('')
+  const submit = () => {
+    const v = val.trim()
+    if (v) onAdd(v)
+    setVal('')
+  }
+  return (
+    <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+      <PInput
+        placeholder={placeholder}
+        value={val}
+        onChange={(e) => setVal(e.target.value)}
+        onKeyDown={(e) => e.key === 'Enter' && submit()}
+        style={{ flex: 1 }}
+      />
+      <PButton variant="secondary" onClick={submit}>
+        <Plus size={14} /> Add
+      </PButton>
+    </div>
+  )
+}
+
+function ToggleRow({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string
+  checked: boolean
+  onChange: (v: boolean) => void
+}) {
+  return (
+    <label style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
+      <button
+        type="button"
+        role="switch"
+        aria-checked={checked}
+        onClick={() => onChange(!checked)}
+        style={{
+          width: 34,
+          height: 20,
+          borderRadius: 999,
+          border: 'none',
+          cursor: 'pointer',
+          position: 'relative',
+          flexShrink: 0,
+          background: checked ? 'var(--lf-p-primary)' : 'var(--lf-p-border)',
+          transition: 'background 150ms',
+        }}
+      >
+        <span
+          style={{
+            position: 'absolute',
+            top: 2,
+            left: checked ? 16 : 2,
+            width: 16,
+            height: 16,
+            borderRadius: '50%',
+            background: '#fff',
+            transition: 'left 150ms',
+          }}
+        />
+      </button>
+      <span style={{ font: '400 13.5px var(--font-ui)' }}>{label}</span>
+    </label>
+  )
+}
+
+function ProfileTab({
+  profile,
+  persist,
+}: {
+  profile: ChildProfile
+  persist: (p: ChildProfile) => void
+}) {
+  const patch = (p: Partial<ChildProfile>) => persist({ ...profile, ...p })
+  const patchLangs = (langs: Partial<ChildProfile['languages']>) =>
+    persist({ ...profile, languages: { ...profile.languages, ...langs } })
+  const patchPrefs = (prefs: Partial<ContentPreferences>) =>
+    persist({ ...profile, contentPreferences: { ...profile.contentPreferences, ...prefs } })
+
+  const addTo = (key: 'home' | 'heritage', v: string) => {
+    if (profile.languages[key].includes(v)) return
+    patchLangs({ [key]: [...profile.languages[key], v] })
+  }
+  const removeFrom = (key: 'home' | 'heritage', v: string) => {
+    patchLangs({
+      [key]: profile.languages[key].filter((x) => x !== v),
+      // Also drop from exposure goals if we lost it from heritage entirely.
+      ...(key === 'heritage' && { exposureGoals: profile.languages.exposureGoals.filter((g) => g !== v || profile.languages.heritage.filter((h) => h !== v).includes(g)) }),
+    })
+  }
+  const toggleExposureGoal = (lang: string) => {
+    const has = profile.languages.exposureGoals.includes(lang)
+    patchLangs({
+      exposureGoals: has
+        ? profile.languages.exposureGoals.filter((x) => x !== lang)
+        : [...profile.languages.exposureGoals, lang],
+    })
+  }
+
+  const addChallenge = (v: string) => {
+    if (!profile.currentChallenges.includes(v)) {
+      patch({ currentChallenges: [...profile.currentChallenges, v] })
+    }
+  }
+  const removeChallenge = (v: string) =>
+    patch({ currentChallenges: profile.currentChallenges.filter((x) => x !== v) })
+
+  const addComfort = (v: string) => {
+    if (!profile.comfortObjects.includes(v)) {
+      patch({ comfortObjects: [...profile.comfortObjects, v] })
+    }
+  }
+  const removeComfort = (v: string) =>
+    patch({ comfortObjects: profile.comfortObjects.filter((x) => x !== v) })
+
+  const addExclude = (v: string) => {
+    if (!profile.contentPreferences.excludeTerms.includes(v)) {
+      patchPrefs({ excludeTerms: [...profile.contentPreferences.excludeTerms, v] })
+    }
+  }
+  const removeExclude = (v: string) =>
+    patchPrefs({
+      excludeTerms: profile.contentPreferences.excludeTerms.filter((x) => x !== v),
+    })
+
+  const radioBtn = (active: boolean): React.CSSProperties => ({
+    padding: '6px 12px',
+    borderRadius: 'var(--radius-p-md)',
+    border: '1px solid var(--lf-p-border)',
+    font: '500 13px var(--font-ui)',
+    cursor: 'pointer',
+    background: active ? 'var(--lf-p-primary)' : 'var(--lf-p-background)',
+    color: active ? 'var(--lf-p-primary-foreground)' : 'var(--lf-p-foreground)',
+  })
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, maxWidth: 1060 }}>
+      <style>{`
+        @media (min-width: 900px) {
+          .profile-grid { grid-template-columns: 1fr 1fr !important; }
+        }
+      `}</style>
+      <div className="profile-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, alignItems: 'start' }}>
+        <PCard title="Current band" description="Stories are shaped for this developmental range.">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {BAND_OPTIONS.map((b) => (
+              <button
+                key={b.id}
+                type="button"
+                onClick={() => patch({ currentBand: b.id })}
+                style={radioBtn(profile.currentBand === b.id)}
+              >
+                {b.label}
+              </button>
+            ))}
+          </div>
+        </PCard>
+
+        <PCard title="Tone calibration" description="How the narrator feels overall.">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {TONE_OPTIONS.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => patchPrefs({ toneCalibration: t.id })}
+                style={radioBtn(profile.contentPreferences.toneCalibration === t.id)}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </PCard>
+
+        <PCard title="Home languages" description="What is spoken at home day to day.">
+          <ChipList
+            values={profile.languages.home}
+            onRemove={(v) => removeFrom('home', v)}
+            emptyHint="No home languages yet."
+          />
+          <ChipAdder placeholder="e.g. en, es" onAdd={(v) => addTo('home', v)} />
+        </PCard>
+
+        <PCard title="Heritage languages" description="Family languages the story engine leans into.">
+          <ChipList
+            values={profile.languages.heritage}
+            onRemove={(v) => removeFrom('heritage', v)}
+            emptyHint="No heritage languages yet."
+          />
+          <ChipAdder placeholder="e.g. hi, gu" onAdd={(v) => addTo('heritage', v)} />
+          {profile.languages.heritage.length > 0 && (
+            <div style={{ marginTop: 14 }}>
+              <div style={{ font: '500 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginBottom: 6 }}>
+                Exposure goals — turn on the ones you want more of this month.
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {profile.languages.heritage.map((lang) => (
+                  <button
+                    key={lang}
+                    type="button"
+                    onClick={() => toggleExposureGoal(lang)}
+                    style={radioBtn(profile.languages.exposureGoals.includes(lang))}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </PCard>
+
+        <PCard title="Current challenges" description="What stories quietly help with.">
+          <ChipList
+            values={profile.currentChallenges}
+            onRemove={removeChallenge}
+            emptyHint="No challenges tracked."
+          />
+          <ChipAdder placeholder="e.g. sleep transitions" onAdd={addChallenge} />
+        </PCard>
+
+        <PCard title="Comfort objects" description="Plush friends stories can lean on.">
+          <ChipList
+            values={profile.comfortObjects}
+            onRemove={removeComfort}
+            emptyHint="No comfort objects yet."
+          />
+          <ChipAdder placeholder="e.g. Slothie, Jujy" onAdd={addComfort} />
+        </PCard>
+
+        <PCard
+          title="Exclude terms"
+          description="Words the story engine will avoid — e.g. 'agua' if you want stories in English only."
+        >
+          <ChipList
+            values={profile.contentPreferences.excludeTerms}
+            onRemove={removeExclude}
+            emptyHint="No excluded terms."
+          />
+          <ChipAdder placeholder="add a term to skip" onAdd={addExclude} />
+        </PCard>
+
+        <PCard title="Framing devices" description="Turn on to allow 'this is a story about…' openings.">
+          <ToggleRow
+            label={profile.contentPreferences.framingDevices ? 'Framing devices allowed' : 'No framing devices'}
+            checked={!!profile.contentPreferences.framingDevices}
+            onChange={(v) => patchPrefs({ framingDevices: v })}
+          />
+        </PCard>
+      </div>
+      <div style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <Check size={13} /> Auto-saved
+      </div>
+    </div>
+  )
+}
+
 // ---------- Parent Corner ----------
 function ParentCorner() {
   const { user } = useAuth()
-  const [tab, setTab] = useState<'stories' | 'retells' | 'universe'>('stories')
+  const [tab, setTab] = useState<'stories' | 'retells' | 'universe' | 'profile'>('stories')
   const [universe, setUniverse] = useState<Universe | null>(null)
+  const [profile, setProfile] = useState<ChildProfile>(DEFAULT_PROFILE)
   const [retells, setRetells] = useState<Retell[]>([])
   const [books, setBooks] = useState<Book[]>([])
 
@@ -796,6 +1276,7 @@ function ParentCorner() {
       if (user) await pullAll()
       if (cancelled) return
       setUniverse(loadUniverse())
+      setProfile(loadProfile())
       setBooks(loadStories())
       try {
         setRetells(await listRetells())
@@ -815,6 +1296,11 @@ function ParentCorner() {
     void pushUniverse(next)
   }, [])
 
+  const persistProfile = useCallback((next: ChildProfile) => {
+    setProfile(next)
+    saveProfile(next)
+  }, [])
+
   const sortedBooks = useMemo(
     () => books.slice().sort((a, b) => b.createdAt - a.createdAt),
     [books]
@@ -831,6 +1317,7 @@ function ParentCorner() {
     ['stories', 'Stories'],
     ['retells', 'Retellings'],
     ['universe', `${universe.childName}’s universe`],
+    ['profile', 'Profile'],
   ]
 
   return (
@@ -987,6 +1474,8 @@ function ParentCorner() {
         )}
 
         {tab === 'universe' && <UniverseTab universe={universe} persist={persistUniverse} />}
+
+        {tab === 'profile' && <ProfileTab profile={profile} persist={persistProfile} />}
       </main>
 
       <footer

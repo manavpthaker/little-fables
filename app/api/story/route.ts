@@ -1,4 +1,4 @@
-// Little Fables v2 story engine.
+// Little Fables v2.2 story engine.
 //
 // Modes:
 //   - "start"    → generate a quick 1-chapter Book OR the first chapter of a chapter book.
@@ -6,19 +6,29 @@
 //   - "continue" → resolve a within-chapter branch given the child's choice
 //                  (and optional freeform childIdea for co-authorship).
 //
-// System prompt is assembled from docs/reference/azi-verse/*.md at build/serve
-// time (read from disk, cached in module scope). If any file is missing the
-// engine still works — it just injects less canon. This keeps the route
-// self-contained and lets the rubric judge see the same rules the generator did.
+// v2.2 QA pipeline (docs/aziverse-adoption.md#1 + arch doc §2.5):
+//   Stage 0 — DETERMINISTIC pre-checks (no LLM):
+//     • band word count · heritage-word density · excludeTerms
+//     • fails feed straight back into a regenerate (max 2 attempts)
+//   Stage 1 — HARD GATES (single Haiku call):
+//     • character consistency vs canon · cultural sensitivity
+//     • age-developmental match · cultural element accuracy
+//     • any fail → concatenated notes → regenerate (max 2 total attempts)
+//   Stage 2 — SOFT SCORING (single Haiku call):
+//     • weighted 0-10 per criterion using universe.scoringWeights
+//     • score < SHIP_GATE_MIN → ONE revision pass
 //
-// Rubric gate:
-//   1) Generate a story with STORY_MODEL (Sonnet).
-//   2) Score it with JUDGE_MODEL (Haiku) against the evaluation rubric.
-//   3) If score < SHIP_GATE_MIN (default 90) do ONE revision pass with the notes.
-//   4) If it still can't clear the gate return status:'needs-review' + rubricScore/rubricNotes.
-//   Do NOT block on it. The UI decides what to show to grown-ups.
+// The full qaRecord is attached to every response. Judge unavailability
+// degrades softly: qaRecord.notes = 'judge unavailable', status routed to
+// 'needs-review' via the response body, story still returned.
 //
-// SKIP_RUBRIC=1 → dev bypass, no judge call.
+// v2.2 prompt (item 2): 7-step embodiment assembly in the doc's exact order.
+// Each step gets an explicit [STEP N: …] label so the judge (and future
+// debugging) can point at which step was violated.
+//
+// SKIP_RUBRIC=1 → dev bypass: skip Stage 1 + Stage 2 (deterministic checks
+// still run because they're free).
+
 import { NextRequest, NextResponse } from 'next/server'
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
@@ -29,9 +39,21 @@ import type {
   GenerateRequest,
   GenerateResponse,
   Page,
+  QaHardGateResult,
+  QaRecord,
+  QaSoftBreakdown,
+  SkillTag,
   VocabWord,
   WashKey,
 } from '@/types/story'
+import {
+  SKILL_TAXONOMY,
+  isValidSkillId,
+  mapLegacyGoal,
+  skillsForBand,
+  type Band,
+  type SkillNode,
+} from '@/lib/read/skills'
 
 export const runtime = 'nodejs'
 export const maxDuration = 90
@@ -45,10 +67,10 @@ const API_URL = 'https://api.anthropic.com/v1/messages'
 const ANTHROPIC_VERSION = '2023-06-01'
 
 // ---------- Reference doc loader ------------------------------------------
-// Read the four canon docs once per process. Truncate each to keep the total
-// system prompt under ~8k tokens (roughly 32k chars — Anthropic tokens run
-// ~4 chars/token in English). We prioritize universe-guide + rubric because
-// those two carry the highest signal for both craft and scoring.
+// Read the canon docs once per process. Used as fallbacks when the universe
+// config doesn't carry an explicit narratorIdentity or skill-observability
+// snippet. The 7-step prompt assembly is now the primary carrier of intent;
+// these are backup context, not the payload itself.
 
 const REFERENCE_ROOT = join(process.cwd(), 'docs', 'reference', 'azi-verse')
 
@@ -76,7 +98,6 @@ function readRef(name: string, maxChars: number): string {
 
 function loadReference(): ReferenceBundle {
   if (CACHED_REFERENCE) return CACHED_REFERENCE
-  // Budget ~32k chars ≈ ~8k tokens total across the four docs.
   CACHED_REFERENCE = {
     universeGuide: readRef('universe-guide.md', 12000),
     storyInstructions: readRef('story-creation-instructions.md', 6000),
@@ -104,116 +125,465 @@ function coerceWash(v: unknown): WashKey | undefined {
   return (VALID_WASHES as string[]).includes(low) ? low : undefined
 }
 
-// ---------- System prompt --------------------------------------------------
-function systemPrompt(universe: unknown): string {
+// ---------- Universe & profile helpers ------------------------------------
+// The universe object is passed loosely-typed on the request. We read only
+// the fields we need and tolerate them being absent — Agent B is landing
+// character schema upgrades and profile module separately.
+
+interface UniverseView {
+  raw: Record<string, unknown>
+  narratorIdentity?: string
+  hardRules?: string[]
+  scoringWeights?: Partial<QaSoftBreakdown> & { [k: string]: number }
+  culturalConfig?: {
+    languages?: string[]
+    densityCap?: number
+    cultures?: string[]
+    codeSwitchingRules?: string
+  }
+  characters: CharacterSpec[]
+  settings: unknown[]
+  heritageWords: string[]
+}
+
+interface CharacterSpec {
+  id?: string
+  name: string
+  role?: string
+  traits?: string[]
+  speechPatterns?: string[]
+  canonRules?: string[]
+  relationships?: unknown[]
+  roleByBand?: Record<string, string>
+  visualAnchors?: string[]
+  /** Fallback fields from the legacy Companion shape. */
+  emoji?: string
+  personality?: string
+  loves?: string
+  catchphrase?: string
+}
+
+function readUniverse(raw: unknown): UniverseView {
+  const u = (raw && typeof raw === 'object' ? (raw as Record<string, unknown>) : {}) as Record<string, unknown>
+
+  const chars: CharacterSpec[] = []
+  const charArr = Array.isArray(u.characters) ? (u.characters as unknown[]) : Array.isArray(u.companions) ? (u.companions as unknown[]) : []
+  for (const c of charArr) {
+    if (!c || typeof c !== 'object') continue
+    const co = c as Record<string, unknown>
+    if (typeof co.name !== 'string') continue
+    chars.push({
+      id: typeof co.id === 'string' ? co.id : undefined,
+      name: co.name,
+      role: typeof co.role === 'string' ? co.role : undefined,
+      traits: Array.isArray(co.traits) ? (co.traits as unknown[]).filter((x): x is string => typeof x === 'string') : undefined,
+      speechPatterns: Array.isArray(co.speechPatterns) ? (co.speechPatterns as unknown[]).filter((x): x is string => typeof x === 'string') : undefined,
+      canonRules: Array.isArray(co.canonRules) ? (co.canonRules as unknown[]).filter((x): x is string => typeof x === 'string') : undefined,
+      relationships: Array.isArray(co.relationships) ? (co.relationships as unknown[]) : undefined,
+      roleByBand: co.roleByBand && typeof co.roleByBand === 'object' ? (co.roleByBand as Record<string, string>) : undefined,
+      visualAnchors: Array.isArray(co.visualAnchors) ? (co.visualAnchors as unknown[]).filter((x): x is string => typeof x === 'string') : undefined,
+      emoji: typeof co.emoji === 'string' ? co.emoji : undefined,
+      personality: typeof co.personality === 'string' ? co.personality : undefined,
+      loves: typeof co.loves === 'string' ? co.loves : undefined,
+      catchphrase: typeof co.catchphrase === 'string' ? co.catchphrase : undefined,
+    })
+  }
+
+  const heritageWords: string[] = []
+  const culture = u.culture as Record<string, unknown> | undefined
+  if (culture && Array.isArray(culture.words)) {
+    for (const w of culture.words as unknown[]) {
+      if (w && typeof w === 'object' && typeof (w as Record<string, unknown>).term === 'string') {
+        heritageWords.push((w as { term: string }).term)
+      }
+    }
+  }
+
+  const cc = u.culturalConfig as Record<string, unknown> | undefined
+  const culturalConfig = cc
+    ? {
+        languages: Array.isArray(cc.languages) ? (cc.languages as unknown[]).filter((x): x is string => typeof x === 'string') : undefined,
+        densityCap: typeof cc.densityCap === 'number' ? cc.densityCap : undefined,
+        cultures: Array.isArray(cc.cultures) ? (cc.cultures as unknown[]).filter((x): x is string => typeof x === 'string') : undefined,
+        codeSwitchingRules: typeof cc.codeSwitchingRules === 'string' ? cc.codeSwitchingRules : undefined,
+      }
+    : culture
+    ? {
+        languages: Array.isArray(culture.languages)
+          ? (culture.languages as unknown[]).filter((x): x is string => typeof x === 'string')
+          : undefined,
+        densityCap: undefined,
+        cultures: undefined,
+        codeSwitchingRules: typeof culture.notes === 'string' ? (culture.notes as string) : undefined,
+      }
+    : undefined
+
+  return {
+    raw: u,
+    narratorIdentity: typeof u.narratorIdentity === 'string' ? u.narratorIdentity : undefined,
+    hardRules: Array.isArray(u.hardRules)
+      ? (u.hardRules as unknown[]).filter((x): x is string => typeof x === 'string')
+      : undefined,
+    scoringWeights: u.scoringWeights && typeof u.scoringWeights === 'object'
+      ? (u.scoringWeights as Record<string, number>)
+      : undefined,
+    culturalConfig,
+    characters: chars,
+    settings: Array.isArray(u.settings) ? (u.settings as unknown[]) : [],
+    heritageWords,
+  }
+}
+
+// Optional per-profile preferences. lib/read/profile isn't in the repo yet
+// (Agent B owns it) so we dynamic-import defensively and treat any failure
+// as "no profile — empty preferences."
+interface ChildProfileView {
+  currentBand?: Band | '4-8-early'
+  languages?: { home?: string[]; heritage?: string[]; exposureGoals?: string[] }
+  interests?: string[]
+  currentChallenges?: string[]
+  comfortObjects?: string[]
+  contentPreferences?: {
+    excludeTerms?: string[]
+    toneCalibration?: string
+    framingDevices?: boolean
+  }
+}
+
+async function tryLoadProfile(): Promise<ChildProfileView | null> {
+  try {
+    // Dynamic import so the build tolerates the module being absent while
+    // Agent B is still landing it. The specifier is built at runtime so the
+    // TS resolver doesn't try to check the module path at compile time.
+    const specifier = ['@', 'lib', 'read', 'profile'].join('/').replace('@/', '@/')
+    const mod: unknown = await import(/* webpackIgnore: true */ specifier).catch(() => null)
+    if (!mod || typeof mod !== 'object') return null
+    const m = mod as { loadProfile?: () => ChildProfileView | Promise<ChildProfileView> }
+    if (typeof m.loadProfile !== 'function') return null
+    const p = await m.loadProfile()
+    return p && typeof p === 'object' ? p : null
+  } catch (e) {
+    console.warn('[story] profile module unavailable, defaulting to empty prefs:', e)
+    return null
+  }
+}
+
+// Normalize child band → deterministic band key we use everywhere.
+function normalizeBand(b: string | undefined): Band {
+  if (!b) return '4-8'
+  if (b === '0-3') return '0-3'
+  if (b === '7-10') return '7-10'
+  // '4-8', '4-8-early', 'early-reader', etc. all bucket into '4-8'.
+  return '4-8'
+}
+
+// ---------- 7-step embodiment prompt --------------------------------------
+// The doc's mandated order (arch §2.4 + adoption item 2):
+//   1 narrator identity → 2 child context → 3 universe payload →
+//   4 cultural config → 5 band spec → 6 skill target → 7 optional seed
+//
+// Each step is prefixed with an explicit [STEP N: …] marker so the judge and
+// downstream tooling can attribute violations to the step that was skipped.
+
+interface PromptBundle {
+  system: string
+  band: Band
+  targetSkill: SkillNode | null
+  extraSkills: SkillNode[]
+}
+
+function stepOneNarrator(u: UniverseView): string {
   const ref = loadReference()
-  return `You are the Little Fables v2 story engine — a chapter-book writer for one specific child. You write in the voice of the Azi-Verse: gentle, elevated, lyrical without being lofty, multicultural, and deeply respectful of the child's inner world.
+  const identity =
+    u.narratorIdentity?.trim() ||
+    // Fallback: first ~1200 chars of the universe-guide tone block.
+    (ref.universeGuide
+      ? ref.universeGuide.slice(0, 1400).replace(/\s+$/g, '')
+      : 'You are the storyteller for the Azi-Verse — gentle, elevated, lyrical without being lofty, multicultural, deeply respectful of a small child\'s inner world.')
+  return `[STEP 1: NARRATOR IDENTITY]
+${identity}
+`
+}
 
-======================================================================
-UNIVERSE (this specific family)
-======================================================================
-${JSON.stringify(universe, null, 2)}
+function stepTwoChild(profile: ChildProfileView | null, body: GenerateRequest, u: UniverseView, band: Band): string {
+  // Pull best-effort child context. Falls back to universe.childName / universe.interests.
+  const universeChild = {
+    name: typeof u.raw.childName === 'string' ? u.raw.childName : undefined,
+    interests: Array.isArray(u.raw.interests)
+      ? (u.raw.interests as unknown[]).filter((x): x is string => typeof x === 'string')
+      : [],
+  }
+  const ctx = {
+    band,
+    interests: profile?.interests ?? universeChild.interests,
+    currentChallenges: profile?.currentChallenges ?? [],
+    comfortObjects: profile?.comfortObjects ?? [],
+    languages: profile?.languages ?? {
+      home: u.culturalConfig?.languages ?? [],
+      heritage: [],
+      exposureGoals: [],
+    },
+    toneCalibration: profile?.contentPreferences?.toneCalibration ?? 'lighter-playful',
+    excludeTerms: profile?.contentPreferences?.excludeTerms ?? [],
+    framingDevices: profile?.contentPreferences?.framingDevices ?? false,
+    childName: universeChild.name,
+    seededHero: body.hero,
+    seededPlace: body.place,
+  }
+  return `[STEP 2: CHILD PROFILE CONTEXT]
+${JSON.stringify(ctx, null, 2)}
+`
+}
 
-======================================================================
-CANON — THE AZI-VERSE UNIVERSE GUIDE
-======================================================================
-${ref.universeGuide || '(universe guide unavailable — fall back to the UNIVERSE JSON above)'}
+function stepThreeUniverse(u: UniverseView, focus: CharacterSpec[]): string {
+  // Include only the characters selected for this story. Every field from
+  // the v2.2 character schema that's present gets serialized. Settings are
+  // trimmed to name+description if available.
+  const characters = focus.map((c) => ({
+    id: c.id,
+    name: c.name,
+    role: c.role,
+    traits: c.traits,
+    speechPatterns: c.speechPatterns,
+    canonRules: c.canonRules,
+    relationships: c.relationships,
+    roleByBand: c.roleByBand,
+    visualAnchors: c.visualAnchors,
+    // Legacy fields — still useful signal for the model.
+    emoji: c.emoji,
+    personality: c.personality,
+    loves: c.loves,
+    catchphrase: c.catchphrase,
+  }))
+  const settings = u.settings.slice(0, 6) // don't blow the budget
+  const rituals = Array.isArray(u.raw.rituals) ? u.raw.rituals : []
+  const values = Array.isArray(u.raw.values) ? u.raw.values : []
+  return `[STEP 3: UNIVERSE PAYLOAD]
+Characters (canon-rule enforcement is a hard gate — write each character within its canonRules and speechPatterns):
+${JSON.stringify(characters, null, 2)}
 
-======================================================================
-CRAFT RULES — HOW WE WRITE
-======================================================================
-${ref.storyInstructions || ''}
+Settings:
+${JSON.stringify(settings, null, 2)}
 
-Core craft (non-negotiable):
-- **Three-moment morals.** Distribute the story's lesson across three progressive moments — a seed, a stumble, a soft click — instead of one closing lecture. The last line lands the lesson but never states it flatly.
-- **Repair language separates behavior from identity.** "My hands did things my heart didn't mean." Never "I was bad."
-- **Code-switching.** Weave 0-2 heritage words per page (Spanish: agua, lechita, mi cielo, todos listos; Gujarati/Hindi: bhen, beta, dosas; Creole hello from Flo). Context makes meaning clear — never dictionary translations, never italicized as "exotic".
-- **Age band 4–6.** Short rhythmic sentences. Read-aloud friendly. Sensory verbs. Sound effects welcome (Vroom! Screech! Whisker-wiggle!). Vocabulary: enriching but accessible — the child stretches for one or two star words per chapter, not every sentence.
-- **Rituals.** Whisker-wiggle roll call opens; C-G-Am chord signals thinking; puzzle-corner-pieces metaphor for hard feelings; comfort ending (snack + song + moon-gaze).
-- **Emotional regulation IN NARRATIVE.** Characters name feelings, take belly breaths, count with fingers, ask for help. Never lecture; show.
-- **No brand or IP characters.** Universe-canon cast only.
-- **Respect the universe's "avoid" list absolutely.**
+Rituals: ${JSON.stringify(rituals)}
+Values:   ${JSON.stringify(values)}
+`
+}
 
-======================================================================
-FIVE-LAYER STORYVERSE ARCHITECTURE
-======================================================================
-Every chapter, ALL FIVE layers run simultaneously:
-1. **Surface** — a genuinely fun adventure with momentum, humor, sound effects.
-2. **Skills** — teaching goals embedded through ACTION (counting things in the scene, naming a feeling, predicting what happens next). Never lectures.
-3. **Values** — characters model universe values through choices.
-4. **Systems** — simple cause-and-effect a 4-6 year old can follow. Small actions ripple.
-5. **Future** — choices matter and lead to different outcomes.
+function stepFourCultural(u: UniverseView, profile: ChildProfileView | null): string {
+  const excludeTerms = profile?.contentPreferences?.excludeTerms ?? []
+  const cfg = {
+    languages: u.culturalConfig?.languages ?? [],
+    cultures: u.culturalConfig?.cultures ?? [],
+    densityCap: u.culturalConfig?.densityCap ?? 2, // per page — this is a hard gate
+    codeSwitchingRules:
+      u.culturalConfig?.codeSwitchingRules ??
+      'Weave 0–2 heritage words per page. Context makes meaning clear — never dictionary translations, never italicized as "exotic". Never use a heritage word without narrative purpose.',
+    heritageWordCatalog: u.heritageWords,
+    excludeTerms,
+    excludeGuidance:
+      excludeTerms.length > 0
+        ? `The child's profile REMOVES these terms — do not use any of them in any form: ${excludeTerms.join(', ')}`
+        : 'No excluded terms for this profile.',
+  }
+  return `[STEP 4: CULTURAL CONFIG]
+${JSON.stringify(cfg, null, 2)}
+`
+}
 
-======================================================================
-FUTURE-READY SKILLS FRAMEWORK (ages 4-8 slice)
-======================================================================
-${ref.futureSkills || ''}
+interface BandSpec {
+  band: Band
+  wordCountRange: [number, number]
+  structure: string
+  sentenceComplexity: string
+  pausePointDensity: string
+}
 
-======================================================================
-EVALUATION RUBRIC — YOU WILL BE SCORED AGAINST THIS
-======================================================================
-${ref.rubric || ''}
+function bandSpec(band: Band): BandSpec {
+  if (band === '0-3') {
+    return {
+      band,
+      wordCountRange: [0, 100],
+      structure: '3-part (setup · turn · comfort). Board-book cadence. One idea per page.',
+      sentenceComplexity: 'Very short sentences, 3–6 words. Repetition welcomed. Sensory verbs.',
+      pausePointDensity: '1 pause point per story is plenty.',
+    }
+  }
+  if (band === '7-10') {
+    return {
+      band,
+      wordCountRange: [4000, 10000],
+      structure: '8-part (setup · inciting · rising · midpoint · setback · realization · climax · resolution).',
+      sentenceComplexity: 'Chapter-book prose. Compound sentences fine. One-two star words per chapter.',
+      pausePointDensity: '3–5 pause points across chapters.',
+    }
+  }
+  return {
+    band: '4-8',
+    wordCountRange: [200, 2500],
+    structure: '5-part (setup · rising · turn · resolution · comfort). Chapter books 3–5 chapters, 4–7 pages each.',
+    sentenceComplexity: 'Short rhythmic sentences. Read-aloud friendly. 1–2 star words per chapter.',
+    pausePointDensity: '1–3 pause points per chapter (asks and one choice).',
+  }
+}
 
-A separate judge model will score the chapter on: age appropriateness, structure, cultural authenticity, language, future-ready skills, universe consistency. Target: 90+. Below 90 triggers a revision.
+function stepFiveBandSpec(band: Band): string {
+  const spec = bandSpec(band)
+  return `[STEP 5: BAND SPEC]
+Band: ${spec.band}
+Word-count target: ${spec.wordCountRange[0]}–${spec.wordCountRange[1]} words (across all chapters, cumulative).
+Structure: ${spec.structure}
+Sentence complexity: ${spec.sentenceComplexity}
+Pause-point density: ${spec.pausePointDensity}
+`
+}
 
-======================================================================
+function stepSixSkill(band: Band, body: GenerateRequest): { block: string; target: SkillNode | null; extras: SkillNode[] } {
+  // Prefer a legacy-goal mapped tag if the request seeded one; else pick a
+  // rotating skill for the band. The model may return up to 3 tags total.
+  const available = skillsForBand(band)
+  if (available.length === 0) return { block: '[STEP 6: SKILL TARGET]\n(no skills catalog available)\n', target: null, extras: [] }
+
+  let target: SkillNode | null = null
+
+  // Seeded via body.idea keywords → mapLegacyGoal.
+  const ideaBag = [body.idea, body.hero, body.place].filter(Boolean).join(' ').toLowerCase()
+  if (ideaBag) {
+    for (const goal of ideaBag.split(/[,.\s]+/)) {
+      const mapped = mapLegacyGoal(goal)
+      if (mapped && SKILL_TAXONOMY[mapped]) {
+        target = SKILL_TAXONOMY[mapped]
+        break
+      }
+    }
+  }
+
+  // Fallback: deterministic pick — hash bookContext id or the current minute
+  // for variety across calls. This is a soft heuristic; parents can steer via
+  // the child's currentChallenges over time.
+  if (!target) {
+    const seed = body.bookContext?.id ?? String(Date.now())
+    let h = 0
+    for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0
+    target = available[h % available.length]
+  }
+
+  const related = target.relatedSkills?.map((id) => SKILL_TAXONOMY[id]).filter((x): x is SkillNode => !!x) ?? []
+  const extras = related.slice(0, 2)
+
+  const block = `[STEP 6: SKILL TARGET]
+Primary SS id: ${target.id}
+Cluster: ${target.cluster}
+Label: ${target.label}
+Age-band target (${band}): ${target.ageTargets[band]}
+Teaching archetypes: ${target.teachingArchetypes.join(', ')}
+Observable indicators (this is what "embedded, not preached" looks like — do these, don't lecture them):
+${target.observableIndicators.map((i) => `  • ${i}`).join('\n')}
+
+Related skills you MAY also touch (return 1–3 ids total in \`skillTags\`, primary first):
+${extras.length ? extras.map((s) => `  ~ ${s.id} — ${s.label}`).join('\n') : '  (none)'}
+
+Return your chosen skill tags on the story as: "skillTags": string[]  — SS-taxonomy ids only.
+`
+  return { block, target, extras }
+}
+
+function stepSevenSeed(body: GenerateRequest): string {
+  const seeds: string[] = []
+  if (body.idea) seeds.push(`Story idea from the family: "${body.idea}"`)
+  if (body.childIdea) seeds.push(`Freeform child idea to weave in: "${body.childIdea}"`)
+  if (body.hero) seeds.push(`Companion / hero focus: ${body.hero}`)
+  if (body.place) seeds.push(`Setting focus: ${body.place}`)
+  if (seeds.length === 0) return `[STEP 7: OPTIONAL SEED]
+(none — pick from the child's interests and delight us)
+`
+  return `[STEP 7: OPTIONAL SEED]
+${seeds.join('\n')}
+`
+}
+
+function outputShape(): string {
+  return `======================================================================
 OUTPUT SHAPE — STRUCTURED JSON, NO PROSE, NO FENCES
 ======================================================================
-Return ONLY a JSON object matching this TypeScript shape (fields marked "start-only" appear only in mode:'start' and only when generating a quick 1-chapter Book or the very first chapter of a chapter book):
+Return ONLY a JSON object matching this TypeScript shape:
 
 {
-  "title"?:        string,     // start-only (also allowed in chapter mode when starting a new book)
-  "coverEmoji"?:   string,     // start-only, single emoji
-  "coverBg"?:      string,     // start-only, CSS linear-gradient
-  "by"?:           string,     // start-only, echo from the request
-  "wash"?:         WashKey,    // book-level wash if generating a quick Book
-  "chapters"?:     Chapter[],  // FOR CHAPTER BOOKS: one or more chapters
-  "pages"?:        Page[],     // FOR QUICK STORIES ONLY: flat pages (mode:'start' quick-story path)
-  "vocab"?:        VocabWord[],// 2-4 star words with kid-friendly meanings (5-8 words)
+  "title"?:        string,
+  "coverEmoji"?:   string,
+  "coverBg"?:      string,
+  "by"?:           string,
+  "wash"?:         WashKey,
+  "chapters"?:     Chapter[],
+  "pages"?:        Page[],            // quick-story only
+  "vocab"?:        VocabWord[],       // 2-4 star words with kid meanings
   "teachingGoals"?:string[],
-  "retellPrompts"?:string[],   // 3-4 questions, only when the story is done
-  "hook"?:         { b: string, c: string } | string, // chapter-end line ("Next time: …")
-  "recapQuestion"?:string,     // chapter-end recap question
-  "done":          boolean     // true if this is the final chapter/chunk
+  "skillTags"?:    string[],          // SS-taxonomy ids, primary first (1-3)
+  "charactersUsed"?:string[],         // universe character ids used in this story
+  "mysteryWord"?:  { "word": string, "language": string, "meaning"?: string },
+  "retellPrompts"?:string[],
+  "hook"?:         { b: string, c: string } | string,
+  "recapQuestion"?:string,
+  "done":          boolean
 }
 
 WashKey ∈ ${VALID_WASHES.map((w) => `'${w}'`).join(' | ')}
 
-Chapter = { title: string, wash?: WashKey, pages: Page[], hook?: string|{b,c}, recapQuestion?: string }
-
 Page = {
-  "text":     string,                  // 2-4 short sentences, ~60-80 words per page
-  "wash"?:    WashKey,                 // overrides chapter wash on this page
-  "emojis"?:  string[],                // 2-5 illustrative emojis (most important first)
-  "star"?:    string,                  // ONE vocab word learned on this page (must appear in vocab[])
-  "fullBleed"?: boolean,               // true = art fills the left page edge-to-edge
-  "breathe"?: true,                    // renders a BreatheAlong panel instead of an ask
-  "ask"?: {                            // 1-3 asks per chapter, embedded in the plot
-    "skill":    string,                // 'counting' | 'feelings' | 'word detective' | 'predict' | 'living-vs-nonliving' | …
-    "question": string,                // answerable by a 4-6 yr old in a word or two
-    "praise":   string,                // said when the child answers well
-    "hint":     string,                // gentle nudge if the answer isn't recognized
-    "kind"?:    "wonder"               // open-ended asks: buddy responds specifically but never evaluates
-  },
-  "choice"?: {                         // AT MOST ONE per chapter
-    "prompt":  string,
-    "options": [{ "label": string, "emoji": string }]   // exactly 2 options
-  }
+  "text": string, "wash"?: WashKey, "emojis"?: string[], "star"?: string,
+  "fullBleed"?: boolean, "breathe"?: true,
+  "ask"?: { "skill": string, "question": string, "praise": string, "hint": string, "kind"?: "wonder" },
+  "choice"?: { "prompt": string, "options": [{ "label": string, "emoji": string }] }  // ≤1 per chapter
 }
 
 FORMAT RULES:
-- One choice per chapter maximum. A story resolves in at most 2 total choices across the whole book.
-- When done:true → the last chapter's last page MUST NOT contain a choice.
-- Every page needs either \`emojis\` (2-5) OR \`img\` (path). If unsure, use emojis.
-- Quick stories (single chapter): return \`pages\` at the top level, not \`chapters\`.
-- Chapter books: return \`chapters: [ … ]\`. Chapter length: 4-7 pages. Chapter-end hook is required.
-- Star words on a page MUST appear in the top-level \`vocab\` list.
-- Emojis only — never brand logos, no text-only substitutes.
-
-Do NOT include markdown fences. Do NOT prefix with "Here is the JSON". Output ONLY the JSON object.`
+- One choice per chapter maximum. ≤2 choices total per book.
+- done:true → last page MUST NOT contain a choice.
+- Every page needs emojis (2-5) or img.
+- Quick stories: return \`pages\` at the top level.
+- Chapter books: return \`chapters\`. Chapter length: 4-7 pages. Chapter-end hook required.
+- Star words on a page MUST appear in \`vocab\`.
+- Do NOT include markdown fences. Do NOT prefix with prose. Output ONLY the JSON object.
+`
 }
 
-// ---------- User prompts ---------------------------------------------------
+function assemblePrompt(
+  body: GenerateRequest,
+  universe: UniverseView,
+  profile: ChildProfileView | null,
+  band: Band
+): PromptBundle {
+  // Choose focus characters. For v2.2, focus = all universe characters (small
+  // cast). When Agent B ships explicit selection, we'll pass an id array here.
+  const focus = universe.characters
+  const skill = stepSixSkill(band, body)
+
+  const hardRulesBlock = universe.hardRules && universe.hardRules.length > 0
+    ? `======================================================================
+UNIVERSE HARD RULES (enforced by the hard-gate judge)
+======================================================================
+${universe.hardRules.map((r) => `- ${r}`).join('\n')}
+`
+    : ''
+
+  const system = [
+    stepOneNarrator(universe),
+    stepTwoChild(profile, body, universe, band),
+    stepThreeUniverse(universe, focus),
+    stepFourCultural(universe, profile),
+    stepFiveBandSpec(band),
+    skill.block,
+    stepSevenSeed(body),
+    hardRulesBlock,
+    outputShape(),
+  ]
+    .filter((s) => s.trim().length > 0)
+    .join('\n')
+
+  return { system, band, targetSkill: skill.target, extraSkills: skill.extras }
+}
+
+// ---------- User prompts (mode-specific brief) ----------------------------
 function briefLines(body: GenerateRequest): string[] {
   const parts: string[] = []
   if (body.hero) parts.push(`Companion / hero focus: ${body.hero}`)
@@ -228,9 +598,9 @@ function startPrompt(body: GenerateRequest): string {
     `MODE: start`,
     `Task: Write a brand new story for this child.`,
     ``,
-    `Decide format based on the child's idea and the universe:`,
-    `- QUICK story = 1 chapter (5-7 pages) that resolves in one sitting. Return \`pages\` at the top level.`,
-    `- CHAPTER book = 3-5 chapters. In "start" mode you write ONLY chapter 1 (4-7 pages) and set done:false. The client will call mode:'chapter' for subsequent chapters. Return \`chapters: [ chapter1 ]\`.`,
+    `Decide format based on the child's idea and band:`,
+    `- QUICK story = 1 chapter (5-7 pages). Return \`pages\` at the top level.`,
+    `- CHAPTER book = 3-5 chapters. In "start" mode write ONLY chapter 1 (4-7 pages) and set done:false. Return \`chapters: [ chapter1 ]\`.`,
     ``,
     `If the child's idea is small ("a bee finds a friend") → quick.`,
     `If the idea is expansive or explicitly asks for a big adventure → chapter book.`,
@@ -238,9 +608,7 @@ function startPrompt(body: GenerateRequest): string {
     ``,
     `Brief:`,
     ...briefLines(body),
-    !body.idea && !body.hero ? '- No specific idea from the child — pick an interest from the universe and delight us.' : '',
-    ``,
-    `Remember: 3-moment moral, repair language separates behavior from identity, code-switch 0-2 heritage words per page with context, whisker-wiggle roll call opens if you're using the plush cast, comfort ending, ≤1 choice this chapter, 2-4 star words with kid-friendly meanings.`,
+    !body.idea && !body.hero ? '- No specific idea from the child — pick an interest from the profile/universe and delight us.' : '',
   ].filter(Boolean)
   return parts.join('\n')
 }
@@ -258,14 +626,14 @@ function chapterPrompt(body: GenerateRequest): string {
   return [
     `MODE: chapter`,
     `Book: "${ctx?.title ?? '(unknown)'}" (${ctx?.kind ?? 'chapter'})`,
-    `Task: Write the NEXT chapter. Return { chapters: [oneChapter], done: <true if this is the final chapter> }.`,
+    `Task: Write the NEXT chapter. Return { chapters: [oneChapter], done: <true if final> }.`,
     ``,
     `Chapters so far:`,
     priorSummary || '(none — this is chapter 1)',
     ``,
     worldChoices ? `Recent world callbacks the buddy might reference:\n${worldChoices}` : '',
     ``,
-    `Chapter should be 4-7 pages, ≤1 choice, end with a hook line and a recap question, star words drawn from the vocab pool. If this is the last chapter, set done:true and drop the choice; include retellPrompts.`,
+    `Chapter should be 4-7 pages, ≤1 choice, end with a hook line and a recap question, star words drawn from the vocab pool. If final chapter, set done:true, drop the choice, include retellPrompts.`,
   ].filter(Boolean).join('\n')
 }
 
@@ -282,7 +650,7 @@ function continuePrompt(body: GenerateRequest): string {
   return [
     `MODE: continue`,
     `Book: "${ctx?.title ?? '(unknown)'}"`,
-    `Task: Resolve the branch the child just chose within the CURRENT chapter. Return the next 3-5 pages (as chapters[0].pages appended in spirit to the current chapter — the client will merge). Include done:true if this resolves the whole story (choices are capped at 2 per book), otherwise done:false.`,
+    `Task: Resolve the branch the child just chose. Return the next 3-5 pages as chapters[0].pages. Include done:true if this resolves the whole story (≤2 choices per book), otherwise done:false.`,
     ``,
     `Chapters so far:`,
     priorSummary || '(none)',
@@ -290,7 +658,7 @@ function continuePrompt(body: GenerateRequest): string {
     `The child chose: "${body.choice ?? '(unknown)'}"`,
     echo,
     ``,
-    `Rules: honor the choice meaningfully — it must change what happens, not just decorate the same outcome. Keep the same chapter's wash. ≤1 choice per chapter (usually zero here). If done:true → include retellPrompts and no choice on the last page.`,
+    `Rules: honor the choice meaningfully — it must change what happens, not just decorate the same outcome. Same chapter's wash. ≤1 choice per chapter (usually zero here). If done:true → retellPrompts included, no choice on the last page.`,
   ].filter(Boolean).join('\n')
 }
 
@@ -313,13 +681,21 @@ interface AnthropicMessagesResponse {
   stop_reason?: string
 }
 
+// System block optionally accepts an array of blocks so we can attach a
+// cache_control marker to the big embodiment block. Anthropic's ephemeral
+// cache pays off on regenerations.
 async function callAnthropic(opts: {
   apiKey: string
   model: string
   system: string
   user: string
   maxTokens: number
+  cacheSystem?: boolean
 }): Promise<string> {
+  const systemPayload = opts.cacheSystem
+    ? [{ type: 'text', text: opts.system, cache_control: { type: 'ephemeral' } }]
+    : opts.system
+
   const resp = await fetch(API_URL, {
     method: 'POST',
     headers: {
@@ -330,7 +706,7 @@ async function callAnthropic(opts: {
     body: JSON.stringify({
       model: opts.model,
       max_tokens: opts.maxTokens,
-      system: opts.system,
+      system: systemPayload,
       messages: [{ role: 'user', content: opts.user }],
     }),
   })
@@ -477,12 +853,23 @@ function coerceChapter(raw: unknown): Chapter | null {
 
 class GenerationError extends Error {}
 
-function validate(rawRes: unknown, mode: GenerateRequest['mode']): GenerateResponse {
+// v2.2 GenerateResponse — extends the base shape with qaRecord/skillTags/etc.
+// We attach these fields on top of validate()'s baseline.
+interface ResponseExtras {
+  qaRecord?: QaRecord
+  skillTags?: SkillTag[]
+  charactersUsed?: string[]
+  mysteryWord?: { word: string; language: string; meaning?: string }
+  status?: 'complete' | 'needs-review'
+}
+type GenerateResponseV22 = GenerateResponse & ResponseExtras
+
+function validate(rawRes: unknown, mode: GenerateRequest['mode']): GenerateResponseV22 {
   if (!rawRes || typeof rawRes !== 'object') {
     throw new GenerationError('Model output was not a JSON object')
   }
   const r = rawRes as Record<string, unknown>
-  const out: GenerateResponse = { done: r.done === true }
+  const out: GenerateResponseV22 = { done: r.done === true }
 
   if (typeof r.title === 'string') out.title = r.title
   if (typeof r.coverEmoji === 'string') out.coverEmoji = r.coverEmoji
@@ -521,6 +908,31 @@ function validate(rawRes: unknown, mode: GenerateRequest['mode']): GenerateRespo
     if (typeof h.b === 'string' && typeof h.c === 'string') out.hook = { b: h.b, c: h.c }
   }
 
+  // v2.2 extras — skill tags, characters used, mystery word.
+  if (Array.isArray(r.skillTags)) {
+    const raw = (r.skillTags as unknown[]).filter((s): s is string => typeof s === 'string')
+    const valid = raw.filter((s) => isValidSkillId(s))
+    const dropped = raw.filter((s) => !isValidSkillId(s))
+    if (dropped.length > 0) console.warn('[story] dropped unknown skill tags:', dropped)
+    out.skillTags = valid
+    if (valid.length === 0) {
+      console.warn('[story] model returned no valid skill tags — leaving skillTags = []')
+    }
+  }
+  if (Array.isArray(r.charactersUsed)) {
+    out.charactersUsed = (r.charactersUsed as unknown[]).filter((s): s is string => typeof s === 'string')
+  }
+  if (r.mysteryWord && typeof r.mysteryWord === 'object') {
+    const mw = r.mysteryWord as Record<string, unknown>
+    if (typeof mw.word === 'string' && typeof mw.language === 'string') {
+      out.mysteryWord = {
+        word: mw.word,
+        language: mw.language,
+        meaning: typeof mw.meaning === 'string' ? mw.meaning : undefined,
+      }
+    }
+  }
+
   // Must have SOME content.
   const hasChapters = !!out.chapters?.length
   const hasPages = !!out.pages?.length
@@ -528,8 +940,7 @@ function validate(rawRes: unknown, mode: GenerateRequest['mode']): GenerateRespo
     throw new GenerationError('Model returned neither chapters nor pages')
   }
 
-  // Quick-story path (start mode with flat pages) is legal only when there
-  // are NO chapters. If both are present, prefer chapters.
+  // Prefer chapters when both are present.
   if (hasChapters && hasPages) {
     delete out.pages
   }
@@ -562,41 +973,284 @@ function validate(rawRes: unknown, mode: GenerateRequest['mode']): GenerateRespo
   out.chapters?.forEach((c) => stripExtraChoices(c.pages))
   if (out.pages) stripExtraChoices(out.pages)
 
-  // For mode:'chapter' we expect chapters, not flat pages. Not an error if the
-  // model returned pages — we just accept.
   void mode
-
   return out
 }
 
-// ---------- Rubric gate ----------------------------------------------------
-interface RubricScore {
-  score: number
-  notes: string
+// ---------- Story flattening (used by all QA passes) ----------------------
+function allPages(s: GenerateResponseV22): Page[] {
+  const out: Page[] = []
+  if (s.chapters) for (const c of s.chapters) out.push(...c.pages)
+  if (s.pages) out.push(...s.pages)
+  return out
 }
 
-function judgeSystemPrompt(): string {
+function totalWordCount(s: GenerateResponseV22): number {
+  const text = allPages(s).map((p) => p.text).join(' ')
+  return text.split(/\s+/).filter(Boolean).length
+}
+
+// ---------- Stage 0: deterministic pre-checks ------------------------------
+interface DeterministicResult {
+  wordCount: number
+  heritageDensityPerPage: number
+  excludeHits: string[]
+  passed: boolean
+  violations: string[]
+}
+
+function bandWordRange(band: Band): [number, number] {
+  if (band === '0-3') return [0, 100]
+  if (band === '7-10') return [4000, 10000]
+  return [200, 2500]
+}
+
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function runDeterministic(
+  story: GenerateResponseV22,
+  band: Band,
+  universe: UniverseView,
+  profile: ChildProfileView | null
+): DeterministicResult {
+  const violations: string[] = []
+  const pages = allPages(story)
+  const wc = totalWordCount(story)
+  const [min, max] = bandWordRange(band)
+  if (pages.length > 0 && (wc < min || wc > max)) {
+    violations.push(
+      `Word count ${wc} is outside band ${band} range (${min}–${max}). Rewrite to fit — extend if too short, compress if too long.`
+    )
+  }
+
+  // Heritage word density per page — cap from culturalConfig.densityCap or 2.
+  const cap = universe.culturalConfig?.densityCap ?? 2
+  const terms = universe.heritageWords
+  let worstDensity = 0
+  if (terms.length > 0 && pages.length > 0) {
+    for (const p of pages) {
+      let count = 0
+      for (const t of terms) {
+        const re = new RegExp(`\\b${escapeRegex(t)}\\b`, 'gi')
+        const m = p.text.match(re)
+        if (m) count += m.length
+      }
+      if (count > worstDensity) worstDensity = count
+      if (count > cap) {
+        violations.push(
+          `Page over heritage-word density cap (${count} > ${cap}). Rebalance: keep the meaning but let context carry weight, not repetition.`
+        )
+      }
+    }
+  }
+
+  // excludeTerms — from profile prefs. Case-insensitive whole-word match.
+  const exclude = profile?.contentPreferences?.excludeTerms ?? []
+  const hits: string[] = []
+  if (exclude.length > 0) {
+    const joined = pages.map((p) => p.text).join(' ')
+    for (const term of exclude) {
+      const re = new RegExp(`\\b${escapeRegex(term)}\\b`, 'i')
+      if (re.test(joined)) hits.push(term)
+    }
+    for (const h of hits) {
+      violations.push(
+        `You used "${h}" — this profile has "${h}" excluded. Regenerate without it. Replace with an English equivalent.`
+      )
+    }
+  }
+
+  return {
+    wordCount: wc,
+    heritageDensityPerPage: worstDensity,
+    excludeHits: hits,
+    violations,
+    passed: violations.length === 0,
+  }
+}
+
+// ---------- Stage 1: hard-gate LLM judge ----------------------------------
+function hardGateSystemPrompt(universe: UniverseView): string {
   const ref = loadReference()
-  return `You are a strict but fair children's-story rubric judge for the Azi-Verse. Score the provided story against the Azi-Verse Evaluation Rubric. Return ONLY a JSON object of shape:
+  const chars = universe.characters.map((c) => ({
+    name: c.name,
+    role: c.role,
+    canonRules: c.canonRules,
+    speechPatterns: c.speechPatterns,
+    personality: c.personality,
+  }))
+  const hardRules = universe.hardRules ?? []
+  return `You are a hard-gate judge for the Azi-Verse story pipeline. You return PASS/FAIL on four independent gates. Any FAIL forces a regeneration.
 
-{ "score": number (0-100), "notes": string }
+Return ONLY a JSON object of shape:
 
-Notes should be 2-4 sentences: what worked, what fell short by criterion, and one concrete revision hint if score < 90. Be honest — do not inflate scores. A 90 means genuinely publishable.
+{
+  "characterConsistency": { "passed": boolean, "note"?: string },
+  "culturalSensitivity":  { "passed": boolean, "note"?: string },
+  "ageMatch":             { "passed": boolean, "note"?: string },
+  "culturalAccuracy":     { "passed": boolean, "note"?: string }
+}
+
+Be strict but fair. When a gate fails, the note MUST be a single sentence that names the page or line and the rule violated — the note goes back into the next regeneration.
 
 ======================================================================
-EVALUATION RUBRIC
+GATE 1 — CHARACTER CONSISTENCY vs. UNIVERSE BIBLE
 ======================================================================
-${ref.rubric || '(rubric unavailable — score conservatively on age fit, structure, cultural authenticity, language, future-ready skills, and universe consistency)'}
+Each character must act within its canonRules and speechPatterns.
+Universe characters:
+${JSON.stringify(chars, null, 2)}
+
+Universe hard rules:
+${hardRules.length ? hardRules.map((r) => `- ${r}`).join('\n') : '(none)'}
+
+Example fail: "Jujy behaved cruelly at page 3 — canon rule 'never cruel' violated."
 
 ======================================================================
-CANON REMINDER (for consistency checks)
+GATE 2 — CULTURAL SENSITIVITY
 ======================================================================
-${(ref.universeGuide || '').slice(0, 4000)}
+Fail if any: stereotype, tokenism, exoticizing heritage words, dictionary-style translations, cultural elements used as decoration without context.
+
+======================================================================
+GATE 3 — AGE-DEVELOPMENTAL MATCH
+======================================================================
+Fail if: sentence complexity too high or too low for band; concepts too abstract or too concrete; emotional weight inappropriate for age.
+
+======================================================================
+GATE 4 — CULTURAL ELEMENT ACCURACY
+======================================================================
+Fail if: Spanish/Gujarati/Hindi/Creole words used incorrectly, with wrong grammar, or in the wrong cultural context.
+
+CANON REMINDER (short):
+${(ref.universeGuide || '').slice(0, 3000)}
 `
 }
 
-async function runRubric(apiKey: string, story: GenerateResponse): Promise<RubricScore> {
-  const compact = JSON.stringify({
+async function runHardGates(
+  apiKey: string,
+  story: GenerateResponseV22,
+  universe: UniverseView,
+  band: Band
+): Promise<QaHardGateResult> {
+  const compact = {
+    band,
+    title: story.title,
+    chapters: story.chapters?.map((c) => ({
+      title: c.title,
+      pages: c.pages.map((p, i) => ({ i, text: p.text, ask: p.ask?.skill, star: p.star })),
+    })),
+    pages: story.pages?.map((p, i) => ({ i, text: p.text, ask: p.ask?.skill, star: p.star })),
+    vocab: story.vocab,
+    skillTags: story.skillTags,
+  }
+  const raw = await callAnthropic({
+    apiKey,
+    model: JUDGE_MODEL,
+    system: hardGateSystemPrompt(universe),
+    user: `Judge this story against all four gates. Story:\n\n${JSON.stringify(compact)}`,
+    maxTokens: 800,
+    cacheSystem: true,
+  })
+  const cleaned = raw.replace(/```json|```/g, '').trim()
+  const start = cleaned.indexOf('{')
+  const end = cleaned.lastIndexOf('}')
+  if (start === -1 || end === -1) throw new Error('hard-gate judge returned no JSON')
+  const parsed = JSON.parse(cleaned.slice(start, end + 1)) as Record<string, unknown>
+
+  const gate = (k: string) => {
+    const g = parsed[k] as Record<string, unknown> | undefined
+    if (!g || typeof g !== 'object') return { passed: false, note: 'gate missing from judge output' }
+    return {
+      passed: g.passed === true,
+      note: typeof g.note === 'string' ? g.note : undefined,
+    }
+  }
+
+  const cc = gate('characterConsistency')
+  const cs = gate('culturalSensitivity')
+  const am = gate('ageMatch')
+  const ca = gate('culturalAccuracy')
+  const violations: string[] = []
+  if (!cc.passed && cc.note) violations.push(`[character] ${cc.note}`)
+  if (!cs.passed && cs.note) violations.push(`[cultural-sensitivity] ${cs.note}`)
+  if (!am.passed && am.note) violations.push(`[age] ${am.note}`)
+  if (!ca.passed && ca.note) violations.push(`[cultural-accuracy] ${ca.note}`)
+
+  return {
+    passed: cc.passed && cs.passed && am.passed && ca.passed,
+    characterConsistency: cc,
+    culturalSensitivity: cs,
+    ageMatch: am,
+    culturalAccuracy: ca,
+    violations: violations.length > 0 ? violations : undefined,
+  }
+}
+
+// ---------- Stage 2: soft scoring ------------------------------------------
+const DEFAULT_WEIGHTS: Record<keyof QaSoftBreakdown, number> = {
+  structure: 0.2,
+  skills: 0.2,
+  cultural: 0.15,
+  language: 0.15,
+  age: 0.2,
+  universe: 0.1,
+}
+
+function resolveWeights(universe: UniverseView): Record<keyof QaSoftBreakdown, number> {
+  const raw = universe.scoringWeights
+  if (!raw) return DEFAULT_WEIGHTS
+  const out = { ...DEFAULT_WEIGHTS }
+  for (const k of Object.keys(DEFAULT_WEIGHTS) as (keyof QaSoftBreakdown)[]) {
+    const v = raw[k]
+    if (typeof v === 'number' && v >= 0) out[k] = v
+  }
+  return out
+}
+
+function softScoreSystemPrompt(): string {
+  const ref = loadReference()
+  return `You are a soft-scoring judge for the Azi-Verse story pipeline. Return a per-criterion 0-10 breakdown. The pipeline computes the weighted score itself.
+
+Return ONLY a JSON object:
+
+{
+  "breakdown": {
+    "structure": number (0-10),
+    "skills":    number (0-10),
+    "cultural":  number (0-10),
+    "language":  number (0-10),
+    "age":       number (0-10),
+    "universe":  number (0-10)
+  },
+  "notes": string
+}
+
+Notes: 2-4 sentences of concrete revision guidance if any criterion is below 8/10. Be honest — do not inflate.
+
+Criteria:
+- structure — arc, pacing, three-moment moral distribution
+- skills — SS-taxonomy skill(s) embedded through action, not preached
+- cultural — heritage integration is authentic and functional
+- language — sentence rhythm, vocabulary stretch, read-aloud quality
+- age — developmental fit for the stated band
+- universe — companion voice, ritual usage, canon consistency
+
+======================================================================
+RUBRIC REFERENCE
+======================================================================
+${ref.rubric || '(rubric unavailable — score conservatively)'}
+`
+}
+
+interface SoftScoreOutput {
+  breakdown: QaSoftBreakdown
+  notes: string
+}
+
+async function runSoftScore(apiKey: string, story: GenerateResponseV22, band: Band): Promise<SoftScoreOutput> {
+  const compact = {
+    band,
     title: story.title,
     chapters: story.chapters?.map((c) => ({
       title: c.title,
@@ -606,29 +1260,59 @@ async function runRubric(apiKey: string, story: GenerateResponse): Promise<Rubri
     })),
     pages: story.pages?.map((p) => ({ text: p.text, ask: p.ask, choice: p.choice, star: p.star })),
     vocab: story.vocab,
+    skillTags: story.skillTags,
     teachingGoals: story.teachingGoals,
-  })
-
+  }
   const raw = await callAnthropic({
     apiKey,
     model: JUDGE_MODEL,
-    system: judgeSystemPrompt(),
-    user: `Score this story against the rubric:\n\n${compact}`,
-    maxTokens: 1500,
+    system: softScoreSystemPrompt(),
+    user: `Score this story:\n\n${JSON.stringify(compact)}`,
+    maxTokens: 900,
+    cacheSystem: true,
   })
   const cleaned = raw.replace(/```json|```/g, '').trim()
   const start = cleaned.indexOf('{')
   const end = cleaned.lastIndexOf('}')
-  if (start === -1 || end === -1) {
-    return { score: 0, notes: 'Judge returned no JSON.' }
+  if (start === -1 || end === -1) throw new Error('soft-score judge returned no JSON')
+  const parsed = JSON.parse(cleaned.slice(start, end + 1)) as Record<string, unknown>
+  const b = parsed.breakdown as Record<string, unknown> | undefined
+  const clamp = (n: unknown) => (typeof n === 'number' ? Math.max(0, Math.min(10, n)) : 0)
+  const breakdown: QaSoftBreakdown = {
+    structure: clamp(b?.structure),
+    skills: clamp(b?.skills),
+    cultural: clamp(b?.cultural),
+    language: clamp(b?.language),
+    age: clamp(b?.age),
+    universe: clamp(b?.universe),
   }
-  try {
-    const parsed = JSON.parse(cleaned.slice(start, end + 1)) as { score?: unknown; notes?: unknown }
-    const score = typeof parsed.score === 'number' ? Math.max(0, Math.min(100, parsed.score)) : 0
-    const notes = typeof parsed.notes === 'string' ? parsed.notes : ''
-    return { score, notes }
-  } catch {
-    return { score: 0, notes: 'Judge returned malformed JSON.' }
+  const notes = typeof parsed.notes === 'string' ? parsed.notes : ''
+  return { breakdown, notes }
+}
+
+function computeSoftScore(breakdown: QaSoftBreakdown, weights: Record<keyof QaSoftBreakdown, number>): number {
+  const sum =
+    (breakdown.structure / 10) * weights.structure +
+    (breakdown.skills / 10) * weights.skills +
+    (breakdown.cultural / 10) * weights.cultural +
+    (breakdown.language / 10) * weights.language +
+    (breakdown.age / 10) * weights.age +
+    (breakdown.universe / 10) * weights.universe
+  const weightTotal =
+    weights.structure + weights.skills + weights.cultural + weights.language + weights.age + weights.universe
+  const normalized = weightTotal > 0 ? sum / weightTotal : sum
+  return Math.round(100 * normalized)
+}
+
+// ---------- Post-generation enrichment ------------------------------------
+// If the model omitted skillTags, seed from the prompt's chosen target.
+function ensureSkillTags(story: GenerateResponseV22, target: SkillNode | null): void {
+  if (!story.skillTags || story.skillTags.length === 0) {
+    if (target && isValidSkillId(target.id)) {
+      story.skillTags = [target.id]
+    } else {
+      story.skillTags = []
+    }
   }
 }
 
@@ -652,81 +1336,200 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Bad request body' }, { status: 400 })
   }
 
-  const sys = systemPrompt(body.universe)
+  const universe = readUniverse(body.universe)
+  const profile = await tryLoadProfile()
+  const band = normalizeBand(profile?.currentBand as string | undefined)
+
+  const bundle = assemblePrompt(body, universe, profile, band)
   const usr = userPrompt(body)
 
   try {
-    // Pass 1 — generate.
-    const raw1 = await callAnthropic({
-      apiKey,
-      model: STORY_MODEL,
-      system: sys,
-      user: usr,
-      maxTokens: 6000,
-    })
-    let story: GenerateResponse
-    try {
-      story = validate(extractJSON(raw1), body.mode)
-    } catch (e) {
-      console.error('[story] validation failed', e)
+    // ---- Generation loop with deterministic + hard-gate feedback ----
+    const MAX_GEN_ATTEMPTS = 2
+    let story: GenerateResponseV22 | null = null
+    let det: DeterministicResult | null = null
+    let hardGates: QaHardGateResult | null = null
+    let attempts = 0
+    let judgeUnavailable = false
+    let currentUser = usr
+
+    while (attempts < MAX_GEN_ATTEMPTS) {
+      attempts++
+      const rawText = await callAnthropic({
+        apiKey,
+        model: STORY_MODEL,
+        system: bundle.system,
+        user: currentUser,
+        maxTokens: 6000,
+        cacheSystem: true,
+      })
+      let candidate: GenerateResponseV22
+      try {
+        candidate = validate(extractJSON(rawText), body.mode)
+      } catch (e) {
+        console.error('[story] validation failed on attempt', attempts, e)
+        if (attempts >= MAX_GEN_ATTEMPTS) {
+          return NextResponse.json(
+            { error: 'The story machine hiccuped. Try again!' },
+            { status: 502 }
+          )
+        }
+        currentUser = `${usr}\n\nYour previous output failed to parse as JSON. Return ONLY a valid JSON object — no fences, no prose, no trailing commas.`
+        continue
+      }
+      ensureSkillTags(candidate, bundle.targetSkill)
+
+      // Stage 0 — deterministic.
+      const detResult = runDeterministic(candidate, band, universe, profile)
+      det = detResult
+      if (!detResult.passed && attempts < MAX_GEN_ATTEMPTS) {
+        currentUser = `${usr}
+
+======================================================================
+DETERMINISTIC PRE-CHECK VIOLATIONS
+======================================================================
+${detResult.violations.map((v) => `- ${v}`).join('\n')}
+
+Regenerate the FULL story with these specific violations fixed. Keep what worked.`
+        continue
+      }
+
+      // Stage 1 — hard-gate judge (skippable in dev).
+      if (SKIP_RUBRIC) {
+        story = candidate
+        break
+      }
+
+      try {
+        const hg = await runHardGates(apiKey, candidate, universe, band)
+        hardGates = hg
+        if (!hg.passed && attempts < MAX_GEN_ATTEMPTS) {
+          const notes = (hg.violations ?? []).join('\n- ')
+          currentUser = `${usr}
+
+======================================================================
+HARD-GATE VIOLATIONS — REGENERATE
+======================================================================
+- ${notes}
+
+Regenerate the FULL story fixing every violation above. Keep what worked.`
+          continue
+        }
+        // Passed OR out of attempts.
+        story = candidate
+        break
+      } catch (e) {
+        console.warn('[story] hard-gate judge unavailable, degrading:', e)
+        judgeUnavailable = true
+        story = candidate
+        break
+      }
+    }
+
+    if (!story) {
       return NextResponse.json(
         { error: 'The story machine hiccuped. Try again!' },
         { status: 502 }
       )
     }
 
-    if (SKIP_RUBRIC) {
-      return NextResponse.json(story)
-    }
+    // ---- Stage 2 — soft scoring + optional revision ----
+    const weights = resolveWeights(universe)
+    let breakdown: QaSoftBreakdown | undefined
+    let softScore = 0
+    let softNotes = ''
+    let revisions = attempts - 1 // regenerations before final = revisions used in Stage 0/1
+    const notesLog: string[] = []
 
-    // Pass 2 — rubric.
-    const first = await runRubric(apiKey, story)
-    story.rubricScore = first.score
-    story.rubricNotes = first.notes
+    if (judgeUnavailable) {
+      notesLog.push('judge unavailable')
+    } else if (!SKIP_RUBRIC) {
+      try {
+        const first = await runSoftScore(apiKey, story, band)
+        breakdown = first.breakdown
+        softScore = computeSoftScore(breakdown, weights)
+        softNotes = first.notes
 
-    if (first.score >= SHIP_GATE_MIN) {
-      return NextResponse.json(story)
-    }
-
-    // Pass 3 — one revision using the judge notes.
-    const revisionUser = `${usr}
+        if (softScore < SHIP_GATE_MIN) {
+          // One revision pass driven by the soft-score notes.
+          const revUser = `${usr}
 
 ======================================================================
-REVISION REQUESTED
+SOFT-SCORE REVISION (score ${softScore}/${SHIP_GATE_MIN})
 ======================================================================
-Your previous draft scored ${first.score}/100 on the Azi-Verse rubric. Judge notes:
+Per-criterion breakdown (0-10): ${JSON.stringify(breakdown)}
+Judge notes: "${softNotes}"
 
-"${first.notes}"
-
-Revise the story to specifically address those notes. Keep what worked, fix what fell short. Return the FULL revised story in the same JSON shape.`
-
-    const raw2 = await callAnthropic({
-      apiKey,
-      model: STORY_MODEL,
-      system: sys,
-      user: revisionUser,
-      maxTokens: 6000,
-    })
-    let revised: GenerateResponse
-    try {
-      revised = validate(extractJSON(raw2), body.mode)
-    } catch (e) {
-      console.warn('[story] revision failed to validate, returning first draft flagged for review', e)
-      return NextResponse.json({
-        ...story,
-        // Note: types/story.ts GenerateResponse doesn't carry a `status` field —
-        // but Book.status does. Add a soft signal via `error` so callers can
-        // route to needs-review. Keep the story returned.
-      })
+Revise the FULL story to raise the low scores. Keep what worked. Same JSON shape.`
+          try {
+            const rawRev = await callAnthropic({
+              apiKey,
+              model: STORY_MODEL,
+              system: bundle.system,
+              user: revUser,
+              maxTokens: 6000,
+              cacheSystem: true,
+            })
+            const revised = validate(extractJSON(rawRev), body.mode)
+            ensureSkillTags(revised, bundle.targetSkill)
+            // Re-run deterministic on the revision (cheap, no LLM).
+            const detRev = runDeterministic(revised, band, universe, profile)
+            det = detRev
+            const second = await runSoftScore(apiKey, revised, band)
+            const revisedScore = computeSoftScore(second.breakdown, weights)
+            story = revised
+            breakdown = second.breakdown
+            softScore = revisedScore
+            softNotes = second.notes
+            revisions++
+          } catch (e) {
+            console.warn('[story] soft-score revision failed, keeping first draft:', e)
+            notesLog.push(`revision failed: ${(e as Error).message}`)
+          }
+        }
+      } catch (e) {
+        console.warn('[story] soft-score judge unavailable, degrading:', e)
+        judgeUnavailable = true
+        notesLog.push('soft-score judge unavailable')
+      }
     }
 
-    const second = await runRubric(apiKey, revised)
-    revised.rubricScore = second.score
-    revised.rubricNotes = second.notes
+    // ---- Assemble the qaRecord ----
+    const finalHardGates: QaHardGateResult = judgeUnavailable
+      ? { passed: true }
+      : hardGates ?? { passed: true }
 
-    // Return the revised story regardless. If still below the gate, callers
-    // can see rubricScore/rubricNotes and route into a needs-review shelf.
-    return NextResponse.json(revised)
+    const qaRecord: QaRecord = {
+      hardGates: finalHardGates,
+      softScore,
+      breakdown,
+      revisions,
+      deterministic: det
+        ? {
+            wordCount: det.wordCount,
+            heritageDensityPerPage: det.heritageDensityPerPage,
+            excludeHits: det.excludeHits,
+            passed: det.passed,
+          }
+        : { passed: true },
+      notes: [softNotes, ...notesLog].filter(Boolean).join(' | ') || undefined,
+    }
+    story.qaRecord = qaRecord
+
+    // Determine status: needs-review if the judge was unavailable, or if
+    // hard-gate failed after all attempts, or soft score still below the gate.
+    const needsReview =
+      judgeUnavailable ||
+      !finalHardGates.passed ||
+      (breakdown !== undefined && softScore < SHIP_GATE_MIN) ||
+      !qaRecord.deterministic?.passed
+    story.status = needsReview ? 'needs-review' : 'complete'
+
+    // Rubric fields kept populated for back-compat with existing callers.
+    story.rubricScore = softScore
+    if (softNotes) story.rubricNotes = softNotes
+
+    return NextResponse.json(story)
   } catch (e) {
     console.error('[story] generation failed', e)
     return NextResponse.json(

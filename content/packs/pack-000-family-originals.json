@@ -256,6 +256,21 @@
       }
      ]
     }
+   ],
+   "mysteryWord": {
+    "word": "celebración",
+    "language": "es",
+    "meaning": "a party or celebration, in Spanish"
+   },
+   "comfortRitual": {
+    "motif": "snack",
+    "line": "Some detours end with samosas. Home isn't always a straight road.",
+    "alreadyClosed": false
+   },
+   "skillTags": [
+    "SS003.adaptability",
+    "SS002.emotional-regulation",
+    "SS002.empathy"
    ]
   },
   {
@@ -586,6 +601,15 @@
       }
      ]
     }
+   ],
+   "comfortRitual": {
+    "motif": "song",
+    "line": "Sometimes brave is just saying hello anyway.",
+    "alreadyClosed": false
+   },
+   "skillTags": [
+    "SS003.adaptability",
+    "SS002.empathy"
    ]
   },
   {
@@ -781,6 +805,15 @@
       }
      ]
     }
+   ],
+   "comfortRitual": {
+    "motif": "moon",
+    "line": "The moon is watching over you tonight.",
+    "alreadyClosed": true
+   },
+   "skillTags": [
+    "SS002.emotional-regulation",
+    "SS003.mental-health"
    ]
   },
   {
@@ -1703,6 +1736,14 @@
       }
      ]
     }
+   ],
+   "comfortRitual": {
+    "motif": "song",
+    "line": "Big feelings are made a little smaller when we sing about them.",
+    "alreadyClosed": false
+   },
+   "skillTags": [
+    "SS002.emotional-regulation"
    ]
   },
   {
@@ -2433,6 +2474,16 @@
       }
      ]
     }
+   ],
+   "comfortRitual": {
+    "motif": "lullaby",
+    "line": "You can do more than you know. The mirror knew before you did.",
+    "alreadyClosed": false
+   },
+   "skillTags": [
+    "SS003.adaptability",
+    "SS001.self-directed-learning",
+    "SS003.mental-health"
    ]
   },
   {
@@ -3137,6 +3188,21 @@
       }
      ]
     }
+   ],
+   "mysteryWord": {
+    "word": "navidad",
+    "language": "es",
+    "meaning": "Christmas, in Spanish"
+   },
+   "comfortRitual": {
+    "motif": "moon",
+    "line": "The moon watches over all the children of the world.",
+    "alreadyClosed": false
+   },
+   "skillTags": [
+    "SS001.curiosity",
+    "SS003.mental-health",
+    "SS001.creative-problem-solving"
    ]
   },
   {
@@ -4023,6 +4089,21 @@
       }
      ]
     }
+   ],
+   "mysteryWord": {
+    "word": "luna",
+    "language": "es",
+    "meaning": "the moon, in Spanish"
+   },
+   "comfortRitual": {
+    "motif": "moon",
+    "line": "Rest now — Papa already got the moon for you.",
+    "alreadyClosed": true
+   },
+   "skillTags": [
+    "SS001.creative-problem-solving",
+    "SS003.mental-health",
+    "SS002.cultural-intelligence"
    ]
   }
  ]

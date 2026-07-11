@@ -1,40 +1,45 @@
-# Claude Design prompt — v3 visual exploration (from scratch)
+# Claude Design prompt — Little Fables visual exploration (from the thesis)
 
-Paste below the line into Claude Design in the Little Fables project. This is a **ground-up visual rethink** — the old Dream Paper system is retired as a constraint. Do not reference or reuse its tokens. What survives is interaction ethics, not aesthetics.
+Paste below the line into a **fresh** Claude Design project (no prior Little Fables files attached — this exploration starts from zero). The only inputs are this brief and, optionally, 2–3 pages of the existing book illustrations as content samples.
 
 ---
 
-Explore a new visual world for **Little Fables**, an interactive story app for one 4-year-old on an iPad (landscape 1180×820 primary). The current design (warm cream paper, espresso ink, one coral button) reads as tasteful but **empty, beige, and grown-up** — a stationery brand, not a children's world. The bar: a child should *feel* something when the app opens. The reference class is Epic!'s liveliness, Khan Kids' character warmth, Endless Alphabet's juicy depth, Sago Mini's tactile play — **not** Blippi/YouTube-kids color chaos. Magic over noise.
+Design the visual world for **Little Fables** — starting from nothing but what the product *is*.
 
-## Design toward these four forces (this is the brief's heart)
+## The thesis
 
-1. **Light, not flatness.** Scenes glow: golden hour, lantern light, dusk sky, sun through leaves. Backgrounds are illuminated environments, never flat fills.
-2. **Depth, not cards.** Layered worlds — foreground/midground/sky, overlapping shapes, things sitting *in* a place. Cards may exist but they live in the world (a sign on a tree, a book on a shelf), not float on a void.
-3. **Someone is always alive on screen.** The buddy (and friends) inhabit every kid surface — idle, reacting, pointing, sleeping. No screen where the only "character" is typography.
-4. **Gentle motion everywhere.** Fireflies, drifting clouds, swaying grass, blinking eyes, a bobbing boat. Ambient, slow, never busy. (Static mocks: show motion intent with annotations.)
+Little Fables is a private story universe for one child: Azad, 4 years old, curious and quick, growing up between cultures — Colombian Spanish on Mama's side, Gujarati and Hindi on Papa's, Haitian Creole next door. His parents write and generate the books; the app is where he lives inside them. It is not a content library; it is **a world that knows him**. It remembers the choices he made in yesterday's chapter. His buddy — a companion he chose — greets him by name, out loud. Stories teach invisibly (naming feelings, belly breaths, counting, brave hellos, words from home) the way a grandparent teaches: inside the story, never as a quiz. He reads in the daytime and in the car, by listening, speaking, and tapping — he cannot read UI text, so the world itself must tell him where to go. When he finishes a story, he tells it back in his own words, and the family keeps that recording like a photograph.
 
-## Explore THREE distinct directions, same content in each
+One more thing this world holds: **hand-made books.** Watercolor and colored-pencil illustrations his parents commissioned and made — treasures. Whatever this world looks like, those pages must feel at home in it, displayed the way a family frames what it loves.
 
-**Direction A — Firefly Hollow (storybook dusk).** A twilight forest-edge world: deep indigo-teal skies, warm amber lantern/firefly glow, silhouetted trees, cozy pools of light. Rich darks make art and characters luminous (Endless Alphabet's trick). Include a daytime "golden hour" variant to prove it isn't night-only.
+## What the design must make a 4-year-old feel
 
-**Direction B — The Fable Tree (world-as-UI).** The brand's tree logo becomes the world: Home IS a great storybook tree — books nest in its branches (the shelf), the buddy waits at its roots, reading-day suns hang in its sky, a winding path leads away to chapter maps. Navigation is moving through a place. Saturated-storybook palette (sage, sky blue, marigold, berry red) with painterly texture.
+- **"This place knows me."** Arrival is a greeting, not a menu.
+- **"Something is alive here."** A companion is present on every screen — idle, breathing, reacting. Ambient motion (slow, gentle, never busy) makes the world feel awake.
+- **"I know where to go."** Navigation without literacy: place, character, light, and sound carry wayfinding. If every label were removed, he could still get to his story.
+- **"Reading is cozy AND an adventure."** Warmth and wonder together — light and depth (glow, layers, atmosphere), not flat panels of color and not noise.
+- **"I did that."** His choices, his found words, his finished books leave visible traces in the world. Progress is a place that grows, never a score.
 
-**Direction C — Paper Lantern Playroom (cut-paper depth).** Layered cut-paper/diorama craft: chunky torn-edge shapes, real drop shadows between layers, saturated-but-soft construction paper colors, tactile and huggable (Sago Mini energy, zero YouTube-brights).
+## Explore three directions
 
-## Content to mock in each direction (so they compare honestly)
+Derive **three strongly differentiated visual worlds from the thesis itself** — different metaphors for what this place *is* (a landscape? a home? a night sky? a craft table? a journey?). For each, state in one line which part of the thesis it champions. Requirements for every direction:
 
-1. **Home** — buddy alive in the scene + one speech line, weekly reading suns, a dominant Continue/Today's-adventure moment, the book collection (chapter books + quick stories), badges/words entry. Density mandate: no dead zones; every region belongs to the world.
-2. **Reader spread** — one page of "Miko and the Wobbly Bridge" with its real ink-and-wash art: prove the direction can *frame* existing book art beautifully (vignette it, mat it, glow it — the art is a treasure the world displays). Show the word-highlight treatment and one ask moment with the mic.
-3. **Buddy carousel card** — one buddy presented in the new world.
-4. **A celebration** — badge earn or chapter finish, showing what "magical" means in this direction.
+- A world, not a layout: environments with light and depth that UI elements live *inside*.
+- A companion character visibly alive in each mock.
+- A palette and type pairing chosen for that world (display holds at 30px+, body reads at 24px+; storybook warmth over app-store gloss).
+- Tri-cultural texture felt somewhere (not flag clichés — texture, pattern, warmth the way the family actually lives it).
+- The hand-made book pages framed beautifully somewhere in the direction.
+- Annotated motion intent (what breathes, drifts, glows — and how slowly).
 
-## What survives from the old system (ethics, not aesthetics)
+## Surfaces to mock in each direction (same content, honest comparison)
 
-Exactly one primary action per screen (pick each direction's action color — it need not be coral); every interactive element pairs visual + spoken cues (show speech/speaker affordances); primary kid targets ≥56px; no loss states, no counters/currencies, no dark patterns; reduced-motion variant respected; parent surfaces stay quiet and plain (they are NOT part of this exploration — kid world only).
+1. **Arrival/Home** — the child arrives; his companion greets him; one clear "continue the story" moment; his collection of books; visible traces of his progress (reading days, found words) living in the world.
+2. **Reading** — a story page: illustration + 1–3 sentences of read-along text with a spoken-word highlight treatment, and one "answer out loud" moment with a mic affordance.
+3. **A celebration** — finishing a chapter or earning something: what joy looks like in this world.
+4. **Choosing a companion** — how the child meets and picks his buddy.
 
-## Constraints and freedoms
+## Rules that survive any aesthetic (ethics, not style)
 
-- The existing book art (ink-and-wash Miko, colored-pencil Azi pages) must look at home inside whichever direction wins — the UI world *frames* the books, it doesn't fight them. Evolving future art direction is allowed; declare it if a direction wants it.
-- Type is open. Pick pairings per direction (display must hold at 30px+ and feel storybook, body must be soft and readable at 24px+).
-- Bedtime/quiet variant: show how the winning forces (light, depth) flip to hushed for Direction A only — the other two can note intent.
-- Deliver as one HTML file with a direction switcher, so the three worlds are comparable side by side on the same content.
+Exactly one primary action per screen, in a single consistent action color of the direction's choosing. Every interactive element pairs a visual cue with spoken audio (show the affordance). Primary child touch targets ≥56px. No loss states, streaks-that-break, counters, currencies, locks, or leaderboards — progress only accumulates. Celebration over pressure. Reduced-motion variant respected. iPad landscape 1180×820 primary; note portrait stacking intent.
+
+Deliver as one HTML file with a direction switcher so the three worlds compare side by side on identical content.

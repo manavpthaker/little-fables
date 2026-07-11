@@ -2,7 +2,7 @@
 // pack-000 = family originals (see docs/CONVERSION-NOTES.md).
 // Packs live in content/packs/*.json and are imported statically at build.
 
-import type { Book, Chapter, Page, VocabWord, WashKey } from '@/types/story'
+import type { Book, Chapter, ComfortRitual, MysteryWord, Page, SkillTag, VocabWord, WashKey } from '@/types/story'
 import pack000 from '../../content/packs/pack-000-family-originals.json'
 
 // Pack JSON shape (pre-schema for v2, normalized on load):
@@ -39,6 +39,10 @@ type PackBook = {
   quiet?: boolean
   chapters?: PackChapter[]
   pages?: PackPage[]
+  // v2.2 optional fields (backfilled per docs/aziverse-adoption.md items 5–7)
+  mysteryWord?: MysteryWord
+  comfortRitual?: ComfortRitual
+  skillTags?: SkillTag[]
 }
 type Pack = { pack: string; note?: string; stories: PackBook[] }
 
@@ -149,6 +153,9 @@ function normalizeBook(b: PackBook): Book {
     originNote: b.originNote ?? undefined,
     quiet: b.quiet,
     seasonal: b.seasonal,
+    mysteryWord: b.mysteryWord,
+    comfortRitual: b.comfortRitual,
+    skillTags: b.skillTags,
     createdAt: 0,
   }
 }

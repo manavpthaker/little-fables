@@ -29,7 +29,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { STARTER_STORIES } from '@/lib/read/starter-stories'
 import { PACK_BOOKS } from '@/lib/read/packs'
-import { getStory, saveStory, saveProgress, recordChoice, collectWord, getProgress } from '@/lib/read/storage'
+import { getStory, saveStory, saveProgress, recordChoice, collectWord, getProgress, foundMysteryWord } from '@/lib/read/storage'
 import { pushStory } from '@/lib/read/sync'
 import { loadUniverse } from '@/lib/universe/azad-verse'
 import {
@@ -54,6 +54,7 @@ import {
   BuddyFace,
   CircleBtn,
   ChapterDots,
+  Confetti,
   KidScreen,
   ProgressBar,
   ProgressRing,
@@ -61,7 +62,7 @@ import {
   WashScene,
   washBg,
 } from '../../components'
-import { ChapterEnd } from './EndPhase'
+import { ChapterEnd, ComfortRitualBeat } from './EndPhase'
 import { BookComplete } from './EndPhase'
 
 type AskUiState = 'idle' | 'listening' | 'praise' | 'hint'
@@ -151,7 +152,7 @@ function ReaderBook({
   // Multi-chapter books start on the map (unless resuming mid-chapter);
   // quick stories go straight to the pages.
   const [chapterIdx, setChapterIdx] = useState<number | null>(null)
-  const [phase, setPhase] = useState<'map' | 'reading' | 'chapterEnd' | 'bookComplete'>(
+  const [phase, setPhase] = useState<'map' | 'reading' | 'chapterEnd' | 'comfortRitual' | 'bookComplete'>(
     isMultiChapter ? 'map' : 'reading',
   )
 
@@ -204,12 +205,19 @@ function ReaderBook({
           if (chapterIdx + 1 < book.chapters.length) {
             setChapterIdx(chapterIdx + 1)
             setPhase('reading')
+          } else if (book.comfortRitual && !book.comfortRitual.alreadyClosed) {
+            setPhase('comfortRitual')
           } else {
             setPhase('bookComplete')
           }
         }}
         onAllDone={() => router.push('/read')}
       />
+    )
+  }
+  if (phase === 'comfortRitual' && book.comfortRitual) {
+    return (
+      <ComfortRitualBeat ritual={book.comfortRitual} onDone={() => setPhase('bookComplete')} />
     )
   }
   if (phase === 'bookComplete') {
@@ -583,15 +591,45 @@ function ReaderPages({
   const [choiceError, setChoiceError] = useState<string | null>(null)
   const [breatheDone, setBreatheDone] = useState(false)
   const [showAskStory, setShowAskStory] = useState(false)
+  // Mystery word — celebrates the first time the child taps the matching star.
+  const [mysteryFound, setMysteryFound] = useState<null | { word: string; language: string; meaning?: string }>(
+    null,
+  )
+  const [mysteryAlready, setMysteryAlready] = useState(false)
 
   const speakRef = useRef<SpeakHandle | null>(null)
   const listenStopRef = useRef<(() => void) | null>(null)
 
   const page: Page | undefined = pages[pageIdx]
   const words = useMemo(() => (page ? page.text.split(/\s+/).filter(Boolean) : []), [page])
+
+  // Mystery-word test — is this page's star the book's hidden heritage word?
+  const isMysteryStar = useMemo(() => {
+    const mw = book.mysteryWord
+    if (!mw || !page?.star) return false
+    return page.star.toLowerCase() === mw.word.toLowerCase()
+  }, [book.mysteryWord, page])
   const total = pages.length
   const isLastPage = pageIdx === total - 1
   const micOk = recognitionAvailable()
+
+  // ---- Mystery word tap ----
+  const handleMysteryTap = useCallback(() => {
+    const mw = book.mysteryWord
+    if (!mw || !isMysteryStar) return
+    const isNew = foundMysteryWord(book.id, mw)
+    if (isNew) {
+      setMysteryFound({ word: mw.word, language: mw.language, meaning: mw.meaning })
+      speakRef.current?.cancel()
+      const meaningPart = mw.meaning ? ` That means ${mw.meaning}.` : ''
+      speakRef.current = speak(`You found the mystery word — ${mw.word}!${meaningPart}`)
+      setTimeout(() => setMysteryFound(null), 2400)
+    } else {
+      // Already discovered — quick toast, no overlay.
+      setMysteryAlready(true)
+      setTimeout(() => setMysteryAlready(false), 1400)
+    }
+  }, [book.id, book.mysteryWord, isMysteryStar])
 
   // ---- narration lifecycle ----
   const stopAll = useCallback(() => {
@@ -962,6 +1000,83 @@ function ReaderPages({
         @media (min-width: 1000px) { .lf-read-spread { grid-template-columns: 46% 1fr; } }
       `}</style>
 
+      {/* Mystery word overlay — first-time celebration when a matching star is tapped. */}
+      {mysteryFound && (
+        <div
+          role="dialog"
+          aria-live="polite"
+          className="lf-mystery-found"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 60,
+            background: washBg(page?.wash ?? chapter.wash ?? book.wash ?? 'honey'),
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 14,
+            padding: 32,
+            textAlign: 'center',
+            pointerEvents: 'none',
+          }}
+        >
+          <Confetti n={20} />
+          <div
+            aria-hidden="true"
+            style={{
+              width: 128,
+              height: 128,
+              borderRadius: '50%',
+              background: 'var(--lf-cream-card)',
+              border: '2.5px solid rgba(251,191,36,.7)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 68,
+              boxShadow: 'var(--shadow-butter-glow), var(--shadow-warm-lg)',
+            }}
+          >
+            ⭐
+          </div>
+          <div style={{ font: '700 22px var(--font-display)', color: 'var(--lf-espresso)' }}>
+            You found a mystery word!
+          </div>
+          <div style={{ font: '700 44px var(--font-display)', color: 'var(--lf-espresso)' }}>
+            {mysteryFound.word}
+          </div>
+          {mysteryFound.meaning && (
+            <div style={{ font: '600 18px/1.5 var(--font-body)', color: 'var(--lf-espresso-soft)', maxWidth: 420 }}>
+              {mysteryFound.meaning}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Already-discovered toast — quiet, no overlay. */}
+      {mysteryAlready && (
+        <div
+          role="status"
+          className="lf-screen-in"
+          style={{
+            position: 'fixed',
+            top: 24,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 60,
+            background: 'var(--lf-pastel-mint)',
+            borderRadius: 'var(--radius-pill)',
+            padding: '8px 16px',
+            font: '700 14px var(--font-body)',
+            color: 'var(--lf-espresso)',
+            boxShadow: 'var(--shadow-warm)',
+            pointerEvents: 'none',
+          }}
+        >
+          already discovered ✓
+        </div>
+      )}
+
       {/* Top bar */}
       <div
         style={{
@@ -1145,7 +1260,7 @@ function ReaderPages({
                 ))}
               </p>
 
-              {page.star && (
+              {page.star && !isMysteryStar && (
                 <span
                   className="lf-screen-in"
                   style={{
@@ -1163,6 +1278,31 @@ function ReaderPages({
                 >
                   ⭐ Star word: <strong>{page.star}</strong>
                 </span>
+              )}
+
+              {page.star && isMysteryStar && book.mysteryWord && (
+                <button
+                  type="button"
+                  className="lf-screen-in lf-press lf-mystery-star"
+                  aria-label={`Mystery word — tap to reveal ${page.star}`}
+                  onClick={() => handleMysteryTap()}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    background: 'rgba(251,191,36,.22)',
+                    border: '1.5px dashed rgba(251,191,36,.7)',
+                    borderRadius: 'var(--radius-pill)',
+                    padding: '5px 14px',
+                    font: '700 13.5px var(--font-body)',
+                    color: 'var(--lf-espresso)',
+                    marginTop: 12,
+                    cursor: 'pointer',
+                  }}
+                >
+                  <span aria-hidden="true">⭐✨</span>
+                  Star word: <strong>{page.star}</strong>
+                </button>
               )}
 
               {page.breathe && (

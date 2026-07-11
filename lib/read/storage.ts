@@ -25,6 +25,7 @@ const BUDDY_KEY = 'lf-buddy-v2'
 const READING_DAYS_KEY = 'lf-reading-days-v2'
 const BADGES_KEY = 'lf-badges-v2'
 const WORDBOOK_KEY = 'lf-wordbook-v2'
+const LANGWALL_KEY = 'lf-langwall-v2'
 
 // ---------- helpers ----------
 function readJSON<T>(key: string, fallback: T): T {
@@ -208,6 +209,50 @@ export function collectWord(w: VocabWord, from?: string) {
   if (wb.words.some((x) => x.word === w.word)) return
   wb.words.push({ ...w, from: from ?? w.from, learnedAt: Date.now() })
   writeJSON(WORDBOOK_KEY, wb)
+}
+
+// ---------- Language Wall (found mystery words per book — v2.2 item 6) ----------
+// The Wall is a case-insensitive-deduped list of heritage words the child has
+// tapped in the reader when they matched the book's `mysteryWord`. Grouped by
+// language on /read/words. Sync layer serializes the state blob as-is; no
+// schema change needed on Supabase.
+
+export interface LanguageWallEntry {
+  word: string
+  language: string
+  meaning?: string
+  bookId: string
+  foundAt: number
+}
+
+export interface LanguageWall {
+  found: LanguageWallEntry[]
+}
+
+export function loadLanguageWall(): LanguageWall {
+  return readJSON<LanguageWall>(LANGWALL_KEY, { found: [] })
+}
+
+/**
+ * Record a discovered mystery word. Idempotent: dedupes by lowercased `word`.
+ * Returns true iff the word was NEW (so callers can trigger a celebration).
+ */
+export function foundMysteryWord(
+  bookId: string,
+  mw: { word: string; language: string; meaning?: string },
+): boolean {
+  const wall = loadLanguageWall()
+  const key = mw.word.toLowerCase()
+  if (wall.found.some((e) => e.word.toLowerCase() === key)) return false
+  wall.found.push({
+    word: mw.word,
+    language: mw.language,
+    meaning: mw.meaning,
+    bookId,
+    foundAt: Date.now(),
+  })
+  writeJSON(LANGWALL_KEY, wall)
+  return true
 }
 
 // ---------- Retells (IndexedDB) ----------

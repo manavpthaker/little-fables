@@ -103,6 +103,66 @@ export interface Chapter {
   recapQuestion?: string
 }
 
+// ---------- QA record (v2.2 two-stage QA — see docs/aziverse-adoption.md#1) ----------
+// Written on every generated Book by the story engine; surfaced in Parent
+// Corner story detail. Pack-000 and starter books have qaRecord: undefined
+// (they predate the pipeline).
+export interface QaHardGateResult {
+  passed: boolean
+  characterConsistency?: { passed: boolean; note?: string }
+  culturalSensitivity?: { passed: boolean; note?: string }
+  ageMatch?: { passed: boolean; note?: string }
+  culturalAccuracy?: { passed: boolean; note?: string }
+  /** Concatenated violation notes fed back to the next regeneration. */
+  violations?: string[]
+}
+export interface QaSoftBreakdown {
+  structure: number
+  skills: number
+  cultural: number
+  language: number
+  age: number
+  universe: number
+}
+export interface QaRecord {
+  hardGates: QaHardGateResult
+  softScore: number
+  breakdown?: QaSoftBreakdown
+  revisions: number
+  /** Deterministic checks (band word count, heritage density, excludeTerms). */
+  deterministic?: {
+    wordCount?: number
+    heritageDensityPerPage?: number
+    excludeHits?: string[]
+    passed: boolean
+  }
+  notes?: string
+}
+
+// ---------- Mystery Word (heritage word per book — v2.2 item 6) ----------
+export interface MysteryWord {
+  word: string
+  /** ISO-ish language code ('gu', 'hi', 'es', 'ht', 'en'). */
+  language: string
+  /** Optional english meaning if it isn't already in vocab. */
+  meaning?: string
+}
+
+// ---------- Comfort ritual beat (v2.2 item 7) ----------
+export interface ComfortRitual {
+  /** Motif key drawn from universe rituals: 'moon' | 'snack' | 'song' | 'lullaby'. */
+  motif: 'moon' | 'snack' | 'song' | 'lullaby'
+  /** One-line spoken text — the closing register ("Goodnight, mi cielo. The moon is watching."). */
+  line: string
+  /** If true, book already ends on its own ritual page — SKIP the interstitial. */
+  alreadyClosed?: boolean
+}
+
+// ---------- Skill tags (v2.2 item 5 — SS-taxonomy per future-ready-skills.md) ----------
+// Ids look like 'SS003.emotional-regulation'. Validated against SKILL_TAXONOMY
+// in lib/read/skills.ts.
+export type SkillTag = string
+
 // ---------- Book ----------
 export type BookKind = 'chapter' | 'quick'
 export type BookStatus = 'complete' | 'awaiting-choice' | 'draft' | 'needs-review'
@@ -141,6 +201,18 @@ export interface Book {
   quiet?: boolean
   /** Seasonal shelf tag ("christmas", "diwali", ...). */
   seasonal?: string
+
+  /** v2.2: two-stage QA record (undefined for pre-pipeline books). */
+  qaRecord?: QaRecord
+  /** v2.2: SS-taxonomy ids embedded in this book. */
+  skillTags?: SkillTag[]
+  /** v2.2: universe character ids used in this book. */
+  charactersUsed?: string[]
+  /** v2.2: Mystery Word (heritage word) hidden in the story. Tap to find; adds
+   *  to the Language Wall on MyWords. */
+  mysteryWord?: MysteryWord
+  /** v2.2: Optional comfort-ritual closing beat (shown before BookComplete). */
+  comfortRitual?: ComfortRitual
 
   createdAt: number
   updatedAt?: number
