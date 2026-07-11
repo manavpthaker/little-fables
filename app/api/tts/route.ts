@@ -78,7 +78,10 @@ export async function POST(req: NextRequest) {
 
   const apiKey = process.env.ELEVENLABS_API_KEY
   const narratorVoiceId = process.env.NARRATOR_VOICE_ID
-  const buddyVoiceId = process.env.BUDDY_VOICE_ID
+  // Fable voices everything — buddy characters and narration alike. If
+  // BUDDY_VOICE_ID isn't set we fall back to the narrator voice so the app
+  // never accidentally speaks with two voices.
+  const buddyVoiceId = process.env.BUDDY_VOICE_ID || narratorVoiceId
   const voiceId = voiceKind === 'buddy' ? buddyVoiceId : narratorVoiceId
 
   if (!apiKey || !voiceId) {
