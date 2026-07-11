@@ -1,4 +1,4 @@
-import type { Book } from '@/types/story'
+import type { Book, ChoiceOption } from '@/types/story'
 import { legacyToBook } from './migrate'
 
 // Baked-in stories so the shelf is never empty and the app works offline.
@@ -6,127 +6,158 @@ import { legacyToBook } from './migrate'
 // come verbatim from design/handoff/app/story-data.js — the family library.
 // The rocket story is kept as an emoji-scene test case (no art yet).
 //
-// These are authored in the compact "v1-flat" shape (`pages` at the top level)
-// and normalized into the v2 `Book` shape (with `chapters[]`) at module load.
-// One conversion, no duplication.
+// Azi, Jujy, and the Rocket story are authored in the compact "v1-flat" shape
+// (`pages` at the top level) and normalized into the v2 `Book` shape (with
+// `chapters[]`) at module load. Miko is the flagship 3-chapter book and is
+// authored natively as a v2 `Book` (bypasses the 1-chapter wrapper).
+
+// ---------- Miko: flagship 3-chapter book (native v2) ----------
+// The prose is preserved verbatim from the v1 handoff (design/handoff/app/
+// story-data.js) with tiny connective sentences at chapter boundaries so the
+// break rhythm feels natural — Chapter 1 ends on the "I know who can help!"
+// belly-breath moment; Chapter 2 opens with Tara arriving, ends on the web
+// choice; Chapter 3 is the crossing + grateful night close.
+const MIKO_BOOK: Book = {
+  id: 'miko-bridge',
+  title: 'Miko and the Wobbly Bridge',
+  by: 'Made by Papa',
+  kind: 'chapter',
+  status: 'complete',
+  source: 'starter',
+  coverImage: '/art/miko-cover.jpg',
+  coverEmoji: '🦊',
+  coverBg: 'linear-gradient(160deg,#f97316,#fbbf24)',
+  wash: 'sunset',
+  meta: '3 chapters · counting',
+  teachingGoals: ['counting', 'belly breaths', 'gratefulness'],
+  vocab: [
+    { word: 'wobbly', meaning: 'shaky and wibbly, not steady' },
+    { word: 'steady', meaning: 'strong and still, not moving' },
+    { word: 'grateful', meaning: 'feeling warm and thankful inside' },
+  ],
+  retellPrompts: [
+    'Who needed help in the story?',
+    'What was wrong with the bridge?',
+    'How did Miko calm down when he felt worried?',
+    'What would YOU have built?',
+  ],
+  chapters: [
+    {
+      title: 'The Wobbly Bridge',
+      wash: 'canyon',
+      emojis: ['🦊', '🌉'],
+      hook: {
+        b: "Next time: a big belly breath and Tara's silver web…",
+        c: "Next time: a big belly breath and Tara's silver web.",
+      },
+      recapQuestion: 'How many planks were missing from the bridge?',
+      pages: [
+        {
+          text: 'Miko the fox zoomed through Zoomtown on his little blue moto. Vroom vroom! The wind whooshed past his ears.',
+          wash: 'canyon',
+          emojis: ['🦊', '🏍️', '🏙️', '💨'],
+          img: '/art/miko-01-zoomtown.jpg',
+        },
+        {
+          text: 'Suddenly Miko squeezed his brakes. SCREEEECH! The bridge over Dino Canyon was wobbly. One, two, three planks were missing!',
+          wash: 'canyon',
+          emojis: ['🌉', '⚠️', '🦊'],
+          img: '/art/miko-02-bridge.jpg',
+          star: 'wobbly',
+          ask: {
+            skill: 'counting',
+            question: 'Can you count the missing planks with me? How many were missing?',
+            answers: ['three', '3'],
+            praise: 'Yes! THREE planks were missing. Great counting!',
+            hint: 'Let’s count together: one... two... THREE!',
+          },
+        },
+      ],
+    },
+    {
+      title: "Tara's Big Idea",
+      wash: 'meadow',
+      emojis: ['🕷️', '🕸️'],
+      hook: {
+        b: 'Next time: CROSSING DAY — will the web hold?',
+        c: 'Next time: Crossing Day. Will the web hold?',
+      },
+      recapQuestion: 'What did Tara think would fix the bridge?',
+      pages: [
+        {
+          text: 'Miko took one big belly breath. In... and out. His tummy felt softer. "I can’t fix this alone," he said. "But I know who can help!"',
+          wash: 'blush',
+          emojis: ['🦊', '😮‍💨', '💜'],
+          img: '/art/miko-03-breath.jpg',
+          breathe: true,
+        },
+        {
+          text: 'Tara the spider swung down on a silver thread. "A web can fix it!" she said. But they needed something strong to hold the web.',
+          wash: 'meadow',
+          emojis: ['🕷️', '🕸️', '🌉'],
+          img: '/art/miko-04-web.jpg',
+          choice: {
+            prompt: 'What should hold the web?',
+            options: [
+              {
+                label: 'Boulder’s long neck',
+                emoji: '🦕',
+                keywords: ['boulder', 'neck', 'dinosaur', 'dino'],
+                pages: [
+                  {
+                    text: 'Boulder stretched his looooong neck across the canyon like a crane. Tara spun her web around it — zip zip zip! The web pulled the bridge tight and steady.',
+                    wash: 'meadow',
+                    emojis: ['🦕', '🕸️', '🌉', '✨'],
+                    img: '/art/miko-05-fixed-neck.jpg',
+                  },
+                ],
+              },
+              {
+                label: 'Miko’s moto',
+                emoji: '🏍️',
+                keywords: ['moto', 'motorcycle', 'bike', 'miko'],
+                pages: [
+                  {
+                    text: 'Miko parked his moto and Tara tied her web to it — zip zip zip! Miko held the brakes tight. The web pulled the bridge steady like a seatbelt.',
+                    wash: 'meadow',
+                    emojis: ['🏍️', '🕸️', '🌉', '✨'],
+                    img: '/art/miko-05-fixed-moto.jpg',
+                  },
+                ],
+              },
+            ] satisfies ChoiceOption[],
+          },
+        },
+      ],
+    },
+    {
+      title: 'Crossing Day',
+      wash: 'honey',
+      emojis: ['🦊', '🦕'],
+      recapQuestion: 'How did Miko feel at the end?',
+      pages: [
+        {
+          text: 'The next morning, Boulder stretched his looooong neck across the canyon like a crane. Tara spun her web around it — zip zip zip! The web pulled the bridge tight and steady.',
+          wash: 'honey',
+          emojis: ['🦕', '🕸️', '🌉', '✨'],
+          img: '/art/miko-05-fixed-neck.jpg',
+          star: 'steady',
+        },
+        {
+          text: 'That night the soccer game was the best ever. Boulder gave everyone a ride on his neck, and Miko whispered, "I’m grateful for my friends." The end!',
+          wash: 'honey',
+          emojis: ['⚽', '🌟', '🦊', '🦕', '🕷️'],
+          img: '/art/miko-06-night.jpg',
+          star: 'grateful',
+        },
+      ],
+    },
+  ],
+  createdAt: 0,
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const RAW_STARTERS: any[] = [
-  {
-    id: 'miko-bridge',
-    title: 'Miko and the Wobbly Bridge',
-    coverEmoji: '🦊',
-    coverBg: 'linear-gradient(160deg,#f97316,#fbbf24)',
-    coverImage: '/art/miko-cover.jpg',
-    by: 'Made by Papa',
-    status: 'complete',
-    source: 'starter',
-    createdAt: 0,
-    teachingGoals: ['counting', 'belly breaths', 'gratefulness'],
-    vocab: [
-      { word: 'wobbly', meaning: 'shaky and wibbly, not steady' },
-      { word: 'steady', meaning: 'strong and still, not moving' },
-      { word: 'grateful', meaning: 'feeling warm and thankful inside' },
-    ],
-    retellPrompts: [
-      'Who needed help in the story?',
-      'What was wrong with the bridge?',
-      'How did Miko calm down when he felt worried?',
-      'What would YOU have built?',
-    ],
-    pages: [
-      {
-        text: 'Miko the fox zoomed through Zoomtown on his little blue moto. Vroom vroom! The wind whooshed past his ears.',
-        scene: {
-          bg: 'linear-gradient(160deg,#38bdf8,#a7f3d0)',
-          emojis: ['🦊', '🏍️', '🏙️', '💨'],
-          image: '/art/miko-01-zoomtown.jpg',
-        },
-      },
-      {
-        text: 'Suddenly Miko squeezed his brakes. SCREEEECH! The bridge over Dino Canyon was wobbly. One, two, three planks were missing!',
-        scene: {
-          bg: 'linear-gradient(160deg,#fbbf24,#f97316)',
-          emojis: ['🌉', '⚠️', '🦊'],
-          image: '/art/miko-02-bridge.jpg',
-        },
-        ask: {
-          question: 'Can you count the missing planks with me? How many were missing?',
-          answers: ['three', '3'],
-          praise: 'Yes! THREE planks were missing. Great counting!',
-          hint: 'Let’s count together: one... two... THREE!',
-          skill: 'counting',
-        },
-      },
-      {
-        text: 'Miko took one big belly breath. In... and out. His tummy felt softer. "I can’t fix this alone," he said. "But I know who can help!"',
-        scene: {
-          bg: 'linear-gradient(160deg,#a78bfa,#f0abfc)',
-          emojis: ['🦊', '😮‍💨', '💜'],
-          image: '/art/miko-03-breath.jpg',
-        },
-        ask: {
-          question: 'Miko’s tummy felt tight and worried. Can you take one big belly breath with him? In... and out.',
-          answers: [],
-          praise: 'Ahhh. One BIG belly breath. Miko’s tummy feels softer — does yours?',
-          hint: 'Hands on your tummy. Breathe in slowly... now let it whoosh out.',
-          skill: 'feelings',
-        },
-      },
-      {
-        text: 'Tara the spider swung down on a silver thread. "A web can fix it!" she said. But they needed something strong to hold the web.',
-        scene: {
-          bg: 'linear-gradient(160deg,#818cf8,#38bdf8)',
-          emojis: ['🕷️', '🕸️', '🌉'],
-          image: '/art/miko-04-web.jpg',
-        },
-        choice: {
-          prompt: 'What should hold the web?',
-          options: [
-            {
-              label: 'Boulder’s long neck',
-              emoji: '🦕',
-              keywords: ['boulder', 'neck', 'dinosaur', 'dino'],
-              pages: [
-                {
-                  text: 'Boulder stretched his looooong neck across the canyon like a crane. Tara spun her web around it — zip zip zip! The web pulled the bridge tight and steady.',
-                  scene: {
-                    bg: 'linear-gradient(160deg,#34d399,#a7f3d0)',
-                    emojis: ['🦕', '🕸️', '🌉', '✨'],
-                    image: '/art/miko-05-fixed-neck.jpg',
-                  },
-                },
-              ],
-            },
-            {
-              label: 'Miko’s moto',
-              emoji: '🏍️',
-              keywords: ['moto', 'motorcycle', 'bike', 'miko'],
-              pages: [
-                {
-                  text: 'Miko parked his moto and Tara tied her web to it — zip zip zip! Miko held the brakes tight. The web pulled the bridge steady like a seatbelt.',
-                  scene: {
-                    bg: 'linear-gradient(160deg,#34d399,#a7f3d0)',
-                    emojis: ['🏍️', '🕸️', '🌉', '✨'],
-                    image: '/art/miko-05-fixed-moto.jpg',
-                  },
-                },
-              ],
-            },
-          ],
-        },
-      },
-      {
-        text: 'That night the soccer game was the best ever. Boulder gave everyone a ride on his neck, and Miko whispered, "I’m grateful for my friends." The end!',
-        scene: {
-          bg: 'linear-gradient(160deg,#1e3a8a,#7c3aed)',
-          emojis: ['⚽', '🌟', '🦊', '🦕', '🕷️'],
-          image: '/art/miko-06-night.jpg',
-        },
-      },
-    ],
-  },
-
   {
     id: 'azi-bhen',
     title: 'Azi’s Little Bhen',
@@ -294,4 +325,4 @@ const RAW_STARTERS: any[] = [
   },
 ]
 
-export const STARTER_STORIES: Book[] = RAW_STARTERS.map(legacyToBook)
+export const STARTER_STORIES: Book[] = [MIKO_BOOK, ...RAW_STARTERS.map(legacyToBook)]

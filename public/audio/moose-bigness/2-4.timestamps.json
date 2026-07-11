@@ -1,0 +1,282 @@
+[
+  {
+    "word": ">",
+    "start": 0.023,
+    "end": 0.058
+  },
+  {
+    "word": "*Whenever",
+    "start": 0.081,
+    "end": 0.615
+  },
+  {
+    "word": "you",
+    "start": 0.697,
+    "end": 0.789
+  },
+  {
+    "word": "need",
+    "start": 0.882,
+    "end": 1.115
+  },
+  {
+    "word": "to",
+    "start": 1.173,
+    "end": 1.242
+  },
+  {
+    "word": "remember",
+    "start": 1.335,
+    "end": 1.904
+  },
+  {
+    "word": "-",
+    "start": 2.113,
+    "end": 2.136
+  },
+  {
+    "word": "whenever",
+    "start": 2.345,
+    "end": 2.74
+  },
+  {
+    "word": "the",
+    "start": 2.798,
+    "end": 2.868
+  },
+  {
+    "word": "bigness",
+    "start": 2.926,
+    "end": 3.367
+  },
+  {
+    "word": "starts",
+    "start": 3.402,
+    "end": 3.762
+  },
+  {
+    "word": "to",
+    "start": 3.831,
+    "end": 3.913
+  },
+  {
+    "word": "rise",
+    "start": 4.029,
+    "end": 4.551
+  },
+  {
+    "word": "and",
+    "start": 4.609,
+    "end": 4.725
+  },
+  {
+    "word": "you",
+    "start": 4.795,
+    "end": 4.876
+  },
+  {
+    "word": "feel",
+    "start": 4.969,
+    "end": 5.271
+  },
+  {
+    "word": "like",
+    "start": 5.317,
+    "end": 5.48
+  },
+  {
+    "word": "you",
+    "start": 5.515,
+    "end": 5.596
+  },
+  {
+    "word": "might",
+    "start": 5.666,
+    "end": 5.875
+  },
+  {
+    "word": "crash",
+    "start": 5.944,
+    "end": 6.362
+  },
+  {
+    "word": "through",
+    "start": 6.432,
+    "end": 6.803
+  },
+  {
+    "word": "-",
+    "start": 6.978,
+    "end": 7.036
+  },
+  {
+    "word": "close",
+    "start": 7.279,
+    "end": 7.674
+  },
+  {
+    "word": "your",
+    "start": 7.721,
+    "end": 7.872
+  },
+  {
+    "word": "eyes.*",
+    "start": 7.953,
+    "end": 8.731
+  },
+  {
+    "word": "Azi",
+    "start": 9.543,
+    "end": 9.95
+  },
+  {
+    "word": "listened,",
+    "start": 10.019,
+    "end": 10.704
+  },
+  {
+    "word": "holding",
+    "start": 10.879,
+    "end": 11.25
+  },
+  {
+    "word": "his",
+    "start": 11.32,
+    "end": 11.436
+  },
+  {
+    "word": "breath.",
+    "start": 11.505,
+    "end": 12.109
+  },
+  {
+    "word": ">",
+    "start": 12.353,
+    "end": 12.376
+  },
+  {
+    "word": "*Find",
+    "start": 12.55,
+    "end": 13.108
+  },
+  {
+    "word": "yourself",
+    "start": 13.189,
+    "end": 13.735
+  },
+  {
+    "word": "back",
+    "start": 13.851,
+    "end": 14.176
+  },
+  {
+    "word": "here.",
+    "start": 14.292,
+    "end": 14.884
+  },
+  {
+    "word": "At",
+    "start": 15.058,
+    "end": 15.221
+  },
+  {
+    "word": "the",
+    "start": 15.267,
+    "end": 15.36
+  },
+  {
+    "word": "edge",
+    "start": 15.476,
+    "end": 15.778
+  },
+  {
+    "word": "of",
+    "start": 15.813,
+    "end": 15.882
+  },
+  {
+    "word": "the",
+    "start": 15.94,
+    "end": 16.022
+  },
+  {
+    "word": "Adirondack",
+    "start": 16.115,
+    "end": 16.88
+  },
+  {
+    "word": "woods.",
+    "start": 16.973,
+    "end": 17.682
+  },
+  {
+    "word": "At",
+    "start": 17.891,
+    "end": 18.053
+  },
+  {
+    "word": "the",
+    "start": 18.088,
+    "end": 18.181
+  },
+  {
+    "word": "edge",
+    "start": 18.297,
+    "end": 18.668
+  },
+  {
+    "word": "of",
+    "start": 18.726,
+    "end": 18.843
+  },
+  {
+    "word": "everything",
+    "start": 18.97,
+    "end": 19.562
+  },
+  {
+    "word": "wild.",
+    "start": 19.678,
+    "end": 20.363
+  },
+  {
+    "word": "Where",
+    "start": 20.538,
+    "end": 20.747
+  },
+  {
+    "word": "the",
+    "start": 20.781,
+    "end": 20.851
+  },
+  {
+    "word": "last",
+    "start": 20.921,
+    "end": 21.281
+  },
+  {
+    "word": "light",
+    "start": 21.397,
+    "end": 21.722
+  },
+  {
+    "word": "touches",
+    "start": 21.815,
+    "end": 22.337
+  },
+  {
+    "word": "the",
+    "start": 22.43,
+    "end": 22.534
+  },
+  {
+    "word": "first",
+    "start": 22.616,
+    "end": 22.976
+  },
+  {
+    "word": "shadow.*",
+    "start": 23.057,
+    "end": 23.777
+  }
+]

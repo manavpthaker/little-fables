@@ -1,0 +1,282 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.163
+  },
+  {
+    "word": "Westfield",
+    "start": 0.232,
+    "end": 0.906
+  },
+  {
+    "word": "was",
+    "start": 0.964,
+    "end": 1.08
+  },
+  {
+    "word": "the",
+    "start": 1.126,
+    "end": 1.196
+  },
+  {
+    "word": "kind",
+    "start": 1.254,
+    "end": 1.521
+  },
+  {
+    "word": "of",
+    "start": 1.579,
+    "end": 1.637
+  },
+  {
+    "word": "house",
+    "start": 1.707,
+    "end": 2.09
+  },
+  {
+    "word": "that",
+    "start": 2.125,
+    "end": 2.287
+  },
+  {
+    "word": "talked",
+    "start": 2.345,
+    "end": 2.717
+  },
+  {
+    "word": "at",
+    "start": 2.763,
+    "end": 2.833
+  },
+  {
+    "word": "night.",
+    "start": 2.902,
+    "end": 3.506
+  },
+  {
+    "word": "Not",
+    "start": 4.203,
+    "end": 4.458
+  },
+  {
+    "word": "in",
+    "start": 4.528,
+    "end": 4.609
+  },
+  {
+    "word": "words.",
+    "start": 4.69,
+    "end": 5.422
+  },
+  {
+    "word": "In",
+    "start": 6.026,
+    "end": 6.188
+  },
+  {
+    "word": "the",
+    "start": 6.246,
+    "end": 6.316
+  },
+  {
+    "word": "language",
+    "start": 6.397,
+    "end": 6.92
+  },
+  {
+    "word": "that",
+    "start": 6.954,
+    "end": 7.105
+  },
+  {
+    "word": "houses",
+    "start": 7.163,
+    "end": 7.57
+  },
+  {
+    "word": "use",
+    "start": 7.663,
+    "end": 8.208
+  },
+  {
+    "word": "---",
+    "start": 8.243,
+    "end": 8.348
+  },
+  {
+    "word": "the",
+    "start": 8.522,
+    "end": 8.626
+  },
+  {
+    "word": "creak",
+    "start": 8.707,
+    "end": 9.033
+  },
+  {
+    "word": "of",
+    "start": 9.091,
+    "end": 9.149
+  },
+  {
+    "word": "a",
+    "start": 9.207,
+    "end": 9.23
+  },
+  {
+    "word": "floorboard",
+    "start": 9.3,
+    "end": 9.915
+  },
+  {
+    "word": "settling,",
+    "start": 9.985,
+    "end": 10.797
+  },
+  {
+    "word": "the",
+    "start": 11.122,
+    "end": 11.227
+  },
+  {
+    "word": "tick",
+    "start": 11.308,
+    "end": 11.564
+  },
+  {
+    "word": "of",
+    "start": 11.633,
+    "end": 11.691
+  },
+  {
+    "word": "a",
+    "start": 11.749,
+    "end": 11.773
+  },
+  {
+    "word": "baseboard",
+    "start": 11.854,
+    "end": 12.423
+  },
+  {
+    "word": "heater",
+    "start": 12.481,
+    "end": 12.841
+  },
+  {
+    "word": "cooling",
+    "start": 12.934,
+    "end": 13.34
+  },
+  {
+    "word": "down,",
+    "start": 13.398,
+    "end": 14.083
+  },
+  {
+    "word": "the",
+    "start": 14.687,
+    "end": 14.803
+  },
+  {
+    "word": "way",
+    "start": 14.872,
+    "end": 15.093
+  },
+  {
+    "word": "the",
+    "start": 15.163,
+    "end": 15.244
+  },
+  {
+    "word": "wind",
+    "start": 15.314,
+    "end": 15.639
+  },
+  {
+    "word": "came",
+    "start": 15.732,
+    "end": 16.022
+  },
+  {
+    "word": "around",
+    "start": 16.057,
+    "end": 16.382
+  },
+  {
+    "word": "the",
+    "start": 16.44,
+    "end": 16.509
+  },
+  {
+    "word": "corner",
+    "start": 16.579,
+    "end": 16.927
+  },
+  {
+    "word": "of",
+    "start": 16.985,
+    "end": 17.043
+  },
+  {
+    "word": "the",
+    "start": 17.09,
+    "end": 17.159
+  },
+  {
+    "word": "backyard",
+    "start": 17.206,
+    "end": 17.902
+  },
+  {
+    "word": "and",
+    "start": 17.972,
+    "end": 18.123
+  },
+  {
+    "word": "pressed",
+    "start": 18.204,
+    "end": 18.611
+  },
+  {
+    "word": "its",
+    "start": 18.657,
+    "end": 18.796
+  },
+  {
+    "word": "palm",
+    "start": 18.866,
+    "end": 19.249
+  },
+  {
+    "word": "against",
+    "start": 19.307,
+    "end": 19.644
+  },
+  {
+    "word": "the",
+    "start": 19.69,
+    "end": 19.76
+  },
+  {
+    "word": "kitchen",
+    "start": 19.806,
+    "end": 20.12
+  },
+  {
+    "word": "window,",
+    "start": 20.19,
+    "end": 20.747
+  },
+  {
+    "word": "just",
+    "start": 20.898,
+    "end": 21.153
+  },
+  {
+    "word": "checking.",
+    "start": 21.211,
+    "end": 21.78
+  }
+]

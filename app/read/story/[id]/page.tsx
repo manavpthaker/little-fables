@@ -260,7 +260,18 @@ function ReaderBook({
   )
 }
 
-/* ================= ChapterMap (v2) ================= */
+/* ================= ChapterMap (v2) =================
+ * Winding-path layout: stops offset vertically with a dotted connector line
+ * between them. Current stop is largest with the buddy face beside it.
+ * Finished stops show a scene-art thumbnail (from ch.pages[0].img) + ✓ badge.
+ *
+ * "Locked" states are split into two distinct copies:
+ *   - painting  → chapter has `status: 'painting'` OR no playable pages yet
+ *                 → "Not yet… Mom is still painting this one ✦"
+ *   - locked    → chapter is complete but sequentially locked behind progress
+ *                 (e.g. Cozy Circle Ch. 3 before you finish Ch. 2)
+ *                 → "Not yet — finish this chapter first ✦"  (no painting copy)
+ */
 function ChapterMap({
   book,
   buddy,
@@ -272,10 +283,19 @@ function ChapterMap({
   onExit: () => void
   onPickChapter: (i: number) => void
 }) {
-  // Compute the current chapter from stored progress (falls back to first
-  // non-done chapter, which for a fresh book is index 0).
   const prog = getProgress(book.id)
   const currentIdx = Math.min(book.chapters.length - 1, prog?.chapter ?? 0)
+
+  type StopStatus = 'done' | 'current' | 'locked' | 'painting'
+  const chapterIsPainting = (ch: Chapter) =>
+    ch.status === 'painting' || !ch.pages || ch.pages.length === 0
+
+  const stops = book.chapters.map((ch, i): { ch: Chapter; i: number; status: StopStatus } => {
+    if (chapterIsPainting(ch)) return { ch, i, status: 'painting' }
+    if (i < currentIdx) return { ch, i, status: 'done' }
+    if (i === currentIdx) return { ch, i, status: 'current' }
+    return { ch, i, status: 'locked' }
+  })
 
   return (
     <KidScreen label={`Chapter map — ${book.title}`}>
@@ -291,45 +311,53 @@ function ChapterMap({
         </div>
         <span style={{ marginLeft: 'auto' }}>
           <ChapterDots
-            chapters={book.chapters.map((c, i) => ({
-              status: i < currentIdx ? 'done' : i === currentIdx ? 'current' : c.status ?? undefined,
+            chapters={stops.map(({ status }) => ({
+              status: status === 'locked' ? undefined : status,
             }))}
             style={{ fontSize: 16 }}
           />
         </span>
       </header>
 
-      {/* Stops laid out on a train track. Positions are approximate; a smaller
-          layout collapses to a vertical strip. */}
-      <div
-        style={{
-          position: 'relative',
-          padding: '32px 32px 120px',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: 24,
-          justifyContent: 'center',
-        }}
-      >
-        {book.chapters.map((ch, i) => {
-          const status: 'done' | 'current' | 'painting' =
-            ch.status === 'painting'
-              ? 'painting'
-              : i < currentIdx
-                ? 'done'
-                : i === currentIdx
-                  ? 'current'
-                  : 'painting' in (ch as object)
-                    ? (ch.status ?? 'painting')
-                    : 'painting'
-          // Fallback: if the pack didn't mark future chapters as painting,
-          // treat future chapters as 'future' (rendered as an open dot).
-          const isFuture = i > currentIdx && status !== 'painting'
-          const isPainting = status === 'painting'
+      <style>{`
+        /* Winding-path chapter map. Every other stop offsets down so the row
+           reads like a journey, not a file list. Dotted connectors thread
+           between stops. Static composition — no animation (reduced-motion safe). */
+        .lf-chmap {
+          position: relative;
+          padding: 40px 32px 120px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 8px 24px;
+          justify-items: center;
+          align-items: start;
+        }
+        .lf-chmap-stop { position: relative; text-align: center; width: 100%; max-width: 200px; }
+        .lf-chmap-stop:nth-child(even) { margin-top: 40px; }
+        /* Dotted connector — sits behind each stop and reaches to the next one. */
+        .lf-chmap-stop:not(:last-child)::after {
+          content: '';
+          position: absolute;
+          top: 55px;
+          left: 60%;
+          width: 80%;
+          border-top: 3px dashed var(--lf-cream-line);
+          z-index: 0;
+          pointer-events: none;
+        }
+        .lf-chmap-stop:nth-child(even):not(:last-child)::after { top: 15px; }
+        @media (max-width: 640px) {
+          .lf-chmap { grid-template-columns: 1fr; }
+          .lf-chmap-stop:nth-child(even) { margin-top: 0; }
+          .lf-chmap-stop:not(:last-child)::after { display: none; }
+        }
+      `}</style>
 
-          if (isPainting) {
+      <div className="lf-chmap">
+        {stops.map(({ ch, i, status }) => {
+          if (status === 'painting') {
             return (
-              <div key={i} style={{ width: 150, textAlign: 'center' }}>
+              <div key={i} className="lf-chmap-stop">
                 <div
                   aria-hidden="true"
                   style={{
@@ -343,6 +371,9 @@ function ChapterMap({
                     justifyContent: 'center',
                     fontSize: 44,
                     opacity: 0.45,
+                    position: 'relative',
+                    zIndex: 1,
+                    background: 'var(--lf-cream-card)',
                   }}
                 >
                   <span style={{ filter: 'grayscale(1)' }}>📕</span>
@@ -357,49 +388,102 @@ function ChapterMap({
             )
           }
 
+          if (status === 'locked') {
+            return (
+              <div key={i} className="lf-chmap-stop">
+                <div
+                  aria-hidden="true"
+                  style={{
+                    width: 110,
+                    height: 110,
+                    margin: '0 auto',
+                    borderRadius: 'var(--radius-cover)',
+                    border: '1.5px solid var(--lf-cream-line)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 40,
+                    opacity: 0.55,
+                    position: 'relative',
+                    zIndex: 1,
+                    background: 'var(--lf-cream-card)',
+                    boxShadow: 'var(--shadow-warm)',
+                  }}
+                >
+                  <span>📕</span>
+                </div>
+                <div style={{ marginTop: 8, font: '700 14px var(--font-display)', color: 'var(--lf-espresso-faint)' }}>
+                  {i + 1}. {ch.title || `Chapter ${i + 1}`}
+                </div>
+                <div style={{ font: '600 12px/1.4 var(--font-body)', color: 'var(--lf-espresso-faint)' }}>
+                  Not yet — finish this chapter first ✦
+                </div>
+              </div>
+            )
+          }
+
           const current = status === 'current'
+          const done = status === 'done'
+          const thumbImg = ch.pages?.[0]?.img
+          const size = current ? 150 : 110
+
           return (
             <div
               key={i}
-              style={{
-                width: current ? 190 : 150,
-                textAlign: 'center',
-                position: 'relative',
-              }}
+              className="lf-chmap-stop"
+              style={{ maxWidth: current ? 210 : 200 }}
             >
               {current && (
                 <BuddyFace
                   buddy={buddy}
                   size={64}
-                  style={{ position: 'absolute', left: -22, bottom: 90, zIndex: 2 }}
+                  style={{ position: 'absolute', left: '10%', top: -18, zIndex: 3 }}
                 />
               )}
               <button
                 type="button"
                 className="lf-press"
-                onClick={() => (isFuture ? undefined : onPickChapter(i))}
-                disabled={isFuture}
+                onClick={() => onPickChapter(i)}
                 style={{
                   position: 'relative',
-                  width: current ? 150 : 110,
-                  height: current ? 150 : 110,
+                  width: size,
+                  height: size,
                   margin: '0 auto',
                   borderRadius: 'var(--radius-cover)',
-                  border: '1.5px solid var(--lf-cream-line)',
-                  cursor: isFuture ? 'default' : 'pointer',
+                  border: current ? '2.5px solid var(--lf-coral)' : '1.5px solid var(--lf-cream-line)',
+                  cursor: 'pointer',
                   background: 'var(--lf-cream-card)',
                   padding: 7,
-                  boxShadow: current ? 'var(--shadow-warm-lg)' : 'var(--shadow-warm)',
-                  opacity: isFuture ? 0.55 : 1,
+                  boxShadow: current
+                    ? 'var(--shadow-coral-glow), var(--shadow-warm-lg)'
+                    : 'var(--shadow-warm)',
+                  transform: current ? 'scale(1.05)' : 'none',
+                  zIndex: 2,
+                  overflow: 'visible',
                 }}
               >
-                <WashScene
-                  wash={ch.wash ?? book.wash ?? 'meadow'}
-                  emojis={ch.emojis}
-                  doodle={false}
-                  style={{ width: '100%', height: '100%', borderRadius: 12 }}
-                />
-                {status === 'done' && (
+                {thumbImg ? (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={thumbImg}
+                    alt=""
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      borderRadius: 12,
+                      display: 'block',
+                    }}
+                  />
+                ) : (
+                  <WashScene
+                    wash={ch.wash ?? book.wash ?? 'meadow'}
+                    emojis={ch.emojis}
+                    doodle={false}
+                    style={{ width: '100%', height: '100%', borderRadius: 12 }}
+                  />
+                )}
+                {done && (
                   <span
                     style={{
                       position: 'absolute',
@@ -446,7 +530,7 @@ function ChapterMap({
               </button>
               <div
                 style={{
-                  marginTop: 10,
+                  marginTop: 12,
                   font: `700 ${current ? 17 : 14.5}px var(--font-display)`,
                   color: current ? 'var(--lf-espresso)' : 'var(--lf-espresso-soft)',
                 }}
@@ -860,9 +944,21 @@ function ReaderPages({
   const fullBleed = !!page.fullBleed
 
   return (
-    <KidScreen label={`Reader — ${chapter.title || book.title}`}>
+    <KidScreen
+      label={`Reader — ${chapter.title || book.title}`}
+      style={{
+        // Reader is strictly viewport-fit — no page scroll.
+        // Top bar → spread → footer, all inside 100dvh.
+        height: '100dvh',
+        maxHeight: '100dvh',
+        minHeight: 0,
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <style>{`
-        .lf-read-spread { display: grid; grid-template-columns: 1fr; min-height: 100dvh; }
+        .lf-read-spread { display: grid; grid-template-columns: 1fr; flex: 1 1 auto; min-height: 0; overflow: hidden; }
         @media (min-width: 1000px) { .lf-read-spread { grid-template-columns: 46% 1fr; } }
       `}</style>
 
@@ -873,6 +969,7 @@ function ReaderPages({
           alignItems: 'center',
           gap: 14,
           padding: '18px 24px 8px',
+          flexShrink: 0,
         }}
       >
         <CircleBtn label="Back" onClick={onExit}>
@@ -919,12 +1016,13 @@ function ReaderPages({
             width: 46,
             height: 46,
             borderRadius: '50%',
-            border: 'none',
-            background: askStoryTurns >= 2 ? 'var(--lf-cream-card)' : 'var(--lf-coral)',
-            color: askStoryTurns >= 2 ? 'var(--lf-espresso-faint)' : '#fff',
+            background: 'var(--lf-cream-card)',
+            border: '1.5px solid var(--lf-cream-line)',
+            color:
+              askStoryTurns >= 2 ? 'var(--lf-espresso-faint)' : 'var(--lf-espresso-soft)',
             fontSize: 18,
             cursor: askStoryTurns >= 2 ? 'default' : 'pointer',
-            boxShadow: askStoryTurns >= 2 ? 'none' : 'var(--shadow-coral-glow)',
+            boxShadow: 'none',
           }}
         >
           ?
@@ -937,7 +1035,12 @@ function ReaderPages({
           style={{
             position: 'relative',
             padding: fullBleed ? 0 : '4px 8px 18px 24px',
-            minHeight: fullBleed ? 340 : undefined,
+            minHeight: 0,
+            minWidth: 0,
+            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           {page.img ? (
@@ -949,8 +1052,10 @@ function ReaderPages({
                 fullBleed
                   ? { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
                   : {
-                      width: '100%',
-                      maxHeight: 500,
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      width: 'auto',
+                      height: 'auto',
                       objectFit: 'contain',
                       borderRadius: 'var(--radius-hero)',
                       display: 'block',
@@ -975,7 +1080,9 @@ function ReaderPages({
                       filter: 'var(--shadow-emoji)',
                     }
                   : {
-                      width: '100%',
+                      maxWidth: '100%',
+                      maxHeight: '100%',
+                      width: 'min(560px, 100%)',
                       aspectRatio: '4 / 3',
                       borderRadius: 'var(--radius-hero)',
                       background: washBg(page.wash ?? chapter.wash ?? book.wash ?? 'meadow'),

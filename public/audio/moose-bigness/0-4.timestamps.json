@@ -1,0 +1,307 @@
+[
+  {
+    "word": "He",
+    "start": 0.035,
+    "end": 0.151
+  },
+  {
+    "word": "had",
+    "start": 0.221,
+    "end": 0.337
+  },
+  {
+    "word": "collected",
+    "start": 0.395,
+    "end": 0.894
+  },
+  {
+    "word": "pinecones",
+    "start": 0.975,
+    "end": 1.8
+  },
+  {
+    "word": "-",
+    "start": 1.916,
+    "end": 1.939
+  },
+  {
+    "word": "seventeen",
+    "start": 2.009,
+    "end": 2.612
+  },
+  {
+    "word": "of",
+    "start": 2.67,
+    "end": 2.74
+  },
+  {
+    "word": "them",
+    "start": 2.798,
+    "end": 2.972
+  },
+  {
+    "word": "-",
+    "start": 3.088,
+    "end": 3.17
+  },
+  {
+    "word": "each",
+    "start": 3.448,
+    "end": 3.68
+  },
+  {
+    "word": "one",
+    "start": 3.75,
+    "end": 3.971
+  },
+  {
+    "word": "different,",
+    "start": 4.029,
+    "end": 4.644
+  },
+  {
+    "word": "each",
+    "start": 4.888,
+    "end": 5.108
+  },
+  {
+    "word": "one",
+    "start": 5.178,
+    "end": 5.399
+  },
+  {
+    "word": "smelling",
+    "start": 5.48,
+    "end": 5.944
+  },
+  {
+    "word": "like",
+    "start": 6.014,
+    "end": 6.223
+  },
+  {
+    "word": "secrets.",
+    "start": 6.293,
+    "end": 7.094
+  },
+  {
+    "word": "He",
+    "start": 7.605,
+    "end": 7.732
+  },
+  {
+    "word": "had",
+    "start": 7.802,
+    "end": 7.93
+  },
+  {
+    "word": "shared",
+    "start": 7.999,
+    "end": 8.371
+  },
+  {
+    "word": "three",
+    "start": 8.452,
+    "end": 8.835
+  },
+  {
+    "word": "with",
+    "start": 8.882,
+    "end": 9.044
+  },
+  {
+    "word": "a",
+    "start": 9.079,
+    "end": 9.114
+  },
+  {
+    "word": "squirrel",
+    "start": 9.183,
+    "end": 9.636
+  },
+  {
+    "word": "who",
+    "start": 9.694,
+    "end": 9.822
+  },
+  {
+    "word": "came",
+    "start": 9.88,
+    "end": 10.17
+  },
+  {
+    "word": "too",
+    "start": 10.217,
+    "end": 10.414
+  },
+  {
+    "word": "close",
+    "start": 10.484,
+    "end": 11.029
+  },
+  {
+    "word": "and",
+    "start": 11.053,
+    "end": 11.204
+  },
+  {
+    "word": "then",
+    "start": 11.262,
+    "end": 11.424
+  },
+  {
+    "word": "seemed",
+    "start": 11.505,
+    "end": 11.796
+  },
+  {
+    "word": "surprised",
+    "start": 11.831,
+    "end": 12.434
+  },
+  {
+    "word": "by",
+    "start": 12.481,
+    "end": 12.608
+  },
+  {
+    "word": "its",
+    "start": 12.678,
+    "end": 12.806
+  },
+  {
+    "word": "own",
+    "start": 12.852,
+    "end": 13.026
+  },
+  {
+    "word": "bravery.",
+    "start": 13.084,
+    "end": 13.816
+  },
+  {
+    "word": "He",
+    "start": 14.257,
+    "end": 14.385
+  },
+  {
+    "word": "had",
+    "start": 14.443,
+    "end": 14.559
+  },
+  {
+    "word": "whispered",
+    "start": 14.617,
+    "end": 15.116
+  },
+  {
+    "word": "\"sorry\"",
+    "start": 15.186,
+    "end": 15.986
+  },
+  {
+    "word": "to",
+    "start": 16.044,
+    "end": 16.161
+  },
+  {
+    "word": "a",
+    "start": 16.253,
+    "end": 16.288
+  },
+  {
+    "word": "purple",
+    "start": 16.37,
+    "end": 16.753
+  },
+  {
+    "word": "flower",
+    "start": 16.799,
+    "end": 17.24
+  },
+  {
+    "word": "he",
+    "start": 17.333,
+    "end": 17.426
+  },
+  {
+    "word": "accidentally",
+    "start": 17.507,
+    "end": 18.216
+  },
+  {
+    "word": "stepped",
+    "start": 18.285,
+    "end": 18.634
+  },
+  {
+    "word": "on.",
+    "start": 18.692,
+    "end": 19.04
+  },
+  {
+    "word": "He",
+    "start": 19.249,
+    "end": 19.4
+  },
+  {
+    "word": "had",
+    "start": 19.469,
+    "end": 19.597
+  },
+  {
+    "word": "waved",
+    "start": 19.667,
+    "end": 19.98
+  },
+  {
+    "word": "goodbye",
+    "start": 20.027,
+    "end": 20.421
+  },
+  {
+    "word": "to",
+    "start": 20.468,
+    "end": 20.526
+  },
+  {
+    "word": "the",
+    "start": 20.596,
+    "end": 20.665
+  },
+  {
+    "word": "horses",
+    "start": 20.723,
+    "end": 21.223
+  },
+  {
+    "word": "even",
+    "start": 21.339,
+    "end": 21.594
+  },
+  {
+    "word": "though",
+    "start": 21.629,
+    "end": 21.826
+  },
+  {
+    "word": "they",
+    "start": 21.861,
+    "end": 21.977
+  },
+  {
+    "word": "couldn't",
+    "start": 22.024,
+    "end": 22.337
+  },
+  {
+    "word": "wave",
+    "start": 22.407,
+    "end": 22.697
+  },
+  {
+    "word": "back.",
+    "start": 22.743,
+    "end": 23.196
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.081
+  },
+  {
+    "word": "tiptoed",
+    "start": 0.232,
+    "end": 0.801
+  },
+  {
+    "word": "through",
+    "start": 0.836,
+    "end": 1.103
+  },
+  {
+    "word": "the",
+    "start": 1.138,
+    "end": 1.207
+  },
+  {
+    "word": "house.",
+    "start": 1.265,
+    "end": 1.869
+  },
+  {
+    "word": "Past",
+    "start": 2.473,
+    "end": 2.844
+  },
+  {
+    "word": "the",
+    "start": 2.891,
+    "end": 2.961
+  },
+  {
+    "word": "kitchen,",
+    "start": 3.019,
+    "end": 3.518
+  },
+  {
+    "word": "where",
+    "start": 3.564,
+    "end": 3.773
+  },
+  {
+    "word": "the",
+    "start": 3.808,
+    "end": 3.878
+  },
+  {
+    "word": "dishes",
+    "start": 3.924,
+    "end": 4.238
+  },
+  {
+    "word": "were",
+    "start": 4.296,
+    "end": 4.435
+  },
+  {
+    "word": "clean",
+    "start": 4.481,
+    "end": 4.888
+  },
+  {
+    "word": "and",
+    "start": 4.969,
+    "end": 5.108
+  },
+  {
+    "word": "the",
+    "start": 5.155,
+    "end": 5.224
+  },
+  {
+    "word": "counters",
+    "start": 5.271,
+    "end": 5.7
+  },
+  {
+    "word": "were",
+    "start": 5.747,
+    "end": 5.886
+  },
+  {
+    "word": "quiet.",
+    "start": 5.933,
+    "end": 6.525
+  }
+]

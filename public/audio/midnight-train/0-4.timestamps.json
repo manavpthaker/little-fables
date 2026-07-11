@@ -1,0 +1,42 @@
+[
+  {
+    "word": "And",
+    "start": 0.035,
+    "end": 0.139
+  },
+  {
+    "word": "the",
+    "start": 0.186,
+    "end": 0.255
+  },
+  {
+    "word": "red",
+    "start": 0.313,
+    "end": 0.522
+  },
+  {
+    "word": "train's",
+    "start": 0.569,
+    "end": 0.975
+  },
+  {
+    "word": "lantern",
+    "start": 1.045,
+    "end": 1.474
+  },
+  {
+    "word": "flickered",
+    "start": 1.556,
+    "end": 1.927
+  },
+  {
+    "word": "to",
+    "start": 1.962,
+    "end": 2.032
+  },
+  {
+    "word": "life.",
+    "start": 2.101,
+    "end": 2.508
+  }
+]

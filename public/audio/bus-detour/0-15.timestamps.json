@@ -1,0 +1,297 @@
+[
+  {
+    "word": "That",
+    "start": 0.035,
+    "end": 0.302
+  },
+  {
+    "word": "afternoon,",
+    "start": 0.36,
+    "end": 1.219
+  },
+  {
+    "word": "back",
+    "start": 1.335,
+    "end": 1.556
+  },
+  {
+    "word": "in",
+    "start": 1.614,
+    "end": 1.672
+  },
+  {
+    "word": "the",
+    "start": 1.718,
+    "end": 1.788
+  },
+  {
+    "word": "playroom,",
+    "start": 1.823,
+    "end": 2.543
+  },
+  {
+    "word": "Azi",
+    "start": 2.752,
+    "end": 3.135
+  },
+  {
+    "word": "pulled",
+    "start": 3.193,
+    "end": 3.483
+  },
+  {
+    "word": "out",
+    "start": 3.529,
+    "end": 3.68
+  },
+  {
+    "word": "his",
+    "start": 3.738,
+    "end": 3.855
+  },
+  {
+    "word": "felt-tip",
+    "start": 3.913,
+    "end": 4.331
+  },
+  {
+    "word": "markers",
+    "start": 4.4,
+    "end": 4.876
+  },
+  {
+    "word": "and",
+    "start": 4.934,
+    "end": 5.062
+  },
+  {
+    "word": "drew",
+    "start": 5.108,
+    "end": 5.306
+  },
+  {
+    "word": "a",
+    "start": 5.364,
+    "end": 5.387
+  },
+  {
+    "word": "map",
+    "start": 5.468,
+    "end": 5.724
+  },
+  {
+    "word": "on",
+    "start": 5.793,
+    "end": 5.886
+  },
+  {
+    "word": "construction",
+    "start": 5.956,
+    "end": 6.536
+  },
+  {
+    "word": "paper.",
+    "start": 6.606,
+    "end": 7.175
+  },
+  {
+    "word": "He",
+    "start": 7.616,
+    "end": 7.755
+  },
+  {
+    "word": "drew",
+    "start": 7.825,
+    "end": 8.081
+  },
+  {
+    "word": "their",
+    "start": 8.139,
+    "end": 8.324
+  },
+  {
+    "word": "usual",
+    "start": 8.406,
+    "end": 8.835
+  },
+  {
+    "word": "route",
+    "start": 8.928,
+    "end": 9.218
+  },
+  {
+    "word": "in",
+    "start": 9.276,
+    "end": 9.381
+  },
+  {
+    "word": "blue,",
+    "start": 9.451,
+    "end": 9.985
+  },
+  {
+    "word": "and",
+    "start": 10.031,
+    "end": 10.182
+  },
+  {
+    "word": "the",
+    "start": 10.24,
+    "end": 10.31
+  },
+  {
+    "word": "new",
+    "start": 10.379,
+    "end": 10.542
+  },
+  {
+    "word": "community",
+    "start": 10.612,
+    "end": 11.122
+  },
+  {
+    "word": "center",
+    "start": 11.192,
+    "end": 11.54
+  },
+  {
+    "word": "route",
+    "start": 11.61,
+    "end": 11.923
+  },
+  {
+    "word": "in",
+    "start": 11.981,
+    "end": 12.121
+  },
+  {
+    "word": "green.",
+    "start": 12.202,
+    "end": 12.864
+  },
+  {
+    "word": "\"Two",
+    "start": 13.247,
+    "end": 13.63
+  },
+  {
+    "word": "ways",
+    "start": 13.711,
+    "end": 14.013
+  },
+  {
+    "word": "to",
+    "start": 14.083,
+    "end": 14.153
+  },
+  {
+    "word": "get",
+    "start": 14.222,
+    "end": 14.396
+  },
+  {
+    "word": "there,\"",
+    "start": 14.454,
+    "end": 14.965
+  },
+  {
+    "word": "he",
+    "start": 15.29,
+    "end": 15.36
+  },
+  {
+    "word": "told",
+    "start": 15.43,
+    "end": 15.65
+  },
+  {
+    "word": "his",
+    "start": 15.708,
+    "end": 15.801
+  },
+  {
+    "word": "companions",
+    "start": 15.847,
+    "end": 16.521
+  },
+  {
+    "word": "during",
+    "start": 16.579,
+    "end": 16.846
+  },
+  {
+    "word": "afternoon",
+    "start": 16.939,
+    "end": 17.449
+  },
+  {
+    "word": "snack",
+    "start": 17.531,
+    "end": 17.844
+  },
+  {
+    "word": "time,",
+    "start": 17.914,
+    "end": 18.285
+  },
+  {
+    "word": "passing",
+    "start": 18.378,
+    "end": 18.761
+  },
+  {
+    "word": "around",
+    "start": 18.808,
+    "end": 19.063
+  },
+  {
+    "word": "honey",
+    "start": 19.133,
+    "end": 19.319
+  },
+  {
+    "word": "crackers",
+    "start": 19.365,
+    "end": 19.771
+  },
+  {
+    "word": "Papa",
+    "start": 19.829,
+    "end": 20.12
+  },
+  {
+    "word": "had",
+    "start": 20.155,
+    "end": 20.259
+  },
+  {
+    "word": "picked",
+    "start": 20.294,
+    "end": 20.526
+  },
+  {
+    "word": "up",
+    "start": 20.573,
+    "end": 20.677
+  },
+  {
+    "word": "from",
+    "start": 20.723,
+    "end": 20.863
+  },
+  {
+    "word": "Pooh's",
+    "start": 20.921,
+    "end": 21.223
+  },
+  {
+    "word": "Honey",
+    "start": 21.269,
+    "end": 21.466
+  },
+  {
+    "word": "Farm.",
+    "start": 21.525,
+    "end": 21.954
+  }
+]

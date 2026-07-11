@@ -1,0 +1,232 @@
+[
+  {
+    "word": ">",
+    "start": 0.058,
+    "end": 0.116
+  },
+  {
+    "word": "*You",
+    "start": 0.151,
+    "end": 0.348
+  },
+  {
+    "word": "think",
+    "start": 0.476,
+    "end": 0.789
+  },
+  {
+    "word": "you",
+    "start": 0.871,
+    "end": 0.975
+  },
+  {
+    "word": "are",
+    "start": 1.045,
+    "end": 1.184
+  },
+  {
+    "word": "not",
+    "start": 1.254,
+    "end": 1.509
+  },
+  {
+    "word": "kind.*",
+    "start": 1.591,
+    "end": 2.508
+  },
+  {
+    "word": "Azi's",
+    "start": 3.32,
+    "end": 3.843
+  },
+  {
+    "word": "eyes",
+    "start": 3.924,
+    "end": 4.319
+  },
+  {
+    "word": "went",
+    "start": 4.412,
+    "end": 4.644
+  },
+  {
+    "word": "wide.",
+    "start": 4.714,
+    "end": 5.329
+  },
+  {
+    "word": "He",
+    "start": 5.712,
+    "end": 5.828
+  },
+  {
+    "word": "pressed",
+    "start": 5.921,
+    "end": 6.269
+  },
+  {
+    "word": "his",
+    "start": 6.316,
+    "end": 6.444
+  },
+  {
+    "word": "hand",
+    "start": 6.525,
+    "end": 6.885
+  },
+  {
+    "word": "flat",
+    "start": 7.001,
+    "end": 7.349
+  },
+  {
+    "word": "against",
+    "start": 7.396,
+    "end": 7.721
+  },
+  {
+    "word": "the",
+    "start": 7.767,
+    "end": 7.837
+  },
+  {
+    "word": "glass,",
+    "start": 7.883,
+    "end": 8.522
+  },
+  {
+    "word": "as",
+    "start": 8.591,
+    "end": 8.754
+  },
+  {
+    "word": "if",
+    "start": 8.824,
+    "end": 8.916
+  },
+  {
+    "word": "he",
+    "start": 8.975,
+    "end": 9.033
+  },
+  {
+    "word": "could",
+    "start": 9.079,
+    "end": 9.253
+  },
+  {
+    "word": "touch",
+    "start": 9.288,
+    "end": 9.601
+  },
+  {
+    "word": "the",
+    "start": 9.683,
+    "end": 9.764
+  },
+  {
+    "word": "moose",
+    "start": 9.845,
+    "end": 10.194
+  },
+  {
+    "word": "through",
+    "start": 10.228,
+    "end": 10.484
+  },
+  {
+    "word": "the",
+    "start": 10.519,
+    "end": 10.588
+  },
+  {
+    "word": "window.",
+    "start": 10.635,
+    "end": 11.32
+  },
+  {
+    "word": ">",
+    "start": 12.434,
+    "end": 12.458
+  },
+  {
+    "word": "*I",
+    "start": 12.574,
+    "end": 12.783
+  },
+  {
+    "word": "watched",
+    "start": 12.934,
+    "end": 13.351
+  },
+  {
+    "word": "you",
+    "start": 13.398,
+    "end": 13.502
+  },
+  {
+    "word": "today.*",
+    "start": 13.572,
+    "end": 14.362
+  },
+  {
+    "word": "The",
+    "start": 14.965,
+    "end": 15.081
+  },
+  {
+    "word": "moose's",
+    "start": 15.151,
+    "end": 15.557
+  },
+  {
+    "word": "voice",
+    "start": 15.627,
+    "end": 15.975
+  },
+  {
+    "word": "continued,",
+    "start": 16.022,
+    "end": 16.881
+  },
+  {
+    "word": "slow",
+    "start": 17.032,
+    "end": 17.508
+  },
+  {
+    "word": "and",
+    "start": 17.624,
+    "end": 17.81
+  },
+  {
+    "word": "patient,",
+    "start": 17.879,
+    "end": 18.611
+  },
+  {
+    "word": "in",
+    "start": 18.727,
+    "end": 18.889
+  },
+  {
+    "word": "no",
+    "start": 18.971,
+    "end": 19.145
+  },
+  {
+    "word": "hurry",
+    "start": 19.226,
+    "end": 19.563
+  },
+  {
+    "word": "at",
+    "start": 19.621,
+    "end": 19.702
+  },
+  {
+    "word": "all.",
+    "start": 19.76,
+    "end": 20.317
+  }
+]

@@ -1,0 +1,307 @@
+[
+  {
+    "word": "He",
+    "start": 0.046,
+    "end": 0.139
+  },
+  {
+    "word": "found",
+    "start": 0.255,
+    "end": 0.557
+  },
+  {
+    "word": "Mama",
+    "start": 0.639,
+    "end": 0.94
+  },
+  {
+    "word": "in",
+    "start": 0.998,
+    "end": 1.068
+  },
+  {
+    "word": "the",
+    "start": 1.115,
+    "end": 1.184
+  },
+  {
+    "word": "kitchen.",
+    "start": 1.231,
+    "end": 1.869
+  },
+  {
+    "word": "She",
+    "start": 2.078,
+    "end": 2.218
+  },
+  {
+    "word": "was",
+    "start": 2.264,
+    "end": 2.38
+  },
+  {
+    "word": "cutting",
+    "start": 2.461,
+    "end": 2.775
+  },
+  {
+    "word": "something,",
+    "start": 2.844,
+    "end": 3.437
+  },
+  {
+    "word": "her",
+    "start": 3.506,
+    "end": 3.622
+  },
+  {
+    "word": "back",
+    "start": 3.692,
+    "end": 3.901
+  },
+  {
+    "word": "to",
+    "start": 3.959,
+    "end": 4.029
+  },
+  {
+    "word": "him,",
+    "start": 4.122,
+    "end": 4.586
+  },
+  {
+    "word": "humming",
+    "start": 4.795,
+    "end": 5.132
+  },
+  {
+    "word": "one",
+    "start": 5.213,
+    "end": 5.329
+  },
+  {
+    "word": "of",
+    "start": 5.364,
+    "end": 5.41
+  },
+  {
+    "word": "the",
+    "start": 5.457,
+    "end": 5.526
+  },
+  {
+    "word": "songs",
+    "start": 5.584,
+    "end": 5.979
+  },
+  {
+    "word": "she",
+    "start": 6.037,
+    "end": 6.142
+  },
+  {
+    "word": "didn't",
+    "start": 6.211,
+    "end": 6.444
+  },
+  {
+    "word": "know",
+    "start": 6.49,
+    "end": 6.653
+  },
+  {
+    "word": "she",
+    "start": 6.722,
+    "end": 6.838
+  },
+  {
+    "word": "was",
+    "start": 6.896,
+    "end": 7.012
+  },
+  {
+    "word": "humming",
+    "start": 7.059,
+    "end": 7.384
+  },
+  {
+    "word": "---",
+    "start": 7.593,
+    "end": 7.709
+  },
+  {
+    "word": "the",
+    "start": 7.883,
+    "end": 7.976
+  },
+  {
+    "word": "kind",
+    "start": 8.034,
+    "end": 8.301
+  },
+  {
+    "word": "that",
+    "start": 8.348,
+    "end": 8.464
+  },
+  {
+    "word": "came",
+    "start": 8.522,
+    "end": 8.754
+  },
+  {
+    "word": "from",
+    "start": 8.789,
+    "end": 8.94
+  },
+  {
+    "word": "so",
+    "start": 9.021,
+    "end": 9.207
+  },
+  {
+    "word": "deep",
+    "start": 9.323,
+    "end": 9.555
+  },
+  {
+    "word": "in",
+    "start": 9.613,
+    "end": 9.683
+  },
+  {
+    "word": "her",
+    "start": 9.764,
+    "end": 9.88
+  },
+  {
+    "word": "she",
+    "start": 9.961,
+    "end": 10.066
+  },
+  {
+    "word": "didn't",
+    "start": 10.124,
+    "end": 10.356
+  },
+  {
+    "word": "need",
+    "start": 10.403,
+    "end": 10.577
+  },
+  {
+    "word": "to",
+    "start": 10.612,
+    "end": 10.67
+  },
+  {
+    "word": "think",
+    "start": 10.728,
+    "end": 10.902
+  },
+  {
+    "word": "about",
+    "start": 10.96,
+    "end": 11.215
+  },
+  {
+    "word": "it.",
+    "start": 11.273,
+    "end": 11.575
+  },
+  {
+    "word": "\"Mama.\"",
+    "start": 12.388,
+    "end": 13.212
+  },
+  {
+    "word": "She",
+    "start": 13.909,
+    "end": 14.048
+  },
+  {
+    "word": "turned.",
+    "start": 14.129,
+    "end": 14.838
+  },
+  {
+    "word": "\"I",
+    "start": 15.442,
+    "end": 15.651
+  },
+  {
+    "word": "think",
+    "start": 15.767,
+    "end": 15.964
+  },
+  {
+    "word": "my",
+    "start": 16.034,
+    "end": 16.15
+  },
+  {
+    "word": "feelings",
+    "start": 16.243,
+    "end": 16.649
+  },
+  {
+    "word": "are",
+    "start": 16.684,
+    "end": 16.788
+  },
+  {
+    "word": "getting",
+    "start": 16.823,
+    "end": 17.09
+  },
+  {
+    "word": "too",
+    "start": 17.148,
+    "end": 17.288
+  },
+  {
+    "word": "full.",
+    "start": 17.381,
+    "end": 17.833
+  },
+  {
+    "word": "I",
+    "start": 18.042,
+    "end": 18.1
+  },
+  {
+    "word": "might",
+    "start": 18.216,
+    "end": 18.414
+  },
+  {
+    "word": "need",
+    "start": 18.449,
+    "end": 18.623
+  },
+  {
+    "word": "a",
+    "start": 18.658,
+    "end": 18.692
+  },
+  {
+    "word": "minute",
+    "start": 18.739,
+    "end": 19.029
+  },
+  {
+    "word": "before",
+    "start": 19.064,
+    "end": 19.343
+  },
+  {
+    "word": "they",
+    "start": 19.377,
+    "end": 19.494
+  },
+  {
+    "word": "spill.\"",
+    "start": 19.54,
+    "end": 20.109
+  }
+]

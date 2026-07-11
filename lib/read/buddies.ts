@@ -23,7 +23,6 @@ export const BUDDIES: BuddyDef[] = [
       b: 'Good morning, friend! Ready for today?',
       c: 'Good morning. Ready for today?',
     },
-    memory: 'The web bridge you built is still standing!',
   },
   {
     id: 'otter',
@@ -40,7 +39,6 @@ export const BUDDIES: BuddyDef[] = [
       b: 'SPLISH! A new story day!',
       c: 'Hello. A new story day.',
     },
-    memory: 'The web bridge you built is still standing!',
   },
   {
     id: 'anky',
@@ -57,7 +55,6 @@ export const BUDDIES: BuddyDef[] = [
       b: 'H-hi. I saved you a seat.',
       c: 'Hi. I saved you a seat.',
     },
-    memory: 'The web bridge you built is still standing!',
   },
   {
     id: 'moto',
@@ -74,7 +71,6 @@ export const BUDDIES: BuddyDef[] = [
       b: 'VROOM VROOM! Story fuel is full!',
       c: 'Vroom. Story fuel is full.',
     },
-    memory: 'The web bridge you built is still standing!',
   },
   {
     id: 'rocky',
@@ -91,7 +87,6 @@ export const BUDDIES: BuddyDef[] = [
       b: 'Hello. I have been here the whole time.',
       c: 'Hello. I have been here the whole time.',
     },
-    memory: 'The web bridge you built is still standing!',
   },
   {
     id: 'rusty',
@@ -108,7 +103,6 @@ export const BUDDIES: BuddyDef[] = [
       b: '3… 2… 1… Ready for liftoff?',
       c: '3… 2… 1… Ready when you are.',
     },
-    memory: 'The web bridge you built is still standing!',
   },
 ]
 

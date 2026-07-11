@@ -1,0 +1,327 @@
+[
+  {
+    "word": ">",
+    "start": 0.07,
+    "end": 0.104
+  },
+  {
+    "word": "*I",
+    "start": 0.128,
+    "end": 0.209
+  },
+  {
+    "word": "knocked",
+    "start": 0.325,
+    "end": 0.639
+  },
+  {
+    "word": "down",
+    "start": 0.708,
+    "end": 1.022
+  },
+  {
+    "word": "saplings",
+    "start": 1.126,
+    "end": 1.788
+  },
+  {
+    "word": "-",
+    "start": 1.904,
+    "end": 1.95
+  },
+  {
+    "word": "young",
+    "start": 2.043,
+    "end": 2.287
+  },
+  {
+    "word": "trees",
+    "start": 2.368,
+    "end": 2.752
+  },
+  {
+    "word": "that",
+    "start": 2.81,
+    "end": 2.926
+  },
+  {
+    "word": "were",
+    "start": 2.961,
+    "end": 3.1
+  },
+  {
+    "word": "just",
+    "start": 3.146,
+    "end": 3.379
+  },
+  {
+    "word": "learning",
+    "start": 3.46,
+    "end": 3.762
+  },
+  {
+    "word": "to",
+    "start": 3.82,
+    "end": 3.878
+  },
+  {
+    "word": "grow.",
+    "start": 3.936,
+    "end": 4.389
+  },
+  {
+    "word": "I",
+    "start": 4.505,
+    "end": 4.563
+  },
+  {
+    "word": "trampled",
+    "start": 4.667,
+    "end": 5.155
+  },
+  {
+    "word": "flowers",
+    "start": 5.224,
+    "end": 5.7
+  },
+  {
+    "word": "that",
+    "start": 5.747,
+    "end": 5.875
+  },
+  {
+    "word": "had",
+    "start": 5.909,
+    "end": 6.002
+  },
+  {
+    "word": "just",
+    "start": 6.06,
+    "end": 6.293
+  },
+  {
+    "word": "begun",
+    "start": 6.351,
+    "end": 6.629
+  },
+  {
+    "word": "to",
+    "start": 6.687,
+    "end": 6.757
+  },
+  {
+    "word": "bloom.",
+    "start": 6.815,
+    "end": 7.314
+  },
+  {
+    "word": "I",
+    "start": 7.396,
+    "end": 7.454
+  },
+  {
+    "word": "frightened",
+    "start": 7.57,
+    "end": 7.988
+  },
+  {
+    "word": "rabbits",
+    "start": 8.057,
+    "end": 8.475
+  },
+  {
+    "word": "and",
+    "start": 8.522,
+    "end": 8.684
+  },
+  {
+    "word": "birds",
+    "start": 8.754,
+    "end": 9.137
+  },
+  {
+    "word": "and",
+    "start": 9.195,
+    "end": 9.346
+  },
+  {
+    "word": "even",
+    "start": 9.416,
+    "end": 9.59
+  },
+  {
+    "word": "other",
+    "start": 9.648,
+    "end": 9.81
+  },
+  {
+    "word": "moose",
+    "start": 9.868,
+    "end": 10.147
+  },
+  {
+    "word": "who",
+    "start": 10.17,
+    "end": 10.275
+  },
+  {
+    "word": "were",
+    "start": 10.321,
+    "end": 10.461
+  },
+  {
+    "word": "only",
+    "start": 10.507,
+    "end": 10.751
+  },
+  {
+    "word": "trying",
+    "start": 10.797,
+    "end": 11.088
+  },
+  {
+    "word": "to",
+    "start": 11.134,
+    "end": 11.18
+  },
+  {
+    "word": "help.*",
+    "start": 11.262,
+    "end": 11.842
+  },
+  {
+    "word": "The",
+    "start": 12.934,
+    "end": 13.061
+  },
+  {
+    "word": "moose",
+    "start": 13.142,
+    "end": 13.618
+  },
+  {
+    "word": "lifted",
+    "start": 13.735,
+    "end": 14.141
+  },
+  {
+    "word": "its",
+    "start": 14.199,
+    "end": 14.35
+  },
+  {
+    "word": "eyes",
+    "start": 14.408,
+    "end": 14.722
+  },
+  {
+    "word": "to",
+    "start": 14.791,
+    "end": 14.884
+  },
+  {
+    "word": "Azi's.",
+    "start": 14.977,
+    "end": 15.708
+  },
+  {
+    "word": ">",
+    "start": 16.393,
+    "end": 16.417
+  },
+  {
+    "word": "*I",
+    "start": 17.218,
+    "end": 17.496
+  },
+  {
+    "word": "hurt",
+    "start": 17.659,
+    "end": 17.914
+  },
+  {
+    "word": "things",
+    "start": 17.996,
+    "end": 18.379
+  },
+  {
+    "word": "I",
+    "start": 18.46,
+    "end": 18.495
+  },
+  {
+    "word": "did",
+    "start": 18.588,
+    "end": 18.739
+  },
+  {
+    "word": "not",
+    "start": 18.797,
+    "end": 18.971
+  },
+  {
+    "word": "mean",
+    "start": 19.052,
+    "end": 19.319
+  },
+  {
+    "word": "to",
+    "start": 19.4,
+    "end": 19.493
+  },
+  {
+    "word": "hurt.*",
+    "start": 19.609,
+    "end": 20.538
+  },
+  {
+    "word": "Azi",
+    "start": 20.689,
+    "end": 21.13
+  },
+  {
+    "word": "stared",
+    "start": 21.223,
+    "end": 21.676
+  },
+  {
+    "word": "at",
+    "start": 21.711,
+    "end": 21.792
+  },
+  {
+    "word": "the",
+    "start": 21.838,
+    "end": 21.908
+  },
+  {
+    "word": "scar.",
+    "start": 21.966,
+    "end": 22.64
+  },
+  {
+    "word": "\"What",
+    "start": 22.965,
+    "end": 23.441
+  },
+  {
+    "word": "happened?\"",
+    "start": 23.522,
+    "end": 24.427
+  },
+  {
+    "word": ">",
+    "start": 24.451,
+    "end": 24.474
+  },
+  {
+    "word": "*I",
+    "start": 24.718,
+    "end": 25.008
+  },
+  {
+    "word": "learned.*",
+    "start": 25.182,
+    "end": 26.448
+  }
+]

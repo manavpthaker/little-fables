@@ -1,0 +1,232 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.163
+  },
+  {
+    "word": "day",
+    "start": 0.232,
+    "end": 0.557
+  },
+  {
+    "word": "had",
+    "start": 0.639,
+    "end": 0.755
+  },
+  {
+    "word": "been",
+    "start": 0.813,
+    "end": 0.987
+  },
+  {
+    "word": "big.",
+    "start": 1.068,
+    "end": 1.591
+  },
+  {
+    "word": "Big",
+    "start": 1.765,
+    "end": 2.148
+  },
+  {
+    "word": "playing.",
+    "start": 2.264,
+    "end": 2.926
+  },
+  {
+    "word": "Big",
+    "start": 3.077,
+    "end": 3.437
+  },
+  {
+    "word": "feelings.",
+    "start": 3.587,
+    "end": 4.412
+  },
+  {
+    "word": "Big",
+    "start": 4.586,
+    "end": 5.004
+  },
+  {
+    "word": "everything.",
+    "start": 5.155,
+    "end": 6.026
+  },
+  {
+    "word": "Now",
+    "start": 6.235,
+    "end": 6.571
+  },
+  {
+    "word": "Azi's",
+    "start": 6.687,
+    "end": 7.129
+  },
+  {
+    "word": "room",
+    "start": 7.187,
+    "end": 7.419
+  },
+  {
+    "word": "was",
+    "start": 7.477,
+    "end": 7.593
+  },
+  {
+    "word": "getting",
+    "start": 7.651,
+    "end": 7.918
+  },
+  {
+    "word": "dark,",
+    "start": 7.988,
+    "end": 8.452
+  },
+  {
+    "word": "and",
+    "start": 8.487,
+    "end": 8.615
+  },
+  {
+    "word": "the",
+    "start": 8.673,
+    "end": 8.742
+  },
+  {
+    "word": "space",
+    "start": 8.789,
+    "end": 9.172
+  },
+  {
+    "word": "between",
+    "start": 9.218,
+    "end": 9.543
+  },
+  {
+    "word": "his",
+    "start": 9.59,
+    "end": 9.694
+  },
+  {
+    "word": "bed",
+    "start": 9.764,
+    "end": 10.031
+  },
+  {
+    "word": "and",
+    "start": 10.112,
+    "end": 10.228
+  },
+  {
+    "word": "the",
+    "start": 10.286,
+    "end": 10.356
+  },
+  {
+    "word": "door",
+    "start": 10.414,
+    "end": 10.774
+  },
+  {
+    "word": "felt",
+    "start": 10.89,
+    "end": 11.169
+  },
+  {
+    "word": "very,",
+    "start": 11.25,
+    "end": 11.807
+  },
+  {
+    "word": "very",
+    "start": 11.981,
+    "end": 12.492
+  },
+  {
+    "word": "far.",
+    "start": 12.666,
+    "end": 13.282
+  },
+  {
+    "word": "\"Stay,\"",
+    "start": 13.607,
+    "end": 14.571
+  },
+  {
+    "word": "Azi",
+    "start": 14.687,
+    "end": 15.012
+  },
+  {
+    "word": "whispered",
+    "start": 15.058,
+    "end": 15.453
+  },
+  {
+    "word": "to",
+    "start": 15.499,
+    "end": 15.569
+  },
+  {
+    "word": "Mama.",
+    "start": 15.639,
+    "end": 16.103
+  },
+  {
+    "word": "\"I'll",
+    "start": 16.347,
+    "end": 16.684
+  },
+  {
+    "word": "be",
+    "start": 16.73,
+    "end": 16.811
+  },
+  {
+    "word": "right",
+    "start": 16.881,
+    "end": 17.113
+  },
+  {
+    "word": "outside,\"",
+    "start": 17.148,
+    "end": 17.856
+  },
+  {
+    "word": "Mama",
+    "start": 17.914,
+    "end": 18.193
+  },
+  {
+    "word": "said.",
+    "start": 18.251,
+    "end": 18.646
+  },
+  {
+    "word": "\"And",
+    "start": 18.738,
+    "end": 18.971
+  },
+  {
+    "word": "you",
+    "start": 19.04,
+    "end": 19.122
+  },
+  {
+    "word": "won't",
+    "start": 19.18,
+    "end": 19.4
+  },
+  {
+    "word": "be",
+    "start": 19.447,
+    "end": 19.563
+  },
+  {
+    "word": "alone.\"",
+    "start": 19.609,
+    "end": 20.213
+  }
+]

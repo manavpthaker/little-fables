@@ -1,0 +1,97 @@
+[
+  {
+    "word": "Something",
+    "start": 0.116,
+    "end": 0.546
+  },
+  {
+    "word": "in",
+    "start": 0.592,
+    "end": 0.65
+  },
+  {
+    "word": "the",
+    "start": 0.685,
+    "end": 0.755
+  },
+  {
+    "word": "Coocoo",
+    "start": 0.813,
+    "end": 1.242
+  },
+  {
+    "word": "shifted.",
+    "start": 1.312,
+    "end": 2.043
+  },
+  {
+    "word": "Softened.",
+    "start": 2.287,
+    "end": 3.1
+  },
+  {
+    "word": "Just",
+    "start": 3.274,
+    "end": 3.599
+  },
+  {
+    "word": "a",
+    "start": 3.669,
+    "end": 3.692
+  },
+  {
+    "word": "little.",
+    "start": 3.773,
+    "end": 4.226
+  },
+  {
+    "word": "The",
+    "start": 4.551,
+    "end": 4.679
+  },
+  {
+    "word": "crossed",
+    "start": 4.748,
+    "end": 5.155
+  },
+  {
+    "word": "arms",
+    "start": 5.213,
+    "end": 5.538
+  },
+  {
+    "word": "weren't",
+    "start": 5.608,
+    "end": 5.898
+  },
+  {
+    "word": "quite",
+    "start": 5.968,
+    "end": 6.258
+  },
+  {
+    "word": "so",
+    "start": 6.304,
+    "end": 6.478
+  },
+  {
+    "word": "crossed.",
+    "start": 6.56,
+    "end": 7.326
+  },
+  {
+    "word": "\\*",
+    "start": 7.709,
+    "end": 7.79
+  },
+  {
+    "word": "\\*",
+    "start": 8.034,
+    "end": 8.104
+  },
+  {
+    "word": "\\*",
+    "start": 8.487,
+    "end": 8.603
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "word": "Slow",
+    "start": 0.035,
+    "end": 0.476
+  },
+  {
+    "word": "and",
+    "start": 0.627,
+    "end": 0.824
+  },
+  {
+    "word": "patient.",
+    "start": 0.917,
+    "end": 1.579
+  },
+  {
+    "word": "Big",
+    "start": 1.753,
+    "end": 2.171
+  },
+  {
+    "word": "and",
+    "start": 2.264,
+    "end": 2.496
+  },
+  {
+    "word": "gentle.",
+    "start": 2.612,
+    "end": 3.251
+  },
+  {
+    "word": "And",
+    "start": 3.425,
+    "end": 3.634
+  },
+  {
+    "word": "was",
+    "start": 3.715,
+    "end": 3.878
+  },
+  {
+    "word": "glad.",
+    "start": 3.947,
+    "end": 4.551
+  },
+  {
+    "word": "*The",
+    "start": 5.062,
+    "end": 5.259
+  },
+  {
+    "word": "End*",
+    "start": 5.352,
+    "end": 5.84
+  }
+]

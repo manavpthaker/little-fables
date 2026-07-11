@@ -1,0 +1,372 @@
+[
+  {
+    "word": "Papa",
+    "start": 0.07,
+    "end": 0.383
+  },
+  {
+    "word": "had",
+    "start": 0.441,
+    "end": 0.557
+  },
+  {
+    "word": "put",
+    "start": 0.615,
+    "end": 0.789
+  },
+  {
+    "word": "down",
+    "start": 0.836,
+    "end": 1.057
+  },
+  {
+    "word": "the",
+    "start": 1.103,
+    "end": 1.173
+  },
+  {
+    "word": "plate",
+    "start": 1.231,
+    "end": 1.649
+  },
+  {
+    "word": "---",
+    "start": 1.858,
+    "end": 2.067
+  },
+  {
+    "word": "rice,",
+    "start": 2.276,
+    "end": 2.984
+  },
+  {
+    "word": "beans,",
+    "start": 3.135,
+    "end": 3.913
+  },
+  {
+    "word": "a",
+    "start": 3.994,
+    "end": 4.063
+  },
+  {
+    "word": "little",
+    "start": 4.145,
+    "end": 4.389
+  },
+  {
+    "word": "kale",
+    "start": 4.435,
+    "end": 4.795
+  },
+  {
+    "word": "from",
+    "start": 4.83,
+    "end": 4.981
+  },
+  {
+    "word": "the",
+    "start": 5.027,
+    "end": 5.097
+  },
+  {
+    "word": "backyard",
+    "start": 5.143,
+    "end": 5.608
+  },
+  {
+    "word": "garden,",
+    "start": 5.666,
+    "end": 6.258
+  },
+  {
+    "word": "the",
+    "start": 6.467,
+    "end": 6.583
+  },
+  {
+    "word": "good",
+    "start": 6.653,
+    "end": 6.885
+  },
+  {
+    "word": "deep",
+    "start": 7.001,
+    "end": 7.268
+  },
+  {
+    "word": "green",
+    "start": 7.384,
+    "end": 7.744
+  },
+  {
+    "word": "kind",
+    "start": 7.825,
+    "end": 8.173
+  },
+  {
+    "word": "that",
+    "start": 8.231,
+    "end": 8.371
+  },
+  {
+    "word": "Azi",
+    "start": 8.452,
+    "end": 8.835
+  },
+  {
+    "word": "had",
+    "start": 8.893,
+    "end": 9.009
+  },
+  {
+    "word": "actually",
+    "start": 9.067,
+    "end": 9.543
+  },
+  {
+    "word": "helped",
+    "start": 9.601,
+    "end": 9.868
+  },
+  {
+    "word": "plant",
+    "start": 9.927,
+    "end": 10.344
+  },
+  {
+    "word": "---",
+    "start": 10.519,
+    "end": 10.6
+  },
+  {
+    "word": "and",
+    "start": 11.111,
+    "end": 11.262
+  },
+  {
+    "word": "Azi",
+    "start": 11.355,
+    "end": 11.761
+  },
+  {
+    "word": "had",
+    "start": 11.831,
+    "end": 11.947
+  },
+  {
+    "word": "looked",
+    "start": 12.016,
+    "end": 12.295
+  },
+  {
+    "word": "at",
+    "start": 12.353,
+    "end": 12.481
+  },
+  {
+    "word": "it",
+    "start": 12.539,
+    "end": 12.62
+  },
+  {
+    "word": "and",
+    "start": 12.678,
+    "end": 12.771
+  },
+  {
+    "word": "crossed",
+    "start": 12.852,
+    "end": 13.224
+  },
+  {
+    "word": "his",
+    "start": 13.259,
+    "end": 13.375
+  },
+  {
+    "word": "arms.",
+    "start": 13.433,
+    "end": 14.071
+  },
+  {
+    "word": "His",
+    "start": 14.582,
+    "end": 14.814
+  },
+  {
+    "word": "fork",
+    "start": 14.907,
+    "end": 15.279
+  },
+  {
+    "word": "was",
+    "start": 15.348,
+    "end": 15.488
+  },
+  {
+    "word": "right",
+    "start": 15.569,
+    "end": 15.801
+  },
+  {
+    "word": "there.",
+    "start": 15.848,
+    "end": 16.475
+  },
+  {
+    "word": "His",
+    "start": 16.8,
+    "end": 16.997
+  },
+  {
+    "word": "hands",
+    "start": 17.067,
+    "end": 17.461
+  },
+  {
+    "word": "knew",
+    "start": 17.543,
+    "end": 17.786
+  },
+  {
+    "word": "exactly",
+    "start": 17.879,
+    "end": 18.599
+  },
+  {
+    "word": "what",
+    "start": 18.657,
+    "end": 18.855
+  },
+  {
+    "word": "to",
+    "start": 18.901,
+    "end": 18.971
+  },
+  {
+    "word": "do",
+    "start": 19.052,
+    "end": 19.18
+  },
+  {
+    "word": "with",
+    "start": 19.226,
+    "end": 19.365
+  },
+  {
+    "word": "a",
+    "start": 19.412,
+    "end": 19.447
+  },
+  {
+    "word": "fork.",
+    "start": 19.528,
+    "end": 20.039
+  },
+  {
+    "word": "He",
+    "start": 20.283,
+    "end": 20.399
+  },
+  {
+    "word": "had",
+    "start": 20.468,
+    "end": 20.573
+  },
+  {
+    "word": "been",
+    "start": 20.619,
+    "end": 20.782
+  },
+  {
+    "word": "using",
+    "start": 20.852,
+    "end": 21.177
+  },
+  {
+    "word": "forks",
+    "start": 21.269,
+    "end": 21.676
+  },
+  {
+    "word": "for",
+    "start": 21.734,
+    "end": 21.885
+  },
+  {
+    "word": "years.",
+    "start": 21.954,
+    "end": 22.512
+  },
+  {
+    "word": "But",
+    "start": 22.628,
+    "end": 22.814
+  },
+  {
+    "word": "something",
+    "start": 22.883,
+    "end": 23.313
+  },
+  {
+    "word": "in",
+    "start": 23.371,
+    "end": 23.475
+  },
+  {
+    "word": "him",
+    "start": 23.568,
+    "end": 23.731
+  },
+  {
+    "word": "sat",
+    "start": 23.847,
+    "end": 24.172
+  },
+  {
+    "word": "down",
+    "start": 24.253,
+    "end": 24.532
+  },
+  {
+    "word": "on",
+    "start": 24.602,
+    "end": 24.683
+  },
+  {
+    "word": "the",
+    "start": 24.729,
+    "end": 24.799
+  },
+  {
+    "word": "floor",
+    "start": 24.869,
+    "end": 25.228
+  },
+  {
+    "word": "inside",
+    "start": 25.345,
+    "end": 26.006
+  },
+  {
+    "word": "and",
+    "start": 26.064,
+    "end": 26.18
+  },
+  {
+    "word": "refused",
+    "start": 26.25,
+    "end": 26.865
+  },
+  {
+    "word": "to",
+    "start": 26.924,
+    "end": 26.993
+  },
+  {
+    "word": "move.",
+    "start": 27.074,
+    "end": 27.585
+  }
+]

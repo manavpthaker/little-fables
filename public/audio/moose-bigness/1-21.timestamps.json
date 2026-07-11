@@ -1,0 +1,317 @@
+[
+  {
+    "word": ">",
+    "start": 0.035,
+    "end": 0.093
+  },
+  {
+    "word": "*In",
+    "start": 0.116,
+    "end": 0.337
+  },
+  {
+    "word": "through",
+    "start": 0.441,
+    "end": 0.824
+  },
+  {
+    "word": "your",
+    "start": 0.894,
+    "end": 1.045
+  },
+  {
+    "word": "nose.",
+    "start": 1.138,
+    "end": 1.765
+  },
+  {
+    "word": "Long",
+    "start": 1.962,
+    "end": 2.334
+  },
+  {
+    "word": "and",
+    "start": 2.403,
+    "end": 2.496
+  },
+  {
+    "word": "slow.",
+    "start": 2.612,
+    "end": 3.204
+  },
+  {
+    "word": "Like",
+    "start": 3.274,
+    "end": 3.46
+  },
+  {
+    "word": "you're",
+    "start": 3.495,
+    "end": 3.657
+  },
+  {
+    "word": "smelling",
+    "start": 3.692,
+    "end": 4.087
+  },
+  {
+    "word": "all",
+    "start": 4.203,
+    "end": 4.47
+  },
+  {
+    "word": "the",
+    "start": 4.528,
+    "end": 4.598
+  },
+  {
+    "word": "pinecones",
+    "start": 4.656,
+    "end": 5.341
+  },
+  {
+    "word": "you",
+    "start": 5.387,
+    "end": 5.457
+  },
+  {
+    "word": "collected",
+    "start": 5.526,
+    "end": 5.944
+  },
+  {
+    "word": "today.",
+    "start": 5.979,
+    "end": 6.478
+  },
+  {
+    "word": "Like",
+    "start": 6.594,
+    "end": 6.78
+  },
+  {
+    "word": "you're",
+    "start": 6.803,
+    "end": 6.966
+  },
+  {
+    "word": "breathing",
+    "start": 7.001,
+    "end": 7.43
+  },
+  {
+    "word": "in",
+    "start": 7.477,
+    "end": 7.535
+  },
+  {
+    "word": "the",
+    "start": 7.581,
+    "end": 7.663
+  },
+  {
+    "word": "whole",
+    "start": 7.709,
+    "end": 8.011
+  },
+  {
+    "word": "meadow",
+    "start": 8.057,
+    "end": 8.324
+  },
+  {
+    "word": "at",
+    "start": 8.394,
+    "end": 8.464
+  },
+  {
+    "word": "once.*",
+    "start": 8.545,
+    "end": 9.172
+  },
+  {
+    "word": "Azi",
+    "start": 9.659,
+    "end": 10.019
+  },
+  {
+    "word": "breathed",
+    "start": 10.089,
+    "end": 10.437
+  },
+  {
+    "word": "in.",
+    "start": 10.507,
+    "end": 10.879
+  },
+  {
+    "word": "He",
+    "start": 11.18,
+    "end": 11.32
+  },
+  {
+    "word": "counted",
+    "start": 11.401,
+    "end": 11.819
+  },
+  {
+    "word": "to",
+    "start": 11.865,
+    "end": 11.958
+  },
+  {
+    "word": "four",
+    "start": 12.098,
+    "end": 12.516
+  },
+  {
+    "word": "in",
+    "start": 12.62,
+    "end": 12.736
+  },
+  {
+    "word": "his",
+    "start": 12.794,
+    "end": 12.922
+  },
+  {
+    "word": "head.",
+    "start": 12.992,
+    "end": 13.398
+  },
+  {
+    "word": "One...",
+    "start": 13.758,
+    "end": 14.373
+  },
+  {
+    "word": "two...",
+    "start": 14.687,
+    "end": 15.256
+  },
+  {
+    "word": "three...",
+    "start": 15.743,
+    "end": 16.416
+  },
+  {
+    "word": "four.",
+    "start": 16.904,
+    "end": 17.554
+  },
+  {
+    "word": ">",
+    "start": 18.042,
+    "end": 18.065
+  },
+  {
+    "word": "*Out",
+    "start": 18.239,
+    "end": 18.762
+  },
+  {
+    "word": "through",
+    "start": 18.843,
+    "end": 19.133
+  },
+  {
+    "word": "your",
+    "start": 19.191,
+    "end": 19.342
+  },
+  {
+    "word": "mouth.",
+    "start": 19.423,
+    "end": 19.899
+  },
+  {
+    "word": "Even",
+    "start": 20.108,
+    "end": 20.503
+  },
+  {
+    "word": "slower.",
+    "start": 20.619,
+    "end": 21.362
+  },
+  {
+    "word": "Like",
+    "start": 21.687,
+    "end": 21.943
+  },
+  {
+    "word": "you're",
+    "start": 21.989,
+    "end": 22.187
+  },
+  {
+    "word": "blowing",
+    "start": 22.233,
+    "end": 22.674
+  },
+  {
+    "word": "on",
+    "start": 22.744,
+    "end": 22.872
+  },
+  {
+    "word": "soup",
+    "start": 22.988,
+    "end": 23.336
+  },
+  {
+    "word": "that's",
+    "start": 23.406,
+    "end": 23.673
+  },
+  {
+    "word": "too",
+    "start": 23.731,
+    "end": 23.963
+  },
+  {
+    "word": "hot.",
+    "start": 24.044,
+    "end": 24.578
+  },
+  {
+    "word": "Like",
+    "start": 24.903,
+    "end": 25.101
+  },
+  {
+    "word": "you're",
+    "start": 25.136,
+    "end": 25.31
+  },
+  {
+    "word": "making",
+    "start": 25.345,
+    "end": 25.67
+  },
+  {
+    "word": "ripples",
+    "start": 25.786,
+    "end": 26.297
+  },
+  {
+    "word": "on",
+    "start": 26.378,
+    "end": 26.494
+  },
+  {
+    "word": "a",
+    "start": 26.54,
+    "end": 26.575
+  },
+  {
+    "word": "still",
+    "start": 26.656,
+    "end": 26.97
+  },
+  {
+    "word": "pond.*",
+    "start": 27.086,
+    "end": 27.794
+  }
+]

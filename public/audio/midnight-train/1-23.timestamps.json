@@ -1,0 +1,327 @@
+[
+  {
+    "word": "He",
+    "start": 0.128,
+    "end": 0.255
+  },
+  {
+    "word": "smiled",
+    "start": 0.337,
+    "end": 0.952
+  },
+  {
+    "word": "and",
+    "start": 1.01,
+    "end": 1.161
+  },
+  {
+    "word": "pressed",
+    "start": 1.231,
+    "end": 1.556
+  },
+  {
+    "word": "the",
+    "start": 1.614,
+    "end": 1.695
+  },
+  {
+    "word": "bell",
+    "start": 1.753,
+    "end": 1.985
+  },
+  {
+    "word": "to",
+    "start": 2.055,
+    "end": 2.136
+  },
+  {
+    "word": "his",
+    "start": 2.218,
+    "end": 2.31
+  },
+  {
+    "word": "heart.",
+    "start": 2.368,
+    "end": 2.891
+  },
+  {
+    "word": "Then",
+    "start": 3.17,
+    "end": 3.367
+  },
+  {
+    "word": "he",
+    "start": 3.425,
+    "end": 3.495
+  },
+  {
+    "word": "jumped",
+    "start": 3.622,
+    "end": 3.982
+  },
+  {
+    "word": "out",
+    "start": 4.029,
+    "end": 4.156
+  },
+  {
+    "word": "of",
+    "start": 4.191,
+    "end": 4.249
+  },
+  {
+    "word": "bed",
+    "start": 4.319,
+    "end": 4.656
+  },
+  {
+    "word": "and",
+    "start": 4.772,
+    "end": 4.946
+  },
+  {
+    "word": "ran",
+    "start": 5.062,
+    "end": 5.329
+  },
+  {
+    "word": "downstairs,",
+    "start": 5.399,
+    "end": 6.467
+  },
+  {
+    "word": "ready",
+    "start": 6.641,
+    "end": 6.896
+  },
+  {
+    "word": "to",
+    "start": 6.954,
+    "end": 7.024
+  },
+  {
+    "word": "tell",
+    "start": 7.105,
+    "end": 7.338
+  },
+  {
+    "word": "Mama",
+    "start": 7.43,
+    "end": 7.814
+  },
+  {
+    "word": "and",
+    "start": 7.883,
+    "end": 8.022
+  },
+  {
+    "word": "Papa",
+    "start": 8.104,
+    "end": 8.533
+  },
+  {
+    "word": "about",
+    "start": 8.615,
+    "end": 8.905
+  },
+  {
+    "word": "the",
+    "start": 8.94,
+    "end": 9.009
+  },
+  {
+    "word": "most",
+    "start": 9.067,
+    "end": 9.311
+  },
+  {
+    "word": "wonderful",
+    "start": 9.427,
+    "end": 10.031
+  },
+  {
+    "word": "dream---the",
+    "start": 10.101,
+    "end": 11.064
+  },
+  {
+    "word": "most",
+    "start": 11.146,
+    "end": 11.424
+  },
+  {
+    "word": "wonderful",
+    "start": 11.517,
+    "end": 12.121
+  },
+  {
+    "word": "real",
+    "start": 12.249,
+    "end": 12.55
+  },
+  {
+    "word": "dream---he",
+    "start": 12.62,
+    "end": 13.584
+  },
+  {
+    "word": "had",
+    "start": 13.653,
+    "end": 13.781
+  },
+  {
+    "word": "ever",
+    "start": 13.862,
+    "end": 14.176
+  },
+  {
+    "word": "had.",
+    "start": 14.257,
+    "end": 14.884
+  },
+  {
+    "word": "In",
+    "start": 15.488,
+    "end": 15.639
+  },
+  {
+    "word": "the",
+    "start": 15.685,
+    "end": 15.755
+  },
+  {
+    "word": "living",
+    "start": 15.813,
+    "end": 16.068
+  },
+  {
+    "word": "room,",
+    "start": 16.126,
+    "end": 16.428
+  },
+  {
+    "word": "the",
+    "start": 16.475,
+    "end": 16.579
+  },
+  {
+    "word": "Christmas",
+    "start": 16.637,
+    "end": 17.032
+  },
+  {
+    "word": "tree",
+    "start": 17.09,
+    "end": 17.334
+  },
+  {
+    "word": "still",
+    "start": 17.38,
+    "end": 17.67
+  },
+  {
+    "word": "glowed.",
+    "start": 17.74,
+    "end": 18.402
+  },
+  {
+    "word": "The",
+    "start": 18.727,
+    "end": 18.866
+  },
+  {
+    "word": "stockings",
+    "start": 18.924,
+    "end": 19.505
+  },
+  {
+    "word": "hung",
+    "start": 19.586,
+    "end": 19.818
+  },
+  {
+    "word": "full",
+    "start": 19.934,
+    "end": 20.294
+  },
+  {
+    "word": "and",
+    "start": 20.468,
+    "end": 20.666
+  },
+  {
+    "word": "waiting.",
+    "start": 20.747,
+    "end": 21.351
+  },
+  {
+    "word": "And",
+    "start": 21.676,
+    "end": 21.85
+  },
+  {
+    "word": "beneath",
+    "start": 21.931,
+    "end": 22.256
+  },
+  {
+    "word": "the",
+    "start": 22.314,
+    "end": 22.384
+  },
+  {
+    "word": "tree,",
+    "start": 22.442,
+    "end": 22.906
+  },
+  {
+    "word": "the",
+    "start": 23.023,
+    "end": 23.139
+  },
+  {
+    "word": "little",
+    "start": 23.208,
+    "end": 23.464
+  },
+  {
+    "word": "red",
+    "start": 23.522,
+    "end": 23.766
+  },
+  {
+    "word": "train",
+    "start": 23.835,
+    "end": 24.265
+  },
+  {
+    "word": "sat",
+    "start": 24.416,
+    "end": 24.706
+  },
+  {
+    "word": "quietly",
+    "start": 24.799,
+    "end": 25.391
+  },
+  {
+    "word": "on",
+    "start": 25.472,
+    "end": 25.577
+  },
+  {
+    "word": "its",
+    "start": 25.635,
+    "end": 25.762
+  },
+  {
+    "word": "silver",
+    "start": 25.809,
+    "end": 26.18
+  },
+  {
+    "word": "tracks.",
+    "start": 26.25,
+    "end": 26.923
+  }
+]

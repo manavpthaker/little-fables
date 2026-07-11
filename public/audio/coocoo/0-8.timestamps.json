@@ -1,0 +1,332 @@
+[
+  {
+    "word": "Papa",
+    "start": 0.151,
+    "end": 0.488
+  },
+  {
+    "word": "had",
+    "start": 0.546,
+    "end": 0.662
+  },
+  {
+    "word": "gone",
+    "start": 0.72,
+    "end": 0.952
+  },
+  {
+    "word": "very",
+    "start": 0.998,
+    "end": 1.254
+  },
+  {
+    "word": "patient",
+    "start": 1.324,
+    "end": 1.718
+  },
+  {
+    "word": "the",
+    "start": 1.765,
+    "end": 1.834
+  },
+  {
+    "word": "way",
+    "start": 1.881,
+    "end": 2.009
+  },
+  {
+    "word": "Papa",
+    "start": 2.078,
+    "end": 2.345
+  },
+  {
+    "word": "went",
+    "start": 2.392,
+    "end": 2.566
+  },
+  {
+    "word": "patient,",
+    "start": 2.612,
+    "end": 3.204
+  },
+  {
+    "word": "which",
+    "start": 3.32,
+    "end": 3.541
+  },
+  {
+    "word": "was",
+    "start": 3.599,
+    "end": 3.796
+  },
+  {
+    "word": "a",
+    "start": 3.866,
+    "end": 3.901
+  },
+  {
+    "word": "specific",
+    "start": 3.994,
+    "end": 4.551
+  },
+  {
+    "word": "kind",
+    "start": 4.609,
+    "end": 4.923
+  },
+  {
+    "word": "of",
+    "start": 4.981,
+    "end": 5.039
+  },
+  {
+    "word": "patient",
+    "start": 5.108,
+    "end": 5.584
+  },
+  {
+    "word": "---",
+    "start": 5.7,
+    "end": 5.851
+  },
+  {
+    "word": "not",
+    "start": 6.002,
+    "end": 6.2
+  },
+  {
+    "word": "cold,",
+    "start": 6.258,
+    "end": 6.85
+  },
+  {
+    "word": "not",
+    "start": 7.024,
+    "end": 7.221
+  },
+  {
+    "word": "angry,",
+    "start": 7.291,
+    "end": 7.918
+  },
+  {
+    "word": "just",
+    "start": 8.069,
+    "end": 8.371
+  },
+  {
+    "word": "waiting,",
+    "start": 8.452,
+    "end": 9.009
+  },
+  {
+    "word": "the",
+    "start": 9.125,
+    "end": 9.242
+  },
+  {
+    "word": "way",
+    "start": 9.288,
+    "end": 9.416
+  },
+  {
+    "word": "you",
+    "start": 9.474,
+    "end": 9.578
+  },
+  {
+    "word": "wait",
+    "start": 9.648,
+    "end": 9.88
+  },
+  {
+    "word": "for",
+    "start": 9.95,
+    "end": 10.101
+  },
+  {
+    "word": "weather",
+    "start": 10.182,
+    "end": 10.472
+  },
+  {
+    "word": "to",
+    "start": 10.53,
+    "end": 10.6
+  },
+  {
+    "word": "change.",
+    "start": 10.67,
+    "end": 11.378
+  },
+  {
+    "word": "\"¿Puedes",
+    "start": 12.492,
+    "end": 13.038
+  },
+  {
+    "word": "intentar,",
+    "start": 13.108,
+    "end": 13.781
+  },
+  {
+    "word": "beta?\"",
+    "start": 13.804,
+    "end": 14.408
+  },
+  {
+    "word": "Just",
+    "start": 14.849,
+    "end": 15.093
+  },
+  {
+    "word": "try,",
+    "start": 15.128,
+    "end": 15.464
+  },
+  {
+    "word": "son.",
+    "start": 15.488,
+    "end": 15.94
+  },
+  {
+    "word": "The",
+    "start": 16.184,
+    "end": 16.3
+  },
+  {
+    "word": "Colombian",
+    "start": 16.358,
+    "end": 16.927
+  },
+  {
+    "word": "and",
+    "start": 16.985,
+    "end": 17.066
+  },
+  {
+    "word": "the",
+    "start": 17.113,
+    "end": 17.182
+  },
+  {
+    "word": "Indian",
+    "start": 17.264,
+    "end": 17.658
+  },
+  {
+    "word": "mixed",
+    "start": 17.74,
+    "end": 17.995
+  },
+  {
+    "word": "together",
+    "start": 18.018,
+    "end": 18.425
+  },
+  {
+    "word": "the",
+    "start": 18.506,
+    "end": 18.576
+  },
+  {
+    "word": "way",
+    "start": 18.634,
+    "end": 18.761
+  },
+  {
+    "word": "they",
+    "start": 18.808,
+    "end": 18.935
+  },
+  {
+    "word": "always",
+    "start": 18.993,
+    "end": 19.295
+  },
+  {
+    "word": "did",
+    "start": 19.353,
+    "end": 19.504
+  },
+  {
+    "word": "in",
+    "start": 19.551,
+    "end": 19.62
+  },
+  {
+    "word": "this",
+    "start": 19.667,
+    "end": 19.818
+  },
+  {
+    "word": "house,",
+    "start": 19.887,
+    "end": 20.375
+  },
+  {
+    "word": "like",
+    "start": 20.549,
+    "end": 20.758
+  },
+  {
+    "word": "two",
+    "start": 20.793,
+    "end": 21.014
+  },
+  {
+    "word": "rivers",
+    "start": 21.106,
+    "end": 21.536
+  },
+  {
+    "word": "that",
+    "start": 21.583,
+    "end": 21.722
+  },
+  {
+    "word": "had",
+    "start": 21.768,
+    "end": 21.873
+  },
+  {
+    "word": "given",
+    "start": 21.919,
+    "end": 22.175
+  },
+  {
+    "word": "up",
+    "start": 22.221,
+    "end": 22.326
+  },
+  {
+    "word": "being",
+    "start": 22.372,
+    "end": 22.604
+  },
+  {
+    "word": "separate",
+    "start": 22.697,
+    "end": 23.15
+  },
+  {
+    "word": "a",
+    "start": 23.185,
+    "end": 23.208
+  },
+  {
+    "word": "long",
+    "start": 23.266,
+    "end": 23.521
+  },
+  {
+    "word": "time",
+    "start": 23.591,
+    "end": 23.835
+  },
+  {
+    "word": "ago.",
+    "start": 23.87,
+    "end": 24.276
+  }
+]

@@ -1,0 +1,252 @@
+[
+  {
+    "word": ">",
+    "start": 0.035,
+    "end": 0.081
+  },
+  {
+    "word": "*When",
+    "start": 0.116,
+    "end": 0.325
+  },
+  {
+    "word": "I",
+    "start": 0.383,
+    "end": 0.406
+  },
+  {
+    "word": "was",
+    "start": 0.488,
+    "end": 0.604
+  },
+  {
+    "word": "young",
+    "start": 0.673,
+    "end": 0.964
+  },
+  {
+    "word": "-",
+    "start": 1.173,
+    "end": 1.196
+  },
+  {
+    "word": "when",
+    "start": 1.277,
+    "end": 1.451
+  },
+  {
+    "word": "I",
+    "start": 1.498,
+    "end": 1.521
+  },
+  {
+    "word": "was",
+    "start": 1.579,
+    "end": 1.683
+  },
+  {
+    "word": "not",
+    "start": 1.741,
+    "end": 1.881
+  },
+  {
+    "word": "so",
+    "start": 1.927,
+    "end": 2.055
+  },
+  {
+    "word": "different",
+    "start": 2.136,
+    "end": 2.496
+  },
+  {
+    "word": "from",
+    "start": 2.531,
+    "end": 2.694
+  },
+  {
+    "word": "you",
+    "start": 2.775,
+    "end": 2.914
+  },
+  {
+    "word": "-",
+    "start": 3.158,
+    "end": 3.367
+  },
+  {
+    "word": "I",
+    "start": 3.483,
+    "end": 3.553
+  },
+  {
+    "word": "did",
+    "start": 3.646,
+    "end": 3.796
+  },
+  {
+    "word": "not",
+    "start": 3.866,
+    "end": 4.063
+  },
+  {
+    "word": "know",
+    "start": 4.122,
+    "end": 4.307
+  },
+  {
+    "word": "how",
+    "start": 4.389,
+    "end": 4.563
+  },
+  {
+    "word": "to",
+    "start": 4.632,
+    "end": 4.702
+  },
+  {
+    "word": "be",
+    "start": 4.772,
+    "end": 4.876
+  },
+  {
+    "word": "gentle",
+    "start": 4.923,
+    "end": 5.364
+  },
+  {
+    "word": "with",
+    "start": 5.41,
+    "end": 5.573
+  },
+  {
+    "word": "my",
+    "start": 5.631,
+    "end": 5.747
+  },
+  {
+    "word": "bigness.*",
+    "start": 5.828,
+    "end": 6.78
+  },
+  {
+    "word": "The",
+    "start": 7.732,
+    "end": 7.872
+  },
+  {
+    "word": "moose's",
+    "start": 7.953,
+    "end": 8.464
+  },
+  {
+    "word": "voice",
+    "start": 8.545,
+    "end": 8.998
+  },
+  {
+    "word": "had",
+    "start": 9.044,
+    "end": 9.195
+  },
+  {
+    "word": "changed.",
+    "start": 9.242,
+    "end": 10.054
+  },
+  {
+    "word": "It",
+    "start": 10.437,
+    "end": 10.588
+  },
+  {
+    "word": "was",
+    "start": 10.646,
+    "end": 10.774
+  },
+  {
+    "word": "still",
+    "start": 10.832,
+    "end": 11.157
+  },
+  {
+    "word": "slow,",
+    "start": 11.25,
+    "end": 11.877
+  },
+  {
+    "word": "still",
+    "start": 12.051,
+    "end": 12.399
+  },
+  {
+    "word": "patient,",
+    "start": 12.492,
+    "end": 13.282
+  },
+  {
+    "word": "but",
+    "start": 13.526,
+    "end": 13.7
+  },
+  {
+    "word": "now",
+    "start": 13.781,
+    "end": 14.06
+  },
+  {
+    "word": "there",
+    "start": 14.141,
+    "end": 14.303
+  },
+  {
+    "word": "was",
+    "start": 14.338,
+    "end": 14.443
+  },
+  {
+    "word": "something",
+    "start": 14.512,
+    "end": 14.93
+  },
+  {
+    "word": "else",
+    "start": 15.047,
+    "end": 15.36
+  },
+  {
+    "word": "in",
+    "start": 15.406,
+    "end": 15.488
+  },
+  {
+    "word": "it.",
+    "start": 15.557,
+    "end": 15.882
+  },
+  {
+    "word": "Something",
+    "start": 16.266,
+    "end": 16.707
+  },
+  {
+    "word": "that",
+    "start": 16.765,
+    "end": 16.904
+  },
+  {
+    "word": "sounded",
+    "start": 16.985,
+    "end": 17.438
+  },
+  {
+    "word": "like",
+    "start": 17.496,
+    "end": 17.67
+  },
+  {
+    "word": "remembering.",
+    "start": 17.728,
+    "end": 18.553
+  }
+]

@@ -1,0 +1,297 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.418
+  },
+  {
+    "word": "was",
+    "start": 0.499,
+    "end": 0.65
+  },
+  {
+    "word": "not",
+    "start": 0.743,
+    "end": 0.952
+  },
+  {
+    "word": "asleep.",
+    "start": 0.998,
+    "end": 1.625
+  },
+  {
+    "word": "He",
+    "start": 2.067,
+    "end": 2.194
+  },
+  {
+    "word": "was",
+    "start": 2.264,
+    "end": 2.403
+  },
+  {
+    "word": "lying",
+    "start": 2.519,
+    "end": 2.891
+  },
+  {
+    "word": "on",
+    "start": 2.961,
+    "end": 3.077
+  },
+  {
+    "word": "his",
+    "start": 3.146,
+    "end": 3.274
+  },
+  {
+    "word": "back",
+    "start": 3.367,
+    "end": 3.692
+  },
+  {
+    "word": "looking",
+    "start": 3.808,
+    "end": 4.122
+  },
+  {
+    "word": "at",
+    "start": 4.168,
+    "end": 4.238
+  },
+  {
+    "word": "the",
+    "start": 4.284,
+    "end": 4.354
+  },
+  {
+    "word": "ceiling,",
+    "start": 4.423,
+    "end": 5.05
+  },
+  {
+    "word": "which",
+    "start": 5.224,
+    "end": 5.433
+  },
+  {
+    "word": "was",
+    "start": 5.492,
+    "end": 5.631
+  },
+  {
+    "word": "doing",
+    "start": 5.712,
+    "end": 6.002
+  },
+  {
+    "word": "the",
+    "start": 6.06,
+    "end": 6.13
+  },
+  {
+    "word": "thing",
+    "start": 6.2,
+    "end": 6.467
+  },
+  {
+    "word": "ceilings",
+    "start": 6.583,
+    "end": 7.082
+  },
+  {
+    "word": "do",
+    "start": 7.152,
+    "end": 7.372
+  },
+  {
+    "word": "when",
+    "start": 7.488,
+    "end": 7.663
+  },
+  {
+    "word": "you",
+    "start": 7.709,
+    "end": 7.814
+  },
+  {
+    "word": "stare",
+    "start": 7.906,
+    "end": 8.22
+  },
+  {
+    "word": "at",
+    "start": 8.255,
+    "end": 8.324
+  },
+  {
+    "word": "them",
+    "start": 8.371,
+    "end": 8.522
+  },
+  {
+    "word": "long",
+    "start": 8.603,
+    "end": 8.847
+  },
+  {
+    "word": "enough",
+    "start": 8.905,
+    "end": 9.183
+  },
+  {
+    "word": "in",
+    "start": 9.242,
+    "end": 9.323
+  },
+  {
+    "word": "the",
+    "start": 9.369,
+    "end": 9.439
+  },
+  {
+    "word": "dark",
+    "start": 9.485,
+    "end": 9.845
+  },
+  {
+    "word": "---",
+    "start": 10.019,
+    "end": 10.112
+  },
+  {
+    "word": "going",
+    "start": 10.17,
+    "end": 10.472
+  },
+  {
+    "word": "soft",
+    "start": 10.588,
+    "end": 11.018
+  },
+  {
+    "word": "at",
+    "start": 11.064,
+    "end": 11.146
+  },
+  {
+    "word": "the",
+    "start": 11.18,
+    "end": 11.262
+  },
+  {
+    "word": "edges,",
+    "start": 11.343,
+    "end": 11.947
+  },
+  {
+    "word": "like",
+    "start": 12.156,
+    "end": 12.388
+  },
+  {
+    "word": "it",
+    "start": 12.423,
+    "end": 12.492
+  },
+  {
+    "word": "was",
+    "start": 12.55,
+    "end": 12.69
+  },
+  {
+    "word": "made",
+    "start": 12.783,
+    "end": 13.05
+  },
+  {
+    "word": "of",
+    "start": 13.084,
+    "end": 13.142
+  },
+  {
+    "word": "something",
+    "start": 13.224,
+    "end": 13.665
+  },
+  {
+    "word": "that",
+    "start": 13.723,
+    "end": 13.862
+  },
+  {
+    "word": "couldn't",
+    "start": 13.92,
+    "end": 14.222
+  },
+  {
+    "word": "quite",
+    "start": 14.28,
+    "end": 14.582
+  },
+  {
+    "word": "decide",
+    "start": 14.617,
+    "end": 15.093
+  },
+  {
+    "word": "what",
+    "start": 15.139,
+    "end": 15.314
+  },
+  {
+    "word": "it",
+    "start": 15.36,
+    "end": 15.43
+  },
+  {
+    "word": "was.",
+    "start": 15.488,
+    "end": 16.126
+  },
+  {
+    "word": "He",
+    "start": 17.078,
+    "end": 17.206
+  },
+  {
+    "word": "was",
+    "start": 17.276,
+    "end": 17.403
+  },
+  {
+    "word": "thinking",
+    "start": 17.485,
+    "end": 17.914
+  },
+  {
+    "word": "about",
+    "start": 18.03,
+    "end": 18.367
+  },
+  {
+    "word": "the",
+    "start": 18.413,
+    "end": 18.483
+  },
+  {
+    "word": "day.",
+    "start": 18.53,
+    "end": 19.064
+  },
+  {
+    "word": "\\*",
+    "start": 20.016,
+    "end": 20.201
+  },
+  {
+    "word": "\\*",
+    "start": 20.294,
+    "end": 20.434
+  },
+  {
+    "word": "\\*",
+    "start": 20.608,
+    "end": 20.91
+  }
+]

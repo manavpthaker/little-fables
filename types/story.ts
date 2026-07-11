@@ -184,7 +184,6 @@ export interface BuddyDef {
   wash: WashKey
   intro: { b: string; c: string }
   greet: { b: string; c: string }
-  memory: string
 }
 
 export interface BuddyState {

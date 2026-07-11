@@ -1,0 +1,317 @@
+[
+  {
+    "word": ">",
+    "start": 0.046,
+    "end": 0.104
+  },
+  {
+    "word": "*First:",
+    "start": 0.128,
+    "end": 0.708
+  },
+  {
+    "word": "Stand",
+    "start": 0.917,
+    "end": 1.277
+  },
+  {
+    "word": "still,",
+    "start": 1.358,
+    "end": 1.916
+  },
+  {
+    "word": "like",
+    "start": 2.09,
+    "end": 2.276
+  },
+  {
+    "word": "a",
+    "start": 2.31,
+    "end": 2.334
+  },
+  {
+    "word": "moose",
+    "start": 2.392,
+    "end": 2.694
+  },
+  {
+    "word": "in",
+    "start": 2.74,
+    "end": 2.81
+  },
+  {
+    "word": "the",
+    "start": 2.856,
+    "end": 2.926
+  },
+  {
+    "word": "meadow.*",
+    "start": 2.972,
+    "end": 3.715
+  },
+  {
+    "word": "The",
+    "start": 4.528,
+    "end": 4.656
+  },
+  {
+    "word": "moose",
+    "start": 4.725,
+    "end": 5.074
+  },
+  {
+    "word": "didn't",
+    "start": 5.12,
+    "end": 5.41
+  },
+  {
+    "word": "move.",
+    "start": 5.468,
+    "end": 6.084
+  },
+  {
+    "word": "Not",
+    "start": 6.467,
+    "end": 6.687
+  },
+  {
+    "word": "a",
+    "start": 6.734,
+    "end": 6.757
+  },
+  {
+    "word": "single",
+    "start": 6.873,
+    "end": 7.303
+  },
+  {
+    "word": "muscle.",
+    "start": 7.372,
+    "end": 8.046
+  },
+  {
+    "word": "It",
+    "start": 8.487,
+    "end": 8.603
+  },
+  {
+    "word": "was",
+    "start": 8.649,
+    "end": 8.742
+  },
+  {
+    "word": "like",
+    "start": 8.8,
+    "end": 8.963
+  },
+  {
+    "word": "watching",
+    "start": 9.009,
+    "end": 9.369
+  },
+  {
+    "word": "a",
+    "start": 9.427,
+    "end": 9.451
+  },
+  {
+    "word": "mountain",
+    "start": 9.52,
+    "end": 9.95
+  },
+  {
+    "word": "pretend",
+    "start": 10.066,
+    "end": 10.437
+  },
+  {
+    "word": "to",
+    "start": 10.484,
+    "end": 10.53
+  },
+  {
+    "word": "be",
+    "start": 10.588,
+    "end": 10.681
+  },
+  {
+    "word": "an",
+    "start": 10.728,
+    "end": 10.797
+  },
+  {
+    "word": "animal.",
+    "start": 10.855,
+    "end": 11.505
+  },
+  {
+    "word": ">",
+    "start": 11.529,
+    "end": 11.552
+  },
+  {
+    "word": "*When",
+    "start": 12.365,
+    "end": 12.655
+  },
+  {
+    "word": "your",
+    "start": 12.701,
+    "end": 12.841
+  },
+  {
+    "word": "body",
+    "start": 12.899,
+    "end": 13.201
+  },
+  {
+    "word": "wants",
+    "start": 13.27,
+    "end": 13.502
+  },
+  {
+    "word": "to",
+    "start": 13.549,
+    "end": 13.607
+  },
+  {
+    "word": "move",
+    "start": 13.677,
+    "end": 13.897
+  },
+  {
+    "word": "fast",
+    "start": 13.944,
+    "end": 14.478
+  },
+  {
+    "word": "-",
+    "start": 14.652,
+    "end": 14.675
+  },
+  {
+    "word": "when",
+    "start": 14.745,
+    "end": 14.919
+  },
+  {
+    "word": "your",
+    "start": 14.954,
+    "end": 15.081
+  },
+  {
+    "word": "legs",
+    "start": 15.139,
+    "end": 15.406
+  },
+  {
+    "word": "want",
+    "start": 15.453,
+    "end": 15.627
+  },
+  {
+    "word": "to",
+    "start": 15.662,
+    "end": 15.72
+  },
+  {
+    "word": "run",
+    "start": 15.801,
+    "end": 16.068
+  },
+  {
+    "word": "and",
+    "start": 16.138,
+    "end": 16.266
+  },
+  {
+    "word": "your",
+    "start": 16.324,
+    "end": 16.451
+  },
+  {
+    "word": "arms",
+    "start": 16.509,
+    "end": 16.8
+  },
+  {
+    "word": "want",
+    "start": 16.858,
+    "end": 17.044
+  },
+  {
+    "word": "to",
+    "start": 17.09,
+    "end": 17.148
+  },
+  {
+    "word": "swing",
+    "start": 17.229,
+    "end": 17.589
+  },
+  {
+    "word": "and",
+    "start": 17.659,
+    "end": 17.752
+  },
+  {
+    "word": "everything",
+    "start": 17.821,
+    "end": 18.17
+  },
+  {
+    "word": "wants",
+    "start": 18.228,
+    "end": 18.437
+  },
+  {
+    "word": "to",
+    "start": 18.483,
+    "end": 18.553
+  },
+  {
+    "word": "go",
+    "start": 18.611,
+    "end": 18.773
+  },
+  {
+    "word": "go",
+    "start": 18.866,
+    "end": 19.029
+  },
+  {
+    "word": "go",
+    "start": 19.099,
+    "end": 19.331
+  },
+  {
+    "word": "-",
+    "start": 19.505,
+    "end": 19.54
+  },
+  {
+    "word": "you",
+    "start": 19.784,
+    "end": 19.9
+  },
+  {
+    "word": "tell",
+    "start": 19.981,
+    "end": 20.167
+  },
+  {
+    "word": "it",
+    "start": 20.225,
+    "end": 20.318
+  },
+  {
+    "word": "to",
+    "start": 20.352,
+    "end": 20.422
+  },
+  {
+    "word": "wait.*",
+    "start": 20.492,
+    "end": 20.968
+  }
+]

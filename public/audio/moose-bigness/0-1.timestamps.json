@@ -1,0 +1,47 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.383
+  },
+  {
+    "word": "had",
+    "start": 0.441,
+    "end": 0.546
+  },
+  {
+    "word": "spent",
+    "start": 0.592,
+    "end": 0.871
+  },
+  {
+    "word": "the",
+    "start": 0.906,
+    "end": 0.987
+  },
+  {
+    "word": "whole",
+    "start": 1.045,
+    "end": 1.312
+  },
+  {
+    "word": "day",
+    "start": 1.358,
+    "end": 1.649
+  },
+  {
+    "word": "exploring",
+    "start": 1.741,
+    "end": 2.368
+  },
+  {
+    "word": "Bernadette's",
+    "start": 2.438,
+    "end": 2.984
+  },
+  {
+    "word": "farm.",
+    "start": 3.042,
+    "end": 3.495
+  }
+]

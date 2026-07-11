@@ -1,0 +1,327 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.395
+  },
+  {
+    "word": "was",
+    "start": 0.453,
+    "end": 0.592
+  },
+  {
+    "word": "quiet.",
+    "start": 0.673,
+    "end": 1.405
+  },
+  {
+    "word": "Because",
+    "start": 1.916,
+    "end": 2.241
+  },
+  {
+    "word": "it",
+    "start": 2.276,
+    "end": 2.345
+  },
+  {
+    "word": "was",
+    "start": 2.392,
+    "end": 2.519
+  },
+  {
+    "word": "true.",
+    "start": 2.601,
+    "end": 3.123
+  },
+  {
+    "word": "He",
+    "start": 3.564,
+    "end": 3.704
+  },
+  {
+    "word": "did",
+    "start": 3.785,
+    "end": 4.075
+  },
+  {
+    "word": "always",
+    "start": 4.145,
+    "end": 4.644
+  },
+  {
+    "word": "know.",
+    "start": 4.714,
+    "end": 5.143
+  },
+  {
+    "word": "The",
+    "start": 5.747,
+    "end": 5.886
+  },
+  {
+    "word": "knowing",
+    "start": 5.944,
+    "end": 6.339
+  },
+  {
+    "word": "was",
+    "start": 6.432,
+    "end": 6.594
+  },
+  {
+    "word": "always",
+    "start": 6.676,
+    "end": 7.129
+  },
+  {
+    "word": "there,",
+    "start": 7.187,
+    "end": 7.697
+  },
+  {
+    "word": "under",
+    "start": 7.906,
+    "end": 8.139
+  },
+  {
+    "word": "the",
+    "start": 8.197,
+    "end": 8.266
+  },
+  {
+    "word": "crossed",
+    "start": 8.324,
+    "end": 8.731
+  },
+  {
+    "word": "arms,",
+    "start": 8.789,
+    "end": 9.462
+  },
+  {
+    "word": "under",
+    "start": 9.671,
+    "end": 9.915
+  },
+  {
+    "word": "the",
+    "start": 9.973,
+    "end": 10.112
+  },
+  {
+    "word": "\"I",
+    "start": 10.356,
+    "end": 10.588
+  },
+  {
+    "word": "can't\"",
+    "start": 10.739,
+    "end": 11.413
+  },
+  {
+    "word": "---",
+    "start": 11.796,
+    "end": 11.889
+  },
+  {
+    "word": "quiet",
+    "start": 12.005,
+    "end": 12.516
+  },
+  {
+    "word": "and",
+    "start": 12.585,
+    "end": 12.69
+  },
+  {
+    "word": "certain",
+    "start": 12.806,
+    "end": 13.247
+  },
+  {
+    "word": "as",
+    "start": 13.328,
+    "end": 13.491
+  },
+  {
+    "word": "the",
+    "start": 13.56,
+    "end": 13.63
+  },
+  {
+    "word": "basil",
+    "start": 13.7,
+    "end": 14.141
+  },
+  {
+    "word": "in",
+    "start": 14.222,
+    "end": 14.28
+  },
+  {
+    "word": "the",
+    "start": 14.327,
+    "end": 14.396
+  },
+  {
+    "word": "garden",
+    "start": 14.454,
+    "end": 14.884
+  },
+  {
+    "word": "holding",
+    "start": 15.035,
+    "end": 15.418
+  },
+  {
+    "word": "still",
+    "start": 15.499,
+    "end": 15.836
+  },
+  {
+    "word": "in",
+    "start": 15.929,
+    "end": 16.022
+  },
+  {
+    "word": "the",
+    "start": 16.068,
+    "end": 16.138
+  },
+  {
+    "word": "dark.",
+    "start": 16.184,
+    "end": 16.73
+  },
+  {
+    "word": "He",
+    "start": 17.241,
+    "end": 17.369
+  },
+  {
+    "word": "had",
+    "start": 17.45,
+    "end": 17.577
+  },
+  {
+    "word": "just",
+    "start": 17.659,
+    "end": 17.961
+  },
+  {
+    "word": "been",
+    "start": 18.03,
+    "end": 18.204
+  },
+  {
+    "word": "choosing",
+    "start": 18.274,
+    "end": 18.68
+  },
+  {
+    "word": "to",
+    "start": 18.75,
+    "end": 18.819
+  },
+  {
+    "word": "stand",
+    "start": 18.901,
+    "end": 19.272
+  },
+  {
+    "word": "in",
+    "start": 19.342,
+    "end": 19.423
+  },
+  {
+    "word": "front",
+    "start": 19.504,
+    "end": 19.737
+  },
+  {
+    "word": "of",
+    "start": 19.783,
+    "end": 19.841
+  },
+  {
+    "word": "it.",
+    "start": 19.911,
+    "end": 20.271
+  },
+  {
+    "word": "(Breathe",
+    "start": 20.654,
+    "end": 21.223
+  },
+  {
+    "word": "slowly\\...",
+    "start": 21.281,
+    "end": 22.117
+  },
+  {
+    "word": "in",
+    "start": 22.813,
+    "end": 23.022
+  },
+  {
+    "word": "for",
+    "start": 23.138,
+    "end": 23.301
+  },
+  {
+    "word": "four\\...",
+    "start": 23.417,
+    "end": 24.253
+  },
+  {
+    "word": "out",
+    "start": 24.857,
+    "end": 25.112
+  },
+  {
+    "word": "for",
+    "start": 25.182,
+    "end": 25.333
+  },
+  {
+    "word": "four\\...",
+    "start": 25.402,
+    "end": 26.215
+  },
+  {
+    "word": "feel",
+    "start": 26.911,
+    "end": 27.213
+  },
+  {
+    "word": "your",
+    "start": 27.295,
+    "end": 27.434
+  },
+  {
+    "word": "body",
+    "start": 27.504,
+    "end": 27.863
+  },
+  {
+    "word": "getting",
+    "start": 27.945,
+    "end": 28.235
+  },
+  {
+    "word": "heavier",
+    "start": 28.316,
+    "end": 28.816
+  },
+  {
+    "word": "and",
+    "start": 28.99,
+    "end": 29.21
+  },
+  {
+    "word": "softer\\...)",
+    "start": 29.326,
+    "end": 30.151
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "word": "Standing",
+    "start": 0.128,
+    "end": 0.65
+  },
+  {
+    "word": "at",
+    "start": 0.708,
+    "end": 0.778
+  },
+  {
+    "word": "the",
+    "start": 0.813,
+    "end": 0.882
+  },
+  {
+    "word": "edge",
+    "start": 0.964,
+    "end": 1.138
+  },
+  {
+    "word": "of",
+    "start": 1.161,
+    "end": 1.219
+  },
+  {
+    "word": "the",
+    "start": 1.265,
+    "end": 1.335
+  },
+  {
+    "word": "woods,",
+    "start": 1.382,
+    "end": 1.904
+  },
+  {
+    "word": "patient",
+    "start": 2.02,
+    "end": 2.589
+  },
+  {
+    "word": "as",
+    "start": 2.659,
+    "end": 2.763
+  },
+  {
+    "word": "the",
+    "start": 2.833,
+    "end": 2.902
+  },
+  {
+    "word": "trees,",
+    "start": 2.949,
+    "end": 3.576
+  },
+  {
+    "word": "gentle",
+    "start": 3.657,
+    "end": 4.18
+  },
+  {
+    "word": "as",
+    "start": 4.226,
+    "end": 4.319
+  },
+  {
+    "word": "the",
+    "start": 4.389,
+    "end": 4.458
+  },
+  {
+    "word": "wind,",
+    "start": 4.516,
+    "end": 5.004
+  },
+  {
+    "word": "ancient",
+    "start": 5.074,
+    "end": 5.608
+  },
+  {
+    "word": "as",
+    "start": 5.666,
+    "end": 5.77
+  },
+  {
+    "word": "the",
+    "start": 5.828,
+    "end": 5.898
+  },
+  {
+    "word": "mountains",
+    "start": 5.968,
+    "end": 6.444
+  },
+  {
+    "word": "themselves.",
+    "start": 6.513,
+    "end": 7.361
+  },
+  {
+    "word": "Waiting.",
+    "start": 7.605,
+    "end": 8.266
+  },
+  {
+    "word": "Always",
+    "start": 8.44,
+    "end": 9.056
+  },
+  {
+    "word": "waiting.",
+    "start": 9.125,
+    "end": 9.718
+  },
+  {
+    "word": "For",
+    "start": 9.927,
+    "end": 10.101
+  },
+  {
+    "word": "all",
+    "start": 10.17,
+    "end": 10.391
+  },
+  {
+    "word": "the",
+    "start": 10.449,
+    "end": 10.519
+  },
+  {
+    "word": "children",
+    "start": 10.577,
+    "end": 11.041
+  },
+  {
+    "word": "who",
+    "start": 11.099,
+    "end": 11.215
+  },
+  {
+    "word": "were",
+    "start": 11.25,
+    "end": 11.389
+  },
+  {
+    "word": "learning",
+    "start": 11.436,
+    "end": 11.819
+  },
+  {
+    "word": "-",
+    "start": 11.993,
+    "end": 12.016
+  },
+  {
+    "word": "one",
+    "start": 12.132,
+    "end": 12.446
+  },
+  {
+    "word": "slow",
+    "start": 12.527,
+    "end": 12.899
+  },
+  {
+    "word": "breath",
+    "start": 12.992,
+    "end": 13.305
+  },
+  {
+    "word": "at",
+    "start": 13.351,
+    "end": 13.433
+  },
+  {
+    "word": "a",
+    "start": 13.479,
+    "end": 13.514
+  },
+  {
+    "word": "time,",
+    "start": 13.572,
+    "end": 14.118
+  },
+  {
+    "word": "one",
+    "start": 14.292,
+    "end": 14.582
+  },
+  {
+    "word": "planted",
+    "start": 14.652,
+    "end": 15.139
+  },
+  {
+    "word": "foot",
+    "start": 15.221,
+    "end": 15.488
+  },
+  {
+    "word": "at",
+    "start": 15.546,
+    "end": 15.627
+  },
+  {
+    "word": "a",
+    "start": 15.673,
+    "end": 15.708
+  },
+  {
+    "word": "time,",
+    "start": 15.766,
+    "end": 16.289
+  },
+  {
+    "word": "one",
+    "start": 16.533,
+    "end": 16.834
+  },
+  {
+    "word": "hand-on-heart",
+    "start": 16.916,
+    "end": 17.81
+  },
+  {
+    "word": "at",
+    "start": 17.868,
+    "end": 17.949
+  },
+  {
+    "word": "a",
+    "start": 17.995,
+    "end": 18.03
+  },
+  {
+    "word": "time",
+    "start": 18.088,
+    "end": 18.518
+  },
+  {
+    "word": "-",
+    "start": 18.611,
+    "end": 18.646
+  },
+  {
+    "word": "to",
+    "start": 18.82,
+    "end": 18.936
+  },
+  {
+    "word": "be",
+    "start": 19.006,
+    "end": 19.122
+  },
+  {
+    "word": "gentle",
+    "start": 19.18,
+    "end": 19.598
+  },
+  {
+    "word": "giants",
+    "start": 19.656,
+    "end": 20.167
+  },
+  {
+    "word": "too.",
+    "start": 20.248,
+    "end": 20.712
+  }
+]

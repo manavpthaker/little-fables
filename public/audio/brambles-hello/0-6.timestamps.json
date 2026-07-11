@@ -1,0 +1,322 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "deer",
+    "start": 0.221,
+    "end": 0.453
+  },
+  {
+    "word": "heard.",
+    "start": 0.522,
+    "end": 0.952
+  },
+  {
+    "word": "Her",
+    "start": 1.196,
+    "end": 1.347
+  },
+  {
+    "word": "head",
+    "start": 1.416,
+    "end": 1.602
+  },
+  {
+    "word": "jerked",
+    "start": 1.672,
+    "end": 1.962
+  },
+  {
+    "word": "up.",
+    "start": 2.02,
+    "end": 2.276
+  },
+  {
+    "word": "Water",
+    "start": 2.485,
+    "end": 2.833
+  },
+  {
+    "word": "dripped",
+    "start": 2.914,
+    "end": 3.228
+  },
+  {
+    "word": "from",
+    "start": 3.262,
+    "end": 3.413
+  },
+  {
+    "word": "her",
+    "start": 3.471,
+    "end": 3.553
+  },
+  {
+    "word": "chin.",
+    "start": 3.622,
+    "end": 4.063
+  },
+  {
+    "word": "And",
+    "start": 4.307,
+    "end": 4.481
+  },
+  {
+    "word": "then",
+    "start": 4.54,
+    "end": 4.795
+  },
+  {
+    "word": "--",
+    "start": 4.946,
+    "end": 5.108
+  },
+  {
+    "word": "*taptap-taptap*",
+    "start": 5.619,
+    "end": 7.303
+  },
+  {
+    "word": "--",
+    "start": 7.419,
+    "end": 7.5
+  },
+  {
+    "word": "she",
+    "start": 7.581,
+    "end": 7.744
+  },
+  {
+    "word": "leapt",
+    "start": 7.86,
+    "end": 8.173
+  },
+  {
+    "word": "into",
+    "start": 8.22,
+    "end": 8.371
+  },
+  {
+    "word": "the",
+    "start": 8.44,
+    "end": 8.51
+  },
+  {
+    "word": "trees,",
+    "start": 8.557,
+    "end": 9.125
+  },
+  {
+    "word": "her",
+    "start": 9.195,
+    "end": 9.323
+  },
+  {
+    "word": "white",
+    "start": 9.381,
+    "end": 9.648
+  },
+  {
+    "word": "tail",
+    "start": 9.683,
+    "end": 9.996
+  },
+  {
+    "word": "bobbing",
+    "start": 10.089,
+    "end": 10.472
+  },
+  {
+    "word": "goodbye.",
+    "start": 10.519,
+    "end": 11.134
+  },
+  {
+    "word": "Bramble's",
+    "start": 11.25,
+    "end": 11.749
+  },
+  {
+    "word": "heart",
+    "start": 11.807,
+    "end": 12.063
+  },
+  {
+    "word": "sank",
+    "start": 12.132,
+    "end": 12.423
+  },
+  {
+    "word": "all",
+    "start": 12.516,
+    "end": 12.794
+  },
+  {
+    "word": "the",
+    "start": 12.852,
+    "end": 12.922
+  },
+  {
+    "word": "way",
+    "start": 12.968,
+    "end": 13.096
+  },
+  {
+    "word": "down",
+    "start": 13.154,
+    "end": 13.375
+  },
+  {
+    "word": "to",
+    "start": 13.433,
+    "end": 13.514
+  },
+  {
+    "word": "his",
+    "start": 13.595,
+    "end": 13.7
+  },
+  {
+    "word": "paws.",
+    "start": 13.769,
+    "end": 14.35
+  },
+  {
+    "word": "*Maybe",
+    "start": 14.861,
+    "end": 15.406
+  },
+  {
+    "word": "my",
+    "start": 15.476,
+    "end": 15.662
+  },
+  {
+    "word": "hello",
+    "start": 15.743,
+    "end": 16.115
+  },
+  {
+    "word": "is",
+    "start": 16.196,
+    "end": 16.3
+  },
+  {
+    "word": "wrong,*",
+    "start": 16.37,
+    "end": 17.031
+  },
+  {
+    "word": "he",
+    "start": 17.357,
+    "end": 17.438
+  },
+  {
+    "word": "thought.",
+    "start": 17.507,
+    "end": 17.902
+  },
+  {
+    "word": "*Maybe",
+    "start": 18.343,
+    "end": 18.796
+  },
+  {
+    "word": "I'm",
+    "start": 18.854,
+    "end": 19.005
+  },
+  {
+    "word": "too",
+    "start": 19.063,
+    "end": 19.226
+  },
+  {
+    "word": "loud.",
+    "start": 19.319,
+    "end": 19.795
+  },
+  {
+    "word": "Too",
+    "start": 19.922,
+    "end": 20.143
+  },
+  {
+    "word": "big.",
+    "start": 20.224,
+    "end": 20.631
+  },
+  {
+    "word": "Too",
+    "start": 20.747,
+    "end": 20.979
+  },
+  {
+    "word": "bear.*",
+    "start": 21.06,
+    "end": 21.652
+  },
+  {
+    "word": "He",
+    "start": 22.093,
+    "end": 22.221
+  },
+  {
+    "word": "hung",
+    "start": 22.302,
+    "end": 22.511
+  },
+  {
+    "word": "his",
+    "start": 22.569,
+    "end": 22.697
+  },
+  {
+    "word": "head",
+    "start": 22.767,
+    "end": 23.069
+  },
+  {
+    "word": "and",
+    "start": 23.127,
+    "end": 23.312
+  },
+  {
+    "word": "trudged",
+    "start": 23.359,
+    "end": 23.765
+  },
+  {
+    "word": "on,",
+    "start": 23.835,
+    "end": 24.195
+  },
+  {
+    "word": "watching",
+    "start": 24.311,
+    "end": 24.752
+  },
+  {
+    "word": "his",
+    "start": 24.822,
+    "end": 24.949
+  },
+  {
+    "word": "own",
+    "start": 25.007,
+    "end": 25.228
+  },
+  {
+    "word": "slow",
+    "start": 25.321,
+    "end": 25.646
+  },
+  {
+    "word": "shadow.",
+    "start": 25.739,
+    "end": 26.389
+  }
+]

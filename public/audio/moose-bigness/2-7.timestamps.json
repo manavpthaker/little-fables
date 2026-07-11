@@ -1,0 +1,302 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.325
+  },
+  {
+    "word": "found",
+    "start": 0.395,
+    "end": 0.639
+  },
+  {
+    "word": "Mama",
+    "start": 0.731,
+    "end": 1.033
+  },
+  {
+    "word": "and",
+    "start": 1.091,
+    "end": 1.207
+  },
+  {
+    "word": "Papa",
+    "start": 1.289,
+    "end": 1.66
+  },
+  {
+    "word": "in",
+    "start": 1.73,
+    "end": 1.858
+  },
+  {
+    "word": "the",
+    "start": 1.904,
+    "end": 1.974
+  },
+  {
+    "word": "farmhouse",
+    "start": 2.043,
+    "end": 2.577
+  },
+  {
+    "word": "living",
+    "start": 2.635,
+    "end": 2.891
+  },
+  {
+    "word": "room.",
+    "start": 2.949,
+    "end": 3.367
+  },
+  {
+    "word": "They",
+    "start": 3.808,
+    "end": 3.971
+  },
+  {
+    "word": "were",
+    "start": 4.005,
+    "end": 4.133
+  },
+  {
+    "word": "sitting",
+    "start": 4.168,
+    "end": 4.447
+  },
+  {
+    "word": "together",
+    "start": 4.505,
+    "end": 4.911
+  },
+  {
+    "word": "on",
+    "start": 4.992,
+    "end": 5.108
+  },
+  {
+    "word": "the",
+    "start": 5.155,
+    "end": 5.236
+  },
+  {
+    "word": "old",
+    "start": 5.306,
+    "end": 5.503
+  },
+  {
+    "word": "couch",
+    "start": 5.573,
+    "end": 6.002
+  },
+  {
+    "word": "-",
+    "start": 6.211,
+    "end": 6.235
+  },
+  {
+    "word": "the",
+    "start": 6.385,
+    "end": 6.49
+  },
+  {
+    "word": "one",
+    "start": 6.571,
+    "end": 6.734
+  },
+  {
+    "word": "with",
+    "start": 6.769,
+    "end": 6.908
+  },
+  {
+    "word": "the",
+    "start": 6.943,
+    "end": 7.012
+  },
+  {
+    "word": "faded",
+    "start": 7.07,
+    "end": 7.407
+  },
+  {
+    "word": "flowers",
+    "start": 7.477,
+    "end": 7.941
+  },
+  {
+    "word": "on",
+    "start": 7.999,
+    "end": 8.127
+  },
+  {
+    "word": "it",
+    "start": 8.185,
+    "end": 8.29
+  },
+  {
+    "word": "that",
+    "start": 8.359,
+    "end": 8.533
+  },
+  {
+    "word": "had",
+    "start": 8.58,
+    "end": 8.673
+  },
+  {
+    "word": "probably",
+    "start": 8.742,
+    "end": 9.23
+  },
+  {
+    "word": "been",
+    "start": 9.288,
+    "end": 9.474
+  },
+  {
+    "word": "there",
+    "start": 9.52,
+    "end": 9.741
+  },
+  {
+    "word": "since",
+    "start": 9.799,
+    "end": 10.054
+  },
+  {
+    "word": "before",
+    "start": 10.101,
+    "end": 10.449
+  },
+  {
+    "word": "Azi",
+    "start": 10.53,
+    "end": 10.89
+  },
+  {
+    "word": "was",
+    "start": 10.937,
+    "end": 11.053
+  },
+  {
+    "word": "born,",
+    "start": 11.122,
+    "end": 11.656
+  },
+  {
+    "word": "maybe",
+    "start": 12.098,
+    "end": 12.504
+  },
+  {
+    "word": "since",
+    "start": 12.574,
+    "end": 12.829
+  },
+  {
+    "word": "before",
+    "start": 12.875,
+    "end": 13.224
+  },
+  {
+    "word": "Mama",
+    "start": 13.293,
+    "end": 13.607
+  },
+  {
+    "word": "and",
+    "start": 13.677,
+    "end": 13.781
+  },
+  {
+    "word": "Papa",
+    "start": 13.851,
+    "end": 14.187
+  },
+  {
+    "word": "were",
+    "start": 14.245,
+    "end": 14.419
+  },
+  {
+    "word": "born.",
+    "start": 14.454,
+    "end": 15.012
+  },
+  {
+    "word": "They",
+    "start": 15.708,
+    "end": 15.894
+  },
+  {
+    "word": "were",
+    "start": 15.94,
+    "end": 16.08
+  },
+  {
+    "word": "talking",
+    "start": 16.115,
+    "end": 16.567
+  },
+  {
+    "word": "quietly,",
+    "start": 16.683,
+    "end": 17.566
+  },
+  {
+    "word": "the",
+    "start": 17.74,
+    "end": 17.844
+  },
+  {
+    "word": "way",
+    "start": 17.902,
+    "end": 18.065
+  },
+  {
+    "word": "grown-ups",
+    "start": 18.146,
+    "end": 18.704
+  },
+  {
+    "word": "do",
+    "start": 18.773,
+    "end": 18.994
+  },
+  {
+    "word": "when",
+    "start": 19.063,
+    "end": 19.203
+  },
+  {
+    "word": "they're",
+    "start": 19.238,
+    "end": 19.447
+  },
+  {
+    "word": "trying",
+    "start": 19.481,
+    "end": 19.806
+  },
+  {
+    "word": "to",
+    "start": 19.865,
+    "end": 19.934
+  },
+  {
+    "word": "figure",
+    "start": 20.015,
+    "end": 20.341
+  },
+  {
+    "word": "something",
+    "start": 20.387,
+    "end": 20.782
+  },
+  {
+    "word": "out.",
+    "start": 20.851,
+    "end": 21.258
+  }
+]

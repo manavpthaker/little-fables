@@ -1,0 +1,317 @@
+[
+  {
+    "word": "He",
+    "start": 0.058,
+    "end": 0.139
+  },
+  {
+    "word": "didn't",
+    "start": 0.197,
+    "end": 0.464
+  },
+  {
+    "word": "feel",
+    "start": 0.511,
+    "end": 0.743
+  },
+  {
+    "word": "scared",
+    "start": 0.813,
+    "end": 1.219
+  },
+  {
+    "word": "of",
+    "start": 1.254,
+    "end": 1.324
+  },
+  {
+    "word": "it.",
+    "start": 1.382,
+    "end": 1.66
+  },
+  {
+    "word": "He",
+    "start": 1.834,
+    "end": 1.974
+  },
+  {
+    "word": "felt",
+    "start": 2.067,
+    "end": 2.496
+  },
+  {
+    "word": "---",
+    "start": 2.67,
+    "end": 2.752
+  },
+  {
+    "word": "something",
+    "start": 2.995,
+    "end": 3.39
+  },
+  {
+    "word": "else.",
+    "start": 3.483,
+    "end": 4.087
+  },
+  {
+    "word": "Something",
+    "start": 4.261,
+    "end": 4.69
+  },
+  {
+    "word": "more",
+    "start": 4.783,
+    "end": 5.027
+  },
+  {
+    "word": "like",
+    "start": 5.085,
+    "end": 5.341
+  },
+  {
+    "word": "understanding.",
+    "start": 5.41,
+    "end": 6.536
+  },
+  {
+    "word": "Like",
+    "start": 6.711,
+    "end": 6.931
+  },
+  {
+    "word": "recognizing",
+    "start": 7.012,
+    "end": 7.732
+  },
+  {
+    "word": "something",
+    "start": 7.825,
+    "end": 8.208
+  },
+  {
+    "word": "in",
+    "start": 8.266,
+    "end": 8.336
+  },
+  {
+    "word": "a",
+    "start": 8.382,
+    "end": 8.417
+  },
+  {
+    "word": "mirror",
+    "start": 8.487,
+    "end": 8.824
+  },
+  {
+    "word": "that",
+    "start": 8.893,
+    "end": 9.021
+  },
+  {
+    "word": "you'd",
+    "start": 9.067,
+    "end": 9.23
+  },
+  {
+    "word": "been",
+    "start": 9.265,
+    "end": 9.416
+  },
+  {
+    "word": "walking",
+    "start": 9.474,
+    "end": 9.834
+  },
+  {
+    "word": "past",
+    "start": 9.903,
+    "end": 10.252
+  },
+  {
+    "word": "without",
+    "start": 10.31,
+    "end": 10.635
+  },
+  {
+    "word": "looking",
+    "start": 10.693,
+    "end": 11.018
+  },
+  {
+    "word": "at.",
+    "start": 11.099,
+    "end": 11.494
+  },
+  {
+    "word": "\"I",
+    "start": 12.005,
+    "end": 12.249
+  },
+  {
+    "word": "know",
+    "start": 12.423,
+    "end": 12.771
+  },
+  {
+    "word": "how",
+    "start": 12.887,
+    "end": 13.073
+  },
+  {
+    "word": "to",
+    "start": 13.142,
+    "end": 13.212
+  },
+  {
+    "word": "do",
+    "start": 13.293,
+    "end": 13.421
+  },
+  {
+    "word": "more",
+    "start": 13.537,
+    "end": 13.816
+  },
+  {
+    "word": "than",
+    "start": 13.862,
+    "end": 14.013
+  },
+  {
+    "word": "I",
+    "start": 14.083,
+    "end": 14.118
+  },
+  {
+    "word": "act",
+    "start": 14.292,
+    "end": 14.617
+  },
+  {
+    "word": "like,\"",
+    "start": 14.698,
+    "end": 15.267
+  },
+  {
+    "word": "Azi",
+    "start": 15.383,
+    "end": 15.766
+  },
+  {
+    "word": "said",
+    "start": 15.836,
+    "end": 16.056
+  },
+  {
+    "word": "quietly.",
+    "start": 16.114,
+    "end": 16.938
+  },
+  {
+    "word": "Yes.",
+    "start": 17.217,
+    "end": 17.821
+  },
+  {
+    "word": "\"And",
+    "start": 18.03,
+    "end": 18.367
+  },
+  {
+    "word": "I",
+    "start": 18.459,
+    "end": 18.483
+  },
+  {
+    "word": "know",
+    "start": 18.599,
+    "end": 18.796
+  },
+  {
+    "word": "when",
+    "start": 18.843,
+    "end": 18.993
+  },
+  {
+    "word": "my",
+    "start": 19.052,
+    "end": 19.156
+  },
+  {
+    "word": "feelings",
+    "start": 19.226,
+    "end": 19.62
+  },
+  {
+    "word": "are",
+    "start": 19.667,
+    "end": 19.795
+  },
+  {
+    "word": "building",
+    "start": 19.829,
+    "end": 20.236
+  },
+  {
+    "word": "before",
+    "start": 20.305,
+    "end": 20.607
+  },
+  {
+    "word": "they",
+    "start": 20.642,
+    "end": 20.781
+  },
+  {
+    "word": "spill.",
+    "start": 20.851,
+    "end": 21.443
+  },
+  {
+    "word": "Yes.",
+    "start": 21.722,
+    "end": 22.36
+  },
+  {
+    "word": "\"And",
+    "start": 22.685,
+    "end": 22.964
+  },
+  {
+    "word": "I'm",
+    "start": 23.045,
+    "end": 23.173
+  },
+  {
+    "word": "kind.",
+    "start": 23.243,
+    "end": 23.928
+  },
+  {
+    "word": "I",
+    "start": 24.369,
+    "end": 24.427
+  },
+  {
+    "word": "just",
+    "start": 24.555,
+    "end": 24.903
+  },
+  {
+    "word": "---",
+    "start": 25.031,
+    "end": 25.228
+  },
+  {
+    "word": "forget,",
+    "start": 25.402,
+    "end": 26.064
+  },
+  {
+    "word": "sometimes.\"",
+    "start": 26.215,
+    "end": 27.155
+  }
+]

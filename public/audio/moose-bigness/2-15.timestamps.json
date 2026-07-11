@@ -1,0 +1,302 @@
+[
+  {
+    "word": "He",
+    "start": 0.07,
+    "end": 0.163
+  },
+  {
+    "word": "planted",
+    "start": 0.244,
+    "end": 0.697
+  },
+  {
+    "word": "his",
+    "start": 0.743,
+    "end": 0.848
+  },
+  {
+    "word": "feet,",
+    "start": 0.917,
+    "end": 1.358
+  },
+  {
+    "word": "and",
+    "start": 1.428,
+    "end": 1.591
+  },
+  {
+    "word": "Mama",
+    "start": 1.672,
+    "end": 1.962
+  },
+  {
+    "word": "planted",
+    "start": 2.032,
+    "end": 2.426
+  },
+  {
+    "word": "her",
+    "start": 2.473,
+    "end": 2.589
+  },
+  {
+    "word": "feet,",
+    "start": 2.67,
+    "end": 3.1
+  },
+  {
+    "word": "and",
+    "start": 3.216,
+    "end": 3.367
+  },
+  {
+    "word": "Papa",
+    "start": 3.448,
+    "end": 3.762
+  },
+  {
+    "word": "planted",
+    "start": 3.831,
+    "end": 4.214
+  },
+  {
+    "word": "his",
+    "start": 4.261,
+    "end": 4.377
+  },
+  {
+    "word": "feet.",
+    "start": 4.435,
+    "end": 4.934
+  },
+  {
+    "word": "Three",
+    "start": 5.317,
+    "end": 5.631
+  },
+  {
+    "word": "sets",
+    "start": 5.7,
+    "end": 6.002
+  },
+  {
+    "word": "of",
+    "start": 6.037,
+    "end": 6.118
+  },
+  {
+    "word": "roots",
+    "start": 6.211,
+    "end": 6.548
+  },
+  {
+    "word": "growing",
+    "start": 6.618,
+    "end": 6.978
+  },
+  {
+    "word": "down",
+    "start": 7.047,
+    "end": 7.384
+  },
+  {
+    "word": "through",
+    "start": 7.442,
+    "end": 7.686
+  },
+  {
+    "word": "the",
+    "start": 7.709,
+    "end": 7.79
+  },
+  {
+    "word": "old",
+    "start": 7.86,
+    "end": 8.057
+  },
+  {
+    "word": "wooden",
+    "start": 8.115,
+    "end": 8.406
+  },
+  {
+    "word": "floor.",
+    "start": 8.475,
+    "end": 9.172
+  },
+  {
+    "word": "\"Then",
+    "start": 9.497,
+    "end": 9.857
+  },
+  {
+    "word": "you",
+    "start": 9.915,
+    "end": 9.996
+  },
+  {
+    "word": "breathe",
+    "start": 10.066,
+    "end": 10.368
+  },
+  {
+    "word": "slow,",
+    "start": 10.426,
+    "end": 11.088
+  },
+  {
+    "word": "like",
+    "start": 11.262,
+    "end": 11.459
+  },
+  {
+    "word": "the",
+    "start": 11.494,
+    "end": 11.564
+  },
+  {
+    "word": "mountain",
+    "start": 11.633,
+    "end": 12.04
+  },
+  {
+    "word": "air.\"",
+    "start": 12.121,
+    "end": 12.655
+  },
+  {
+    "word": "They",
+    "start": 13.096,
+    "end": 13.293
+  },
+  {
+    "word": "breathed",
+    "start": 13.363,
+    "end": 13.862
+  },
+  {
+    "word": "together.",
+    "start": 13.955,
+    "end": 14.756
+  },
+  {
+    "word": "In",
+    "start": 15.267,
+    "end": 15.534
+  },
+  {
+    "word": "for",
+    "start": 15.65,
+    "end": 15.801
+  },
+  {
+    "word": "four.",
+    "start": 15.882,
+    "end": 16.509
+  },
+  {
+    "word": "Out",
+    "start": 16.951,
+    "end": 17.217
+  },
+  {
+    "word": "for",
+    "start": 17.287,
+    "end": 17.426
+  },
+  {
+    "word": "six.",
+    "start": 17.508,
+    "end": 18.111
+  },
+  {
+    "word": "Three",
+    "start": 18.355,
+    "end": 18.669
+  },
+  {
+    "word": "sets",
+    "start": 18.738,
+    "end": 19.052
+  },
+  {
+    "word": "of",
+    "start": 19.098,
+    "end": 19.168
+  },
+  {
+    "word": "lungs,",
+    "start": 19.284,
+    "end": 19.923
+  },
+  {
+    "word": "breathing",
+    "start": 20.073,
+    "end": 20.631
+  },
+  {
+    "word": "like",
+    "start": 20.747,
+    "end": 20.979
+  },
+  {
+    "word": "the",
+    "start": 21.014,
+    "end": 21.095
+  },
+  {
+    "word": "mountains",
+    "start": 21.165,
+    "end": 21.711
+  },
+  {
+    "word": "breathe.",
+    "start": 21.78,
+    "end": 22.442
+  },
+  {
+    "word": "\"Then",
+    "start": 22.953,
+    "end": 23.382
+  },
+  {
+    "word": "you",
+    "start": 23.498,
+    "end": 23.626
+  },
+  {
+    "word": "find",
+    "start": 23.742,
+    "end": 24.032
+  },
+  {
+    "word": "the",
+    "start": 24.091,
+    "end": 24.172
+  },
+  {
+    "word": "soft",
+    "start": 24.23,
+    "end": 24.601
+  },
+  {
+    "word": "place",
+    "start": 24.659,
+    "end": 24.996
+  },
+  {
+    "word": "behind",
+    "start": 25.043,
+    "end": 25.402
+  },
+  {
+    "word": "your",
+    "start": 25.472,
+    "end": 25.635
+  },
+  {
+    "word": "strong.\"",
+    "start": 25.704,
+    "end": 26.378
+  }
+]

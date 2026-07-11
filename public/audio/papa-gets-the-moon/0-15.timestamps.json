@@ -1,0 +1,277 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.07
+  },
+  {
+    "word": "sat",
+    "start": 0.186,
+    "end": 0.406
+  },
+  {
+    "word": "down",
+    "start": 0.464,
+    "end": 0.685
+  },
+  {
+    "word": "in",
+    "start": 0.731,
+    "end": 0.789
+  },
+  {
+    "word": "the",
+    "start": 0.824,
+    "end": 0.894
+  },
+  {
+    "word": "backyard,",
+    "start": 0.94,
+    "end": 1.602
+  },
+  {
+    "word": "next",
+    "start": 1.695,
+    "end": 1.985
+  },
+  {
+    "word": "to",
+    "start": 2.02,
+    "end": 2.067
+  },
+  {
+    "word": "my",
+    "start": 2.136,
+    "end": 2.276
+  },
+  {
+    "word": "tower",
+    "start": 2.357,
+    "end": 2.74
+  },
+  {
+    "word": "of",
+    "start": 2.81,
+    "end": 2.879
+  },
+  {
+    "word": "love,",
+    "start": 2.961,
+    "end": 3.39
+  },
+  {
+    "word": "and",
+    "start": 3.413,
+    "end": 3.587
+  },
+  {
+    "word": "thought.",
+    "start": 3.657,
+    "end": 4.214
+  },
+  {
+    "word": "Climbing",
+    "start": 4.725,
+    "end": 5.224
+  },
+  {
+    "word": "hadn't",
+    "start": 5.317,
+    "end": 5.619
+  },
+  {
+    "word": "worked.",
+    "start": 5.666,
+    "end": 6.246
+  },
+  {
+    "word": "Building",
+    "start": 6.629,
+    "end": 7.117
+  },
+  {
+    "word": "hadn't",
+    "start": 7.291,
+    "end": 7.628
+  },
+  {
+    "word": "worked.",
+    "start": 7.674,
+    "end": 8.22
+  },
+  {
+    "word": "What",
+    "start": 8.824,
+    "end": 9.044
+  },
+  {
+    "word": "else",
+    "start": 9.102,
+    "end": 9.311
+  },
+  {
+    "word": "was",
+    "start": 9.369,
+    "end": 9.578
+  },
+  {
+    "word": "there?",
+    "start": 9.648,
+    "end": 10.147
+  },
+  {
+    "word": "The",
+    "start": 10.844,
+    "end": 10.971
+  },
+  {
+    "word": "night",
+    "start": 11.053,
+    "end": 11.32
+  },
+  {
+    "word": "was",
+    "start": 11.401,
+    "end": 11.564
+  },
+  {
+    "word": "quiet",
+    "start": 11.645,
+    "end": 12.063
+  },
+  {
+    "word": "around",
+    "start": 12.121,
+    "end": 12.446
+  },
+  {
+    "word": "me.",
+    "start": 12.527,
+    "end": 12.875
+  },
+  {
+    "word": "The",
+    "start": 13.201,
+    "end": 13.328
+  },
+  {
+    "word": "bees",
+    "start": 13.386,
+    "end": 13.677
+  },
+  {
+    "word": "were",
+    "start": 13.735,
+    "end": 13.909
+  },
+  {
+    "word": "asleep",
+    "start": 13.944,
+    "end": 14.362
+  },
+  {
+    "word": "in",
+    "start": 14.42,
+    "end": 14.478
+  },
+  {
+    "word": "their",
+    "start": 14.524,
+    "end": 14.687
+  },
+  {
+    "word": "hives.",
+    "start": 14.745,
+    "end": 15.325
+  },
+  {
+    "word": "The",
+    "start": 15.604,
+    "end": 15.732
+  },
+  {
+    "word": "honeysuckle",
+    "start": 15.801,
+    "end": 16.451
+  },
+  {
+    "word": "was",
+    "start": 16.498,
+    "end": 16.625
+  },
+  {
+    "word": "breathing",
+    "start": 16.695,
+    "end": 17.055
+  },
+  {
+    "word": "out",
+    "start": 17.124,
+    "end": 17.287
+  },
+  {
+    "word": "its",
+    "start": 17.333,
+    "end": 17.473
+  },
+  {
+    "word": "sweet",
+    "start": 17.531,
+    "end": 17.856
+  },
+  {
+    "word": "smell.",
+    "start": 17.937,
+    "end": 18.599
+  },
+  {
+    "word": "Somewhere,",
+    "start": 19.11,
+    "end": 19.795
+  },
+  {
+    "word": "a",
+    "start": 19.911,
+    "end": 19.992
+  },
+  {
+    "word": "cricket",
+    "start": 20.085,
+    "end": 20.48
+  },
+  {
+    "word": "was",
+    "start": 20.538,
+    "end": 20.654
+  },
+  {
+    "word": "singing",
+    "start": 20.712,
+    "end": 21.037
+  },
+  {
+    "word": "its",
+    "start": 21.083,
+    "end": 21.234
+  },
+  {
+    "word": "tiny",
+    "start": 21.292,
+    "end": 21.699
+  },
+  {
+    "word": "cricket",
+    "start": 21.78,
+    "end": 22.128
+  },
+  {
+    "word": "song.",
+    "start": 22.198,
+    "end": 22.72
+  },
+  {
+    "word": "Singing.",
+    "start": 23.417,
+    "end": 24.09
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.07
+  },
+  {
+    "word": "passed",
+    "start": 0.186,
+    "end": 0.522
+  },
+  {
+    "word": "the",
+    "start": 0.557,
+    "end": 0.627
+  },
+  {
+    "word": "library,",
+    "start": 0.697,
+    "end": 1.37
+  },
+  {
+    "word": "and",
+    "start": 1.393,
+    "end": 1.544
+  },
+  {
+    "word": "I",
+    "start": 1.625,
+    "end": 1.649
+  },
+  {
+    "word": "could",
+    "start": 1.718,
+    "end": 1.904
+  },
+  {
+    "word": "have",
+    "start": 1.939,
+    "end": 2.067
+  },
+  {
+    "word": "sworn",
+    "start": 2.113,
+    "end": 2.519
+  },
+  {
+    "word": "the",
+    "start": 2.566,
+    "end": 2.635
+  },
+  {
+    "word": "books",
+    "start": 2.682,
+    "end": 2.926
+  },
+  {
+    "word": "inside",
+    "start": 2.984,
+    "end": 3.495
+  },
+  {
+    "word": "were",
+    "start": 3.529,
+    "end": 3.68
+  },
+  {
+    "word": "pressing",
+    "start": 3.727,
+    "end": 4.098
+  },
+  {
+    "word": "against",
+    "start": 4.145,
+    "end": 4.447
+  },
+  {
+    "word": "the",
+    "start": 4.493,
+    "end": 4.563
+  },
+  {
+    "word": "windows",
+    "start": 4.609,
+    "end": 5.027
+  },
+  {
+    "word": "to",
+    "start": 5.097,
+    "end": 5.166
+  },
+  {
+    "word": "see.",
+    "start": 5.259,
+    "end": 5.608
+  }
+]

@@ -14,7 +14,7 @@ Research date: July 2026. This replaces the v1 approach (device speechSynthesis 
 - Use the `convert-with-timestamps` endpoint: returns audio + character/word alignment JSON → drives word-by-word highlighting *precisely* (v1's boundary-event/timer hack dies).
 - Two voices: a warm **narrator** (the project docs already chose ElevenLabs "Rachel"/"Aria" territory) and a distinct **buddy voice** (playful, slightly higher). Buddy lines in data (greetings, intros, praise) get pre-generated too; dynamic buddy lines (conversational replies) generate on the fly with Flash v2.5 (low latency, ~half-price).
 - Audio + timestamp JSON cached in the service worker / IndexedDB → **offline reading with the good voice**, and drive mode never stalls.
-- Cost: ~$0.05–0.10 per 1K characters. The entire family pack (279 pages ≈ ~100K chars) ≈ **$5–10 one-time**. A new chapter ≈ pennies.
+- Cost: ~$0.05–0.10 per 1K characters. The entire family pack (330 pages ≈ ~120K chars) ≈ **$6–12 one-time**. A new chapter ≈ pennies.
 - Fallback chain: cached ElevenLabs audio → device speechSynthesis (offline, uncached edge case) → text-only with manual page turns.
 
 ## Voice input (STT)

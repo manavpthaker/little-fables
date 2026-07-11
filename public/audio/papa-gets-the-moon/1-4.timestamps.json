@@ -1,0 +1,82 @@
+[
+  {
+    "word": "I",
+    "start": 0.151,
+    "end": 0.209
+  },
+  {
+    "word": "walked",
+    "start": 0.302,
+    "end": 0.615
+  },
+  {
+    "word": "out",
+    "start": 0.662,
+    "end": 0.801
+  },
+  {
+    "word": "to",
+    "start": 0.848,
+    "end": 0.906
+  },
+  {
+    "word": "the",
+    "start": 0.964,
+    "end": 1.045
+  },
+  {
+    "word": "street.",
+    "start": 1.103,
+    "end": 1.625
+  },
+  {
+    "word": "Everything",
+    "start": 1.95,
+    "end": 2.403
+  },
+  {
+    "word": "was",
+    "start": 2.461,
+    "end": 2.577
+  },
+  {
+    "word": "different",
+    "start": 2.635,
+    "end": 2.995
+  },
+  {
+    "word": "now,",
+    "start": 3.053,
+    "end": 3.413
+  },
+  {
+    "word": "bathed",
+    "start": 3.495,
+    "end": 3.994
+  },
+  {
+    "word": "in",
+    "start": 4.052,
+    "end": 4.122
+  },
+  {
+    "word": "the",
+    "start": 4.168,
+    "end": 4.238
+  },
+  {
+    "word": "moon's",
+    "start": 4.272,
+    "end": 4.644
+  },
+  {
+    "word": "gentle",
+    "start": 4.702,
+    "end": 5.062
+  },
+  {
+    "word": "glow.",
+    "start": 5.085,
+    "end": 5.55
+  }
+]

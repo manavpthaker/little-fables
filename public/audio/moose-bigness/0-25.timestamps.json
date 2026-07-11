@@ -1,0 +1,287 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.139
+  },
+  {
+    "word": "moose",
+    "start": 0.221,
+    "end": 0.58
+  },
+  {
+    "word": "wasn't",
+    "start": 0.627,
+    "end": 0.917
+  },
+  {
+    "word": "moving.",
+    "start": 0.975,
+    "end": 1.602
+  },
+  {
+    "word": "It",
+    "start": 1.985,
+    "end": 2.113
+  },
+  {
+    "word": "was",
+    "start": 2.159,
+    "end": 2.264
+  },
+  {
+    "word": "just",
+    "start": 2.334,
+    "end": 2.531
+  },
+  {
+    "word": "standing",
+    "start": 2.589,
+    "end": 3.053
+  },
+  {
+    "word": "there,",
+    "start": 3.111,
+    "end": 3.506
+  },
+  {
+    "word": "at",
+    "start": 3.599,
+    "end": 3.75
+  },
+  {
+    "word": "the",
+    "start": 3.785,
+    "end": 3.866
+  },
+  {
+    "word": "edge",
+    "start": 3.982,
+    "end": 4.261
+  },
+  {
+    "word": "of",
+    "start": 4.284,
+    "end": 4.365
+  },
+  {
+    "word": "everything,",
+    "start": 4.481,
+    "end": 5.224
+  },
+  {
+    "word": "looking",
+    "start": 5.399,
+    "end": 5.7
+  },
+  {
+    "word": "straight",
+    "start": 5.782,
+    "end": 6.142
+  },
+  {
+    "word": "at",
+    "start": 6.177,
+    "end": 6.246
+  },
+  {
+    "word": "the",
+    "start": 6.281,
+    "end": 6.351
+  },
+  {
+    "word": "farmhouse",
+    "start": 6.409,
+    "end": 6.954
+  },
+  {
+    "word": "window.",
+    "start": 7.001,
+    "end": 7.686
+  },
+  {
+    "word": "Looking",
+    "start": 8.127,
+    "end": 8.464
+  },
+  {
+    "word": "straight",
+    "start": 8.545,
+    "end": 8.905
+  },
+  {
+    "word": "at",
+    "start": 8.94,
+    "end": 9.021
+  },
+  {
+    "word": "Azi.",
+    "start": 9.091,
+    "end": 9.799
+  },
+  {
+    "word": "Azi's",
+    "start": 10.31,
+    "end": 10.774
+  },
+  {
+    "word": "breath",
+    "start": 10.832,
+    "end": 11.18
+  },
+  {
+    "word": "caught",
+    "start": 11.297,
+    "end": 11.575
+  },
+  {
+    "word": "in",
+    "start": 11.61,
+    "end": 11.68
+  },
+  {
+    "word": "his",
+    "start": 11.726,
+    "end": 11.831
+  },
+  {
+    "word": "chest.",
+    "start": 11.9,
+    "end": 12.481
+  },
+  {
+    "word": "He",
+    "start": 12.759,
+    "end": 12.864
+  },
+  {
+    "word": "didn't",
+    "start": 12.922,
+    "end": 13.177
+  },
+  {
+    "word": "call",
+    "start": 13.235,
+    "end": 13.549
+  },
+  {
+    "word": "for",
+    "start": 13.63,
+    "end": 13.758
+  },
+  {
+    "word": "Mama.",
+    "start": 13.816,
+    "end": 14.362
+  },
+  {
+    "word": "He",
+    "start": 14.803,
+    "end": 14.907
+  },
+  {
+    "word": "didn't",
+    "start": 14.965,
+    "end": 15.221
+  },
+  {
+    "word": "call",
+    "start": 15.279,
+    "end": 15.546
+  },
+  {
+    "word": "for",
+    "start": 15.615,
+    "end": 15.732
+  },
+  {
+    "word": "Papa.",
+    "start": 15.801,
+    "end": 16.359
+  },
+  {
+    "word": "He",
+    "start": 16.637,
+    "end": 16.73
+  },
+  {
+    "word": "didn't",
+    "start": 16.788,
+    "end": 17.032
+  },
+  {
+    "word": "move",
+    "start": 17.09,
+    "end": 17.392
+  },
+  {
+    "word": "at",
+    "start": 17.427,
+    "end": 17.497
+  },
+  {
+    "word": "all.",
+    "start": 17.543,
+    "end": 18.054
+  },
+  {
+    "word": "Something",
+    "start": 18.75,
+    "end": 19.238
+  },
+  {
+    "word": "told",
+    "start": 19.319,
+    "end": 19.633
+  },
+  {
+    "word": "him",
+    "start": 19.691,
+    "end": 19.83
+  },
+  {
+    "word": "this",
+    "start": 19.911,
+    "end": 20.144
+  },
+  {
+    "word": "was",
+    "start": 20.213,
+    "end": 20.353
+  },
+  {
+    "word": "a",
+    "start": 20.411,
+    "end": 20.445
+  },
+  {
+    "word": "moment",
+    "start": 20.515,
+    "end": 20.887
+  },
+  {
+    "word": "that",
+    "start": 20.933,
+    "end": 21.096
+  },
+  {
+    "word": "needed",
+    "start": 21.177,
+    "end": 21.537
+  },
+  {
+    "word": "to",
+    "start": 21.583,
+    "end": 21.653
+  },
+  {
+    "word": "stay",
+    "start": 21.723,
+    "end": 21.955
+  },
+  {
+    "word": "quiet.",
+    "start": 22.013,
+    "end": 22.651
+  }
+]

@@ -1,0 +1,312 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "train",
+    "start": 0.209,
+    "end": 0.546
+  },
+  {
+    "word": "rolled",
+    "start": 0.627,
+    "end": 0.952
+  },
+  {
+    "word": "on,",
+    "start": 1.022,
+    "end": 1.533
+  },
+  {
+    "word": "and",
+    "start": 1.66,
+    "end": 1.8
+  },
+  {
+    "word": "the",
+    "start": 1.846,
+    "end": 1.916
+  },
+  {
+    "word": "forest",
+    "start": 1.985,
+    "end": 2.415
+  },
+  {
+    "word": "gave",
+    "start": 2.485,
+    "end": 2.705
+  },
+  {
+    "word": "way",
+    "start": 2.763,
+    "end": 2.961
+  },
+  {
+    "word": "to",
+    "start": 3.03,
+    "end": 3.123
+  },
+  {
+    "word": "a",
+    "start": 3.239,
+    "end": 3.262
+  },
+  {
+    "word": "vast",
+    "start": 3.379,
+    "end": 3.796
+  },
+  {
+    "word": "frozen",
+    "start": 3.913,
+    "end": 4.412
+  },
+  {
+    "word": "lake",
+    "start": 4.493,
+    "end": 4.807
+  },
+  {
+    "word": "that",
+    "start": 4.853,
+    "end": 5.039
+  },
+  {
+    "word": "stretched",
+    "start": 5.12,
+    "end": 5.584
+  },
+  {
+    "word": "to",
+    "start": 5.631,
+    "end": 5.7
+  },
+  {
+    "word": "the",
+    "start": 5.782,
+    "end": 5.851
+  },
+  {
+    "word": "horizon.",
+    "start": 5.909,
+    "end": 6.734
+  },
+  {
+    "word": "The",
+    "start": 7.059,
+    "end": 7.187
+  },
+  {
+    "word": "ice",
+    "start": 7.279,
+    "end": 7.57
+  },
+  {
+    "word": "was",
+    "start": 7.616,
+    "end": 7.744
+  },
+  {
+    "word": "so",
+    "start": 7.802,
+    "end": 8.011
+  },
+  {
+    "word": "clear",
+    "start": 8.104,
+    "end": 8.487
+  },
+  {
+    "word": "Azi",
+    "start": 8.58,
+    "end": 8.916
+  },
+  {
+    "word": "could",
+    "start": 8.975,
+    "end": 9.137
+  },
+  {
+    "word": "see",
+    "start": 9.172,
+    "end": 9.358
+  },
+  {
+    "word": "stars",
+    "start": 9.427,
+    "end": 9.996
+  },
+  {
+    "word": "reflected",
+    "start": 10.077,
+    "end": 10.646
+  },
+  {
+    "word": "in",
+    "start": 10.693,
+    "end": 10.762
+  },
+  {
+    "word": "it---but",
+    "start": 10.82,
+    "end": 11.587
+  },
+  {
+    "word": "when",
+    "start": 11.633,
+    "end": 11.796
+  },
+  {
+    "word": "he",
+    "start": 11.842,
+    "end": 11.9
+  },
+  {
+    "word": "looked",
+    "start": 11.97,
+    "end": 12.225
+  },
+  {
+    "word": "up,",
+    "start": 12.295,
+    "end": 12.666
+  },
+  {
+    "word": "he",
+    "start": 12.841,
+    "end": 12.922
+  },
+  {
+    "word": "saw",
+    "start": 13.003,
+    "end": 13.235
+  },
+  {
+    "word": "stars",
+    "start": 13.351,
+    "end": 13.758
+  },
+  {
+    "word": "in",
+    "start": 13.804,
+    "end": 13.874
+  },
+  {
+    "word": "the",
+    "start": 13.92,
+    "end": 13.99
+  },
+  {
+    "word": "sky",
+    "start": 14.048,
+    "end": 14.396
+  },
+  {
+    "word": "too,",
+    "start": 14.512,
+    "end": 15.023
+  },
+  {
+    "word": "perfectly",
+    "start": 15.267,
+    "end": 15.848
+  },
+  {
+    "word": "mirrored.",
+    "start": 15.929,
+    "end": 16.591
+  },
+  {
+    "word": "\"The",
+    "start": 17.288,
+    "end": 17.566
+  },
+  {
+    "word": "Lake",
+    "start": 17.682,
+    "end": 18.042
+  },
+  {
+    "word": "of",
+    "start": 18.089,
+    "end": 18.158
+  },
+  {
+    "word": "Reflected",
+    "start": 18.24,
+    "end": 18.808
+  },
+  {
+    "word": "Wishes,\"",
+    "start": 18.866,
+    "end": 19.644
+  },
+  {
+    "word": "Clara",
+    "start": 19.737,
+    "end": 20.109
+  },
+  {
+    "word": "said.",
+    "start": 20.167,
+    "end": 20.573
+  },
+  {
+    "word": "\"Everything",
+    "start": 20.747,
+    "end": 21.397
+  },
+  {
+    "word": "you",
+    "start": 21.467,
+    "end": 21.572
+  },
+  {
+    "word": "hope",
+    "start": 21.664,
+    "end": 21.885
+  },
+  {
+    "word": "for",
+    "start": 21.932,
+    "end": 22.14
+  },
+  {
+    "word": "lives",
+    "start": 22.257,
+    "end": 22.593
+  },
+  {
+    "word": "down",
+    "start": 22.663,
+    "end": 22.884
+  },
+  {
+    "word": "there,",
+    "start": 22.93,
+    "end": 23.348
+  },
+  {
+    "word": "waiting",
+    "start": 23.522,
+    "end": 23.882
+  },
+  {
+    "word": "to",
+    "start": 23.928,
+    "end": 23.975
+  },
+  {
+    "word": "become",
+    "start": 24.033,
+    "end": 24.335
+  },
+  {
+    "word": "real.\"",
+    "start": 24.404,
+    "end": 24.927
+  }
+]

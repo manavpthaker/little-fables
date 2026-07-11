@@ -1,0 +1,322 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "room",
+    "start": 0.221,
+    "end": 0.488
+  },
+  {
+    "word": "shifted.",
+    "start": 0.604,
+    "end": 1.312
+  },
+  {
+    "word": "Not",
+    "start": 1.916,
+    "end": 2.183
+  },
+  {
+    "word": "all",
+    "start": 2.241,
+    "end": 2.415
+  },
+  {
+    "word": "at",
+    "start": 2.461,
+    "end": 2.543
+  },
+  {
+    "word": "once",
+    "start": 2.624,
+    "end": 3.065
+  },
+  {
+    "word": "---",
+    "start": 3.239,
+    "end": 3.332
+  },
+  {
+    "word": "gently,",
+    "start": 3.506,
+    "end": 4.342
+  },
+  {
+    "word": "the",
+    "start": 4.586,
+    "end": 4.69
+  },
+  {
+    "word": "way",
+    "start": 4.748,
+    "end": 4.911
+  },
+  {
+    "word": "dreams",
+    "start": 4.981,
+    "end": 5.492
+  },
+  {
+    "word": "shift.",
+    "start": 5.561,
+    "end": 6.235
+  },
+  {
+    "word": "The",
+    "start": 6.745,
+    "end": 6.861
+  },
+  {
+    "word": "walls",
+    "start": 6.92,
+    "end": 7.268
+  },
+  {
+    "word": "went",
+    "start": 7.326,
+    "end": 7.523
+  },
+  {
+    "word": "soft",
+    "start": 7.605,
+    "end": 8.011
+  },
+  {
+    "word": "at",
+    "start": 8.057,
+    "end": 8.127
+  },
+  {
+    "word": "the",
+    "start": 8.173,
+    "end": 8.243
+  },
+  {
+    "word": "edges.",
+    "start": 8.324,
+    "end": 8.986
+  },
+  {
+    "word": "And",
+    "start": 9.497,
+    "end": 9.683
+  },
+  {
+    "word": "suddenly",
+    "start": 9.776,
+    "end": 10.263
+  },
+  {
+    "word": "Azi",
+    "start": 10.344,
+    "end": 10.704
+  },
+  {
+    "word": "was",
+    "start": 10.751,
+    "end": 10.867
+  },
+  {
+    "word": "watching",
+    "start": 10.925,
+    "end": 11.273
+  },
+  {
+    "word": "breakfast",
+    "start": 11.331,
+    "end": 11.912
+  },
+  {
+    "word": "the",
+    "start": 11.981,
+    "end": 12.098
+  },
+  {
+    "word": "way",
+    "start": 12.156,
+    "end": 12.295
+  },
+  {
+    "word": "you",
+    "start": 12.353,
+    "end": 12.446
+  },
+  {
+    "word": "watch",
+    "start": 12.527,
+    "end": 12.794
+  },
+  {
+    "word": "something",
+    "start": 12.852,
+    "end": 13.247
+  },
+  {
+    "word": "from",
+    "start": 13.305,
+    "end": 13.456
+  },
+  {
+    "word": "outside",
+    "start": 13.514,
+    "end": 13.99
+  },
+  {
+    "word": "of",
+    "start": 14.025,
+    "end": 14.083
+  },
+  {
+    "word": "it",
+    "start": 14.153,
+    "end": 14.303
+  },
+  {
+    "word": "---",
+    "start": 14.547,
+    "end": 14.663
+  },
+  {
+    "word": "the",
+    "start": 14.838,
+    "end": 14.93
+  },
+  {
+    "word": "kitchen,",
+    "start": 14.988,
+    "end": 15.569
+  },
+  {
+    "word": "the",
+    "start": 15.685,
+    "end": 15.801
+  },
+  {
+    "word": "plate,",
+    "start": 15.859,
+    "end": 16.405
+  },
+  {
+    "word": "the",
+    "start": 16.649,
+    "end": 16.753
+  },
+  {
+    "word": "kale",
+    "start": 16.823,
+    "end": 17.252
+  },
+  {
+    "word": "from",
+    "start": 17.299,
+    "end": 17.45
+  },
+  {
+    "word": "the",
+    "start": 17.496,
+    "end": 17.566
+  },
+  {
+    "word": "garden,",
+    "start": 17.624,
+    "end": 18.274
+  },
+  {
+    "word": "Papa",
+    "start": 18.553,
+    "end": 18.878
+  },
+  {
+    "word": "going",
+    "start": 18.936,
+    "end": 19.226
+  },
+  {
+    "word": "quiet",
+    "start": 19.307,
+    "end": 19.76
+  },
+  {
+    "word": "and",
+    "start": 19.83,
+    "end": 19.923
+  },
+  {
+    "word": "patient,",
+    "start": 19.992,
+    "end": 20.77
+  },
+  {
+    "word": "and",
+    "start": 20.886,
+    "end": 21.061
+  },
+  {
+    "word": "Azi",
+    "start": 21.153,
+    "end": 21.571
+  },
+  {
+    "word": "with",
+    "start": 21.641,
+    "end": 21.792
+  },
+  {
+    "word": "his",
+    "start": 21.838,
+    "end": 21.966
+  },
+  {
+    "word": "arms",
+    "start": 22.024,
+    "end": 22.396
+  },
+  {
+    "word": "crossed.",
+    "start": 22.465,
+    "end": 23.127
+  },
+  {
+    "word": "He",
+    "start": 23.452,
+    "end": 23.58
+  },
+  {
+    "word": "watched",
+    "start": 23.65,
+    "end": 24.009
+  },
+  {
+    "word": "himself",
+    "start": 24.056,
+    "end": 24.485
+  },
+  {
+    "word": "say",
+    "start": 24.567,
+    "end": 24.915
+  },
+  {
+    "word": "\"I",
+    "start": 25.194,
+    "end": 25.461
+  },
+  {
+    "word": "can't",
+    "start": 25.577,
+    "end": 25.879
+  },
+  {
+    "word": "eat",
+    "start": 25.925,
+    "end": 26.088
+  },
+  {
+    "word": "it.\"",
+    "start": 26.157,
+    "end": 26.482
+  }
+]

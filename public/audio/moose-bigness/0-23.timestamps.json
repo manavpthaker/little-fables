@@ -1,0 +1,302 @@
+[
+  {
+    "word": "Its",
+    "start": 0.035,
+    "end": 0.221
+  },
+  {
+    "word": "legs",
+    "start": 0.29,
+    "end": 0.592
+  },
+  {
+    "word": "were",
+    "start": 0.639,
+    "end": 0.789
+  },
+  {
+    "word": "long",
+    "start": 0.848,
+    "end": 1.149
+  },
+  {
+    "word": "and",
+    "start": 1.242,
+    "end": 1.393
+  },
+  {
+    "word": "impossibly",
+    "start": 1.451,
+    "end": 2.125
+  },
+  {
+    "word": "still,",
+    "start": 2.183,
+    "end": 2.647
+  },
+  {
+    "word": "like",
+    "start": 2.682,
+    "end": 2.879
+  },
+  {
+    "word": "they",
+    "start": 2.902,
+    "end": 3.019
+  },
+  {
+    "word": "had",
+    "start": 3.053,
+    "end": 3.146
+  },
+  {
+    "word": "grown",
+    "start": 3.193,
+    "end": 3.448
+  },
+  {
+    "word": "roots",
+    "start": 3.529,
+    "end": 3.82
+  },
+  {
+    "word": "into",
+    "start": 3.878,
+    "end": 4.052
+  },
+  {
+    "word": "the",
+    "start": 4.122,
+    "end": 4.191
+  },
+  {
+    "word": "earth",
+    "start": 4.272,
+    "end": 4.528
+  },
+  {
+    "word": "and",
+    "start": 4.598,
+    "end": 4.725
+  },
+  {
+    "word": "weren't",
+    "start": 4.783,
+    "end": 5.016
+  },
+  {
+    "word": "planning",
+    "start": 5.05,
+    "end": 5.433
+  },
+  {
+    "word": "to",
+    "start": 5.492,
+    "end": 5.561
+  },
+  {
+    "word": "move",
+    "start": 5.642,
+    "end": 5.933
+  },
+  {
+    "word": "until",
+    "start": 5.979,
+    "end": 6.223
+  },
+  {
+    "word": "they",
+    "start": 6.269,
+    "end": 6.385
+  },
+  {
+    "word": "were",
+    "start": 6.42,
+    "end": 6.56
+  },
+  {
+    "word": "good",
+    "start": 6.606,
+    "end": 6.838
+  },
+  {
+    "word": "and",
+    "start": 6.885,
+    "end": 6.966
+  },
+  {
+    "word": "ready.",
+    "start": 7.047,
+    "end": 7.488
+  },
+  {
+    "word": "And",
+    "start": 7.512,
+    "end": 7.686
+  },
+  {
+    "word": "its",
+    "start": 7.755,
+    "end": 7.906
+  },
+  {
+    "word": "eyes",
+    "start": 7.976,
+    "end": 8.336
+  },
+  {
+    "word": "-",
+    "start": 8.545,
+    "end": 8.58
+  },
+  {
+    "word": "even",
+    "start": 8.905,
+    "end": 9.183
+  },
+  {
+    "word": "from",
+    "start": 9.253,
+    "end": 9.439
+  },
+  {
+    "word": "far",
+    "start": 9.532,
+    "end": 9.799
+  },
+  {
+    "word": "away,",
+    "start": 9.857,
+    "end": 10.356
+  },
+  {
+    "word": "even",
+    "start": 10.426,
+    "end": 10.716
+  },
+  {
+    "word": "through",
+    "start": 10.762,
+    "end": 11.018
+  },
+  {
+    "word": "the",
+    "start": 11.053,
+    "end": 11.122
+  },
+  {
+    "word": "window",
+    "start": 11.169,
+    "end": 11.505
+  },
+  {
+    "word": "glass",
+    "start": 11.575,
+    "end": 11.97
+  },
+  {
+    "word": "-",
+    "start": 12.086,
+    "end": 12.121
+  },
+  {
+    "word": "its",
+    "start": 12.19,
+    "end": 12.399
+  },
+  {
+    "word": "eyes",
+    "start": 12.469,
+    "end": 12.759
+  },
+  {
+    "word": "looked",
+    "start": 12.817,
+    "end": 13.05
+  },
+  {
+    "word": "ancient.",
+    "start": 13.108,
+    "end": 13.747
+  },
+  {
+    "word": "Like",
+    "start": 13.828,
+    "end": 14.037
+  },
+  {
+    "word": "they",
+    "start": 14.072,
+    "end": 14.188
+  },
+  {
+    "word": "had",
+    "start": 14.234,
+    "end": 14.35
+  },
+  {
+    "word": "seen",
+    "start": 14.408,
+    "end": 14.629
+  },
+  {
+    "word": "a",
+    "start": 14.687,
+    "end": 14.71
+  },
+  {
+    "word": "thousand",
+    "start": 14.791,
+    "end": 15.291
+  },
+  {
+    "word": "forests",
+    "start": 15.372,
+    "end": 15.883
+  },
+  {
+    "word": "grow.",
+    "start": 15.952,
+    "end": 16.359
+  },
+  {
+    "word": "Like",
+    "start": 16.568,
+    "end": 16.765
+  },
+  {
+    "word": "they",
+    "start": 16.788,
+    "end": 16.905
+  },
+  {
+    "word": "had",
+    "start": 16.939,
+    "end": 17.044
+  },
+  {
+    "word": "seen",
+    "start": 17.09,
+    "end": 17.299
+  },
+  {
+    "word": "a",
+    "start": 17.346,
+    "end": 17.381
+  },
+  {
+    "word": "thousand",
+    "start": 17.462,
+    "end": 17.961
+  },
+  {
+    "word": "forests",
+    "start": 18.042,
+    "end": 18.553
+  },
+  {
+    "word": "fall.",
+    "start": 18.634,
+    "end": 19.087
+  }
+]

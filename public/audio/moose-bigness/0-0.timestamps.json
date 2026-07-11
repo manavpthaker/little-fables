@@ -1,0 +1,297 @@
+[
+  {
+    "word": "The",
+    "start": 0.07,
+    "end": 0.163
+  },
+  {
+    "word": "farmhouse",
+    "start": 0.232,
+    "end": 0.801
+  },
+  {
+    "word": "at",
+    "start": 0.848,
+    "end": 0.952
+  },
+  {
+    "word": "Saranac",
+    "start": 1.01,
+    "end": 1.567
+  },
+  {
+    "word": "Lake",
+    "start": 1.649,
+    "end": 1.939
+  },
+  {
+    "word": "sat",
+    "start": 2.009,
+    "end": 2.31
+  },
+  {
+    "word": "at",
+    "start": 2.368,
+    "end": 2.45
+  },
+  {
+    "word": "the",
+    "start": 2.485,
+    "end": 2.566
+  },
+  {
+    "word": "edge",
+    "start": 2.682,
+    "end": 2.972
+  },
+  {
+    "word": "of",
+    "start": 3.007,
+    "end": 3.077
+  },
+  {
+    "word": "everything",
+    "start": 3.193,
+    "end": 3.808
+  },
+  {
+    "word": "wild.",
+    "start": 3.924,
+    "end": 4.574
+  },
+  {
+    "word": "It",
+    "start": 4.899,
+    "end": 5.027
+  },
+  {
+    "word": "was",
+    "start": 5.074,
+    "end": 5.19
+  },
+  {
+    "word": "the",
+    "start": 5.236,
+    "end": 5.306
+  },
+  {
+    "word": "kind",
+    "start": 5.352,
+    "end": 5.596
+  },
+  {
+    "word": "of",
+    "start": 5.654,
+    "end": 5.712
+  },
+  {
+    "word": "place",
+    "start": 5.782,
+    "end": 6.095
+  },
+  {
+    "word": "where",
+    "start": 6.13,
+    "end": 6.269
+  },
+  {
+    "word": "the",
+    "start": 6.304,
+    "end": 6.374
+  },
+  {
+    "word": "mountains",
+    "start": 6.42,
+    "end": 6.943
+  },
+  {
+    "word": "came",
+    "start": 7.012,
+    "end": 7.291
+  },
+  {
+    "word": "right",
+    "start": 7.361,
+    "end": 7.639
+  },
+  {
+    "word": "up",
+    "start": 7.686,
+    "end": 7.79
+  },
+  {
+    "word": "to",
+    "start": 7.848,
+    "end": 7.906
+  },
+  {
+    "word": "the",
+    "start": 7.976,
+    "end": 8.046
+  },
+  {
+    "word": "windows",
+    "start": 8.104,
+    "end": 8.649
+  },
+  {
+    "word": "and",
+    "start": 8.707,
+    "end": 8.824
+  },
+  {
+    "word": "peeked",
+    "start": 8.916,
+    "end": 9.23
+  },
+  {
+    "word": "inside,",
+    "start": 9.276,
+    "end": 10.054
+  },
+  {
+    "word": "where",
+    "start": 10.228,
+    "end": 10.414
+  },
+  {
+    "word": "the",
+    "start": 10.449,
+    "end": 10.519
+  },
+  {
+    "word": "trees",
+    "start": 10.565,
+    "end": 10.948
+  },
+  {
+    "word": "whispered",
+    "start": 11.006,
+    "end": 11.424
+  },
+  {
+    "word": "secrets",
+    "start": 11.494,
+    "end": 11.958
+  },
+  {
+    "word": "to",
+    "start": 12.016,
+    "end": 12.098
+  },
+  {
+    "word": "each",
+    "start": 12.179,
+    "end": 12.33
+  },
+  {
+    "word": "other",
+    "start": 12.376,
+    "end": 12.597
+  },
+  {
+    "word": "in",
+    "start": 12.655,
+    "end": 12.736
+  },
+  {
+    "word": "voices",
+    "start": 12.806,
+    "end": 13.247
+  },
+  {
+    "word": "too",
+    "start": 13.317,
+    "end": 13.502
+  },
+  {
+    "word": "low",
+    "start": 13.595,
+    "end": 13.827
+  },
+  {
+    "word": "for",
+    "start": 13.909,
+    "end": 14.048
+  },
+  {
+    "word": "grown-ups",
+    "start": 14.106,
+    "end": 14.594
+  },
+  {
+    "word": "to",
+    "start": 14.641,
+    "end": 14.71
+  },
+  {
+    "word": "hear,",
+    "start": 14.803,
+    "end": 15.279
+  },
+  {
+    "word": "and",
+    "start": 15.407,
+    "end": 15.546
+  },
+  {
+    "word": "where",
+    "start": 15.604,
+    "end": 15.802
+  },
+  {
+    "word": "the",
+    "start": 15.836,
+    "end": 15.906
+  },
+  {
+    "word": "sky",
+    "start": 15.964,
+    "end": 16.37
+  },
+  {
+    "word": "turned",
+    "start": 16.452,
+    "end": 16.777
+  },
+  {
+    "word": "colors",
+    "start": 16.846,
+    "end": 17.264
+  },
+  {
+    "word": "at",
+    "start": 17.322,
+    "end": 17.427
+  },
+  {
+    "word": "sunset",
+    "start": 17.497,
+    "end": 18.1
+  },
+  {
+    "word": "that",
+    "start": 18.158,
+    "end": 18.333
+  },
+  {
+    "word": "didn't",
+    "start": 18.391,
+    "end": 18.669
+  },
+  {
+    "word": "have",
+    "start": 18.727,
+    "end": 18.901
+  },
+  {
+    "word": "names",
+    "start": 18.971,
+    "end": 19.331
+  },
+  {
+    "word": "yet.",
+    "start": 19.389,
+    "end": 19.749
+  }
+]

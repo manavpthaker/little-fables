@@ -1,0 +1,292 @@
+[
+  {
+    "word": "A",
+    "start": 0.035,
+    "end": 0.081
+  },
+  {
+    "word": "long",
+    "start": 0.197,
+    "end": 0.569
+  },
+  {
+    "word": "quiet",
+    "start": 0.685,
+    "end": 1.219
+  },
+  {
+    "word": "stretched",
+    "start": 1.335,
+    "end": 1.881
+  },
+  {
+    "word": "through",
+    "start": 1.95,
+    "end": 2.218
+  },
+  {
+    "word": "the",
+    "start": 2.252,
+    "end": 2.322
+  },
+  {
+    "word": "room.",
+    "start": 2.38,
+    "end": 2.868
+  },
+  {
+    "word": "Azi",
+    "start": 3.309,
+    "end": 3.75
+  },
+  {
+    "word": "sat",
+    "start": 3.82,
+    "end": 4.075
+  },
+  {
+    "word": "with",
+    "start": 4.145,
+    "end": 4.342
+  },
+  {
+    "word": "it.",
+    "start": 4.4,
+    "end": 4.748
+  },
+  {
+    "word": "Not",
+    "start": 5.074,
+    "end": 5.283
+  },
+  {
+    "word": "comfortable,",
+    "start": 5.352,
+    "end": 6.084
+  },
+  {
+    "word": "not",
+    "start": 6.258,
+    "end": 6.478
+  },
+  {
+    "word": "uncomfortable.",
+    "start": 6.56,
+    "end": 7.5
+  },
+  {
+    "word": "Just",
+    "start": 7.941,
+    "end": 8.324
+  },
+  {
+    "word": "true.",
+    "start": 8.44,
+    "end": 9.067
+  },
+  {
+    "word": "The",
+    "start": 9.392,
+    "end": 9.52
+  },
+  {
+    "word": "way",
+    "start": 9.578,
+    "end": 9.776
+  },
+  {
+    "word": "things",
+    "start": 9.857,
+    "end": 10.194
+  },
+  {
+    "word": "are",
+    "start": 10.24,
+    "end": 10.356
+  },
+  {
+    "word": "true",
+    "start": 10.391,
+    "end": 10.623
+  },
+  {
+    "word": "at",
+    "start": 10.658,
+    "end": 10.739
+  },
+  {
+    "word": "midnight,",
+    "start": 10.809,
+    "end": 11.436
+  },
+  {
+    "word": "when",
+    "start": 11.505,
+    "end": 11.668
+  },
+  {
+    "word": "there's",
+    "start": 11.703,
+    "end": 11.947
+  },
+  {
+    "word": "no",
+    "start": 12.005,
+    "end": 12.167
+  },
+  {
+    "word": "noise",
+    "start": 12.26,
+    "end": 12.597
+  },
+  {
+    "word": "left",
+    "start": 12.655,
+    "end": 12.91
+  },
+  {
+    "word": "to",
+    "start": 12.992,
+    "end": 13.084
+  },
+  {
+    "word": "hide",
+    "start": 13.154,
+    "end": 13.375
+  },
+  {
+    "word": "behind.",
+    "start": 13.41,
+    "end": 14.048
+  },
+  {
+    "word": "\"I'm",
+    "start": 14.327,
+    "end": 14.605
+  },
+  {
+    "word": "sorry",
+    "start": 14.663,
+    "end": 14.954
+  },
+  {
+    "word": "about",
+    "start": 15,
+    "end": 15.209
+  },
+  {
+    "word": "Mama's",
+    "start": 15.256,
+    "end": 15.557
+  },
+  {
+    "word": "face,\"",
+    "start": 15.604,
+    "end": 16.149
+  },
+  {
+    "word": "he",
+    "start": 16.3,
+    "end": 16.382
+  },
+  {
+    "word": "said.",
+    "start": 16.451,
+    "end": 16.916
+  },
+  {
+    "word": "Not",
+    "start": 17.16,
+    "end": 17.392
+  },
+  {
+    "word": "to",
+    "start": 17.438,
+    "end": 17.508
+  },
+  {
+    "word": "the",
+    "start": 17.578,
+    "end": 17.647
+  },
+  {
+    "word": "Coocoo.",
+    "start": 17.694,
+    "end": 18.332
+  },
+  {
+    "word": "Just",
+    "start": 18.658,
+    "end": 18.959
+  },
+  {
+    "word": "to",
+    "start": 19.017,
+    "end": 19.087
+  },
+  {
+    "word": "the",
+    "start": 19.168,
+    "end": 19.238
+  },
+  {
+    "word": "room.",
+    "start": 19.296,
+    "end": 19.819
+  },
+  {
+    "word": "To",
+    "start": 20.028,
+    "end": 20.155
+  },
+  {
+    "word": "the",
+    "start": 20.225,
+    "end": 20.306
+  },
+  {
+    "word": "night.",
+    "start": 20.364,
+    "end": 20.875
+  },
+  {
+    "word": "To",
+    "start": 21.119,
+    "end": 21.258
+  },
+  {
+    "word": "wherever",
+    "start": 21.339,
+    "end": 21.874
+  },
+  {
+    "word": "sorry",
+    "start": 21.955,
+    "end": 22.35
+  },
+  {
+    "word": "goes",
+    "start": 22.419,
+    "end": 22.779
+  },
+  {
+    "word": "when",
+    "start": 22.849,
+    "end": 23.011
+  },
+  {
+    "word": "you",
+    "start": 23.058,
+    "end": 23.151
+  },
+  {
+    "word": "mean",
+    "start": 23.232,
+    "end": 23.441
+  },
+  {
+    "word": "it.",
+    "start": 23.511,
+    "end": 23.766
+  }
+]

@@ -231,6 +231,7 @@ export function BookComplete({
   const [recState, setRecState] = useState<'idle' | 'recording' | 'saving' | 'saved'>('idle')
   const [secs, setSecs] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [buddyReply, setBuddyReply] = useState<string | null>(null)
 
   const recorderRef = useRef<RecorderHandle | null>(null)
   const speakRef = useRef<SpeakHandle | null>(null)
@@ -289,14 +290,69 @@ export function BookComplete({
         blob,
       }
       await saveRetell(retell)
-      // Fire-and-forget upload.
-      void pushRetell(retell as unknown as Parameters<typeof pushRetell>[0], blob)
       setRecState('saved')
+
+      // ---- Kick off transcription + buddy response (fire-and-forget, layered) ----
+      // 1) Upload the blob to /api/listen for a transcript. If unavailable,
+      //    push the retell as-is and let the buddy speak a canned response.
+      // 2) Store the transcript alongside the retell, then push to sync.
+      // 3) Send the transcript to /api/respond mode:'retell' and speak the reply
+      //    for a warm, specific "you remembered X" line.
+      ;(async () => {
+        let transcript: string | undefined
+        try {
+          const form = new FormData()
+          form.append('audio', blob, `retell.${blob.type.split('/')[1] || 'webm'}`)
+          const res = await fetch('/api/listen', { method: 'POST', body: form })
+          if (res.ok) {
+            const data = (await res.json()) as { transcript?: string }
+            if (data.transcript && data.transcript.trim().length > 0) transcript = data.transcript
+          }
+        } catch {
+          /* offline / not configured — proceed without transcript */
+        }
+
+        const finalRetell = { ...retell, transcript }
+        void pushRetell(finalRetell as unknown as Parameters<typeof pushRetell>[0], blob)
+
+        // Buddy response — always try, so the child hears a warm reply even
+        // without a transcript (the API gets a placeholder in that case).
+        let reply: string | null = null
+        try {
+          const context = {
+            book: { id: book.id, title: book.title, vocab: book.vocab },
+            chapterTitles: book.chapters.map((c) => c.title),
+          }
+          const res = await fetch('/api/respond', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              mode: 'retell',
+              transcript: transcript ?? '(no transcript available)',
+              context,
+            }),
+          })
+          if (res.ok) {
+            const data = (await res.json()) as { buddyReply?: string }
+            if (data.buddyReply && data.buddyReply.trim().length > 0) reply = data.buddyReply
+          }
+        } catch {
+          /* offline / not configured */
+        }
+        if (!reply) {
+          reply = 'You told that back like a real storyteller. I heard every part.'
+        }
+        setBuddyReply(reply)
+        speakRef.current?.cancel()
+        speakRef.current = speak(reply)
+      })()
+
       // See if a badge was earned by this retell.
       try {
         const granted = await checkBadges({ bookCompletedId: book.id })
         if (granted.length > 0) {
-          setTimeout(() => router.push(`/read/badges/earn/${granted[0]}`), 900)
+          // Delay a beat so the buddy's reply gets to play first.
+          setTimeout(() => router.push(`/read/badges/earn/${granted[0]}`), 2400)
         }
       } catch {
         /* ignore */
@@ -441,16 +497,44 @@ export function BookComplete({
                   className="lf-pop-in"
                   style={{
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     gap: 12,
-                    background: 'var(--lf-pastel-mint)',
-                    borderRadius: 14,
-                    padding: '16px 22px',
-                    font: '700 18px var(--font-body)',
-                    color: 'var(--lf-espresso)',
+                    maxWidth: 520,
                   }}
                 >
-                  <span aria-hidden="true" style={{ fontSize: 26 }}>💌</span> Saved for Mom and Dad!
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 12,
+                      background: 'var(--lf-pastel-mint)',
+                      borderRadius: 14,
+                      padding: '16px 22px',
+                      font: '700 18px var(--font-body)',
+                      color: 'var(--lf-espresso)',
+                    }}
+                  >
+                    <span aria-hidden="true" style={{ fontSize: 26 }}>💌</span> Saved for Mom and Dad!
+                  </div>
+                  {buddyReply && (
+                    <div
+                      className="lf-screen-in"
+                      style={{
+                        background: 'var(--lf-cream-card)',
+                        border: '1.5px solid var(--lf-cream-line)',
+                        borderRadius: 14,
+                        padding: '14px 18px',
+                        font: '700 16px/1.4 var(--font-body)',
+                        color: 'var(--lf-espresso)',
+                        textAlign: 'center',
+                        boxShadow: 'var(--shadow-warm)',
+                      }}
+                    >
+                      <span aria-hidden="true" style={{ fontSize: 18, marginRight: 6 }}>🔊</span>
+                      {buddyReply}
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>

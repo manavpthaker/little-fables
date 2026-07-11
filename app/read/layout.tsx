@@ -4,13 +4,13 @@ import { SwApp } from './SwApp'
 import './read.css'
 
 export const metadata: Metadata = {
-  title: "Azad's Story World",
-  description: 'Interactive stories made just for Azad',
+  title: 'Little Fables',
+  description: 'Interactive chapter books, buddies, and star words — made for Azad.',
   manifest: '/manifest.webmanifest',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: "Azad's Stories",
+    title: 'Little Fables',
   },
   icons: {
     apple: '/icons/icon-192.png',

@@ -1,0 +1,292 @@
+[
+  {
+    "word": "In",
+    "start": 0.035,
+    "end": 0.139
+  },
+  {
+    "word": "the",
+    "start": 0.186,
+    "end": 0.255
+  },
+  {
+    "word": "middle",
+    "start": 0.313,
+    "end": 0.592
+  },
+  {
+    "word": "of",
+    "start": 0.627,
+    "end": 0.685
+  },
+  {
+    "word": "the",
+    "start": 0.731,
+    "end": 0.801
+  },
+  {
+    "word": "clearing",
+    "start": 0.848,
+    "end": 1.242
+  },
+  {
+    "word": "stood",
+    "start": 1.324,
+    "end": 1.579
+  },
+  {
+    "word": "Bramble",
+    "start": 1.637,
+    "end": 2.125
+  },
+  {
+    "word": "and",
+    "start": 2.171,
+    "end": 2.287
+  },
+  {
+    "word": "Mose,",
+    "start": 2.357,
+    "end": 2.879
+  },
+  {
+    "word": "with",
+    "start": 2.937,
+    "end": 3.111
+  },
+  {
+    "word": "their",
+    "start": 3.146,
+    "end": 3.297
+  },
+  {
+    "word": "backs",
+    "start": 3.344,
+    "end": 3.657
+  },
+  {
+    "word": "turned.",
+    "start": 3.727,
+    "end": 4.423
+  },
+  {
+    "word": "The",
+    "start": 4.865,
+    "end": 5.004
+  },
+  {
+    "word": "bunny",
+    "start": 5.074,
+    "end": 5.352
+  },
+  {
+    "word": "looked",
+    "start": 5.433,
+    "end": 5.689
+  },
+  {
+    "word": "at",
+    "start": 5.724,
+    "end": 5.793
+  },
+  {
+    "word": "the",
+    "start": 5.828,
+    "end": 5.898
+  },
+  {
+    "word": "fox.",
+    "start": 5.979,
+    "end": 6.594
+  },
+  {
+    "word": "The",
+    "start": 6.92,
+    "end": 7.047
+  },
+  {
+    "word": "fox",
+    "start": 7.14,
+    "end": 7.5
+  },
+  {
+    "word": "looked",
+    "start": 7.593,
+    "end": 7.86
+  },
+  {
+    "word": "at",
+    "start": 7.895,
+    "end": 7.964
+  },
+  {
+    "word": "the",
+    "start": 8.011,
+    "end": 8.081
+  },
+  {
+    "word": "deer.",
+    "start": 8.15,
+    "end": 8.719
+  },
+  {
+    "word": "None",
+    "start": 9.16,
+    "end": 9.439
+  },
+  {
+    "word": "of",
+    "start": 9.474,
+    "end": 9.532
+  },
+  {
+    "word": "them",
+    "start": 9.601,
+    "end": 9.799
+  },
+  {
+    "word": "had",
+    "start": 9.868,
+    "end": 10.008
+  },
+  {
+    "word": "ever",
+    "start": 10.066,
+    "end": 10.275
+  },
+  {
+    "word": "stood",
+    "start": 10.333,
+    "end": 10.612
+  },
+  {
+    "word": "so",
+    "start": 10.693,
+    "end": 10.879
+  },
+  {
+    "word": "close",
+    "start": 10.971,
+    "end": 11.285
+  },
+  {
+    "word": "to",
+    "start": 11.331,
+    "end": 11.401
+  },
+  {
+    "word": "a",
+    "start": 11.494,
+    "end": 11.529
+  },
+  {
+    "word": "bear",
+    "start": 11.587,
+    "end": 11.807
+  },
+  {
+    "word": "before.",
+    "start": 11.877,
+    "end": 12.574
+  },
+  {
+    "word": "Their",
+    "start": 12.899,
+    "end": 13.131
+  },
+  {
+    "word": "hearts",
+    "start": 13.212,
+    "end": 13.526
+  },
+  {
+    "word": "were",
+    "start": 13.595,
+    "end": 13.758
+  },
+  {
+    "word": "thumping.",
+    "start": 13.816,
+    "end": 14.42
+  },
+  {
+    "word": "Their",
+    "start": 14.536,
+    "end": 14.756
+  },
+  {
+    "word": "legs",
+    "start": 14.826,
+    "end": 15.186
+  },
+  {
+    "word": "wanted",
+    "start": 15.267,
+    "end": 15.558
+  },
+  {
+    "word": "to",
+    "start": 15.592,
+    "end": 15.662
+  },
+  {
+    "word": "run.",
+    "start": 15.778,
+    "end": 16.312
+  },
+  {
+    "word": "But",
+    "start": 16.753,
+    "end": 16.928
+  },
+  {
+    "word": "they",
+    "start": 16.962,
+    "end": 17.113
+  },
+  {
+    "word": "stayed.",
+    "start": 17.206,
+    "end": 17.938
+  },
+  {
+    "word": "\"BOO!\"",
+    "start": 18.634,
+    "end": 19.54
+  },
+  {
+    "word": "squeaked",
+    "start": 19.818,
+    "end": 20.236
+  },
+  {
+    "word": "the",
+    "start": 20.271,
+    "end": 20.341
+  },
+  {
+    "word": "bunny.",
+    "start": 20.387,
+    "end": 20.933
+  },
+  {
+    "word": "\"BOO!\"",
+    "start": 21.316,
+    "end": 22.256
+  },
+  {
+    "word": "yipped",
+    "start": 22.64,
+    "end": 22.988
+  },
+  {
+    "word": "the",
+    "start": 23.058,
+    "end": 23.162
+  },
+  {
+    "word": "fox.",
+    "start": 23.255,
+    "end": 23.905
+  }
+]

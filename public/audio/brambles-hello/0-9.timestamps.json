@@ -1,0 +1,282 @@
+[
+  {
+    "word": "The",
+    "start": 0.151,
+    "end": 0.255
+  },
+  {
+    "word": "grizzly's",
+    "start": 0.313,
+    "end": 0.801
+  },
+  {
+    "word": "ears",
+    "start": 0.859,
+    "end": 1.091
+  },
+  {
+    "word": "went",
+    "start": 1.138,
+    "end": 1.335
+  },
+  {
+    "word": "up.",
+    "start": 1.393,
+    "end": 1.753
+  },
+  {
+    "word": "Slowly",
+    "start": 2.357,
+    "end": 2.995
+  },
+  {
+    "word": "--",
+    "start": 3.17,
+    "end": 3.216
+  },
+  {
+    "word": "so",
+    "start": 3.39,
+    "end": 3.715
+  },
+  {
+    "word": "slowly",
+    "start": 3.831,
+    "end": 4.423
+  },
+  {
+    "word": "--",
+    "start": 4.574,
+    "end": 4.621
+  },
+  {
+    "word": "he",
+    "start": 4.772,
+    "end": 4.853
+  },
+  {
+    "word": "sat",
+    "start": 4.934,
+    "end": 5.178
+  },
+  {
+    "word": "down",
+    "start": 5.236,
+    "end": 5.457
+  },
+  {
+    "word": "on",
+    "start": 5.515,
+    "end": 5.596
+  },
+  {
+    "word": "the",
+    "start": 5.642,
+    "end": 5.712
+  },
+  {
+    "word": "moss,",
+    "start": 5.759,
+    "end": 6.281
+  },
+  {
+    "word": "until",
+    "start": 6.351,
+    "end": 6.641
+  },
+  {
+    "word": "his",
+    "start": 6.687,
+    "end": 6.792
+  },
+  {
+    "word": "eyes",
+    "start": 6.873,
+    "end": 7.129
+  },
+  {
+    "word": "were",
+    "start": 7.187,
+    "end": 7.338
+  },
+  {
+    "word": "almost",
+    "start": 7.396,
+    "end": 7.86
+  },
+  {
+    "word": "level",
+    "start": 7.953,
+    "end": 8.255
+  },
+  {
+    "word": "with",
+    "start": 8.301,
+    "end": 8.44
+  },
+  {
+    "word": "Bramble's",
+    "start": 8.487,
+    "end": 8.963
+  },
+  {
+    "word": "eyes.",
+    "start": 9.033,
+    "end": 9.636
+  },
+  {
+    "word": "\"Hello,",
+    "start": 10.147,
+    "end": 10.751
+  },
+  {
+    "word": "little",
+    "start": 10.786,
+    "end": 11.064
+  },
+  {
+    "word": "one,\"",
+    "start": 11.122,
+    "end": 11.598
+  },
+  {
+    "word": "the",
+    "start": 11.807,
+    "end": 11.9
+  },
+  {
+    "word": "grizzly",
+    "start": 11.958,
+    "end": 12.33
+  },
+  {
+    "word": "said.",
+    "start": 12.388,
+    "end": 12.887
+  },
+  {
+    "word": "His",
+    "start": 13.212,
+    "end": 13.398
+  },
+  {
+    "word": "voice",
+    "start": 13.468,
+    "end": 13.769
+  },
+  {
+    "word": "was",
+    "start": 13.816,
+    "end": 13.955
+  },
+  {
+    "word": "deep",
+    "start": 14.036,
+    "end": 14.338
+  },
+  {
+    "word": "and",
+    "start": 14.408,
+    "end": 14.512
+  },
+  {
+    "word": "warm,",
+    "start": 14.605,
+    "end": 15.151
+  },
+  {
+    "word": "like",
+    "start": 15.221,
+    "end": 15.43
+  },
+  {
+    "word": "the",
+    "start": 15.464,
+    "end": 15.534
+  },
+  {
+    "word": "inside",
+    "start": 15.615,
+    "end": 16.149
+  },
+  {
+    "word": "of",
+    "start": 16.184,
+    "end": 16.242
+  },
+  {
+    "word": "a",
+    "start": 16.3,
+    "end": 16.324
+  },
+  {
+    "word": "hollow",
+    "start": 16.405,
+    "end": 16.742
+  },
+  {
+    "word": "log",
+    "start": 16.823,
+    "end": 17.125
+  },
+  {
+    "word": "on",
+    "start": 17.206,
+    "end": 17.299
+  },
+  {
+    "word": "a",
+    "start": 17.357,
+    "end": 17.38
+  },
+  {
+    "word": "sunny",
+    "start": 17.461,
+    "end": 17.763
+  },
+  {
+    "word": "day.",
+    "start": 17.833,
+    "end": 18.46
+  },
+  {
+    "word": "Bramble",
+    "start": 18.901,
+    "end": 19.377
+  },
+  {
+    "word": "tried",
+    "start": 19.412,
+    "end": 19.737
+  },
+  {
+    "word": "to",
+    "start": 19.772,
+    "end": 19.83
+  },
+  {
+    "word": "speak",
+    "start": 19.899,
+    "end": 20.155
+  },
+  {
+    "word": "again.",
+    "start": 20.213,
+    "end": 20.689
+  },
+  {
+    "word": "He",
+    "start": 20.84,
+    "end": 20.956
+  },
+  {
+    "word": "squeaked",
+    "start": 21.037,
+    "end": 21.49
+  },
+  {
+    "word": "instead.",
+    "start": 21.537,
+    "end": 22.268
+  }
+]
