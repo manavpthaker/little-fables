@@ -6,12 +6,15 @@ import type { Book, Chapter, ComfortRitual, MysteryWord, Page, SkillTag, VocabWo
 import pack000 from '../../content/packs/pack-000-family-originals.json'
 
 // Pack JSON shape (pre-schema for v2, normalized on load):
-type PackScene = { bg?: string; emojis?: string[]; image?: string }
+// v3.2: page `scene` is a semantic key (string) OR null. The v2 {bg, emojis,
+// image} presentation blob is gone.
 type PackAsk = { question: string; answers?: string[]; praise: string; hint: string; skill: string }
 type PackChoice = { prompt: string; options: Array<{ label: string; emoji: string; keywords?: string[] }> }
 type PackPage = {
   text: string
-  scene?: PackScene
+  scene?: string | null
+  /** v3.2: real illustration path (starters only — pack-000 has none yet). */
+  img?: string
   ask?: PackAsk
   choice?: PackChoice
   breathe?: boolean
@@ -46,30 +49,59 @@ type PackBook = {
 }
 type Pack = { pack: string; note?: string; stories: PackBook[] }
 
-// ---------- wash inference from linear-gradient hex ----------
-// The pack stories store a `scene.bg` as a CSS linear-gradient. The v2 handoff
-// UI expects a `wash` key ("canyon", "sunset", "meadow"…). Rather than parse
-// gradients on every render, we map the pack colors to the nearest wash.
-function washFromBg(bg?: string): WashKey {
-  if (!bg) return 'meadow'
-  const lower = bg.toLowerCase()
-  // orange/amber → sunset
-  if (/#f97316|#fbbf24|#fb7185/.test(lower) && !/#7c3aed|#4338ca/.test(lower)) return 'sunset'
-  // purple/indigo → lilac
-  if (/#7c3aed|#4338ca|#818cf8|#a78bfa/.test(lower)) return 'lilac'
-  // navy/deep-blue → canyon
-  if (/#1e3a8a|#0f172a|#1e1b4b|#312e81/.test(lower)) return 'canyon'
-  // pink → blush
-  if (/#f0abfc|#fb7185|#ec4899/.test(lower)) return 'blush'
-  // teal/mint → meadow
-  if (/#a7f3d0|#34d399|#10b981|#dfeedd/.test(lower)) return 'meadow'
-  // sky/light-blue → river
-  if (/#38bdf8|#93aebd|#93c5fd/.test(lower)) return 'river'
-  // snow-white/cool → snow
-  if (/#f8fafc|#fffdf7|#fbf4e6|#f0f9ff/.test(lower)) return 'snow'
-  // honey/warm-cream → honey
-  if (/#fde8c8|#fbbf24|#fef3c7|#d9a05b/.test(lower)) return 'honey'
-  return 'meadow'
+// ---------- wash inference from semantic scene key ----------
+// v3.2: pack stories store a semantic scene key ('bus', 'bear-hollow', ...).
+// The v2 handoff UI still expects a `wash` key ('canyon', 'sunset', 'meadow'…).
+// This mapping is best-effort: it picks a mood-matching wash so pages without a
+// drawn scene component still land on a coherent color. Missing/null → meadow.
+const SCENE_KEY_TO_WASH: Record<string, WashKey> = {
+  // night / bedroom / winter → snow
+  'night': 'snow',
+  'bedroom-night': 'snow',
+  'bedroom': 'snow',
+  'winter-night': 'snow',
+  'christmas-night': 'snow',
+  'sleepy': 'snow',
+  'moon': 'snow',
+  'moon-window': 'snow',
+  'dawn': 'snow',
+  'stars': 'snow',
+  // outdoor greens → meadow
+  'forest': 'meadow',
+  'bear-hollow': 'meadow',
+  'bramble-quiet': 'meadow',
+  'farm': 'meadow',
+  'meadow': 'meadow',
+  'garden': 'meadow',
+  'neighborhood': 'meadow',
+  // warm household / celebration → sunset
+  'kitchen-warm': 'sunset',
+  'celebration': 'sunset',
+  'home-rest': 'sunset',
+  // amber travel routes → honey
+  'bus': 'honey',
+  'bus-detour': 'honey',
+  'village-lit': 'honey',
+  // deep-blue skies / space → canyon
+  'train': 'canyon',
+  'star-garage': 'canyon',
+  'launch': 'canyon',
+  'space': 'canyon',
+  'night-crossing': 'canyon',
+  // playful mid-tones → sunset
+  'zoomtown': 'sunset',
+  'wobbly-bridge': 'sunset',
+  'crossing': 'sunset',
+  // introspective → blush / lilac
+  'belly-breath': 'blush',
+  'web': 'meadow',
+  'mirror': 'lilac',
+  'courage': 'lilac',
+  'playroom': 'sunset',
+}
+function washFromKey(key?: string | null): WashKey {
+  if (!key) return 'meadow'
+  return SCENE_KEY_TO_WASH[key] ?? 'meadow'
 }
 
 function normalizeVocab(v: PackBook['vocab']): VocabWord[] {
@@ -84,17 +116,19 @@ function normalizeVocab(v: PackBook['vocab']): VocabWord[] {
 }
 
 function normalizePage(pp: PackPage, defaultWash: WashKey, bookVocab: VocabWord[]): Page {
-  const wash = washFromBg(pp.scene?.bg) || defaultWash
+  const wash = washFromKey(pp.scene) || defaultWash
   // Auto-pick a star word for this page if any vocab appears in the text.
   const star =
     pp.star ??
     bookVocab.find((v) => v.word && new RegExp(`\\b${v.word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(pp.text))?.word
+  // v3.2: emojis are gone from the pack contract. The `emojis` field on the
+  // normalized Page is left undefined so downstream consumers that still read
+  // it (kid-app fallback illustrator) simply see nothing to paint.
   return {
     text: pp.text,
     wash,
-    emojis: pp.scene?.emojis,
-    img: pp.scene?.image,
-    scene: pp.scene,
+    img: pp.img,
+    scene: pp.scene ?? null,
     ask: pp.ask
       ? {
           skill: pp.ask.skill,
@@ -113,7 +147,9 @@ function normalizePage(pp: PackPage, defaultWash: WashKey, bookVocab: VocabWord[
 
 function normalizeBook(b: PackBook): Book {
   const vocab = normalizeVocab(b.vocab)
-  const bookWash = washFromBg(b.coverBg) ?? 'meadow'
+  // v3.2: pack no longer emits coverBg. Fall back on meadow — Agent B's
+  // backfill can lay in a real cover wash later.
+  const bookWash: WashKey = 'meadow'
   const chapters: Chapter[] = b.chapters
     ? b.chapters.map((c) => ({
         title: c.title,

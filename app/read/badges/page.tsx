@@ -5,7 +5,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { CircleBtn, KidScreen, PillNav } from '../components'
+import { DrawnCircleBtn, KidScreen, BackArrowIcon } from '../art'
 import { BADGES } from '@/lib/read/badges'
 import { loadBadges } from '@/lib/read/storage'
 import { cp } from '@/lib/read/buddies'
@@ -103,9 +103,9 @@ export default function BadgeShelfPage() {
       >
         <header style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '24px 32px 0' }}>
           <Link href="/read" aria-label="Back home" style={{ textDecoration: 'none' }}>
-            <CircleBtn label="Back home" size={52}>
-              ‹
-            </CircleBtn>
+            <DrawnCircleBtn label="Back home" size={52}>
+              <BackArrowIcon size={26} />
+            </DrawnCircleBtn>
           </Link>
           <div>
             <h1 style={{ margin: 0, font: '700 32px var(--font-display)' }}>My badges</h1>
@@ -189,7 +189,6 @@ export default function BadgeShelfPage() {
           </div>
         </div>
 
-        <PillNav active="home" />
       </div>
     </KidScreen>
   )

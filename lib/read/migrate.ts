@@ -1,9 +1,13 @@
-// v1 → v2 migration.
+// v1 → v2 → v3.2 migration.
 // v1 Story: { id, title, coverEmoji, coverBg, coverImage?, status, teachingGoals,
 //   vocab: string[] | {word,meaning}[], pages: [{ text, scene:{bg,emojis,image?},
 //   ask?, choice? }], retellPrompts, source, createdAt, idea?, by? }
 // v2 Book:  { id, title, kind:'quick', chapters: [{ title:'', pages, hook? }],
 //   vocab:{word,meaning}[], teachingGoals, retellPrompts, ... }
+// v3.2 scrub: Page.scene changes from { bg, emojis, image } → semantic key
+// (string) OR null. Legacy inputs are dropped: gradients+emojis are presentation
+// metadata, not story data. Any `image` on legacy scenes lifts to page.img so
+// real illustrations aren't lost.
 
 import type {
   Book,
@@ -30,7 +34,12 @@ type LegacyAsk = {
 }
 type LegacyPage = {
   text: string
-  scene?: LegacyScene
+  /** v1 legacy scene blob (bg + emojis + image). v3.2 also accepts a plain
+   *  string as the semantic scene key. Either shape passes through normalizePage. */
+  scene?: LegacyScene | string | null
+  /** v3.2: top-level image path (starters were flipped to this shape). */
+  img?: string
+  emojis?: string[]
   ask?: LegacyAsk
   choice?: LegacyChoice
   bleed?: boolean
@@ -76,11 +85,17 @@ function normalizePage(p: LegacyPage): Page {
         })),
       }
     : undefined
+  // v3.2: scene becomes a semantic key string (or null). Legacy {bg,emojis,image}
+  // is dropped; only the image path lifts to page.img.
+  const scene = typeof p.scene === 'string' ? p.scene : null
+  const legacyImage = typeof p.scene === 'object' && p.scene ? p.scene.image : undefined
   return {
     text: p.text,
-    scene: p.scene,
-    emojis: p.scene?.emojis,
-    img: p.scene?.image,
+    scene,
+    // Page.emojis intentionally omitted — the reader no longer paints emoji
+    // scenes. The Page type still declares the field so downstream callers
+    // that read `page.emojis` compile; the value here is undefined.
+    img: p.img ?? legacyImage,
     fullBleed: p.bleed,
     ask: p.ask
       ? {
@@ -139,7 +154,12 @@ export function bookToLegacy(book: Book): LegacyStory & { source: 'starter' | 'g
     vocab: book.vocab,
     pages: pages.map((p) => ({
       text: p.text,
-      scene: p.scene ?? { bg: 'linear-gradient(160deg,#38bdf8,#a7f3d0)', emojis: p.emojis ?? [], image: p.img },
+      // v3.2: emit the semantic scene key verbatim (string | null). Legacy
+      // consumers that expected {bg, emojis, image} will now see a string —
+      // the sync route is the only consumer and treats scene opaquely.
+      scene: p.scene ?? null,
+      img: p.img,
+      emojis: undefined,
       ask: p.ask
         ? {
             skill: p.ask.skill,

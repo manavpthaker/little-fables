@@ -76,8 +76,10 @@ export interface Page {
   choice?: ChoiceBlock
   /** Breathe-along page (renders BreatheAlong instead of a mic ask). */
   breathe?: boolean
-  /** Legacy pack-schema scene, kept so the loader can normalize once. */
-  scene?: { bg?: string; emojis?: string[]; image?: string }
+  /** v3.2: semantic scene key (e.g. 'bus', 'bear-hollow', 'moon-window'). The
+   *  reader maps this to a drawn scene component; missing/null → drawn endpaper
+   *  placeholder. Replaces the v2 `{ bg, emojis }` presentation blob. */
+  scene?: string | null
 }
 
 // ---------- Chapter ----------

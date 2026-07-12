@@ -41,8 +41,7 @@ import type {
   KidInterview,
   KidInterviewAnswer,
 } from '@/types/story'
-import { KidScreen, SpeechBubble } from '../components'
-import { CreatureSprite, KitchenBack, MicIcon } from '../art'
+import { CreatureSprite, KidScreen, KitchenBack, MicIcon, SpeechBubble } from '../art'
 import type { BuddyKind } from '../art'
 import { loadProfile } from '@/lib/read/profile'
 import { loadShelf } from '@/lib/read/packs'

@@ -27,7 +27,8 @@ import { saveRetell, uid, markChapterFinished, loadBadges } from '@/lib/read/sto
 import { pushRetell } from '@/lib/read/sync'
 import { checkBadges } from '@/lib/read/badges'
 import { cp } from '@/lib/read/buddies'
-import { BuddyFace, KidScreen, SpeechBubble } from '../../components'
+import { CreatureSprite, KidScreen, SpeechBubble, SpeakerIcon, MicIcon } from '../../art'
+import type { BuddyKind } from '../../art'
 
 // v3 R19 / R27 — session-scoped "creation offered" ref.
 let sessionCreationOffered = false
@@ -62,12 +63,12 @@ function Endpaper({ label }: { label?: string }) {
 }
 
 /* Two-tap answer chips for the recap question. Contextual quick answers so a
-   4-year-old can respond without opening the mic. */
+   4-year-old can respond without opening the mic. v3.2: text-only. */
 const RECAP_CHIPS = [
-  { emoji: '🎉', label: 'The fun part!' },
-  { emoji: '💛', label: 'The kind part' },
-  { emoji: '✨', label: 'The magic bit' },
-  { emoji: '😆', label: 'The silly bit' },
+  'The fun part!',
+  'The kind part',
+  'The magic bit',
+  'The silly bit',
 ]
 
 /* ================= ChapterEnd ================= */
@@ -153,7 +154,7 @@ export function ChapterEnd({
       >
         {/* Buddy + hook */}
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 18, maxWidth: 720, flexWrap: 'wrap', justifyContent: 'center' }}>
-          <BuddyFace buddy={buddy} size={116} />
+          <CreatureSprite kind={((buddy.id as BuddyKind) ?? 'bramble')} pose="idle" size={116} />
           <SpeechBubble big style={{ marginBottom: 12 }}>
             {cp(
               { b: `WOOHOO! Chapter ${chapterIdx + 1} — done!`, c: `Chapter ${chapterIdx + 1} — done. Lovely reading.` },
@@ -191,9 +192,9 @@ export function ChapterEnd({
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 12 }}>
             {RECAP_CHIPS.map((c) => (
               <button
-                key={c.label}
+                key={c}
                 type="button"
-                onClick={() => onChip(c.label)}
+                onClick={() => onChip(c)}
                 disabled={state === 'praise'}
                 className="lf-press lf-drawn-border"
                 style={{
@@ -210,8 +211,7 @@ export function ChapterEnd({
                   gap: 8,
                 }}
               >
-                <span aria-hidden="true" style={{ fontSize: 22 }}>{c.emoji}</span>
-                {c.label}
+                {c}
               </button>
             ))}
           </div>
@@ -230,13 +230,15 @@ export function ChapterEnd({
                 border: 'none',
                 background: state === 'listening' ? 'var(--pigment-terracotta-deep, #C7452F)' : 'var(--pigment-terracotta, #D95B43)',
                 color: '#FBF4E6',
-                fontSize: 26,
                 cursor: state === 'question' ? 'pointer' : 'default',
                 flexShrink: 0,
                 boxShadow: '0 6px 14px rgba(217,91,67,.35)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
-              🎤
+              <MicIcon size={30} />
             </button>
             <div
               style={{
@@ -247,7 +249,7 @@ export function ChapterEnd({
             >
               {state === 'question' && 'or say it out loud'}
               {state === 'listening' && 'listening…'}
-              {state === 'praise' && '🎉 lovely'}
+              {state === 'praise' && 'lovely'}
             </div>
           </div>
         </div>
@@ -260,9 +262,13 @@ export function ChapterEnd({
             color: 'var(--ink-soft, #6E5B49)',
             maxWidth: 560,
             textAlign: 'center',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
           }}
         >
-          <span aria-hidden="true">🔊</span> {hook}
+          <SpeakerIcon size={18} color="var(--ink-soft, #6E5B49)" /> {hook}
         </div>
 
         {/* Big actions — Next chapter is the coral primary */}
@@ -752,7 +758,7 @@ export function BookComplete({
           }}
         >
           <header style={{ display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap' }}>
-            <BuddyFace buddy={buddy} size={110} />
+            <CreatureSprite kind={((buddy.id as BuddyKind) ?? 'bramble')} pose="idle" size={110} />
             <div style={{ minWidth: 0, flex: 1 }}>
               <h1
                 style={{
@@ -890,11 +896,19 @@ export function BookComplete({
                           : 'var(--pigment-terracotta, #D95B43)',
                       backgroundImage: 'var(--texture-paper)',
                       color: '#F9F2E3',
-                      fontSize: 42,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                       boxShadow: '0 8px 20px rgba(217,91,67,.4)',
                     }}
                   >
-                    {recState === 'recording' ? '◼' : '🎙'}
+                    {recState === 'recording' ? (
+                      <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+                        <rect x="8" y="8" width="20" height="20" rx="3" fill="currentColor" filter="url(#lf-wobble)" />
+                      </svg>
+                    ) : (
+                      <MicIcon size={44} />
+                    )}
                   </button>
                   <span
                     style={{
@@ -933,7 +947,7 @@ export function BookComplete({
                 gap: 16,
               }}
             >
-              <BuddyFace buddy={buddy} size={64} />
+              <CreatureSprite kind={((buddy.id as BuddyKind) ?? 'bramble')} pose="idle" size={64} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ font: '700 17px/1.35 var(--font-display)', color: 'var(--ink, #46362A)' }}>
                   You know how this story machine works? YOU can drive it.
@@ -1112,7 +1126,15 @@ function FlyingStarWord({
         minHeight: 56,
       }}
     >
-      <span aria-hidden="true">⭐</span>
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" style={{ flexShrink: 0 }}>
+        <path
+          d="M 10 2 L 12 8 L 18 9 L 13 13 L 15 19 L 10 15 L 5 19 L 7 13 L 2 9 L 8 8 Z"
+          fill="var(--pigment-terracotta, #D95B43)"
+          stroke="var(--ink, #46362A)"
+          strokeWidth="1.2"
+          filter="url(#lf-wobble)"
+        />
+      </svg>
       {word}
     </button>
   )
@@ -1158,7 +1180,7 @@ function EnvelopeToShelf({ buddyReply }: { buddyReply: string | null }) {
           textAlign: 'center',
         }}
       >
-        💌 Saved for Mom and Dad
+        Saved for Mom and Dad
       </div>
       {buddyReply && (
         <div
@@ -1170,9 +1192,12 @@ function EnvelopeToShelf({ buddyReply }: { buddyReply: string | null }) {
             font: '700 15px/1.4 var(--font-body)',
             color: 'var(--ink, #46362A)',
             textAlign: 'center',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
           }}
         >
-          <span aria-hidden="true" style={{ marginRight: 6 }}>🔊</span>
+          <SpeakerIcon size={18} />
           {buddyReply}
         </div>
       )}

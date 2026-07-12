@@ -5,7 +5,8 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
-import { BuddyFace, Confetti, KidScreen, SpeechBubble } from '../../../components'
+import { CreatureSprite, DrawnConfetti, KidScreen, SpeechBubble } from '../../../art'
+import type { BuddyKind } from '../../../art'
 import { BADGES } from '@/lib/read/badges'
 import { clearPendingBadge, loadBuddy } from '@/lib/read/storage'
 import { getBuddy, cp } from '@/lib/read/buddies'
@@ -114,7 +115,7 @@ export default function BadgeEarnPage() {
             pointerEvents: 'none',
           }}
         />
-        <Confetti n={16} />
+        <DrawnConfetti n={16} />
 
         <div
           style={{
@@ -135,7 +136,7 @@ export default function BadgeEarnPage() {
             {badge.name}
           </h1>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14, maxWidth: 560, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <BuddyFace buddy={buddy} size={72} />
+            <CreatureSprite kind={((buddy.id as BuddyKind) ?? 'bramble')} pose="idle" size={72} />
             <SpeechBubble>{cp(badge.earnLine, energy)}</SpeechBubble>
           </div>
           {settled && (
@@ -156,7 +157,7 @@ export default function BadgeEarnPage() {
                 cursor: 'pointer',
               }}
             >
-              Home ⌂
+              Home
             </button>
           )}
         </div>

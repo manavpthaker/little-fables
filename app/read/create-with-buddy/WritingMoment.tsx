@@ -11,8 +11,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { speak, type SpeakHandle } from '@/lib/read/speech'
 import type { BuddyDef, KidInterview } from '@/types/story'
-import { KidScreen } from '../components'
-import { CreatureSprite } from '../art'
+import { CreatureSprite, KidScreen } from '../art'
 import type { BuddyKind } from '../art'
 
 interface WritingMomentProps {

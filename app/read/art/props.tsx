@@ -504,8 +504,7 @@ export function EnvelopeArt({ size = 92 }: { size?: number }) {
 }
 
 // ------------------------------------------------------------------
-// Interactive props — a drawn mic (replacing 🎤 in the kitchen) and a
-// drawn back affordance for kitchen phases.
+// Interactive props — a drawn mic and back affordance for kitchen phases.
 // ------------------------------------------------------------------
 
 interface MicIconProps {
@@ -514,7 +513,7 @@ interface MicIconProps {
   color?: string
 }
 
-/** A small drawn microphone outline — replaces the 🎤 emoji on kitchen
+/** A small drawn microphone outline — replaces the mic emoji on kitchen
  *  buttons. Meant to sit inside a coral round button; renders in cream so
  *  it reads against the button background. */
 export function MicIcon({ size = 40, style, color = '#F9F2E3' }: MicIconProps) {
@@ -599,6 +598,210 @@ export function KitchenBack({ size = 56, style }: KitchenBackProps) {
         filter="url(#lf-wobble)"
       ></circle>
     </svg>
+  )
+}
+
+// ------------------------------------------------------------------
+// Small icon glyphs — drawn in ink, wobble-filtered.
+// ------------------------------------------------------------------
+
+interface SpeakerIconProps {
+  size?: number
+  color?: string
+  style?: CSSProperties
+}
+
+/** Small drawn speaker glyph — replaces the speaker emoji anywhere a
+ *  tap-to-hear affordance needs an inline icon. */
+export function SpeakerIcon({ size = 22, color = INK, style }: SpeakerIconProps) {
+  return (
+    <svg
+      viewBox="0 0 26 22"
+      width={size}
+      height={(size * 22) / 26}
+      style={{ display: 'inline-block', overflow: 'visible', ...style }}
+      aria-hidden="true"
+    >
+      <g fill="none" stroke={color} strokeWidth="1.8" filter="url(#lf-wobble)" strokeLinecap="round" strokeLinejoin="round">
+        {/* cone body */}
+        <path d="M2 8 L2 14 L7 14 L13 19 L13 3 L7 8 Z" fill={color} fillOpacity="0.18" />
+        {/* sound arcs */}
+        <path d="M17 6 Q 21 11 17 16" />
+        <path d="M20 3 Q 26 11 20 19" opacity="0.7" />
+      </g>
+    </svg>
+  )
+}
+
+interface StarBurstArtProps {
+  size?: number
+  style?: CSSProperties
+}
+
+/** A tiny cluster of three drawn stars in ink — celebration mark that
+ *  replaces the party-popper emoji on praise cards. */
+export function StarBurstArt({ size = 42, style }: StarBurstArtProps) {
+  const stars = [
+    { cx: 14, cy: 20, r: 7, color: 'var(--pigment-butter, #EFC85C)' },
+    { cx: 30, cy: 12, r: 5, color: 'var(--pigment-marigold, #E2A93B)' },
+    { cx: 34, cy: 26, r: 4, color: 'var(--pigment-terracotta, #D95B43)' },
+  ]
+  return (
+    <svg
+      viewBox="0 0 44 36"
+      width={size}
+      height={(size * 36) / 44}
+      style={{ display: 'inline-block', overflow: 'visible', ...style }}
+      aria-hidden="true"
+    >
+      {stars.map((s, i) => {
+        // 5-point star centered at (cx, cy) with radius r.
+        const pts: string[] = []
+        for (let k = 0; k < 10; k++) {
+          const angle = (Math.PI / 5) * k - Math.PI / 2
+          const rr = k % 2 === 0 ? s.r : s.r * 0.42
+          pts.push(`${s.cx + rr * Math.cos(angle)},${s.cy + rr * Math.sin(angle)}`)
+        }
+        return (
+          <polygon
+            key={i}
+            points={pts.join(' ')}
+            fill={s.color}
+            stroke={INK}
+            strokeWidth="1.2"
+            filter="url(#lf-wobble)"
+          />
+        )
+      })}
+    </svg>
+  )
+}
+
+interface MoonPinProps {
+  size?: number
+  style?: CSSProperties
+}
+
+/** A tiny drawn crescent moon — used for night register callouts. */
+export function MoonPin({ size = 36, style }: MoonPinProps) {
+  return (
+    <svg
+      viewBox="0 0 40 40"
+      width={size}
+      height={size}
+      style={{ display: 'inline-block', overflow: 'visible', ...style }}
+      aria-hidden="true"
+    >
+      <path
+        d="M 26 6 Q 12 10 12 20 Q 12 32 26 34 Q 16 26 16 20 Q 16 12 26 6 Z"
+        fill="var(--pigment-butter, #EFC85C)"
+        opacity="0.9"
+        filter="url(#lf-wash-edge)"
+      />
+      <path
+        d="M 26 6 Q 12 10 12 20 Q 12 32 26 34 Q 16 26 16 20 Q 16 12 26 6 Z"
+        fill="none"
+        stroke={INK}
+        strokeWidth="1.6"
+        filter="url(#lf-wobble)"
+      />
+    </svg>
+  )
+}
+
+// ------------------------------------------------------------------
+// Transport glyphs — the reader's play / pause / prev / next marks.
+// The Transport component owns the coral button chrome; these are the
+// ink figures inside. Made available here so any other consumer needing
+// a "play" mark uses the same drawn hand.
+// ------------------------------------------------------------------
+
+interface GlyphProps {
+  size?: number
+  color?: string
+  style?: CSSProperties
+}
+
+export function TransportPlayIcon({ size = 30, color = 'currentColor', style }: GlyphProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 34 34"
+      aria-hidden="true"
+      style={{ display: 'inline-block', overflow: 'visible', ...style }}
+    >
+      <path d="M10 6 L28 17 L10 28 Z" fill={color} filter="url(#lf-wobble)" />
+    </svg>
+  )
+}
+
+export function TransportPauseIcon({ size = 30, color = 'currentColor', style }: GlyphProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 34 34"
+      aria-hidden="true"
+      style={{ display: 'inline-block', overflow: 'visible', ...style }}
+    >
+      <rect x="8" y="6" width="6.5" height="22" rx="1.5" fill={color} filter="url(#lf-wobble)" />
+      <rect x="19.5" y="6" width="6.5" height="22" rx="1.5" fill={color} filter="url(#lf-wobble)" />
+    </svg>
+  )
+}
+
+/** A drawn back arrow — used for kitchen back buttons, story reader back,
+ *  the "‹" affordance on Home. */
+export function BackArrowIcon({ size = 28, color = 'currentColor', style }: GlyphProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 30 30"
+      aria-hidden="true"
+      style={{ display: 'inline-block', overflow: 'visible', ...style }}
+    >
+      <path
+        d="M19 4 L7 15 L19 26"
+        fill="none"
+        stroke={color}
+        strokeWidth="2.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        filter="url(#lf-wobble)"
+      />
+    </svg>
+  )
+}
+
+/** A drawn ellipsis — 3 ink dots, used inline for "listening…" or
+ *  "thinking…" affordances that need a compact mark. */
+export function DotsIcon({ size = 24, color = 'var(--pigment-terracotta, #D95B43)', style }: GlyphProps) {
+  return (
+    <span
+      aria-hidden="true"
+      style={{
+        display: 'inline-flex',
+        gap: 4,
+        alignItems: 'center',
+        ...style,
+      }}
+    >
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          className="lf-dot"
+          style={{
+            width: Math.max(4, Math.round(size * 0.28)),
+            height: Math.max(4, Math.round(size * 0.28)),
+            borderRadius: '50%',
+            background: color,
+            animationDelay: `${i * 0.18}s`,
+          }}
+        />
+      ))}
+    </span>
   )
 }
 

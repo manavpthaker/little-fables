@@ -72,15 +72,51 @@ def resolve_paging(story_id, chapter_index=None):
                 cfg[k] = ch_cfg[k]
     return cfg
 
-SCENES = {
-    'playroom':  {'bg': 'linear-gradient(160deg,#fbbf24,#a7f3d0)', 'emojis': ['🎸', '🧸', '🌞']},
-    'bus':       {'bg': 'linear-gradient(160deg,#fbbf24,#f97316)', 'emojis': ['🚌', '🐼', '🛣️']},
-    'night':     {'bg': 'linear-gradient(160deg,#1e3a8a,#7c3aed)', 'emojis': ['🌙', '⭐', '🛏️']},
-    'forest':    {'bg': 'linear-gradient(160deg,#34d399,#a7f3d0)', 'emojis': ['🐻', '🌲', '🍃']},
-    'farm':      {'bg': 'linear-gradient(160deg,#a7f3d0,#38bdf8)', 'emojis': ['🫎', '🌲', '🏔️']},
-    'train':     {'bg': 'linear-gradient(160deg,#0f172a,#4338ca)', 'emojis': ['🚂', '🎄', '✨']},
-    'moon':      {'bg': 'linear-gradient(160deg,#1e1b4b,#818cf8)', 'emojis': ['🌕', '🪜', '💤']},
-    'mirror':    {'bg': 'linear-gradient(160deg,#a78bfa,#f0abfc)', 'emojis': ['🪞', '🌙', '✨']},
+# v3.2 semantic scene keys.
+#
+# The pack JSON no longer stores presentation (gradients, emojis). Each page's
+# `scene` field is a semantic key that the reader maps to a drawn scene
+# component; missing keys fall back to a drawn endpaper placeholder.
+#
+# The vocabulary below is OPEN-ENDED — extend it as new source stories arrive.
+# Labels are hints for the art pipeline, not a rigid controlled vocabulary.
+#
+# Vocabulary used in this converter (per pack-000 chapters):
+#   bus          — the yellow bus rolling through the neighborhood
+#   bear-hollow  — Bramble's forest hollow at dawn
+#   bedroom-night— cozy circle bedtime, blanket + moon
+#   farm         — the Adirondacks farm at dusk / moose window
+#   mirror       — Coocoo's midnight house / mirror-lit rooms
+#   train        — the Midnight Train, snow + Christmas glow
+#   garden       — Papa's yard, moon rising over Rahway
+#   home-rest    — Papa's Rest movement, wind-down at home
+#
+# Kept as a plain str→str map (STORY_SCENE_KEY per story key) rather than the
+# old {bg, emojis} presentation blob.
+STORY_SCENE_KEY = {
+    'playroom':   'playroom',
+    'bus':        'bus',
+    'night':      'bedroom-night',
+    'forest':     'bear-hollow',
+    'farm':       'farm',
+    'train':      'train',
+    'moon':       'garden',
+    'moon-rest':  'home-rest',
+    'mirror':     'mirror',
+}
+
+# Legacy cover emoji per scene_key — kept only because the Book cover still
+# renders an emoji as a low-effort placeholder. No gradient here.
+COVER_EMOJI = {
+    'playroom':   '🎸',
+    'bus':        '🚌',
+    'night':      '🌙',
+    'forest':     '🐻',
+    'farm':       '🫎',
+    'train':      '🚂',
+    'moon':       '🌕',
+    'moon-rest':  '🌕',
+    'mirror':     '🪞',
 }
 
 
@@ -139,11 +175,13 @@ def segments(text):
     return segs
 
 
-def pages_from(source, scene, asks=None, breathe_on=None, max_words=DEFAULT_MAX_WORDS, beat_per_page=False):
+def pages_from(source, scene_key, asks=None, breathe_on=None, max_words=DEFAULT_MAX_WORDS, beat_per_page=False):
     """Build pages from either raw text (str) or a list of segments.
     Absolute rule: never merge paragraphs across a segment boundary.
     - beat_per_page=True: each segment → exactly one page (word count ignored).
-    - beat_per_page=False: within a segment, group paragraphs up to max_words."""
+    - beat_per_page=False: within a segment, group paragraphs up to max_words.
+    `scene_key` is a semantic string (e.g. 'bus', 'farm') — emitted verbatim
+    on each page's `scene` field. No gradients, no emojis."""
     if isinstance(source, str):
         segs = segments(source)
     elif source and isinstance(source[0], list):
@@ -160,18 +198,18 @@ def pages_from(source, scene, asks=None, breathe_on=None, max_words=DEFAULT_MAX_
         if not seg:
             continue
         if mode == 'segment':
-            pages.append({'text': ' '.join(seg), 'scene': scene})
+            pages.append({'text': ' '.join(seg), 'scene': scene_key})
             continue
         if mode == 'paragraph':
             for p in seg:
-                pages.append({'text': p, 'scene': scene})
+                pages.append({'text': p, 'scene': scene_key})
             continue
         # Default: group inside this segment up to max_words.
         cur, count = [], 0
         def flush():
             nonlocal cur, count
             if cur:
-                pages.append({'text': ' '.join(cur), 'scene': scene})
+                pages.append({'text': ' '.join(cur), 'scene': scene_key})
                 cur, count = [], 0
         for p in seg:
             w = len(p.split())
@@ -211,8 +249,9 @@ def story(sid, title, by, kind, scene_key, teaching, vocab, retells, chapters, p
     return {
         'id': sid, 'title': title, 'by': by, 'kind': kind,
         'source': 'family', 'status': 'complete',
-        'coverEmoji': SCENES[scene_key]['emojis'][0],
-        'coverBg': SCENES[scene_key]['bg'],
+        'coverEmoji': COVER_EMOJI[scene_key],
+        # v3.2: coverBg removed. Cover renders on the drawn endpaper wash;
+        # emoji is a low-effort placeholder until real cover art lands.
         'teachingGoals': teaching, 'vocab': vocab, 'retellPrompts': retells,
         'parentGuide': parent_guide, 'originNote': origin_note,
         'chapters': chapters,
@@ -221,10 +260,12 @@ def story(sid, title, by, kind, scene_key, teaching, vocab, retells, chapters, p
 
 def chapter(title, source, scene_key, asks=None, breathe_on=None, story_id=None, chapter_index=None, paging=None):
     """`source` may be raw text, a segment list (list-of-lists), or a flat paragraph list.
-    Paging is resolved from STORY_CONFIG unless overridden explicitly."""
+    Paging is resolved from STORY_CONFIG unless overridden explicitly. The
+    semantic scene key is looked up in STORY_SCENE_KEY and emitted verbatim on
+    every page in this chapter."""
     cfg = paging or resolve_paging(story_id, chapter_index)
     return {'title': title, 'pages': pages_from(
-        source, SCENES[scene_key], asks or {}, breathe_on or [],
+        source, STORY_SCENE_KEY[scene_key], asks or {}, breathe_on or [],
         max_words=cfg['maxWords'], beat_per_page=cfg['beatPerPage'],
     )}
 
@@ -440,7 +481,7 @@ stories.append(story(
      {'word': 'luna', 'meaning': 'the moon, in Spanish'}],
     ['What did Azi ask Papa for?', 'How did Papa try to get it?', 'What happened at the end?'],
     [chapter('The Ask', papa_c1, 'moon', asks, story_id='papa-gets-the-moon', chapter_index=0),
-     chapter('The Journey and the Rest', papa_c2, 'moon', breathe_on=['breath'], story_id='papa-gets-the-moon', chapter_index=1)],
+     chapter('The Journey and the Rest', papa_c2, 'moon-rest', breathe_on=['breath'], story_id='papa-gets-the-moon', chapter_index=1)],
     parent_guide=('For the reader (from the original):\n' + reader_note.strip()) if reader_note.strip() else None,
     origin_note='Three-movement wind-down story (Adventure → Journey → Rest); the Rest chapter is deliberately sleepy — great for quiet time or bedtime mode.',
 ))
@@ -473,4 +514,12 @@ for s in stories:
         notes.append(f"chapterSplit={cfg['chapterSplit']}")
     per_ch = ', '.join(f"ch{i+1}={len(c['pages'])}" for i, c in enumerate(s['chapters']))
     note_str = f"  [{'; '.join(notes)}]" if notes else ''
+    # v3.2: scene key distribution per story — one line so Manav can eyeball it.
+    key_counts = {}
+    for c in s['chapters']:
+        for pg in c['pages']:
+            k = pg.get('scene') or '(none)'
+            key_counts[k] = key_counts.get(k, 0) + 1
+    key_str = ', '.join(f"{k}:{n}" for k, n in sorted(key_counts.items(), key=lambda x: -x[1]))
     print(f"  - {s['title']}: {len(s['chapters'])} ch ({per_ch}), guide={'yes' if s['parentGuide'] else 'no'}{note_str}")
+    print(f"    scenes: {key_str}")

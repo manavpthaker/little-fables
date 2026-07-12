@@ -17,8 +17,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { speak, listen, type SpeakHandle, type ListenHandle } from '@/lib/read/speech'
 import type { BuddyDef, KidInterview, KidInterviewAnswer } from '@/types/story'
-import { SpeechBubble } from '../components'
-import { CreatureSprite, MicIcon } from '../art'
+import { CreatureSprite, MicIcon, SpeechBubble } from '../art'
 import type { BuddyKind } from '../art'
 
 interface InterviewPhaseProps {
@@ -53,46 +52,18 @@ interface NextResponse {
 
 // -------- Chip catalog per slot --------
 // Contextual quick answers a 4yo can tap. Kept short + concrete. The mic is
-// always present alongside — chips are an accelerant, not a cage.
-const CHIP_CATALOG: Record<string, Array<{ emoji: string; label: string }>> = {
-  want: [
-    { emoji: '🎈', label: 'fly high' },
-    { emoji: '🏰', label: 'find a hidden place' },
-    { emoji: '🐾', label: 'make a friend' },
-    { emoji: '🍎', label: 'share a snack' },
-  ],
-  reason: [
-    { emoji: '💛', label: 'to help someone' },
-    { emoji: '😆', label: "'cause it's fun" },
-    { emoji: '🤝', label: 'to feel less alone' },
-    { emoji: '✨', label: 'to see something new' },
-  ],
-  obstacle: [
-    { emoji: '🌧️', label: 'a big storm' },
-    { emoji: '🕳️', label: 'a lost thing' },
-    { emoji: '🐺', label: 'a grumpy someone' },
-    { emoji: '🌊', label: 'the way is blocked' },
-  ],
-  character: [
-    { emoji: '🐻', label: 'a brave bear' },
-    { emoji: '🦊', label: 'a clever fox' },
-    { emoji: '🐢', label: 'a slow turtle' },
-    { emoji: '🐦', label: 'a tiny bird' },
-  ],
-  setting: [
-    { emoji: '🌲', label: 'a deep forest' },
-    { emoji: '🏖️', label: 'the seashore' },
-    { emoji: '🌆', label: 'a cozy town' },
-    { emoji: '🌌', label: 'up in the stars' },
-  ],
-  freeform: [
-    { emoji: '✨', label: 'something magical' },
-    { emoji: '😆', label: 'something silly' },
-    { emoji: '💛', label: 'something kind' },
-  ],
+// always present alongside — chips are an accelerant, not a cage. v3.2:
+// chips are text-only (no decorative emoji), rendered as drawn cream cards.
+const CHIP_CATALOG: Record<string, string[]> = {
+  want: ['fly high', 'find a hidden place', 'make a friend', 'share a snack'],
+  reason: ['to help someone', "'cause it's fun", 'to feel less alone', 'to see something new'],
+  obstacle: ['a big storm', 'a lost thing', 'a grumpy someone', 'the way is blocked'],
+  character: ['a brave bear', 'a clever fox', 'a slow turtle', 'a tiny bird'],
+  setting: ['a deep forest', 'the seashore', 'a cozy town', 'up in the stars'],
+  freeform: ['something magical', 'something silly', 'something kind'],
 }
 
-function chipsForSlot(slot: string): Array<{ emoji: string; label: string }> {
+function chipsForSlot(slot: string): string[] {
   return CHIP_CATALOG[slot] ?? CHIP_CATALOG.freeform!
 }
 
@@ -290,9 +261,9 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
         >
           {chips.map((c) => (
             <button
-              key={c.label}
+              key={c}
               type="button"
-              onClick={() => acceptAnswer(c.label, currentSlot, currentQuestion || 'Tell me more')}
+              onClick={() => acceptAnswer(c, currentSlot, currentQuestion || 'Tell me more')}
               className="lf-press lf-drawn-border"
               style={{
                 display: 'inline-flex',
@@ -310,8 +281,7 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
                 fontStyle: 'italic',
               }}
             >
-              <span aria-hidden="true" style={{ fontSize: 22 }}>{c.emoji}</span>
-              {c.label}
+              {c}
             </button>
           ))}
         </div>

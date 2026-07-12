@@ -10,7 +10,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🚌",
-   "coverBg": "linear-gradient(160deg,#fbbf24,#f97316)",
    "teachingGoals": [
     "flexible thinking",
     "naming feelings",
@@ -44,69 +43,27 @@
      "pages": [
       {
        "text": "It was Monday morning in the playroom at The Westfield, and Azi sat cross-legged on the circular rug with his guitar across his lap. The autumn light spilled through the window where Papa's Gujarati tablet rested quietly, catching the colorful spines of books tucked everywhere. \"¡Whisker-wiggle roll call!\" Azi announced, strumming his three-chord progression: C-G-Am.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"Jujy here!\" called the black-and-white tuxedo cat, straightening his invisible collar. \"Ready to lead today's expedition to Wardlaw Hartridge!\" \"Dory here!\" sang the gray-and-white cat, already forgetting she'd just said her name. \"Pandies, present and accounted for,\" rumbled the wise panda from his driver's position near the door. \"Citie, observing,\" whispered the quiet companion.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "Clappy bounded over, red and round and full of rhythm. \"Clappy ready to clap for whatever happens!\" Loki folded a perfect origami crane while announcing, \"Loki here, thinking ahead.\" And Inu added softly, \"Inu present, counting to ten in Hindi: ek, do, teen...\" Azi grinned and played the closing chord. \"¡Todos listos!\" he called out. \"Everyone ready for camp!\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "But when they climbed aboard Pandies' yellow bus, something felt different. \"Hmm,\" Pandies said slowly, checking his invisible ranger hat. \"Seems the usual route is blocked today. Construction on Elm Street.\" Azi's stomach did a little flip. He liked knowing exactly which streets they'd take, which traffic light would be red, which house had the friendly dog in the yard.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"No problem!\" Jujy announced confidently. \"We'll just... um...\" He paused, forgetting his plan halfway through. \"Take the mystery route?\" suggested Dory cheerfully. \"There's no such thing as a mystery route,\" Azu said, his voice getting smaller. He strummed his guitar nervously: C-G-Am, C-G-Am. Clappy clapped once, then stopped when he realized everyone was worried.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"What if we get lost?\" Azi asked. \"What if we're late? What if—\" \"What if,\" Loki said gently, unfolding his crane, \"we think about this like a puzzle?\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       },
+       "scene": "bus",
        "ask": {
         "question": "Uh oh — the road is blocked! What do YOU do when a plan has to change?",
         "answers": [],
@@ -117,102 +74,39 @@
       },
       {
        "text": "Citie, who noticed everything from her quiet spot, pointed out the window. \"That street connects to Warren Avenue.\" \"And Warren leads to the community center,\" added Inu. \"I remember from when we went there for the Diwali celebration.\" \"¡La celebración!\" Azi's eyes lit up. \"I remember too! Dadi brought those amazing samosas.\" Pandies nodded slowly. \"Community center route it is. Everyone hold on.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "As the bus turned down an unfamiliar street, Azi felt his chest get tight. This wasn't the plan. Plans were supposed to work. But then Loki handed him the origami crane. \"Sometimes the best path isn't the one you planned.\" And Dory added, \"Look! New things to see!\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "Outside the window, there was a garden Azi had never noticed, full of late-blooming marigolds that reminded him of the ones Mama planted every spring. A little girl was watering them with her grandmother, both of them chatting in what sounded like Portuguese. \"Different families, same love,\" Inu observed quietly.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"You know what?\" Azi said, his three-chord pattern shifting to something gentler. \"This reminds me of when Lito calls from Colombia and the internet gets fuzzy. We have to find different ways to connect.\" \"Like when your Mama sings in español and I don't know the words, but I can still clap along,\" Clappy added, bouncing a little.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"Or when Papa reads from his Gujarati tablet and the letters look like music to me,\" Azi continued, feeling the knot in his chest loosening. Jujy puffed up proudly. \"See? I knew this detour would work out!\" \"You were scared too,\" Dory pointed out with a giggle. \"Was not!\" Jujy protested, then grinned. \"Okay, maybe a little.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "Pandies chuckled from the driver's seat. \"Sometimes the best leaders admit when they're figuring it out too.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "Twenty minutes later, they pulled into the familiar Wardlaw Hartridge parking lot. \"We made it,\" Azi said, surprised at how calm he felt. \"Different path, same destination,\" Loki noted, refolding his crane into something new. \"And we learned something,\" Citie added. \"There are lots of ways to get where you need to go.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "As they gathered their backpacks, Azi played one more chord progression on his guitar—but this time, he added a little flourish at the end. \"¿Qué fue eso?\" asked a familiar voice. Mama had come to walk him to the camp entrance. \"What was that extra note, mi amor?\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"That,\" Azi said, slinging his guitar over his shoulder, \"was the sound of finding a new way home.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       },
+       "scene": "bus",
        "ask": {
         "question": "Azi added one extra note to his song. Can you hum a tiny new note?",
         "answers": [],
@@ -223,54 +117,18 @@
       },
       {
        "text": "That afternoon, back in the playroom, Azi pulled out his felt-tip markers and drew a map on construction paper. He drew their usual route in blue, and the new community center route in green. \"Two ways to get there,\" he told his companions during afternoon snack time, passing around honey crackers Papa had picked up from Pooh's Honey Farm.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "\"Maybe tomorrow we'll discover a third,\" suggested Dory. \"Maybe,\" Azi agreed, taking a bite of honey sweetness. \"And that's okay too.\" Outside his bedroom window that night, the moon watched over all the children who had learned something new that day—about flexibility, about trust, about the many paths that can lead you exactly where you need to be.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       },
       {
        "text": "And in the gentle darkness, Azi hummed his three chords one more time, adding that extra flourish that sounded like discovery, like courage, like coming home by a different route. *C-G-Am... and one note more.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#fbbf24,#f97316)",
-        "emojis": [
-         "🚌",
-         "🐼",
-         "🛣️"
-        ]
-       }
+       "scene": "bus"
       }
      ]
     }
-   ],
-   "mysteryWord": {
-    "word": "celebración",
-    "language": "es",
-    "meaning": "a party or celebration, in Spanish"
-   },
-   "comfortRitual": {
-    "motif": "snack",
-    "line": "Some detours end with samosas. Home isn't always a straight road.",
-    "alreadyClosed": false
-   },
-   "skillTags": [
-    "SS003.adaptability",
-    "SS002.emotional-regulation",
-    "SS002.empathy"
    ]
   },
   {
@@ -281,7 +139,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🐻",
-   "coverBg": "linear-gradient(160deg,#34d399,#a7f3d0)",
    "teachingGoals": [
     "facing fears",
     "friendship",
@@ -315,267 +172,99 @@
      "pages": [
       {
        "text": "In a forest where the moss grew soft and the streams sang to themselves, there lived a small brown bear named Bramble. Bramble had a cozy den, a kind mother, and a tummy that was always pleased with berries. But there was something else he wanted — something he couldn't quite catch in his paws. He wanted a friend.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "So one morning, when the dew was still on the ferns, Bramble set out into the forest with his most cheerful *Hello!* tucked carefully in his throat. He hadn't gone far when he saw a bunny nibbling clover by a fallen log. \"Hello!\" Bramble called.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The bunny looked up. Her ears went tall. Her nose went *twitch-twitch-twitch.* And then — *whoosh* — she was gone, leaving only a little puff of dandelion seeds where she had been. Bramble blinked. \"I just wanted to say hi,\" he said to the empty clover. His chest felt a little smaller. But he kept walking.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "By the brook, he met a fox with a tail like an autumn flame. \"Hello!\" Bramble called, gentler this time. The fox froze. The fox stared. And then — *swish* — the autumn flame flickered into the bushes, and the fox was gone too.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "Bramble sat down on a stone. His chest felt smaller still. A little voice inside him whispered, *Maybe don't say hello to the next one. Maybe it's safer to be quiet.* But Bramble took a breath. He stood up. And he kept walking.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "By a sun-spotted meadow, he found a deer drinking from a still pool. Her legs were thin as reeds, her eyes were dark as river stones. It was harder this time. The little voice was louder. *What if she runs too? What if she runs too?* Bramble's hello was almost a whisper. But he said it. \"Hello.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The deer heard. Her head jerked up. Water dripped from her chin. And then — *taptap-taptap* — she leapt into the trees, her white tail bobbing goodbye. Bramble's heart sank all the way down to his paws. *Maybe my hello is wrong,* he thought. *Maybe I'm too loud. Too big. Too bear.* He hung his head and trudged on, watching his own slow shadow.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "He didn't see the great brown wall of fur until he walked right into it. *Oof.* Bramble looked up. And up. And up. A grizzly bear stood above him, taller than three Brambles stacked together, with paws as wide as dinner plates. Bramble's whole body went *still.* His heart went *thump-thump-thump.* Every part of him wanted to run.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "This was a *real* fear. Not the small worry of saying hello to a deer. A fear so big it filled the whole forest. But Bramble's legs wouldn't move. So he did the only thing left to do. He took a tiny breath. And he said it. \"H-hello.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The grizzly's ears went up. Slowly — so slowly — he sat down on the moss, until his eyes were almost level with Bramble's eyes. \"Hello, little one,\" the grizzly said. His voice was deep and warm, like the inside of a hollow log on a sunny day. Bramble tried to speak again. He squeaked instead.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The grizzly smiled. \"It's alright. Most everyone runs from me. The squirrels. The rabbits. Even the wolves, sometimes.\" He sighed a great big sigh that smelled like honey. \"I used to think it was something I did wrong.\" Bramble's eyes went wide. \"They ran from *me* today,\" he whispered. \"A bunny. A fox. A deer. I only said hello.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The grizzly nodded slowly. \"Ah. You see, little friend — sometimes others are scared not because of *who* you are, but because they don't know you yet. Their hearts are small and quick. They run first, and wonder later.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "Bramble thought about this. He thought about how his own heart had thumped a moment ago. How his own legs had wanted to run from *this* bear. \"Oh,\" Bramble said softly. \"I felt scared too. Just now. With *you.*\" \"And here we are,\" said the grizzly, \"still talking.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "Bramble laughed — a small, surprised laugh, like a bubble rising up. The fear inside him hadn't disappeared. But somehow, it had gotten smaller, just by him standing still in front of it. They walked together back through the forest. The grizzly told Bramble his name was Mose. Mose liked watching clouds. Bramble liked his mother's humming.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "And as they walked, an idea began to twinkle in Bramble's head, the way a firefly twinkles at dusk. \"Mose,\" Bramble said, \"I think I know how to help the others not be scared.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The next morning, in the clearing where the three paths met, a small wooden sign appeared. The letters were a little wobbly, because they had been carved with bear claws, but anyone could read them: > **SCARE THE BEARS** > *Today only. Free.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "The bunny came first, her nose going *twitch-twitch-twitch.* She was scared. But she was curious too, and curious was bigger than scared today. Then came the fox, with his autumn-flame tail. His paws shook a little. But he came. Then came the deer, stepping carefully on her reed-thin legs, her dark eyes wide.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "In the middle of the clearing stood Bramble and Mose, with their backs turned. The bunny looked at the fox. The fox looked at the deer. None of them had ever stood so close to a bear before. Their hearts were thumping. Their legs wanted to run. But they stayed. \"BOO!\" squeaked the bunny. \"BOO!\" yipped the fox.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "\"BOO!\" called the deer, who had never said *boo* to anyone in her whole life.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "Bramble and Mose jumped. They flopped onto their backs in the moss. They wiggled their paws in the air and made silly bear sounds — *uh-oh-oh* and *ooh-ooh-ooh* — until the bunny was giggling, and the fox was rolling, and the deer was making the soft snorty laugh that deer make when no one is looking.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "They played all afternoon. The bunny scared them from behind a stump. The fox scared them from inside a bush. The deer scared them from up on a little hill.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "And every time they stayed instead of running, the fear got smaller. Until by the end of the day, it was so small that nobody could find it at all — only the laughter was left.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "That night, Bramble curled up in his den, his belly full of berries and his ears full of laughter from the day. He thought about all the times he had been scared. The little voice that had told him to stop saying hello. The great brown wall of fur he had walked right into. The way his legs had wanted to run, every time.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       },
       {
        "text": "And he understood something now, the way you understand a song after you've sung it through. Brave wasn't *not* being scared. Brave was saying hello anyway. The moon slipped between the pine branches and laid a silver paw on his fur.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       },
+       "scene": "bear-hollow",
        "ask": {
         "question": "Bramble learned something big. Is being brave the same as never being scared?",
         "answers": [
@@ -590,26 +279,10 @@
       },
       {
        "text": "Bunny was asleep in her burrow. Fox was asleep in his hollow. Deer was asleep in her thicket of ferns. And big Mose was asleep under the stars, snoring like a faraway thunderstorm. Bramble closed his eyes. And the forest, very softly, whispered… *Goodnight.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#34d399,#a7f3d0)",
-        "emojis": [
-         "🐻",
-         "🌲",
-         "🍃"
-        ]
-       }
+       "scene": "bear-hollow"
       }
      ]
     }
-   ],
-   "comfortRitual": {
-    "motif": "song",
-    "line": "Sometimes brave is just saying hello anyway.",
-    "alreadyClosed": false
-   },
-   "skillTags": [
-    "SS003.adaptability",
-    "SS002.empathy"
    ]
   },
   {
@@ -620,7 +293,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🌙",
-   "coverBg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
    "teachingGoals": [
     "calming down",
     "bedtime courage",
@@ -653,47 +325,19 @@
      "pages": [
       {
        "text": "The day had been big. Big playing. Big feelings. Big everything. Now Azi's room was getting dark, and the space between his bed and the door felt very, very far. \"Stay,\" Azi whispered to Mama. \"I'll be right outside,\" Mama said. \"And you won't be alone.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "Jujy stood up a little straighter on the pillow. \"Night Watch time,\" he announced quietly. \"I've got this.\" Dory yawned. \"Got what?\" \"The... the thing.\" Jujy paused. \"The important thing.\" \"Oh good,\" said Dory, already forgetting what they were talking about.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "Slothie didn't say anything at all. Slothie just breathed. In... slow... out... slower. Baby Slothie tucked against Slothie's arm, rising and falling like a tiny boat on a gentle wave.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "Azi's body still felt too awake. Too buzzy. Too much. \"My tummy feels wiggly,\" he said. Pandies nodded slowly from the foot of the bed. \"Wiggly feelings like to visit at bedtime. They're looking for a place to rest.\" \"Where do they rest?\" \"In the Cozy Circle.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       },
+       "scene": "bedroom-night",
        "ask": {
         "question": "Let's make the Cozy Circle with Azi: blanket… friends… and one slow breath.",
         "answers": [],
@@ -704,116 +348,44 @@
       },
       {
        "text": "Pandies spoke in his slow, steady voice: \"First, your blanket goes here—\" He tucked it around Azi's feet. \"Then your friends go here—\" Jujy, Dory, Slothie, all in their spots. \"Then your breathing goes like this—\" Slow in. Slower out. \"And that makes a circle. A Cozy Circle. Nothing gets in that doesn't belong. Nothing gets out that wants to stay.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       },
+       "scene": "bedroom-night",
        "breathe": true
       },
       {
        "text": "Azi looked at his circle. Blanket. Friends. Breath. The wiggly feeling in his tummy didn't disappear. But it got quieter. Like it had found somewhere to sit down.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "\"What if I need Mama?\" Azi whispered. Jujy puffed up. \"I'll get her! I'll—wait, can I open doors?\" \"No,\" said Dory dreamily. \"Right. Well. I'll... think very hard about opening the door.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "Pandies spoke again, gently: \"Mama is right outside. That's very close. And she always comes back to check. That's her promise.\" \"Like the moon's promise?\" \"Just like.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "Azi looked at the window. The moon was there. It didn't say anything, because moons don't talk. But it watched. It had always watched. It would keep watching until morning came.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "\"Slothie,\" Azi whispered. \"Can we count?\" Slothie breathed in. \"One star,\" Azi said. Slothie breathed out. \"Two stars.\" In. \"Three stars.\" Out.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       },
+       "scene": "bedroom-night",
        "breathe": true
       },
       {
        "text": "Somewhere around star number seven, the wiggly feeling settled all the way down. Somewhere around star number nine, Azi's eyes got heavy. Somewhere around star number ten—",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "The Cozy Circle held. Jujy kept watch (mostly). Dory dreamed beside him. Slothie barely moved. And the moon glowed soft and steady, watching over all the children who were learning that the distance between bed and door isn't so far after all.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       },
       {
        "text": "Mama peeked in, just like she promised. Azi was already dreaming. But somewhere in his dream, he knew she came. And that was enough.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e3a8a,#7c3aed)",
-        "emojis": [
-         "🌙",
-         "⭐",
-         "🛏️"
-        ]
-       }
+       "scene": "bedroom-night"
       }
      ]
     }
-   ],
-   "comfortRitual": {
-    "motif": "moon",
-    "line": "The moon is watching over you tonight.",
-    "alreadyClosed": true
-   },
-   "skillTags": [
-    "SS002.emotional-regulation",
-    "SS003.mental-health"
    ]
   },
   {
@@ -824,7 +396,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🫎",
-   "coverBg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
    "teachingGoals": [
     "emotional regulation",
     "the Gentle Giant's Secret",
@@ -858,303 +429,114 @@
      "pages": [
       {
        "text": "The farmhouse at Saranac Lake sat at the edge of everything wild. It was the kind of place where the mountains came right up to the windows and peeked inside, where the trees whispered secrets to each other in voices too low for grown-ups to hear, and where the sky turned colors at sunset that didn't have names yet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Azi had spent the whole day exploring Bernadette's farm.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "In the morning, he had watched the horses in their paddock - the big bay mare with the white blaze on her forehead, the gray gelding who snorted when Azi came too close, and the little spotted pony who seemed to understand that Azi was a person worth knowing. They had moved through the morning mist like dreams that hadn't quite woken up yet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "In the afternoon, he had run through meadows that seemed to stretch all the way to the mountains. His legs had pumped and pumped, and the tall grass had tickled his palms as he ran, and the wind had pulled at his hair like it was trying to tell him something important.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "He had collected pinecones - seventeen of them - each one different, each one smelling like secrets. He had shared three with a squirrel who came too close and then seemed surprised by its own bravery. He had whispered \"sorry\" to a purple flower he accidentally stepped on. He had waved goodbye to the horses even though they couldn't wave back.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "It had been a big day. The biggest kind of day. But now the day was ending. The sun was dropping behind the Adirondack peaks, painting the sky in oranges and pinks and purples that looked almost too beautiful to be real. And Azi's body didn't feel quiet at all.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "It felt like too much. Too much running. Too much excitement. Too much everything. His legs felt twitchy, like they wanted to run even though there was nowhere left to run to. His chest felt tight, like someone had wrapped a rubber band around his heart. His thoughts felt buzzy, like bees who had forgotten where their hive was.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "And somewhere inside - somewhere deep in the middle of him - a bigness was rising. Not the good kind of bigness, like when your heart swells because you love someone so much. The other kind. The kind that makes your hands want to push and your words want to bite. Azi didn't know the bigness was coming. Not yet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "He just knew that his body felt wrong, and his feelings felt wrong, and everything felt like it was going to spill over any second.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "\"Time to wash up for dinner, *mi amor*,\" Mama said. Her voice was soft, the way it always was. The way it had been soft when she sang him to sleep as a baby, and soft when she kissed his scraped knees, and soft when she whispered \"I love you\" in the dark of his bedroom back home in Rahway.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "But the bigness didn't hear Mama's softness. The bigness only heard: Someone is asking me to do something. Someone wants me to stop. And the bigness - the one that had been building all day, the one that came from too much running and too much excitement and not enough rest - burst out before Azi could catch it. > \"GO AWAY!\" Azi shouted.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "His voice didn't sound like his voice. It was too loud. Too sharp. Too much. > \"I don't WANT to! I don't CARE about you!\" His hands moved before his heart could stop them. They pushed at Mama's legs - hard, harder than he meant to, harder than he knew they could push.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Papa stepped closer, the way he always did when things got hard. His steady Papa presence, his warm Papa hands reaching out to help. But Azi's fists found him too. They pounded against Papa's knees - wild and fast, like something inside had come loose, like a storm had broken free of its cage. > \"You're going to JAIL!\" Azi yelled.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "He didn't even know why he said it. He just needed the biggest, sharpest words he could find. Words that could match the bigness inside him. Words that could hurt as much as everything felt like it was hurting.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "And then it was over. Just like that. The bigness had passed through him like a summer storm - loud and wild and terrible - and now it was gone, leaving Azi standing there in the sudden quiet. His hands were still clenched. His heart was still pounding. His breath came in little gasps, like he had been running even though his feet hadn't moved.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "Mama and Papa hadn't yelled back. They hadn't run away. They were still right there - quiet, steady, waiting. The way mountains wait. The way the moon waits. The way love waits, even when you push against it with all your might. But Azi could see something in their eyes. Not anger. No. That would have been easier, somehow.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Something softer. Something that looked a little bit like sad. And that made Azi feel worse than the bigness ever had.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Later, when the sky outside had turned the color of honey and ash, Azi sat by the farmhouse window. Dinner was over. Bath was done. Pajamas were on - the soft blue ones with the little rockets that Papa had packed specially for the trip. But sleep felt very far away.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Azi pressed his forehead against the cool glass and watched the Adirondack woods settle into darkness. The trees were becoming shadows. The meadows were becoming mysteries. The mountains were becoming shapes darker than the darkening sky. He couldn't stop thinking about his hands.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "About the way they had pushed. About the way they had pounded. About the way they had moved so fast that his heart couldn't catch up. He couldn't stop thinking about his words. The sharp ones. The mean ones. The ones that had burst out of him like they belonged to someone else. > \"I'm not kind,\" Azi whispered to the window.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "The glass fogged a little where his breath touched it. > \"I'm not a kind person.\" He said it quiet and certain, the way you say things that feel too true to argue with. And then Azi saw it.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "At the edge of the woods, where the last light touched the first shadow, something was moving. No. Not moving. Standing. Standing more still than anything Azi had ever seen. It was a moose. The biggest creature Azi had ever seen in his whole life.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Bigger than the horses in Bernadette's paddock. Bigger than Papa. Bigger, even, than the stories Papa told about the elephants they would see someday in India. Its antlers spread wide like branches - like it was carrying a whole tree on its head, a tree made of bone and wisdom and years and years of standing at the edge of things.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Its legs were long and impossibly still, like they had grown roots into the earth and weren't planning to move until they were good and ready. And its eyes - even from far away, even through the window glass - its eyes looked ancient. Like they had seen a thousand forests grow. Like they had seen a thousand forests fall.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Like they had seen ten thousand storms pass through, and stayed standing through every single one.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "The moose wasn't moving. It was just standing there, at the edge of everything, looking straight at the farmhouse window. Looking straight at Azi. Azi's breath caught in his chest. He didn't call for Mama. He didn't call for Papa. He didn't move at all. Something told him this was a moment that needed to stay quiet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "Something told him this was a moment that was just for him. *(Take a slow breath here. In through your nose... out through your mouth...)* And then - impossibly, magically, in the way that things only happen at the edge of everything wild - the moose spoke.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       }
      ]
@@ -1164,168 +546,63 @@
      "pages": [
       {
        "text": "Not out loud. Not in words that made sound. But somehow, in the space between Azi's thoughts - in the quiet place where wishes live and dreams begin - a voice appeared. It was low and slow, like wind through pine needles. Like honey pouring from a jar. Like the sound a mountain might make if mountains could talk.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *You think you are not kind.* Azi's eyes went wide. He pressed his hand flat against the glass, as if he could touch the moose through the window. > *I watched you today.* The moose's voice continued, slow and patient, in no hurry at all.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *I saw you share your pinecones with the squirrel who came too close. You didn't have to. But you did.* Azi felt something loosen in his chest. Just a little. The moose had seen that? > *I saw you whisper 'sorry' to the flower you accidentally stepped on. Even though no one was watching. Even though the flower couldn't hear.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Azi remembered. The purple flower with the bent stem. The way he had felt bad, even though it was just a flower. The way the word \"sorry\" had come out all on its own. > *I saw you wave goodbye to the horses. Even though they couldn't wave back. Even though waving at horses is maybe a little silly. You waved anyway.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "The moose's eyes seemed to shine in the last of the light. > *Your kindness is real, Azi. It lives inside you. It is part of who you are.* \"But -\" Azi started. > *But sometimes, when you get very tired, the bigness buries it.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "\"The bigness,\" Azi whispered. \"It comes so fast.\" His voice was small in the quiet room, but somehow he knew the moose could hear him. \"And then my hands - they push before I can stop them. And my words - they come out sharp and mean, even though I don't want them to be sharp and mean.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "A tear slipped down Azi's cheek. He hadn't even felt it coming. \"And then afterward, I feel so bad. Because I hurt the people I love the most. And I don't know how to stop.\" > *I know.* The moose's voice was gentler now. Almost tender. > *I know about bigness.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "The moose lowered its great head, and Azi saw something he hadn't noticed before. A scar. Long and pale, running along the moose's shoulder like a river through a valley. Old and healed, but still there. Still part of the story.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *When I was young - when I was not so different from you - I did not know how to be gentle with my bigness.* The moose's voice had changed. It was still slow, still patient, but now there was something else in it. Something that sounded like remembering.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *I crashed through the forest. I didn't mean to crash. But my body was big, and my feelings were big, and everything felt too fast.* Azi listened, his hand still pressed against the window.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *I knocked down saplings - young trees that were just learning to grow. I trampled flowers that had just begun to bloom. I frightened rabbits and birds and even other moose who were only trying to help.* The moose lifted its eyes to Azi's. > *I hurt things I did not mean to hurt.* Azi stared at the scar. \"What happened?\" > *I learned.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "The moose lifted its head again. The antlers caught the last of the twilight, and for a moment they seemed to glow - like they were holding a little bit of the sun inside them for safekeeping. > *I learned that the biggest creatures must practice the deepest gentleness.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *We have more power than most, Azi. We can hurt more than most. But that same power - that same bigness - can also protect. Can also hold. Can also comfort.* The moose took one slow step forward. Just one. But somehow it felt like the whole forest shifted with it.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *The same hands that push can also hug. The same voice that bites can also say 'I love you.' The same heart that lets the bigness burst out can also let the kindness rise up.* \"But how?\" Azi asked. \"How do I let the kindness rise up when the bigness is so fast?\" > *You are bigger than you know, Azi.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "The moose's voice was warm now. Certain. > *Your feelings are big. Your love is big. Your body is getting bigger every day. And big things - truly big things - need to learn the Gentle Giant's Secret.* \"What's the secret?\" Azi whispered. And the moose began to teach.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "ask": {
         "question": "The Gentle Giant's Secret starts with one slow breath. Can you do a moose-sized breath with Azi?",
         "answers": [],
@@ -1336,151 +613,60 @@
       },
       {
        "text": "The moose stood even more still - so still that Azi could see the whole world reflected in its dark eyes. The farmhouse. The meadow. The mountains. The first stars beginning to peek through the purple sky. All of it, held in those ancient, patient eyes.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *When you feel the bigness rising - when your hands want to push and your words want to bite - you do three things.* Azi leaned closer to the window. His breath had stopped fogging the glass. Everything felt very quiet. Very important. *(Let's learn the secret together. Ready?)*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "> *First: Stand still, like a moose in the meadow.* The moose didn't move. Not a single muscle. It was like watching a mountain pretend to be an animal. > *When your body wants to move fast - when your legs want to run and your arms want to swing and everything wants to go go go - you tell it to wait.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Azi tried it. He pressed his feet flat against the floor, feeling the cool wood beneath his socks. > *Just for a moment. You plant your feet like roots going down into the earth. Down through the floor. Down through the dirt. Down to where the underground rivers flow and the old stones sleep.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Azi imagined it. Roots growing from his feet - down through the farmhouse, down through the foundation, down into the dark earth of the Adirondacks where nothing could move him. His legs felt different. Heavier. More still. *(Try it now. Plant your feet. Feel the roots growing down...)*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *Second: Breathe slow, like the mountain air.* Azi could almost feel the moose breathing - could almost see its great chest rising and falling, slow as the tide, slow as the seasons, slow as the mountains themselves growing one inch taller every thousand years.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "> *In through your nose. Long and slow. Like you're smelling all the pinecones you collected today. Like you're breathing in the whole meadow at once.* Azi breathed in. He counted to four in his head. One... two... three... four. > *Out through your mouth. Even slower. Like you're blowing on soup that's too hot. Like you're making ripples on a still pond.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "Azi breathed out. He counted to six. One... two... three... four... five... six. > *Mountain air takes its time. It doesn't rush. It moves through the valleys and over the peaks and around the trees, and it never once hurries. You breathe like the mountains breathe - big and slow and patient.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "Azi breathed again. In for four. Out for six. The tightness in his chest started to soften, like ice melting in the sun. *(Breathe with Azi now. In... two... three... four... Out... two... three... four... five... six...)*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "> *Third: Find the soft place behind your strong.* The moose's voice was gentler now. Almost a whisper in Azi's mind. > *Put your hand on your heart.* Azi lifted his hand from the window glass and placed it on his chest. Under his rocket pajamas, he could feel his heart beating. Thump... thump... thump.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *Underneath the bigness - underneath the fast and the loud and the tight - your kindness is waiting.* Azi closed his eyes. He tried to feel past the leftover tightness, past the memory of his sharp words and pushing hands.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *It never leaves, Azi. Your kindness never leaves. It just gets buried sometimes. Like seeds get buried under snow in winter. But winter always ends. And the seeds are still there, waiting to grow.* And there it was.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Underneath everything - underneath the tiredness and the overwhelm and the terrible feeling of having hurt the people he loved - Azi felt something warm. Something soft. Something that remembered sharing pinecones and whispering sorry to flowers and waving goodbye to horses. His kindness. Still there. Still his. *(Put your hand on your heart. Can you feel your kindness waiting there?)*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       }
      ]
     },
@@ -1489,261 +675,99 @@
      "pages": [
       {
        "text": "\"But what if I forget?\" Azi's voice was small in the darkening room. \"What if the bigness comes too fast and I can't remember the secret? What if I push and hit and say mean things all over again?\" The moose's eyes seemed to smile - if moose eyes could smile. There was warmth there, and patience, and something that looked like understanding.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *Then you will try again.* The moose's voice was kind. No judgment. No disappointment. Just truth. > *That is what gentle giants do, Azi. We don't get it right every time. Sometimes our bigness still crashes through. Sometimes we still knock down saplings and trample flowers and frighten the ones we love.* The moose glanced at its scar.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *But we keep practicing. We keep standing still. We keep breathing slow. We keep finding the soft place. And every time we find it, it gets a little easier to find again.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "The moose began to turn, its great body moving like a ship through fog, like a cloud drifting across the face of the moon. > *And Azi -* It paused at the edge of the shadows, one hoof raised, antlers silhouetted against the darkening sky.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "> *Whenever you need to remember - whenever the bigness starts to rise and you feel like you might crash through - close your eyes.* Azi listened, holding his breath. > *Find yourself back here. At the edge of the Adirondack woods. At the edge of everything wild. Where the last light touches the first shadow.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "The moose's voice grew softer, more distant, like it was already beginning to fade into the forest. > *I will be waiting. I am always waiting - for the children who are learning to be gentle giants.*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "And then the moose stepped into the darkness. The woods swallowed it whole - the great body, the patient eyes, the antlers like branches, the scar like a story. Azi was alone at the window again. But he didn't feel alone. Not at all.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Azi found Mama and Papa in the farmhouse living room. They were sitting together on the old couch - the one with the faded flowers on it that had probably been there since before Azi was born, maybe since before Mama and Papa were born. They were talking quietly, the way grown-ups do when they're trying to figure something out.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "When they saw Azi in the doorway, they stopped talking. And they opened their arms. Azi walked over slowly. Not running - the way he might have run before the moose. Not crashing - the way he had crashed when the bigness was in charge. Just walking. One foot, then the other. Steady and sure.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "He climbed into the space between them - the Azi-shaped space that always seemed to be waiting for him, no matter what - and felt their arms wrap around him. Mama's arm, soft and warm, that smelled like the lavender soap she always used. Papa's arm, strong and steady, that felt like the safest place in the world.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "\"I'm sorry,\" Azi said. His voice was small, but the words were real. \"My bigness came out. My hands did things my heart didn't mean. My words were sharp when I didn't want them to be sharp.\" Papa's hand smoothed Azi's hair - the same hand that had caught Azi's fists just a few hours ago, now gentle as a cloud.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "\"Thank you for telling us, *beta*,\" Papa said. Mama kissed the top of Azi's head - the same head that had been full of sharp words, now quiet and calm. \"We know your heart, *mi amor*,\" she said. \"Your heart is so kind. Even when the bigness makes it hard to show.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "\"I saw a moose,\" Azi said. The words tumbled out like pinecones from a full pocket. \"At the edge of the woods. It was the biggest thing I've ever seen. And it talked to me - not out loud, but in the quiet place. And it taught me the Gentle Giant's Secret.\" Mama and Papa looked at each other over Azi's head.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Something passed between them - something that wasn't doubt, something that wasn't the way grown-ups sometimes look when they think children are making things up. Something that looked like wonder. \"Will you teach us?\" Papa asked.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "So Azi did. Together, the three of them stood in the middle of the farmhouse living room - Mama and Papa and Azi, surrounded by old furniture and gentle shadows. \"First,\" Azi said, \"you stand still like a moose in the meadow.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "He planted his feet, and Mama planted her feet, and Papa planted his feet. Three sets of roots growing down through the old wooden floor. \"Then you breathe slow, like the mountain air.\" They breathed together. In for four. Out for six. Three sets of lungs, breathing like the mountains breathe. \"Then you find the soft place behind your strong.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "Three hands went to three hearts. Three people feeling for the kindness underneath everything else. And in that farmhouse at the edge of everything wild, Azi felt his kindness rise back up - whole and warm and ready. Not because the bigness was gone forever. But because now he knew how to find his way back.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "That night, Azi fell asleep easily. Mama tucked the blanket around him - the soft one from home that smelled like their house in Rahway. Papa kissed his forehead and whispered the words he always whispered. \"Good night. Sweet dreams. I'll see you in the morning. I love you to infinity and *más allá*.\" Azi closed his eyes. And he dreamed.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "He dreamed of meadows that stretched all the way to the mountains. He dreamed of horses standing in morning mist. He dreamed of pinecones that smelled like secrets, and purple flowers that forgave him for stepping on them, and squirrels who were braver than they knew. And he dreamed of a moose.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       },
       {
        "text": "Standing at the edge of the woods, patient as the trees, gentle as the wind, ancient as the mountains themselves. Waiting. Always waiting. For all the children who were learning - one slow breath at a time, one planted foot at a time, one hand-on-heart at a time - to be gentle giants too.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "And somewhere in the Adirondack darkness, at the edge of everything wild, the moose lifted its great head toward the stars. The scar on its shoulder gleamed pale in the moonlight - a reminder that even the wisest giants were once young, were once learning, were once crashing through forests they didn't mean to crash through. The moose breathed in the mountain air.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       },
+       "scene": "farm",
        "breathe": true
       },
       {
        "text": "Slow and patient. Big and gentle. And was glad. *The End*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a7f3d0,#38bdf8)",
-        "emojis": [
-         "🫎",
-         "🌲",
-         "🏔️"
-        ]
-       }
+       "scene": "farm"
       }
      ]
     }
-   ],
-   "comfortRitual": {
-    "motif": "song",
-    "line": "Big feelings are made a little smaller when we sing about them.",
-    "alreadyClosed": false
-   },
-   "skillTags": [
-    "SS002.emotional-regulation"
    ]
   },
   {
@@ -1754,7 +778,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🪞",
-   "coverBg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
    "teachingGoals": [
     "confidence",
     "self-recognition",
@@ -1787,245 +810,91 @@
      "pages": [
       {
        "text": "The Westfield was the kind of house that talked at night. Not in words. In the language that houses use --- the creak of a floorboard settling, the tick of a baseboard heater cooling down, the way the wind came around the corner of the backyard and pressed its palm against the kitchen window, just checking.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Mama had gone to bed. Papa had gone to bed. Even the garden outside had gone to bed --- the kale tucked under its shadow, the beans done with their climbing, the basil holding very still the way basil does when the air gets cool and dark.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "In Azi's room, the moon looked in through the window the way it always did. Patient and round and unbothered. It had been watching over children for a very long time. It knew how to wait.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Jujy was on the little sofa, slumped sideways the way a cat who means business sleeps when no business is happening. Dory was beside him, facing the wall, deep in whatever dreamy place Dory went when the lights went out. Pandies sat on his shelf, eyes closed, hands folded, wearing that invisible calm the way he always did --- like patience was a coat he'd had for years and knew exactly how to put on.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Azi was not asleep. He was lying on his back looking at the ceiling, which was doing the thing ceilings do when you stare at them long enough in the dark --- going soft at the edges, like it was made of something that couldn't quite decide what it was. He was thinking about the day. \\* \\* \\*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "It had started at breakfast.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Papa had put down the plate --- rice, beans, a little kale from the backyard garden, the good deep green kind that Azi had actually helped plant --- and Azi had looked at it and crossed his arms. His fork was right there. His hands knew exactly what to do with a fork. He had been using forks for years. But something in him sat down on the floor inside and refused to move.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"I can't eat it.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Papa had gone very patient the way Papa went patient, which was a specific kind of patient --- not cold, not angry, just waiting, the way you wait for weather to change. \"¿Puedes intentar, beta?\" Just try, son. The Colombian and the Indian mixed together the way they always did in this house, like two rivers that had given up being separate a long time ago.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "But Azi had not tried. He had sat with his arms crossed and let the food get cold and felt, somewhere underneath the crossed arms, that he actually was hungry, that the kale actually did look good, that his hands actually did know exactly what to do. He had noticed, in the corner of the kitchen, something dim. A shadow that didn't belong to anything.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "But he hadn't thought too much about it. \\* \\* \\* Later there had been the shower. \"I can't do it myself.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "But Azi had done it himself before. Many times. He knew the order --- hair first, then face, then the rest. He knew how long to let the water run warm before getting in. He knew to count to thirty and then he'd be done. His body knew all of it without even thinking. And still something in him sat down on the floor inside and refused.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The shadow in the bathroom mirror had been bigger this time. More solid. It had Azi's own crossed arms. \\* \\* \\* And then there had been the words.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The sharp ones. The kind that came out before Azi even knew they were coming --- fast and hard, like something that had been wound too tight and finally let go. He had felt the feeling before they came, that buzzy too-bright feeling that lived in his chest and his jaw and the backs of his hands, the feeling that meant something was building. And he had kept going anyway. And the words had come out. And Mama's face had done the thing it did --- gone quiet in that particular way, not angry, not hurt exactly, but something more like careful, the way you go careful around something that's learned to bite.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "And the very second --- the very second --- the words had left his mouth, Azi had felt the bad feeling. The one that came after. The one that was worse than the buzzy feeling, because at least the buzzy feeling had somewhere to go. He had looked at the corner of the room. The shadow had been very large. \\* \\* \\*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "And finally --- bedtime. Azi twisting and flopping and saying \"I'm not tired\" even though his eyes were doing that heavy thing, even though his body was practically falling through the mattress with the weight of being done with the day. Even though every single part of him was begging, quietly, to just stop. \"I can't sleep.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "But he could. He always could. He knew how. He just had to lie still and let it come. Something had settled at the foot of his bed then. Not heavy. Not loud. Just\\... present. Waiting.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Now, at midnight, Azi looked at the foot of the bed. It was there.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He could see it clearly now, in the way you see things in the dark when your eyes have stopped fighting the darkness and started working with it. It sat very still. It had a shape that was almost-Azi --- the same hair, the same hands, the same small shoulders. But everything about it was dim, like a drawing of Azi made by someone who had only heard him described and never actually met him. Its arms were crossed. Its chin was pointed at the ceiling. It was wearing his expression from breakfast.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Azi had known about the Coocoo the way you know about things without being told --- the way you know that the house is different when Papa is worried even if no one says so, the way you know that a storm is coming even before you see the clouds. Every child had one. Every child's looked a little different. Yours was shaped exactly like the parts of you that you were pretending not to have.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"You're bigger tonight,\" Azi said. The Coocoo said nothing. It just sat there at the foot of his bed, in that particular way it had of sitting, like it had all the time in the world. \"I know why,\" Azi said. He sat up. Pulled his knees to his chest. \"Because of today.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The Coocoo's crossed arms uncrossed --- just slightly. Like something in it had been waiting for that. (Take a slow breath in\\... and out\\... feel the quiet room around you\\...) \\* \\* \\*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       }
      ]
     },
@@ -2034,456 +903,166 @@
      "pages": [
       {
        "text": "The room shifted. Not all at once --- gently, the way dreams shift. The walls went soft at the edges. And suddenly Azi was watching breakfast the way you watch something from outside of it --- the kitchen, the plate, the kale from the garden, Papa going quiet and patient, and Azi with his arms crossed. He watched himself say \"I can't eat it.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "And he could see --- now that he was on the outside looking in --- that it wasn't true. He could see his own hands, hanging at his sides, perfectly capable. He could see that his mouth actually was watering a little at the smell of the beans. He could see the part of him that had sat down on the floor inside and refused, and it was such a small part. Such a stubborn, tired, small part. And all the rest of him had just gone along with it.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"I can't\" and \"I won't\" are not the same thing. The voice of the Coocoo was strange. It was his own voice, almost, but slower. Like his own voice heard through water, or through sleep.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Your hands know how to use a fork. Your body knows how to shower. Your heart knows how to be kind. Every time you say \"I can't\" for something you already know how to do --- that's when I get to come.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The scene shifted again. The shower now. Azi watching himself stand at the bathroom door, saying \"I can't do it myself\" --- and even from outside of it he could see that wasn't true, could see his own body already knowing the order, hair first, face, thirty seconds, done. The knowledge was right there in his hands. It had always been right there.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"But sometimes I don't want to,\" Azi said, to the Coocoo, to himself, to the quiet dark room that was listening. \"Sometimes it's hard even when I know how. Sometimes the knowing-how doesn't feel like enough.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Yes. That's real. There's a difference between \"this is hard and I need help\" and \"I know how but something in me is sitting on the floor and refusing to move.\" You always feel the difference. You know which one it is. You've always known.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Azi was quiet. Because it was true. He did always know. The knowing was always there, under the crossed arms, under the \"I can't\" --- quiet and certain as the basil in the garden holding still in the dark. He had just been choosing to stand in front of it. (Breathe slowly\\... in for four\\... out for four\\... feel your body getting heavier and softer\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"What about the words?\" Azi said. \"I didn't plan those.\" The room shifted a third time. Slower now. More careful.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He watched the moment from the outside --- not the moment the words came out, but the moment before. The buzzy feeling in his chest. The too-bright feeling behind his eyes. His jaw going tight. He watched himself notice all of it and keep going anyway, the way you keep touching something hot because some stubborn part of you isn't done yet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He watched Mama's face. He had to look away.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The sharp words aren't the real thing. The real thing is the feeling before them. The buzzy-bright feeling that means your body needs something it doesn't have yet --- food, or water, or rest, or just someone to be still next to. Your body has been trying to tell you. In its own way. The only way it knows.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"I know that feeling,\" Azi said. \"I felt it today before ---\" He stopped. Before the words. \"Before the words.\" A beat. \"I could have stopped.\" You could have said, \"I think I'm getting too full of feelings. I need a minute.\" Those words exist. You have them. Your mouth knows how to make them. You just didn't use them.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "A long quiet stretched through the room. Azi sat with it. Not comfortable, not uncomfortable. Just true. The way things are true at midnight, when there's no noise left to hide behind. \"I'm sorry about Mama's face,\" he said. Not to the Coocoo. Just to the room. To the night. To wherever sorry goes when you mean it.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Something in the Coocoo shifted. Softened. Just a little. The crossed arms weren't quite so crossed. \\* \\* \\*",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "\"What makes you go away?\" Azi asked. The Coocoo was quiet for a long moment. The moon moved slightly in the window, or maybe the window moved toward the moon. The house did its soft creak. Somewhere in the garden a night-thing went past, doing its quiet night-work.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "When you do the thing. Not perfectly. Not even happily. Just --- when you pick up the fork because you already know how. When you step into the shower because your body knows the way. When you feel the buzzy-bright feeling coming and you say, before the sharp words, \"I need a minute, I'm getting too full\" --- every time that happens, I get a little smaller. Every time you're kind from the inside --- not because someone told you to be, but because you feel it there --- I get smaller. Every time you try even when you don't want to, I get smaller.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "I'm not here to punish you. I'm here because you forgot what you know. And when you remember --- I have nothing left to be. Azi looked at the dim sideways shape of the Coocoo at the foot of his bed. His own crossed arms. His own stubborn chin. Made of all the moments he'd sat on the floor inside and refused to move.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He didn't feel scared of it. He felt --- something else. Something more like understanding. Like recognizing something in a mirror that you'd been walking past without looking at. \"I know how to do more than I act like,\" Azi said quietly. Yes. \"And I know when my feelings are building before they spill. Yes. \"And I'm kind. I just --- forget, sometimes.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Everyone forgets. That's not the same as not knowing. You have always known. You were born knowing. You're a boy who could --- you just have to decide to. (Feel the pillow beneath your head\\... the blanket heavy and warm\\... your breath going slow, slow, slow\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The Coocoo was very small by the time Azi finally closed his eyes. Just a flicker. Barely a shadow. Small enough that the moonlight was almost enough to wash it out entirely.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Not gone. It wouldn't always be gone. It would come back when he forgot again --- when the \"I can't\" was really an \"I won't,\" when the buzzy feeling built and he let it go sharp, when he stood in front of what he already knew and pretended he didn't know it. That was the deal. But tonight it was small enough that Azi could sleep.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "And he did. \\* \\* \\* In the morning, something was different.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Not big. Not dramatic. Not the kind of different you can point to. Just --- Azi was sitting at the table, and Papa put down the plate, and Azi picked up his fork. Without being asked. Not because he was performing picking up his fork, not because he was making a point of it. Just because he could, and the food was there, and he was the one who was hungry, and his hands already knew what to do.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He ate three bites before anyone said a word. Papa looked at him over his coffee. Something passed between them --- not words. Just a recognition. The kind that happens in houses where people pay attention to each other. \\* \\* \\* Later, Azi felt the buzzy feeling starting. The too-bright, too-full feeling behind his eyes. His jaw going just slightly tight.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He found Mama in the kitchen. She was cutting something, her back to him, humming one of the songs she didn't know she was humming --- the kind that came from so deep in her she didn't need to think about it. \"Mama.\" She turned. \"I think my feelings are getting too full. I might need a minute before they spill.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Mama put down the knife. She pulled Azi into her side, one arm around his shoulders, solid and warm. \"Gracias por decirme, mi amor.\" Thank you for telling me, my love.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "They stood there together in the kitchen for a minute. Just stood there. The buzzy feeling moved through Azi like weather and kept going, out the other side, without ever becoming sharp words. Without ever becoming anything that had to be sorry. \\* \\* \\* That night at shower time, Azi turned on the water.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "He counted while it warmed up --- uno, dos, tres, cuatro, cinco. He got in. He did his hair first, face, the rest, counting to thirty the way his body already knew to do. He came out and wrapped himself in the big blue towel and stood there in the steam like a small burrito with a serious expression, which was the expression he always had when he was doing something he was quietly proud of but didn't want to make a big deal about.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "At bedtime, Pandies sat in his spot on the shelf. Jujy and Dory were where they always were on the little sofa. The moon looked in through the window. The house did its late-night talking --- the creak, the tick, the wind around the corner. Azi looked at the foot of the bed. Nothing.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Just the moonlight on the blanket. Just the good heavy feeling of a boy who had done the things he already knew how to do. He lay down. Let his body go heavy. Felt the pillow hold the back of his head. Felt his breathing slow, the way it always slowed when he finally stopped fighting it.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "(In through your nose\\... out through your mouth\\... your body getting heavy\\... heavy\\... perfectly heavy\\...) The moon watched over him the way it always does --- over all the children, everywhere, who are still learning that the hardest thing and the most important thing are usually the same thing. Doing what you already know how to do. \\* \\* \\* Buenas noches, mi amor.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The Coocoo is very small tonight. You already knew how all along. A Note for Papa and Mama What the Coocoo Is",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The Coocoo is not a punishment --- it's a mirror. It's shaped like the part of Azi that knows how to do something but is pretending not to. This distinction matters: the story doesn't say Azi is bad. It says he forgot what he already has. That's a gentler and more accurate frame, and it puts him in control of the solution --- because the Coocoo shrinks when he remembers, and he's the one doing the remembering.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Before the Story You can say: \"Tonight's story is about something called the Coocoo. Every child has one, and it looks different for every kid. Let's find out what Azi's looks like.\" No need to set it up as a lesson --- let the story do that work. After the Story",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "You can ask, gently and without expectation: \"What do you think your Coocoo looks like tonight? Big or small?\" This gives Azi a way to self-report how the day felt --- not as confession, not as judgment, but as information you're curious about together. In the Moment",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "When the hard moments come --- the crossed arms at dinner, the refusal at shower time, the buzzy feeling building toward sharp words --- you can say very quietly: \"I think the Coocoo might be getting bigger. What do you think would make it smaller?\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "Then wait. Let him answer. He knows. That's the whole point --- he always knew. Your job is just to help him remember that he knows. The Three Things That Shrink It 1\\. Doing the thing himself --- eating, showering, getting ready --- before being asked twice. Not perfectly. Just doing it.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "2\\. Naming the buzzy feeling before it turns sharp: \"I think I'm getting too full. I need a minute.\" 3\\. Being kind from the inside --- not performed, not coerced, but felt.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       },
       {
        "text": "The Coocoo will come back. That's part of the deal. But each time it does, Azi now has language for it, and a path through it, and the knowledge that he already has everything he needs to make it small again.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#a78bfa,#f0abfc)",
-        "emojis": [
-         "🪞",
-         "🌙",
-         "✨"
-        ]
-       }
+       "scene": "mirror"
       }
      ]
     }
-   ],
-   "comfortRitual": {
-    "motif": "lullaby",
-    "line": "You can do more than you know. The mirror knew before you did.",
-    "alreadyClosed": false
-   },
-   "skillTags": [
-    "SS003.adaptability",
-    "SS001.self-directed-learning",
-    "SS003.mental-health"
    ]
   },
   {
@@ -2494,7 +1073,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🚂",
-   "coverBg": "linear-gradient(160deg,#0f172a,#4338ca)",
    "teachingGoals": [
     "wonder",
     "calm",
@@ -2527,371 +1105,140 @@
      "pages": [
       {
        "text": "The house had grown quiet. The kind of quiet that only comes on Christmas Eve, when even the walls seem to hold their breath. Azi was already sleeping---deep, deep sleeping---curled in his bed upstairs with one arm around Jujy. His breathing was slow and even. His eyes moved gently beneath their lids, chasing dreams that hadn't quite formed yet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "Downstairs, the Christmas tree glowed like a tower of captured starlight. Beneath it, the little village slept too---tiny houses with painted windows, snow-dusted roofs, and lampposts that flickered with real warmth. The train tracks curved around them all like a silver river frozen in time.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The red train sat perfectly still on its tracks. It had been still all day, all week, all December. Just a toy train beneath a Christmas tree. But Christmas Eve is different from other nights.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Somewhere far away---or perhaps very close---a clock began to chime. One\\... two\\... three\\... The sound traveled through the house like golden thread, weaving under doors and up staircases. Four\\... five\\... six\\... In his bed, Azi stirred. Not waking---not yet---but listening somewhere deep in his dreaming mind. Seven\\... eight\\... nine\\... Downstairs, the tree lights pulsed once. Just once. Ten\\... eleven\\... Twelve.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "And the red train's lantern flickered to life.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "It started small---the way all magic does. A single light in a single window. Then another. Then the baker opened his tiny door, carrying a tray of bread no bigger than a fingernail. A lamplighter touched his pole to the streetlights, and they bloomed brighter. Children appeared in doorways, pointing at the sky.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The train's wheels began to turn---slowly at first, then with purpose. Its bell rang out: a single silver note that rose through the house like a wish. And upstairs, Azi opened his eyes inside his dream.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi found himself standing in the living room, though he didn't remember walking there. He was wearing his pajamas still, and his feet were bare on the soft carpet. Everything looked the same---the tree, the presents, the fireplace---but everything felt different. Bigger. More awake. The village beneath the tree was alive.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Truly alive. He could hear tiny voices now, and the clop-clop of a horse-drawn carriage no bigger than his hand. He could smell gingerbread and pine and something sweet he couldn't name. \"There you are,\" said a voice.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi turned. A girl stood beside the Christmas tree---a girl his size, with dark braids and a white nightgown and eyes that sparkled like she knew a wonderful secret. \"I'm Clara,\" she said. \"I've been waiting for you. The train only comes when someone is ready to believe.\" \"¿El tren?\" Azi asked. \"The train is real?\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Clara smiled. \"On Christmas Eve, everything is real. Come on---we don't want to miss it.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "She took his hand---her fingers were warm, like she'd been holding them near a fire---and together they walked toward the tree. With each step, the room seemed to grow larger around them. Or perhaps they were growing smaller. The tiny village was now a real village. The train was now a real train, gleaming red with golden trim, steam puffing from its stack in soft white clouds.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Its door stood open, golden light spilling like honey onto the snow.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The conductor stood beside the door. He was tall---the tallest person Azi had ever seen---with a long coat and a cap pulled low. But his eyes were kind, and when he smiled, his whole face crinkled like wrapping paper. \"Welcome aboard the Midnight Train,\" he said, his voice deep and warm like cocoa. \"All aboard for the Land of Christmas Dreams.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"¿A dónde vamos?\" Azi asked. Where are we going? \"Ah,\" said the conductor, tipping his cap. \"That depends on you, young traveler. The train goes where hearts need to go. Tonight, it seems your heart has quite the journey planned.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi climbed the golden steps, Clara right behind him. Inside, the train car was beautiful---red velvet seats, frosted windows, lanterns that cast dancing shadows on the ceiling. Other children sat in the seats, children from everywhere, speaking languages Azi didn't understand but somehow felt he knew. The train's bell rang three times. The whistle called out into the night. And they began to move.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "(Take a slow breath\\... feel the train begin to rock gently beneath you)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "The train curved around the Christmas tree one last time---but the living room was gone now. In its place stretched a world Azi had never seen, painted in silver and blue and soft, soft white.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Snow fell past the windows like slow-motion stars. Mountains rose in the distance, wrapped in ribbons of cloud. Rivers of frozen moonlight wound through valleys where ice flowers bloomed in colors that had no names. \"First stop,\" Clara whispered, pressing her face to the glass. \"The Forest of Sugar Plums.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The train slowed as it entered a forest unlike any forest Azi had imagined. The trees were crystalline---branches made of spun sugar, leaves of candied violet and amber. When the wind blew through them, they chimed like tiny bells. Creatures moved between the trees: rabbits made of marzipan, birds with peppermint wings, a fox whose fur shimmered like cinnamon in sunlight.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"Can we get off?\" Azi asked. The conductor appeared beside them, holding two cups of something warm that smelled like chocolate and dreams. \"The forest is for looking,\" he said gently. \"Some magic is best kept at a little distance. But you may listen.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi listened. And he heard it---a music that seemed to come from everywhere at once. Soft flutes and dancing strings, the kind of music that made you want to twirl even when you were sitting still. It was the trees themselves, he realized. The whole forest was singing. \"Es hermoso,\" Azi breathed. It's beautiful.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "\"It is,\" Clara agreed. \"The Sugar Plum Fairy planted these trees a thousand Christmases ago. Every year they grow a little taller. Every year the song gets a little sweeter.\" (Let the music settle into your chest\\... breathe it in slowly\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "The train rolled on, and the forest gave way to a vast frozen lake that stretched to the horizon. The ice was so clear Azi could see stars reflected in it---but when he looked up, he saw stars in the sky too, perfectly mirrored. \"The Lake of Reflected Wishes,\" Clara said. \"Everything you hope for lives down there, waiting to become real.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Dancers glided across the ice---elegant figures in white and silver, spinning patterns that left trails of glitter behind them. They moved like they were made of moonlight, leaping and twirling in perfect silence.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "One dancer---a woman with a crown of snowflakes---saw the train and raised her hand in greeting. Azi waved back, and she smiled before spinning away into a leap that seemed to last forever. \"That's the Snow Queen,\" Clara whispered. \"She dances every Christmas Eve to keep the ice strong enough to hold all the world's wishes.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi watched her until she was just a tiny figure in the distance, still spinning, still leaping, tireless and beautiful.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Next came mountains---great snow-capped peaks that touched the stars. The train climbed through clouds that tasted like vanilla when Azi breathed them in, higher and higher until--- \"Look!\" Clara cried.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "A city appeared in the valley below, and Azi gasped. It was made entirely of light---not buildings with lights inside them, but buildings made of light itself. Towers of warm gold. Bridges of soft silver. Streets paved with gentle rose and amber.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"The City of Christmas Lights,\" the conductor announced. \"Where every light that ever shone on a Christmas tree goes when the tree comes down. They live there forever, keeping the city bright.\" Azi thought of his own Christmas tree lights at home. He wondered if some of them had been here, in this glowing city, before they'd found their way to his living room.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"Do the lights remember?\" he asked. \"Do they remember the families they belonged to?\" The conductor's eyes grew soft. \"Oh yes, young traveler. Lights never forget the children who believed in them. That's what makes them shine so bright.\" (Feel that warmth\\... like a hundred tiny lights glowing inside your heart\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The train climbed one final mountain, and there---at the very top---stood a castle made of candlelight. Not candles, but candlelight itself, shaped into towers and walls and windows that glowed with every color of flame. Orange and gold and that deep blue you only see at the very bottom of a candle, where the fire meets the wax.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"The Castle of Christmas Dreams,\" Clara said, her voice full of wonder even though she'd seen it before. \"This is where the train stops. This is where the magic lives.\" The train slowed. The bell rang once---soft and silver. The door opened, and a rush of warm air filled the car, smelling of cinnamon and pine and something else\\... something that smelled exactly like home.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       }
      ]
     },
@@ -2900,309 +1247,112 @@
      "pages": [
       {
        "text": "They stepped off the train into a courtyard of smooth snow. Other children were there too---children who had ridden from other Christmas trees, other living rooms, other dreams. They looked at each other with knowing smiles, the way people do when they share a secret too wonderful for words.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The castle doors opened, and out stepped a woman who seemed to be made of moonlight and kindness. Her dress was the color of snow at twilight. Her crown was made of tiny stars. When she smiled, Azi felt warm all the way to his toes.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"Welcome, dreamers,\" she said, and her voice was like a lullaby. \"I am the Christmas Queen, and this is my home. Tonight, it is your home too.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Inside, the castle was even more beautiful. A great hall stretched before them, with a ceiling so high it disappeared into soft golden clouds. Tables lined the walls, laden with every treat Azi could imagine: cookies shaped like snowflakes, cups of cocoa that never grew cold, fruits that glittered like jewels.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "But the center of the hall was empty---a great circular floor of polished ice, smooth as glass. \"On Christmas Eve,\" the Queen said, \"we dance. Every child who rides the Midnight Train is invited to join the Christmas Dance. It only happens once a year, and it only happens here.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Music began---not from anywhere Azi could see, but from everywhere at once. The same sweet melody from the Sugar Plum Forest, but fuller now, richer, like an orchestra hidden in the walls. Clara took Azi's hand. \"You don't have to know the steps,\" she whispered. \"The music knows them for you.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "And she was right. The moment Azi stepped onto the ice, his feet knew exactly what to do. He spun and glided and leaped, and he wasn't scared at all---he was flying, he was floating, he was part of the music itself. \"¡Estoy bailando!\" he laughed. \"I'm dancing!\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "All around him, children danced with mice in tiny suits and soldiers made of wood and ballerinas whose tutus sparkled like fresh snow. The Christmas Queen herself joined them, twirling through the crowd, touching each child gently on the shoulder as she passed. (Feel yourself dancing\\... light as air\\... happy as starlight\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "When the music finally faded, Azi's cheeks hurt from smiling. Clara was laughing beside him, breathless and bright-eyed. The Christmas Queen approached them, and in her hands she held something small and silver---a tiny bell on a ribbon of midnight blue.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "\"Every child who visits the Castle of Christmas Dreams receives a gift,\" she said. \"This bell will always ring for you, Azi. On cold nights when you feel alone, shake it once, and remember: you danced with the stars tonight. You rode the Midnight Train. Magic is real, and it lives inside you.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi took the bell. It was lighter than air, but somehow he could feel its weight---a good weight, like a promise. \"Gracias,\" he said. \"Thank you.\" The Queen smiled and kissed his forehead, and where her lips touched, he felt warm and sleepy and safe.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"The train is waiting,\" Clara said softly. \"It's time to go home.\" Azi didn't want to leave---not ever---but somehow he understood. The magic of Christmas Eve was precious because it didn't last forever. It came once a year, like a gift you had to wait for.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "They walked back through the snow to where the train waited, its lantern glowing soft and steady. The other children were climbing aboard too, some waving goodbye to mice friends and snowflake dancers, some already yawning, the magic settling into their bones like warmth.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The train ride home was quieter. Children curled into their seats, heads against windows, eyes half-closed. The conductor walked the aisles, tucking blankets around small shoulders, humming a tune that sounded like a lullaby.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Through the window, Azi watched the City of Lights fade into the distance. Then the Frozen Lake, with its dancing Snow Queen still spinning beneath the stars. Then the Sugar Plum Forest, its trees still singing their sweet, strange song. Clara sat beside him, quiet now. \"Will I see you again?\" Azi asked.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "\"Every Christmas Eve,\" she said. \"The train always comes. And I'll always be here.\" She squeezed his hand once, and her fingers were still warm---but gentler now, softer, like the end of a hug. (Your eyes are getting heavy now\\... that's okay\\... the train knows the way home\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The train rocked gently, back and forth, back and forth, like a cradle. Like Papa's arms when he carried Azi to bed. Like Mama's voice humming low and sweet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The moon appeared in the window---the same moon that watched over all the children of the world. The same moon that had hung over the castle, over the lake, over the whole Land of Christmas Dreams. It seemed to wink, as if to say: I'll keep your secret safe.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Azi's eyes were so heavy now. The velvet seat was so soft. The train's rhythm was so steady. Somewhere far away, he heard the conductor's voice: \"Approaching home station. All dreamers prepare for arrival.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "But Azi couldn't keep his eyes open anymore. He clutched the tiny silver bell in his hand and let himself sink into the warmth, the softness, the gentle rocking of the train\\... (One last breath in\\... let it out slowly\\... feel yourself floating\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       },
+       "scene": "train",
        "breathe": true
       },
       {
        "text": "When Azi woke, he was in his own bed. Sunlight streamed through the curtains, golden and gentle. Jujy was tucked under his arm. Downstairs, he could hear Mama singing and Papa laughing, and the smell of something sweet baking. Christmas morning.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "He lay very still for a moment, remembering. The train. The forest. The castle. The dance. Had it been real? Had any of it been real? Then he felt something in his hand---something small and cool and impossibly light. He opened his fingers.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "The tiny silver bell lay in his palm, catching the morning light. And when he shook it---just once, just gently---it rang with the sweetest sound he had ever heard. \"Era real,\" he whispered. \"It was real.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "He smiled and pressed the bell to his heart. Then he jumped out of bed and ran downstairs, ready to tell Mama and Papa about the most wonderful dream---the most wonderful real dream---he had ever had. In the living room, the Christmas tree still glowed. The stockings hung full and waiting. And beneath the tree, the little red train sat quietly on its silver tracks.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Perfectly still. For now.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       },
       {
        "text": "Buenas noches, mi amor. Feliz Navidad. The train will always wait for you. \\~ The End \\~ Parent Guide",
-       "scene": {
-        "bg": "linear-gradient(160deg,#0f172a,#4338ca)",
-        "emojis": [
-         "🚂",
-         "🎄",
-         "✨"
-        ]
-       }
+       "scene": "train"
       }
      ]
     }
-   ],
-   "mysteryWord": {
-    "word": "navidad",
-    "language": "es",
-    "meaning": "Christmas, in Spanish"
-   },
-   "comfortRitual": {
-    "motif": "moon",
-    "line": "The moon watches over all the children of the world.",
-    "alreadyClosed": false
-   },
-   "skillTags": [
-    "SS001.curiosity",
-    "SS003.mental-health",
-    "SS001.creative-problem-solving"
    ]
   },
   {
@@ -3213,7 +1363,6 @@
    "source": "family",
    "status": "complete",
    "coverEmoji": "🌕",
-   "coverBg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
    "teachingGoals": [
     "imagination",
     "winding down",
@@ -3246,245 +1395,91 @@
      "pages": [
       {
        "text": "First, I needed to get high. I went to the garage and found my tallest ladder---the wooden one that smells like summer and sawdust, the one I use to trim the peach tree and clean the gutters and hang the holiday lights every December. I carried it out into the night.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "The neighborhood was quiet. Porch lights glowed here and there like little golden eyes. Somewhere a dog barked once, then settled. The air smelled like cut grass and somebody's late dinner. I walked past Flo's house, where her garden was full of flowers that looked silver in the moonlight.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I walked past the fire station, where the big red trucks were sleeping in their bays. Even fire trucks need to rest. I walked past the library, with its dark windows full of waiting stories. All those books, dreaming on their shelves.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I walked past Brady and Anne's house, where the porch light glowed soft and warm. Their cat was sitting in the window, watching me with curious eyes. I waved. The cat blinked slowly, which is how cats wave back.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "Finally, I found the perfect spot: the old oak tree at the corner of our street. Its branches reached up and up like arms trying to touch the sky. I set my ladder against the trunk. I began to climb. Up\\... up\\... up\\... Past the first branches, where a bird had tucked her head under her wing for the night.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "Past the middle branches, where a squirrel was curled in his nest of leaves, dreaming of acorns. Past the highest branches, where the leaves whispered secrets to the wind. I climbed until the ladder ran out of rungs. I reached up with both hands. I stretched as tall as I could stretch. I tried.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "But the moon just floated there, high and quiet, watching me with what might have been a gentle smile. Not yet, it seemed to say. Not that way. I climbed back down, rung by rung, thinking. \"I'll try again,\" I said to the moon. And I meant it. (Take a slow breath here\\... feel your shoulders relax\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "If I couldn't climb high enough, maybe I could build high enough. I went back home and into Azi's playroom. Jujy was there, sitting on the circular rug like he was guarding everything. His black and white fur caught the moonlight from the window. \"What are you doing, Papa?\" Jujy seemed to ask with his confident eyes.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "\"Building a tower,\" I said. \"To reach the moon.\" Jujy tilted his head, thinking about this. Then he gave a little nod, as if to say: Sounds like a plan. I'll supervise.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I started with the books---Azi's favorites, the ones he asks for again and again. The ones in English and the ones in Spanish. The heavy ones about dinosaurs and trucks and how things work. The small ones about feelings and friends and finding your way.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "On top of the books, I stacked his puzzles. The one with the animals. The one with the solar system. The one with all the colors that Azi can do faster than anyone. On top of the puzzles, I added his magic tricks---the cups and balls, the disappearing coin, the wand that never quite does what it's supposed to but always makes everyone laugh.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "On top of those, the red fire trucks. The little guitar. His AKAI keyboard that he's learning, one patient note at a time. And on top of everything, every pot and pan and wooden spoon from his play kitchen---because sometimes the silliest things end up being the most important. The tower wobbled. It swayed. It looked like it might fall at any moment.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "But it held. Because it was built with love. And love has a way of holding things together. I carried the whole wobbling tower outside, one careful step at a time. I set it down in the backyard, next to the garden where the tomatoes were sleeping and the basil was dreaming of being pesto. And I climbed. Up\\... up\\... up\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "Past the books that told stories. Past the puzzles that taught patience. Past the music that was learning to sing. I reached the very top, standing on a wooden spoon balanced on a pot balanced on a keyboard balanced on love. I reached up with both hands. I stretched as tall as I could stretch. I tried.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "But the moon just floated there, beautiful and patient, glowing its soft silver glow. Not yet, it seemed to say. Not that way either. I climbed back down, one wobbly step at a time, thinking harder. \"I'll try once more,\" I said to the moon. And I meant it. (Another slow breath\\... let your hands go soft\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I sat down in the backyard, next to my tower of love, and thought. Climbing hadn't worked. Building hadn't worked. What else was there? The night was quiet around me. The bees were asleep in their hives. The honeysuckle was breathing out its sweet smell. Somewhere, a cricket was singing its tiny cricket song. Singing.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I thought about how Azi sings in the bathtub, with bubbles on his chin and both arms reaching up to the ceiling. How his voice gets louder and louder until the whole bathroom is full of music. I thought about his favorite lullaby---the one about tomorrow, about the sun coming out, about betting your bottom dollar.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "Maybe, I thought, the moon doesn't need me to reach it. Maybe it needs me to call it. So I sang. Softly at first, just humming the tune. Feeling a little silly, sitting alone in the backyard, singing to the sky. But then I thought of Azi waiting at his window, believing I could do this. And I sang louder.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I sang the way Azi sings it---with my whole heart, with both arms reaching up, with everything I had. The sun'll come out tomorrow\\... And something changed. The moon, which had been floating so high and far, seemed to pause. It tilted, just a little, like someone leaning in to hear better. I kept singing. Bet your bottom dollar that tomorrow, there'll be sun\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "The moon began to drift down. Slowly. Carefully. Like a soap bubble floating on a breeze. Past the stars, which twinkled their encouragement. Past the wispy clouds, which parted to let it through. Past the top of the oak tree, where the sleeping bird opened one eye, then closed it again. Down\\... down\\... down\\... Until it was right there. Right in front of me. Glowing.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "I held out my arms, and the moon floated gently into them. It was lighter than I expected. Warm, like it had been sitting by a fire. And it hummed---a soft, golden hum that felt like being hugged from the inside. The moon had been waiting, I realized. Waiting for someone to ask the right way. Waiting for a song.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       },
       {
        "text": "(Let your breath get slower now\\... like the moon drifting down\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "garden"
       }
      ]
     },
@@ -3493,617 +1488,224 @@
      "pages": [
       {
        "text": "Now I had to get it home.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I held the moon carefully, the way you hold something precious. The way you hold a sleeping kitten, or a glass of water filled to the very top, or a secret you don't want to spill.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I walked slowly through the backyard.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The garden seemed to glow as I passed. The tomatoes looked silver. The basil leaves sparkled. Even the kale, which nobody thinks is beautiful, looked like it was made of moonlight and magic.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I walked out to the street. Everything was different now, bathed in the moon's gentle glow.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I passed Brady and Anne's house. The cat was still in the window, but now its eyes were wide with wonder. Even cats don't see the moon carried home every night.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I passed the library, and I could have sworn the books inside were pressing against the windows to see.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I passed the fire station. One of the big red trucks seemed to blink its headlights at me---just once, softly---like a wink between friends.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I passed Flo's garden, where the silver flowers had turned to gold in the moon's close light. Step by careful step, I made my way home.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The moon hummed in my arms. Home. (Slow down now\\... voice getting softer\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I tiptoed through the house. Past the kitchen, where the dishes were clean and the counters were quiet.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Past the playroom, where Jujy was still on the circular rug, keeping watch. Up the stairs, where each step creaked its familiar creak. To Azi's room.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I pushed open the door, very slowly, very quietly. There he was.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Azi was curled in his bed, that way he always curls---with his legs tucked up and his arms wrapped around something soft.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Pooh was right there with him, golden and worn and perfect. Pooh, who tends his honey farm and speaks like dusk and knows songs older than words.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Clappy was nestled close by, red and round. Even in sleep, he looked like he might start singing at any moment.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Monkie was there too, in his footie pajamas with all the pockets. A planner even in dreams, probably dreaming of lists and things to fix.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "And on the chair beside the bed, Pandies sat calm and steady---the wise panda who once belonged to me, and now belonged to Azi, and would always belong to both of us. Citie was next to him, quiet and watchful, noticing everything even in the dark.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "They were all there. All his friends. All his guardians. All waiting. I crept to the little wooden bench by Azi's bed. And there, very gently, I placed the moon.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "It wasn't as big as it had been in the sky. Somehow, in the journey home, it had become just the right size---small enough to fit on a bench, big enough to fill a room with light.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Not a toy. Not a lamp. Not a pretend moon. The real moon. Glowing soft and steady. Humming its quiet hum. (Whisper-soft now\\... barely above breath\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       },
+       "scene": "home-rest",
        "breathe": true
       },
       {
        "text": "Azi stirred. Just a little. Just enough. His eyes opened, soft with almost-sleep. They found the glow on the bench beside him. Then they found me.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "\"You got it,\" he whispered. \"I got it,\" I whispered back. \"You really got it.\" \"I really did.\" He smiled---that sleepy, satisfied smile that means everything is right.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "\"Was it hard?\" he asked. I thought about the ladder that wasn't tall enough. The tower that wobbled with love. The song that finally worked.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "\"A little,\" I said. \"But you're worth it.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "He reached out one small hand and touched the moon's glow. His fingers passed right through it---not like it wasn't there, but like it was made of something softer than soft. Something between light and love.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "\"It's warm,\" he said. \"It is.\" \"And it hums.\" \"It does.\" \"Like a lullaby.\" \"Exactly like a lullaby.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "I sat on the edge of his bed. The moon glowed beside us, patient and kind.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Pooh and Clappy and Monkie were warm against Azi's side. Pandies and Citie watched from their chair, steady as always. \"One more hug,\" I said.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "He wrapped his sleepy arms around me, the way he does every night. The way I hope he always will, even when he's bigger than me. \"Good night,\" I whispered.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "\"Good night,\" he whispered back. \"Sweet dreams.\" \"Sweet dreams.\" \"I'll see you in the morning.\" \"See you in the morning.\" \"I love you to infinity and beyond.\"",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "\"Love you to infinity and beyond.\" His eyes were already closing. His breath was already slowing. His arms loosened around me, going soft with sleep. (Barely a whisper now\\...)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       },
+       "scene": "home-rest",
        "breathe": true
       },
       {
        "text": "The End of the Day And as he drifted off to sleep\\... the moon sat quietly on its bench\\... glowing soft and steady\\... humming its quiet lullaby\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "watching over Pooh, who dreams of honey and slow songs\\... watching over Clappy, who dreams of music and joy\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "watching over Monkie, who dreams of plans and fixing things just right\\... watching over Pandies and Citie, who dream of quiet wisdom and small things noticed\\... watching over Azi\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "who asked for the moon\\... and got it. Because that's what happens\\... when someone loves you\\... enough to climb\\... and build\\... and sing\\... until the sky gives in.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The room was full of golden light. The room was full of sleeping friends. The room was full of love. And the moon\\... the moon just glowed\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "as if it had always belonged\\... right there. Right here. With us.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The End Reading Guide for Parents Timing",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Total reading time: 10-15 minutes depending on pace and pauses. The story is designed to take longer than it needs to---the extra time is part of the settling.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The Three Movements ADVENTURE (Parts 1-4): The Ask, The Ladder, The Tower, The Song. This is the engaging section---keep your voice warm and interested. Allow interactive moments here.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "JOURNEY (Part 5): The walk home. Begin slowing here. Voice gets quieter. The world is settling around Papa.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "REST (Parts 6-8): The bedroom, the waking, the goodnight, the close. Pure sleep territory. By the final page, you should barely be whispering. Keeping Interest Without Energizing",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The story stays engaging through sensory details (smells, textures, sounds) rather than action or excitement. This creates immersion without stimulation.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The familiar places (fire station, library, Brady and Anne's) let Azi participate through recognition rather than alertness.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Each plush companion gets a moment---this invites Azi to snuggle closer to his own friends without needing to respond. Interactive Moments (Early Story Only)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "What else should go on the tower? What do you think will work? Can you hum the song with me? (Just for a moment)",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "After The Song section, stop inviting interaction. Let the rhythm carry him down. The Echoing Goodnight",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The goodnight ritual in Part Eight mirrors your real routine. If Azi is still awake enough, he can echo each line. If he's already drifting, read it as a gentle solo. Either way, it signals: this is real sleep time now.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "If He's Still Awake",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The final section (The End of the Day) can be repeated, even slower, as many times as needed. It's designed to be a gentle loop---watching over Pooh, watching over Clappy, watching over Monkie\\...",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "The Moon as Symbol",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "In the Azi-Verse, the moon connects Azi to everyone who loves him---Lito and Lita in Colombia, Dada and Dadi, family everywhere under the same sky. This story adds another layer: the moon is also what a parent will do for love. It's both cosmic and intimate. Both universal and just for him.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       },
       {
        "text": "Sweet dreams.",
-       "scene": {
-        "bg": "linear-gradient(160deg,#1e1b4b,#818cf8)",
-        "emojis": [
-         "🌕",
-         "🪜",
-         "💤"
-        ]
-       }
+       "scene": "home-rest"
       }
      ]
     }
-   ],
-   "mysteryWord": {
-    "word": "luna",
-    "language": "es",
-    "meaning": "the moon, in Spanish"
-   },
-   "comfortRitual": {
-    "motif": "moon",
-    "line": "Rest now — Papa already got the moon for you.",
-    "alreadyClosed": true
-   },
-   "skillTags": [
-    "SS001.creative-problem-solving",
-    "SS003.mental-health",
-    "SS002.cultural-intelligence"
    ]
   }
  ]

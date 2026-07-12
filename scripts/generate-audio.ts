@@ -206,7 +206,9 @@ async function main() {
   } else {
     const raw = await readFile(packPath, 'utf8')
     const pack = JSON.parse(raw) as Pack
-    stories = (pack.stories || []).filter((s) => !args.book || s.id === args.book)
+    stories = (pack.stories || [])
+      .filter((s) => !args.book || s.id === args.book)
+      .map((s) => ({ id: s.id, chapters: s.chapters ?? [] }))
     if (!stories.length) {
       console.error(`No stories matched${args.book ? ` --book ${args.book}` : ''}. Nothing to do.`)
       process.exit(1)

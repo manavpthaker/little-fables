@@ -1,12 +1,12 @@
 'use client'
 
-// Little Fables v2 — Story Maker wizard.
-// Design source: design/handoff-v2/app/screens-parent.jsx (StoryMaker).
-// Steps: Format → Intake (chip-based) → Review → Writing (per-chapter progress)
-// → Success. Chapter books stream one /api/story call per chapter with
-// `mode: 'chapter'` + `bookContext`; quick stories fire once with `mode: 'start'`.
-// Every chapter response can come back with status `needs-review` — that marks
-// the book Draft and shows a "Needs review" pill in the Parent Corner.
+// Parent Story Maker wizard — rendered under `.lf-parent` (Inter + shadcn
+// neutrals). Steps: Format → Intake (chip-based) → Review → Writing (per-chapter
+// progress) → Success. Chapter books stream one /api/story call per chapter
+// with `mode: 'chapter'` + `bookContext`; quick stories fire once with
+// `mode: 'start'`. Any chapter can come back with `status: 'needs-review'` —
+// that marks the book Draft and shows a "Needs review" pill in the parent
+// corner.
 
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
@@ -55,17 +55,17 @@ function PCard({
   return (
     <div
       style={{
-        background: 'var(--lf-p-card)',
-        border: '1px solid var(--lf-p-border)',
-        borderRadius: 'var(--radius-p-card)',
+        background: 'var(--p-card)',
+        border: '1px solid var(--p-border)',
+        borderRadius: 'var(--p-radius-card)',
         padding: padded ? 22 : 0,
       }}
     >
       {title && (
-        <div style={{ font: '600 15.5px/1.3 var(--font-ui)', color: 'var(--lf-p-foreground)' }}>{title}</div>
+        <div style={{ font: '600 15.5px/1.3 var(--font-inter)', color: 'var(--p-foreground)' }}>{title}</div>
       )}
       {description && (
-        <div style={{ font: '400 13.5px/1.5 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginTop: 4 }}>
+        <div style={{ font: '400 13.5px/1.5 var(--font-inter)', color: 'var(--p-muted-foreground)', marginTop: 4 }}>
           {description}
         </div>
       )}
@@ -96,15 +96,15 @@ function PButton({
     gap: 8,
     height: h,
     padding: size === 'lg' ? '0 18px' : '0 14px',
-    borderRadius: 'var(--radius-p-md)',
-    font: `500 ${size === 'lg' ? 15 : 14}px var(--font-ui)`,
+    borderRadius: 'var(--p-radius)',
+    font: `500 ${size === 'lg' ? 15 : 14}px var(--font-inter)`,
     cursor: disabled ? 'default' : 'pointer',
     opacity: disabled ? 0.5 : 1,
     ...(variant === 'primary'
-      ? { background: 'var(--lf-p-primary)', color: 'var(--lf-p-primary-foreground)', border: '1px solid var(--lf-p-primary)' }
+      ? { background: 'var(--p-primary)', color: 'var(--p-primary-foreground)', border: '1px solid var(--p-primary)' }
       : variant === 'secondary'
-        ? { background: 'var(--lf-p-background)', color: 'var(--lf-p-foreground)', border: '1px solid var(--lf-p-border)' }
-        : { background: 'transparent', color: 'var(--lf-p-muted-foreground)', border: 'none' }),
+        ? { background: 'var(--p-background)', color: 'var(--p-foreground)', border: '1px solid var(--p-border)' }
+        : { background: 'transparent', color: 'var(--p-muted-foreground)', border: 'none' }),
   }
   return (
     <button type={type} onClick={onClick} disabled={disabled} style={style} className="lf-press">
@@ -126,15 +126,14 @@ function ChipToggle({
     <button
       type="button"
       onClick={onClick}
-      className="lf-press"
-      style={{
+           style={{
         cursor: 'pointer',
         borderRadius: 999,
         padding: '5px 12px',
-        font: '500 12.5px var(--font-ui)',
-        color: on ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
-        border: on ? '1.5px solid var(--lf-p-primary)' : '1px solid var(--lf-p-border)',
-        background: on ? 'var(--lf-p-muted)' : 'var(--lf-p-background)',
+        font: '500 12.5px var(--font-inter)',
+        color: on ? 'var(--p-foreground)' : 'var(--p-muted-foreground)',
+        border: on ? '1.5px solid var(--p-primary)' : '1px solid var(--p-border)',
+        background: on ? 'var(--p-muted)' : 'var(--p-background)',
       }}
     >
       {label}
@@ -404,19 +403,19 @@ export default function CreateStory() {
   // ---------- UI ----------
   return (
     <div
+      className="lf-parent"
       style={{
         minHeight: '100dvh',
-        background: 'var(--lf-p-muted)',
-        color: 'var(--lf-p-foreground)',
-        fontFamily: 'var(--font-ui)',
+        background: 'var(--p-muted)',
+        color: 'var(--p-foreground)',
         display: 'flex',
         flexDirection: 'column',
       }}
     >
       <header
         style={{
-          background: 'var(--lf-p-background)',
-          borderBottom: '1px solid var(--lf-p-border)',
+          background: 'var(--p-background)',
+          borderBottom: '1px solid var(--p-border)',
           padding: '14px 28px',
           display: 'flex',
           alignItems: 'center',
@@ -431,14 +430,14 @@ export default function CreateStory() {
             gap: 6,
             border: 'none',
             background: 'none',
-            font: '500 14px var(--font-ui)',
-            color: 'var(--lf-p-muted-foreground)',
+            font: '500 14px var(--font-inter)',
+            color: 'var(--p-muted-foreground)',
             textDecoration: 'none',
           }}
         >
           <ChevronLeft size={16} /> Parent corner
         </Link>
-        <h1 style={{ margin: 0, font: '700 18px var(--font-ui)' }}>New story</h1>
+        <h1 style={{ margin: 0, font: '700 18px var(--font-inter)' }}>New story</h1>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }} aria-label={`Step ${step} of 3`}>
           {[1, 2, 3].map((s) => {
             const active = (step === 1 && s === 1) || (step === 2 && s === 2) || (step >= 3 && s === 3)
@@ -450,7 +449,7 @@ export default function CreateStory() {
                   width: active ? 20 : 7,
                   height: 7,
                   borderRadius: 99,
-                  background: filled ? 'var(--lf-p-primary)' : 'var(--lf-p-border)',
+                  background: filled ? 'var(--p-primary)' : 'var(--p-border)',
                   transition: 'width 200ms',
                 }}
               />
@@ -462,7 +461,7 @@ export default function CreateStory() {
       <main style={{ flex: 1, padding: '26px 28px', display: 'flex', justifyContent: 'center' }}>
         {step === 1 && (
           <div style={{ width: 640, maxWidth: '100%' }}>
-            <p style={{ margin: '0 0 14px', font: '400 14px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+            <p style={{ margin: '0 0 14px', font: '400 14px var(--font-inter)', color: 'var(--p-muted-foreground)' }}>
               What shape of story?
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
@@ -474,19 +473,18 @@ export default function CreateStory() {
                   key={f.id}
                   type="button"
                   onClick={() => setFormat(f.id)}
-                  className="lf-press"
-                  style={{
+                                   style={{
                     textAlign: 'left',
                     cursor: 'pointer',
                     borderRadius: 12,
                     padding: '18px 18px 16px',
-                    color: 'var(--lf-p-foreground)',
-                    border: format === f.id ? '2px solid var(--lf-p-primary)' : '1px solid var(--lf-p-border)',
-                    background: 'var(--lf-p-background)',
+                    color: 'var(--p-foreground)',
+                    border: format === f.id ? '2px solid var(--p-primary)' : '1px solid var(--p-border)',
+                    background: 'var(--p-background)',
                   }}
                 >
-                  <div style={{ font: '600 15px var(--font-ui)' }}>{f.t}</div>
-                  <div style={{ font: '400 13px/1.5 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginTop: 4 }}>
+                  <div style={{ font: '600 15px var(--font-inter)' }}>{f.t}</div>
+                  <div style={{ font: '400 13px/1.5 var(--font-inter)', color: 'var(--p-muted-foreground)', marginTop: 4 }}>
                     {f.d}
                   </div>
                 </button>
@@ -502,7 +500,7 @@ export default function CreateStory() {
 
         {step === 2 && universe && (
           <div style={{ width: 780, maxWidth: '100%' }}>
-            <p style={{ margin: '0 0 14px', font: '400 14px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+            <p style={{ margin: '0 0 14px', font: '400 14px var(--font-inter)', color: 'var(--p-muted-foreground)' }}>
               One question at a time. Suggestions come from {universe.childName}&rsquo;s universe.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
@@ -588,11 +586,11 @@ export default function CreateStory() {
                         flex: 1,
                         height: 36,
                         padding: '0 12px',
-                        border: '1px solid var(--lf-p-border)',
-                        borderRadius: 'var(--radius-p-md)',
-                        background: 'var(--lf-p-background)',
-                        color: 'var(--lf-p-foreground)',
-                        font: '400 14px var(--font-ui)',
+                        border: '1px solid var(--p-border)',
+                        borderRadius: 'var(--p-radius)',
+                        background: 'var(--p-background)',
+                        color: 'var(--p-foreground)',
+                        font: '400 14px var(--font-inter)',
                         outline: 'none',
                       }}
                     />
@@ -636,21 +634,21 @@ export default function CreateStory() {
                       style={{
                         display: 'flex',
                         gap: 12,
-                        borderBottom: '1px solid var(--lf-p-border)',
+                        borderBottom: '1px solid var(--p-border)',
                         paddingBottom: 8,
                       }}
                     >
                       <span
                         style={{
-                          font: '500 13px var(--font-ui)',
-                          color: 'var(--lf-p-muted-foreground)',
+                          font: '500 13px var(--font-inter)',
+                          color: 'var(--p-muted-foreground)',
                           width: 90,
                           flexShrink: 0,
                         }}
                       >
                         {k}
                       </span>
-                      <span style={{ font: '500 13.5px var(--font-ui)' }}>{v}</span>
+                      <span style={{ font: '500 13.5px var(--font-inter)' }}>{v}</span>
                     </div>
                   ))}
               </div>
@@ -688,7 +686,7 @@ export default function CreateStory() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: 10,
-                          font: '500 13.5px var(--font-ui)',
+                          font: '500 13.5px var(--font-inter)',
                           marginBottom: 6,
                         }}
                       >
@@ -696,7 +694,7 @@ export default function CreateStory() {
                           style={{
                             width: 18,
                             textAlign: 'center',
-                            color: 'var(--lf-p-muted-foreground)',
+                            color: 'var(--p-muted-foreground)',
                           }}
                         >
                           {s === 'written' ? '✓' : s === 'writing' ? '·' : s === 'needs-review' ? '!' : s === 'error' ? '×' : '·'}
@@ -704,7 +702,7 @@ export default function CreateStory() {
                         <span
                           style={{
                             color:
-                              s === 'waiting' ? 'var(--lf-p-muted-foreground)' : 'var(--lf-p-foreground)',
+                              s === 'waiting' ? 'var(--p-muted-foreground)' : 'var(--p-foreground)',
                             flex: 1,
                           }}
                         >
@@ -724,7 +722,7 @@ export default function CreateStory() {
                         style={{
                           height: 4,
                           borderRadius: 999,
-                          background: 'var(--lf-p-muted)',
+                          background: 'var(--p-muted)',
                           overflow: 'hidden',
                         }}
                       >
@@ -737,7 +735,7 @@ export default function CreateStory() {
                                 ? '#b45309'
                                 : s === 'error'
                                   ? '#dc2626'
-                                  : 'var(--lf-p-primary)',
+                                  : 'var(--p-primary)',
                             transition: 'width 300ms ease-out',
                           }}
                         />
@@ -751,10 +749,10 @@ export default function CreateStory() {
                   style={{
                     marginTop: 14,
                     padding: '10px 12px',
-                    borderRadius: 'var(--radius-p-md)',
-                    background: 'var(--lf-p-muted)',
-                    font: '400 13px var(--font-ui)',
-                    color: 'var(--lf-p-foreground)',
+                    borderRadius: 'var(--p-radius)',
+                    background: 'var(--p-muted)',
+                    font: '400 13px var(--font-inter)',
+                    color: 'var(--p-foreground)',
                   }}
                 >
                   {writeError}
@@ -792,8 +790,8 @@ export default function CreateStory() {
                     width: 44,
                     height: 44,
                     borderRadius: 8,
-                    border: '1px solid var(--lf-p-border)',
-                    background: book.coverBg ?? 'var(--lf-p-muted)',
+                    border: '1px solid var(--p-border)',
+                    background: book.coverBg ?? 'var(--p-muted)',
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -804,8 +802,8 @@ export default function CreateStory() {
                   {book.coverEmoji}
                 </span>
                 <div style={{ flex: 1 }}>
-                  <div style={{ font: '600 14px var(--font-ui)' }}>{book.title}</div>
-                  <div style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+                  <div style={{ font: '600 14px var(--font-inter)' }}>{book.title}</div>
+                  <div style={{ font: '400 12.5px var(--font-inter)', color: 'var(--p-muted-foreground)' }}>
                     {book.kind === 'chapter'
                       ? `${book.chapters.length} chapters`
                       : `${book.chapters[0]?.pages.length ?? 0} pages`}
@@ -825,10 +823,10 @@ export default function CreateStory() {
       <footer
         style={{
           padding: '10px 28px',
-          borderTop: '1px solid var(--lf-p-border)',
-          background: 'var(--lf-p-background)',
-          font: '400 12.5px var(--font-ui)',
-          color: 'var(--lf-p-muted-foreground)',
+          borderTop: '1px solid var(--p-border)',
+          background: 'var(--p-background)',
+          font: '400 12.5px var(--font-inter)',
+          color: 'var(--p-muted-foreground)',
         }}
       >
         Auto-saved · Drafts never appear on the shelf until published

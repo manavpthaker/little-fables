@@ -62,9 +62,9 @@ export function BookCoverArt({
 }: BookCoverArtProps) {
   const wash = (book.wash ?? washFromId(book.id)) as WashKey
   const stops = WASH_STOPS[wash] ?? WASH_STOPS.honey
-  // The specific motif — first coverEmoji, else first from emojis, else book-id
-  // hint (miko-bridge → 🌉, azi-bhen → 🌙, etc.).
-  const motif = book.coverEmoji ?? book.emojis?.[0] ?? motifFromId(book.id)
+  // v3.2 — no emoji motif on covers. The wash + drawn spine + hand-lettered
+  // title carry the cover; a small drawn glyph is chosen from the book id.
+  const motifKind = motifKindFromId(book.id)
 
   return (
     <svg
@@ -125,18 +125,9 @@ export function BookCoverArt({
         filter="url(#lf-wash-edge)"
       />
 
-      {/* motif (emoji glyph in the paint — text on SVG) */}
-      {motif && (
-        <text
-          x="52"
-          y="66"
-          textAnchor="middle"
-          fontSize="42"
-          style={{ filter: 'drop-shadow(0 2px 0 rgba(94,62,26,.15))' }}
-        >
-          {motif}
-        </text>
-      )}
+      {/* motif — a small drawn glyph, hand-inked. */}
+      <CoverMotif kind={motifKind} />
+
 
       {/* title — hand-lettered in the display font */}
       <foreignObject x="14" y="80" width="76" height="36">
@@ -206,14 +197,102 @@ function washFromId(id: string): WashKey {
   return 'honey'
 }
 
-function motifFromId(id: string): string {
+type MotifKind = 'lantern' | 'bridge' | 'tree' | 'moon' | 'star' | 'rocket' | 'evergreen' | 'book'
+
+function motifKindFromId(id: string): MotifKind {
   const s = id.toLowerCase()
-  if (s.includes('bramble') || s.includes('lantern')) return '🏮'
-  if (s.includes('miko') || s.includes('bridge')) return '🌉'
-  if (s.includes('moose')) return '🌲'
-  if (s.includes('papa') || s.includes('moon')) return '🌙'
-  if (s.includes('azi') || s.includes('bhen')) return '⭐'
-  if (s.includes('rocket')) return '🚀'
-  if (s.includes('christmas') || s.includes('jujy')) return '🎄'
-  return '📖'
+  if (s.includes('bramble') || s.includes('lantern')) return 'lantern'
+  if (s.includes('miko') || s.includes('bridge')) return 'bridge'
+  if (s.includes('moose')) return 'tree'
+  if (s.includes('papa') || s.includes('moon')) return 'moon'
+  if (s.includes('azi') || s.includes('bhen')) return 'star'
+  if (s.includes('rocket')) return 'rocket'
+  if (s.includes('christmas') || s.includes('jujy')) return 'evergreen'
+  return 'book'
+}
+
+/** A small drawn glyph rendered on the cover in place of the v2 emoji motif.
+ *  Sits at (52, 52) in the parent SVG (viewBox 0 0 96 128). */
+function CoverMotif({ kind }: { kind: MotifKind }) {
+  switch (kind) {
+    case 'lantern':
+      return (
+        <g filter="url(#lf-wobble)">
+          <path d="M46 34 L58 34 L58 42 L46 42 Z" fill="var(--pigment-berry, #9B4A6B)" opacity="0.85" />
+          <ellipse cx="52" cy="56" rx="12" ry="16" fill="var(--pigment-butter, #EFC85C)" opacity="0.85" />
+          <ellipse cx="52" cy="56" rx="12" ry="16" fill="none" stroke={INK} strokeWidth="2" />
+          <path d="M46 34 L58 34 L58 42 L46 42 Z" fill="none" stroke={INK} strokeWidth="2" />
+          <path d="M52 74 L52 82" stroke={INK} strokeWidth="2" />
+        </g>
+      )
+    case 'bridge':
+      return (
+        <g filter="url(#lf-wobble)" stroke={INK} strokeWidth="2" fill="none">
+          <path d="M28 62 Q 52 42 76 62" />
+          <path d="M28 68 L76 68" />
+          <path d="M34 62 L34 72 M46 54 L46 72 M58 54 L58 72 M70 62 L70 72" />
+        </g>
+      )
+    case 'tree':
+      return (
+        <g filter="url(#lf-wobble)">
+          <path d="M52 30 L38 56 L46 56 L34 74 L70 74 L58 56 L66 56 Z" fill="var(--pigment-sage, #7C9A62)" opacity="0.85" />
+          <rect x="49" y="74" width="6" height="10" fill="#5B4637" />
+          <path d="M52 30 L38 56 L46 56 L34 74 L70 74 L58 56 L66 56 Z" fill="none" stroke={INK} strokeWidth="2" />
+        </g>
+      )
+    case 'moon':
+      return (
+        <g filter="url(#lf-wobble)">
+          <path
+            d="M 60 34 Q 40 40 40 56 Q 40 74 60 78 Q 46 68 46 56 Q 46 44 60 34 Z"
+            fill="var(--pigment-butter, #EFC85C)"
+            opacity="0.95"
+          />
+          <path
+            d="M 60 34 Q 40 40 40 56 Q 40 74 60 78 Q 46 68 46 56 Q 46 44 60 34 Z"
+            fill="none"
+            stroke={INK}
+            strokeWidth="2"
+          />
+        </g>
+      )
+    case 'star':
+      return (
+        <g filter="url(#lf-wobble)">
+          <path
+            d="M 52 34 L 58 50 L 74 52 L 62 62 L 66 78 L 52 68 L 38 78 L 42 62 L 30 52 L 46 50 Z"
+            fill="var(--pigment-marigold, #E2A93B)"
+            stroke={INK}
+            strokeWidth="2"
+          />
+        </g>
+      )
+    case 'rocket':
+      return (
+        <g filter="url(#lf-wobble)">
+          <path d="M52 30 Q 44 40 44 60 L 44 70 L 60 70 L 60 60 Q 60 40 52 30 Z" fill="var(--pigment-terracotta, #D95B43)" opacity="0.9" />
+          <path d="M44 60 L 36 74 L 44 74 Z M 60 60 L 68 74 L 60 74 Z" fill="var(--pigment-berry, #9B4A6B)" opacity="0.85" />
+          <path d="M52 30 Q 44 40 44 60 L 44 70 L 60 70 L 60 60 Q 60 40 52 30 Z" fill="none" stroke={INK} strokeWidth="2" />
+          <circle cx="52" cy="48" r="4" fill="var(--paper-bright, #F9F2E3)" stroke={INK} strokeWidth="1.6" />
+        </g>
+      )
+    case 'evergreen':
+      return (
+        <g filter="url(#lf-wobble)">
+          <path d="M52 30 L36 50 L44 50 L32 68 L44 68 L34 82 L70 82 L60 68 L72 68 L60 50 L68 50 Z" fill="var(--pigment-sage, #7C9A62)" opacity="0.85" />
+          <path d="M52 30 L36 50 L44 50 L32 68 L44 68 L34 82 L70 82 L60 68 L72 68 L60 50 L68 50 Z" fill="none" stroke={INK} strokeWidth="2" />
+        </g>
+      )
+    case 'book':
+    default:
+      return (
+        <g filter="url(#lf-wobble)">
+          <path d="M32 44 L52 40 L52 74 L32 78 Z" fill="var(--paper-bright, #F9F2E3)" />
+          <path d="M72 44 L52 40 L52 74 L72 78 Z" fill="var(--paper-bright, #F9F2E3)" />
+          <path d="M32 44 L52 40 L52 74 L32 78 Z M 72 44 L 52 40 L 52 74 L 72 78 Z" fill="none" stroke={INK} strokeWidth="2" />
+          <path d="M36 52 L48 50 M 36 58 L 48 56 M 36 64 L 48 62 M 56 50 L 68 52 M 56 56 L 68 58 M 56 62 L 68 64" stroke={INK} strokeWidth="1.4" opacity="0.6" />
+        </g>
+      )
+  }
 }

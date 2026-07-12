@@ -59,7 +59,7 @@ import type {
   GenerateResponse,
   Page,
 } from '@/types/story'
-import { Confetti, IntentToast, KidScreen, washBg } from '../../components'
+import { DrawnConfetti, IntentToast, KidScreen, MicIcon, SpeakerIcon } from '../../art'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import { ChapterEnd, ComfortRitualBeat, BookComplete } from './EndPhase'
 import { Transport } from './Transport'
@@ -148,9 +148,15 @@ export default function ReaderRoute() {
               textAlign: 'center',
             }}
           >
-            <span aria-hidden="true" style={{ fontSize: 64 }}>
-              📚
-            </span>
+            <svg width="80" height="70" viewBox="0 0 100 88" aria-hidden="true">
+              {/* a drawn stack of two closed books */}
+              <path d="M 10 40 L 90 30 L 92 74 L 12 84 Z" fill="var(--pigment-terracotta, #D95B43)" opacity="0.7" filter="url(#lf-wash-edge)" />
+              <path d="M 20 12 L 88 6 L 90 36 L 22 44 Z" fill="var(--pigment-butter, #EFC85C)" opacity="0.85" filter="url(#lf-wash-edge)" />
+              <g fill="none" stroke="var(--ink, #46362A)" strokeWidth="2.4" filter="url(#lf-wobble)">
+                <path d="M 10 40 L 90 30 L 92 74 L 12 84 Z" />
+                <path d="M 20 12 L 88 6 L 90 36 L 22 44 Z" />
+              </g>
+            </svg>
             <p style={{ font: '700 22px var(--font-display, YoungSerif)' }}>
               Hmm, that book isn&rsquo;t on the shelf.
             </p>
@@ -1058,7 +1064,8 @@ function ReaderPages({
               position: 'fixed',
               inset: 0,
               zIndex: 60,
-              background: washBg(page.wash ?? chapter.wash ?? book.wash ?? 'honey'),
+              background: 'var(--paper-bright, #F9F2E3)',
+              backgroundImage: 'var(--texture-paper)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -1069,7 +1076,7 @@ function ReaderPages({
               pointerEvents: 'none',
             }}
           >
-            <Confetti n={20} />
+            <DrawnConfetti n={20} />
             <div
               aria-hidden="true"
               style={{
@@ -1080,11 +1087,18 @@ function ReaderPages({
                 border: '2.5px solid rgba(251,191,36,.7)',
                 display: 'grid',
                 placeItems: 'center',
-                fontSize: 68,
                 boxShadow: '0 0 40px rgba(251,191,36,.4)',
               }}
             >
-              ⭐
+              <svg width="72" height="72" viewBox="0 0 20 20" aria-hidden="true">
+                <path
+                  d="M 10 2 L 12 8 L 18 9 L 13 13 L 15 19 L 10 15 L 5 19 L 7 13 L 2 9 L 8 8 Z"
+                  fill="var(--pigment-butter, #EFC85C)"
+                  stroke="var(--ink, #46362A)"
+                  strokeWidth="1"
+                  filter="url(#lf-wobble)"
+                />
+              </svg>
             </div>
             <div style={{ font: '700 22px var(--font-display, YoungSerif)', color: 'var(--lf-espresso)' }}>
               You found a mystery word!
@@ -1280,29 +1294,24 @@ function ReaderPages({
                   }
                 />
               ) : (
+                // v3.2: no wash placeholder — drawn endpaper (paper texture
+                // + subtle deckle border). Story-page art will land in a
+                // later phase (art2.jsx port).
                 <div
                   aria-hidden="true"
+                  className="lf-drawn-border"
                   style={{
                     maxWidth: '100%',
                     maxHeight: '100%',
                     width: 'min(560px, 100%)',
                     aspectRatio: '4 / 3',
                     borderRadius: 22,
-                    background: washBg(page.wash ?? chapter.wash ?? book.wash ?? 'meadow'),
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 12,
+                    background: 'var(--paper-bright, #F9F2E3)',
+                    backgroundImage: 'var(--texture-paper)',
+                    border: 'none',
                     boxShadow: '0 8px 26px rgba(94,62,26,.18)',
-                    border: '1.5px solid var(--lf-cream-line)',
                   }}
-                >
-                  {(page.emojis ?? []).map((e, i) => (
-                    <span key={i} style={{ fontSize: i === 0 ? 96 : 60 }}>
-                      {e}
-                    </span>
-                  ))}
-                </div>
+                />
               )}
             </div>
 
@@ -1490,7 +1499,7 @@ function ReaderPages({
                       color: 'var(--lf-espresso)',
                     }}
                   >
-                    <span aria-hidden="true">🔊</span> {askStoryReply}
+                    <SpeakerIcon size={16} /> {askStoryReply}
                   </div>
                 )}
               </div>
@@ -1602,9 +1611,16 @@ function AskInline({
           padding: '14px 16px',
         }}
       >
-        <span aria-hidden="true" style={{ fontSize: 26 }}>
-          🎉
-        </span>
+        <svg width="32" height="26" viewBox="0 0 44 36" aria-hidden="true">
+          <path
+            d="M 14 18 L 15.5 23 L 20.5 24 L 16 27 L 17 32 L 14 29 L 11 32 L 12 27 L 8 24 L 12.5 23 Z"
+            fill="var(--pigment-butter, #EFC85C)" stroke="var(--ink, #46362A)" strokeWidth="1.2" filter="url(#lf-wobble)"
+          />
+          <path
+            d="M 30 10 L 31.2 13 L 34 13.6 L 31.5 15.6 L 32.4 18.8 L 30 17 L 27.6 18.8 L 28.5 15.6 L 26 13.6 L 28.8 13 Z"
+            fill="var(--pigment-marigold, #E2A93B)" stroke="var(--ink, #46362A)" strokeWidth="1.2" filter="url(#lf-wobble)"
+          />
+        </svg>
         <span style={{ font: '700 17px/1.4 var(--font-body)', color: 'var(--lf-espresso)' }}>{ask.praise}</span>
       </div>
     )
@@ -1639,12 +1655,14 @@ function AskInline({
             cursor: 'pointer',
             background: state === 'listening' ? 'var(--lf-coral-deep)' : 'var(--lf-coral)',
             color: '#fff',
-            fontSize: 26,
             flexShrink: 0,
             touchAction: 'manipulation',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          🎤
+          <MicIcon size={30} />
         </button>
         <div style={{ flex: 1 }}>
           <div style={{ font: '700 18px/1.4 var(--font-body)', color: 'var(--lf-espresso)' }}>{ask.question}</div>
@@ -1668,7 +1686,12 @@ function AskInline({
                 color: 'var(--lf-espresso)',
               }}
             >
-              <span aria-hidden="true">💡</span> {ask.hint}
+              <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true">
+                {/* a drawn lantern hint dot */}
+                <circle cx="10" cy="9" r="5" fill="var(--pigment-butter, #EFC85C)" stroke="var(--ink, #46362A)" strokeWidth="1.4" filter="url(#lf-wobble)" />
+                <path d="M 8 15 L 12 15 M 9 17 L 11 17" stroke="var(--ink, #46362A)" strokeWidth="1.4" strokeLinecap="round" filter="url(#lf-wobble)" />
+              </svg>
+              {ask.hint}
             </div>
           )}
           {onSayIt && (
@@ -1824,10 +1847,7 @@ function ChoiceGrid({
                 touchAction: 'manipulation',
               }}
             >
-              <span aria-hidden="true" style={{ fontSize: 44 }}>
-                {o.emoji}
-              </span>
-              <span style={{ font: '600 15px/1.25 var(--font-display)', textAlign: 'center' }}>{o.label}</span>
+              <span style={{ font: '700 17px/1.25 var(--font-display)', textAlign: 'center' }}>{o.label}</span>
             </button>
           )
         })}
@@ -1855,9 +1875,7 @@ function ChoiceGrid({
             touchAction: 'manipulation',
           }}
         >
-          <span aria-hidden="true" style={{ fontSize: 44 }}>
-            🎤
-          </span>
+          <MicIcon size={44} color="var(--lf-coral-deep, #C7452F)" />
           <span style={{ font: '600 15px/1.25 var(--font-display)', textAlign: 'center' }}>
             …or tell me YOUR idea!
           </span>
@@ -1869,9 +1887,14 @@ function ChoiceGrid({
           color: 'var(--lf-espresso-soft)',
           textAlign: 'center',
           marginTop: 10,
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 6,
+          width: '100%',
         }}
       >
-        <span aria-hidden="true">🎤</span> Say it out loud — or tap it!
+        <MicIcon size={14} color="var(--lf-espresso-soft, #6E5B49)" /> Say it out loud — or tap it!
       </div>
     </div>
   )

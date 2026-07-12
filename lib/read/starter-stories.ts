@@ -4,12 +4,18 @@ import { legacyToBook } from './migrate'
 // Baked-in stories so the shelf is never empty and the app works offline.
 // Text, asks, choices, vocab, and retell prompts for the first three stories
 // come verbatim from design/handoff/app/story-data.js — the family library.
-// The rocket story is kept as an emoji-scene test case (no art yet).
+// The rocket story is the drawn-scene fallback test case (no art yet).
 //
 // Azi, Jujy, and the Rocket story are authored in the compact "v1-flat" shape
 // (`pages` at the top level) and normalized into the v2 `Book` shape (with
 // `chapters[]`) at module load. Miko is the flagship 3-chapter book and is
 // authored natively as a v2 `Book` (bypasses the 1-chapter wrapper).
+//
+// v3.2 scrub: page `scene` is now a semantic key ('zoomtown', 'kitchen-warm',
+// 'star-garage') that the reader maps to a drawn scene component. No
+// gradients. No emoji-scene blobs. Existing `img` paths on Miko/Azi/Jujy
+// pages are preserved verbatim — those are real illustrations, not the
+// presentation-metadata this scrub is targeting.
 
 // ---------- Miko: flagship 3-chapter book (native v2) ----------
 // The prose is preserved verbatim from the v1 handoff (design/handoff/app/
@@ -26,7 +32,6 @@ const MIKO_BOOK: Book = {
   source: 'starter',
   coverImage: '/art/miko-cover.jpg',
   coverEmoji: '🦊',
-  coverBg: 'linear-gradient(160deg,#f97316,#fbbf24)',
   wash: 'sunset',
   meta: '3 chapters · counting',
   teachingGoals: ['counting', 'belly breaths', 'gratefulness'],
@@ -55,12 +60,14 @@ const MIKO_BOOK: Book = {
         {
           text: 'Miko the fox zoomed through Zoomtown on his little blue moto. Vroom vroom! The wind whooshed past his ears.',
           wash: 'canyon',
+          scene: 'zoomtown',
           emojis: ['🦊', '🏍️', '🏙️', '💨'],
           img: '/art/miko-01-zoomtown.jpg',
         },
         {
           text: 'Suddenly Miko squeezed his brakes. SCREEEECH! The bridge over Dino Canyon was wobbly. One, two, three planks were missing!',
           wash: 'canyon',
+          scene: 'wobbly-bridge',
           emojis: ['🌉', '⚠️', '🦊'],
           img: '/art/miko-02-bridge.jpg',
           star: 'wobbly',
@@ -87,6 +94,7 @@ const MIKO_BOOK: Book = {
         {
           text: 'Miko took one big belly breath. In... and out. His tummy felt softer. "I can’t fix this alone," he said. "But I know who can help!"',
           wash: 'blush',
+          scene: 'belly-breath',
           emojis: ['🦊', '😮‍💨', '💜'],
           img: '/art/miko-03-breath.jpg',
           breathe: true,
@@ -94,6 +102,7 @@ const MIKO_BOOK: Book = {
         {
           text: 'Tara the spider swung down on a silver thread. "A web can fix it!" she said. But they needed something strong to hold the web.',
           wash: 'meadow',
+          scene: 'web',
           emojis: ['🕷️', '🕸️', '🌉'],
           img: '/art/miko-04-web.jpg',
           choice: {
@@ -107,6 +116,7 @@ const MIKO_BOOK: Book = {
                   {
                     text: 'Boulder stretched his looooong neck across the canyon like a crane. Tara spun her web around it — zip zip zip! The web pulled the bridge tight and steady.',
                     wash: 'meadow',
+                    scene: 'crossing',
                     emojis: ['🦕', '🕸️', '🌉', '✨'],
                     img: '/art/miko-05-fixed-neck.jpg',
                   },
@@ -120,6 +130,7 @@ const MIKO_BOOK: Book = {
                   {
                     text: 'Miko parked his moto and Tara tied her web to it — zip zip zip! Miko held the brakes tight. The web pulled the bridge steady like a seatbelt.',
                     wash: 'meadow',
+                    scene: 'crossing',
                     emojis: ['🏍️', '🕸️', '🌉', '✨'],
                     img: '/art/miko-05-fixed-moto.jpg',
                   },
@@ -139,6 +150,7 @@ const MIKO_BOOK: Book = {
         {
           text: 'The next morning, Boulder stretched his looooong neck across the canyon like a crane. Tara spun her web around it — zip zip zip! The web pulled the bridge tight and steady.',
           wash: 'honey',
+          scene: 'crossing',
           emojis: ['🦕', '🕸️', '🌉', '✨'],
           img: '/art/miko-05-fixed-neck.jpg',
           star: 'steady',
@@ -146,6 +158,7 @@ const MIKO_BOOK: Book = {
         {
           text: 'That night the soccer game was the best ever. Boulder gave everyone a ride on his neck, and Miko whispered, "I’m grateful for my friends." The end!',
           wash: 'honey',
+          scene: 'night-crossing',
           emojis: ['⚽', '🌟', '🦊', '🦕', '🕷️'],
           img: '/art/miko-06-night.jpg',
           star: 'grateful',
@@ -162,7 +175,6 @@ const RAW_STARTERS: any[] = [
     id: 'azi-bhen',
     title: 'Azi’s Little Bhen',
     coverEmoji: '💛',
-    coverBg: 'linear-gradient(160deg,#fef3c7,#fbbf24)',
     coverImage: '/illustration/azi-kitchen.jpg',
     by: 'Made by Mom',
     status: 'complete',
@@ -182,11 +194,8 @@ const RAW_STARTERS: any[] = [
     pages: [
       {
         text: 'Azi helped Dadi stir the big silver pot. Round and round went the spoon. Something smelled warm and sweet.',
-        scene: {
-          bg: 'linear-gradient(160deg,#fef9ef,#fde8c8)',
-          emojis: ['🍯'],
-          image: '/illustration/azi-kitchen.jpg',
-        },
+        scene: 'kitchen-warm',
+        img: '/illustration/azi-kitchen.jpg',
         bleed: true,
         ask: {
           question: 'Look at the little plate. Can you count the eggs for Dadi?',
@@ -198,11 +207,8 @@ const RAW_STARTERS: any[] = [
       },
       {
         text: '"One day your little bhen will cook with us too," said Mama. Azi painted her a tiny picture — gentle, gentle — to save for her. The end!',
-        scene: {
-          bg: 'linear-gradient(160deg,#fde8c8,#fbbf24)',
-          emojis: ['💛'],
-          image: '/illustration/azi-scene-03.jpg',
-        },
+        scene: 'kitchen-warm',
+        img: '/illustration/azi-scene-03.jpg',
         bleed: true,
         ask: {
           question: 'Bhen means little sister. Can you say bhen?',
@@ -219,7 +225,6 @@ const RAW_STARTERS: any[] = [
     id: 'jujy-christmas',
     title: 'Jujy’s Christmas Adventure',
     coverEmoji: '🐱',
-    coverBg: 'linear-gradient(160deg,#fb7185,#f0abfc)',
     coverImage: '/illustration/jujy-cover.jpg',
     by: 'Made by Dadi',
     status: 'complete',
@@ -237,20 +242,14 @@ const RAW_STARTERS: any[] = [
     pages: [
       {
         text: 'Jujy the cat put on her red cape. Tonight the snow globe was glowing, and something tiny inside was calling her name...',
-        scene: {
-          bg: 'linear-gradient(160deg,#1e3a8a,#7c3aed)',
-          emojis: ['🐱', '🎄', '❄️'],
-          image: '/illustration/jujy-cover.jpg',
-        },
+        scene: 'winter-night',
+        img: '/illustration/jujy-cover.jpg',
         bleed: true,
       },
       {
         text: 'She pressed one whisker to the glass. WHOOSH! Snow swirled all around, and Jujy landed softly in the little village.',
-        scene: {
-          bg: 'linear-gradient(160deg,#818cf8,#a7f3d0)',
-          emojis: ['🐱', '🏘️', '❄️'],
-          image: '/art/jujy-02-village.jpg',
-        },
+        scene: 'village-lit',
+        img: '/art/jujy-02-village.jpg',
         ask: {
           question: 'Look at the little houses. Who do you think is calling Jujy’s name?',
           answers: [],
@@ -262,12 +261,12 @@ const RAW_STARTERS: any[] = [
     ],
   },
 
-  // Emoji-scene story (no art). Kept as the render fallback test case.
+  // Drawn-scene fallback test case (no illustration yet — the reader renders
+  // the endpaper placeholder for these semantic keys until art lands).
   {
     id: 'starter-rocket-goal',
     title: 'The Rocket That Wouldn’t Roar',
     coverEmoji: '🚀',
-    coverBg: 'linear-gradient(160deg,#1e3a8a,#7c3aed)',
     by: 'Made by Papa',
     status: 'complete',
     source: 'starter',
@@ -286,11 +285,11 @@ const RAW_STARTERS: any[] = [
     pages: [
       {
         text: 'In the Star Garage, a small silver rocket sat very quiet. "Today we launch!" said Tara. But when she pressed the button... nothing. No roar.',
-        scene: { bg: 'linear-gradient(160deg,#0f172a,#4338ca)', emojis: ['🚀', '🕷️', '🔧', '🤫'] },
+        scene: 'star-garage',
       },
       {
         text: '"Hmm," said Tara. "When something doesn’t work, we look for WHY." The rocket’s lights blinked: red, blue, red, blue, red...',
-        scene: { bg: 'linear-gradient(160deg,#4338ca,#7c3aed)', emojis: ['🚀', '🔴', '🔵', '🔴'] },
+        scene: 'star-garage',
         ask: {
           question: 'The lights made a pattern: red, blue, red, blue, red... what comes next?',
           answers: ['blue'],
@@ -301,7 +300,7 @@ const RAW_STARTERS: any[] = [
       },
       {
         text: 'Miko rolled in on his moto with a can of rocket fuel. "The tank is empty!" he laughed. "No fuel, no roar. That’s the WHY!"',
-        scene: { bg: 'linear-gradient(160deg,#f97316,#fbbf24)', emojis: ['🦊', '🏍️', '⛽', '💡'] },
+        scene: 'launch',
         ask: {
           question: 'Fuel starts with the sound "fff". Can you make the FFF sound?',
           answers: ['f', 'fff', 'fuel'],
@@ -312,7 +311,7 @@ const RAW_STARTERS: any[] = [
       },
       {
         text: 'Second try: fuel AND the sparky plug plugged in tight. Three... two... one... ROOOOAAAR! The rocket zoomed up past the moon!',
-        scene: { bg: 'linear-gradient(160deg,#0f172a,#1e3a8a)', emojis: ['🚀', '🌕', '⭐', '🎉'] },
+        scene: 'space',
         ask: {
           question: 'It worked on the second try! What do we say when something is hard?',
           answers: ['try again', 'keep trying', 'again'],

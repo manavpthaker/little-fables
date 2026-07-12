@@ -25,19 +25,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useSwApp } from './SwApp'
+import { useRoomShell } from './RoomShell'
 import { listen, recognitionAvailable } from '@/lib/read/speech'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
-import {
-  BuddyMic,
-  IntentHighlight,
-  IntentToast,
-  OfflineBanner,
-  PillNav,
-  ProgressRing,
-  SpeechBubble,
-  WashScene,
-} from './components'
 import { BUDDIES, cp, getBuddy } from '@/lib/read/buddies'
 import { loadShelf } from '@/lib/read/packs'
 import {
@@ -52,7 +42,20 @@ import { pullAll } from '@/lib/read/sync'
 import type { Book, BuddyDef } from '@/types/story'
 import { LightingProvider } from './room/LightingProvider'
 import { RoomScene, ZonedOverlay, ROOM_ZONES } from './room/RoomScene'
-import { BookCoverArt, CreatureSprite, MedallionMount, StarWordPin, SunPin } from './art'
+import {
+  BookCoverArt,
+  BuddyMicButton,
+  CreatureSprite,
+  DrawnProgressRing,
+  IntentHighlight,
+  IntentToast,
+  MedallionMount,
+  OfflineBanner,
+  SpeechBubble,
+  StarWordPin,
+  SunPin,
+  TransportPlayIcon,
+} from './art'
 import type { BuddyKind } from './art'
 import { useLighting } from '@/lib/read/useLighting'
 import type { LightingKeyframe } from '@/lib/read/lighting'
@@ -61,7 +64,7 @@ type Suns = ReturnType<typeof currentWeekSuns>
 type ProgressEntry = { chapter: number; page: number; updatedAt: number }
 
 export default function Home() {
-  const { online } = useSwApp()
+  const { online } = useRoomShell()
   const router = useRouter()
 
   const [ready, setReady] = useState(false)
@@ -471,8 +474,8 @@ export default function Home() {
               size={140}
             />
           </div>
-          <BuddyMic
-            buddy={buddy}
+          <BuddyMicButton
+            kind={buddyKind}
             size={72}
             listening={listening}
             onTap={handleBuddyMicTap}
@@ -516,8 +519,6 @@ export default function Home() {
           />
         </IntentHighlight>
       </RoomScene>
-
-      <PillNav active="home" />
     </LightingProvider>
   )
 }
@@ -619,7 +620,6 @@ function ContinueCard({
   }
 
   const target = book ?? todaysPick!
-  const wash = target.chapters[0]?.wash ?? target.wash ?? 'honey'
   const ringValue = book ? (progressRingValue(book, progress) ?? 0) : 0
   const chIdx = book ? Math.min(book.chapters.length - 1, progress?.chapter ?? 0) : 0
   const chapter = book?.chapters[chIdx]
@@ -644,18 +644,9 @@ function ContinueCard({
           '0 0 0 4px color-mix(in oklab, var(--pigment-terracotta) 18%, transparent)',
       }}
     >
-      <WashScene
-        wash={wash}
-        img={target.coverImage}
-        emojis={target.coverEmoji ? [target.coverEmoji] : []}
-        doodle={!target.coverImage}
-        style={{
-          width: 118,
-          height: 96,
-          borderRadius: 12,
-          flexShrink: 0,
-        }}
-      />
+      <div style={{ width: 78, height: 104, flexShrink: 0 }}>
+        <BookCoverArt book={target} width={78} height={104} />
+      </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div
           style={{
@@ -707,7 +698,7 @@ function ContinueCard({
         }}
       >
         <div style={{ position: 'relative', width: 56, height: 56 }}>
-          {book && <ProgressRing value={ringValue} size={56} stroke={5} />}
+          {book && <DrawnProgressRing value={ringValue} size={56} stroke={5} />}
           <span
             className="lf-press"
             style={{
@@ -715,15 +706,13 @@ function ContinueCard({
               inset: book ? 6 : 0,
               borderRadius: '50%',
               background: 'var(--pigment-terracotta, #D95B43)',
-              color: '#fff',
-              fontSize: 18,
+              color: '#F9F2E3',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              paddingLeft: 3,
             }}
           >
-            ▶
+            <TransportPlayIcon size={22} color="#F9F2E3" />
           </span>
         </div>
         <span
@@ -850,7 +839,7 @@ function ShelfRow({
                       right: -6,
                     }}
                   >
-                    <ProgressRing value={ring} size={28} stroke={3.5} />
+                    <DrawnProgressRing value={ring} size={28} stroke={3.5} />
                   </span>
                 )}
               </button>

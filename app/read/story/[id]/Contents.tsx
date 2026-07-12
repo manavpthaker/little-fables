@@ -8,7 +8,7 @@
 //   - `.lf-room` `data-register="story"` overlay (warm cream, not v2 white).
 //   - Drawn shelf of chapters, one row per chapter, using a face-out spine
 //     treatment via `BookCoverArt` (the same helper Home uses).
-//   - ✓ / current (coral outline) / closed states drawn — no 📕 emoji.
+//   - ✓ / current (coral outline) / closed states drawn — no emoji.
 //   - Display font throughout (`--font-display`).
 //   - Tap-out or drawn back arrow closes.
 

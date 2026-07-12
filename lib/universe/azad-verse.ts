@@ -17,6 +17,11 @@ export interface Character {
   /** Stable id — 'char_jujy'. */
   id: string
   name: string
+  /** v3.2 note: kept because Parent Corner ("Cast — canon" toggles) renders it
+   *  next to the character name (app/read/parent/page.tsx L1405). Do NOT read
+   *  this in kid-facing surfaces — those should map character → drawn avatar.
+   *  When drawn character art lands everywhere in the parent surface this
+   *  field can retire. */
   emoji: string
   /** Short role tagline — 'the loyal leader — tuxedo cat'. */
   role: string

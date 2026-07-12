@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
-import { SwApp } from './SwApp'
+import { RoomShell } from './RoomShell'
 import { LfFilters } from './LfFilters'
 import { alegreya, caveat, youngSerif } from './lf-fonts'
 import './read.css'
@@ -33,12 +32,7 @@ export default function ReadLayout({ children }: { children: React.ReactNode }) 
       {/* SVG filter defs used by every drawn surface in the v3 Drawn Room.
           Mounted once per SPA session so `filter: url(#lf-wobble)` etc. work. */}
       <LfFilters />
-      <SwApp>
-        {children}
-        <Script id="sw-register" strategy="afterInteractive">
-          {`if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js').catch(()=>{}) }`}
-        </Script>
-      </SwApp>
+      <RoomShell>{children}</RoomShell>
     </div>
   )
 }

@@ -11,7 +11,7 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { CircleBtn, KidScreen, PillNav, WashScene } from '../components'
+import { DrawnCircleBtn, KidScreen, BackArrowIcon, SpeakerIcon, BookCoverArt } from '../art'
 import { loadWordBook, loadLanguageWall, type LanguageWallEntry } from '@/lib/read/storage'
 import { loadShelf } from '@/lib/read/packs'
 import { speak, type SpeakHandle } from '@/lib/read/speech'
@@ -44,6 +44,21 @@ const LANGUAGE_PIN: Record<string, { pigment: string; motif: 'flower' | 'leaf' |
 
 function languageDisplayName(code: string): string {
   return LANGUAGE_LABEL[code.toLowerCase()] ?? code
+}
+
+/** A small drawn ink star used inline next to star words. */
+function StarInk({ size = 16, color = '#E2A93B' }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" aria-hidden="true" style={{ display: 'inline-block' }}>
+      <path
+        d="M 10 2 L 12 8 L 18 9 L 13 13 L 15 19 L 10 15 L 5 19 L 7 13 L 2 9 L 8 8 Z"
+        fill={color}
+        stroke="#46362A"
+        strokeWidth="1.2"
+        filter="url(#lf-wobble)"
+      />
+    </svg>
+  )
 }
 
 function PinMotif({ kind, color = '#46362A' }: { kind: 'flower' | 'leaf' | 'sun' | 'shell' | 'star'; color?: string }) {
@@ -201,7 +216,7 @@ function WordPin({
             color: pin.pigment,
           }}
         >
-          🔊 tap or hold
+          <SpeakerIcon size={14} color={pin.pigment} /> tap or hold
         </div>
       </button>
     </div>
@@ -260,9 +275,9 @@ export default function MyWordsPage() {
       >
         <header style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '24px 32px 0' }}>
           <Link href="/read" aria-label="Back home" style={{ textDecoration: 'none' }}>
-            <CircleBtn label="Back home" size={52}>
-              ‹
-            </CircleBtn>
+            <DrawnCircleBtn label="Back home" size={52}>
+              <BackArrowIcon size={26} />
+            </DrawnCircleBtn>
           </Link>
           <div>
             <h1 style={{ margin: 0, font: '700 32px var(--font-display)', color: 'var(--ink, #46362A)' }}>
@@ -389,21 +404,15 @@ export default function MyWordsPage() {
                     color: 'var(--ink, #46362A)',
                   }}
                 >
-                  <span style={{ font: '700 23px var(--font-display)' }}>
-                    <span aria-hidden="true" style={{ fontSize: 15, marginRight: 6, color: '#E2A93B' }}>
-                      ⭐
-                    </span>
+                  <span style={{ font: '700 23px var(--font-display)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                    <StarInk />
                     {w.word}
                   </span>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
                     {book && (
-                      <WashScene
-                        wash={book.wash}
-                        img={book.coverImage}
-                        emojis={book.coverEmoji ? [book.coverEmoji] : []}
-                        doodle={false}
-                        style={{ width: 24, height: 24, borderRadius: 7, flexShrink: 0 }}
-                      />
+                      <span style={{ width: 24, height: 32, display: 'inline-block', flexShrink: 0 }}>
+                        <BookCoverArt book={book} width={24} height={32} />
+                      </span>
                     )}
                     <span style={{ font: '600 12px var(--font-body)', fontStyle: 'italic', color: 'var(--ink-soft, #6E5B49)' }}>
                       {book?.title ?? 'From your reading'}
@@ -458,11 +467,13 @@ export default function MyWordsPage() {
                     cursor: 'pointer',
                     background: 'var(--pigment-terracotta, #D95B43)',
                     color: '#F9F2E3',
-                    fontSize: 26,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     boxShadow: '0 6px 14px rgba(217,91,67,.35)',
                   }}
                 >
-                  🔊
+                  <SpeakerIcon size={28} color="#F9F2E3" />
                 </button>
               </div>
               <h2 style={{ margin: 0, font: '700 34px var(--font-display)' }}>{openWord.word}</h2>
@@ -481,7 +492,6 @@ export default function MyWordsPage() {
           </div>
         )}
 
-        <PillNav active="home" />
       </div>
     </KidScreen>
   )

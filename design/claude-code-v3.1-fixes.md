@@ -97,6 +97,55 @@ task — it now blocks the tap-word=seek acceptance test).
 17. **Service worker cache name still `lf-read-v3`** across a wholesale visual replacement —
     bump to `lf-read-v4` so stale shells can't serve the old app offline.
 
+---
+
+# v3.1 re-verify results (0d72d7d, live July 12)
+
+**Verified fixed:** first-run → arrival (#2) · ask chips + skip co-present, prev/next never
+gated, chip answer → praise (#1) · continuous play auto-turns then pauses at the page-2 ask
+(A3 end-to-end) · kitchen touch-only seed→interview→readback→writing-moment, drawn sprites +
+drawn back door, dual-mode chips at every interview question (#3, #16) · lighting: dawn /
+noon / dusk / night are four unmistakably different rooms, greeting matches daypart (#5, #6)
+· chapter jump lands on ch2 page 1 (#7) · Contents drawn with You-are-here / Coming-up
+covers (#8) · azi-bhen audio 200 + word highlight follows narration on moose (#9) · Home
+shelf paged with chevrons + aria-labels, Start link clickable, Today's title ink-locked
+(#4, #11, #13).
+
+## v3.2 — remaining items
+
+**P0-A. `/api/story` 504s on kid-story generation.** The full touch-only kitchen flow ended
+in the friendly failure state because both generation attempts returned 504 Gateway Timeout.
+`maxDuration = 90` is already set on the route — so either the kid pipeline (generation +
+embodiment + two-stage QA + possible regeneration, all in one request) exceeds 90s, or the
+Vercel plan caps below 90. Fix: raise to the plan max AND restructure — return the story
+after the hard-gate pass and run soft scoring/revision async (or split into two requests the
+client chains: generate → qa). The client should also treat a 504/timeout with one visible
+retry, not straight to the oven line.
+
+**P1-B. Kitchen auto-listens.** Seed screen opens with "I'm listening!" / "Tap when done",
+and interview questions re-arm the mic ("I'm listening — or tap one above"). The directive
+is tap-to-listen only, always explicitly initiated. Chips may appear with speech; the mic
+must stay idle until tapped.
+
+**P1-C. Seed→interview transition shows stale inert chips.** After answering the seed, the
+old seed chips stay rendered (not in the a11y tree, not tappable) for several seconds before
+Q1's want-chips appear. Swap phases atomically or show the writing-desk beat between.
+
+**P1-D. Home shelf double-render.** The paged real-book cards float over the painted shelf's
+own hardcoded covers (Papa Gets the Moon / Azad's Bird Book / Quiet Snail visible behind and
+between cards) — most visible at dusk/night. Suppress the baked-in covers in the room SVG
+when real covers render; covers should sit IN the shelf niches, not glow above them.
+
+**P2.** Word-pin paper scraps still overlap pin text on Home ("moon" half-covered — #12 was
+not actually fixed) · arrival buddy tap still needs 2–3 taps before the hello/rug beat
+appears (repro'd twice; #14's press-state fix didn't cure the handler) · seed chip copy is
+parent-voiced profile strings ("AKAI keyboard, patience while learning", "(Azi's three-chord
+C-G-Am progression)") — chips a 4-year-old reads should be 1–3 kid words ("music", "puzzles",
+"a hero") · dusk window shows sun and moon simultaneously · reader banner crop (#15, still
+open) · cover art is emoji-centric by design (BookCoverArt emoji dispatch) — fine as interim,
+but the art-pipeline backfill (`design/claude-code-art-prompt.md`) is what actually retires
+emoji from the shelf.
+
 ## Re-verify after fixes (the failed checkpoints only)
 
 - Touch-only full pass: cold `/read` → arrival → pick buddy → Home → open a shelf book by
