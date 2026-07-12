@@ -50,3 +50,7 @@ export { IntentToast } from './IntentToast'
 export { IntentHighlight } from './IntentHighlight'
 export { OfflineBanner } from './OfflineBanner'
 export { BuddyMicButton } from './BuddyMicButton'
+
+// v3.2 Phase 1 — semantic-scene dispatcher for reader pages + endpaper stub.
+export { DrawnEndpaperArt } from './DrawnEndpaperArt'
+export { DrawnScene } from './scenes'

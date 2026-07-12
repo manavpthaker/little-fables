@@ -109,6 +109,20 @@ export default function ArrivalPage() {
     }, 1800)
   }
 
+  // v3.2 P2-2e — root cause of the "2-3 taps to pick" bug: the handler was
+  //   onClick={() => (isGreeted ? choose(id) : greet(id))}
+  // First tap set `greeted` state but did NOT commit the buddy — the child
+  // had to tap AGAIN once `isGreeted` had propagated to see `choose(id)` fire.
+  // Kids missed the second tap window (the intro speech distracted them) and
+  // tapped a different buddy, resetting the loop. Fix: on any first tap we
+  // greet AND commit — the intro line plays over the walk-to-rug animation,
+  // so the child never has to tap twice on the same buddy.
+  const pickBuddyAtomic = (id: BuddyKind) => {
+    if (walking) return
+    if (greeted !== id) greet(id)
+    choose(id)
+  }
+
   if (!ready) return null
 
   const rugGlow = greeted && !walking
@@ -186,11 +200,11 @@ export default function ArrivalPage() {
                 * drawn buddy itself, not on a transparent hit-target above. */}
               <button
                 type="button"
-                onClick={() => (isGreeted ? choose(id) : greet(id))}
+                onClick={() => pickBuddyAtomic(id)}
                 aria-label={
                   isGreeted
                     ? `${BUDDIES.find((b) => b.id === id)?.name ?? id} — come to the rug`
-                    : `say hello to ${s.label}`
+                    : `say hello to ${s.label} and pick them`
                 }
                 className="lf-press"
                 style={{

@@ -51,16 +51,17 @@ interface NextResponse {
 }
 
 // -------- Chip catalog per slot --------
-// Contextual quick answers a 4yo can tap. Kept short + concrete. The mic is
-// always present alongside — chips are an accelerant, not a cage. v3.2:
-// chips are text-only (no decorative emoji), rendered as drawn cream cards.
+// v3.2 P2-2f — chips are kid-voiced: 1-3 words, concrete, from a small kid's
+// mouth. Not "someone to help" — "a friend". Not "the way is blocked" — "lose
+// the map". The mic is always co-present; chips are an accelerant. Cards are
+// text-only (no decorative emoji), rendered as drawn cream cards.
 const CHIP_CATALOG: Record<string, string[]> = {
-  want: ['fly high', 'find a hidden place', 'make a friend', 'share a snack'],
-  reason: ['to help someone', "'cause it's fun", 'to feel less alone', 'to see something new'],
-  obstacle: ['a big storm', 'a lost thing', 'a grumpy someone', 'the way is blocked'],
-  character: ['a brave bear', 'a clever fox', 'a slow turtle', 'a tiny bird'],
-  setting: ['a deep forest', 'the seashore', 'a cozy town', 'up in the stars'],
-  freeform: ['something magical', 'something silly', 'something kind'],
+  want: ['the moon', 'a friend', 'run fast', 'a big hug'],
+  reason: ['it’s scary', 'I miss it', 'it’s fun', 'to help'],
+  obstacle: ['a big storm', 'lose the map', 'too dark', 'a grumpy guy'],
+  character: ['a bear', 'a fox', 'a robot', 'a tiny bird'],
+  setting: ['the woods', 'the sea', 'my house', 'the moon'],
+  freeform: ['something magic', 'something silly', 'a hug'],
 }
 
 function chipsForSlot(slot: string): string[] {
@@ -151,19 +152,16 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
     [acceptAnswer],
   )
 
-  const speakThen = useCallback((text: string, then: () => void) => {
+  // v3.2 P2-2b — buddy speaks the prompt and STOPS. The mic never opens on
+  // its own; the child taps a chip or taps the mic. The interview turn state
+  // stays at 'buddy-speaking' (which also enables chip taps below) until the
+  // child acts.
+  const speakOnly = useCallback((text: string) => {
     if (cancelledRef.current) return
     setPhase('buddy-speaking')
     setLine(text)
     speakRef.current?.cancel()
-    let advanced = false
-    const advance = () => {
-      if (advanced || cancelledRef.current) return
-      advanced = true
-      then()
-    }
-    speakRef.current = speak(text, { onEnd: advance })
-    setTimeout(advance, Math.max(2500, text.length * 60))
+    speakRef.current = speak(text)
   }, [])
 
   const driveNext = useCallback(async () => {
@@ -188,12 +186,14 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
       const spoken = res.buddyLine ?? q
       setCurrentQuestion(q)
       setCurrentSlot(slot)
-      speakThen(spoken, () => openMic(slot, q))
+      // v3.2 P2-2b — tap-to-listen only. Speak the prompt and stop; the
+      // child taps a chip or taps the mic to answer.
+      speakOnly(spoken)
     } catch (e) {
       const msg = (e as Error).message
       onFailure(`Interview upstream failed: ${msg}`)
     }
-  }, [seed, guardrails, onComplete, onFailure, speakThen, openMic])
+  }, [seed, guardrails, onComplete, onFailure, speakOnly])
 
   // Kick off — the parent has already handled the seed / redirect turn.
   useEffect(() => {
@@ -201,9 +201,16 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // v3.2 P2-2b — tap to open the listener when idle, tap to stop when live.
   const onMicTap = () => {
-    if (phase !== 'listening') return
-    listenRef.current?.stop()
+    if (phase === 'listening') {
+      listenRef.current?.stop()
+      return
+    }
+    if (phase === 'buddy-speaking') {
+      speakRef.current?.cancel()
+      openMic(currentSlot, currentQuestion || 'Tell me more')
+    }
   }
 
   const chips = useMemo(() => chipsForSlot(currentSlot), [currentSlot])
@@ -292,7 +299,11 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
           type="button"
           aria-label={phase === 'listening' ? 'Tap when done' : 'Or say your answer'}
           onClick={onMicTap}
-          disabled={phase !== 'listening'}
+          // v3.2 P2-2b — enabled during buddy-speaking (tap to interrupt +
+          // start listening) and during listening (tap to stop). Disabled
+          // only while /api/respond is thinking so the child can't fire two
+          // turns at once.
+          disabled={phase === 'thinking'}
           className="lf-press lf-drawn-border lf-drawn-border--bold"
           style={{
             width: 104,
@@ -307,7 +318,7 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
             color: '#F9F2E3',
             fontSize: 42,
             boxShadow: '0 8px 20px rgba(217,91,67,.35)',
-            cursor: phase === 'listening' ? 'pointer' : 'default',
+            cursor: phase === 'thinking' ? 'default' : 'pointer',
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -324,8 +335,8 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
             minHeight: 22,
           }}
         >
-          {phase === 'buddy-speaking' && 'or tap one above'}
-          {phase === 'listening' && "I'm listening — or tap one above"}
+          {phase === 'buddy-speaking' && 'tap the mic or tap a chip'}
+          {phase === 'listening' && "I'm listening — or tap a chip"}
           {phase === 'thinking' && '…thinking…'}
         </div>
       </div>

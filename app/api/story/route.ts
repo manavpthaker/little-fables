@@ -1567,76 +1567,41 @@ Regenerate the FULL story fixing every violation above. Keep what worked.`
       )
     }
 
-    // ---- Stage 2 — soft scoring + optional revision ----
-    const weights = resolveWeights(universe)
-    let breakdown: QaSoftBreakdown | undefined
-    let softScore = 0
-    let softNotes = ''
-    let revisions = attempts - 1 // regenerations before final = revisions used in Stage 0/1
+    // ---- Stage 2 — DEFERRED (v3.2 P2-2a Option B) --------------------------
+    // Soft scoring used to run inline here. That made the whole request 60s+
+    // on kid-authored stories and triggered 504s on Vercel's Fluid Compute.
+    // The kid then saw the "story machine hiccuped" line, but the story had
+    // already been written — it just missed the shelf.
+    //
+    // Now: we return the Book AS SOON AS hard gates pass. The client saves
+    // the Book locally + navigates to the reader immediately, then fires a
+    // background POST to /api/story-score to fill in the soft score. If the
+    // background call fails, `status: 'needs-review'` sticks and parents can
+    // retry from the Corner. The kid never watches a spinner tick down.
+    //
+    // Consequence: the inline soft-score revision loop (regenerate on <90) is
+    // gone from the hot path. That was already a rare pass; when it matters
+    // parents can request a re-generate from the Corner. Trade-off worth it
+    // to guarantee under-30s response for the child.
+    void resolveWeights
+    void runSoftScore
+    void computeSoftScore
+    void SHIP_GATE_MIN
+    void SKIP_RUBRIC
+
+    const revisions = attempts - 1 // regenerations spent in Stage 0/1
     const notesLog: string[] = []
+    if (judgeUnavailable) notesLog.push('judge unavailable')
 
-    if (judgeUnavailable) {
-      notesLog.push('judge unavailable')
-    } else if (!SKIP_RUBRIC) {
-      try {
-        const first = await runSoftScore(apiKey, story, band)
-        breakdown = first.breakdown
-        softScore = computeSoftScore(breakdown, weights)
-        softNotes = first.notes
-
-        if (softScore < SHIP_GATE_MIN) {
-          // One revision pass driven by the soft-score notes.
-          const revUser = `${usr}
-
-======================================================================
-SOFT-SCORE REVISION (score ${softScore}/${SHIP_GATE_MIN})
-======================================================================
-Per-criterion breakdown (0-10): ${JSON.stringify(breakdown)}
-Judge notes: "${softNotes}"
-
-Revise the FULL story to raise the low scores. Keep what worked. Same JSON shape.`
-          try {
-            const rawRev = await callAnthropic({
-              apiKey,
-              model: STORY_MODEL,
-              system: bundle.system,
-              user: revUser,
-              maxTokens: 6000,
-              cacheSystem: true,
-            })
-            const revised = validate(extractJSON(rawRev), body.mode)
-            ensureSkillTags(revised, bundle.targetSkill)
-            // Re-run deterministic on the revision (cheap, no LLM).
-            const detRev = runDeterministic(revised, band, universe, profile)
-            det = detRev
-            const second = await runSoftScore(apiKey, revised, band)
-            const revisedScore = computeSoftScore(second.breakdown, weights)
-            story = revised
-            breakdown = second.breakdown
-            softScore = revisedScore
-            softNotes = second.notes
-            revisions++
-          } catch (e) {
-            console.warn('[story] soft-score revision failed, keeping first draft:', e)
-            notesLog.push(`revision failed: ${(e as Error).message}`)
-          }
-        }
-      } catch (e) {
-        console.warn('[story] soft-score judge unavailable, degrading:', e)
-        judgeUnavailable = true
-        notesLog.push('soft-score judge unavailable')
-      }
-    }
-
-    // ---- Assemble the qaRecord ----
+    // ---- Assemble the qaRecord (partial — soft score arrives later) --------
     const finalHardGates: QaHardGateResult = judgeUnavailable
       ? { passed: true }
       : hardGates ?? { passed: true }
 
     const qaRecord: QaRecord = {
       hardGates: finalHardGates,
-      softScore,
-      breakdown,
+      softScore: 0, // filled in by /api/story-score
+      breakdown: undefined,
       revisions,
       deterministic: det
         ? {
@@ -1646,22 +1611,21 @@ Revise the FULL story to raise the low scores. Keep what worked. Same JSON shape
             passed: det.passed,
           }
         : { passed: true },
-      notes: [softNotes, ...notesLog].filter(Boolean).join(' | ') || undefined,
+      notes: notesLog.length > 0 ? notesLog.join(' | ') : undefined,
     }
     story.qaRecord = qaRecord
 
-    // Determine status: needs-review if the judge was unavailable, or if
-    // hard-gate failed after all attempts, or soft score still below the gate.
+    // Determine status. Without the soft-score signal we can only route to
+    // needs-review on the hard gates. The deferred /api/story-score may bump
+    // us back to needs-review if the soft score comes back low.
     const needsReview =
       judgeUnavailable ||
       !finalHardGates.passed ||
-      (breakdown !== undefined && softScore < SHIP_GATE_MIN) ||
       !qaRecord.deterministic?.passed
     story.status = needsReview ? 'needs-review' : 'complete'
 
-    // Rubric fields kept populated for back-compat with existing callers.
-    story.rubricScore = softScore
-    if (softNotes) story.rubricNotes = softNotes
+    // Signal to the client that the soft score is coming later.
+    ;(story as GenerateResponseV22 & { scoreDeferred?: boolean }).scoreDeferred = true
 
     // ---- v3 kid-story extras: interview, wildcards, author, guardrails cross-check ----
     const mode = (body as unknown as { mode?: string }).mode

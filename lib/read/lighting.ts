@@ -168,19 +168,24 @@ export function varsFor(k: LightingKeyframe): Record<string, string> {
         '--pool-opacity': '0.35',
       }
     case 'dusk':
+      // v3.2 P2-2g — sun setting on the right, moon rising on the left, both
+      // clearly visible so dusk reads as the moment they trade shifts. Sun
+      // opacity bumped to 0.6 and moon to 0.85 so neither reads as a wash
+      // artifact. Positions kept inside the window rect so `overflow: hidden`
+      // never clips them.
       return {
         '--light-pool': 'rgba(243, 199, 122, 0.40)',
         '--shadow-color': 'rgba(34, 48, 74, 0.42)',
         '--light-sky': 'linear-gradient(180deg, #4E5D7E 0%, #A46F5F 55%, #E8B87A 100%)',
         '--light-ambient': 'linear-gradient(180deg, rgba(78, 93, 126, 0.35), rgba(164, 111, 95, 0.22) 60%, rgba(232, 184, 122, 0.16))',
-        '--sun-x': '85%',
-        '--sun-y': '82%',
-        '--sun-opacity': '0.35',
-        '--sun-color': '#C86A3E',
-        '--moon-x': '30%',
-        '--moon-y': '75%',
-        '--moon-opacity': '0.5',
-        '--moon-color': '#E4DAB6',
+        '--sun-x': '78%',
+        '--sun-y': '74%',
+        '--sun-opacity': '0.6',
+        '--sun-color': '#D97757',
+        '--moon-x': '28%',
+        '--moon-y': '32%',
+        '--moon-opacity': '0.85',
+        '--moon-color': '#EFE6C2',
         '--lantern-overlay': 'rgba(34, 48, 74, 0.28)',
         '--pool-opacity': '0.6',
       }

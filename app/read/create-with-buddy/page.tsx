@@ -181,17 +181,14 @@ export default function CreateWithBuddy() {
   }, [phase, buddy])
 
   // ---- Phase: seed ----
+  // v3.2 P2-2b — tap-to-listen only. The buddy speaks the invitation; the
+  // mic stays IDLE until the child taps it. No auto-open on speak's onEnd.
   useEffect(() => {
     if (phase !== 'seed' || !buddy) return
     const q = "What's YOUR story about? Tell me anything!"
     setBuddyLine(q)
     speakRef.current?.cancel()
-    speakRef.current = speak(q, {
-      onEnd: () => {
-        if (cancelledRef.current || phase !== 'seed') return
-        openSeedMic()
-      },
-    })
+    speakRef.current = speak(q)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, buddy])
 
@@ -209,12 +206,11 @@ export default function CreateWithBuddy() {
       onEnd: () => {
         if (got || cancelledRef.current) return
         setMicListening(false)
-        // Empty seed → repeat the invitation gently.
-        const line = 'Take your time. Tell me anything at all.'
+        // v3.2 P2-2b — empty seed: gentle re-invite, but do NOT auto-open the
+        // mic again. The child taps when ready.
+        const line = 'Take your time. Tap the mic when you know.'
         setBuddyLine(line)
-        speakRef.current = speak(line, { onEnd: () => {
-          if (!cancelledRef.current && phase === 'seed') openSeedMic()
-        }})
+        speakRef.current = speak(line)
       },
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -305,13 +301,10 @@ export default function CreateWithBuddy() {
         }
         if (declined && redirectAttempts < 1) {
           setRedirectAttempts((n) => n + 1)
-          const line = 'Okay — what should we do instead?'
+          const line = 'Okay — tap the mic and tell me what we should do.'
           setBuddyLine(line)
-          speakRef.current = speak(line, {
-            onEnd: () => {
-              if (!cancelledRef.current && phase === 'redirect-offer') openRedirectMic()
-            },
-          })
+          // v3.2 P2-2b — do NOT auto-open the mic. The child taps to speak.
+          speakRef.current = speak(line)
           return
         }
         // Ambiguous or second decline: proceed with the original seed. R19
@@ -337,13 +330,11 @@ export default function CreateWithBuddy() {
      
   }, [seed, redirectSuggestion, redirectAttempts, phase])
 
+  // v3.2 P2-2b — tap-to-listen only. No auto-open timer; the child taps the
+  // mic when ready. The Yes / No chips are already co-present for touch.
   useEffect(() => {
     if (phase !== 'redirect-offer' || !buddy) return
-    // Give the child a beat to hear the redirect line before opening the mic.
-    const t = setTimeout(() => {
-      if (!cancelledRef.current && phase === 'redirect-offer') openRedirectMic()
-    }, Math.max(2000, buddyLine.length * 50))
-    return () => clearTimeout(t)
+    // Intentionally no mic opening here. The mic button below is the seam.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, buddy])
 
@@ -391,54 +382,55 @@ export default function CreateWithBuddy() {
       onEnd: () => {
         if (got || cancelledRef.current) return
         setMicListening(false)
-        void kickOffGeneration()
+        // v3.2 P2-2b — do NOT auto-continue on silence. Wait for a tap.
       },
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    if (phase !== 'readback' || !buddy) return
-    // Speak the buddyLine (which already ends in "Did I get it right?")
-    speakRef.current?.cancel()
-    speakRef.current = speak(buddyLine || readBackLine, {
+  // v3.2 P2-2b — mic-tap opener for the correction phase. Encapsulates the
+  // listen() call that used to live in the correction useEffect.
+  // Uses a ref for applyCorrection to avoid the declaration-order cycle
+  // (applyCorrection is defined further down and depends on state closures).
+  const applyCorrectionRef = useRef<(t: string) => void | Promise<void>>(() => {})
+  const openCorrectionMic = useCallback(() => {
+    if (cancelledRef.current) return
+    setMicListening(true)
+    let got = false
+    listenRef.current = listen({
+      timeoutMs: 10000,
+      onResult: (t) => {
+        got = true
+        setMicListening(false)
+        void applyCorrectionRef.current(t)
+      },
       onEnd: () => {
-        if (!cancelledRef.current && phase === 'readback') openReadbackMic()
+        if (got || cancelledRef.current) return
+        setMicListening(false)
+        // No auto-continue — chips remain visible.
       },
     })
-    setTimeout(() => {
-      if (!cancelledRef.current && phase === 'readback' && !micListening) openReadbackMic()
-    }, Math.max(3000, (buddyLine || readBackLine).length * 60))
+  }, [])
+
+  useEffect(() => {
+    if (phase !== 'readback' || !buddy) return
+    // v3.2 P2-2b — speak only, never open the mic on our own. The child
+    // taps "That's it!" / "Change it" chips or the mic. No auto-listen.
+    speakRef.current?.cancel()
+    speakRef.current = speak(buddyLine || readBackLine)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, buddy])
 
   // ---- Phase: correction ----
+  // v3.2 P2-2b — tap-to-listen only. Buddy speaks the invitation; the child
+  // taps a correction chip or the mic to speak. If they never tap, the mic
+  // is never opened — the "never mind" affordance below sends them on.
   useEffect(() => {
     if (phase !== 'correction') return
     const line = 'Oh! Tell me what to fix.'
     setBuddyLine(line)
     speakRef.current?.cancel()
-    speakRef.current = speak(line, {
-      onEnd: () => {
-        if (cancelledRef.current) return
-        setMicListening(true)
-        let got = false
-        listenRef.current = listen({
-          timeoutMs: 10000,
-          onResult: (t) => {
-            got = true
-            setMicListening(false)
-            void applyCorrection(t)
-          },
-          onEnd: () => {
-            if (got || cancelledRef.current) return
-            setMicListening(false)
-            // Silent — proceed to generation with the current recipe.
-            void kickOffGeneration()
-          },
-        })
-      },
-    })
+    speakRef.current = speak(line)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase])
 
@@ -480,6 +472,12 @@ export default function CreateWithBuddy() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seed, recipe, readBackLine, phase])
+
+  // v3.2 P2-2b — publish applyCorrection to the ref that openCorrectionMic
+  // reads through, keeping their declaration order clean.
+  useEffect(() => {
+    applyCorrectionRef.current = applyCorrection
+  }, [applyCorrection])
 
   // ---- Phase: writing (fires /api/story) ----
   const kickOffGeneration = useCallback(async () => {
@@ -558,6 +556,50 @@ export default function CreateWithBuddy() {
       }
       saveStory(book)
       void pushStory(book)
+
+      // v3.2 P2-2a — fire deferred soft-scoring in the background. The Book
+      // is already saved to the shelf; the kid is heading into the reader
+      // right now. When /api/story-score returns we merge the softScore into
+      // qaRecord and persist. If it fails (timeout, 502, offline) the Book
+      // stays at needs-review — parents see it in the Corner.
+      const scoreDeferred =
+        (data as { scoreDeferred?: boolean }).scoreDeferred === true
+      if (scoreDeferred) {
+        void (async () => {
+          try {
+            const scoreRes = await fetch('/api/story-score', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({
+                book,
+                universe: loadUniverse(),
+              }),
+            })
+            if (!scoreRes.ok) return
+            const scored = (await scoreRes.json()) as {
+              softScore?: number
+              breakdown?: unknown
+              notes?: string
+              status?: string
+            }
+            if (typeof scored.softScore !== 'number') return
+            const merged: Book = {
+              ...book,
+              qaRecord: {
+                ...(book.qaRecord ?? { hardGates: { passed: true }, softScore: 0, revisions: 0 }),
+                softScore: scored.softScore,
+                breakdown: scored.breakdown as NonNullable<Book['qaRecord']>['breakdown'],
+                notes: scored.notes ?? book.qaRecord?.notes,
+              },
+              status: scored.status === 'needs-review' ? 'needs-review' : 'complete',
+            }
+            saveStory(merged)
+            void pushStory(merged)
+          } catch {
+            /* silent — Book stays at needs-review until retry */
+          }
+        })()
+      }
 
       // Bump the daily counter.
       recordCreation()
@@ -639,11 +681,15 @@ export default function CreateWithBuddy() {
 
   const pickSeedChip = useCallback(
     (chipText: string) => {
-      // Stop any live listener / speech; route through the same seed path.
+      // v3.2 P2-2c — atomic seed → interview swap. Cancel any speech / mic,
+      // set the "thinking" line synchronously (hides chips in the same
+      // render), then hand off to handleSeedTranscript for the async work.
       listenRef.current?.stop()
       listenRef.current = null
       speakRef.current?.cancel()
+      setMicListening(false)
       setSeed(chipText)
+      setBuddyLine('…thinking…')
       void handleSeedTranscript(chipText)
     },
     [handleSeedTranscript],
@@ -815,8 +861,12 @@ export default function CreateWithBuddy() {
           </SpeechBubble>
         </div>
 
-        {/* Seed phase: drawn suggestion chips co-present with the mic. */}
-        {phase === 'seed' && seedSuggestions.length > 0 && (
+        {/* Seed phase: drawn suggestion chips co-present with the mic.
+             v3.2 P2-2c — hide chips the moment the seed is committed (buddy
+             is thinking) so the child never sees a flash of inert chips
+             between seed → interview. Chip → seed handler sets buddyLine
+             to '…thinking…' synchronously, so the swap is atomic. */}
+        {phase === 'seed' && buddyLine !== '…thinking…' && seedSuggestions.length > 0 && (
           <div
             style={{
               display: 'flex',
@@ -998,10 +1048,20 @@ export default function CreateWithBuddy() {
             <button
               type="button"
               aria-label={micListening ? 'Tap when done' : 'Say it out loud'}
+              // v3.2 P2-2b — mic tap opens the listener when idle, stops it
+              // when live. Every phase starts idle; the child owns when to
+              // start listening.
               onClick={() => {
-                if (micListening) listenRef.current?.stop()
+                if (micListening) {
+                  listenRef.current?.stop()
+                  return
+                }
+                speakRef.current?.cancel()
+                if (phase === 'seed') openSeedMic()
+                else if (phase === 'redirect-offer') openRedirectMic()
+                else if (phase === 'readback') openReadbackMic()
+                else if (phase === 'correction') openCorrectionMic()
               }}
-              disabled={!micListening}
               className="lf-press lf-drawn-border lf-drawn-border--bold"
               style={{
                 width: 104,
@@ -1014,7 +1074,7 @@ export default function CreateWithBuddy() {
                 backgroundImage: 'var(--texture-paper)',
                 color: '#F9F2E3',
                 boxShadow: '0 8px 20px rgba(217,91,67,.4)',
-                cursor: micListening ? 'pointer' : 'default',
+                cursor: 'pointer',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -1031,7 +1091,11 @@ export default function CreateWithBuddy() {
                 minHeight: 22,
               }}
             >
-              {micListening ? "I'm listening!" : showReadbackControls ? 'or say yes / no' : 'Listen…'}
+              {micListening
+                ? "I'm listening!"
+                : showReadbackControls
+                  ? 'tap to say yes / no'
+                  : 'tap to talk'}
             </div>
           </div>
         )}

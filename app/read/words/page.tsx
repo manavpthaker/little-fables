@@ -170,8 +170,20 @@ function WordPin({
         minWidth: 140,
       }}
     >
-      {/* the pin (drawn small object) */}
-      <div style={{ color: pin.pigment, filter: 'drop-shadow(0 3px 6px rgba(70,54,42,.25))' }}>
+      {/* the pin (drawn small object) — v3.2 P2-2d: scaled to 60% and
+           pointer-events: none so it reads as a decorative pin ON the
+           scrap without ever covering the word letters underneath. Also
+           nudged down 10px so it visually pins the scrap edge instead
+           of hovering above with a gap. */}
+      <div
+        style={{
+          color: pin.pigment,
+          filter: 'drop-shadow(0 3px 6px rgba(70,54,42,.25))',
+          transform: 'scale(0.6)',
+          marginBottom: -10,
+          pointerEvents: 'none',
+        }}
+      >
         <PinMotif kind={pin.motif} color={pin.pigment} />
       </div>
       {/* the paper scrap held by the pin */}

@@ -59,7 +59,7 @@ import type {
   GenerateResponse,
   Page,
 } from '@/types/story'
-import { DrawnConfetti, IntentToast, KidScreen, MicIcon, SpeakerIcon } from '../../art'
+import { DrawnConfetti, DrawnScene, IntentToast, KidScreen, MicIcon, SpeakerIcon } from '../../art'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import { ChapterEnd, ComfortRitualBeat, BookComplete } from './EndPhase'
 import { Transport } from './Transport'
@@ -1278,7 +1278,17 @@ function ReaderPages({
                   alt=""
                   style={
                     fullBleed
-                      ? { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }
+                      ? {
+                          position: 'absolute',
+                          inset: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          // v3.2 P2-2h — bias the crop toward the top-third so
+                          // faces stay in frame on the reader banner. Pages
+                          // can override with page.focalY if they need to.
+                          objectPosition: 'center 20%',
+                        }
                       : {
                           maxWidth: '100%',
                           maxHeight: '100%',
@@ -1294,23 +1304,14 @@ function ReaderPages({
                   }
                 />
               ) : (
-                // v3.2: no wash placeholder — drawn endpaper (paper texture
-                // + subtle deckle border). Story-page art will land in a
-                // later phase (art2.jsx port).
-                <div
-                  aria-hidden="true"
-                  className="lf-drawn-border"
-                  style={{
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    width: 'min(560px, 100%)',
-                    aspectRatio: '4 / 3',
-                    borderRadius: 22,
-                    background: 'var(--paper-bright, #F9F2E3)',
-                    backgroundImage: 'var(--texture-paper)',
-                    border: 'none',
-                    boxShadow: '0 8px 26px rgba(94,62,26,.18)',
-                  }}
+                // v3.2 Phase 1 — semantic scene key → drawn scene. If the
+                // key is registered, we render the dedicated drawn scene;
+                // otherwise <DrawnScene /> falls through to the drawn
+                // endpaper placeholder tinted with the story's wash. Never
+                // emoji, never gradient wash.
+                <DrawnScene
+                  sceneKey={page.scene ?? null}
+                  washKey={page.wash ?? chapter.wash ?? book.wash}
                 />
               )}
             </div>

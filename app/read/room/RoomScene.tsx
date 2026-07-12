@@ -103,7 +103,11 @@ export function RoomScene({ children, className, style }: RoomSceneProps) {
         }}
       >
         <Image
-          src="/assets/lf-v3/north-star.svg"
+          // v3.2 Phase 1 — north-star-empty-shelf.svg is the same painting with
+          // the six baked-in decorative book covers removed. Real drawn covers
+          // now render on top, positioned in the shelf niches. Prevents the
+          // double-shelf effect where stock titles bled through under real books.
+          src="/assets/lf-v3/north-star-empty-shelf.svg"
           alt=""
           fill
           priority
