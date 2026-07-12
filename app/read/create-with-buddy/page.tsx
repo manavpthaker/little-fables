@@ -89,6 +89,49 @@ async function loadCap(fallback: number): Promise<number> {
   }
 }
 
+// ---------- kidifyInterest (v3.2 #2) ----------
+// Parent-authored profile interest strings ("AKAI keyboard, patience while
+// learning") are not kid-mouth. This helper turns them into 1–3-word tap chips
+// that sound like a 4-year-old suggested them. We first check a hand-curated
+// map for the common Azi-verse defaults (higher fidelity than the algorithm),
+// then fall back to a splitter that grabs the first noun-ish token.
+const KID_INTEREST_MAP: Record<string, string> = {
+  'guitar and music (azi\'s three-chord c-g-am progression)': 'guitar',
+  'puzzles — fitting pieces together': 'puzzles',
+  'akai keyboard, patience while learning': 'music',
+  'motorcycles, dinosaurs, bridges': 'dinosaurs',
+  'the moon and stars': 'the moon',
+  'snow, honey, gardens, bees': 'bees',
+  'trains and yellow buses': 'trains',
+  'family video calls to colombia': 'family',
+  'code-switching — spanish, english, gujarati, hindi, creole': 'silly words',
+}
+const KID_FILLER = new Set([
+  'and', 'the', 'a', 'an', 'or', 'of', 'with', 'to', 'for', 'in', 'on',
+  'my', 'our', 'your', 'his', 'her', 'their',
+  'learning', 'patience', 'while', 'about', 'like', 'love', 'about',
+])
+function kidifyInterest(raw: string): string {
+  const s = (raw || '').trim()
+  if (!s) return ''
+  const key = s.toLowerCase()
+  if (KID_INTEREST_MAP[key]) return KID_INTEREST_MAP[key]
+  // Grab the primary chunk before any comma, paren, or em-dash.
+  const primary = s.split(/[,\(\)\-—–]/)[0]?.trim() ?? s
+  // Tokenize, drop filler, keep up to 3 words.
+  const words = primary
+    .toLowerCase()
+    .replace(/[^a-z\s']/g, ' ')
+    .split(/\s+/)
+    .filter((w) => w && !KID_FILLER.has(w))
+  if (words.length === 0) {
+    // Fallback: first word of the primary chunk.
+    const first = primary.toLowerCase().split(/\s+/)[0]
+    return first ?? ''
+  }
+  return words.slice(0, 3).join(' ')
+}
+
 // ---------- Phase enum ----------
 type Phase =
   // Loading + cap check.
@@ -241,20 +284,17 @@ export default function CreateWithBuddy() {
         setPhase('redirect-offer')
         return
       }
-      // In bounds — echo delight then start the interview.
+      // In bounds — echo delight AND swap to interview in the same tick, so the
+      // old seed chips can never re-render while Fable finishes the ack line.
+      // v3.2 #1: atomic seed → interview swap. React 18 batches these useState
+      // setters (we're outside any setTimeout/await here), so phase, buddyLine,
+      // and micListening flip together. Speech is fire-and-forget — UI does not
+      // wait for it. InterviewPhase mounts on the next paint with its own chips.
       const line = data.buddyLine ?? "I LOVE that. Let's build it."
-      setBuddyLine(line)
       speakRef.current?.cancel()
-      speakRef.current = speak(line, {
-        onEnd: () => {
-          if (cancelledRef.current) return
-          setPhase('interview')
-        },
-      })
-      // Belt: even if speak's onEnd never fires, move on after a beat.
-      setTimeout(() => {
-        if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
-      }, Math.max(1800, (data.buddyLine?.length ?? 0) * 60))
+      setBuddyLine(line)
+      setPhase('interview')
+      speakRef.current = speak(line)
     } catch {
       // Degrade: proceed to interview with the raw seed.
       const line = "Let's build it together."
@@ -534,7 +574,10 @@ export default function CreateWithBuddy() {
         kind: 'quick',
         status: 'complete',
         source: 'generated',
-        coverEmoji: data.coverEmoji ?? '✨',
+        // v3.2 #4: coverEmoji is legacy. BookCoverArt dispatches on id/wash/scene
+        // keys, not this string. We keep the field on the type for now but stop
+        // writing '✨' so nothing shows a stray sparkle. Slated for full retirement.
+        coverEmoji: data.coverEmoji ?? '',
         coverBg: data.coverBg,
         wash: data.wash,
         chapters,
@@ -648,7 +691,10 @@ export default function CreateWithBuddy() {
     try {
       const p = loadProfile()
       const interests = (p.interests ?? []).slice(0, 3)
-      for (const i of interests) if (i) out.push(i)
+      for (const i of interests) {
+        const k = kidifyInterest(i)
+        if (k) out.push(k)
+      }
     } catch {
       /* profile is best-effort */
     }
@@ -862,10 +908,11 @@ export default function CreateWithBuddy() {
         </div>
 
         {/* Seed phase: drawn suggestion chips co-present with the mic.
-             v3.2 P2-2c — hide chips the moment the seed is committed (buddy
-             is thinking) so the child never sees a flash of inert chips
-             between seed → interview. Chip → seed handler sets buddyLine
-             to '…thinking…' synchronously, so the swap is atomic. */}
+             v3.2 #1 — chips render ONLY while phase === 'seed'. handleSeedTranscript
+             now flips phase to 'interview' in the same tick as the ack speak, so
+             the seed chips can never linger while Fable is speaking. The
+             '…thinking…' guard is kept only to hide chips during the /api/respond
+             await (200–800 ms), when we haven't yet decided in-bounds vs redirect. */}
         {phase === 'seed' && buddyLine !== '…thinking…' && seedSuggestions.length > 0 && (
           <div
             style={{

@@ -498,7 +498,14 @@ export default function Home() {
           </SpeechBubble>
         </div>
 
-        {/* --------- Continue / Today's adventure (the COraL action) --------- */}
+        {/* --------- Continue / Today's adventure (the COraL action) ---------
+             v3.2 #6: at iPad-landscape widths (~1024–1290) the card was
+             visually overlapping the drawn buddy on the rug. We now clear the
+             buddy zone by using max() to push the card's left edge past the
+             buddy's right edge (buddy.x + buddy.w = 546 stage px → ~46.3%),
+             and cap the width so it never spills into the shelf niches.
+             Buddy zone is 356→546 px in stage space; card should live to the
+             right of that. */}
         <IntentHighlight
           active={
             highlightTarget === 'continue' ||
@@ -506,9 +513,10 @@ export default function Home() {
           }
           style={{
             position: 'absolute',
-            left: `${(ROOM_ZONES.continue.x / 1180) * 100}%`,
+            left: `max(${(ROOM_ZONES.continue.x / 1180) * 100}%, ${((ROOM_ZONES.buddy.x + ROOM_ZONES.buddy.w) / 1180) * 100}%)`,
             top: `${(ROOM_ZONES.continue.y / 820) * 100}%`,
-            width: `${(ROOM_ZONES.continue.w / 1180) * 100}%`,
+            width: `min(${(ROOM_ZONES.continue.w / 1180) * 100}%, 340px)`,
+            maxWidth: 'min(340px, 40vw)',
             display: 'block',
           }}
         >

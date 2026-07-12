@@ -287,7 +287,10 @@ export default function CreateStory() {
     const worldState: WorldState = loadWorldState()
     const chapters: Chapter[] = []
     let title = 'A new story'
-    let coverEmoji = '✨'
+    // v3.2 #4: coverEmoji is a legacy carry-over. BookCoverArt now dispatches on
+    // id/wash/scene keys, not this string. Default to '' so nothing renders the
+    // stray sparkle. Field slated for full retirement.
+    let coverEmoji = ''
     let coverBg: string | undefined
     let vocab: Book['vocab'] = []
     const teachingGoals: string[] = fields.teachingGoal ? [fields.teachingGoal] : []

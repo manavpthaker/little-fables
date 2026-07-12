@@ -1284,10 +1284,12 @@ function ReaderPages({
                           width: '100%',
                           height: '100%',
                           objectFit: 'cover',
-                          // v3.2 P2-2h — bias the crop toward the top-third so
-                          // faces stay in frame on the reader banner. Pages
-                          // can override with page.focalY if they need to.
-                          objectPosition: 'center 20%',
+                          // v3.2 #7 — stronger top-bias so faces stay in frame
+                          // across all pages. Previous 'center 20%' still cropped
+                          // faces on close-portrait pages (e.g. azi-bhen). Most
+                          // children's-book banners have their important content
+                          // in the top half, so 'center top' is the safer default.
+                          objectPosition: 'center top',
                         }
                       : {
                           maxWidth: '100%',

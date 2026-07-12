@@ -82,6 +82,37 @@ placeholder elsewhere (this is the seam the art pipeline backfill will fill).
   just the pressed state) · kid-voiced chip copy (1–3 kid words) · dusk sun+moon both
   visible · reader banner focal crop.
 
+---
+
+# v3.2 live verification (a05d23c, July 12, 6 AM pass)
+
+**Confirmed on littlefables.ai after SW nuke:** scrub gates pass in code (components.tsx
+deleted; zero live sw-app/wash/MatCover refs; gradient gate clean; emoji gate clean except
+noted vestiges) · arrival picks buddy on FIRST tap · Home shelf is drawn covers in niches,
+paged, no white cards, no double-render · dawn lighting + matching greeting at 6 AM ·
+Contents drawn · kitchen mic idle until tapped ("tap to talk") in every phase · interview
+chips kid-worded ("the moon", "a friend", "too dark", "a grumpy guy") · **kid-story
+generation SUCCEEDS end-to-end** (~70s): touch-only seed→interview→readback→writing moment→
+"The Helper and the Dark" (7 pp) opened in the reader with universe cast (Jujy, Dory,
+Slothie, Clappy) and the drawn endpaper scene placeholder.
+
+## Residuals for the next pass (small)
+
+1. **Seed→interview chip swap still not atomic** — after answering the seed, the OLD seed
+   chips stay visible AND TAPPABLE for ~6s (wrong-slot answers live under the new question)
+   until the want-chips render. Swap must happen with the speech, not after it.
+2. **Seed chips are parent-voiced profile strings** ("AKAI keyboard, patience while
+   learning", "guitar and music (Azi's three-chord C-G-Am progression)"). The interview
+   slots got kid-worded; the seed didn't. Map interests → 1–3 kid words ("music",
+   "puzzles", "the moose").
+3. **Word-pin paper scraps still overlap pin text** on Home ("moon" half-covered) — third
+   report.
+4. `coverEmoji: '✨'` vestige on generated books (`create-with-buddy/page.tsx:537`,
+   `create/page.tsx:290`) — retire the field for BookCoverArt dispatch.
+5. Window sky overlay has a hard rectangular seam inside the window frame (visible at dawn).
+6. Today's-Adventure card overlaps the buddy on the rug at this viewport.
+7. Reader banner focal crop (carried from v3.1 #15).
+
 ## Phase 3 — Verify
 
 Scrub gates re-run + the v3.1 re-verify list (touch-only full pass incl. kitchen through a

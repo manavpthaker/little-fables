@@ -172,6 +172,12 @@
 }
 .lf-room-window-sky {
   z-index: 1;
+  /* v3.2 #5 — feather the rect's hard edges into the drawn paper so the
+     window sky doesn't seam against the SVG's wobbly window frame at dawn.
+     The wash-edge filter is the same one the drawn art uses; sharing it here
+     lets the sky bleed into the frame instead of butting against a straight
+     rectangle. */
+  filter: url(#lf-wash-edge);
 }
 
 /* Reduced-motion snap: skip the 900ms cross-fades. */

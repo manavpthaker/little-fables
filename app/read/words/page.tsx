@@ -170,18 +170,24 @@ function WordPin({
         minWidth: 140,
       }}
     >
-      {/* the pin (drawn small object) — v3.2 P2-2d: scaled to 60% and
+      {/* the pin (drawn small object) — v3.2 #3: scaled to 60% and
            pointer-events: none so it reads as a decorative pin ON the
-           scrap without ever covering the word letters underneath. Also
-           nudged down 10px so it visually pins the scrap edge instead
-           of hovering above with a gap. */}
+           scrap without ever covering the word letters underneath.
+           The previous marginBottom: -10 pulled the pin's SVG box into
+           the top of the scrap and, with drop-shadow bleed + wobble
+           filter, half-covered short words like "moon". We now leave a
+           small positive gap (marginBottom: 2) so nothing overlaps the
+           letters below. z-index: 0 keeps the pin behind any child
+           elements on the scrap. */}
       <div
         style={{
           color: pin.pigment,
           filter: 'drop-shadow(0 3px 6px rgba(70,54,42,.25))',
           transform: 'scale(0.6)',
-          marginBottom: -10,
+          marginBottom: 2,
           pointerEvents: 'none',
+          position: 'relative',
+          zIndex: 0,
         }}
       >
         <PinMotif kind={pin.motif} color={pin.pigment} />
@@ -210,7 +216,7 @@ function WordPin({
           color: 'var(--ink, #46362A)',
         }}
       >
-        <div style={{ font: '700 20px/1.15 var(--font-display)' }}>{entry.word}</div>
+        <div style={{ font: '700 20px/1.15 var(--font-display)', position: 'relative', zIndex: 2 }}>{entry.word}</div>
         {entry.meaning && (
           <div style={{ font: '600 12px var(--font-body)', fontStyle: 'italic', color: 'var(--ink-soft, #6E5B49)', marginTop: 2 }}>
             {entry.meaning}
