@@ -215,31 +215,25 @@ function ReaderBook({
 
   // Phase: reading | chapterEnd | comfortRitual | bookComplete
   // v3 removes the standalone ChapterMap phase — the Contents overlay lives
-  // inside the reader, opened via the folio dog-ear. But we still land there
-  // for multi-chapter books on first entry (unless ?resume=1) so the child
-  // picks a chapter first.
+  // inside the reader, opened via the folio dog-ear.
   const [chapterIdx, setChapterIdx] = useState<number | null>(null)
   const [phase, setPhase] = useState<'reading' | 'chapterEnd' | 'comfortRitual' | 'bookComplete'>('reading')
   const [showContents, setShowContents] = useState(false)
 
   useEffect(() => {
     if (chapterIdx !== null) return
+    // Tapping a book (or Continue) goes straight into reading, resuming the
+    // saved chapter — the pageIdx effect in ReaderPages resumes the saved page.
+    // We no longer force the Contents chapter-map on entry: it made "tap my
+    // book" feel like opening a menu, and (with the old back model) trapped the
+    // child in a page<->Contents loop with no way back to the room. The chapter
+    // map is opt-in via the folio dog-ear.
     if (!isMultiChapter) {
       setChapterIdx(0)
       return
     }
     const prog = getProgress(book.id)
-    const resume =
-      typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('resume')
-    if (resume) {
-      const cur = Math.min(book.chapters.length - 1, prog?.chapter ?? 0)
-      setChapterIdx(cur)
-    } else {
-      // Land on Contents for multi-chapter books (§A3: "back always goes up
-      // one level: page → Contents → room" — so Contents is the natural gate).
-      setChapterIdx(Math.min(book.chapters.length - 1, prog?.chapter ?? 0))
-      setShowContents(true)
-    }
+    setChapterIdx(Math.min(book.chapters.length - 1, prog?.chapter ?? 0))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book.id, isMultiChapter])
 
@@ -291,10 +285,11 @@ function ReaderBook({
         chapterIdx={chapterIdx}
         chapter={chapter}
         onExit={() => {
-          // §A3: back is always one level up. From the page, that's Contents
-          // when multi-chapter — otherwise, the room.
-          if (isMultiChapter) setShowContents(true)
-          else onExit()
+          // Back always leaves the book and returns to the room — one tap, from
+          // any page, every book (single- or multi-chapter). The chapter map is
+          // the folio dog-ear, never the back target; making it the back target
+          // created a page<->Contents loop with no exit to the room.
+          onExit()
         }}
         onOpenContents={() => setShowContents(true)}
         onFinishChapter={async () => {
