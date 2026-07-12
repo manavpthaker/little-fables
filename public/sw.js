@@ -1,9 +1,11 @@
-// Service worker for Little Fables (v2).
+// Service worker for Little Fables (v3.2 Drawn Room).
 // Shell: network-first with cache fallback so saved books still open offline.
 // Precaches shell, pack JSON assets, art, and generated audio.
 // Never caches /api calls.
-
-const CACHE = 'lf-read-v4'
+//
+// Bump `CACHE` on every wholesale visual replacement so old shells can't
+// serve stale UI offline. v5 forces eviction after v3.2's design-system scrub.
+const CACHE = 'lf-read-v5'
 const PRECACHE = [
   '/read',
   '/read/create',
