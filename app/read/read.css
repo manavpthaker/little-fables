@@ -332,6 +332,103 @@
 }
 .lf-comfort-breathe { animation: lf-comfort-breathe 4.8s ease-in-out infinite; }
 
+/* ---- Story kitchen writing moment (v3 R22a) ----
+   Diegetic loading state: instead of a spinner, the buddy's book is open
+   beside her, and the child's own words appear on the page in a
+   watercolor/handwritten style, one recipe piece at a time. Reduced-motion
+   safe (see block below). */
+@keyframes lf-writing-fade {
+  0%   { opacity: 0; transform: translateY(6px); filter: blur(1.5px); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.lf-writing-line {
+  opacity: 0;
+  animation: lf-writing-fade 900ms var(--ease-out) forwards;
+}
+@keyframes lf-writing-ink {
+  /* Simulates ink flowing onto the page — a slow left-to-right reveal via
+     background-position on a warm ink gradient masked over the text. */
+  from { background-position: 100% 0; }
+  to   { background-position: 0 0; }
+}
+.lf-writing-ink {
+  background: linear-gradient(90deg,
+    var(--lf-espresso) 0%, var(--lf-espresso) 50%,
+    rgba(59,50,39,.15) 60%, rgba(59,50,39,0) 100%);
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: lf-writing-ink 1500ms var(--ease-out) forwards;
+}
+@keyframes lf-writing-dot {
+  0%, 100% { transform: translateY(0); opacity: .4; }
+  50%      { transform: translateY(-3px); opacity: 1; }
+}
+.lf-writing-dot { animation: lf-writing-dot 1.2s ease-in-out infinite; }
+.lf-writing-moment {
+  /* Container hint — quiet cream, no dark overlay. */
+  background: var(--lf-cream);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lf-writing-ink {
+    animation: none !important;
+    background: none;
+    color: var(--lf-espresso);
+    -webkit-text-fill-color: var(--lf-espresso);
+    background-clip: initial;
+    -webkit-background-clip: initial;
+  }
+  .lf-writing-line { animation: none !important; opacity: 1; transform: none; filter: none; }
+  .lf-writing-dot { animation: none !important; }
+}
+
+/* ---- Intent highlight (v3 R16) ----
+   When a voice intent lands on a target (Continue card, book cover, nav pill),
+   the target briefly pulses coral 2-3 times, then ends without persistence.
+   Kept short (~1.4s total) so it never blocks the tap. */
+@keyframes lf-intent-highlight {
+  0%   { box-shadow: 0 0 0 0 rgba(244, 129, 60, 0); }
+  15%  { box-shadow: 0 0 0 8px rgba(244, 129, 60, .38), 0 10px 24px rgba(244, 129, 60, .28); }
+  40%  { box-shadow: 0 0 0 0 rgba(244, 129, 60, 0); }
+  55%  { box-shadow: 0 0 0 8px rgba(244, 129, 60, .34); }
+  80%  { box-shadow: 0 0 0 0 rgba(244, 129, 60, 0); }
+  90%  { box-shadow: 0 0 0 6px rgba(244, 129, 60, .22); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 129, 60, 0); }
+}
+@keyframes lf-intent-highlight-butter {
+  0%   { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+  15%  { box-shadow: 0 0 0 8px rgba(251, 191, 36, .40), 0 10px 24px rgba(251, 191, 36, .30); }
+  40%  { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+  55%  { box-shadow: 0 0 0 8px rgba(251, 191, 36, .34); }
+  80%  { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+  90%  { box-shadow: 0 0 0 6px rgba(251, 191, 36, .22); }
+  100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+}
+.lf-intent-highlight {
+  animation: lf-intent-highlight 1400ms var(--ease-out) 1;
+  border-radius: var(--radius-card);
+}
+.sw-bedtime .lf-intent-highlight {
+  /* On night surfaces we use butter so the pulse still reads warm. */
+  animation-name: lf-intent-highlight-butter;
+}
+
+/* ---- BuddyMic listening (v3 R16) ----
+   A subtle 2s idle-loop breath while the buddy is leaning in to listen. It's
+   quieter than sw-breathe so the difference reads as "waiting for you" not
+   "excited". The small forward lift hints "I'm here for you". */
+@keyframes lf-buddy-listening {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50%      { transform: scale(1.045) translateY(-1px); }
+}
+.lf-buddy-listening {
+  animation: lf-buddy-listening 2000ms ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sw-breathe, .sw-dot, .sw-pen, .lf-ask-mic { animation: none !important; }
   .sw-ring { animation: none; opacity: 0; }
@@ -339,7 +436,8 @@
   .lf-press { transition: none; }
   .lf-screen-in, .lf-wiggle, .lf-shudder, .lf-pop-in, .lf-mic-pulse,
   .lf-confetti-piece, .lf-sun-today, .lf-breathe-slow, .lf-spin, .lf-dot,
-  .lf-mystery-found, .lf-mystery-star, .lf-comfort-breathe {
+  .lf-mystery-found, .lf-mystery-star, .lf-comfort-breathe,
+  .lf-intent-highlight, .lf-buddy-listening {
     animation: none !important;
   }
 }

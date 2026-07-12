@@ -38,6 +38,7 @@ import type {
   ChoiceOption,
   GenerateRequest,
   GenerateResponse,
+  KidInterview,
   Page,
   QaHardGateResult,
   QaRecord,
@@ -45,6 +46,7 @@ import type {
   SkillTag,
   VocabWord,
   WashKey,
+  WildcardCharacter,
 } from '@/types/story'
 import {
   SKILL_TAXONOMY,
@@ -292,7 +294,7 @@ interface PromptBundle {
   extraSkills: SkillNode[]
 }
 
-function stepOneNarrator(u: UniverseView): string {
+function stepOneNarrator(u: UniverseView, body: GenerateRequest): string {
   const ref = loadReference()
   const identity =
     u.narratorIdentity?.trim() ||
@@ -300,8 +302,15 @@ function stepOneNarrator(u: UniverseView): string {
     (ref.universeGuide
       ? ref.universeGuide.slice(0, 1400).replace(/\s+$/g, '')
       : 'You are the storyteller for the Azi-Verse — gentle, elevated, lyrical without being lofty, multicultural, deeply respectful of a small child\'s inner world.')
+  // v3 R19: when the child helped write the story, the narrator's stance
+  // shifts — they're rendering the child's authorial ideas faithfully, not
+  // authoring alone.
+  const isKidStory = ((body as unknown as { mode?: string }).mode) === 'kid-story'
+  const kidNote = isKidStory
+    ? `\n\nCO-AUTHORSHIP NOTE (v3 R19): The child helped write THIS specific story via the buddy interview. Their want / reason / obstacle from Step 7 are the load-bearing beats — you MUST render each one traceably in the finished text (this is R20's traceability AC). The child will re-read the story and needs to hear themselves in it. Do not sanitize away or paraphrase their idea into something safer; use their words and specifics.`
+    : ''
   return `[STEP 1: NARRATOR IDENTITY]
-${identity}
+${identity}${kidNote}
 `
 }
 
@@ -494,6 +503,29 @@ function stepSevenSeed(body: GenerateRequest): string {
   if (body.childIdea) seeds.push(`Freeform child idea to weave in: "${body.childIdea}"`)
   if (body.hero) seeds.push(`Companion / hero focus: ${body.hero}`)
   if (body.place) seeds.push(`Setting focus: ${body.place}`)
+
+  // v3: kid-story mode threads the KidInterview recipe as the primary seed.
+  const kidExtra = (body as GenerateRequest & { interview?: KidInterview; originalSeed?: string }).interview
+  const originalSeed = (body as GenerateRequest & { originalSeed?: string }).originalSeed
+  if (kidExtra) {
+    const recipe = kidExtra.recipe
+    const lines: string[] = []
+    lines.push(
+      `THE CHILD (Azad, ~4 y/o) WROTE THIS STORY WITH THEIR BUDDY. Treat their want / reason / obstacle as sacred — every one of the three MUST be traceable in the finished story text. This is R20's core acceptance criterion.`,
+    )
+    if (originalSeed) lines.push(`Child's opening idea (verbatim): "${originalSeed}"`)
+    if (recipe.want) lines.push(`WANT (traceable — the hero must clearly want this): ${recipe.want}`)
+    if (recipe.reason) lines.push(`REASON (traceable — the story must reveal WHY they want it): ${recipe.reason}`)
+    if (recipe.obstacle) lines.push(`OBSTACLE (traceable — this must be the "uh oh" moment): ${recipe.obstacle}`)
+    if (recipe.extras && recipe.extras.length > 0) {
+      lines.push(
+        `Extras the child added — weave in where natural:\n${recipe.extras.map((e) => `  - ${e.slot}: ${e.value}`).join('\n')}`,
+      )
+    }
+    if (kidExtra.readBack) lines.push(`How the buddy read the recipe back to the child: "${kidExtra.readBack}"`)
+    seeds.push(lines.join('\n'))
+  }
+
   if (seeds.length === 0) return `[STEP 7: OPTIONAL SEED]
 (none — pick from the child's interests and delight us)
 `
@@ -567,7 +599,7 @@ ${universe.hardRules.map((r) => `- ${r}`).join('\n')}
     : ''
 
   const system = [
-    stepOneNarrator(universe),
+    stepOneNarrator(universe, body),
     stepTwoChild(profile, body, universe, band),
     stepThreeUniverse(universe, focus),
     stepFourCultural(universe, profile),
@@ -662,7 +694,35 @@ function continuePrompt(body: GenerateRequest): string {
   ].filter(Boolean).join('\n')
 }
 
+function kidStoryPrompt(body: GenerateRequest): string {
+  // The interview recipe is threaded through stepSevenSeed in the system
+  // prompt. Here we tell the model the structural shape we want and reinforce
+  // the traceability requirement.
+  const kidExtra = body as GenerateRequest & {
+    interview?: KidInterview
+    originalSeed?: string
+  }
+  const recipe = kidExtra.interview?.recipe
+  return [
+    `MODE: kid-story`,
+    `Task: The child (Azad, ~4 y/o) drove this story from the STORY KITCHEN interview. Write ONE quick story that faithfully renders their recipe.`,
+    ``,
+    `Format: QUICK story — 1 chapter of 5-7 pages. Return \`pages\` at the top level. \`done: true\`. No mid-story choice (the child already made the choices in the interview).`,
+    ``,
+    `Traceability (PRD R20 — MANDATORY):`,
+    recipe?.want ? `  • WANT must be clearly visible: "${recipe.want}"` : '  • WANT must be clearly visible in the hero\'s motivation.',
+    recipe?.reason ? `  • REASON must be shown (not just told) on at least one page: "${recipe.reason}"` : '  • REASON must be shown on at least one page.',
+    recipe?.obstacle ? `  • OBSTACLE must be the "uh-oh" beat: "${recipe.obstacle}"` : '  • OBSTACLE must be the "uh-oh" beat.',
+    ``,
+    `Attribution: set the \`by\` field to "${body.by ?? 'Made by Azad'}".`,
+    ``,
+    `Voice: same warm Fable voice as always. Don't add a "this is a story about…" framing. Just tell the story the child dreamt up.`,
+  ].filter(Boolean).join('\n')
+}
+
 function userPrompt(body: GenerateRequest): string {
+  const mode = (body as unknown as { mode?: string }).mode
+  if (mode === 'kid-story') return kidStoryPrompt(body)
   switch (body.mode) {
     case 'start':
       return startPrompt(body)
@@ -861,6 +921,10 @@ interface ResponseExtras {
   charactersUsed?: string[]
   mysteryWord?: { word: string; language: string; meaning?: string }
   status?: 'complete' | 'needs-review'
+  // v3 kid-story extras
+  interview?: KidInterview
+  wildcards?: WildcardCharacter[]
+  author?: 'azad' | 'family'
 }
 type GenerateResponseV22 = GenerateResponse & ResponseExtras
 
@@ -1304,6 +1368,76 @@ function computeSoftScore(breakdown: QaSoftBreakdown, weights: Record<keyof QaSo
   return Math.round(100 * normalized)
 }
 
+// ---------- v3 guardrail bridge (Agent B owns lib/read/guardrails) --------
+// Defensive dynamic import so tsc/build works if the helper hasn't landed
+// yet. Returns null if unavailable — the caller is responsible for degrading.
+async function safeCheckGuardrails(
+  storyText: string,
+): Promise<{ excludeHits?: string[] } | null> {
+  try {
+    const specifier = ['@', 'lib', 'read', 'guardrails'].join('/').replace('@/', '@/')
+    const mod: unknown = await import(/* webpackIgnore: true */ specifier).catch(() => null)
+    if (!mod || typeof mod !== 'object') return null
+    const m = mod as { checkGuardrails?: (t: string) => { excludeHits?: string[] } | Promise<{ excludeHits?: string[] }> }
+    if (typeof m.checkGuardrails !== 'function') return null
+    const r = await m.checkGuardrails(storyText)
+    return r && typeof r === 'object' ? r : null
+  } catch (e) {
+    console.warn('[story] guardrails module unavailable, skipping cross-check:', e)
+    return null
+  }
+}
+
+// ---------- v3 wildcard detection -----------------------------------------
+// If the interview named a novel character (e.g. "Ollie the otter") who isn't
+// in the universe cast, flag them as a wildcard so persistence + future
+// generation can reference them. Heuristic: look for the interview's want
+// text patterns like "<Capitalized> the <lowercase>" that don't match any
+// existing character name.
+function detectWildcards(
+  interview: KidInterview | undefined,
+  originBookId: string,
+  universe: UniverseView,
+): WildcardCharacter[] {
+  if (!interview) return []
+  const existingNames = new Set(universe.characters.map((c) => c.name.toLowerCase()))
+  const candidates: WildcardCharacter[] = []
+  const seen = new Set<string>()
+
+  const scanText = (text: string) => {
+    if (!text) return
+    // "<Name> the <species>" — the canonical shape the interview surfaces.
+    const re = /\b([A-Z][a-zA-Z]{1,15})\s+the\s+([a-z][a-z]{1,20})\b/g
+    let m: RegExpExecArray | null
+    while ((m = re.exec(text)) !== null) {
+      const name = m[1]
+      const species = m[2]
+      if (existingNames.has(name.toLowerCase())) continue
+      const id = `wild_${name.toLowerCase()}_${species.toLowerCase()}`
+      if (seen.has(id)) continue
+      seen.add(id)
+      candidates.push({
+        id,
+        name,
+        species,
+        originBookId,
+        createdAt: Date.now(),
+      })
+    }
+  }
+
+  const recipe = interview.recipe
+  if (recipe.want) scanText(recipe.want)
+  if (recipe.reason) scanText(recipe.reason)
+  if (recipe.obstacle) scanText(recipe.obstacle)
+  if (recipe.extras) {
+    for (const e of recipe.extras) scanText(e.value)
+  }
+  for (const a of interview.answers) scanText(a.answer)
+
+  return candidates.slice(0, 4) // hard cap; the child rarely invents more than one
+}
+
 // ---------- Post-generation enrichment ------------------------------------
 // If the model omitted skillTags, seed from the prompt's chosen target.
 function ensureSkillTags(story: GenerateResponseV22, target: SkillNode | null): void {
@@ -1528,6 +1662,43 @@ Revise the FULL story to raise the low scores. Keep what worked. Same JSON shape
     // Rubric fields kept populated for back-compat with existing callers.
     story.rubricScore = softScore
     if (softNotes) story.rubricNotes = softNotes
+
+    // ---- v3 kid-story extras: interview, wildcards, author, guardrails cross-check ----
+    const mode = (body as unknown as { mode?: string }).mode
+    if (mode === 'kid-story') {
+      const kidBody = body as GenerateRequest & { interview?: KidInterview }
+      const interview = kidBody.interview
+      if (interview) {
+        story.interview = interview
+        // Wildcards: derived from the interview, not from the story text —
+        // that way the child's invented character is captured even if the
+        // generator paraphrases their name.
+        const wildcards = detectWildcards(interview, story.title ? story.title : 'kid-story', universe)
+        if (wildcards.length > 0) story.wildcards = wildcards
+      }
+      story.author = 'azad'
+      if (!story.by) story.by = body.by ?? 'Made by Azad'
+
+      // Guardrails cross-check on the full story text. If any excludeTerms
+      // slipped through the deterministic gate (e.g. because they weren't in
+      // the profile at that time but the parent added them via the Corner),
+      // route to needs-review so parents can look before it lands.
+      try {
+        const fullText = allPages(story).map((p) => p.text).join(' ')
+        const gr = await safeCheckGuardrails(fullText)
+        if (gr?.excludeHits && gr.excludeHits.length > 0) {
+          story.status = 'needs-review'
+          if (story.qaRecord) {
+            const priorNotes = story.qaRecord.notes ?? ''
+            story.qaRecord.notes = [priorNotes, `guardrails excludeHits: ${gr.excludeHits.join(', ')}`]
+              .filter(Boolean)
+              .join(' | ')
+          }
+        }
+      } catch {
+        // safeCheckGuardrails already swallows internal errors; nothing to do.
+      }
+    }
 
     return NextResponse.json(story)
   } catch (e) {

@@ -971,6 +971,240 @@ export function BuddyPicker({
   )
 }
 
+// ---- AuthorMark (v3): watercolor "Made by Azad" attribution ----
+// Rendered on kid-created books — on the shelf spine and on the story detail
+// header. The mark is a soft coral watercolor pill with a signature-style
+// script name; deliberately warm and hand-drawn, never a hard chip.
+type AuthorMarkProps = {
+  name?: string
+  size?: 'sm' | 'md'
+  style?: CSSProperties
+}
+export function AuthorMark({ name = 'Azad', size = 'md', style }: AuthorMarkProps) {
+  const isSm = size === 'sm'
+  return (
+    <span
+      aria-label={`Made by ${name}`}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 6,
+        background: 'linear-gradient(120deg, rgba(244,129,60,.16), rgba(251,225,228,.42))',
+        color: 'var(--lf-espresso)',
+        border: '1.5px solid rgba(244,129,60,.35)',
+        borderRadius: 'var(--radius-pill)',
+        padding: isSm ? '3px 9px' : '5px 12px',
+        font: isSm
+          ? '700 11px var(--font-display)'
+          : '700 13px var(--font-display)',
+        letterSpacing: '.01em',
+        boxShadow: '0 1px 3px rgba(244,129,60,.15)',
+        ...style,
+      }}
+    >
+      <span aria-hidden="true" style={{ fontSize: isSm ? 10 : 12 }}>✍️</span>
+      <span style={{ fontStyle: 'italic' }}>Made by {name}</span>
+    </span>
+  )
+}
+
+/* ==================================================================== */
+/*  Buddy-driven voice affordances (PRD R16 / R17).                       */
+/*  The buddy IS the interface — not a disembodied mic.                   */
+/* ==================================================================== */
+
+// ---- BuddyMic ----
+// A tap-to-talk button that IS the buddy face. Idle → gentle breath. Listening
+// → forward "lean" pose (subtle scale + brighter ring). Reduced-motion aware
+// via the .lf-buddy-listening class below.
+type BuddyMicProps = {
+  buddy: BuddyDef
+  size?: number
+  listening?: boolean
+  onTap?: () => void
+  disabled?: boolean
+  label?: string
+  style?: CSSProperties
+}
+export function BuddyMic({
+  buddy,
+  size = 92,
+  listening = false,
+  onTap,
+  disabled = false,
+  label = 'Tap and talk to your buddy',
+  style,
+}: BuddyMicProps) {
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      aria-pressed={listening}
+      onClick={onTap}
+      disabled={disabled}
+      className={
+        'lf-press ' +
+        (listening ? 'lf-buddy-listening' : 'sw-breathe')
+      }
+      style={{
+        position: 'relative',
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        border: 'none',
+        padding: 0,
+        background: 'transparent',
+        cursor: disabled ? 'default' : 'pointer',
+        flexShrink: 0,
+        ...style,
+      }}
+    >
+      {listening && (
+        <>
+          <span className="sw-ring" />
+          <span className="sw-ring sw-ring2" />
+          <span className="sw-ring sw-ring3" />
+        </>
+      )}
+      <BuddyFace buddy={buddy} size={size} />
+      {/* Tiny mic dot on the buddy — signal without stealing the character. */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          right: 2,
+          bottom: 2,
+          width: Math.round(size * 0.28),
+          height: Math.round(size * 0.28),
+          borderRadius: '50%',
+          background: listening ? 'var(--lf-coral-deep)' : 'var(--lf-coral)',
+          color: '#fff',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: Math.round(size * 0.14),
+          boxShadow: 'var(--shadow-coral-glow)',
+          border: '2px solid var(--lf-cream-card)',
+        }}
+      >
+        🎤
+      </span>
+    </button>
+  )
+}
+
+// ---- IntentToast ----
+// The misfire etiquette UI (R17). Shows the buddy line + up to two tap-chips.
+// The toast persists as a tap fallback after the miss-cap is reached — that
+// visual affordance is intentional and matches the PRD copy:
+// "Or just tap what you want."
+type IntentToastProps = {
+  message: string
+  options?: string[]
+  onPick?: (index: number, label: string) => void
+  onClose?: () => void
+}
+export function IntentToast({ message, options, onPick, onClose }: IntentToastProps) {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="lf-screen-in"
+      style={{
+        position: 'fixed',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        top: 20,
+        zIndex: 50,
+        maxWidth: 480,
+        width: 'calc(100vw - 32px)',
+        background: 'var(--lf-cream-card)',
+        border: '1.5px solid var(--lf-cream-line)',
+        borderRadius: 'var(--radius-card)',
+        boxShadow: 'var(--shadow-warm-lg)',
+        padding: '14px 16px 16px',
+        color: 'var(--lf-espresso)',
+        font: '700 15.5px/1.4 var(--font-body)',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+        <span aria-hidden="true" style={{ fontSize: 20, marginTop: 1 }}>💬</span>
+        <span style={{ flex: 1 }}>{message}</span>
+        {onClose && (
+          <button
+            type="button"
+            aria-label="Dismiss"
+            onClick={onClose}
+            className="lf-press"
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: 'var(--lf-espresso-faint)',
+              fontSize: 20,
+              cursor: 'pointer',
+              marginTop: -2,
+            }}
+          >
+            ×
+          </button>
+        )}
+      </div>
+      {options && options.length > 0 && (
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
+          {options.slice(0, 2).map((opt, i) => (
+            <button
+              key={i}
+              type="button"
+              className="lf-press"
+              onClick={() => onPick?.(i, opt)}
+              style={{
+                background: 'var(--lf-pastel-peach)',
+                border: '1.5px solid var(--lf-cream-line)',
+                borderRadius: 'var(--radius-pill)',
+                padding: '9px 16px',
+                font: '700 14px var(--font-body)',
+                color: 'var(--lf-espresso)',
+                cursor: 'pointer',
+                minHeight: 40,
+              }}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ---- IntentHighlight ----
+// A wrapper that pulses a target when an intent lands. Wrap Continue cards,
+// book covers, or nav pills. The `active` prop is set true by the page for
+// ~1.4s (matches HIGHLIGHT_MS in lib/read/intents.ts) — the CSS keyframe
+// runs 2-3 coral pulses and ends without persistence.
+export function IntentHighlight({
+  active,
+  children,
+  style,
+}: {
+  active: boolean
+  children: ReactNode
+  style?: CSSProperties
+}) {
+  return (
+    <span
+      className={active ? 'lf-intent-highlight' : undefined}
+      style={{
+        display: 'inline-block',
+        borderRadius: 'var(--radius-card)',
+        ...style,
+      }}
+    >
+      {children}
+    </span>
+  )
+}
+
 // ---- Progress bar with a knob (Reader footer) ----
 export function ProgressBar({ value }: { value: number }) {
   const pct = Math.max(0, Math.min(1, value)) * 100

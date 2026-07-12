@@ -1,0 +1,714 @@
+'use client'
+
+// R19–R22: the STORY KITCHEN, kid-facing.
+//
+// End-to-end flow:
+//   1. Cap check — read the parent-set maxCreationsPerDay guardrail (from
+//      lib/read/profile.ts, if Agent B has landed it). If exhausted, buddy
+//      speaks an in-fiction "kitchen is resting" line and bounces to Home.
+//   2. Prompt for the seed. Buddy asks "What's YOUR story about?" and the
+//      mic opens. On transcript we check /api/respond mode:'interview-redirect'
+//      to keep the seed in-bounds.
+//   3. Interview — delegated to <InterviewPhase />. It drives the turn loop
+//      and hands back a KidInterview recipe.
+//   4. Read-back — the buddy speaks the returned readBack; on "no" we run
+//      a single correction turn via /api/respond mode:'interview-correction'.
+//   5. Writing moment — <WritingMoment /> while /api/story mode:'kid-story'
+//      generates the story.
+//   6. Landing — save + push, grant Storyteller badges, persist wildcards,
+//      redirect to /read/story/{id}. On failure the buddy offers a shelf book
+//      instead — NEVER a dead screen.
+
+import { useRouter } from 'next/navigation'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { speak, listen, type SpeakHandle, type ListenHandle } from '@/lib/read/speech'
+import { loadUniverse } from '@/lib/universe/azad-verse'
+import {
+  addWildcards,
+  loadBadges,
+  loadBooks,
+  saveStory,
+  uid,
+} from '@/lib/read/storage'
+import { pushStory } from '@/lib/read/sync'
+import { checkBadges } from '@/lib/read/badges'
+import { recordCreation, remaining } from '@/lib/read/kid-creations'
+import { getBuddy, cp } from '@/lib/read/buddies'
+import { loadBuddy } from '@/lib/read/storage'
+import type {
+  Book,
+  BuddyDef,
+  KidInterview,
+  KidInterviewAnswer,
+} from '@/types/story'
+import { BigMic, BuddyFace, KidScreen, SpeechBubble } from '../components'
+import { InterviewPhase } from './InterviewPhase'
+import { WritingMoment } from './WritingMoment'
+
+// ---------- Guardrails helper (Agent B owns the module) ----------
+// Best-effort: dynamic import so a missing module doesn't break the flow.
+interface KidGuardrails {
+  themes?: unknown
+  allowedCast?: string[]
+  allowedSettings?: string[]
+  excludeTerms?: string[]
+  maxCreationsPerDay?: number
+}
+async function safeCallGuardrails(): Promise<KidGuardrails> {
+  try {
+    const specifier = ['@', 'lib', 'read', 'guardrails'].join('/').replace('@/', '@/')
+    const mod: unknown = await import(/* webpackIgnore: true */ specifier).catch(() => null)
+    if (!mod || typeof mod !== 'object') return {}
+    const m = mod as { getGuardrails?: () => KidGuardrails | Promise<KidGuardrails>; loadGuardrails?: () => KidGuardrails | Promise<KidGuardrails> }
+    const fn = m.getGuardrails ?? m.loadGuardrails
+    if (typeof fn !== 'function') return {}
+    const g = await fn()
+    return g && typeof g === 'object' ? g : {}
+  } catch {
+    return {}
+  }
+}
+
+// Best-effort profile probe for creativeGuardrails.maxCreationsPerDay.
+async function loadCap(fallback: number): Promise<number> {
+  try {
+    const specifier = ['@', 'lib', 'read', 'profile'].join('/').replace('@/', '@/')
+    const mod: unknown = await import(/* webpackIgnore: true */ specifier).catch(() => null)
+    if (!mod || typeof mod !== 'object') return fallback
+    const m = mod as { loadProfile?: () => { creativeGuardrails?: { maxCreationsPerDay?: number } } | Promise<{ creativeGuardrails?: { maxCreationsPerDay?: number } }> }
+    if (typeof m.loadProfile !== 'function') return fallback
+    const p = await m.loadProfile()
+    const cap = p?.creativeGuardrails?.maxCreationsPerDay
+    return typeof cap === 'number' && cap > 0 ? cap : fallback
+  } catch {
+    return fallback
+  }
+}
+
+// ---------- Phase enum ----------
+type Phase =
+  // Loading + cap check.
+  | 'loading'
+  // Buddy speaks the cap message + offers a shelf book.
+  | 'capped'
+  // Ask "what's your story about?" and open the mic.
+  | 'seed'
+  // Show the seed-redirect result (in bounds → continue; out-of-bounds → offer alt).
+  | 'redirect-offer'
+  // Interview loop — delegated to InterviewPhase.
+  | 'interview'
+  // Buddy speaks the read-back; mic opens for yes/no confirmation.
+  | 'readback'
+  // Single correction turn.
+  | 'correction'
+  // WritingMoment while /api/story is generating.
+  | 'writing'
+  // Fatal failure — buddy speaks the "needs more baking" line + shelf offer.
+  | 'failed'
+
+// ---------- Component ----------
+
+export default function CreateWithBuddy() {
+  const router = useRouter()
+
+  const [phase, setPhase] = useState<Phase>('loading')
+  const [buddy, setBuddy] = useState<BuddyDef | null>(null)
+  const [energy, setEnergy] = useState<'bouncy' | 'calm'>('bouncy')
+  const [guardrails, setGuardrails] = useState<KidGuardrails>({})
+  const [seed, setSeed] = useState<string>('')
+  const [redirectSuggestion, setRedirectSuggestion] = useState<string | undefined>()
+  const [redirectAttempts, setRedirectAttempts] = useState(0)
+  const [interviewAnswers, setInterviewAnswers] = useState<KidInterviewAnswer[]>([])
+  const [recipe, setRecipe] = useState<KidInterview['recipe']>({})
+  const [readBackLine, setReadBackLine] = useState<string>('')
+  const [micListening, setMicListening] = useState(false)
+  const [buddyLine, setBuddyLine] = useState<string>('')
+
+  const speakRef = useRef<SpeakHandle | null>(null)
+  const listenRef = useRef<ListenHandle | null>(null)
+  const cancelledRef = useRef(false)
+
+  const featuredShelfBook = useMemo(() => {
+    const shelf = loadBooks()
+    return shelf[0]
+  }, [])
+
+  // Cleanup on unmount — always cancel any in-flight speech/listen.
+  useEffect(() => {
+    return () => {
+      cancelledRef.current = true
+      speakRef.current?.cancel()
+      listenRef.current?.stop()
+    }
+  }, [])
+
+  // Boot: pick buddy + guardrails + cap check.
+  useEffect(() => {
+    ;(async () => {
+      const bs = loadBuddy()
+      if (!bs.activeId) {
+        router.replace('/read/buddy')
+        return
+      }
+      setBuddy(getBuddy(bs.activeId))
+      setEnergy(bs.energy)
+
+      const g = await safeCallGuardrails()
+      setGuardrails(g)
+      const cap = await loadCap(typeof g.maxCreationsPerDay === 'number' ? g.maxCreationsPerDay : 2)
+      const left = remaining(cap)
+      if (left <= 0) {
+        setPhase('capped')
+        return
+      }
+      setPhase('seed')
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // ---- Phase: capped ----
+  useEffect(() => {
+    if (phase !== 'capped' || !buddy) return
+    const line = "The story kitchen needs to rest — how about we read one first? We can make another one soon."
+    setBuddyLine(line)
+    speakRef.current?.cancel()
+    speakRef.current = speak(line)
+     
+  }, [phase, buddy])
+
+  // ---- Phase: seed ----
+  useEffect(() => {
+    if (phase !== 'seed' || !buddy) return
+    const q = "What's YOUR story about? Tell me anything!"
+    setBuddyLine(q)
+    speakRef.current?.cancel()
+    speakRef.current = speak(q, {
+      onEnd: () => {
+        if (cancelledRef.current || phase !== 'seed') return
+        openSeedMic()
+      },
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, buddy])
+
+  const openSeedMic = useCallback(() => {
+    if (cancelledRef.current) return
+    setMicListening(true)
+    let got = false
+    listenRef.current = listen({
+      timeoutMs: 10000,
+      onResult: (t) => {
+        got = true
+        setSeed(t)
+        void handleSeedTranscript(t)
+      },
+      onEnd: () => {
+        if (got || cancelledRef.current) return
+        setMicListening(false)
+        // Empty seed → repeat the invitation gently.
+        const line = 'Take your time. Tell me anything at all.'
+        setBuddyLine(line)
+        speakRef.current = speak(line, { onEnd: () => {
+          if (!cancelledRef.current && phase === 'seed') openSeedMic()
+        }})
+      },
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
+
+  const handleSeedTranscript = useCallback(async (transcript: string) => {
+    setMicListening(false)
+    setBuddyLine('…thinking…')
+    try {
+      const res = await fetch('/api/respond', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          mode: 'interview-redirect',
+          transcript,
+          guardrails,
+        }),
+      })
+      const data = (await res.json()) as {
+        inBounds?: boolean
+        redirectSuggestion?: string
+        buddyLine?: string
+      }
+      if (data.inBounds === false) {
+        setRedirectSuggestion(data.redirectSuggestion)
+        setBuddyLine(data.buddyLine ?? 'Let\'s try something else together.')
+        speakRef.current = speak(data.buddyLine ?? 'Let\'s try something else together.')
+        setPhase('redirect-offer')
+        return
+      }
+      // In bounds — echo delight then start the interview.
+      const line = data.buddyLine ?? "I LOVE that. Let's build it."
+      setBuddyLine(line)
+      speakRef.current?.cancel()
+      speakRef.current = speak(line, {
+        onEnd: () => {
+          if (cancelledRef.current) return
+          setPhase('interview')
+        },
+      })
+      // Belt: even if speak's onEnd never fires, move on after a beat.
+      setTimeout(() => {
+        if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
+      }, Math.max(1800, (data.buddyLine?.length ?? 0) * 60))
+    } catch {
+      // Degrade: proceed to interview with the raw seed.
+      const line = "Let's build it together."
+      setBuddyLine(line)
+      speakRef.current = speak(line)
+      setPhase('interview')
+    }
+     
+  }, [guardrails, phase])
+
+  // ---- Phase: redirect-offer ----
+  // The buddy has proposed an in-fiction alternative. Kid can accept (yes →
+  // adjust seed) or decline (no → try once more, then proceed with original).
+  const openRedirectMic = useCallback(() => {
+    if (cancelledRef.current) return
+    setMicListening(true)
+    let got = false
+    listenRef.current = listen({
+      timeoutMs: 7000,
+      onResult: (t) => {
+        got = true
+        setMicListening(false)
+        const said = t.toLowerCase()
+        // Simple yes/no heuristic — the child is 4 years old.
+        const accepted = /(yes|yeah|yah|okay|ok|sure|yep|do it|let's|lets)/.test(said)
+        const declined = /(no|nope|nah|not that)/.test(said)
+        if (accepted) {
+          // Accept: fold the suggestion into the seed and start the interview.
+          const nextSeed = redirectSuggestion
+            ? `${seed}\n(Reframed with buddy: ${redirectSuggestion})`
+            : seed
+          setSeed(nextSeed)
+          const line = 'Perfect. Let\'s build it.'
+          setBuddyLine(line)
+          speakRef.current = speak(line, {
+            onEnd: () => {
+              if (!cancelledRef.current) setPhase('interview')
+            },
+          })
+          setTimeout(() => {
+            if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
+          }, 2200)
+          return
+        }
+        if (declined && redirectAttempts < 1) {
+          setRedirectAttempts((n) => n + 1)
+          const line = 'Okay — what should we do instead?'
+          setBuddyLine(line)
+          speakRef.current = speak(line, {
+            onEnd: () => {
+              if (!cancelledRef.current && phase === 'redirect-offer') openRedirectMic()
+            },
+          })
+          return
+        }
+        // Ambiguous or second decline: proceed with the original seed. R19
+        // etiquette — no scolding, no dead screens.
+        const line = "Okay. Let's build YOUR way."
+        setBuddyLine(line)
+        speakRef.current = speak(line, {
+          onEnd: () => {
+            if (!cancelledRef.current) setPhase('interview')
+          },
+        })
+        setTimeout(() => {
+          if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
+        }, 2000)
+      },
+      onEnd: () => {
+        if (got || cancelledRef.current) return
+        // Silence — treat as decline; proceed with the child's original idea.
+        setMicListening(false)
+        setPhase('interview')
+      },
+    })
+     
+  }, [seed, redirectSuggestion, redirectAttempts, phase])
+
+  useEffect(() => {
+    if (phase !== 'redirect-offer' || !buddy) return
+    // Give the child a beat to hear the redirect line before opening the mic.
+    const t = setTimeout(() => {
+      if (!cancelledRef.current && phase === 'redirect-offer') openRedirectMic()
+    }, Math.max(2000, buddyLine.length * 50))
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, buddy])
+
+  // ---- Phase: interview → readback handoff ----
+  const handleInterviewComplete = useCallback(
+    (payload: {
+      answers: KidInterviewAnswer[]
+      recipe: KidInterview['recipe']
+      readBack: string
+      buddyLine: string
+    }) => {
+      setInterviewAnswers(payload.answers)
+      setRecipe(payload.recipe)
+      setReadBackLine(payload.readBack)
+      setBuddyLine(payload.buddyLine)
+      setPhase('readback')
+    },
+    [],
+  )
+
+  const handleInterviewFailure = useCallback((msg: string) => {
+    console.warn('[create-with-buddy] interview failed:', msg)
+    setPhase('failed')
+  }, [])
+
+  // ---- Phase: readback ----
+  const openReadbackMic = useCallback(() => {
+    if (cancelledRef.current) return
+    setMicListening(true)
+    let got = false
+    listenRef.current = listen({
+      timeoutMs: 7000,
+      onResult: (t) => {
+        got = true
+        setMicListening(false)
+        const said = t.trim().toLowerCase()
+        const declined = /(no|nope|nah|not right|wrong|not that)/.test(said)
+        if (declined) {
+          setPhase('correction')
+        } else {
+          // Yes / silence / anything positive → go to writing moment.
+          void kickOffGeneration()
+        }
+      },
+      onEnd: () => {
+        if (got || cancelledRef.current) return
+        setMicListening(false)
+        void kickOffGeneration()
+      },
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (phase !== 'readback' || !buddy) return
+    // Speak the buddyLine (which already ends in "Did I get it right?")
+    speakRef.current?.cancel()
+    speakRef.current = speak(buddyLine || readBackLine, {
+      onEnd: () => {
+        if (!cancelledRef.current && phase === 'readback') openReadbackMic()
+      },
+    })
+    setTimeout(() => {
+      if (!cancelledRef.current && phase === 'readback' && !micListening) openReadbackMic()
+    }, Math.max(3000, (buddyLine || readBackLine).length * 60))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, buddy])
+
+  // ---- Phase: correction ----
+  useEffect(() => {
+    if (phase !== 'correction') return
+    const line = 'Oh! Tell me what to fix.'
+    setBuddyLine(line)
+    speakRef.current?.cancel()
+    speakRef.current = speak(line, {
+      onEnd: () => {
+        if (cancelledRef.current) return
+        setMicListening(true)
+        let got = false
+        listenRef.current = listen({
+          timeoutMs: 10000,
+          onResult: (t) => {
+            got = true
+            setMicListening(false)
+            void applyCorrection(t)
+          },
+          onEnd: () => {
+            if (got || cancelledRef.current) return
+            setMicListening(false)
+            // Silent — proceed to generation with the current recipe.
+            void kickOffGeneration()
+          },
+        })
+      },
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
+
+  const applyCorrection = useCallback(async (corrections: string) => {
+    setBuddyLine('…let me fix that…')
+    try {
+      const res = await fetch('/api/respond', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          mode: 'interview-correction',
+          seed,
+          prevRecipe: recipe,
+          corrections,
+        }),
+      })
+      const data = (await res.json()) as {
+        updatedRecipe?: KidInterview['recipe']
+        newReadBack?: string
+        buddyLine?: string
+      }
+      if (data.updatedRecipe) setRecipe(data.updatedRecipe)
+      const newReadBack = data.newReadBack ?? readBackLine
+      setReadBackLine(newReadBack)
+      const spoken = data.buddyLine ?? `${newReadBack} Did I get it now?`
+      setBuddyLine(spoken)
+      speakRef.current?.cancel()
+      speakRef.current = speak(spoken, {
+        onEnd: () => {
+          if (!cancelledRef.current) void kickOffGeneration()
+        },
+      })
+      setTimeout(() => {
+        if (!cancelledRef.current && phase !== 'writing') void kickOffGeneration()
+      }, Math.max(3200, spoken.length * 60))
+    } catch {
+      // Degrade — go straight to generation with the current recipe.
+      void kickOffGeneration()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed, recipe, readBackLine, phase])
+
+  // ---- Phase: writing (fires /api/story) ----
+  const kickOffGeneration = useCallback(async () => {
+    if (cancelledRef.current) return
+    setPhase('writing')
+    try {
+      const interview: KidInterview = {
+        answers: interviewAnswers,
+        recipe,
+        readBack: readBackLine,
+        finishedAt: Date.now(),
+      }
+      const res = await fetch('/api/story', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          mode: 'kid-story',
+          interview,
+          originalSeed: seed,
+          idea: seed, // fallback for legacy prompt paths
+          universe: loadUniverse(),
+          by: 'Made by Azad',
+        }),
+      })
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string }
+        throw new Error(data.error ?? `http ${res.status}`)
+      }
+      const data = (await res.json()) as Partial<Book> & {
+        pages?: Book['chapters'][number]['pages']
+        interview?: KidInterview
+        wildcards?: Book['wildcards']
+        author?: 'azad' | 'family'
+        status?: string
+      }
+      if (data.status === 'needs-review') {
+        // R19 failure path — surface the "needs more baking" line, not a
+        // dead screen. Parents will see the draft in Parent Corner.
+        setPhase('failed')
+        return
+      }
+
+      // Assemble the Book. The API returns pages/chapters — we normalize to
+      // a 1-chapter Book so the reader can play it as a quick story.
+      const bookId = uid()
+      const pages = Array.isArray(data.pages) ? data.pages : []
+      const chapters = Array.isArray(data.chapters) && data.chapters.length > 0
+        ? data.chapters
+        : [{ title: data.title ?? 'A story by Azad', pages, status: 'current' as const }]
+      const book: Book = {
+        id: bookId,
+        title: data.title ?? 'A story by Azad',
+        by: data.by ?? 'Made by Azad',
+        kind: 'quick',
+        status: 'complete',
+        source: 'generated',
+        coverEmoji: data.coverEmoji ?? '✨',
+        coverBg: data.coverBg,
+        wash: data.wash,
+        chapters,
+        vocab: data.vocab ?? [],
+        teachingGoals: data.teachingGoals ?? [],
+        retellPrompts: data.retellPrompts ?? [
+          'Who was in your story?',
+          'What was the uh-oh?',
+        ],
+        qaRecord: data.qaRecord,
+        skillTags: data.skillTags,
+        charactersUsed: data.charactersUsed,
+        mysteryWord: data.mysteryWord,
+        interview,
+        wildcards: (data as Book).wildcards,
+        author: 'azad',
+        createdAt: Date.now(),
+        idea: seed,
+      }
+      saveStory(book)
+      void pushStory(book)
+
+      // Bump the daily counter.
+      recordCreation()
+
+      // Persist wildcards to the universe cast.
+      if (book.wildcards && book.wildcards.length > 0) {
+        addWildcards(book.wildcards)
+      }
+
+      // Storyteller badges. Count kid-authored books in local storage as the
+      // creation count — the persisted `author: 'azad'` on Books is the truth.
+      try {
+        const kidCount = loadBooks().filter((b) => b.author === 'azad').length
+        // Was the storyteller badge already earned? checkBadges is idempotent.
+        const before = new Set(loadBadges().ids)
+        await checkBadges({ kidCreationsCount: kidCount })
+        void before // (unused — kept for future analytics)
+      } catch {
+        /* ignore — badge grants are best-effort */
+      }
+
+      router.push(`/read/story/${book.id}`)
+    } catch {
+      setPhase('failed')
+    }
+     
+  }, [seed, recipe, readBackLine, interviewAnswers, router])
+
+  // ---- Phase: failed ----
+  useEffect(() => {
+    if (phase !== 'failed' || !buddy) return
+    const line = "This story needs more baking — let's check the oven after we read one!"
+    setBuddyLine(line)
+    speakRef.current?.cancel()
+    speakRef.current = speak(line)
+     
+  }, [phase, buddy])
+
+  // ---- Render ----
+  if (!buddy) {
+    return (
+      <KidScreen label="Story kitchen">
+        <div style={{ padding: 48, textAlign: 'center', color: 'var(--lf-espresso-soft)' }}>Loading…</div>
+      </KidScreen>
+    )
+  }
+
+  // Writing moment is a totally different layout.
+  if (phase === 'writing') {
+    return <WritingMoment buddy={buddy} recipe={recipe} />
+  }
+
+  // Interview drives its own layout.
+  if (phase === 'interview') {
+    return (
+      <KidScreen label="Story kitchen">
+        <InterviewPhase
+          buddy={buddy}
+          seed={seed}
+          guardrails={guardrails as Record<string, unknown>}
+          onComplete={handleInterviewComplete}
+          onFailure={handleInterviewFailure}
+        />
+      </KidScreen>
+    )
+  }
+
+  // All the buddy-speak phases share a common layout.
+  return (
+    <KidScreen label="Story kitchen">
+      <div
+        style={{
+          minHeight: '100dvh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 22,
+          padding: '32px 24px',
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 18, maxWidth: 720, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <BuddyFace buddy={buddy} size={116} />
+          <SpeechBubble big style={{ marginBottom: 12, maxWidth: 520 }}>
+            {buddyLine || cp(buddy.greet, energy)}
+          </SpeechBubble>
+        </div>
+
+        {(phase === 'seed' || phase === 'redirect-offer' || phase === 'readback' || phase === 'correction') && (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+            <BigMic
+              size={104}
+              listening={micListening}
+              onTap={() => {
+                if (micListening) listenRef.current?.stop()
+              }}
+              label={micListening ? 'Tap when done' : 'Say it out loud'}
+              disabled={!micListening}
+            />
+            <div
+              style={{
+                font: '600 15px var(--font-body)',
+                color: micListening ? 'var(--lf-coral-deep)' : 'var(--lf-espresso-soft)',
+                minHeight: 22,
+              }}
+            >
+              {micListening ? "I'm listening!" : 'Listen…'}
+            </div>
+          </div>
+        )}
+
+        {(phase === 'capped' || phase === 'failed') && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center' }}>
+            {featuredShelfBook ? (
+              <button
+                type="button"
+                className="lf-press"
+                onClick={() => router.push(`/read/story/${featuredShelfBook.id}`)}
+                style={{
+                  minHeight: 56,
+                  padding: '14px 28px',
+                  borderRadius: 'var(--radius-pill)',
+                  border: 'none',
+                  background: 'var(--lf-coral)',
+                  color: '#fff',
+                  font: '700 18px var(--font-display)',
+                  boxShadow: 'var(--shadow-coral-glow)',
+                  cursor: 'pointer',
+                }}
+              >
+                Read {featuredShelfBook.title} instead ▶
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="lf-press"
+                onClick={() => router.push('/read')}
+                style={{
+                  minHeight: 56,
+                  padding: '14px 28px',
+                  borderRadius: 'var(--radius-pill)',
+                  border: 'none',
+                  background: 'var(--lf-coral)',
+                  color: '#fff',
+                  font: '700 18px var(--font-display)',
+                  boxShadow: 'var(--shadow-coral-glow)',
+                  cursor: 'pointer',
+                }}
+              >
+                Back to my shelf
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    </KidScreen>
+  )
+}

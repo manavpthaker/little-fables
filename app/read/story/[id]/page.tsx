@@ -55,6 +55,7 @@ import {
   CircleBtn,
   ChapterDots,
   Confetti,
+  IntentToast,
   KidScreen,
   ProgressBar,
   ProgressRing,
@@ -62,6 +63,7 @@ import {
   WashScene,
   washBg,
 } from '../../components'
+import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import { ChapterEnd, ComfortRitualBeat } from './EndPhase'
 import { BookComplete } from './EndPhase'
 
@@ -242,6 +244,7 @@ function ReaderBook({
         if (isMultiChapter) setPhase('map')
         else onExit()
       }}
+      onShowMap={isMultiChapter ? () => setPhase('map') : undefined}
       onFinishChapter={async () => {
         // Persist progress + light today's sun.
         saveProgress({
@@ -568,6 +571,7 @@ function ReaderPages({
   onExit,
   onFinishChapter,
   onBookUpdate,
+  onShowMap,
 }: {
   book: Book
   chapterIdx: number
@@ -577,7 +581,9 @@ function ReaderPages({
   onExit: () => void
   onFinishChapter: () => void | Promise<void>
   onBookUpdate: (b: Book) => void
+  onShowMap?: () => void
 }) {
+  const routerReader = useRouter()
   const pages = chapter.pages
   const [pageIdx, setPageIdx] = useState(0)
   const [replayN, setReplayN] = useState(0)
@@ -900,43 +906,149 @@ function ReaderPages({
   }, [chosen, micOk, stopAll, applyBranchGenerated])
 
   // ---- Ask the story (always-available mic; bounded to 2 exchanges) ----
+  // v3 R16 upgrade — the "?" mic first tries the intent classifier. If the
+  // classifier returns `none`, we fall back to the existing bounded
+  // "ask-the-story" Q&A path (so real story questions still work).
   const [askStoryTurns, setAskStoryTurns] = useState(0)
   const [askStoryReply, setAskStoryReply] = useState<string | null>(null)
+  const [intentToast, setIntentToast] = useState<{ msg: string; options?: string[] } | null>(null)
+  const [intentListening, setIntentListening] = useState(false)
+
+  const readerIntentState = useMemo(
+    () => ({
+      currentBook: {
+        id: book.id,
+        title: book.title,
+        chapterIdx,
+        totalChapters: book.chapters.length,
+      },
+      hasMidFlightBook: { id: book.id, title: book.title },
+    }),
+    [book, chapterIdx],
+  )
+
+  const askTheStoryFallback = useCallback(
+    async (transcript: string) => {
+      try {
+        const res = await fetch('/api/respond', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            mode: 'ask-the-story',
+            transcript,
+            context: {
+              bookTitle: book.title,
+              chapterTitle: chapter.title,
+              pageText: page?.text ?? '',
+            },
+          }),
+        })
+        if (res.ok) {
+          const data = (await res.json()) as { buddyReply?: string; reply?: string }
+          const reply = data.buddyReply ?? data.reply ?? 'Great question! Let’s keep going.'
+          setAskStoryReply(reply)
+          narrate(reply)
+        } else {
+          setAskStoryReply('Great question! Let’s keep going.')
+        }
+      } catch {
+        setAskStoryReply('Great question! Let’s keep going.')
+      }
+      setAskStoryTurns((n) => n + 1)
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [book.title, chapter.title, narrate],
+  )
+
+  const runReaderIntent = useCallback(
+    async (transcript: string) => {
+      const result = await askIntent({
+        transcript,
+        surface: 'reader',
+        state: readerIntentState,
+      })
+      if (result.intent === 'none') {
+        // If the model gave us concrete options, surface them. Otherwise fall
+        // through to the story-Q&A path (kids often ask real questions).
+        if (result.options && result.options.length > 0) {
+          setIntentToast({ msg: result.buddyLine, options: result.options })
+          return
+        }
+        // Silent fall-through: treat as an ask-the-story question.
+        await askTheStoryFallback(transcript)
+        return
+      }
+      await dispatchIntent(result, {
+        router: routerReader,
+        onOffer: (msg, options) => setIntentToast({ msg, options }),
+        onShowMap: onShowMap,
+        onReplayChapter: () => {
+          // Restart the current chapter from page 0.
+          stopAll()
+          setPageIdx(0)
+          setReading(true)
+          setReplayN((n) => n + 1)
+        },
+        onReadThis: () => {
+          if (page) {
+            stopAll()
+            setReading(true)
+            narrate(page.text)
+          }
+        },
+        currentBookId: book.id,
+        currentChapterIdx: chapterIdx,
+      }, { surface: 'reader' })
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [readerIntentState, routerReader, onShowMap, book.id, chapterIdx, page, narrate, stopAll, askTheStoryFallback],
+  )
+
   const handleAskStory = useCallback(() => {
     if (askStoryTurns >= 2) return
     stopAll()
+    if (!recognitionAvailable()) {
+      setIntentToast({ msg: 'Tap what you want:', options: ['Read this page again', 'Go home'] })
+      return
+    }
+    if (intentListening) {
+      listenStopRef.current?.()
+      listenStopRef.current = null
+      setIntentListening(false)
+      return
+    }
+    // If the child has already missed twice on the reader, don't reopen the
+    // mic automatically — the toast becomes the tap fallback (R17).
+    if (hasReachedMissCap('reader')) {
+      setIntentToast((t) => t ?? { msg: 'Or just tap what you want.' })
+      return
+    }
+    setIntentListening(true)
     listenStopRef.current = listen({
-      onResult: async (transcript) => {
-        try {
-          const res = await fetch('/api/respond', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              transcript,
-              question: 'Child asked a question about the story',
-              praise: 'Great question!',
-              hint: 'Let me think about that.',
-              skill: 'wonder',
-            }),
-          })
-          if (res.ok) {
-            const data = (await res.json()) as { reply?: string }
-            const reply = data.reply ?? 'Great question! Let’s keep going.'
-            setAskStoryReply(reply)
-            narrate(reply)
-          } else {
-            setAskStoryReply('Great question! Let’s keep going.')
-          }
-        } catch {
-          setAskStoryReply('Great question! Let’s keep going.')
-        }
-        setAskStoryTurns((n) => n + 1)
+      onResult: (t) => {
+        void runReaderIntent(t)
       },
       onEnd: () => {
         listenStopRef.current = null
+        setIntentListening(false)
+      },
+      onError: () => {
+        listenStopRef.current = null
+        setIntentListening(false)
+        setIntentToast({ msg: "I couldn't hear you — just tap what you want." })
       },
     }).stop
-  }, [askStoryTurns, stopAll, narrate])
+  }, [askStoryTurns, intentListening, stopAll, runReaderIntent])
+
+  const handleIntentToastPick = useCallback(
+    (_i: number, label: string) => {
+      setIntentToast(null)
+      // Route the label back through the intent classifier — options were
+      // sourced from real state, so this closes the loop cleanly.
+      void runReaderIntent(label)
+    },
+    [runReaderIntent],
+  )
 
   // ---- navigation ----
   const askAnswered = askState === 'praise' || (askState === 'hint' && fallbackUnlocked)
@@ -1051,6 +1163,17 @@ function ReaderPages({
             </div>
           )}
         </div>
+      )}
+
+      {/* v3 R17 — intent misfire etiquette. Sits above the top bar so it
+          doesn't fight for hierarchy with the reader chrome. */}
+      {intentToast && (
+        <IntentToast
+          message={intentToast.msg}
+          options={intentToast.options}
+          onPick={handleIntentToastPick}
+          onClose={() => setIntentToast(null)}
+        />
       )}
 
       {/* Already-discovered toast — quiet, no overlay. */}

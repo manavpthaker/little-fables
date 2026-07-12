@@ -21,6 +21,12 @@ import { checkBadges } from '@/lib/read/badges'
 import { cp } from '@/lib/read/buddies'
 import { BuddyFace, Confetti, KidScreen, Medallion, SpeechBubble, VocabStar } from '../../components'
 
+// v3 R19 / R27 — session-scoped "creation offered" ref. Module scope so it
+// survives BookComplete unmount/remount within a session but resets on
+// refresh (per the spec: "fine to lose on refresh"). ≤1 creation offer per
+// session across all book completions.
+let sessionCreationOffered = false
+
 function fmt(s: number): string {
   const m = Math.floor(s / 60)
   const r = s % 60
@@ -338,6 +344,10 @@ export function BookComplete({
   const [secs, setSecs] = useState(0)
   const [error, setError] = useState<string | null>(null)
   const [buddyReply, setBuddyReply] = useState<string | null>(null)
+  // v3 R19 — capability-framed creation offer. Shows once/session and only
+  // for books the child DIDN'T author (`book.author !== 'azad'`). Silence /
+  // decline ends it forever this session.
+  const [creationOfferOpen, setCreationOfferOpen] = useState(false)
 
   const recorderRef = useRef<RecorderHandle | null>(null)
   const speakRef = useRef<SpeakHandle | null>(null)
@@ -479,6 +489,20 @@ export function BookComplete({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  // v3 R19 — capability-framed creation offer. Only for books NOT authored by
+  // Azad, only ≤1× per session, and only after a beat so the celebration
+  // lands first.
+  useEffect(() => {
+    if (book.author === 'azad') return
+    if (sessionCreationOffered) return
+    const t = setTimeout(() => {
+      sessionCreationOffered = true
+      setCreationOfferOpen(true)
+    }, 2600)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [book.id])
 
   return (
     <KidScreen label={`Book complete — ${book.title}`}>
@@ -685,6 +709,73 @@ export function BookComplete({
             )}
           </section>
         </div>
+
+        {creationOfferOpen && (
+          <section
+            className="lf-screen-in"
+            aria-label="Make your own story"
+            style={{
+              background: 'var(--lf-cream-card)',
+              border: '1.5px solid var(--lf-cream-line)',
+              borderRadius: 'var(--radius-card)',
+              padding: '18px 22px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 16,
+              boxShadow: 'var(--shadow-warm)',
+            }}
+          >
+            <BuddyFace buddy={buddy} size={64} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ font: '700 16.5px/1.35 var(--font-display)', color: 'var(--lf-espresso)' }}>
+                You know how this story machine works? YOU can drive it.
+              </div>
+              <div style={{ font: '600 13.5px var(--font-body)', color: 'var(--lf-espresso-soft)', marginTop: 4 }}>
+                Want to make one of your own?
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
+              <button
+                type="button"
+                className="lf-press"
+                onClick={() => {
+                  setCreationOfferOpen(false)
+                  router.push('/read/create-with-buddy')
+                }}
+                style={{
+                  minHeight: 44,
+                  padding: '10px 18px',
+                  borderRadius: 'var(--radius-pill)',
+                  border: '1.5px solid var(--lf-espresso)',
+                  background: 'var(--lf-cream-card)',
+                  color: 'var(--lf-espresso)',
+                  font: '700 15px var(--font-display)',
+                  cursor: 'pointer',
+                }}
+              >
+                Yes!
+              </button>
+              <button
+                type="button"
+                className="lf-press"
+                aria-label="Not now"
+                onClick={() => setCreationOfferOpen(false)}
+                style={{
+                  minHeight: 44,
+                  padding: '10px 14px',
+                  borderRadius: 'var(--radius-pill)',
+                  border: 'none',
+                  background: 'transparent',
+                  color: 'var(--lf-espresso-soft)',
+                  font: '700 15px var(--font-display)',
+                  cursor: 'pointer',
+                }}
+              >
+                Maybe later
+              </button>
+            </div>
+          </section>
+        )}
 
         <footer
           style={{

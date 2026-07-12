@@ -163,6 +163,52 @@ export interface ComfortRitual {
 // in lib/read/skills.ts.
 export type SkillTag = string
 
+// ---------- v3: kid-authored story metadata ----------
+// The interview transcript that produced a kid-created book. Stored on the
+// Book itself (`Book.interview`) so parents can review it in Made by Azad
+// and worldState can echo the child's authorial ideas back later.
+
+export interface KidInterviewAnswer {
+  /** The buddy's spoken question. */
+  question: string
+  /** What the child said (Whisper transcript). */
+  answer: string
+  /** Which recipe slot this answered — 'want' | 'reason' | 'obstacle' | 'character' | 'setting' | 'freeform'. */
+  slot: string
+  /** Optional pointer to the audio blob in IndexedDB for later playback. */
+  audioRef?: string
+}
+
+export interface KidInterview {
+  /** Every Q/A pair in order, ≤3 questions per PRD R20. */
+  answers: KidInterviewAnswer[]
+  /** Distilled recipe used to seed generation (want, reason, obstacle). */
+  recipe: {
+    want?: string
+    reason?: string
+    obstacle?: string
+    /** Free-slot list — includes anything the buddy captured that isn't want/reason/obstacle. */
+    extras?: Array<{ slot: string; value: string }>
+  }
+  /** Buddy's read-back line (before generation). */
+  readBack?: string
+  /** ISO timestamp when the interview finished. */
+  finishedAt: number
+}
+
+// v3 R23: novel characters the child invented via wildcard slots (Ollie the
+// otter, Rusty the toaster…). These join the universe cast permanently once
+// the story that introduced them passes QA — the buddy can reference them in
+// future stories subject to guardrails.
+export interface WildcardCharacter {
+  id: string             // 'wild_ollie_otter'
+  name: string           // 'Ollie'
+  species?: string       // 'otter'
+  trait?: string         // 'flies rockets'
+  originBookId: string
+  createdAt: number
+}
+
 // ---------- Book ----------
 export type BookKind = 'chapter' | 'quick'
 export type BookStatus = 'complete' | 'awaiting-choice' | 'draft' | 'needs-review'
@@ -213,6 +259,18 @@ export interface Book {
   mysteryWord?: MysteryWord
   /** v2.2: Optional comfort-ritual closing beat (shown before BookComplete). */
   comfortRitual?: ComfortRitual
+
+  /** v3: kid-authored — populated when Azad drove the story kitchen. When
+   *  present the shelf shows an author mark, "Made by Azad" attribution, and
+   *  the interview is surfaced in Parent Corner's Made by Azad section. */
+  interview?: KidInterview
+  /** v3: novel characters the child invented in this book — joined to the
+   *  universe cast permanently. */
+  wildcards?: WildcardCharacter[]
+  /** v3: 'azad' if kid-created (Book.by set to 'Made by Azad'), 'family' if
+   *  parent-generated or from the pack. Redundant with source but explicit
+   *  for the shelf spine treatment (author mark). */
+  author?: 'azad' | 'family'
 
   createdAt: number
   updatedAt?: number

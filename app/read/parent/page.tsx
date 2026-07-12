@@ -20,10 +20,14 @@ import {
   X,
 } from 'lucide-react'
 import {
+  archiveBook,
   deleteRetell,
   deleteStory,
   listRetells,
+  loadArchived,
   loadStories,
+  loadWildcards,
+  unarchiveBook,
   type Retell,
 } from '@/lib/read/storage'
 import {
@@ -40,13 +44,15 @@ import {
   sendMagicLink,
   signOut,
 } from '@/lib/read/sync'
-import type { Book, SkillTag } from '@/types/story'
+import type { Book, KidInterviewAnswer, SkillTag, WildcardCharacter } from '@/types/story'
 import {
   DEFAULT_PROFILE,
+  defaultCreativeGuardrails,
   loadProfile,
   saveProfile,
   type ChildProfile,
   type ContentPreferences,
+  type CreativeGuardrails,
   type CurrentBand,
 } from '@/lib/read/profile'
 
@@ -1254,6 +1260,9 @@ function ProfileTab({
           />
         </PCard>
       </div>
+
+      <CreativeGuardrailsSection profile={profile} persist={persist} />
+
       <div style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
         <Check size={13} /> Auto-saved
       </div>
@@ -1261,10 +1270,727 @@ function ProfileTab({
   )
 }
 
+// ---------- Creative guardrails section (PRD R21) ----------
+// Renders under ProfileTab. Everything is saved through the same persist()
+// callback so a single "auto-saved" indicator covers all fields.
+
+function CreativeGuardrailsSection({
+  profile,
+  persist,
+}: {
+  profile: ChildProfile
+  persist: (p: ChildProfile) => void
+}) {
+  const universe = useMemo(() => loadUniverse(), [])
+  const [wildcards, setWildcards] = useState<WildcardCharacter[]>([])
+
+  useEffect(() => {
+    setWildcards(loadWildcards())
+  }, [])
+
+  // Hydrate guardrails on first mount so the section is never empty for
+  // pre-v3 profiles.
+  useEffect(() => {
+    if (!profile.creativeGuardrails) {
+      persist({
+        ...profile,
+        creativeGuardrails: defaultCreativeGuardrails(profile.interests),
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const g: CreativeGuardrails =
+    profile.creativeGuardrails ?? defaultCreativeGuardrails(profile.interests)
+
+  const patchG = (next: Partial<CreativeGuardrails>) =>
+    persist({ ...profile, creativeGuardrails: { ...g, ...next } })
+
+  const addTheme = (v: string) => {
+    if (!g.themes.includes(v)) patchG({ themes: [...g.themes, v] })
+  }
+  const removeTheme = (v: string) => patchG({ themes: g.themes.filter((t) => t !== v) })
+
+  const toggleCanonCast = (id: string) => {
+    const has = g.allowedCast.canonIds.includes(id)
+    patchG({
+      allowedCast: {
+        ...g.allowedCast,
+        canonIds: has
+          ? g.allowedCast.canonIds.filter((x) => x !== id)
+          : [...g.allowedCast.canonIds, id],
+      },
+    })
+  }
+
+  const setWildcardSlots = (n: number) => {
+    const clamped = Math.max(0, Math.min(3, Math.floor(n)))
+    patchG({ allowedCast: { ...g.allowedCast, wildcardSlots: clamped } })
+  }
+
+  const toggleCanonSetting = (name: string) => {
+    const has = g.allowedSettings.canon.includes(name)
+    patchG({
+      allowedSettings: {
+        ...g.allowedSettings,
+        canon: has
+          ? g.allowedSettings.canon.filter((x) => x !== name)
+          : [...g.allowedSettings.canon, name],
+      },
+    })
+  }
+
+  const setAnywhere = (v: boolean) =>
+    patchG({ allowedSettings: { ...g.allowedSettings, anywhereImaginary: v } })
+
+  const setMaxPerDay = (n: number) => {
+    const clamped = Math.max(1, Math.min(5, Math.floor(n)))
+    patchG({ maxCreationsPerDay: clamped })
+  }
+
+  const setFormat = (which: 'quick' | 'chapter', v: boolean) => {
+    patchG({ formats: { ...g.formats, [which]: v } })
+  }
+
+  return (
+    <PCard
+      title="Creative guardrails"
+      description="Shape what Azad can ask for when he uses “Make a story with me.”"
+    >
+      <div style={{ font: '400 13px/1.55 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginBottom: 20 }}>
+        Little Fables asks Azad about his story idea before making anything. These settings shape what he can request. Anything outside the sandbox is redirected in-fiction — never refused — so the flow stays warm.
+      </div>
+
+      <div style={{ display: 'grid', gap: 20 }}>
+        {/* Themes */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>Themes</div>
+          <ChipList
+            values={g.themes}
+            onRemove={removeTheme}
+            emptyHint="No themes yet — add a few he loves."
+          />
+          <ChipAdder placeholder="e.g. bees, brave together" onAdd={addTheme} />
+        </div>
+
+        {/* Cast — canon */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>Cast — canon</div>
+          <div style={{ font: '400 12.5px/1.5 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginBottom: 8 }}>
+            Toggle a friend off to keep Azad from requesting them for a while.
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {universe.characters.map((c) => {
+              const on = g.allowedCast.canonIds.includes(c.id)
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => toggleCanonCast(c.id)}
+                  aria-pressed={on}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    padding: '4px 10px',
+                    borderRadius: 999,
+                    font: '500 13px var(--font-ui)',
+                    cursor: 'pointer',
+                    border: '1px solid var(--lf-p-border)',
+                    background: on ? 'var(--lf-p-background)' : 'var(--lf-p-muted)',
+                    color: on ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
+                    textDecoration: on ? 'none' : 'line-through',
+                  }}
+                >
+                  <span aria-hidden>{c.emoji}</span>
+                  {c.name}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Wildcard slots */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 4 }}>Wildcard slots</div>
+          <div style={{ font: '400 12.5px/1.5 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginBottom: 8 }}>
+            How many new characters can Azad invent per story? (0–3)
+          </div>
+          <PInput
+            type="number"
+            min={0}
+            max={3}
+            value={g.allowedCast.wildcardSlots}
+            onChange={(e) => setWildcardSlots(Number(e.target.value))}
+            style={{ width: 90 }}
+          />
+        </div>
+
+        {/* Settings */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>Settings</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+            {universe.settings.map((s) => {
+              const on = g.allowedSettings.canon.includes(s.name)
+              return (
+                <button
+                  key={s.name}
+                  type="button"
+                  onClick={() => toggleCanonSetting(s.name)}
+                  aria-pressed={on}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    padding: '4px 10px',
+                    borderRadius: 999,
+                    font: '500 13px var(--font-ui)',
+                    cursor: 'pointer',
+                    border: '1px solid var(--lf-p-border)',
+                    background: on ? 'var(--lf-p-background)' : 'var(--lf-p-muted)',
+                    color: on ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
+                    textDecoration: on ? 'none' : 'line-through',
+                  }}
+                >
+                  {s.name}
+                </button>
+              )
+            })}
+          </div>
+          <ToggleRow
+            label="Anywhere imaginary — Azad can invent a brand-new place"
+            checked={g.allowedSettings.anywhereImaginary}
+            onChange={setAnywhere}
+          />
+        </div>
+
+        {/* Max creations per day */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 4 }}>Max creations per day</div>
+          <div style={{ font: '400 12.5px/1.5 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginBottom: 8 }}>
+            After this many, the buddy suggests a favorite already on the shelf. (1–5)
+          </div>
+          <PInput
+            type="number"
+            min={1}
+            max={5}
+            value={g.maxCreationsPerDay}
+            onChange={(e) => setMaxPerDay(Number(e.target.value))}
+            style={{ width: 90 }}
+          />
+        </div>
+
+        {/* Formats */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>Formats</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <ToggleRow
+              label="Quick stories"
+              checked={g.formats.quick}
+              onChange={(v) => setFormat('quick', v)}
+            />
+            <ToggleRow
+              label="Chapter books"
+              checked={g.formats.chapter}
+              onChange={(v) => setFormat('chapter', v)}
+            />
+          </div>
+        </div>
+
+        {/* Unlocked wildcards — read-only */}
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>Unlocked wildcards</div>
+          {wildcards.length === 0 ? (
+            <div style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+              No wildcards yet — they appear here once Azad invents a new character in a story that ships.
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {wildcards.map((w) => (
+                <div
+                  key={w.id}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    gap: 8,
+                    font: '400 13px var(--font-ui)',
+                    color: 'var(--lf-p-foreground)',
+                  }}
+                >
+                  <span style={{ font: '600 13px var(--font-ui)' }}>{w.name}</span>
+                  {w.species && (
+                    <span style={{ color: 'var(--lf-p-muted-foreground)' }}>({w.species})</span>
+                  )}
+                  <span style={{ color: 'var(--lf-p-muted-foreground)', marginLeft: 'auto' }}>
+                    from book {w.originBookId.slice(0, 8)} · {new Date(w.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </PCard>
+  )
+}
+
+// ---------- Made by Azad tab (PRD R24) ----------
+// Kid-created books, newest first, with recipe expander + interview transcript.
+// Archive is soft — books stay in loadStories() but drop off the shelf.
+
+async function fetchInterviewAudioURL(audioRef: string): Promise<string | null> {
+  // Best-effort: kid-interview audio blobs (if any) are stored in a separate
+  // IndexedDB by the story kitchen agent. We try a few likely store names —
+  // if none exist we return null and the UI hides the play button.
+  if (typeof window === 'undefined' || !audioRef) return null
+  const candidates = [
+    { db: 'azad-read', store: 'interview-audio' },
+    { db: 'azad-read', store: 'kid-interview-audio' },
+    { db: 'lf-interview', store: 'audio' },
+  ]
+  for (const { db, store } of candidates) {
+    try {
+      const url = await new Promise<string | null>((resolve) => {
+        const req = indexedDB.open(db)
+        req.onsuccess = () => {
+          const database = req.result
+          if (!database.objectStoreNames.contains(store)) {
+            database.close()
+            resolve(null)
+            return
+          }
+          try {
+            const tx = database.transaction(store, 'readonly')
+            const get = tx.objectStore(store).get(audioRef)
+            get.onsuccess = () => {
+              const result = get.result as { blob?: Blob } | Blob | undefined
+              const blob = result instanceof Blob ? result : result?.blob
+              database.close()
+              resolve(blob ? URL.createObjectURL(blob) : null)
+            }
+            get.onerror = () => {
+              database.close()
+              resolve(null)
+            }
+          } catch {
+            database.close()
+            resolve(null)
+          }
+        }
+        req.onerror = () => resolve(null)
+      })
+      if (url) return url
+    } catch {
+      /* keep trying */
+    }
+  }
+  return null
+}
+
+function InterviewAnswerRow({ qa }: { qa: KidInterviewAnswer }) {
+  const [url, setUrl] = useState<string | null>(null)
+  const [playing, setPlaying] = useState(false)
+  const audioEl = useRef<HTMLAudioElement | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    let created: string | null = null
+    if (qa.audioRef) {
+      void fetchInterviewAudioURL(qa.audioRef).then((u) => {
+        if (cancelled) return
+        created = u
+        setUrl(u)
+      })
+    }
+    return () => {
+      cancelled = true
+      if (created) URL.revokeObjectURL(created)
+    }
+  }, [qa.audioRef])
+
+  const toggle = () => {
+    const a = audioEl.current
+    if (!a) return
+    if (playing) a.pause()
+    else void a.play()
+  }
+
+  return (
+    <div
+      style={{
+        padding: '10px 0',
+        borderTop: '1px solid var(--lf-p-border)',
+        display: 'flex',
+        gap: 10,
+        alignItems: 'flex-start',
+      }}
+    >
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ font: '500 13px/1.4 var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+          {qa.question}
+        </div>
+        <div style={{ font: '400 13.5px/1.5 var(--font-ui)', color: 'var(--lf-p-foreground)', marginTop: 4 }}>
+          {qa.answer || <span style={{ color: 'var(--lf-p-muted-foreground)' }}>(no answer captured)</span>}
+        </div>
+      </div>
+      {url && (
+        <>
+          <audio
+            ref={audioEl}
+            src={url}
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onEnded={() => setPlaying(false)}
+          />
+          <button
+            type="button"
+            aria-label={playing ? 'Pause answer audio' : 'Play answer audio'}
+            onClick={toggle}
+            className="lf-press"
+            style={{
+              width: 30,
+              height: 30,
+              borderRadius: 999,
+              border: '1px solid var(--lf-p-border)',
+              background: playing ? 'var(--lf-p-primary)' : 'var(--lf-p-background)',
+              color: playing ? 'var(--lf-p-primary-foreground)' : 'var(--lf-p-foreground)',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
+            {playing ? <Pause size={12} /> : <Play size={12} style={{ marginLeft: 1 }} />}
+          </button>
+        </>
+      )}
+    </div>
+  )
+}
+
+function MadeByAzadRow({
+  book,
+  archived,
+  onArchive,
+  onUnarchive,
+}: {
+  book: Book
+  archived: boolean
+  onArchive: () => void
+  onUnarchive: () => void
+}) {
+  const [open, setOpen] = useState(false)
+  const [qaOpen, setQaOpen] = useState(false)
+  const [kept, setKept] = useState(false)
+
+  const hasCover = !!book.coverImage
+  const created = new Date(book.createdAt).toLocaleDateString()
+
+  return (
+    <div style={{ padding: '11px 0' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+        {hasCover ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={book.coverImage}
+            alt=""
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 8,
+              objectFit: 'cover',
+              border: '1px solid var(--lf-p-border)',
+              flexShrink: 0,
+            }}
+          />
+        ) : (
+          <span
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: 8,
+              border: '1px solid var(--lf-p-border)',
+              background: book.coverBg ?? 'var(--lf-p-muted)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: 22,
+              flexShrink: 0,
+            }}
+            aria-hidden
+          >
+            {book.coverEmoji || <Pencil size={15} />}
+          </span>
+        )}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ font: '500 14px/1.4 var(--font-ui)' }}>{book.title}</div>
+          <div style={{ font: '400 12.5px/1.4 var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+            <span aria-hidden>✦</span> Made by Azad · created {created}
+          </div>
+        </div>
+        <QaBadge book={book} open={qaOpen} onToggle={() => setQaOpen((v) => !v)} />
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          className="lf-press"
+          style={{
+            font: '500 12.5px var(--font-ui)',
+            color: 'var(--lf-p-foreground)',
+            background: 'var(--lf-p-background)',
+            border: '1px solid var(--lf-p-border)',
+            borderRadius: 'var(--radius-p-md)',
+            padding: '5px 10px',
+            cursor: 'pointer',
+            flexShrink: 0,
+          }}
+        >
+          {open ? 'Hide recipe' : 'View recipe'}
+        </button>
+        {archived ? (
+          <button
+            type="button"
+            onClick={onUnarchive}
+            className="lf-press"
+            style={{
+              font: '500 12.5px var(--font-ui)',
+              color: 'var(--lf-p-muted-foreground)',
+              background: 'transparent',
+              border: '1px solid var(--lf-p-border)',
+              borderRadius: 'var(--radius-p-md)',
+              padding: '5px 10px',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+          >
+            Unarchive
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={onArchive}
+            className="lf-press"
+            style={{
+              font: '500 12.5px var(--font-ui)',
+              color: 'var(--lf-p-muted-foreground)',
+              background: 'transparent',
+              border: '1px solid var(--lf-p-border)',
+              borderRadius: 'var(--radius-p-md)',
+              padding: '5px 10px',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+          >
+            Archive
+          </button>
+        )}
+        {!archived && (
+          <button
+            type="button"
+            onClick={() => setKept(true)}
+            className="lf-press"
+            aria-pressed={kept}
+            style={{
+              font: '500 12.5px var(--font-ui)',
+              color: kept ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
+              background: kept ? '#fefce8' : 'transparent',
+              border: kept ? '1px solid #fde68a' : '1px solid var(--lf-p-border)',
+              borderRadius: 'var(--radius-p-md)',
+              padding: '5px 10px',
+              cursor: 'pointer',
+              flexShrink: 0,
+            }}
+          >
+            {kept ? 'Kept forever' : 'Keep forever'}
+          </button>
+        )}
+      </div>
+
+      {qaOpen && book.qaRecord && (
+        <div
+          style={{
+            marginTop: 10,
+            marginLeft: 58,
+            padding: 12,
+            background: 'var(--lf-p-muted)',
+            border: '1px solid var(--lf-p-border)',
+            borderRadius: 'var(--radius-p-md)',
+            font: '400 12.5px/1.5 var(--font-ui)',
+            color: 'var(--lf-p-foreground)',
+          }}
+        >
+          <div style={{ font: '600 12.5px var(--font-ui)', marginBottom: 6 }}>QA breakdown</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '2px 12px' }}>
+            <span>Hard gates</span>
+            <span style={{ color: book.qaRecord.hardGates.passed ? '#15803d' : '#b91c1c' }}>
+              {book.qaRecord.hardGates.passed ? 'passed' : 'failed'}
+            </span>
+            <span>Soft score</span>
+            <span>{book.qaRecord.softScore}/100</span>
+            <span>Revisions</span>
+            <span>{book.qaRecord.revisions}</span>
+          </div>
+        </div>
+      )}
+
+      {open && (
+        <div
+          style={{
+            marginTop: 12,
+            marginLeft: 58,
+            padding: 14,
+            background: 'var(--lf-p-muted)',
+            border: '1px solid var(--lf-p-border)',
+            borderRadius: 'var(--radius-p-md)',
+          }}
+        >
+          <div style={{ font: '600 13px var(--font-ui)', marginBottom: 8 }}>Recipe</div>
+          {book.interview?.recipe ? (
+            <ul style={{ margin: '0 0 12px', paddingLeft: 18, font: '400 13px/1.55 var(--font-ui)' }}>
+              {book.interview.recipe.want && <li><strong>Want:</strong> {book.interview.recipe.want}</li>}
+              {book.interview.recipe.reason && <li><strong>Reason:</strong> {book.interview.recipe.reason}</li>}
+              {book.interview.recipe.obstacle && <li><strong>Obstacle:</strong> {book.interview.recipe.obstacle}</li>}
+              {book.interview.recipe.extras?.map((x, i) => (
+                <li key={i}>
+                  <strong style={{ textTransform: 'capitalize' }}>{x.slot}:</strong> {x.value}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginBottom: 12 }}>
+              No recipe was captured for this story.
+            </div>
+          )}
+
+          <div style={{ font: '600 13px var(--font-ui)', marginBottom: 4 }}>Interview</div>
+          {book.interview?.answers?.length ? (
+            <div>
+              {book.interview.answers.map((qa, i) => (
+                <InterviewAnswerRow key={i} qa={qa} />
+              ))}
+            </div>
+          ) : (
+            <div style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+              No interview transcript recorded.
+            </div>
+          )}
+          {book.interview?.readBack && (
+            <div
+              style={{
+                marginTop: 12,
+                padding: 10,
+                borderRadius: 'var(--radius-p-md)',
+                background: 'var(--lf-p-background)',
+                border: '1px solid var(--lf-p-border)',
+                font: '400 13px/1.5 var(--font-ui)',
+                color: 'var(--lf-p-foreground)',
+              }}
+            >
+              <span style={{ color: 'var(--lf-p-muted-foreground)' }}>Read-back:</span> {book.interview.readBack}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function MadeByAzadTab({
+  books,
+  childName,
+  refresh,
+}: {
+  books: Book[]
+  childName: string
+  refresh: () => void
+}) {
+  const [archivedIds, setArchivedIds] = useState<string[]>([])
+
+  useEffect(() => {
+    setArchivedIds(loadArchived())
+  }, [books])
+
+  const kidBooks = useMemo(
+    () => books.filter((b) => b.author === 'azad').sort((a, b) => b.createdAt - a.createdAt),
+    [books],
+  )
+
+  const active = kidBooks.filter((b) => !archivedIds.includes(b.id))
+  const archived = kidBooks.filter((b) => archivedIds.includes(b.id))
+
+  const handleArchive = (id: string) => {
+    archiveBook(id)
+    setArchivedIds(loadArchived())
+    refresh()
+  }
+  const handleUnarchive = (id: string) => {
+    unarchiveBook(id)
+    setArchivedIds(loadArchived())
+    refresh()
+  }
+
+  return (
+    <div>
+      <p style={{ margin: '0 0 14px', font: '400 13.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+        Books {childName} drove himself in the story kitchen. The recipe and interview live here so you can read what he was reaching for.
+      </p>
+      <PCard padded={false}>
+        {kidBooks.length === 0 ? (
+          <div
+            style={{
+              padding: 24,
+              font: '400 14px/1.5 var(--font-ui)',
+              color: 'var(--lf-p-muted-foreground)',
+            }}
+          >
+            No stories yet from {childName}. When he uses &ldquo;Make a story with me&rdquo; the recipe and interview show up here.
+          </div>
+        ) : (
+          <div style={{ padding: '0 18px' }}>
+            {active.map((b, i) => (
+              <div key={b.id} style={{ borderTop: i === 0 ? 'none' : '1px solid var(--lf-p-border)' }}>
+                <MadeByAzadRow
+                  book={b}
+                  archived={false}
+                  onArchive={() => handleArchive(b.id)}
+                  onUnarchive={() => handleUnarchive(b.id)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+      </PCard>
+
+      {archived.length > 0 && (
+        <div style={{ marginTop: 22 }}>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8, color: 'var(--lf-p-muted-foreground)' }}>
+            Archived
+          </div>
+          <PCard padded={false}>
+            <div style={{ padding: '0 18px' }}>
+              {archived.map((b, i) => (
+                <div key={b.id} style={{ borderTop: i === 0 ? 'none' : '1px solid var(--lf-p-border)' }}>
+                  <MadeByAzadRow
+                    book={b}
+                    archived={true}
+                    onArchive={() => handleArchive(b.id)}
+                    onUnarchive={() => handleUnarchive(b.id)}
+                  />
+                </div>
+              ))}
+            </div>
+          </PCard>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ---------- Parent Corner ----------
 function ParentCorner() {
   const { user } = useAuth()
-  const [tab, setTab] = useState<'stories' | 'retells' | 'universe' | 'profile'>('stories')
+  const [tab, setTab] = useState<'profile' | 'stories' | 'made-by-azad' | 'retells' | 'universe'>('profile')
   const [universe, setUniverse] = useState<Universe | null>(null)
   const [profile, setProfile] = useState<ChildProfile>(DEFAULT_PROFILE)
   const [retells, setRetells] = useState<Retell[]>([])
@@ -1314,10 +2040,11 @@ function ParentCorner() {
   }
 
   const tabs: Array<[typeof tab, string]> = [
+    ['profile', 'Profile'],
     ['stories', 'Stories'],
+    ['made-by-azad', `Made by ${universe.childName}`],
     ['retells', 'Retellings'],
     ['universe', `${universe.childName}’s universe`],
-    ['profile', 'Profile'],
   ]
 
   return (
@@ -1471,6 +2198,14 @@ function ParentCorner() {
               )}
             </PCard>
           </div>
+        )}
+
+        {tab === 'made-by-azad' && (
+          <MadeByAzadTab
+            books={books}
+            childName={universe.childName}
+            refresh={() => setBooks(loadStories())}
+          />
         )}
 
         {tab === 'universe' && <UniverseTab universe={universe} persist={persistUniverse} />}

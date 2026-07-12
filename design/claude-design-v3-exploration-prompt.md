@@ -22,7 +22,15 @@ One more thing this world holds: **hand-made books.** Watercolor and colored-pen
 
 ## Explore three directions
 
-Derive **three strongly differentiated visual worlds from the thesis itself** — different metaphors for what this place *is* (a landscape? a home? a night sky? a craft table? a journey?). For each, state in one line which part of the thesis it champions. Requirements for every direction:
+Each direction is a different metaphor for what this place *is*, championing a different part of the thesis. Build these three (and if a stronger thesis-derived metaphor occurs to you, you may swap ONE of them — state what you replaced and why):
+
+**Direction A — Firefly Hollow** *(champions: "reading is cozy AND an adventure").* A storybook-dusk world at the forest's edge: deep indigo-teal skies, warm lantern and firefly glow, silhouetted trees, cozy pools of light where the books live. Rich darks make characters and illustrations luminous. Include a golden-hour daytime variant to prove it isn't night-only — this is a daytime-and-car app.
+
+**Direction B — The Fable Tree** *(champions: "this place knows me" + "I did that").* The world is one great storybook tree that grows with the child: books nest in its branches, the companion waits at its roots, reading-day suns hang in its sky, found words bloom on it, and a winding path leads away toward each story. Navigation is moving through a place; progress is the tree visibly flourishing. Painterly, saturated-storybook palette (sage, sky, marigold, berry).
+
+**Direction C — Paper Lantern Playroom** *(champions: "something is alive here" — the hand-made feeling).* A layered cut-paper diorama world: chunky torn-edge shapes, real shadows between paper layers, soft-but-saturated construction-paper color, tactile and huggable — the app feels crafted by hand, like the family's books are. Depth comes from paper layers; motion from gentle parallax.
+
+Requirements for every direction:
 
 - A world, not a layout: environments with light and depth that UI elements live *inside*.
 - A companion character visibly alive in each mock.

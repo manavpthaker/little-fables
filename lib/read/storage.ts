@@ -10,6 +10,7 @@ import type {
   ReadingDays,
   Retell,
   VocabWord,
+  WildcardCharacter,
   WordBook,
   WorldState,
 } from '@/types/story'
@@ -26,6 +27,8 @@ const READING_DAYS_KEY = 'lf-reading-days-v2'
 const BADGES_KEY = 'lf-badges-v2'
 const WORDBOOK_KEY = 'lf-wordbook-v2'
 const LANGWALL_KEY = 'lf-langwall-v2'
+const WILDCARDS_KEY = 'lf-wildcards-v1'
+const ARCHIVED_BOOKS_KEY = 'lf-archived-books-v3'
 
 // ---------- helpers ----------
 function readJSON<T>(key: string, fallback: T): T {
@@ -253,6 +256,55 @@ export function foundMysteryWord(
   })
   writeJSON(LANGWALL_KEY, wall)
   return true
+}
+
+// ---------- Wildcards (v3) ----------
+// Novel characters the child invented in the story kitchen (R23). They join
+// the universe cast once the story that introduced them ships, so future
+// generations can reference "Ollie the otter" naturally.
+
+export function loadWildcards(): WildcardCharacter[] {
+  return readJSON<WildcardCharacter[]>(WILDCARDS_KEY, [])
+}
+
+/**
+ * Append new wildcards, deduping by id. Idempotent — safe to call more than
+ * once per book.
+ */
+export function addWildcards(next: WildcardCharacter[]): void {
+  if (!next || next.length === 0) return
+  const existing = loadWildcards()
+  const byId = new Map(existing.map((w) => [w.id, w]))
+  for (const w of next) {
+    if (!w || !w.id || !w.name) continue
+    if (byId.has(w.id)) continue
+    byId.set(w.id, w)
+  }
+  writeJSON(WILDCARDS_KEY, Array.from(byId.values()))
+}
+
+// ---------- Archived books (v3 — Made by Azad tab) ----------
+// A soft archive — the book stays in loadStories() but is filtered out of the
+// shelf and marked archived in the Parent Corner listing. Parents can
+// unarchive at any time. No destructive delete.
+
+export function loadArchived(): string[] {
+  return readJSON<string[]>(ARCHIVED_BOOKS_KEY, [])
+}
+
+export function isArchived(id: string): boolean {
+  return loadArchived().includes(id)
+}
+
+export function archiveBook(id: string): void {
+  const set = new Set(loadArchived())
+  set.add(id)
+  writeJSON(ARCHIVED_BOOKS_KEY, Array.from(set))
+}
+
+export function unarchiveBook(id: string): void {
+  const arr = loadArchived().filter((x) => x !== id)
+  writeJSON(ARCHIVED_BOOKS_KEY, arr)
 }
 
 // ---------- Retells (IndexedDB) ----------

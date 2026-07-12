@@ -35,7 +35,7 @@ The current build is a shelf of one-shot 5-page stories. There is no way to prog
 
 ## Non-Goals
 
-- **Kid-facing story creation** — stays parent-only (settled in v1).
+- **Kid-facing story creation** — stays parent-only (settled in v1). *[Superseded July 2026: retired in `PRD-azi-agency-v3.md` — creation opens to Azad within parent-defined guardrails, gated by the v2.2 QA pipeline.]*
 - **Bedtime serialization / night ritual** — no screens at night. Bedtime dim mode stays as a P2 theme toggle only.
 - **Social anything** — no sharing outside the family, no leaderboards.
 - **Loss-aversion mechanics and notifications** — no breakable streaks, no reward currencies, no push reminders. The research on Duolingo's failure modes for kids is unambiguous; celebration only.

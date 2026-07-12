@@ -97,7 +97,7 @@ export const BADGES: BadgeDef[] = [
   },
   {
     id: 'firstRetell',
-    name: 'Storyteller',
+    name: 'Retell',
     emoji: '🎙',
     wash: 'blush',
     earnLine: {
@@ -116,6 +116,41 @@ export const BADGES: BadgeDef[] = [
       c: 'Five retells. You are a storyteller.',
     },
     how: 'Record 5 retells',
+  },
+  // v3 — R19 story kitchen. Granted from create-with-buddy after the story
+  // lands successfully. Kept separate from the retell badges so they can stack.
+  {
+    id: 'storyteller',
+    name: 'Storyteller',
+    emoji: '✍️',
+    wash: 'meadow',
+    earnLine: {
+      b: 'You wrote your OWN story!',
+      c: 'You wrote your own story.',
+    },
+    how: 'Make a story with your buddy',
+  },
+  {
+    id: 'storyteller3',
+    name: 'Storyteller x3',
+    emoji: '✍️',
+    wash: 'sunset',
+    earnLine: {
+      b: 'THREE stories of your own — you\'re on a roll!',
+      c: 'Three stories of your own.',
+    },
+    how: 'Make three stories with your buddy',
+  },
+  {
+    id: 'storyteller10',
+    name: 'Storyteller x10',
+    emoji: '✍️',
+    wash: 'canyon',
+    earnLine: {
+      b: 'TEN of your own stories — you are a real author!',
+      c: 'Ten of your own stories. You are a real author.',
+    },
+    how: 'Make ten stories with your buddy',
   },
 ]
 
@@ -151,6 +186,10 @@ async function currentSignals() {
 export async function checkBadges(opts?: {
   /** If a specific book id just completed, checks book-scoped badges. */
   bookCompletedId?: string
+  /** Total lifetime kid-authored creations (from lib/read/kid-creations if
+   *  extended, or the caller counts books with author==='azad'). Enables the
+   *  Storyteller / Storyteller x3 / Storyteller x10 badges. */
+  kidCreationsCount?: number
 }): Promise<string[]> {
   const granted: string[] = []
   const { badges, days, words, choices, retells } = await currentSignals()
@@ -175,6 +214,12 @@ export async function checkBadges(opts?: {
     if (opts.bookCompletedId === 'miko-bridge' || opts.bookCompletedId === 'miko') {
       grant('mikoMaster')
     }
+  }
+
+  if (typeof opts?.kidCreationsCount === 'number') {
+    if (opts.kidCreationsCount >= 1) grant('storyteller')
+    if (opts.kidCreationsCount >= 3) grant('storyteller3')
+    if (opts.kidCreationsCount >= 10) grant('storyteller10')
   }
 
   return granted

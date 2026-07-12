@@ -11,14 +11,18 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useSwApp } from './SwApp'
-import { speak } from '@/lib/read/speech'
+import { listen, recognitionAvailable } from '@/lib/read/speech'
+import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import {
   BuddyFace,
+  BuddyMic,
   ChapterDots,
   Confetti,
   Doodles,
+  IntentHighlight,
+  IntentToast,
   KidScreen,
   MatCover,
   Medallion,
@@ -167,14 +171,99 @@ export default function Home() {
 
   const nudge = 'Read one chapter and find a new star word.'
 
-  const handleBuddyTap = () => {
-    // Fire-and-forget speech; navigate immediately.
-    try {
-      speak('Want to pick a different buddy?')
-    } catch {
-      /* ignore */
+  // ---- Voice intent layer (PRD R16/R17/R18) ----
+  // The buddy face on Home is the mic. Tap → listen → classify → dispatch.
+  // The dispatcher pulses the target card before nav so the child sees where
+  // the buddy is taking them. Toast is the R17 misfire etiquette.
+  const [listening, setListening] = useState(false)
+  const [highlightTarget, setHighlightTarget] = useState<string | null>(null)
+  const [toast, setToast] = useState<{ msg: string; options?: string[] } | null>(null)
+  const listenStopRef = useRef<(() => void) | null>(null)
+
+  useEffect(() => () => {
+    listenStopRef.current?.()
+  }, [])
+
+  const stateForIntent = useMemo(
+    () => ({
+      hasMidFlightBook: continueBook ? { id: continueBook.id, title: continueBook.title } : undefined,
+      shelf: shelf.slice(0, 24).map((b) => ({ id: b.id, title: b.title })),
+    }),
+    [continueBook, shelf],
+  )
+
+  const handleIntentResult = useCallback(
+    async (transcript: string) => {
+      const result = await askIntent({
+        transcript,
+        surface: 'home',
+        state: stateForIntent,
+      })
+      await dispatchIntent(result, {
+        router,
+        onHighlight: (id) => {
+          setHighlightTarget(id)
+          setTimeout(() => setHighlightTarget(null), 1400)
+        },
+        onOffer: (msg, options) => setToast({ msg, options }),
+        currentBookId: continueBook?.id ?? null,
+        shelf: stateForIntent.shelf,
+      }, { surface: 'home' })
+    },
+    [router, stateForIntent, continueBook],
+  )
+
+  const handleBuddyMicTap = useCallback(() => {
+    if (listening) {
+      // Second tap cancels.
+      listenStopRef.current?.()
+      listenStopRef.current = null
+      setListening(false)
+      return
     }
-  }
+    if (!recognitionAvailable()) {
+      // No mic — fall back to the classic "pick a different buddy" affordance
+      // by opening the toast with an offer to go to the buddy picker.
+      setToast({
+        msg: 'Tap what you want:',
+        options: continueBook ? ['Keep reading', 'Pick a new buddy'] : ['My books', 'Pick a new buddy'],
+      })
+      return
+    }
+    // If the child has already missed twice on this surface, don't reopen the
+    // mic — the toast (if visible) is the tap fallback. Match R17 etiquette.
+    if (hasReachedMissCap('home')) {
+      setToast((t) => t ?? { msg: 'Or just tap what you want.' })
+      return
+    }
+    setListening(true)
+    listenStopRef.current = listen({
+      onResult: (t) => {
+        void handleIntentResult(t)
+      },
+      onEnd: () => {
+        listenStopRef.current = null
+        setListening(false)
+      },
+      onError: () => {
+        listenStopRef.current = null
+        setListening(false)
+        setToast({ msg: "I couldn't hear you — just tap what you want." })
+      },
+    }).stop
+  }, [listening, continueBook, handleIntentResult])
+
+  const handleToastPick = useCallback(
+    (_i: number, label: string) => {
+      setToast(null)
+      // The chip labels are echoing real actions. Map them to fresh intent
+      // dispatches so the same nav pipeline runs (highlight + nav). We keep
+      // this deliberately simple — the model is expected to return sensible
+      // options; we just forward them back through the classifier.
+      void handleIntentResult(label)
+    },
+    [handleIntentResult],
+  )
 
   if (!ready) return null
 
@@ -209,24 +298,24 @@ export default function Home() {
       `}</style>
 
       <div className="lf-home-wrap">
-        {/* (a) Buddy header */}
+        {toast && (
+          <IntentToast
+            message={toast.msg}
+            options={toast.options}
+            onPick={handleToastPick}
+            onClose={() => setToast(null)}
+          />
+        )}
+
+        {/* (a) Buddy header — the buddy face IS the mic (PRD R16). */}
         <header className="lf-home-header">
-          <Link
-            href="/read/buddy"
-            aria-label="Want to pick a different buddy?"
-            onClick={handleBuddyTap}
-            className="lf-press"
-            style={{
-              textDecoration: 'none',
-              display: 'inline-flex',
-              borderRadius: '50%',
-              cursor: 'pointer',
-              minWidth: 56,
-              minHeight: 56,
-            }}
-          >
-            <BuddyFace buddy={buddy} size={92} />
-          </Link>
+          <BuddyMic
+            buddy={buddy}
+            size={92}
+            listening={listening}
+            onTap={handleBuddyMicTap}
+            label={listening ? 'Listening — tap to stop' : 'Tap and talk to your buddy'}
+          />
           <SpeechBubble style={{ font: '700 17px/1.45 var(--font-body)' }}>{speechLine}</SpeechBubble>
           <div className="suns">
             <div style={{ font: '700 13px var(--font-body)', color: 'var(--lf-espresso-soft)', marginBottom: 6 }}>
@@ -238,12 +327,17 @@ export default function Home() {
 
         <div className="lf-home-grid">
           {/* (b) Continue or Today's adventure */}
-          <ContinueCard
-            book={continueBook}
-            todaysPick={todaysPick}
-            progress={continueBook ? progressMap[continueBook.id] : undefined}
-            nudge={nudge}
-          />
+          <IntentHighlight
+            active={highlightTarget === 'continue' || (continueBook != null && highlightTarget === `book:${continueBook.id}`)}
+            style={{ display: 'block' }}
+          >
+            <ContinueCard
+              book={continueBook}
+              todaysPick={todaysPick}
+              progress={continueBook ? progressMap[continueBook.id] : undefined}
+              nudge={nudge}
+            />
+          </IntentHighlight>
 
           {/* (c) My World strip */}
           <section aria-label="My world" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -352,18 +446,22 @@ export default function Home() {
                 <div>
                   <h3 style={{ margin: '0 0 10px', font: 'var(--text-section)' }}>Chapter books</h3>
                   <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                    {/* v3 R19 — story kitchen door. Coral outline, buddy face,
+                        "Make a story with me". */}
+                    <MakeAStoryDoor buddy={buddy} onOpen={() => router.push('/read/create-with-buddy')} />
                     {chapterBooks.length === 0 && (
                       <p style={{ font: 'var(--text-meta)', color: 'var(--lf-espresso-faint)' }}>
                         No chapter books yet.
                       </p>
                     )}
                     {chapterBooks.map((b) => (
-                      <MatCover
-                        key={b.id}
-                        story={b}
-                        ring={progressRingValue(b, progressMap[b.id])}
-                        onClick={() => router.push(`/read/story/${b.id}`)}
-                      />
+                      <IntentHighlight key={b.id} active={highlightTarget === `book:${b.id}`}>
+                        <MatCover
+                          story={b}
+                          ring={progressRingValue(b, progressMap[b.id])}
+                          onClick={() => router.push(`/read/story/${b.id}`)}
+                        />
+                      </IntentHighlight>
                     ))}
                   </div>
                 </div>
@@ -376,7 +474,9 @@ export default function Home() {
                       </p>
                     )}
                     {quickStories.map((b) => (
-                      <MatCover key={b.id} story={b} onClick={() => router.push(`/read/story/${b.id}`)} />
+                      <IntentHighlight key={b.id} active={highlightTarget === `book:${b.id}`}>
+                        <MatCover story={b} onClick={() => router.push(`/read/story/${b.id}`)} />
+                      </IntentHighlight>
                     ))}
                   </div>
                 </div>
@@ -405,6 +505,55 @@ function progressRingValue(book: Book, prog: { chapter: number; page: number } |
   if (!prog) return undefined
   const totalChapters = Math.max(1, book.chapters.length)
   return Math.min(1, prog.chapter / totalChapters)
+}
+
+// v3 R19 — the "story kitchen door" on the shelf. Same footprint as a book
+// cover so it slots in naturally, but coral-outlined + a buddy face + the
+// invitation copy. Tapping opens the kitchen.
+function MakeAStoryDoor({ buddy, onOpen }: { buddy: BuddyDef; onOpen: () => void }) {
+  const size = 128
+  return (
+    <button
+      type="button"
+      className="lf-press"
+      onClick={onOpen}
+      aria-label="Make a story with me"
+      style={{
+        border: '2.5px solid var(--lf-coral)',
+        background: 'var(--lf-cream-card)',
+        borderRadius: 'var(--radius-cover)',
+        padding: 9,
+        cursor: 'pointer',
+        position: 'relative',
+        boxShadow: 'var(--shadow-coral-glow)',
+        display: 'block',
+        textAlign: 'left',
+        flexShrink: 0,
+      }}
+    >
+      <div
+        style={{
+          width: size,
+          height: size,
+          borderRadius: 12,
+          background: 'linear-gradient(135deg, var(--lf-pastel-peach), var(--lf-cream-card))',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <BuddyFace buddy={buddy} size={92} />
+      </div>
+      <div style={{ width: size, marginTop: 7 }}>
+        <div style={{ font: '700 14px/1.25 var(--font-display)', color: 'var(--lf-coral-deep)' }}>
+          Make a story with me
+        </div>
+        <div style={{ font: 'var(--text-meta)', color: 'var(--lf-espresso-soft)', marginTop: 2 }}>
+          Tap to begin
+        </div>
+      </div>
+    </button>
+  )
 }
 
 // Wrap MatCover so it navigates to /read/story/<id>. MatCover accepts an
