@@ -972,11 +972,11 @@ function ReaderPages({
       pid: e.pointerId,
       committed: false,
     }
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId)
-    } catch {
-      /* ignore */
-    }
+    // P0: do NOT setPointerCapture here. Capturing on pointerdown retargets all
+    // subsequent pointer events to this surface, which steals word taps/holds
+    // (PageWord never gets its pointerup) — "words are the timeline" dies on
+    // touch while working fine with a mouse. We only capture once the gesture
+    // has actually committed to a horizontal swipe (see onSwipeMove).
   }, [])
 
   const onSwipeMove = useCallback(
@@ -996,6 +996,15 @@ function ReaderPages({
           return
         }
         swipeRef.current = { ...s, committed: true }
+        // Now that this is definitively a horizontal page-turn (past the 24px
+        // slop, and a word tap/hold could no longer be intended), take pointer
+        // capture so the drag keeps tracking even if the finger slides off the
+        // surface. Taps never reach here, so they're no longer stolen.
+        try {
+          e.currentTarget.setPointerCapture(e.pointerId)
+        } catch {
+          /* ignore — some environments don't support capture */
+        }
       }
       setDragDx(dx)
     },
