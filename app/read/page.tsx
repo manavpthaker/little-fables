@@ -45,7 +45,6 @@ import { RoomScene, ZonedOverlay, ROOM_ZONES } from './room/RoomScene'
 import {
   BookCoverArt,
   BuddyMicButton,
-  CreatureSprite,
   DrawnProgressRing,
   IntentHighlight,
   IntentToast,
@@ -466,31 +465,32 @@ export default function Home() {
             gap: 8,
           }}
         >
-          {/* the drawn buddy — a decorative body under the interactive face */}
-          <div style={{ pointerEvents: 'none' }}>
-            <CreatureSprite
-              kind={buddyKind}
-              pose={listening ? 'listening' : 'idle'}
-              size={140}
-            />
-          </div>
+          {/* One buddy. BuddyMicButton already wraps the creature sprite AND
+              the mic dot ("the buddy IS the mic"), so the separate 140px
+              CreatureSprite that used to sit above it rendered a SECOND bear
+              stacked on the first. Removed — this is the single, tappable buddy. */}
           <BuddyMicButton
             kind={buddyKind}
-            size={72}
+            size={118}
             listening={listening}
             onTap={handleBuddyMicTap}
             label={listening ? 'Listening — tap to stop' : 'Tap and talk to your buddy'}
           />
         </div>
 
-        {/* --------- Speech bubble (above the buddy) --------- */}
+        {/* --------- Speech bubble (above the buddy) ---------
+             Sits centered ABOVE the buddy, capped so its right edge stays
+             LEFT of the shelf niches (shelfTop.x = 800 stage px). It used to be
+             pushed right (buddy.x + 200) into the shelf and under the card. */}
         <div
+          className="lf-room-bubble"
           style={{
             position: 'absolute',
-            left: `${((ROOM_ZONES.buddy.x + 200) / 1180) * 100}%`,
-            top: `${((ROOM_ZONES.buddy.y - 100) / 820) * 100}%`,
-            maxWidth: '32%',
+            left: `${((ROOM_ZONES.buddy.x - 60) / 1180) * 100}%`,
+            top: `${((ROOM_ZONES.buddy.y - 170) / 820) * 100}%`,
+            maxWidth: `${((ROOM_ZONES.shelfTop.x - 40 - (ROOM_ZONES.buddy.x - 60)) / 1180) * 100}%`,
             pointerEvents: 'none',
+            zIndex: 3,
           }}
         >
           <SpeechBubble style={{ font: '700 17px/1.45 var(--font-body)' }}>
@@ -498,25 +498,31 @@ export default function Home() {
           </SpeechBubble>
         </div>
 
-        {/* --------- Continue / Today's adventure (the COraL action) ---------
-             v3.2 #6: at iPad-landscape widths (~1024–1290) the card was
-             visually overlapping the drawn buddy on the rug. We now clear the
-             buddy zone by using max() to push the card's left edge past the
-             buddy's right edge (buddy.x + buddy.w = 546 stage px → ~46.3%),
-             and cap the width so it never spills into the shelf niches.
-             Buddy zone is 356→546 px in stage space; card should live to the
-             right of that. */}
+        {/* --------- Continue / Today's adventure (the coral action) ---------
+             The hero. Lives in the gap between the buddy's right edge
+             (buddy.x + buddy.w = 546 stage px → 46.3%) and the shelf niches
+             (shelfTop.x = 800 stage px → 67.8%), and is width-capped so its
+             right edge never spills into the shelf. Previously the width cap
+             (40vw / 340px) let it run into the shelf at phone-landscape widths. */}
         <IntentHighlight
+          className="lf-room-continue"
           active={
             highlightTarget === 'continue' ||
             (continueBook != null && highlightTarget === `book:${continueBook.id}`)
           }
           style={{
             position: 'absolute',
-            left: `max(${(ROOM_ZONES.continue.x / 1180) * 100}%, ${((ROOM_ZONES.buddy.x + ROOM_ZONES.buddy.w) / 1180) * 100}%)`,
+            // Anchor the card's RIGHT edge just left of the shelf niches, and
+            // let it keep its natural width by growing LEFTWARD (over the soft,
+            // decorative buddy when space is tight) rather than being crushed
+            // into the buddy→shelf gap. The card is the hero; a book on the
+            // shelf must never be hidden or un-tappable behind it, but the
+            // buddy peeking out from behind the card is fine.
+            right: `${((1180 - (ROOM_ZONES.shelfTop.x - 20)) / 1180) * 100}%`,
             top: `${(ROOM_ZONES.continue.y / 820) * 100}%`,
-            width: `min(${(ROOM_ZONES.continue.w / 1180) * 100}%, 340px)`,
-            maxWidth: 'min(340px, 40vw)',
+            width: 'min(46%, 340px)',
+            maxWidth: `${((ROOM_ZONES.shelfTop.x - 20) / 1180) * 100}%`,
+            zIndex: 4,
             display: 'block',
           }}
         >

@@ -12,12 +12,14 @@ interface IntentHighlightProps {
   active: boolean
   children: ReactNode
   style?: CSSProperties
+  /** Extra class (e.g. small-screen room overrides). Composes with `active`. */
+  className?: string
 }
 
-export function IntentHighlight({ active, children, style }: IntentHighlightProps) {
+export function IntentHighlight({ active, children, style, className }: IntentHighlightProps) {
   return (
     <span
-      className={active ? 'lf-intent-highlight' : undefined}
+      className={[active ? 'lf-intent-highlight' : '', className ?? ''].filter(Boolean).join(' ') || undefined}
       style={{
         display: 'inline-block',
         borderRadius: 'var(--radius-card, 18px)',

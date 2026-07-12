@@ -276,6 +276,15 @@
   /* Transport: shave the tall bottom padding; the 78px play + 60px chevrons
      stay full size. */
   .lf-reader-transport { padding: 6px 0 10px !important; }
+
+  /* --- Room (home) on a short screen --- */
+  /* The spoken-greeting bubble duplicates what the buddy says aloud and the
+     card's "Today's adventure" label; on a cramped phone-landscape it just
+     stacks on top of the buddy + card, so hide it here (it stays on iPad). */
+  .lf-room-bubble { display: none !important; }
+  /* Raise the hero card so its bottom (the Start button) isn't clipped below
+     the fold on a ~390px-tall screen. */
+  .lf-room-continue { top: 40% !important; }
 }
 
 /* Kamishibai slide — page turns follow the finger. */

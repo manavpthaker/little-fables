@@ -83,10 +83,16 @@ export function RoomScene({ children, className, style }: RoomSceneProps) {
       className={`lf-room-scene ${className ?? ''}`}
       style={{
         position: 'relative',
-        width: '100%',
+        // Preserve the painting's aspect ratio at EVERY viewport size. Capping
+        // width by the viewport height (instead of the old maxHeight, which
+        // broke the ratio and let objectFit:cover crop the painting) keeps the
+        // whole scene visible and — critically — keeps every percent-positioned
+        // overlay landing on its painted target. On a wide/short screen (phone
+        // in landscape) the scene pillarboxes rather than cropping, so the
+        // buddy, shelf, cards and labels stop drifting and colliding.
+        width: `min(100%, calc(100dvh * ${STAGE.w} / ${STAGE.h}))`,
         aspectRatio: `${STAGE.w} / ${STAGE.h}`,
         maxWidth: '100vw',
-        maxHeight: '100dvh',
         margin: '0 auto',
         overflow: 'hidden',
         background: 'var(--paper, #F4EBD8)',
