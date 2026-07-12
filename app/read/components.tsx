@@ -1014,9 +1014,12 @@ export function AuthorMark({ name = 'Azad', size = 'md', style }: AuthorMarkProp
 /* ==================================================================== */
 
 // ---- BuddyMic ----
-// A tap-to-talk button that IS the buddy face. Idle → gentle breath. Listening
-// → forward "lean" pose (subtle scale + brighter ring). Reduced-motion aware
-// via the .lf-buddy-listening class below.
+// A tap-to-talk button that IS the buddy face. Touch-balance directive:
+// options + mic co-present; tap-to-listen is ALWAYS explicit — the caller
+// controls `listening`, this component never opens the mic on its own.
+// Listening pose: 2-3s idle "breath held" — the buddy leans in and holds
+// still (the .lf-buddy-listening class stops the breath).
+// A drawn-border treatment is applied so the button reads as ink, not chrome.
 type BuddyMicProps = {
   buddy: BuddyDef
   size?: number
@@ -1043,7 +1046,7 @@ export function BuddyMic({
       onClick={onTap}
       disabled={disabled}
       className={
-        'lf-press ' +
+        'lf-press lf-drawn-border ' +
         (listening ? 'lf-buddy-listening' : 'sw-breathe')
       }
       style={{
@@ -1056,6 +1059,10 @@ export function BuddyMic({
         background: 'transparent',
         cursor: disabled ? 'default' : 'pointer',
         flexShrink: 0,
+        // Listening pose — subtle forward lean + brighter glow. Reduced-motion
+        // safe: scale is a static 1.02, not a keyframe.
+        transform: listening ? 'scale(1.02)' : 'scale(1)',
+        transition: 'transform 260ms cubic-bezier(0.22,1,0.36,1)',
         ...style,
       }}
     >
@@ -1109,21 +1116,22 @@ export function IntentToast({ message, options, onPick, onClose }: IntentToastPr
     <div
       role="status"
       aria-live="polite"
-      className="lf-screen-in"
+      className="lf-screen-in lf-drawn-border"
       style={{
         position: 'fixed',
         left: '50%',
-        transform: 'translateX(-50%)',
+        transform: 'translateX(-50%) rotate(-0.4deg)',
         top: 20,
         zIndex: 50,
         maxWidth: 480,
         width: 'calc(100vw - 32px)',
-        background: 'var(--lf-cream-card)',
-        border: '1.5px solid var(--lf-cream-line)',
-        borderRadius: 'var(--radius-card)',
-        boxShadow: 'var(--shadow-warm-lg)',
+        background: 'var(--paper-bright, var(--lf-cream-card))',
+        backgroundImage: 'var(--texture-paper)',
+        border: 'none',
+        borderRadius: '16px 20px 17px 19px',
+        boxShadow: '0 12px 30px -12px rgba(70,54,42,.35)',
         padding: '14px 16px 16px',
-        color: 'var(--lf-espresso)',
+        color: 'var(--ink, var(--lf-espresso))',
         font: '700 15.5px/1.4 var(--font-body)',
       }}
     >

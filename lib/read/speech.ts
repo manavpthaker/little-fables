@@ -251,6 +251,14 @@ export interface SpeakOptions {
    * "The story machine hiccuped. Try again!" instead of a robot voice.
    */
   allowSpeechSynthFallback?: boolean
+  /**
+   * Optional seek — seconds from the start of the audio to begin playback at.
+   * Only honored by the WebAudioSession path (network/cached TTS with real
+   * timestamps). The speechSynth fallback ignores it (word-level seek isn't
+   * possible with the browser synth). Guarded so `undefined` = current
+   * behavior (back-compat).
+   */
+  startOffset?: number
 }
 
 function defaultTtsSource(): TtsSource {
@@ -278,6 +286,9 @@ export function speak(text: string, opts: SpeakOptions = {}): SpeakHandle {
       const result = await source.fetch(text, { voice: opts.voice })
       if (cancelled) return
       session = new WebAudioSession(result.audio, result.timestamps, opts.onWord, finish)
+      if (typeof opts.startOffset === 'number' && opts.startOffset > 0) {
+        session.seek(opts.startOffset)
+      }
       await session.play()
     } catch (err) {
       if (cancelled) return

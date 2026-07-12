@@ -1,14 +1,12 @@
 'use client'
 
 // R22a: the "writing moment" — a diegetic loading state that replaces the
-// spinner while /api/story generates the child's story. Design: buddy face at
-// left; open book beside her; the recipe's want / reason / obstacle appear in
-// sequence on the book's pages in a handwritten watercolor style. A small pip
-// pulses at the bottom while the network is still working; there is NO wheel,
-// NO percentage bar, and the buddy speaks softly in the background.
+// spinner while /api/story generates the child's story.
 //
-// Reduced-motion safe: the write-in animation collapses to a fade-in (see
-// read.css @media prefers-reduced-motion:reduce block).
+// v3 Drawn Room: the writing moment lands on a drawn desk. Fable's inkpot
+// sits alongside the buddy; the child's transcribed words appear in Caveat
+// handwriting on an open book. Fable narrates the recipe softly.
+// Reduced-motion safe — words fade in without keyframes.
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { speak, type SpeakHandle } from '@/lib/read/speech'
@@ -18,10 +16,6 @@ import { BuddyFace, KidScreen } from '../components'
 interface WritingMomentProps {
   buddy: BuddyDef
   recipe: KidInterview['recipe']
-  /**
-   * Buddy voice line spoken while the page is showing. If omitted a default
-   * is composed from the recipe.
-   */
   spokenLine?: string
 }
 
@@ -37,7 +31,6 @@ function linesFromRecipe(recipe: KidInterview['recipe']): Line[] {
   if (recipe.obstacle) l.push({ label: 'Uh oh', value: recipe.obstacle })
   if (recipe.extras) {
     for (const e of recipe.extras) {
-      // Keep the extras label lowercase-ish and friendly.
       l.push({ label: e.slot.charAt(0).toUpperCase() + e.slot.slice(1), value: e.value })
     }
   }
@@ -49,7 +42,6 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
   const [visibleCount, setVisibleCount] = useState(0)
   const speakRef = useRef<SpeakHandle | null>(null)
 
-  // Stagger each line's appearance so the child sees his words being written.
   useEffect(() => {
     if (lines.length === 0) return
     const timers: ReturnType<typeof setTimeout>[] = []
@@ -59,10 +51,10 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
     return () => timers.forEach(clearTimeout)
   }, [lines.length])
 
-  // Buddy speaks once on mount — soft, one line.
   useEffect(() => {
-    const text = spokenLine
-      ?? [
+    const text =
+      spokenLine ??
+      [
         recipe.want ? `${recipe.want.replace(/[.!?]$/, '')}.` : '',
         recipe.reason ? `Because ${recipe.reason.replace(/^because\s+/i, '').replace(/[.!?]$/, '')}.` : '',
         recipe.obstacle ? `And uh oh: ${recipe.obstacle.replace(/[.!?]$/, '')}.` : '',
@@ -80,26 +72,45 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
   return (
     <KidScreen label="Writing your story" style={{ padding: 0 }}>
       <div
-        className="lf-writing-moment"
+        className="lf-room"
         style={{
+          position: 'relative',
           minHeight: '100dvh',
+          background: 'var(--paper, #F4EBD8)',
+          backgroundImage: 'var(--texture-paper)',
+          color: 'var(--ink, #46362A)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           padding: '32px 40px',
         }}
       >
+        {/* Desk plank beneath */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: '32%',
+            background: 'linear-gradient(180deg, rgba(91,70,55,.15), rgba(91,70,55,.30))',
+          }}
+        />
+
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: 44,
-            maxWidth: 1000,
+            maxWidth: 1080,
             width: '100%',
             flexWrap: 'wrap',
             justifyContent: 'center',
+            zIndex: 1,
           }}
         >
+          {/* Buddy + inkpot column */}
           <div
             style={{
               display: 'flex',
@@ -110,28 +121,50 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
             }}
           >
             <BuddyFace buddy={buddy} size={140} />
-            <div style={{ font: '600 15px var(--font-body)', color: 'var(--lf-espresso-soft)', maxWidth: 200, textAlign: 'center' }}>
+            <div
+              style={{
+                font: '600 15px var(--font-body)',
+                fontStyle: 'italic',
+                color: 'var(--ink-soft, #6E5B49)',
+                maxWidth: 200,
+                textAlign: 'center',
+              }}
+            >
               …writing your story…
             </div>
+            {/* Fable's inkpot */}
+            <svg width={100} height={100} viewBox="0 0 130 130" aria-hidden="true" style={{ marginTop: 6 }}>
+              <path
+                d="M 34 55 Q 34 42 50 42 L 90 42 Q 106 42 106 55 L 100 110 Q 100 122 88 122 L 52 122 Q 40 122 40 110 Z"
+                fill="#2E8B8B"
+                stroke="#46362A"
+                strokeWidth="3"
+              />
+              <ellipse cx="70" cy="42" rx="30" ry="6" fill="#4E7FA3" stroke="#46362A" strokeWidth="2.4" />
+              <path d="M 20 12 L 96 76 L 92 88 L 16 22 Z" fill="#5B4637" stroke="#46362A" strokeWidth="2.4" />
+            </svg>
           </div>
 
-          {/* The open book — two-page spread rendered in cream on cream. */}
+          {/* The open book */}
           <div
-            aria-label="Buddy's book"
+            aria-label="Fable's book"
+            className="lf-drawn-border"
             style={{
               position: 'relative',
-              width: 'min(560px, 90vw)',
-              minHeight: 360,
-              background: 'var(--lf-cream-card)',
-              border: '2px solid var(--lf-cream-line)',
-              borderRadius: 12,
-              boxShadow: 'var(--shadow-warm-lg)',
+              width: 'min(580px, 92vw)',
+              minHeight: 380,
+              background: 'var(--paper-bright, #F9F2E3)',
+              backgroundImage: 'var(--texture-paper)',
+              borderRadius: '18px 22px 19px 21px',
+              boxShadow: '0 18px 40px -18px rgba(70,54,42,.35)',
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
               overflow: 'hidden',
+              border: 'none',
+              color: 'var(--ink, #46362A)',
+              transform: 'rotate(-0.6deg)',
             }}
           >
-            {/* Book spine — a vertical seam down the middle. */}
             <span
               aria-hidden="true"
               style={{
@@ -140,17 +173,13 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
                 bottom: 0,
                 left: '50%',
                 width: 2,
-                background: 'linear-gradient(180deg, rgba(59,50,39,.06), rgba(59,50,39,.14), rgba(59,50,39,.06))',
+                background: 'linear-gradient(180deg, rgba(70,54,42,.08), rgba(70,54,42,.22), rgba(70,54,42,.08))',
                 pointerEvents: 'none',
               }}
             />
 
             <div style={{ padding: '32px 26px 32px 30px' }}>
-              {/* Left page — Want */}
-              {lines[0] && visibleCount >= 1 && (
-                <BookLine label={lines[0].label} value={lines[0].value} />
-              )}
-              {/* Second entry can live on the left too if there are ≥2 lines. */}
+              {lines[0] && visibleCount >= 1 && <BookLine label={lines[0].label} value={lines[0].value} />}
               {lines[1] && visibleCount >= 2 && (
                 <div style={{ marginTop: 22 }}>
                   <BookLine label={lines[1].label} value={lines[1].value} />
@@ -159,10 +188,7 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
             </div>
 
             <div style={{ padding: '32px 30px 32px 26px' }}>
-              {/* Right page — Uh oh + extras */}
-              {lines[2] && visibleCount >= 3 && (
-                <BookLine label={lines[2].label} value={lines[2].value} />
-              )}
+              {lines[2] && visibleCount >= 3 && <BookLine label={lines[2].label} value={lines[2].value} />}
               {lines.slice(3).map((l, i) =>
                 visibleCount >= 4 + i ? (
                   <div key={i} style={{ marginTop: i === 0 ? 0 : 22 }}>
@@ -174,8 +200,7 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
           </div>
         </div>
 
-        {/* Small quiet pulsing dot at the bottom — the only motion cue that
-            work is still happening. */}
+        {/* Baking indicator */}
         <div
           aria-hidden="true"
           style={{
@@ -187,12 +212,13 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
             gap: 8,
             alignItems: 'center',
             font: '600 13px var(--font-body)',
-            color: 'var(--lf-espresso-faint)',
+            fontStyle: 'italic',
+            color: 'var(--ink-soft, #6E5B49)',
           }}
         >
           <span
-            className="lf-writing-dot"
-            style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--lf-coral)' }}
+            className="lf-breath"
+            style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--pigment-terracotta, #D95B43)' }}
           />
           <span>Baking your story</span>
         </div>
@@ -209,19 +235,23 @@ function BookLine({ label, value }: Line) {
           font: '700 11px var(--font-body)',
           textTransform: 'uppercase',
           letterSpacing: '.09em',
-          color: 'var(--lf-espresso-faint)',
+          color: 'var(--ink-faint, #97836B)',
           marginBottom: 4,
         }}
       >
         {label}
       </div>
       <div
-        className="lf-writing-ink"
+        className="lf-writing-ink lf-child-hand"
         style={{
-          font: '700 21px/1.35 var(--font-display)',
-          color: 'var(--lf-espresso)',
-          // hint of handwritten look — a very small skew and letter-spacing
-          transform: 'rotate(-0.4deg)',
+          // Caveat handwriting for the CHILD's words — the whole reason for
+          // this moment. `--font-child-hand` is set in the .lf-room token
+          // scope; we set an inline fallback to be safe.
+          fontFamily: "var(--font-child-hand, 'Caveat'), cursive",
+          fontSize: 30,
+          lineHeight: 1.25,
+          color: 'var(--pigment-berry, #9B4A6B)',
+          transform: 'rotate(-0.6deg)',
           transformOrigin: '0 50%',
           letterSpacing: '.005em',
         }}

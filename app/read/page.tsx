@@ -1,13 +1,26 @@
 'use client'
 
-// Little Fables — Home (v2).
-// The buddy is the interface. Home is a buddy header with a spoken speech-bubble
-// line + weekly sun row + Continue card (if any book has progress) + My World
-// strip (badges, star words) + shelf split into Chapter books / Quick stories.
+// Little Fables — Home v3 (the Drawn Room).
+// The buddy is on the rug in a room lit by the real clock. Everything else is
+// hung on the walls / shelf / windowsill of that room. Preserved from v2:
+//   - BuddyMic (buddy face tap-to-listen with intent dispatch)
+//   - IntentHighlight wrappers for Continue + shelf items
+//   - First-run redirect to /read/buddy when no active buddy
+//   - Real world-memory callback line
+//   - Deterministic todaysPick
+//   - currentWeekSuns() row
+//   - OfflineBanner
+//   - MakeAStoryDoor → /read/create-with-buddy
+//   - Badge / word wall counts
+//   - pullAll() on mount when signed in
 //
-// See design/handoff-v2/app/screens-a.jsx `Home` for the visual reference and
-// docs/PRD § "Home v2". Portrait variant reuses PortraitHome layout at narrow
-// widths — implemented as CSS media queries here rather than two components.
+// Replaced from v2:
+//   - Grid layout, pastel washes, sw-app classes → the Drawn Room stage,
+//     tokens under `.lf-room`, tap zones over the north-star painting.
+//
+// A1 touch-balance: exactly one coral action per screen. On Home that's the
+// Continue card (or Today's-adventure if none in flight). Every voice-reachable
+// action has a tap element visible. Decorative art is `pointer-events: none`.
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -16,25 +29,17 @@ import { useSwApp } from './SwApp'
 import { listen, recognitionAvailable } from '@/lib/read/speech'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import {
-  BuddyFace,
   BuddyMic,
-  ChapterDots,
-  Confetti,
-  Doodles,
   IntentHighlight,
   IntentToast,
-  KidScreen,
   MatCover,
-  Medallion,
   OfflineBanner,
   PillNav,
   ProgressRing,
   SpeechBubble,
-  SunRow,
   WashScene,
 } from './components'
 import { BUDDIES, cp, getBuddy } from '@/lib/read/buddies'
-import { BADGES } from '@/lib/read/badges'
 import { loadShelf } from '@/lib/read/packs'
 import {
   currentWeekSuns,
@@ -44,7 +49,12 @@ import {
   loadWordBook,
   loadWorldState,
 } from '@/lib/read/storage'
+import { pullAll } from '@/lib/read/sync'
 import type { Book, BuddyDef } from '@/types/story'
+import { LightingProvider } from './room/LightingProvider'
+import { RoomScene, ZonedOverlay, ROOM_ZONES } from './room/RoomScene'
+import { CreatureSprite, MedallionMount, StarWordPin, SunPin } from './art'
+import type { BuddyKind } from './art'
 
 type Suns = ReturnType<typeof currentWeekSuns>
 type ProgressEntry = { chapter: number; page: number; updatedAt: number }
@@ -53,9 +63,6 @@ export default function Home() {
   const { online } = useSwApp()
   const router = useRouter()
 
-  // First-run gate: while we don't yet know whether a buddy has been picked,
-  // don't render anything. On mount we check storage — if there's no active
-  // buddy, redirect to the carousel BEFORE any Home content flashes.
   const [ready, setReady] = useState(false)
   const [buddy, setBuddy] = useState<BuddyDef>(BUDDIES[0])
   const [energy, setEnergy] = useState<'bouncy' | 'calm'>('bouncy')
@@ -88,10 +95,11 @@ export default function Home() {
       m[id] = { chapter: v.chapter, page: v.page, updatedAt: v.updatedAt }
     setProgressMap(m)
     setReady(true)
+    // Fire-and-forget: reconcile the shelf / progress with the server if we
+    // happen to be signed in. Preserved from v2.
+    void pullAll().catch(() => {})
   }, [router])
 
-  // Split into chapter books vs quick stories. Books with kind='chapter' (or
-  // more than one non-empty chapter) go left; quick stories go right.
   const { chapterBooks, quickStories, continueBook, todaysPick } = useMemo(() => {
     const chapters: Book[] = []
     const quicks: Book[] = []
@@ -101,8 +109,6 @@ export default function Home() {
       if (isChapter) chapters.push(b)
       else quicks.push(b)
     }
-    // Continue: pick the most recently touched book with mid-flight progress
-    // (progress but not on the last chapter).
     const all = chapters.concat(quicks)
     const midFlight = all
       .map((b) => ({ b, prog: progressMap[b.id] }))
@@ -114,14 +120,6 @@ export default function Home() {
       .sort((a, b) => (b.prog!.updatedAt || 0) - (a.prog!.updatedAt || 0))
     const cont = midFlight[0]?.b
 
-    // Deterministic daily pick for the "Today's adventure" card when nothing
-    // is mid-flight. Buckets:
-    //   (a) unfinished (progress > 0 but not on last chapter) — same as
-    //       "continue" pool; already handled above.
-    //   (b) unread (no progress at all).
-    //   (c) least-recently-read (completed/on last chapter, oldest touched).
-    // Tie-break by book id. The date seeds the bucket ordering so it's stable
-    // for the whole day but rotates from day to day.
     let today: Book | undefined
     if (!cont && all.length > 0) {
       const unread: Book[] = []
@@ -134,7 +132,6 @@ export default function Home() {
       const dayKey = new Date().toISOString().slice(0, 10)
       const rotate = <T,>(arr: T[]): T[] => {
         if (arr.length <= 1) return arr
-        // Simple deterministic rotation seeded by the date string.
         let seed = 0
         for (let i = 0; i < dayKey.length; i++) seed = (seed * 31 + dayKey.charCodeAt(i)) | 0
         const n = Math.abs(seed) % arr.length
@@ -157,10 +154,6 @@ export default function Home() {
     }
   }, [shelf, progressMap])
 
-  // Speech line derivation. Real callback (only if the child has actually made
-  // a choice) wins. Otherwise: a first-run-safe greeting derived from the
-  // buddy's `greet` line, extended with an action nudge — mention the current
-  // book title if one is mid-flight.
   const speechLine = useMemo(() => {
     if (callback && choiceLogLen > 0) return callback
     const greet = cp(buddy.greet, energy)
@@ -169,12 +162,7 @@ export default function Home() {
     return greet
   }, [buddy, energy, callback, choiceLogLen, continueBook, shelf.length])
 
-  const nudge = 'Read one chapter and find a new star word.'
-
-  // ---- Voice intent layer (PRD R16/R17/R18) ----
-  // The buddy face on Home is the mic. Tap → listen → classify → dispatch.
-  // The dispatcher pulses the target card before nav so the child sees where
-  // the buddy is taking them. Toast is the R17 misfire etiquette.
+  // ---- Voice intent layer (PRD R16/R17/R18) — preserved from v2 ----
   const [listening, setListening] = useState(false)
   const [highlightTarget, setHighlightTarget] = useState<string | null>(null)
   const [toast, setToast] = useState<{ msg: string; options?: string[] } | null>(null)
@@ -186,7 +174,9 @@ export default function Home() {
 
   const stateForIntent = useMemo(
     () => ({
-      hasMidFlightBook: continueBook ? { id: continueBook.id, title: continueBook.title } : undefined,
+      hasMidFlightBook: continueBook
+        ? { id: continueBook.id, title: continueBook.title }
+        : undefined,
       shelf: shelf.slice(0, 24).map((b) => ({ id: b.id, title: b.title })),
     }),
     [continueBook, shelf],
@@ -199,39 +189,40 @@ export default function Home() {
         surface: 'home',
         state: stateForIntent,
       })
-      await dispatchIntent(result, {
-        router,
-        onHighlight: (id) => {
-          setHighlightTarget(id)
-          setTimeout(() => setHighlightTarget(null), 1400)
+      await dispatchIntent(
+        result,
+        {
+          router,
+          onHighlight: (id) => {
+            setHighlightTarget(id)
+            setTimeout(() => setHighlightTarget(null), 1400)
+          },
+          onOffer: (msg, options) => setToast({ msg, options }),
+          currentBookId: continueBook?.id ?? null,
+          shelf: stateForIntent.shelf,
         },
-        onOffer: (msg, options) => setToast({ msg, options }),
-        currentBookId: continueBook?.id ?? null,
-        shelf: stateForIntent.shelf,
-      }, { surface: 'home' })
+        { surface: 'home' },
+      )
     },
     [router, stateForIntent, continueBook],
   )
 
   const handleBuddyMicTap = useCallback(() => {
     if (listening) {
-      // Second tap cancels.
       listenStopRef.current?.()
       listenStopRef.current = null
       setListening(false)
       return
     }
     if (!recognitionAvailable()) {
-      // No mic — fall back to the classic "pick a different buddy" affordance
-      // by opening the toast with an offer to go to the buddy picker.
       setToast({
         msg: 'Tap what you want:',
-        options: continueBook ? ['Keep reading', 'Pick a new buddy'] : ['My books', 'Pick a new buddy'],
+        options: continueBook
+          ? ['Keep reading', 'Pick a new buddy']
+          : ['My books', 'Pick a new buddy'],
       })
       return
     }
-    // If the child has already missed twice on this surface, don't reopen the
-    // mic — the toast (if visible) is the tap fallback. Match R17 etiquette.
     if (hasReachedMissCap('home')) {
       setToast((t) => t ?? { msg: 'Or just tap what you want.' })
       return
@@ -256,10 +247,6 @@ export default function Home() {
   const handleToastPick = useCallback(
     (_i: number, label: string) => {
       setToast(null)
-      // The chip labels are echoing real actions. Map them to fresh intent
-      // dispatches so the same nav pipeline runs (highlight + nav). We keep
-      // this deliberately simple — the model is expected to return sensible
-      // options; we just forward them back through the classifier.
       void handleIntentResult(label)
     },
     [handleIntentResult],
@@ -267,405 +254,438 @@ export default function Home() {
 
   if (!ready) return null
 
+  const buddyKind: BuddyKind = (buddy.id as BuddyKind) ?? 'bramble'
+
+  // Take up to 5 word pins for the wall (visual). The full list is behind
+  // /read/words.
+  const wordPinCount = Math.min(wordCount, 5)
+  const badgeMountCount = Math.max(4, Math.min(6, badgeCount + 2))
+
   return (
-    <KidScreen label="Home" style={{ paddingBottom: 110 }}>
-      <Doodles />
+    <LightingProvider className="lf-room" style={{ minHeight: '100dvh', position: 'relative' }}>
       {!online && (
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0 }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 40 }}>
           <OfflineBanner />
         </div>
       )}
+      {toast && (
+        <IntentToast
+          message={toast.msg}
+          options={toast.options}
+          onPick={handleToastPick}
+          onClose={() => setToast(null)}
+        />
+      )}
 
-      <style>{`
-        .lf-home-wrap { position: relative; max-width: 1200px; margin: 0 auto; padding: 24px 32px; }
-        .lf-home-header {
-          display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-        }
-        .lf-home-header .suns { margin-left: auto; text-align: right; }
-        .lf-home-grid {
-          display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 22px;
-        }
-        @media (min-width: 900px) {
-          .lf-home-grid { grid-template-columns: 1fr 320px; }
-          .lf-home-shelf { grid-column: 1 / -1; }
-        }
-        .lf-shelf-columns {
-          display: grid; grid-template-columns: 1fr; gap: 24px;
-        }
-        @media (min-width: 900px) {
-          .lf-shelf-columns { grid-template-columns: 1fr 1fr; gap: 32px; }
-        }
-      `}</style>
+      <RoomScene>
+        {/* --------- Windowsill: weekly sun row --------- */}
+        <ZonedOverlay zone="suns" style={{ pointerEvents: 'none' }}>
+          <div
+            aria-label="My reading suns"
+            style={{
+              display: 'flex',
+              gap: 8,
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              height: '100%',
+              flexWrap: 'wrap',
+            }}
+          >
+            {suns.map((s) => (
+              <SunPin
+                key={s.iso}
+                letter={s.letter}
+                lit={s.lit}
+                today={s.today}
+                size={36}
+              />
+            ))}
+          </div>
+        </ZonedOverlay>
 
-      <div className="lf-home-wrap">
-        {toast && (
-          <IntentToast
-            message={toast.msg}
-            options={toast.options}
-            onPick={handleToastPick}
-            onClose={() => setToast(null)}
-          />
-        )}
+        {/* --------- Wall: star word pins → /read/words --------- */}
+        <Link
+          href="/read/words"
+          aria-label={`My words · ${wordCount}`}
+          className="lf-press"
+          style={{
+            position: 'absolute',
+            left: `${(ROOM_ZONES.wordWall.x / 1180) * 100}%`,
+            top: `${(ROOM_ZONES.wordWall.y / 820) * 100}%`,
+            width: `${(ROOM_ZONES.wordWall.w / 1180) * 100}%`,
+            height: `${(ROOM_ZONES.wordWall.h / 820) * 100}%`,
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 12,
+            padding: 8,
+            alignContent: 'flex-start',
+            justifyContent: 'space-around',
+            textDecoration: 'none',
+            borderRadius: 12,
+            touchAction: 'manipulation',
+          }}
+        >
+          {Array.from({ length: Math.max(3, wordPinCount) }).map((_, i) => (
+            <StarWordPin key={i} size={54} />
+          ))}
+          <span
+            style={{
+              position: 'absolute',
+              bottom: -22,
+              left: 8,
+              font: '700 14px var(--font-body, serif)',
+              color: 'var(--ink-soft, #6E5B49)',
+              pointerEvents: 'none',
+            }}
+          >
+            My words · {wordCount}
+          </span>
+        </Link>
 
-        {/* (a) Buddy header — the buddy face IS the mic (PRD R16). */}
-        <header className="lf-home-header">
+        {/* --------- Shelf: face-out covers (chapter + quick books) --------- */}
+        <ZonedOverlay
+          zone="shelfTop"
+          style={{
+            display: 'flex',
+            gap: 8,
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+        >
+          {chapterBooks.slice(0, 3).map((b) => (
+            <IntentHighlight
+              key={b.id}
+              active={highlightTarget === `book:${b.id}`}
+              style={{ display: 'block' }}
+            >
+              <MatCover
+                story={b}
+                ring={progressRingValue(b, progressMap[b.id])}
+                onClick={() => router.push(`/read/story/${b.id}`)}
+              />
+            </IntentHighlight>
+          ))}
+        </ZonedOverlay>
+
+        <ZonedOverlay
+          zone="shelfBottom"
+          style={{
+            display: 'flex',
+            gap: 8,
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+          }}
+        >
+          {quickStories.slice(0, 3).map((b) => (
+            <IntentHighlight
+              key={b.id}
+              active={highlightTarget === `book:${b.id}`}
+              style={{ display: 'block' }}
+            >
+              <MatCover story={b} onClick={() => router.push(`/read/story/${b.id}`)} />
+            </IntentHighlight>
+          ))}
+        </ZonedOverlay>
+
+        {/* --------- Medallion row (below the shelf → /read/badges) --------- */}
+        <Link
+          href="/read/badges"
+          aria-label={`My badges · ${badgeCount}`}
+          className="lf-press"
+          style={{
+            position: 'absolute',
+            left: `${(ROOM_ZONES.medallions.x / 1180) * 100}%`,
+            top: `${(ROOM_ZONES.medallions.y / 820) * 100}%`,
+            width: `${(ROOM_ZONES.medallions.w / 1180) * 100}%`,
+            height: `${(ROOM_ZONES.medallions.h / 820) * 100}%`,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            gap: 8,
+            padding: '0 8px',
+            borderRadius: 12,
+            textDecoration: 'none',
+            touchAction: 'manipulation',
+          }}
+        >
+          {Array.from({ length: badgeMountCount }).map((_, i) => (
+            <MedallionMount key={i} earned={i < badgeCount} size={44} />
+          ))}
+          <span
+            style={{
+              position: 'absolute',
+              bottom: -22,
+              right: 8,
+              font: '700 14px var(--font-body, serif)',
+              color: 'var(--ink-soft, #6E5B49)',
+              pointerEvents: 'none',
+            }}
+          >
+            My badges · {badgeCount}
+          </span>
+        </Link>
+
+        {/* --------- Writing desk: the story kitchen door --------- */}
+        <button
+          type="button"
+          onClick={() => router.push('/read/create-with-buddy')}
+          aria-label="Make a story with me"
+          className="lf-press"
+          style={{
+            position: 'absolute',
+            left: `${(ROOM_ZONES.desk.x / 1180) * 100}%`,
+            top: `${(ROOM_ZONES.desk.y / 820) * 100}%`,
+            width: `${(ROOM_ZONES.desk.w / 1180) * 100}%`,
+            height: `${(ROOM_ZONES.desk.h / 820) * 100}%`,
+            background: 'transparent',
+            border: '2px dashed color-mix(in oklab, var(--pigment-terracotta) 40%, transparent)',
+            borderRadius: 14,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'center',
+            paddingBottom: 6,
+            font: '700 13px var(--font-body, serif)',
+            color: 'var(--pigment-terracotta, #D95B43)',
+            touchAction: 'manipulation',
+          }}
+        >
+          Make a story with me
+        </button>
+
+        {/* --------- Buddy on the rug (BuddyMic — voice + tap) --------- */}
+        <div
+          style={{
+            position: 'absolute',
+            left: `${(ROOM_ZONES.buddy.x / 1180) * 100}%`,
+            top: `${(ROOM_ZONES.buddy.y / 820) * 100}%`,
+            width: `${(ROOM_ZONES.buddy.w / 1180) * 100}%`,
+            height: `${(ROOM_ZONES.buddy.h / 820) * 100}%`,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: 8,
+          }}
+        >
+          {/* the drawn buddy — a decorative body under the interactive face */}
+          <div style={{ pointerEvents: 'none' }}>
+            <CreatureSprite
+              kind={buddyKind}
+              pose={listening ? 'listening' : 'idle'}
+              size={140}
+            />
+          </div>
           <BuddyMic
             buddy={buddy}
-            size={92}
+            size={72}
             listening={listening}
             onTap={handleBuddyMicTap}
             label={listening ? 'Listening — tap to stop' : 'Tap and talk to your buddy'}
           />
-          <SpeechBubble style={{ font: '700 17px/1.45 var(--font-body)' }}>{speechLine}</SpeechBubble>
-          <div className="suns">
-            <div style={{ font: '700 13px var(--font-body)', color: 'var(--lf-espresso-soft)', marginBottom: 6 }}>
-              My reading suns
-            </div>
-            <SunRow suns={suns} />
-          </div>
-        </header>
-
-        <div className="lf-home-grid">
-          {/* (b) Continue or Today's adventure */}
-          <IntentHighlight
-            active={highlightTarget === 'continue' || (continueBook != null && highlightTarget === `book:${continueBook.id}`)}
-            style={{ display: 'block' }}
-          >
-            <ContinueCard
-              book={continueBook}
-              todaysPick={todaysPick}
-              progress={continueBook ? progressMap[continueBook.id] : undefined}
-              nudge={nudge}
-            />
-          </IntentHighlight>
-
-          {/* (c) My World strip */}
-          <section aria-label="My world" style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <Link
-              href="/read/badges"
-              className="lf-press"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 12,
-                textDecoration: 'none',
-                background: 'var(--lf-cream-card)',
-                border: '1.5px solid var(--lf-cream-line)',
-                borderRadius: 'var(--radius-card)',
-                padding: '8px 14px 8px 8px',
-                boxShadow: 'var(--shadow-warm)',
-                minHeight: 56,
-              }}
-            >
-              <span
-                style={{
-                  width: 54,
-                  height: 54,
-                  borderRadius: 16,
-                  background: 'var(--lf-pastel-lilac)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <Medallion badge={BADGES[0]} size={40} />
-              </span>
-              <span style={{ font: '700 15px var(--font-display)', color: 'var(--lf-espresso)' }}>
-                My badges{' '}
-                <span style={{ font: '600 13px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>· {badgeCount}</span>
-              </span>
-              <span aria-hidden="true" style={{ marginLeft: 'auto', color: 'var(--lf-espresso-faint)', fontSize: 18 }}>
-                ›
-              </span>
-            </Link>
-            <Link
-              href="/read/words"
-              className="lf-press"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 12,
-                textDecoration: 'none',
-                background: 'var(--lf-cream-card)',
-                border: '1.5px solid var(--lf-cream-line)',
-                borderRadius: 'var(--radius-card)',
-                padding: '8px 14px 8px 8px',
-                boxShadow: 'var(--shadow-warm)',
-                minHeight: 56,
-              }}
-            >
-              <span
-                style={{
-                  width: 54,
-                  height: 54,
-                  borderRadius: 16,
-                  background: 'var(--lf-pastel-mint)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                  fontSize: 26,
-                  filter: 'var(--shadow-emoji)',
-                }}
-                aria-hidden="true"
-              >
-                ⭐
-              </span>
-              <span style={{ font: '700 15px var(--font-display)', color: 'var(--lf-espresso)' }}>
-                My words{' '}
-                <span style={{ font: '600 13px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>· {wordCount}</span>
-              </span>
-              <span aria-hidden="true" style={{ marginLeft: 'auto', color: 'var(--lf-espresso-faint)', fontSize: 18 }}>
-                ›
-              </span>
-            </Link>
-          </section>
-
-          {/* (d) Bookshelf — split */}
-          <section className="lf-home-shelf" aria-label="Bookshelf">
-            {shelf.length === 0 ? (
-              <div
-                style={{
-                  padding: 32,
-                  textAlign: 'center',
-                  border: '1.5px dashed var(--lf-cream-line)',
-                  borderRadius: 'var(--radius-card)',
-                }}
-              >
-                <span aria-hidden="true" style={{ fontSize: 54, filter: 'var(--shadow-emoji)' }}>
-                  📚
-                </span>
-                <p style={{ margin: '8px 0 0', font: '700 17px var(--font-display)' }}>Your shelf is warming up</p>
-                <p style={{ margin: '4px 0 0', font: '600 14px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>
-                  New stories appear here when Mom and Dad finish making them ✦
-                </p>
-              </div>
-            ) : (
-              <div className="lf-shelf-columns">
-                <div>
-                  <h3 style={{ margin: '0 0 10px', font: 'var(--text-section)' }}>Chapter books</h3>
-                  <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                    {/* v3 R19 — story kitchen door. Coral outline, buddy face,
-                        "Make a story with me". */}
-                    <MakeAStoryDoor buddy={buddy} onOpen={() => router.push('/read/create-with-buddy')} />
-                    {chapterBooks.length === 0 && (
-                      <p style={{ font: 'var(--text-meta)', color: 'var(--lf-espresso-faint)' }}>
-                        No chapter books yet.
-                      </p>
-                    )}
-                    {chapterBooks.map((b) => (
-                      <IntentHighlight key={b.id} active={highlightTarget === `book:${b.id}`}>
-                        <MatCover
-                          story={b}
-                          ring={progressRingValue(b, progressMap[b.id])}
-                          onClick={() => router.push(`/read/story/${b.id}`)}
-                        />
-                      </IntentHighlight>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h3 style={{ margin: '0 0 10px', font: 'var(--text-section)' }}>Quick stories</h3>
-                  <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                    {quickStories.length === 0 && (
-                      <p style={{ font: 'var(--text-meta)', color: 'var(--lf-espresso-faint)' }}>
-                        No quick stories yet.
-                      </p>
-                    )}
-                    {quickStories.map((b) => (
-                      <IntentHighlight key={b.id} active={highlightTarget === `book:${b.id}`}>
-                        <MatCover story={b} onClick={() => router.push(`/read/story/${b.id}`)} />
-                      </IntentHighlight>
-                    ))}
-                  </div>
-                </div>
-                <p
-                  style={{
-                    gridColumn: '1 / -1',
-                    margin: 0,
-                    font: '600 13.5px var(--font-body)',
-                    color: 'var(--lf-espresso-faint)',
-                  }}
-                >
-                  New stories appear here when Mom and Dad finish making them ✦
-                </p>
-              </div>
-            )}
-          </section>
         </div>
-      </div>
+
+        {/* --------- Speech bubble (above the buddy) --------- */}
+        <div
+          style={{
+            position: 'absolute',
+            left: `${((ROOM_ZONES.buddy.x + 200) / 1180) * 100}%`,
+            top: `${((ROOM_ZONES.buddy.y - 100) / 820) * 100}%`,
+            maxWidth: '32%',
+            pointerEvents: 'none',
+          }}
+        >
+          <SpeechBubble style={{ font: '700 17px/1.45 var(--font-body)' }}>
+            {speechLine}
+          </SpeechBubble>
+        </div>
+
+        {/* --------- Continue / Today's adventure (the COraL action) --------- */}
+        <IntentHighlight
+          active={
+            highlightTarget === 'continue' ||
+            (continueBook != null && highlightTarget === `book:${continueBook.id}`)
+          }
+          style={{
+            position: 'absolute',
+            left: `${(ROOM_ZONES.continue.x / 1180) * 100}%`,
+            top: `${(ROOM_ZONES.continue.y / 820) * 100}%`,
+            width: `${(ROOM_ZONES.continue.w / 1180) * 100}%`,
+            display: 'block',
+          }}
+        >
+          <ContinueCard
+            book={continueBook}
+            todaysPick={todaysPick}
+            progress={continueBook ? progressMap[continueBook.id] : undefined}
+          />
+        </IntentHighlight>
+      </RoomScene>
 
       <PillNav active="home" />
-    </KidScreen>
+    </LightingProvider>
   )
 }
 
-function progressRingValue(book: Book, prog: { chapter: number; page: number } | undefined): number | undefined {
+// ------------------------------------------------------------------
+
+function progressRingValue(
+  book: Book,
+  prog: { chapter: number; page: number } | undefined,
+): number | undefined {
   if (!prog) return undefined
   const totalChapters = Math.max(1, book.chapters.length)
   return Math.min(1, prog.chapter / totalChapters)
 }
 
-// v3 R19 — the "story kitchen door" on the shelf. Same footprint as a book
-// cover so it slots in naturally, but coral-outlined + a buddy face + the
-// invitation copy. Tapping opens the kitchen.
-function MakeAStoryDoor({ buddy, onOpen }: { buddy: BuddyDef; onOpen: () => void }) {
-  const size = 128
-  return (
-    <button
-      type="button"
-      className="lf-press"
-      onClick={onOpen}
-      aria-label="Make a story with me"
-      style={{
-        border: '2.5px solid var(--lf-coral)',
-        background: 'var(--lf-cream-card)',
-        borderRadius: 'var(--radius-cover)',
-        padding: 9,
-        cursor: 'pointer',
-        position: 'relative',
-        boxShadow: 'var(--shadow-coral-glow)',
-        display: 'block',
-        textAlign: 'left',
-        flexShrink: 0,
-      }}
-    >
-      <div
-        style={{
-          width: size,
-          height: size,
-          borderRadius: 12,
-          background: 'linear-gradient(135deg, var(--lf-pastel-peach), var(--lf-cream-card))',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <BuddyFace buddy={buddy} size={92} />
-      </div>
-      <div style={{ width: size, marginTop: 7 }}>
-        <div style={{ font: '700 14px/1.25 var(--font-display)', color: 'var(--lf-coral-deep)' }}>
-          Make a story with me
-        </div>
-        <div style={{ font: 'var(--text-meta)', color: 'var(--lf-espresso-soft)', marginTop: 2 }}>
-          Tap to begin
-        </div>
-      </div>
-    </button>
-  )
-}
-
-// Wrap MatCover so it navigates to /read/story/<id>. MatCover accepts an
-// onClick — this thin wrapper is where the routing decision lives.
-function _NavCover(_props: unknown) { return null } // (kept for potential extraction)
-
 function ContinueCard({
   book,
   todaysPick,
   progress,
-  nudge,
 }: {
   book: Book | undefined
   todaysPick?: Book | undefined
   progress: { chapter: number; page: number } | undefined
-  nudge: string
 }) {
-  if (!book) {
-    // "Today's adventure" — render the deterministic daily pick with real
-    // cover art + coral ▶ CTA. Falls back to a plain hint if the shelf is
-    // completely empty.
-    if (!todaysPick) {
-      return (
-        <section
-          aria-label="Today's adventure"
-          style={{
-            background: 'var(--lf-cream-card)',
-            border: '1.5px solid var(--lf-cream-line)',
-            borderRadius: 'var(--radius-card)',
-            padding: 18,
-            display: 'flex',
-            gap: 20,
-            alignItems: 'center',
-            boxShadow: 'var(--shadow-warm)',
-          }}
-        >
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div
-              style={{
-                font: '700 12px var(--font-body)',
-                color: 'var(--lf-espresso-faint)',
-                textTransform: 'uppercase',
-                letterSpacing: '.08em',
-              }}
-            >
-              Today&rsquo;s adventure
-            </div>
-            <h2 style={{ margin: '4px 0 6px', font: '700 22px/1.15 var(--font-display)' }}>
-              Your shelf is warming up
-            </h2>
-            <p style={{ margin: 0, font: '600 14px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>{nudge}</p>
-          </div>
-        </section>
-      )
-    }
-    const wash = todaysPick.chapters[0]?.wash ?? todaysPick.wash ?? 'honey'
+  const nudge = 'Read one chapter and find a new star word.'
+
+  // Empty shelf.
+  if (!book && !todaysPick) {
     return (
       <section
         aria-label="Today's adventure"
         style={{
-          background: 'var(--lf-cream-card)',
-          border: '1.5px solid var(--lf-cream-line)',
-          borderRadius: 'var(--radius-card)',
-          padding: 18,
-          display: 'flex',
-          gap: 20,
-          alignItems: 'center',
-          boxShadow: 'var(--shadow-warm)',
+          background: 'var(--paper-bright, #F9F2E3)',
+          border: '2.5px solid var(--pigment-terracotta, #D95B43)',
+          borderRadius: 18,
+          padding: 16,
+          boxShadow:
+            '0 0 0 4px color-mix(in oklab, var(--pigment-terracotta) 18%, transparent)',
         }}
       >
-        <WashScene
-          wash={wash}
-          img={todaysPick.coverImage}
-          emojis={todaysPick.coverEmoji ? [todaysPick.coverEmoji] : []}
-          doodle={!todaysPick.coverImage}
-          style={{ width: 160, height: 130, borderRadius: 'var(--radius-cover)', flexShrink: 0 }}
-        />
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div
-            style={{
-              font: '700 12px var(--font-body)',
-              color: 'var(--lf-espresso-faint)',
-              textTransform: 'uppercase',
-              letterSpacing: '.08em',
-            }}
-          >
-            Today&rsquo;s adventure
-          </div>
-          <h2 style={{ margin: '4px 0 6px', font: '700 22px/1.15 var(--font-display)' }}>{todaysPick.title}</h2>
-          <p style={{ margin: 0, font: '600 14px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>{nudge}</p>
-        </div>
-        <Link
-          href={`/read/story/${todaysPick.id}`}
-          aria-label={`Start ${todaysPick.title}`}
+        <div
           style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 8,
-            textDecoration: 'none',
+            font: '700 12px var(--font-body)',
+            color: 'var(--ink-faint, #97836B)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
           }}
         >
+          Today&rsquo;s adventure
+        </div>
+        <h2
+          style={{
+            margin: '4px 0 6px',
+            font: '700 20px/1.15 var(--font-display, serif)',
+            color: 'var(--ink, #46362A)',
+          }}
+        >
+          Your shelf is warming up
+        </h2>
+        <p
+          style={{
+            margin: 0,
+            font: '600 14px var(--font-body, serif)',
+            color: 'var(--ink-soft, #6E5B49)',
+          }}
+        >
+          {nudge}
+        </p>
+      </section>
+    )
+  }
+
+  const target = book ?? todaysPick!
+  const wash = target.chapters[0]?.wash ?? target.wash ?? 'honey'
+  const ringValue = book ? (progressRingValue(book, progress) ?? 0) : 0
+  const chIdx = book ? Math.min(book.chapters.length - 1, progress?.chapter ?? 0) : 0
+  const chapter = book?.chapters[chIdx]
+  const label = book
+    ? book.kind === 'chapter' && chapter?.title
+      ? `Chapter ${chIdx + 1} · ${chapter.title}`
+      : 'Keep going'
+    : "Today's adventure"
+
+  return (
+    <section
+      aria-label={book ? 'Continue reading' : "Today's adventure"}
+      style={{
+        background: 'var(--paper-bright, #F9F2E3)',
+        border: '2.5px solid var(--pigment-terracotta, #D95B43)',
+        borderRadius: 18,
+        padding: 14,
+        display: 'flex',
+        gap: 14,
+        alignItems: 'center',
+        boxShadow:
+          '0 0 0 4px color-mix(in oklab, var(--pigment-terracotta) 18%, transparent)',
+      }}
+    >
+      <WashScene
+        wash={wash}
+        img={target.coverImage}
+        emojis={target.coverEmoji ? [target.coverEmoji] : []}
+        doodle={!target.coverImage}
+        style={{
+          width: 118,
+          height: 96,
+          borderRadius: 12,
+          flexShrink: 0,
+        }}
+      />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div
+          style={{
+            font: '700 11px var(--font-body)',
+            color: 'var(--ink-faint, #97836B)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
+          }}
+        >
+          {book ? 'Keep going' : "Today's adventure"}
+        </div>
+        <h2
+          style={{
+            margin: '2px 0 4px',
+            font: '700 18px/1.15 var(--font-display, serif)',
+            color: 'var(--ink, #46362A)',
+          }}
+        >
+          {target.title}
+        </h2>
+        <p
+          style={{
+            margin: 0,
+            font: '600 13px var(--font-body, serif)',
+            color: 'var(--ink-soft, #6E5B49)',
+          }}
+        >
+          {book ? label : nudge}
+        </p>
+      </div>
+      <Link
+        href={`/read/story/${target.id}`}
+        aria-label={book ? 'Continue the story' : `Start ${target.title}`}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 6,
+          textDecoration: 'none',
+        }}
+      >
+        <div style={{ position: 'relative', width: 56, height: 56 }}>
+          {book && <ProgressRing value={ringValue} size={56} stroke={5} />}
           <span
             className="lf-press"
             style={{
-              width: 64,
-              height: 64,
+              position: 'absolute',
+              inset: book ? 6 : 0,
               borderRadius: '50%',
-              background: 'var(--lf-coral)',
+              background: 'var(--pigment-terracotta, #D95B43)',
               color: '#fff',
-              fontSize: 21,
-              boxShadow: 'var(--shadow-coral-glow)',
+              fontSize: 18,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -674,104 +694,16 @@ function ContinueCard({
           >
             ▶
           </span>
-          <span style={{ font: '700 12.5px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>Start!</span>
-        </Link>
-      </section>
-    )
-  }
-
-  const chIdx = Math.min(book.chapters.length - 1, progress?.chapter ?? 0)
-  const chapter = book.chapters[chIdx]
-  const ringValue = progressRingValue(book, progress) ?? 0
-  const label = book.kind === 'chapter' && chapter?.title ? `Chapter ${chIdx + 1} · ${chapter.title}` : 'Keep going'
-  const wash = chapter?.wash ?? book.wash ?? 'honey'
-
-  return (
-    <section
-      aria-label="Continue reading"
-      style={{
-        background: 'var(--lf-cream-card)',
-        border: '1.5px solid var(--lf-cream-line)',
-        borderRadius: 'var(--radius-card)',
-        padding: 18,
-        display: 'flex',
-        gap: 20,
-        alignItems: 'center',
-        boxShadow: 'var(--shadow-warm)',
-      }}
-    >
-      <WashScene
-        wash={wash}
-        img={book.coverImage}
-        emojis={book.coverEmoji ? [book.coverEmoji] : []}
-        doodle={!book.coverImage}
-        style={{ width: 160, height: 130, borderRadius: 'var(--radius-cover)', flexShrink: 0 }}
-      />
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div
+        </div>
+        <span
           style={{
-            font: '700 12px var(--font-body)',
-            color: 'var(--lf-espresso-faint)',
-            textTransform: 'uppercase',
-            letterSpacing: '.08em',
+            font: '700 11px var(--font-body)',
+            color: 'var(--ink-soft, #6E5B49)',
           }}
         >
-          Keep going
-        </div>
-        <h2 style={{ margin: '4px 0 6px', font: '700 22px/1.15 var(--font-display)' }}>{book.title}</h2>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            font: '600 14px var(--font-body)',
-            color: 'var(--lf-espresso-soft)',
-          }}
-        >
-          {book.chapters.length > 1 && (
-            <ChapterDots
-              chapters={book.chapters.map((c, i) => ({
-                status: i < chIdx ? 'done' : i === chIdx ? 'current' : (c.status ?? undefined),
-              }))}
-            />
-          )}
-          {label}
-        </div>
-        <p style={{ margin: '10px 0 0', font: '600 14px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>
-          Read one chapter and find a new star word.
-        </p>
-      </div>
-      <Link
-        href={`/read/story/${book.id}`}
-        aria-label="Continue the story"
-        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, textDecoration: 'none' }}
-      >
-        <div style={{ position: 'relative', width: 64, height: 64 }}>
-          <ProgressRing value={ringValue} size={64} stroke={6} />
-          <span
-            className="lf-press"
-            style={{
-              position: 'absolute',
-              inset: 7,
-              borderRadius: '50%',
-              background: 'var(--lf-coral)',
-              color: '#fff',
-              fontSize: 21,
-              boxShadow: 'var(--shadow-coral-glow)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            ▶
-          </span>
-        </div>
-        <span style={{ font: '700 12.5px var(--font-body)', color: 'var(--lf-espresso-soft)' }}>Read!</span>
+          {book ? 'Read!' : 'Start!'}
+        </span>
       </Link>
     </section>
   )
 }
-
-// Silence unused-var warning for the Confetti import (used from other v2 pages;
-// we re-import via components to keep the tree-shake grouped).
-void Confetti
