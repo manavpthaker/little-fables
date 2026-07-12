@@ -41,7 +41,12 @@ import type {
   KidInterview,
   KidInterviewAnswer,
 } from '@/types/story'
-import { BigMic, BuddyFace, KidScreen, SpeechBubble } from '../components'
+import { KidScreen, SpeechBubble } from '../components'
+import { CreatureSprite, KitchenBack, MicIcon } from '../art'
+import type { BuddyKind } from '../art'
+import { loadProfile } from '@/lib/read/profile'
+import { loadShelf } from '@/lib/read/packs'
+import { loadProgress } from '@/lib/read/storage'
 import { InterviewPhase } from './InterviewPhase'
 import { WritingMoment } from './WritingMoment'
 
@@ -147,7 +152,7 @@ export default function CreateWithBuddy() {
     ;(async () => {
       const bs = loadBuddy()
       if (!bs.activeId) {
-        router.replace('/read/buddy')
+        router.replace('/read/arrival')
         return
       }
       setBuddy(getBuddy(bs.activeId))
@@ -592,6 +597,138 @@ export default function CreateWithBuddy() {
      
   }, [phase, buddy])
 
+  // ---- Seed suggestion chips (touch-balance) ----
+  // Interests from profile + up to two recently-read shelf titles + wildcards.
+  // Rendered co-present with the mic on the seed phase so the child can tap
+  // instead of talking. Handler routes through the same seed transcript path
+  // so the redirect check still runs.
+  const seedSuggestions = useMemo(() => {
+    const out: string[] = []
+    try {
+      const p = loadProfile()
+      const interests = (p.interests ?? []).slice(0, 3)
+      for (const i of interests) if (i) out.push(i)
+    } catch {
+      /* profile is best-effort */
+    }
+    try {
+      const shelf = loadShelf()
+      const prog = loadProgress()
+      const touched = shelf
+        .map((b) => ({ b, u: prog[b.id]?.updatedAt ?? 0 }))
+        .filter((x) => x.u > 0)
+        .sort((a, b) => b.u - a.u)
+        .slice(0, 2)
+      for (const t of touched) out.push(`another ${t.b.title}-like`)
+    } catch {
+      /* shelf is best-effort */
+    }
+    // Wildcards — always at least these so we hit 4-6 chips.
+    for (const w of ['a hero', 'a helper', 'something silly']) out.push(w)
+    // De-dupe, cap 6.
+    const seen = new Set<string>()
+    const dedup: string[] = []
+    for (const s of out) {
+      const k = s.toLowerCase()
+      if (seen.has(k)) continue
+      seen.add(k)
+      dedup.push(s)
+      if (dedup.length >= 6) break
+    }
+    return dedup
+  }, [])
+
+  const pickSeedChip = useCallback(
+    (chipText: string) => {
+      // Stop any live listener / speech; route through the same seed path.
+      listenRef.current?.stop()
+      listenRef.current = null
+      speakRef.current?.cancel()
+      setSeed(chipText)
+      void handleSeedTranscript(chipText)
+    },
+    [handleSeedTranscript],
+  )
+
+  const acceptRedirect = useCallback(() => {
+    listenRef.current?.stop()
+    listenRef.current = null
+    speakRef.current?.cancel()
+    const nextSeed = redirectSuggestion
+      ? `${seed}\n(Reframed with buddy: ${redirectSuggestion})`
+      : seed
+    setSeed(nextSeed)
+    const line = "Perfect. Let's build it."
+    setBuddyLine(line)
+    speakRef.current = speak(line, {
+      onEnd: () => {
+        if (!cancelledRef.current) setPhase('interview')
+      },
+    })
+    setTimeout(() => {
+      if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
+    }, 2200)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [seed, redirectSuggestion, phase])
+
+  const declineRedirect = useCallback(() => {
+    listenRef.current?.stop()
+    listenRef.current = null
+    speakRef.current?.cancel()
+    const line = "Okay. Let's build YOUR way."
+    setBuddyLine(line)
+    speakRef.current = speak(line, {
+      onEnd: () => {
+        if (!cancelledRef.current) setPhase('interview')
+      },
+    })
+    setTimeout(() => {
+      if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
+    }, 2000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase])
+
+  const pickCorrectionChip = useCallback(
+    (chipText: string) => {
+      listenRef.current?.stop()
+      listenRef.current = null
+      speakRef.current?.cancel()
+      void applyCorrection(chipText)
+    },
+    [applyCorrection],
+  )
+
+  const skipCorrection = useCallback(() => {
+    listenRef.current?.stop()
+    listenRef.current = null
+    speakRef.current?.cancel()
+    void kickOffGeneration()
+  }, [kickOffGeneration])
+
+  const goBack = useCallback(() => {
+    // Kitchen back: phase → previous phase (or /read at seed).
+    listenRef.current?.stop()
+    listenRef.current = null
+    speakRef.current?.cancel()
+    if (phase === 'seed' || phase === 'capped' || phase === 'failed') {
+      router.push('/read')
+      return
+    }
+    if (phase === 'redirect-offer' || phase === 'interview') {
+      setPhase('seed')
+      return
+    }
+    if (phase === 'correction') {
+      setPhase('readback')
+      return
+    }
+    if (phase === 'readback') {
+      setPhase('interview')
+      return
+    }
+    router.push('/read')
+  }, [phase, router])
+
   // ---- Readback tap-confirm handlers (touch-balance directive) ----
   // The mic still opens (voice equivalent) — chips just make it decidable
   // without waiting.
@@ -630,6 +767,7 @@ export default function CreateWithBuddy() {
       <KidScreen label="Story kitchen" style={{ padding: 0 }}>
         <div className="lf-room" style={{ position: 'absolute', inset: 0 }}>
           <DeskChrome />
+          <KitchenBackButton onTap={goBack} />
           <InterviewPhase
             buddy={buddy}
             seed={seed}
@@ -644,6 +782,8 @@ export default function CreateWithBuddy() {
 
   const showReadbackControls = phase === 'readback'
   const showMic = phase === 'seed' || phase === 'redirect-offer' || phase === 'correction' || phase === 'readback'
+  const buddyKind: BuddyKind = (buddy.id as BuddyKind) ?? 'bramble'
+  const spritePose = phase === 'redirect-offer' ? 'pointing' : micListening ? 'listening' : 'idle'
 
   // All the buddy-speak phases share a common layout — the writing desk.
   return (
@@ -665,13 +805,151 @@ export default function CreateWithBuddy() {
         }}
       >
         <DeskChrome />
+        <KitchenBackButton onTap={goBack} />
 
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 18, maxWidth: 720, flexWrap: 'wrap', justifyContent: 'center', zIndex: 2 }}>
-          <BuddyFace buddy={buddy} size={116} />
+          <div style={{ pointerEvents: 'none' }}>
+            <CreatureSprite kind={buddyKind} pose={spritePose} size={140} />
+          </div>
           <SpeechBubble big style={{ marginBottom: 12, maxWidth: 520 }}>
             {buddyLine || cp(buddy.greet, energy)}
           </SpeechBubble>
         </div>
+
+        {/* Seed phase: drawn suggestion chips co-present with the mic. */}
+        {phase === 'seed' && seedSuggestions.length > 0 && (
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 12,
+              justifyContent: 'center',
+              maxWidth: 720,
+              zIndex: 2,
+            }}
+          >
+            {seedSuggestions.map((chip) => (
+              <button
+                key={chip}
+                type="button"
+                onClick={() => pickSeedChip(chip)}
+                className="lf-press lf-drawn-border"
+                style={{
+                  minHeight: 56,
+                  padding: '10px 18px',
+                  borderRadius: '14px 18px 15px 17px',
+                  background: 'var(--paper-bright, #F9F2E3)',
+                  backgroundImage: 'var(--texture-paper)',
+                  color: 'var(--ink, #46362A)',
+                  border: 'none',
+                  font: '700 16px var(--font-body)',
+                  cursor: 'pointer',
+                  fontStyle: 'italic',
+                  touchAction: 'manipulation',
+                }}
+              >
+                {chip}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Redirect-offer phase: two big tap answers + voice still active. */}
+        {phase === 'redirect-offer' && (
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center', zIndex: 2 }}>
+            <button
+              type="button"
+              onClick={acceptRedirect}
+              className="lf-press lf-drawn-border lf-drawn-border--bold"
+              style={{
+                minHeight: 68,
+                padding: '14px 28px',
+                borderRadius: '22px 26px 23px 25px',
+                background: 'var(--pigment-terracotta, #D95B43)',
+                backgroundImage: 'var(--texture-paper)',
+                color: '#F9F2E3',
+                border: 'none',
+                font: '700 20px var(--font-display)',
+                boxShadow: '0 8px 18px rgba(217,91,67,.4)',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+              }}
+            >
+              {redirectSuggestion ? `Yes, ${redirectSuggestion.split(/\s+/).slice(0, 3).join(' ')}!` : 'Yes, let’s!'}
+            </button>
+            <button
+              type="button"
+              onClick={declineRedirect}
+              className="lf-press lf-drawn-border"
+              style={{
+                minHeight: 68,
+                padding: '14px 26px',
+                borderRadius: '22px 26px 23px 25px',
+                background: 'var(--paper-bright, #F9F2E3)',
+                backgroundImage: 'var(--texture-paper)',
+                color: 'var(--ink, #46362A)',
+                border: 'none',
+                font: '700 19px var(--font-display)',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+              }}
+            >
+              Nah, keep my idea
+            </button>
+          </div>
+        )}
+
+        {/* Correction phase: 3 chips + a "never mind" affordance. */}
+        {phase === 'correction' && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', zIndex: 2 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', maxWidth: 640 }}>
+              {[
+                { label: 'The character', text: 'change the character' },
+                { label: 'The place', text: 'change the place' },
+                { label: 'The problem', text: 'change the problem' },
+              ].map((c) => (
+                <button
+                  key={c.label}
+                  type="button"
+                  onClick={() => pickCorrectionChip(c.text)}
+                  className="lf-press lf-drawn-border"
+                  style={{
+                    minHeight: 56,
+                    padding: '10px 18px',
+                    borderRadius: '14px 18px 15px 17px',
+                    background: 'var(--paper-bright, #F9F2E3)',
+                    backgroundImage: 'var(--texture-paper)',
+                    color: 'var(--ink, #46362A)',
+                    border: 'none',
+                    font: '700 16px var(--font-body)',
+                    cursor: 'pointer',
+                    fontStyle: 'italic',
+                    touchAction: 'manipulation',
+                  }}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              onClick={skipCorrection}
+              className="lf-press"
+              style={{
+                background: 'transparent',
+                border: 'none',
+                font: '700 14px var(--font-body)',
+                color: 'var(--ink-soft, #6E5B49)',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+                padding: '6px 10px',
+                touchAction: 'manipulation',
+              }}
+            >
+              Never mind, generate it as-is
+            </button>
+          </div>
+        )}
 
         {/* Readback: big tap-confirm dialog + voice equivalent (mic still visible). */}
         {showReadbackControls && (
@@ -718,15 +996,34 @@ export default function CreateWithBuddy() {
 
         {showMic && (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, zIndex: 2 }}>
-            <BigMic
-              size={104}
-              listening={micListening}
-              onTap={() => {
+            <button
+              type="button"
+              aria-label={micListening ? 'Tap when done' : 'Say it out loud'}
+              onClick={() => {
                 if (micListening) listenRef.current?.stop()
               }}
-              label={micListening ? 'Tap when done' : 'Say it out loud'}
               disabled={!micListening}
-            />
+              className="lf-press lf-drawn-border lf-drawn-border--bold"
+              style={{
+                width: 104,
+                height: 104,
+                borderRadius: '50% 48% 52% 50%',
+                border: 'none',
+                background: micListening
+                  ? 'var(--pigment-terracotta-deep, #C7452F)'
+                  : 'var(--pigment-terracotta, #D95B43)',
+                backgroundImage: 'var(--texture-paper)',
+                color: '#F9F2E3',
+                boxShadow: '0 8px 20px rgba(217,91,67,.4)',
+                cursor: micListening ? 'pointer' : 'default',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                touchAction: 'manipulation',
+              }}
+            >
+              <MicIcon size={48} />
+            </button>
             <div
               style={{
                 font: '600 15px var(--font-body)',
@@ -787,6 +1084,38 @@ export default function CreateWithBuddy() {
         )}
       </div>
     </KidScreen>
+  )
+}
+
+/* ================= KitchenBackButton =================
+ * The drawn door-edge in the top-left corner of every kitchen screen. Tap
+ * = phase-aware back (owned by the caller). Positioned absolutely so it
+ * never fights the flex-centered content.
+ */
+function KitchenBackButton({ onTap }: { onTap: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onTap}
+      aria-label="Back"
+      className="lf-press"
+      style={{
+        position: 'absolute',
+        top: 18,
+        left: 18,
+        width: 56,
+        height: 56,
+        padding: 0,
+        border: 'none',
+        background: 'transparent',
+        cursor: 'pointer',
+        zIndex: 5,
+        touchAction: 'manipulation',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+    >
+      <KitchenBack size={56} />
+    </button>
   )
 }
 

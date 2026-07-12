@@ -258,7 +258,7 @@ export async function dispatchIntent(
     case 'switch_buddy':
       resetMiss(surface)
       speakLine(result.buddyLine)
-      goSafe('/read/buddy')
+      goSafe('/read/arrival')
       return
 
     case 'make_story':

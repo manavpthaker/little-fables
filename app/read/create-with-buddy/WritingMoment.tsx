@@ -11,7 +11,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { speak, type SpeakHandle } from '@/lib/read/speech'
 import type { BuddyDef, KidInterview } from '@/types/story'
-import { BuddyFace, KidScreen } from '../components'
+import { KidScreen } from '../components'
+import { CreatureSprite } from '../art'
+import type { BuddyKind } from '../art'
 
 interface WritingMomentProps {
   buddy: BuddyDef
@@ -120,7 +122,11 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
               flexShrink: 0,
             }}
           >
-            <BuddyFace buddy={buddy} size={140} />
+            <CreatureSprite
+              kind={((buddy.id as BuddyKind) ?? 'bramble') as BuddyKind}
+              pose="pointing"
+              size={140}
+            />
             <div
               style={{
                 font: '600 15px var(--font-body)',

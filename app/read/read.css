@@ -142,6 +142,49 @@
   --glow-lamplight: rgba(243, 199, 122, 0.6);
 }
 
+/* ==============================================================
+   v3.1 clock-lighting overlays.
+   The drawn room art is a static SVG; the lighting registers it via CSS
+   custom properties (see lib/read/lighting.ts). These classes are the
+   layer stack the LightingProvider paints through — window sky rect, sun
+   and moon discs, ambient wash, indigo lantern overlay, warm-gold pools.
+   Every layer is pointer-events: none; taps only reach the overlay layer.
+   ============================================================== */
+.lf-room-window-sky,
+.lf-room-ambient,
+.lf-room-lantern-overlay,
+.lf-room-pool,
+.lf-room-sun,
+.lf-room-moon {
+  pointer-events: none;
+}
+
+/* Ambient wash — sits above the drawn art but below tap-targets. The
+   background comes from --light-ambient which the LightingProvider sets
+   per keyframe. Blended multiply so it tints rather than obscures. */
+.lf-room-ambient {
+  z-index: 1;
+}
+.lf-room-lantern-overlay {
+  z-index: 1;
+}
+.lf-room-pool {
+  z-index: 1;
+}
+.lf-room-window-sky {
+  z-index: 1;
+}
+
+/* Reduced-motion snap: skip the 900ms cross-fades. */
+[data-lighting-snap='true'] .lf-room-window-sky,
+[data-lighting-snap='true'] .lf-room-ambient,
+[data-lighting-snap='true'] .lf-room-lantern-overlay,
+[data-lighting-snap='true'] .lf-room-pool,
+[data-lighting-snap='true'] .lf-room-sun,
+[data-lighting-snap='true'] .lf-room-moon {
+  transition: none !important;
+}
+
 /* Paper / card grounds — every surface gets fiber. */
 .lf-room .lf-paper {
   background-color: var(--surface-ground);

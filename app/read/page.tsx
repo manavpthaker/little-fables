@@ -32,7 +32,6 @@ import {
   BuddyMic,
   IntentHighlight,
   IntentToast,
-  MatCover,
   OfflineBanner,
   PillNav,
   ProgressRing,
@@ -53,8 +52,10 @@ import { pullAll } from '@/lib/read/sync'
 import type { Book, BuddyDef } from '@/types/story'
 import { LightingProvider } from './room/LightingProvider'
 import { RoomScene, ZonedOverlay, ROOM_ZONES } from './room/RoomScene'
-import { CreatureSprite, MedallionMount, StarWordPin, SunPin } from './art'
+import { BookCoverArt, CreatureSprite, MedallionMount, StarWordPin, SunPin } from './art'
 import type { BuddyKind } from './art'
+import { useLighting } from '@/lib/read/useLighting'
+import type { LightingKeyframe } from '@/lib/read/lighting'
 
 type Suns = ReturnType<typeof currentWeekSuns>
 type ProgressEntry = { chapter: number; page: number; updatedAt: number }
@@ -77,7 +78,7 @@ export default function Home() {
   useEffect(() => {
     const bs = loadBuddy()
     if (bs.activeId === null) {
-      router.replace('/read/buddy')
+      router.replace('/read/arrival')
       return
     }
     setBuddy(getBuddy(bs.activeId))
@@ -154,13 +155,17 @@ export default function Home() {
     }
   }, [shelf, progressMap])
 
+  // v3.1: the buddy's speech tracks the real clock. We prefer the buddy's own
+  // greet line at dawn/morning (it's built for that beat), but past midday we
+  // shift to a daypart-shaped line so 8am and 8pm never feel the same.
+  const lighting = useLighting()
   const speechLine = useMemo(() => {
     if (callback && choiceLogLen > 0) return callback
-    const greet = cp(buddy.greet, energy)
+    const greet = daypartGreet(lighting.keyframe, buddy, energy)
     if (continueBook) return `${greet} Let's keep reading ${continueBook.title}!`
     if (shelf.length > 0) return `${greet} Pick a story from your shelf!`
     return greet
-  }, [buddy, energy, callback, choiceLogLen, continueBook, shelf.length])
+  }, [buddy, energy, callback, choiceLogLen, continueBook, shelf.length, lighting.keyframe])
 
   // ---- Voice intent layer (PRD R16/R17/R18) — preserved from v2 ----
   const [listening, setListening] = useState(false)
@@ -343,49 +348,38 @@ export default function Home() {
           </span>
         </Link>
 
-        {/* --------- Shelf: face-out covers (chapter + quick books) --------- */}
+        {/* --------- Shelf: face-out DRAWN covers (chapter + quick books) --------- */}
+        {/* v3.1 — no white MatCover cards. The shelf is a paged, swipeable row
+             of drawn book covers. Each row scrolls horizontally with visible
+             page-dot affordance so extra books are reachable by touch. */}
         <ZonedOverlay
           zone="shelfTop"
           style={{
-            display: 'flex',
-            gap: 8,
-            alignItems: 'center',
-            justifyContent: 'flex-start',
+            display: 'block',
+            overflow: 'visible',
           }}
         >
-          {chapterBooks.slice(0, 3).map((b) => (
-            <IntentHighlight
-              key={b.id}
-              active={highlightTarget === `book:${b.id}`}
-              style={{ display: 'block' }}
-            >
-              <MatCover
-                story={b}
-                ring={progressRingValue(b, progressMap[b.id])}
-                onClick={() => router.push(`/read/story/${b.id}`)}
-              />
-            </IntentHighlight>
-          ))}
+          <ShelfRow
+            books={chapterBooks}
+            highlightId={highlightTarget}
+            progressMap={progressMap}
+            onOpen={(id) => router.push(`/read/story/${id}`)}
+          />
         </ZonedOverlay>
 
         <ZonedOverlay
           zone="shelfBottom"
           style={{
-            display: 'flex',
-            gap: 8,
-            alignItems: 'center',
-            justifyContent: 'flex-start',
+            display: 'block',
+            overflow: 'visible',
           }}
         >
-          {quickStories.slice(0, 3).map((b) => (
-            <IntentHighlight
-              key={b.id}
-              active={highlightTarget === `book:${b.id}`}
-              style={{ display: 'block' }}
-            >
-              <MatCover story={b} onClick={() => router.push(`/read/story/${b.id}`)} />
-            </IntentHighlight>
-          ))}
+          <ShelfRow
+            books={quickStories}
+            highlightId={highlightTarget}
+            progressMap={progressMap}
+            onOpen={(id) => router.push(`/read/story/${id}`)}
+          />
         </ZonedOverlay>
 
         {/* --------- Medallion row (below the shelf → /read/badges) --------- */}
@@ -539,6 +533,31 @@ function progressRingValue(
   return Math.min(1, prog.chapter / totalChapters)
 }
 
+// v3.1 P1-6 — the buddy's greeting keys off the clock so 8am and 8pm never
+// feel the same. Dawn / morning keep the buddy's own "good morning" line
+// (which each buddy defines); midday+ shift to daypart-shaped lines. Real
+// callback lines from world-memory always win (handled at the caller).
+function daypartGreet(
+  keyframe: LightingKeyframe,
+  buddy: BuddyDef,
+  energy: 'bouncy' | 'calm',
+): string {
+  switch (keyframe) {
+    case 'dawn':
+    case 'morning':
+      return cp(buddy.greet, energy)
+    case 'midday':
+      return 'What a bright day for a story.'
+    case 'golden':
+      return "The light's just right for a story."
+    case 'dusk':
+      return 'Story time in the almost-dark?'
+    case 'night':
+    default:
+      return 'One more before the moon says goodnight?'
+  }
+}
+
 function ContinueCard({
   book,
   todaysPick,
@@ -567,7 +586,7 @@ function ContinueCard({
         <div
           style={{
             font: '700 12px var(--font-body)',
-            color: 'var(--ink-faint, #97836B)',
+            color: '#97836B',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
           }}
@@ -578,7 +597,10 @@ function ContinueCard({
           style={{
             margin: '4px 0 6px',
             font: '700 20px/1.15 var(--font-display, serif)',
-            color: 'var(--ink, #46362A)',
+            // v3.1 P2-11 — ink-locked: --ink flips to warm-light on the lantern
+            // register, but this card lives on cream in every register, so we
+            // pin to the warm-brown ink.
+            color: '#46362A',
           }}
         >
           Your shelf is warming up
@@ -587,7 +609,7 @@ function ContinueCard({
           style={{
             margin: 0,
             font: '600 14px var(--font-body, serif)',
-            color: 'var(--ink-soft, #6E5B49)',
+            color: '#6E5B49',
           }}
         >
           {nudge}
@@ -638,7 +660,7 @@ function ContinueCard({
         <div
           style={{
             font: '700 11px var(--font-body)',
-            color: 'var(--ink-faint, #97836B)',
+            color: '#97836B',
             textTransform: 'uppercase',
             letterSpacing: '.08em',
           }}
@@ -649,7 +671,10 @@ function ContinueCard({
           style={{
             margin: '2px 0 4px',
             font: '700 18px/1.15 var(--font-display, serif)',
-            color: 'var(--ink, #46362A)',
+            // v3.1 P2-11 — ink-locked: --ink flips to warm-light on the lantern
+            // register, but this card lives on cream in every register, so we
+            // pin to the warm-brown ink.
+            color: '#46362A',
           }}
         >
           {target.title}
@@ -658,7 +683,7 @@ function ContinueCard({
           style={{
             margin: 0,
             font: '600 13px var(--font-body, serif)',
-            color: 'var(--ink-soft, #6E5B49)',
+            color: '#6E5B49',
           }}
         >
           {book ? label : nudge}
@@ -667,12 +692,18 @@ function ContinueCard({
       <Link
         href={`/read/story/${target.id}`}
         aria-label={book ? 'Continue the story' : `Start ${target.title}`}
+        // v3.1 P0-4 — Start link floats above any decorative overlay in the
+        // Continue card so it is always clickable, and is a positioned element
+        // so `z-index` is honored.
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: 6,
           textDecoration: 'none',
+          position: 'relative',
+          zIndex: 2,
+          pointerEvents: 'auto',
         }}
       >
         <div style={{ position: 'relative', width: 56, height: 56 }}>
@@ -698,12 +729,189 @@ function ContinueCard({
         <span
           style={{
             font: '700 11px var(--font-body)',
-            color: 'var(--ink-soft, #6E5B49)',
+            color: '#6E5B49',
           }}
         >
           {book ? 'Read!' : 'Start!'}
         </span>
       </Link>
     </section>
+  )
+}
+
+/* ================= ShelfRow =================
+ * v3.1 P0-4 — face-out drawn covers, browsable by touch. No overflow clipping;
+ * horizontal pan via a small paged carousel. Each cover is its own button with
+ * `aria-label={book.title}` (P2-13). If more than `pageSize` books fit the row,
+ * drawn arrows + a page-dot indicator are shown so extras are reachable-by-touch.
+ */
+function ShelfRow({
+  books,
+  highlightId,
+  progressMap,
+  onOpen,
+}: {
+  books: Book[]
+  highlightId: string | null
+  progressMap: Record<string, ProgressEntry>
+  onOpen: (id: string) => void
+}) {
+  const pageSize = 3
+  const totalPages = Math.max(1, Math.ceil(books.length / pageSize))
+  const [page, setPage] = useState(0)
+  const clampedPage = Math.min(page, totalPages - 1)
+  const start = clampedPage * pageSize
+  const visible = books.slice(start, start + pageSize)
+
+  if (books.length === 0) return null
+
+  const showAffordance = books.length > pageSize
+  const canPrev = clampedPage > 0
+  const canNext = clampedPage < totalPages - 1
+
+  return (
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        gap: 10,
+        overflow: 'visible',
+      }}
+    >
+      {showAffordance && (
+        <button
+          type="button"
+          aria-label="Previous books"
+          onClick={() => canPrev && setPage((p) => p - 1)}
+          disabled={!canPrev}
+          className="lf-press"
+          style={{
+            flexShrink: 0,
+            width: 28,
+            height: 44,
+            display: 'grid',
+            placeItems: 'center',
+            background: 'transparent',
+            border: 'none',
+            cursor: canPrev ? 'pointer' : 'default',
+            opacity: canPrev ? 0.9 : 0.3,
+            color: 'var(--ink-soft, #6E5B49)',
+            font: '700 24px var(--font-display, serif)',
+            touchAction: 'manipulation',
+          }}
+        >
+          ‹
+        </button>
+      )}
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          gap: 10,
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          overflow: 'visible',
+        }}
+      >
+        {visible.map((b) => {
+          const ring = progressRingValue(b, progressMap[b.id])
+          return (
+            <IntentHighlight
+              key={b.id}
+              active={highlightId === `book:${b.id}`}
+              style={{ display: 'block', flexShrink: 0 }}
+            >
+              <button
+                type="button"
+                onClick={() => onOpen(b.id)}
+                aria-label={b.title}
+                className="lf-press"
+                style={{
+                  position: 'relative',
+                  background: 'transparent',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  touchAction: 'manipulation',
+                  display: 'block',
+                }}
+              >
+                <BookCoverArt book={b} width={78} height={104} />
+                {ring !== undefined && (
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      top: -6,
+                      right: -6,
+                    }}
+                  >
+                    <ProgressRing value={ring} size={28} stroke={3.5} />
+                  </span>
+                )}
+              </button>
+            </IntentHighlight>
+          )
+        })}
+      </div>
+      {showAffordance && (
+        <button
+          type="button"
+          aria-label="More books"
+          onClick={() => canNext && setPage((p) => p + 1)}
+          disabled={!canNext}
+          className="lf-press"
+          style={{
+            flexShrink: 0,
+            width: 28,
+            height: 44,
+            display: 'grid',
+            placeItems: 'center',
+            background: 'transparent',
+            border: 'none',
+            cursor: canNext ? 'pointer' : 'default',
+            opacity: canNext ? 0.9 : 0.3,
+            color: 'var(--ink-soft, #6E5B49)',
+            font: '700 24px var(--font-display, serif)',
+            touchAction: 'manipulation',
+          }}
+        >
+          ›
+        </button>
+      )}
+      {showAffordance && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            bottom: -12,
+            left: 0,
+            right: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            gap: 5,
+          }}
+        >
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <span
+              key={i}
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                background:
+                  i === clampedPage
+                    ? 'var(--pigment-terracotta, #D95B43)'
+                    : 'rgba(94,62,26,.28)',
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   )
 }

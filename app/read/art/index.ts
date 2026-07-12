@@ -33,4 +33,9 @@ export {
   StarWordPin,
   MedallionMount,
   EnvelopeArt,
+  MicIcon,
+  KitchenBack,
 } from './props'
+
+export { BookCoverArt } from './covers'
+export type { CoverBook } from './covers'

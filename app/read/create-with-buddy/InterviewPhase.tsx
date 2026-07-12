@@ -17,7 +17,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { speak, listen, type SpeakHandle, type ListenHandle } from '@/lib/read/speech'
 import type { BuddyDef, KidInterview, KidInterviewAnswer } from '@/types/story'
-import { BuddyFace, SpeechBubble } from '../components'
+import { SpeechBubble } from '../components'
+import { CreatureSprite, MicIcon } from '../art'
+import type { BuddyKind } from '../art'
 
 interface InterviewPhaseProps {
   buddy: BuddyDef
@@ -263,7 +265,13 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
           justifyContent: 'center',
         }}
       >
-        <BuddyFace buddy={buddy} size={116} />
+        <div style={{ pointerEvents: 'none' }}>
+          <CreatureSprite
+            kind={((buddy.id as BuddyKind) ?? 'bramble') as BuddyKind}
+            pose={phase === 'listening' ? 'listening' : phase === 'thinking' ? 'pointing' : 'idle'}
+            size={140}
+          />
+        </div>
         <SpeechBubble big style={{ marginBottom: 12, maxWidth: 520 }}>
           {phase === 'thinking' ? '…thinking…' : line || currentQuestion}
         </SpeechBubble>
@@ -330,9 +338,13 @@ export function InterviewPhase({ buddy, seed, guardrails, onComplete, onFailure 
             fontSize: 42,
             boxShadow: '0 8px 20px rgba(217,91,67,.35)',
             cursor: phase === 'listening' ? 'pointer' : 'default',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            touchAction: 'manipulation',
           }}
         >
-          🎤
+          <MicIcon size={48} />
         </button>
         <div
           style={{

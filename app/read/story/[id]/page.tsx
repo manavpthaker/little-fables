@@ -318,7 +318,29 @@ function ReaderBook({
           book={book}
           currentChapterIdx={chapterIdx}
           onPickChapter={(i) => {
-            setChapterIdx(i)
+            // v3.1 P1-7 — When jumping to a DIFFERENT chapter, we must not
+            // leave the old chapter's page index in place: pageIdx belongs to
+            // the current chapter and would land the child mid-chapter (or
+            // past the end) of the new one. Reset to saved progress for that
+            // chapter if any, else page 0. Same chapter = no reset (child just
+            // dismissed Contents).
+            if (i !== chapterIdx) {
+              const prog = getProgress(book.id)
+              const progPage = prog && prog.chapter === i ? prog.page : 0
+              const targetChapter = book.chapters[i]
+              const maxPage = Math.max(0, (targetChapter?.pages?.length ?? 1) - 1)
+              const nextPageIdx = Math.min(progPage, maxPage)
+              // Persist the landing spot so the ReaderPages `pageIdx` reset
+              // effect picks it up. We use a keyed re-mount by writing progress
+              // — the effect keyed on [pageIdx, chapterIdx] will handle it.
+              saveProgress({
+                bookId: book.id,
+                chapter: i,
+                page: nextPageIdx,
+                updatedAt: Date.now(),
+              })
+              setChapterIdx(i)
+            }
             setShowContents(false)
             setPhase('reading')
           }}
@@ -426,6 +448,20 @@ function ReaderPages({
       setPageIdx((i) => i + 1)
     },
   })
+
+  // v3.1 P1-7 — When `chapterIdx` changes (via Contents pick or auto-advance),
+  // land on that chapter's saved-progress page (or 0). Without this, the old
+  // chapter's `pageIdx` bleeds into the new chapter and the child can land
+  // past-the-end or mid-chapter unexpectedly.
+  useEffect(() => {
+    const prog = getProgress(book.id)
+    const target =
+      prog && prog.chapter === chapterIdx
+        ? Math.min(prog.page, Math.max(0, pages.length - 1))
+        : 0
+    setPageIdx(target)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chapterIdx, book.id])
 
   // Pre-fetch timestamps so word-tap seek is exact even before the user hits play.
   useEffect(() => {
@@ -568,6 +604,51 @@ function ReaderPages({
 
   const handleSayIt = useCallback(() => {
     if (!page?.ask) return
+    setAskState('praise')
+    oneShotSpeakRef.current?.cancel()
+    oneShotSpeakRef.current = speak(page.ask.praise, { allowSpeechSynthFallback: true })
+  }, [page])
+
+  // v3.1 P0-1 — Touch chip taps go through the SAME evaluation the mic uses,
+  // so tap and speech are indistinguishable to the child. If the tapped chip
+  // text matches a known answer (matchesAny fast-path), we praise; otherwise
+  // we still send it through evaluate() and let the /api/respond judge decide.
+  //
+  // Voice–touch race: whichever fires first commits state. `askState` guards
+  // the mic listener from stomping on a praise state (`onEnd` only reverts
+  // from 'listening' → 'idle'), and evaluate() short-circuits once we're in
+  // 'praise'. If the mic is still open when the child taps a chip, we stop it.
+  const handleTapAnswer = useCallback(
+    (chipText: string) => {
+      if (!page?.ask) return
+      // Stop the mic if it's live; a tap answer wins.
+      if (listenStopRef.current) {
+        try {
+          listenStopRef.current()
+        } catch {
+          /* ignore */
+        }
+        listenStopRef.current = null
+      }
+      setAskState('idle')
+      void evaluate(chipText)
+    },
+    [page, evaluate],
+  )
+
+  const handleSkipAsk = useCallback(() => {
+    if (!page?.ask) return
+    // "Skip for now" is the touch escape hatch — same terminal state as a
+    // correct answer, but no praise line (we still play the ask's praise so
+    // the child hears a warm buddy voice on the way out).
+    if (listenStopRef.current) {
+      try {
+        listenStopRef.current()
+      } catch {
+        /* ignore */
+      }
+      listenStopRef.current = null
+    }
     setAskState('praise')
     oneShotSpeakRef.current?.cancel()
     oneShotSpeakRef.current = speak(page.ask.praise, { allowSpeechSynthFallback: true })
@@ -824,20 +905,18 @@ function ReaderPages({
 
   // ---- Navigation — Transport chevrons + swipe. Never plays. ----
   const goNext = useCallback(() => {
-    // §A3: prev/next are ONLY page turns. They don't check `gated` — gates
-    // apply only to auto-turn during play mode; a child tapping ▶ next should
-    // be able to page through and come back.
-    // BUT: real interactions like an unresolved choice need to stick, since
-    // the choice block replaces content on this page. So we still respect
-    // gated for hard blocks (unresolved choice / breathe / ask). Manual page
-    // turns via next are still allowed for a completed page.
-    if (gated) return
+    // v3.1 P0-1 / §A3 touch-balance: prev/next chevrons and swipe are NEVER
+    // gated. A child who doesn't speak must always be able to page through.
+    // Gates apply only to auto-turn during continuous play mode (that lives
+    // in useReaderTransport, which pauses when `gated` is true). Manual page
+    // turns are always the child's prerogative — even if an ask / choice /
+    // breathe is unresolved on this page, they can move on and come back.
     if (isLastPage) {
       void onFinishChapter()
       return
     }
     setPageIdx((i) => i + 1)
-  }, [gated, isLastPage, onFinishChapter])
+  }, [isLastPage, onFinishChapter])
 
   const goPrev = useCallback(() => {
     if (pageIdx === 0) return
@@ -1337,6 +1416,9 @@ function ReaderPages({
                       onMic={handleMic}
                       onSayIt={!micOk || fallbackUnlocked ? handleSayIt : undefined}
                       fallbackUnlocked={fallbackUnlocked}
+                      chips={chipsForAsk(page.ask)}
+                      onTapAnswer={handleTapAnswer}
+                      onSkip={handleSkipAsk}
                     />
                   </div>
                 )}
@@ -1428,32 +1510,84 @@ function ReaderPages({
         />
 
         {/* Transport bar — the fixed §A3 controls. */}
+        {/* v3.1 P0-1: canNext ignores `gated`. Chevrons are always live so a
+             touch-only child can leave the page. Auto-turn (in play mode) still
+             respects gates via useReaderTransport. */}
         <Transport
           playing={transport.playing}
           onPlayToggle={transport.toggle}
           onPrev={goPrev}
           onNext={goNext}
           canPrev={pageIdx > 0}
-          canNext={!gated}
+          canNext={true}
         />
       </div>
     </KidScreen>
   )
 }
 
-/* ---- AskInline (unchanged behavior, restyled to lf-room tokens) ---- */
+/* ---- chipsForAsk — v3.1 P0-1 touch chip catalog per ask type -------------
+ * Adapts InterviewPhase's `chipsForSlot` idea to the reader's AskBlock. Rules:
+ *   1. Counting asks (skill mentions "count" or answers contain 1..9 as
+ *      digits or "one"/"two"/…) → number chips 1..5, regardless of the pack's
+ *      exact answers. This guarantees a touch child always sees a number to
+ *      tap.
+ *   2. Wonder asks (`ask.kind === 'wonder'`) or asks with no `answers` →
+ *      three warm-generic chips ("Yes", "Not sure", "I don't know"). The mic
+ *      still wins for anything meaningful; these give a touch child a way
+ *      through.
+ *   3. Otherwise (keyword asks like "colors: red, blue, green") → render
+ *      each of `ask.answers` as a chip.
+ *
+ * Chips are drawn as small pastel pills co-present with the mic; they don't
+ * suppress the mic and don't gate. */
+const NUMBER_WORDS: Record<string, string> = {
+  one: '1', two: '2', three: '3', four: '4', five: '5',
+  six: '6', seven: '7', eight: '8', nine: '9',
+}
+
+function chipsForAsk(ask: NonNullable<Page['ask']>): string[] {
+  const isCounting =
+    /count|number/i.test(ask.skill || '') ||
+    (ask.answers ?? []).some((a) => /^(\d|one|two|three|four|five|six|seven|eight|nine)\b/i.test(a.trim()))
+  if (isCounting) {
+    return ['1', '2', '3', '4', '5']
+  }
+  if (ask.kind === 'wonder' || !ask.answers || ask.answers.length === 0) {
+    return ['Yes', 'Not sure', "I don't know"]
+  }
+  // De-dupe and cap at 5 to keep the row tap-friendly. Normalize obvious
+  // number-word answers to digits so a child can pick either.
+  const out = new Set<string>()
+  for (const raw of ask.answers) {
+    const s = raw.trim()
+    if (!s) continue
+    const norm = NUMBER_WORDS[s.toLowerCase()] ?? s
+    out.add(norm)
+    if (out.size >= 5) break
+  }
+  return Array.from(out)
+}
+
+/* ---- AskInline (v3.1 P0-1: mic + chips + skip-for-now, all co-present) --- */
 function AskInline({
   ask,
   state,
   onMic,
   onSayIt,
   fallbackUnlocked,
+  chips,
+  onTapAnswer,
+  onSkip,
 }: {
   ask: NonNullable<Page['ask']>
   state: AskUiState
   onMic: () => void
   onSayIt?: () => void
   fallbackUnlocked?: boolean
+  chips: string[]
+  onTapAnswer: (chip: string) => void
+  onSkip: () => void
 }) {
   if (state === 'praise') {
     return (
@@ -1562,6 +1696,70 @@ function AskInline({
             </button>
           )}
         </div>
+      </div>
+
+      {/* v3.1 P0-1 — drawn chip catalog + skip-for-now.
+          Always co-present with the mic from first paint, so a touch-only
+          child has a way through. Chips route through the same evaluate()
+          the mic uses; skip lands directly in praise (touch escape hatch). */}
+      <div
+        style={{
+          marginTop: 12,
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: 8,
+        }}
+      >
+        {chips.map((c) => (
+          <button
+            key={c}
+            type="button"
+            className="lf-press"
+            onPointerUp={(e) => {
+              e.preventDefault()
+              onTapAnswer(c)
+            }}
+            aria-label={`Answer ${c}`}
+            style={{
+              background: 'var(--lf-pastel-peach)',
+              border: '1.5px solid var(--lf-cream-line)',
+              borderRadius: 999,
+              padding: '10px 16px',
+              font: '700 15px var(--font-body)',
+              color: 'var(--lf-espresso)',
+              cursor: 'pointer',
+              minHeight: 44,
+              minWidth: 44,
+              touchAction: 'manipulation',
+            }}
+          >
+            {c}
+          </button>
+        ))}
+        <button
+          type="button"
+          className="lf-press"
+          onPointerUp={(e) => {
+            e.preventDefault()
+            onSkip()
+          }}
+          aria-label="Skip this question for now"
+          style={{
+            marginLeft: 'auto',
+            background: 'transparent',
+            border: '1.5px dashed var(--lf-cream-line)',
+            borderRadius: 999,
+            padding: '10px 16px',
+            font: 'italic 700 14px var(--font-body)',
+            color: 'var(--lf-espresso-soft)',
+            cursor: 'pointer',
+            minHeight: 44,
+            touchAction: 'manipulation',
+          }}
+        >
+          skip for now
+        </button>
       </div>
     </div>
   )

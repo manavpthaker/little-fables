@@ -3,11 +3,11 @@
 // Precaches shell, pack JSON assets, art, and generated audio.
 // Never caches /api calls.
 
-const CACHE = 'lf-read-v3'
+const CACHE = 'lf-read-v4'
 const PRECACHE = [
   '/read',
   '/read/create',
-  '/read/buddy',
+  '/read/arrival',
   '/read/badges',
   '/read/words',
   '/manifest.webmanifest',

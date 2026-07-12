@@ -12,11 +12,13 @@
 
 import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { RoomScene } from '../room/RoomScene'
+import { ROOM_ZONES, RoomScene } from '../room/RoomScene'
 import { LightingProvider } from '../room/LightingProvider'
-import { CreatureSprite, type BuddyKind } from '../art'
+import { BookCoverArt, CreatureSprite, type BuddyKind } from '../art'
 import { BUDDIES } from '@/lib/read/buddies'
 import { loadBuddy, pickBuddy } from '@/lib/read/storage'
+import { loadShelf } from '@/lib/read/packs'
+import type { Book } from '@/types/story'
 
 // The six spots in the room where buddies hide before you greet them.
 // Coordinates in the 1180×820 stage.
@@ -61,6 +63,7 @@ export default function ArrivalPage() {
   const [ready, setReady] = useState(false)
   const [greeted, setGreeted] = useState<BuddyKind | null>(null)
   const [walking, setWalking] = useState<BuddyKind | null>(null)
+  const [shelf, setShelf] = useState<Book[]>([])
   const walkTimer = useRef<number | null>(null)
 
   // If a buddy is already picked, bounce to Home before showing anything.
@@ -70,6 +73,10 @@ export default function ArrivalPage() {
       router.replace('/read')
       return
     }
+    // v3.1 P2-10: pull the real shelf (Miko, Bramble, Papa Gets the Moon…)
+    // so the shelf overlay reads as YOUR library, not stock covers baked
+    // into the drawn background art.
+    setShelf(loadShelf())
     setReady(true)
   }, [router])
 
@@ -106,9 +113,48 @@ export default function ArrivalPage() {
 
   const rugGlow = greeted && !walking
 
+  // v3.1 P2-10 — cover the shelf area of the drawn art with the child's
+  // REAL first ~4 books. The north-star SVG has stock titles baked in;
+  // this overlay reads as YOUR library filling up.
+  const shelfCovers = shelf.slice(0, 4)
+
   return (
     <LightingProvider className="lf-room" style={{ minHeight: '100dvh' }}>
       <RoomScene>
+        {/* real-library shelf overlay — covers the stock titles in the SVG */}
+        {shelfCovers.length > 0 && (
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: `${(ROOM_ZONES.shelfTop.x / STAGE.w) * 100}%`,
+              top: `${(ROOM_ZONES.shelfTop.y / STAGE.h) * 100}%`,
+              width: `${(ROOM_ZONES.shelfTop.w / STAGE.w) * 100}%`,
+              height: `${((ROOM_ZONES.shelfBottom.y + ROOM_ZONES.shelfBottom.h - ROOM_ZONES.shelfTop.y) / STAGE.h) * 100}%`,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gridTemplateRows: 'repeat(2, 1fr)',
+              gap: 8,
+              padding: 4,
+              zIndex: 2,
+              pointerEvents: 'none',
+            }}
+          >
+            {shelfCovers.map((b) => (
+              <div
+                key={b.id}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <BookCoverArt book={b} width={72} height={96} />
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* the six buddies */}
         {(Object.keys(SPOTS) as BuddyKind[]).map((id) => {
           const s = SPOTS[id]
@@ -135,19 +181,9 @@ export default function ArrivalPage() {
                   'left 1700ms cubic-bezier(0.2, 0.7, 0.2, 1), top 1700ms cubic-bezier(0.2, 0.7, 0.2, 1), opacity 700ms ease',
               }}
             >
-              <div
-                style={{
-                  transform: isGreeted && !isWalking ? 'translateY(-4px)' : 'none',
-                  transformOrigin: '50% 100%',
-                  transition: 'transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)',
-                }}
-              >
-                <CreatureSprite
-                  kind={id}
-                  pose={isGreeted && !isWalking ? 'celebrating' : 'idle'}
-                  size={pos.size}
-                />
-              </div>
+              {/* The interactive button WRAPS the sprite so the .lf-press
+                * :active scale actually gives <100ms visible feedback on the
+                * drawn buddy itself, not on a transparent hit-target above. */}
               <button
                 type="button"
                 onClick={() => (isGreeted ? choose(id) : greet(id))}
@@ -158,8 +194,9 @@ export default function ArrivalPage() {
                 }
                 className="lf-press"
                 style={{
-                  position: 'absolute',
-                  inset: -14,
+                  display: 'block',
+                  width: '100%',
+                  padding: 0,
                   cursor: 'pointer',
                   borderRadius: 30,
                   background: 'transparent',
@@ -167,8 +204,24 @@ export default function ArrivalPage() {
                   touchAction: 'manipulation',
                   WebkitUserSelect: 'none',
                   userSelect: 'none',
+                  WebkitTapHighlightColor: 'transparent',
                 }}
-              />
+              >
+                <div
+                  style={{
+                    transform: isGreeted && !isWalking ? 'translateY(-4px)' : 'none',
+                    transformOrigin: '50% 100%',
+                    transition: 'transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1)',
+                    pointerEvents: 'none',
+                  }}
+                >
+                  <CreatureSprite
+                    kind={id}
+                    pose={isGreeted && !isWalking ? 'celebrating' : 'idle'}
+                    size={pos.size}
+                  />
+                </div>
+              </button>
             </div>
           )
         })}

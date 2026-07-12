@@ -49,6 +49,7 @@ interface Args {
   dryRun: boolean
   packPath: string
   outDir: string
+  source: 'pack' | 'starters'
 }
 
 function parseArgs(argv: string[]): Args {
@@ -56,6 +57,7 @@ function parseArgs(argv: string[]): Args {
     dryRun: false,
     packPath: 'content/packs/pack-000-family-originals.json',
     outDir: 'public/audio',
+    source: 'pack',
   }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
@@ -63,9 +65,10 @@ function parseArgs(argv: string[]): Args {
     else if (a === '--dry-run') args.dryRun = true
     else if (a === '--pack') args.packPath = argv[++i]
     else if (a === '--out') args.outDir = argv[++i]
+    else if (a === '--source') args.source = argv[++i] as 'pack' | 'starters'
     else if (a === '--help' || a === '-h') {
       console.log(
-        'Usage: npx tsx scripts/generate-audio.ts [--book <id>] [--dry-run] [--pack <path>] [--out <dir>]',
+        'Usage: npx tsx scripts/generate-audio.ts [--book <id>] [--dry-run] [--pack <path>] [--out <dir>] [--source pack|starters]',
       )
       process.exit(0)
     }
@@ -179,12 +182,35 @@ async function main() {
   const packPath = resolve(projectRoot, args.packPath)
   const outRoot = resolve(projectRoot, args.outDir)
 
-  const raw = await readFile(packPath, 'utf8')
-  const pack = JSON.parse(raw) as Pack
-  const stories = (pack.stories || []).filter((s) => !args.book || s.id === args.book)
-  if (!stories.length) {
-    console.error(`No stories matched${args.book ? ` --book ${args.book}` : ''}. Nothing to do.`)
-    process.exit(1)
+  let stories: Array<{ id: string; chapters: Array<{ pages: Array<{ text?: string }> }> }>
+  if (args.source === 'starters') {
+    // Starter books live in TypeScript. Import compiled Book[] and reshape to
+    // the pack iteration form (id + chapters[].pages[].text). tsx handles the
+    // TS import natively; we resolve via file:// URL from the project root.
+    const starterUrl = new URL('../lib/read/starter-stories.ts', import.meta.url).href
+    const mod = (await import(starterUrl)) as {
+      STARTER_STORIES: Array<{
+        id: string
+        chapters: Array<{ pages: Array<{ text: string }> }>
+      }>
+    }
+    stories = mod.STARTER_STORIES.filter((s) => !args.book || s.id === args.book).map((s) => ({
+      id: s.id,
+      chapters: s.chapters.map((c) => ({ pages: c.pages.map((p) => ({ text: p.text })) })),
+    }))
+    if (!stories.length) {
+      console.error(`No starter matched${args.book ? ` --book ${args.book}` : ''}.`)
+      process.exit(1)
+    }
+    console.log(`[source=starters] loaded ${stories.length} starter books`)
+  } else {
+    const raw = await readFile(packPath, 'utf8')
+    const pack = JSON.parse(raw) as Pack
+    stories = (pack.stories || []).filter((s) => !args.book || s.id === args.book)
+    if (!stories.length) {
+      console.error(`No stories matched${args.book ? ` --book ${args.book}` : ''}. Nothing to do.`)
+      process.exit(1)
+    }
   }
 
   const apiKey = process.env.ELEVENLABS_API_KEY

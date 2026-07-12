@@ -112,10 +112,74 @@ export function RoomScene({ children, className, style }: RoomSceneProps) {
         />
       </div>
 
-      {/* the lighting overlay — receives --light-pool + --light-ambient from
-          the LightingProvider. Purely decorative; ignores pointer events. */}
+      {/* Window sky — sits over the painted window rect in the SVG.
+          The SVG's window is at (110, 118, 204x294) in stage coords;
+          scaled to percentages here. --light-sky drives the fill. */}
       <div
         aria-hidden="true"
+        className="lf-room-window-sky"
+        style={{
+          position: 'absolute',
+          left: `${(110 / STAGE.w) * 100}%`,
+          top: `${(118 / STAGE.h) * 100}%`,
+          width: `${(204 / STAGE.w) * 100}%`,
+          height: `${(294 / STAGE.h) * 100}%`,
+          pointerEvents: 'none',
+          background: 'var(--light-sky)',
+          transition: 'background 900ms ease',
+          borderRadius: 2,
+          overflow: 'hidden',
+        }}
+      >
+        {/* Sun — a small marigold disk positioned per keyframe. */}
+        <div
+          className="lf-room-sun"
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: 'var(--sun-x, 50%)',
+            top: 'var(--sun-y, 30%)',
+            width: '22%',
+            aspectRatio: '1 / 1',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(circle at 40% 40%, var(--sun-color, #F3C453) 0%, var(--sun-color, #F3C453) 55%, transparent 78%)',
+            opacity: 'var(--sun-opacity, 0)',
+            filter: 'blur(1px)',
+            transition:
+              'left 900ms ease, top 900ms ease, opacity 900ms ease, background 900ms ease',
+          }}
+        />
+        {/* Moon — a pale bone disk. */}
+        <div
+          className="lf-room-moon"
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: 'var(--moon-x, 60%)',
+            top: 'var(--moon-y, 30%)',
+            width: '16%',
+            aspectRatio: '1 / 1',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '50%',
+            background:
+              'radial-gradient(circle at 42% 40%, var(--moon-color, #EFE6C2) 0%, var(--moon-color, #EFE6C2) 62%, transparent 82%)',
+            opacity: 'var(--moon-opacity, 0)',
+            filter: 'blur(0.5px)',
+            transition:
+              'left 900ms ease, top 900ms ease, opacity 900ms ease, background 900ms ease',
+          }}
+        />
+      </div>
+
+      {/* Ambient wash — full-room tint blended `multiply` for warmth /
+          `screen` doesn't quite work over a painted scene, `multiply` gives
+          consistent tinting. Values in lighting.ts are chosen to be
+          obviously different at a squint across keyframes. */}
+      <div
+        aria-hidden="true"
+        className="lf-room-ambient"
         style={{
           position: 'absolute',
           inset: 0,
@@ -125,6 +189,44 @@ export function RoomScene({ children, className, style }: RoomSceneProps) {
           transition: 'background 900ms ease',
         }}
       />
+
+      {/* Lantern overlay — an indigo mask that lands ONLY in the lantern
+          register (dusk / night). Blend-multiply so the drawn walls read
+          cooler. Zero opacity in day register (values in lighting.ts). */}
+      <div
+        aria-hidden="true"
+        className="lf-room-lantern-overlay"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background: 'var(--lantern-overlay)',
+          mixBlendMode: 'multiply',
+          transition: 'background 900ms ease',
+        }}
+      />
+
+      {/* Warm-gold lantern pools — three pools on the rug, under the shelf,
+          and near the writing desk. Opacity is 0 in daytime, rising to
+          full in dusk/night. `screen` blend puts light INTO the scene. */}
+      <div
+        aria-hidden="true"
+        className="lf-room-pool"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background:
+            'radial-gradient(ellipse 22% 14% at 38% 78%, rgba(243, 199, 122, 0.9), transparent 65%),' +
+            'radial-gradient(ellipse 18% 12% at 82% 62%, rgba(243, 199, 122, 0.7), transparent 65%),' +
+            'radial-gradient(ellipse 14% 10% at 60% 74%, rgba(243, 199, 122, 0.75), transparent 65%)',
+          opacity: 'var(--pool-opacity, 0)',
+          mixBlendMode: 'screen',
+          transition: 'opacity 900ms ease',
+        }}
+      />
+
+      {/* Legacy soft light pool — kept as a subtle base warm on the rug. */}
       <div
         aria-hidden="true"
         style={{
@@ -142,6 +244,7 @@ export function RoomScene({ children, className, style }: RoomSceneProps) {
         style={{
           position: 'absolute',
           inset: 0,
+          zIndex: 2,
         }}
       >
         {children}

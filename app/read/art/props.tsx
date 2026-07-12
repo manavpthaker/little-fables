@@ -504,6 +504,105 @@ export function EnvelopeArt({ size = 92 }: { size?: number }) {
 }
 
 // ------------------------------------------------------------------
+// Interactive props — a drawn mic (replacing 🎤 in the kitchen) and a
+// drawn back affordance for kitchen phases.
+// ------------------------------------------------------------------
+
+interface MicIconProps {
+  size?: number
+  style?: CSSProperties
+  color?: string
+}
+
+/** A small drawn microphone outline — replaces the 🎤 emoji on kitchen
+ *  buttons. Meant to sit inside a coral round button; renders in cream so
+ *  it reads against the button background. */
+export function MicIcon({ size = 40, style, color = '#F9F2E3' }: MicIconProps) {
+  return (
+    <svg
+      viewBox="0 0 44 60"
+      width={size}
+      height={(size * 60) / 44}
+      style={{ display: 'block', overflow: 'visible', ...style }}
+      aria-hidden="true"
+    >
+      {/* head of mic */}
+      <rect
+        x="14"
+        y="6"
+        width="16"
+        height="26"
+        rx="8"
+        fill={color}
+        opacity="0.95"
+        filter="url(#lf-wash-edge)"
+      ></rect>
+      <g fill="none" stroke={color} strokeWidth="2.4" filter="url(#lf-wobble)">
+        {/* head outline */}
+        <rect x="14" y="6" width="16" height="26" rx="8"></rect>
+        {/* U-shaped cradle */}
+        <path d="M8 26 Q 8 40 22 40 Q 36 40 36 26"></path>
+        {/* stem */}
+        <path d="M22 40 L22 52"></path>
+        {/* base */}
+        <path d="M14 52 L30 52"></path>
+        {/* grille lines */}
+        <path d="M17 14 L27 14 M17 20 L27 20 M17 26 L27 26" strokeWidth="1.6"></path>
+      </g>
+    </svg>
+  )
+}
+
+interface KitchenBackProps {
+  size?: number
+  style?: CSSProperties
+}
+
+/** A drawn door-edge back affordance for kitchen phases. A shorter
+ *  variant of DoorEdgeArt — sits in the top-left corner of a kitchen
+ *  screen; the caller wraps it in a button for tap behavior. */
+export function KitchenBack({ size = 56, style }: KitchenBackProps) {
+  return (
+    <svg
+      viewBox="0 0 60 60"
+      width={size}
+      height={size}
+      style={{ display: 'block', overflow: 'visible', ...style }}
+      aria-hidden="true"
+    >
+      {/* door plank */}
+      <rect
+        x="10"
+        y="6"
+        width="34"
+        height="48"
+        fill="#C89A5E"
+        opacity="0.42"
+        filter="url(#lf-wash-edge)"
+      ></rect>
+      <g fill="none" stroke={INK} filter="url(#lf-wobble)">
+        <path d="M10 6 L44 6 L44 54 L10 54 Z" strokeWidth="2.4"></path>
+        <path d="M14 10 L14 50" strokeWidth="1.8" opacity="0.75"></path>
+        {/* back arrow */}
+        <path
+          d="M36 30 L22 30 M28 22 L20 30 L28 38"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+        ></path>
+      </g>
+      <circle
+        cx="38"
+        cy="30"
+        r="2.2"
+        fill="#B98A50"
+        opacity="0.9"
+        filter="url(#lf-wobble)"
+      ></circle>
+    </svg>
+  )
+}
+
+// ------------------------------------------------------------------
 // TODO: port from art2.jsx when the reader ships v3 transport.
 // BridgeArt, WindArt, RopeArt, StepsArt, BoulderArt, NeckPathArt, MotoPathArt,
 // BellyArt, CrossingArt, SingingBridgeArt, MooseSkyArt, PapaMoonArt,

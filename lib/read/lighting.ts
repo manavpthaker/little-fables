@@ -87,51 +87,120 @@ export function currentLighting(now: Date = new Date()): LightingState {
 }
 
 /** CSS variables for a given keyframe. Applied to the room root; the drawn
- *  art doesn't swap, the light on it does. */
+ *  art doesn't swap, the light on it does.
+ *
+ *  Vars produced:
+ *  - `--light-pool`     : color for the warm floor pool on the rug
+ *  - `--shadow-color`   : cool/warm shadow tint
+ *  - `--light-sky`      : gradient painted into the window rect
+ *  - `--light-ambient`  : full-room wash blended `multiply` — set boldly
+ *                        enough that morning/midday/golden/dusk/night are
+ *                        obviously different at a squint
+ *  - `--sun-x/y`, `--moon-x/y` : positions inside the window frame (percent)
+ *  - `--sun-opacity`, `--moon-opacity` : whether the disc is drawn
+ *  - `--lantern-overlay` : indigo tint the lantern register lays over the
+ *                          drawn art via mix-blend `multiply`
+ *  - `--pool-opacity`    : intensity of the warm-gold lantern pools */
 export function varsFor(k: LightingKeyframe): Record<string, string> {
   switch (k) {
     case 'dawn':
       return {
-        '--light-pool': 'rgba(240, 190, 195, 0.20)',
+        '--light-pool': 'rgba(240, 190, 195, 0.22)',
         '--shadow-color': 'rgba(93, 106, 138, 0.34)',
         '--light-sky': 'linear-gradient(180deg, #F0BEC3 0%, #EFCCA0 60%, #F4EBD8 100%)',
-        '--light-ambient': 'linear-gradient(180deg, rgba(240,190,195,0.10), transparent 40%)',
+        '--light-ambient': 'rgba(240, 190, 195, 0.24)',
+        '--sun-x': '18%',
+        '--sun-y': '78%',
+        '--sun-opacity': '0.85',
+        '--sun-color': '#F1A69A',
+        '--moon-x': '80%',
+        '--moon-y': '20%',
+        '--moon-opacity': '0.15',
+        '--lantern-overlay': 'rgba(34, 48, 74, 0)',
+        '--pool-opacity': '0',
       }
     case 'morning':
       return {
-        '--light-pool': 'rgba(239, 200, 92, 0.16)',
+        '--light-pool': 'rgba(239, 200, 92, 0.20)',
         '--shadow-color': 'rgba(93, 106, 138, 0.28)',
         '--light-sky': 'linear-gradient(180deg, #EFCCA0 0%, #F5DFB0 55%, #F4EBD8 100%)',
-        '--light-ambient': 'transparent',
+        '--light-ambient': 'rgba(250, 226, 165, 0.22)',
+        '--sun-x': '32%',
+        '--sun-y': '50%',
+        '--sun-opacity': '0.95',
+        '--sun-color': '#F3C453',
+        '--moon-x': '90%',
+        '--moon-y': '8%',
+        '--moon-opacity': '0',
+        '--lantern-overlay': 'rgba(34, 48, 74, 0)',
+        '--pool-opacity': '0',
       }
     case 'midday':
       return {
-        '--light-pool': 'rgba(239, 218, 168, 0.14)',
+        '--light-pool': 'rgba(255, 240, 200, 0.18)',
         '--shadow-color': 'rgba(93, 106, 138, 0.22)',
         '--light-sky': 'linear-gradient(180deg, #F6E4B5 0%, #F9F0D6 60%, #F4EBD8 100%)',
-        '--light-ambient': 'transparent',
+        '--light-ambient': 'rgba(255, 250, 230, 0.32)',
+        '--sun-x': '50%',
+        '--sun-y': '18%',
+        '--sun-opacity': '1',
+        '--sun-color': '#F8DE7F',
+        '--moon-x': '10%',
+        '--moon-y': '10%',
+        '--moon-opacity': '0',
+        '--lantern-overlay': 'rgba(34, 48, 74, 0)',
+        '--pool-opacity': '0',
       }
     case 'golden':
       return {
-        '--light-pool': 'rgba(226, 169, 59, 0.32)',
+        '--light-pool': 'rgba(226, 169, 59, 0.38)',
         '--shadow-color': 'rgba(91, 70, 55, 0.32)',
         '--light-sky': 'linear-gradient(180deg, #EBAB57 0%, #EDCA82 55%, #F4EBD8 100%)',
-        '--light-ambient': 'linear-gradient(180deg, rgba(226,169,59,0.10), transparent 55%)',
+        '--light-ambient': 'rgba(226, 148, 60, 0.28)',
+        '--sun-x': '72%',
+        '--sun-y': '52%',
+        '--sun-opacity': '0.95',
+        '--sun-color': '#E29433',
+        '--moon-x': '15%',
+        '--moon-y': '15%',
+        '--moon-opacity': '0',
+        '--lantern-overlay': 'rgba(34, 48, 74, 0)',
+        '--pool-opacity': '0.35',
       }
     case 'dusk':
       return {
-        '--light-pool': 'rgba(243, 199, 122, 0.34)',
+        '--light-pool': 'rgba(243, 199, 122, 0.40)',
         '--shadow-color': 'rgba(34, 48, 74, 0.42)',
         '--light-sky': 'linear-gradient(180deg, #4E5D7E 0%, #A46F5F 55%, #E8B87A 100%)',
-        '--light-ambient': 'linear-gradient(180deg, rgba(34,48,74,0.12), transparent 50%)',
+        '--light-ambient': 'linear-gradient(180deg, rgba(78, 93, 126, 0.35), rgba(164, 111, 95, 0.22) 60%, rgba(232, 184, 122, 0.16))',
+        '--sun-x': '85%',
+        '--sun-y': '82%',
+        '--sun-opacity': '0.35',
+        '--sun-color': '#C86A3E',
+        '--moon-x': '30%',
+        '--moon-y': '75%',
+        '--moon-opacity': '0.5',
+        '--moon-color': '#E4DAB6',
+        '--lantern-overlay': 'rgba(34, 48, 74, 0.28)',
+        '--pool-opacity': '0.6',
       }
     case 'night':
     default:
       return {
-        '--light-pool': 'rgba(243, 199, 122, 0.44)',
+        '--light-pool': 'rgba(243, 199, 122, 0.55)',
         '--shadow-color': 'rgba(11, 18, 34, 0.55)',
         '--light-sky': 'linear-gradient(180deg, #16223A 0%, #22304A 60%, #2A3856 100%)',
-        '--light-ambient': 'linear-gradient(180deg, rgba(11,18,34,0.30), transparent 55%)',
+        '--light-ambient': 'rgba(22, 34, 58, 0.55)',
+        '--sun-x': '95%',
+        '--sun-y': '95%',
+        '--sun-opacity': '0',
+        '--sun-color': '#E29433',
+        '--moon-x': '58%',
+        '--moon-y': '30%',
+        '--moon-opacity': '0.95',
+        '--moon-color': '#EFE6C2',
+        '--lantern-overlay': 'rgba(22, 34, 58, 0.48)',
+        '--pool-opacity': '0.85',
       }
   }
 }
