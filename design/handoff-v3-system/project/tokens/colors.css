@@ -1,0 +1,90 @@
+/* Little Fables — the pigment system.
+   A counted palette: paper ground + warm ink + 10 named pigments at
+   watercolor saturation. Nothing else. Shadows are always COLORED
+   (cool dusk or warm bark), never neutral grey.
+
+   Three lighting registers:
+   :root                      Day     — paper ground, window light
+   [data-register="story"]    Story   — inside books; the page's palette governs,
+                                        chrome recedes to ink on paper
+   [data-register="lantern"]  Lantern — evening/quiet + celebration light        */
+
+:root {
+  /* ---- ground: warm paper (always textured, never flat) ---- */
+  --paper:        #F4EBD8;
+  --paper-bright: #F9F2E3;  /* card / page face                */
+  --paper-deep:   #EADCC0;  /* recessed areas, under-shelf     */
+
+  /* ---- ink: warm, never #000 ---- */
+  --ink:       #46362A;     /* drawn line + set type           */
+  --ink-soft:  #6E5B49;     /* secondary text, quiet lines     */
+  --ink-faint: #97836B;     /* whisper: hints, sketch state    */
+
+  /* ---- the 10 pigments ---- */
+  --pigment-marigold:   #E2A93B;
+  --pigment-butter:     #EFC85C;
+  --pigment-terracotta: #D95B43;   /* THE hero accent — one per screen */
+  --pigment-sage:       #7C9A62;
+  --pigment-river:      #4E7FA3;
+  --pigment-teal:       #2E8B8B;
+  --pigment-berry:      #9B4A6B;
+  --pigment-dusk:       #5D6A8A;
+  --pigment-bark:       #5B4637;
+  --pigment-plum:       #5B4B7A;
+
+  /* deep pull of the hero pigment (pressed / pooled edge) */
+  --pigment-terracotta-deep: #C7452F;
+
+  /* ---- lantern pigments (evening register + celebration light) ---- */
+  --lantern-indigo: #22304A;
+  --lantern-gold:   #F3C77A;
+
+  /* ---- colored shadows — never grey ---- */
+  --shadow-cool: rgba(93, 106, 138, 0.28);   /* dusk  — daytime object shadows */
+  --shadow-warm: rgba(91, 70, 55, 0.22);     /* bark  — close/contact shadows  */
+  --shadow-color: var(--shadow-cool);
+
+  /* ---- light ---- */
+  --light-pool:     rgba(239, 200, 92, 0.16);  /* window light on floor/wall  */
+  --glow-lamplight: rgba(242, 196, 96, 0.55);  /* word highlight, beacons     */
+
+  /* ---- semantic aliases ---- */
+  --surface-ground:   var(--paper);
+  --surface-card:     var(--paper-bright);
+  --surface-recessed: var(--paper-deep);
+  --text-color:  var(--ink);
+  --text-soft:   var(--ink-soft);
+  --accent-action:      var(--pigment-terracotta);      /* ONE per screen */
+  --accent-action-deep: var(--pigment-terracotta-deep);
+
+  /* washes: pigments diluted to watercolor body. Use with color-mix, e.g.
+     color-mix(in srgb, var(--pigment-sage) 42%, transparent)              */
+  --wash-opacity: 42%;
+}
+
+/* ---- Story register: inside a book. The page's own palette governs;
+        chrome recedes to ink on paper. No pools, quieter shadows. ---- */
+[data-register="story"] {
+  --surface-ground: var(--paper);
+  --surface-card:   var(--paper);
+  --shadow-color:   var(--shadow-warm);
+  --light-pool:     transparent;
+}
+
+/* ---- Lantern register: evening, quiet, celebration.
+        Deep indigo ground, lantern-gold pools. ---- */
+[data-register="lantern"] {
+  --surface-ground:   var(--lantern-indigo);
+  --surface-card:     #2C3B58;
+  --surface-recessed: #1B2740;
+  --text-color: #F2E7CE;
+  --text-soft:  #C9BBA0;
+  --ink:        #F2E7CE;          /* lines flip warm-light on indigo */
+  --ink-soft:   #C9BBA0;
+  --ink-faint:  #8E89A6;
+  --shadow-color:   rgba(11, 18, 34, 0.5);
+  --shadow-cool:    rgba(11, 18, 34, 0.5);
+  --shadow-warm:    rgba(11, 18, 34, 0.4);
+  --light-pool:     rgba(243, 199, 122, 0.2);
+  --glow-lamplight: rgba(243, 199, 122, 0.6);
+}

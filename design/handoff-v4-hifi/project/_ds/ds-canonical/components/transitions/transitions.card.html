@@ -1,0 +1,40 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Endpaper & Transitions" subtitle="The open/close beat and the only loading state — no spinner exists" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="../../assets/lf-filters.js"></script>
+<script type="text/babel">
+const { Endpaper } = window.LittleFablesDesignSystem_d603a2;
+function Demo() {
+  const cell = { width: 210, height: 176, borderRadius: 16, overflow: "hidden", boxShadow: "0 6px 18px -10px var(--shadow-color)" };
+  const cap = { fontFamily: "var(--font-parent)", fontSize: 11, color: "var(--ink-soft)", marginTop: 8, textAlign: "center" };
+  return (
+    <div style={{ display: "flex", gap: 22, justifyContent: "center", alignItems: "flex-start", padding: "22px 20px" }}>
+      <div>
+        <div style={cell}><Endpaper pigment="river" motif="boat"></Endpaper></div>
+        <div style={cap}>book open/close · 900ms</div>
+      </div>
+      <div>
+        <div style={cell}><Endpaper pigment="plum" motif="moon" loading={true}></Endpaper></div>
+        <div style={cap}>loading — motif blooms, no spinner</div>
+      </div>
+      <div>
+        <div style={cell}><Endpaper pigment="sage" motif="leaf"></Endpaper></div>
+        <div style={cap}>kamishibai slides pages · 520ms</div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo></Demo>);
+</script>
+</body>
+</html>

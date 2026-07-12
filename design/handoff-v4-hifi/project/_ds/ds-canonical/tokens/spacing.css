@@ -1,0 +1,29 @@
+/* Little Fables — space, touch, and edges.
+   Primary kid targets >= 56px; everything touchable >= 44px.
+   Drawn-line borders stand in for geometric strokes (see texture.css). */
+
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* touch */
+  --target-primary: 56px;   /* anything a child is invited to touch */
+  --target-min:     44px;   /* absolute floor, incl. parent chrome  */
+
+  /* corners — soft, bookish; the wobble filter keeps them from
+     reading as geometry */
+  --radius-soft:  10px;
+  --radius-card:  18px;
+  --radius-page:  22px;
+  --radius-round: 999px;
+
+  /* drawn borders */
+  --line-weight:      2px;    /* standard drawn line   */
+  --line-weight-bold: 3px;    /* emphasis / hero edges */
+}

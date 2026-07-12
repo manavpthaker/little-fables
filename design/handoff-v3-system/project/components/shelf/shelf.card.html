@@ -1,0 +1,81 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Book on Shelf" subtitle="Ribbon progress, beacon glow, authored star, pencil-sketch 'still painting'" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="../../assets/lf-filters.js"></script>
+<script type="text/babel">
+const { BookCover } = window.LittleFablesDesignSystem_d603a2;
+
+function BridgeArt() {
+  return (
+    <svg width="86" height="60" viewBox="0 0 86 60">
+      <path d="M10 30 Q 43 14 76 30" fill="none" stroke="#F9F2E3" strokeWidth="5" opacity="0.9" filter="url(#lf-wash-edge)"></path>
+      <ellipse cx="43" cy="44" rx="10" ry="7" fill="#E2A93B" filter="url(#lf-wash-edge)"></ellipse>
+      <g fill="none" stroke="var(--ink)" filter="url(#lf-wobble)">
+        <path d="M10 30 Q 43 14 76 30" strokeWidth="1.6"></path>
+        <path d="M12 22 L12 38 M74 22 L74 38" strokeWidth="2"></path>
+        <path d="M22 27 l0 6 M32 24.5 l0 6 M43 23 l0 6 M54 24.5 l0 6 M64 26.5 l0 6" strokeWidth="1.4"></path>
+        <path d="M50 42 q 4 -6 2 -9" strokeWidth="1.6"></path>
+      </g>
+    </svg>
+  );
+}
+function BirdArt() {
+  return (
+    <svg width="70" height="56" viewBox="0 0 70 56">
+      <g fill="none" stroke="var(--ink-faint)" strokeWidth="1.7" filter="url(#lf-wobble)">
+        <path d="M24 26 q -8 10 2 16 q 10 6 20 -2 q 8 -7 2 -15 q 10 2 12 -4 q -6 -2 -10 0 q -4 -8 -14 -6 q -10 2 -12 11"></path>
+        <path d="M32 34 q 6 -4 12 0" opacity="0.8"></path>
+        <path d="M36 42 l-2 8 m 8 -8 l2 8" opacity="0.8"></path>
+      </g>
+      <circle cx="41" cy="24" r="1.3" fill="var(--ink-soft)"></circle>
+    </svg>
+  );
+}
+function MoonArt() {
+  return (
+    <svg width="70" height="60" viewBox="0 0 70 60">
+      <path d="M44 8 a 17 17 0 1 0 12 28 a 14 14 0 0 1 -12 -28" fill="#EFC85C" opacity="0.95" filter="url(#lf-wash-edge)"></path>
+      <g fill="none" stroke="#F0E6CF" strokeWidth="1.7" filter="url(#lf-wobble)" opacity="0.9">
+        <path d="M6 60 L30 22 M14 60 L38 22"></path>
+        <path d="M12 48 l12 0 M17 38 l12 0 M22 28 l12 0"></path>
+      </g>
+    </svg>
+  );
+}
+
+function Demo() {
+  return (
+    <div style={{ display: "flex", gap: 26, alignItems: "flex-end", justifyContent: "center", padding: "24px 20px" }}>
+      <div style={{ textAlign: "center" }}>
+        <BookCover title="Miko and the Wobbly Bridge" pigment="river" width={140} progress={0.45} beacon={true} art={<BridgeArt></BridgeArt>} onOpen={function () {}}></BookCover>
+        <div style={{ fontFamily: "var(--font-parent)", fontSize: 11, color: "var(--ink-soft)", marginTop: 8 }}>beacon + ribbon</div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <BookCover title="Papa Gets the Moon" pigment="plum" width={140} art={<MoonArt></MoonArt>}></BookCover>
+        <div style={{ fontFamily: "var(--font-parent)", fontSize: 11, color: "var(--ink-soft)", marginTop: 8 }}>resting</div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <BookCover title="Azad's Bird Book" pigment="butter" width={140} authored={true} art={<BirdArt></BirdArt>} progress={0.8}></BookCover>
+        <div style={{ fontFamily: "var(--font-parent)", fontSize: 11, color: "var(--ink-soft)", marginTop: 8 }}>authored (star)</div>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <BookCover title="The Quiet Snail" width={140} sketch={true} art={<BirdArt></BirdArt>}></BookCover>
+        <div style={{ fontFamily: "var(--font-parent)", fontSize: 11, color: "var(--ink-soft)", marginTop: 8 }}>art still painting</div>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo></Demo>);
+</script>
+</body>
+</html>

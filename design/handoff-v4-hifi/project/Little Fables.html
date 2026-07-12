@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Fables — Prototype</title>
+<link rel="stylesheet" href="_ds/little-fables-design-system-d603a2a0-eca1-4b3b-a2b5-f736a4a0efff/styles.css">
+<style>
+  html, body { height: 100%; margin: 0; overflow: hidden; }
+  #root { position: fixed; inset: 0; }
+  button { border: none; background: none; padding: 0; font: inherit; -webkit-tap-highlight-color: transparent; }
+  a { color: var(--pigment-river); }
+  a:hover { color: var(--pigment-terracotta); }
+  ::selection { background: rgba(242, 196, 96, 0.45); }
+  /* Reduced-motion PREVIEW (Tweaks) mirrors tokens/motion.css:
+     loops hold their resting frame; transitions become quiet dissolves. */
+  [data-reduce] {
+    --motion-breath: 0ms;
+    --motion-wobble: 0ms;
+    --motion-bloom: 0ms;
+    --motion-page-turn: 200ms;
+    --motion-kamishibai: 200ms;
+    --motion-endpaper: 200ms;
+  }
+  /* Story register keeps warm ink on paper even inside the lantern scope
+     ("the page's own palette governs; chrome recedes to ink on paper"). */
+  [data-register="story"] {
+    --ink: #46362A;
+    --ink-soft: #6E5B49;
+    --ink-faint: #97836B;
+    --text-color: #46362A;
+    --text-soft: #6E5B49;
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds/little-fables-design-system-d603a2a0-eca1-4b3b-a2b5-f736a4a0efff/_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="assets/lf-filters.js"></script>
+<script type="text/babel" src="app/tweaks-panel.jsx"></script>
+<script type="text/babel" src="app/sim.jsx"></script>
+<script type="text/babel" src="app/art.jsx"></script>
+<script type="text/babel" src="app/art2.jsx"></script>
+<script type="text/babel" src="app/content.jsx"></script>
+<script type="text/babel" src="app/room.jsx"></script>
+<script type="text/babel" src="app/home.jsx"></script>
+<script type="text/babel" src="app/arrival.jsx"></script>
+<script type="text/babel" src="app/reader.jsx"></script>
+<script type="text/babel" src="app/complete.jsx"></script>
+<script type="text/babel" src="app/kitchen.jsx"></script>
+<script type="text/babel" src="app/words.jsx"></script>
+<script type="text/babel" src="app/parent.jsx"></script>
+<script type="text/babel" src="app/main.jsx"></script>
+</body>
+</html>

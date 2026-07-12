@@ -1,0 +1,387 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "assets/**",
+              "components/buddy/**",
+              "components/moments/**",
+              "components/parent/**",
+              "components/progress/**",
+              "components/reading/**",
+              "components/recap/**",
+              "components/shelf/**",
+              "components/speech/**",
+              "components/transitions/**",
+              "components/writing/**",
+              "ui_kits/home/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Young Serif|Alegreya|Caveat|Inter))/i]",
+        "message": "Font not provided by the design system. Available: Young Serif, Alegreya, Caveat, Inter."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AskCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:question|micActive|onMic|width|style|key|ref|className|style|children)$/]",
+        "message": "<AskCard> doesn't accept that prop. Declared props: question, micActive, onMic, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BookCover'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|pigment|width|art|progress|authored|sketch|beacon|onOpen|style|key|ref|className|style|children)$/]",
+        "message": "<BookCover> doesn't accept that prop. Declared props: title, pigment, width, art, progress, authored, sketch, beacon, onOpen, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BookCover'] > JSXAttribute[name.name='pigment'] > Literal[value!=/^(?:marigold|butter|terracotta|sage|river|teal|berry|dusk|bark|plum)$/]",
+        "message": "<BookCover> pigment must be one of 'marigold' | 'butter' | 'terracotta' | 'sage' | 'river' | 'teal' | 'berry' | 'dusk' | 'bark' | 'plum'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BreatheCircle'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|pigment|running|style|key|ref|className|style|children)$/]",
+        "message": "<BreatheCircle> doesn't accept that prop. Declared props: size, pigment, running, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='BreatheCircle'] > JSXAttribute[name.name='pigment'] > Literal[value!=/^(?:teal|dusk|sage|river|plum)$/]",
+        "message": "<BreatheCircle> pigment must be one of 'teal' | 'dusk' | 'sage' | 'river' | 'plum'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Buddy'] > JSXAttribute > JSXIdentifier[name!=/^(?:pose|size|breathing|style|key|ref|className|style|children)$/]",
+        "message": "<Buddy> doesn't accept that prop. Declared props: pose, size, breathing, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Buddy'] > JSXAttribute[name.name='pose'] > Literal[value!=/^(?:idle|listening|pointing|celebrating)$/]",
+        "message": "<Buddy> pose must be one of 'idle' | 'listening' | 'pointing' | 'celebrating'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ChoiceCards'] > JSXAttribute > JSXIdentifier[name!=/^(?:choices|onPick|picked|size|style|key|ref|className|style|children)$/]",
+        "message": "<ChoiceCards> doesn't accept that prop. Declared props: choices, onPick, picked, size, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Endpaper'] > JSXAttribute > JSXIdentifier[name!=/^(?:pigment|motif|loading|children|style|key|ref|className|style|children)$/]",
+        "message": "<Endpaper> doesn't accept that prop. Declared props: pigment, motif, loading, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Endpaper'] > JSXAttribute[name.name='pigment'] > Literal[value!=/^(?:marigold|butter|terracotta|sage|river|teal|berry|dusk|bark|plum)$/]",
+        "message": "<Endpaper> pigment must be one of 'marigold' | 'butter' | 'terracotta' | 'sage' | 'river' | 'teal' | 'berry' | 'dusk' | 'bark' | 'plum'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Endpaper'] > JSXAttribute[name.name='motif'] > Literal[value!=/^(?:star|moon|leaf|boat)$/]",
+        "message": "<Endpaper> motif must be one of 'star' | 'moon' | 'leaf' | 'boat'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Medallion'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|pigment|size|motif|style|key|ref|className|style|children)$/]",
+        "message": "<Medallion> doesn't accept that prop. Declared props: label, pigment, size, motif, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Medallion'] > JSXAttribute[name.name='pigment'] > Literal[value!=/^(?:marigold|terracotta|sage|river|teal|berry|plum)$/]",
+        "message": "<Medallion> pigment must be one of 'marigold' | 'terracotta' | 'sage' | 'river' | 'teal' | 'berry' | 'plum'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ParentSurface'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|children|width|style|key|ref|className|style|children)$/]",
+        "message": "<ParentSurface> doesn't accept that prop. Declared props: title, children, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReadingPage'] > JSXAttribute > JSXIdentifier[name!=/^(?:art|text|highlightIndex|autoHighlight|highlightMs|micActive|onMic|onNext|pageLabel|width|style|key|ref|className|style|children)$/]",
+        "message": "<ReadingPage> doesn't accept that prop. Declared props: art, text, highlightIndex, autoHighlight, highlightMs, micActive, onMic, onNext, pageLabel, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ReadingSuns'] > JSXAttribute > JSXIdentifier[name!=/^(?:count|size|sill|style|key|ref|className|style|children)$/]",
+        "message": "<ReadingSuns> doesn't accept that prop. Declared props: count, size, sill, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='RecapStrip'] > JSXAttribute > JSXIdentifier[name!=/^(?:panels|panelWidth|style|key|ref|className|style|children)$/]",
+        "message": "<RecapStrip> doesn't accept that prop. Declared props: panels, panelWidth, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SpeechBalloon'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|tail|speaking|maxWidth|style|key|ref|className|style|children)$/]",
+        "message": "<SpeechBalloon> doesn't accept that prop. Declared props: children, variant, tail, speaking, maxWidth, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SpeechBalloon'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:calm|bouncy)$/]",
+        "message": "<SpeechBalloon> variant must be one of 'calm' | 'bouncy'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SpeechBalloon'] > JSXAttribute[name.name='tail'] > Literal[value!=/^(?:left|right|none)$/]",
+        "message": "<SpeechBalloon> tail must be one of 'left' | 'right' | 'none'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StarWord'] > JSXAttribute > JSXIdentifier[name!=/^(?:word|pin|rotate|width|style|key|ref|className|style|children)$/]",
+        "message": "<StarWord> doesn't accept that prop. Declared props: word, pin, rotate, width, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StarWord'] > JSXAttribute[name.name='pin'] > Literal[value!=/^(?:berry|river|marigold|sage|teal|plum)$/]",
+        "message": "<StarWord> pin must be one of 'berry' | 'river' | 'marigold' | 'sage' | 'teal' | 'plum'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WritingMoment'] > JSXAttribute > JSXIdentifier[name!=/^(?:words|inkPigment|width|wordMs|style|key|ref|className|style|children)$/]",
+        "message": "<WritingMoment> doesn't accept that prop. Declared props: words, inkPigment, width, wordMs, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WritingMoment'] > JSXAttribute[name.name='inkPigment'] > Literal[value!=/^(?:river|berry|sage|plum|teal)$/]",
+        "message": "<WritingMoment> inkPigment must be one of 'river' | 'berry' | 'sage' | 'plum' | 'teal'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "AskCard": {
+        "replaces": []
+      },
+      "BookCover": {
+        "replaces": []
+      },
+      "BreatheCircle": {
+        "replaces": []
+      },
+      "Buddy": {
+        "replaces": []
+      },
+      "ChoiceCards": {
+        "replaces": []
+      },
+      "Endpaper": {
+        "replaces": []
+      },
+      "Medallion": {
+        "replaces": []
+      },
+      "ParentSurface": {
+        "replaces": []
+      },
+      "ReadingPage": {
+        "replaces": []
+      },
+      "ReadingSuns": {
+        "replaces": []
+      },
+      "RecapStrip": {
+        "replaces": []
+      },
+      "SpeechBalloon": {
+        "replaces": []
+      },
+      "StarWord": {
+        "replaces": []
+      },
+      "WritingMoment": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-action",
+      "--accent-action-deep",
+      "--ease-drawn",
+      "--ease-settle",
+      "--ease-slide",
+      "--font-body",
+      "--font-display",
+      "--font-parent",
+      "--glow-lamplight",
+      "--ink",
+      "--ink-faint",
+      "--ink-soft",
+      "--lantern-gold",
+      "--lantern-indigo",
+      "--leading-display",
+      "--leading-reading",
+      "--leading-speech",
+      "--light-pool",
+      "--line-weight",
+      "--line-weight-bold",
+      "--motion-bloom",
+      "--motion-breath",
+      "--motion-endpaper",
+      "--motion-kamishibai",
+      "--motion-page-turn",
+      "--motion-reduced-dissolve",
+      "--motion-settle",
+      "--motion-wobble",
+      "--paper",
+      "--paper-bright",
+      "--paper-deep",
+      "--pigment-bark",
+      "--pigment-berry",
+      "--pigment-butter",
+      "--pigment-dusk",
+      "--pigment-marigold",
+      "--pigment-plum",
+      "--pigment-river",
+      "--pigment-sage",
+      "--pigment-teal",
+      "--pigment-terracotta",
+      "--pigment-terracotta-deep",
+      "--radius-card",
+      "--radius-page",
+      "--radius-round",
+      "--radius-soft",
+      "--reading-max-words",
+      "--shadow-color",
+      "--shadow-cool",
+      "--shadow-warm",
+      "--sound-buddy",
+      "--sound-celebrate",
+      "--sound-confirm",
+      "--sound-create",
+      "--sound-endpaper",
+      "--sound-listening",
+      "--sound-navigate",
+      "--sound-page-turn",
+      "--sound-place",
+      "--sound-word-apear",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--surface-card",
+      "--surface-ground",
+      "--surface-recessed",
+      "--target-min",
+      "--target-primary",
+      "--text-caption",
+      "--text-color",
+      "--text-display",
+      "--text-display-xl",
+      "--text-label",
+      "--text-parent",
+      "--text-reading",
+      "--text-reading-lg",
+      "--text-soft",
+      "--text-speech",
+      "--text-title",
+      "--texture-paper",
+      "--wash-opacity"
+    ],
+    "tokenKinds": {
+      "--paper": "color",
+      "--paper-bright": "color",
+      "--paper-deep": "color",
+      "--ink": "color",
+      "--ink-soft": "color",
+      "--ink-faint": "color",
+      "--pigment-marigold": "color",
+      "--pigment-butter": "color",
+      "--pigment-terracotta": "color",
+      "--pigment-sage": "color",
+      "--pigment-river": "color",
+      "--pigment-teal": "color",
+      "--pigment-berry": "color",
+      "--pigment-dusk": "color",
+      "--pigment-bark": "color",
+      "--pigment-plum": "color",
+      "--pigment-terracotta-deep": "color",
+      "--lantern-indigo": "color",
+      "--lantern-gold": "color",
+      "--shadow-cool": "shadow",
+      "--shadow-warm": "shadow",
+      "--shadow-color": "shadow",
+      "--light-pool": "color",
+      "--glow-lamplight": "color",
+      "--surface-ground": "color",
+      "--surface-card": "color",
+      "--surface-recessed": "color",
+      "--text-color": "font",
+      "--text-soft": "font",
+      "--accent-action": "color",
+      "--accent-action-deep": "color",
+      "--wash-opacity": "spacing",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-parent": "font",
+      "--text-display-xl": "font",
+      "--text-display": "font",
+      "--text-title": "font",
+      "--text-reading-lg": "font",
+      "--text-reading": "font",
+      "--text-speech": "font",
+      "--text-label": "font",
+      "--text-caption": "font",
+      "--text-parent": "font",
+      "--leading-display": "font",
+      "--leading-reading": "font",
+      "--leading-speech": "font",
+      "--reading-max-words": "other",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--target-primary": "spacing",
+      "--target-min": "spacing",
+      "--radius-soft": "radius",
+      "--radius-card": "radius",
+      "--radius-page": "radius",
+      "--radius-round": "radius",
+      "--line-weight": "font",
+      "--line-weight-bold": "font",
+      "--texture-paper": "other",
+      "--motion-breath": "other",
+      "--motion-wobble": "other",
+      "--motion-bloom": "other",
+      "--motion-page-turn": "other",
+      "--motion-kamishibai": "other",
+      "--motion-endpaper": "other",
+      "--motion-settle": "other",
+      "--ease-drawn": "other",
+      "--ease-settle": "other",
+      "--ease-slide": "other",
+      "--motion-reduced-dissolve": "other",
+      "--sound-navigate": "other",
+      "--sound-page-turn": "other",
+      "--sound-endpaper": "other",
+      "--sound-confirm": "other",
+      "--sound-place": "other",
+      "--sound-create": "other",
+      "--sound-word-apear": "other",
+      "--sound-buddy": "other",
+      "--sound-celebrate": "other",
+      "--sound-listening": "other"
+    },
+    "fontFamilies": [
+      "Alegreya",
+      "Caveat",
+      "Inter",
+      "Young Serif"
+    ]
+  }
+}

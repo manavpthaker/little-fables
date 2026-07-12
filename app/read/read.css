@@ -1,6 +1,236 @@
 /* Little Fables — Story World (kid app) tokens, iPad type scale, bedtime flip,
    and shared animations. Loaded only by app/read/layout.tsx. Tokens mirror
-   design/handoff/_ds/.../tokens/*.css and the .sw-app system in shared.jsx. */
+   design/handoff/_ds/.../tokens/*.css and the .sw-app system in shared.jsx.
+   The v3 Drawn Room token layer below (`.lf-room` scope) supersedes the
+   Dream Paper palette for surfaces that opt into the drawn look. Dream Paper
+   stays available under `.sw-app` for legacy screens. */
+
+/* ==============================================================
+   v3 Drawn Room — pigment, ink, paper, lighting registers.
+   Ported from design/handoff-v4-hifi/_ds/tokens/*.css.
+   ============================================================== */
+
+.lf-room {
+  /* ground: warm paper (always textured, never flat) */
+  --paper:        #F4EBD8;
+  --paper-bright: #F9F2E3;
+  --paper-deep:   #EADCC0;
+
+  /* ink: warm, never #000 */
+  --ink:       #46362A;
+  --ink-soft:  #6E5B49;
+  --ink-faint: #97836B;
+
+  /* the 10 pigments */
+  --pigment-marigold:   #E2A93B;
+  --pigment-butter:     #EFC85C;
+  --pigment-terracotta: #D95B43;
+  --pigment-sage:       #7C9A62;
+  --pigment-river:      #4E7FA3;
+  --pigment-teal:       #2E8B8B;
+  --pigment-berry:      #9B4A6B;
+  --pigment-dusk:       #5D6A8A;
+  --pigment-bark:       #5B4637;
+  --pigment-plum:       #5B4B7A;
+  --pigment-terracotta-deep: #C7452F;
+
+  /* lantern pigments */
+  --lantern-indigo: #22304A;
+  --lantern-gold:   #F3C77A;
+
+  /* colored shadows — never grey */
+  --shadow-cool: rgba(93, 106, 138, 0.28);
+  --shadow-warm: rgba(91, 70, 55, 0.22);
+  --shadow-color: var(--shadow-cool);
+
+  /* light (driven live by the clock-lighting module) */
+  --light-pool:     rgba(239, 200, 92, 0.16);
+  --glow-lamplight: rgba(242, 196, 96, 0.55);
+  --light-sky:      linear-gradient(180deg, #EFCCA0, #F4EBD8);
+  --light-ambient:  transparent;
+
+  /* semantic aliases */
+  --surface-ground:   var(--paper);
+  --surface-card:     var(--paper-bright);
+  --surface-recessed: var(--paper-deep);
+  --text-color:       var(--ink);
+  --text-soft:        var(--ink-soft);
+  --accent-action:      var(--pigment-terracotta);
+  --accent-action-deep: var(--pigment-terracotta-deep);
+  --wash-opacity: 42%;
+
+  /* Type — set, never hand-drawn (except the child's own words in WritingMoment). */
+  --font-display: 'YoungSerif', 'Iowan Old Style', Georgia, serif;
+  --font-body:    'Alegreya', 'Iowan Old Style', Georgia, serif;
+  --font-child-hand: 'Caveat', cursive;
+  --font-parent:  var(--font-inter), 'Inter', -apple-system, sans-serif;
+
+  --text-display-xl: 64px;
+  --text-display:    44px;
+  --text-title:      30px;
+  --text-reading-lg: 32px;
+  --text-reading:    28px;
+  --text-speech:     26px;
+  --text-label:      24px;
+  --text-caption:    17px;
+  --text-parent:     15px;
+  --leading-display: 1.12;
+  --leading-reading: 1.52;
+  --leading-speech:  1.35;
+
+  /* Spacing + touch */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+  --target-primary: 56px;
+  --target-min:     44px;
+  --radius-soft: 10px; --radius-card: 18px; --radius-page: 22px; --radius-round: 999px;
+  --line-weight: 2px; --line-weight-bold: 3px;
+
+  /* Motion */
+  --motion-breath:  2600ms;
+  --motion-wobble:  2000ms;
+  --motion-bloom:   1400ms;
+  --motion-page-turn:  700ms;
+  --motion-kamishibai: 520ms;
+  --motion-endpaper:   900ms;
+  --motion-settle:     260ms;
+  --ease-drawn:  cubic-bezier(0.34, 0.05, 0.18, 1);
+  --ease-settle: cubic-bezier(0.22, 1.0, 0.36, 1);
+  --ease-slide:  cubic-bezier(0.33, 0.0, 0.16, 1);
+  --motion-reduced-dissolve: 200ms;
+
+  /* Two-scale grain — inline SVG data-uri (same as DS token). */
+  --texture-paper: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.016' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.36 0 0 0 0 0.27 0 0 0 0 0.16 0 0 0 0.05 0'/%3E%3C/filter%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.32 0 0 0 0 0.24 0 0 0 0 0.14 0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23f)'/%3E%3Crect width='220' height='220' filter='url(%23s)'/%3E%3C/svg%3E");
+
+  color: var(--text-color);
+  background-color: var(--surface-ground);
+  background-image: var(--texture-paper);
+  font-family: var(--font-body);
+
+  /* A1 touch-native — kills 300ms taps, zoom, iOS callout. */
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  overscroll-behavior: contain;
+}
+
+/* Story register: inside a book — page palette governs, chrome recedes. */
+.lf-room[data-register='story'],
+[data-register='story'] {
+  --surface-ground: var(--paper);
+  --surface-card:   var(--paper);
+  --shadow-color:   var(--shadow-warm);
+  --light-pool:     transparent;
+}
+
+/* Lantern register: evening / celebration / quiet-time. */
+.lf-room[data-register='lantern'],
+[data-register='lantern'] {
+  --surface-ground:   var(--lantern-indigo);
+  --surface-card:     #2C3B58;
+  --surface-recessed: #1B2740;
+  --text-color: #F2E7CE;
+  --text-soft:  #C9BBA0;
+  --ink:        #F2E7CE;
+  --ink-soft:   #C9BBA0;
+  --ink-faint:  #8E89A6;
+  --shadow-color: rgba(11, 18, 34, 0.5);
+  --shadow-cool:  rgba(11, 18, 34, 0.5);
+  --shadow-warm:  rgba(11, 18, 34, 0.4);
+  --light-pool:     rgba(243, 199, 122, 0.2);
+  --glow-lamplight: rgba(243, 199, 122, 0.6);
+}
+
+/* Paper / card grounds — every surface gets fiber. */
+.lf-room .lf-paper {
+  background-color: var(--surface-ground);
+  background-image: var(--texture-paper);
+}
+.lf-room .lf-card {
+  background-color: var(--surface-card);
+  background-image: var(--texture-paper);
+  border-radius: var(--radius-card);
+  box-shadow: 0 3px 16px -6px var(--shadow-color);
+}
+
+/* Drawn-line border replacements — the line wobbles, the content doesn't. */
+.lf-room .lf-drawn-border { position: relative; }
+.lf-room .lf-drawn-border::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: var(--line-weight) solid currentColor;
+  border-radius: inherit;
+  filter: url(#lf-wobble);
+  pointer-events: none;
+}
+.lf-room .lf-drawn-border--bold::before { border-width: var(--line-weight-bold); }
+
+.lf-room .lf-rule {
+  border: none;
+  height: var(--line-weight);
+  background: currentColor;
+  filter: url(#lf-dry);
+  opacity: 0.75;
+}
+.lf-room .lf-wash { filter: url(#lf-wash-edge); }
+.lf-room .lf-boil { filter: url(#lf-boil); }
+
+/* A1 pressed state — every kid-touchable renders a <100ms drawn press. */
+.lf-room .lf-press {
+  transition: transform 90ms var(--ease-drawn), filter 90ms var(--ease-drawn);
+  will-change: transform;
+}
+.lf-room .lf-press:active {
+  transform: translateY(2px) scale(0.985);
+  filter: brightness(0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lf-room .lf-boil { filter: url(#lf-wobble); }
+  .lf-room .lf-press { transition: none; }
+  .lf-room .lf-press:active { transform: none; }
+  .lf-room {
+    --motion-breath: 0ms; --motion-wobble: 0ms; --motion-bloom: 0ms;
+    --motion-page-turn:  var(--motion-reduced-dissolve);
+    --motion-kamishibai: var(--motion-reduced-dissolve);
+    --motion-endpaper:   var(--motion-reduced-dissolve);
+  }
+}
+
+/* Kamishibai slide — page turns follow the finger. */
+@keyframes lf-kamishibai-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes lf-kamishibai-out {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+.lf-kamishibai-in  { animation: lf-kamishibai-in  var(--motion-kamishibai) var(--ease-slide) both; }
+.lf-kamishibai-out { animation: lf-kamishibai-out var(--motion-kamishibai) var(--ease-slide) both; }
+
+/* Endpaper wash — a mood-setting loading state (never a spinner). */
+@keyframes lf-endpaper-in {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.lf-endpaper { animation: lf-endpaper-in var(--motion-endpaper) var(--ease-settle) both; }
+
+/* Breath — the buddy's idle loop and the breathe-along circle. */
+@keyframes lf-breath {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.035); }
+}
+.lf-breath { animation: lf-breath var(--motion-breath) var(--ease-drawn) infinite; }
+
+/* Line boil — 3 discrete frames over 2s, JS-driven filter seed rotation. */
+@keyframes lf-line-boil {
+  0%,33%   { transform: translateY(0); }
+  34%,66%  { transform: translateY(0.5px); }
+  67%,100% { transform: translateY(-0.5px); }
+}
 
 .sw-app {
   /* ---- Dream Paper (day) ---- */

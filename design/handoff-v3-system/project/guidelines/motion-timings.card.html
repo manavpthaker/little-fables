@@ -1,0 +1,26 @@
+<!-- @dsCard group="Motion" viewport="700x230" name="Timings" subtitle="Physical, continuous, no camera cuts — every loop has a reduced-motion variant" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px 30px; display: flex; flex-direction: column; justify-content: center; gap: 0; }
+  .row { display: grid; grid-template-columns: 170px 1fr 96px; align-items: center; gap: 14px; padding: 7px 0; border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 25%, transparent); }
+  .row:last-child { border-bottom: 0; }
+  .name { font-family: var(--font-parent); font-size: 11.5px; color: var(--ink); font-weight: 500; }
+  .bar-track { height: 8px; border-radius: 4px; background: color-mix(in srgb, var(--ink-faint) 18%, transparent); position: relative; }
+  .bar { position: absolute; inset: 0 auto 0 0; border-radius: 4px; filter: url(#lf-dry); }
+  .t { font-family: var(--font-parent); font-size: 11px; color: var(--ink-soft); text-align: right; }
+</style>
+</head>
+<body>
+  <div class="row"><span class="name">buddy breath (loop)</span><div class="bar-track"><div class="bar" style="width:100%; background: var(--pigment-sage);"></div></div><span class="t">2600ms</span></div>
+  <div class="row"><span class="name">line boil (loop)</span><div class="bar-track"><div class="bar" style="width:77%; background: var(--pigment-marigold);"></div></div><span class="t">2000ms · 3 frames</span></div>
+  <div class="row"><span class="name">endpaper open/close</span><div class="bar-track"><div class="bar" style="width:35%; background: var(--pigment-plum);"></div></div><span class="t">900ms</span></div>
+  <div class="row"><span class="name">page turn</span><div class="bar-track"><div class="bar" style="width:27%; background: var(--pigment-river);"></div></div><span class="t">700ms</span></div>
+  <div class="row"><span class="name">kamishibai slide</span><div class="bar-track"><div class="bar" style="width:20%; background: var(--pigment-teal);"></div></div><span class="t">520ms</span></div>
+  <div class="row"><span class="name">object settle</span><div class="bar-track"><div class="bar" style="width:10%; background: var(--pigment-bark);"></div></div><span class="t">260ms</span></div>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>

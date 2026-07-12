@@ -1,0 +1,30 @@
+<!-- @dsCard group="Texture" viewport="700x160" name="Drawn Borders & Dry Brush" subtitle="Drawn lines instead of geometric strokes; dry-brush for small accents, one per composition" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { display: flex; align-items: center; gap: 26px; padding: 20px 28px; }
+  .box { width: 132px; height: 92px; border-radius: var(--radius-card); background-color: var(--surface-card); background-image: var(--texture-paper); color: var(--ink); display: grid; place-items: center; font-family: var(--font-parent); font-size: 11px; }
+  .geo { border: 2px solid var(--ink); color: var(--accent-action-deep); }
+  .rules { display: flex; flex-direction: column; gap: 16px; width: 190px; }
+  .lbl { font-family: var(--font-parent); font-size: 11px; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+  <div class="box lf-drawn-border">drawn border ✓</div>
+  <div class="box geo">geometric — no</div>
+  <div class="rules">
+    <div>
+      <hr class="lf-rule" style="color: var(--pigment-bark);">
+      <div class="lbl" style="margin-top:6px;">dry-brush rule (#lf-dry)</div>
+    </div>
+    <div>
+      <hr class="lf-rule" style="color: var(--pigment-terracotta); height: 4px;">
+      <div class="lbl" style="margin-top:6px;">underline accent</div>
+    </div>
+  </div>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>

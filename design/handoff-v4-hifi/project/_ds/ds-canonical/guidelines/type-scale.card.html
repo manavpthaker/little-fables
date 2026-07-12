@@ -1,0 +1,22 @@
+<!-- @dsCard group="Type" viewport="700x240" name="Type Scale" subtitle="Nothing a child needs is below 24px; parent surfaces use Inter" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 20px 32px; display: flex; flex-direction: column; justify-content: center; gap: 2px; }
+  .row { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid color-mix(in srgb, var(--ink-faint) 30%, transparent); padding: 5px 0; }
+  .row:last-child { border-bottom: none; }
+  .tok { font-family: var(--font-parent); font-size: 10.5px; color: var(--ink-soft); width: 150px; flex: none; }
+</style>
+</head>
+<body>
+  <div class="row"><span class="tok">display-xl · 64</span><span style="font-family:var(--font-display); font-size:52px; line-height:1;">Miko</span></div>
+  <div class="row"><span class="tok">display · 44</span><span style="font-family:var(--font-display); font-size:44px; line-height:1;">The Wobbly Bridge</span></div>
+  <div class="row"><span class="tok">title · 30 (floor)</span><span style="font-family:var(--font-display); font-size:30px; line-height:1;">Chapter of small steps</span></div>
+  <div class="row"><span class="tok">reading · 28</span><span style="font-family:var(--font-body); font-size:28px; line-height:1.1;">The bridge swung under his paws.</span></div>
+  <div class="row"><span class="tok">speech / label · 26 / 24</span><span style="font-family:var(--font-body); font-size:26px; line-height:1.1;">Shall we see what happens next?</span></div>
+  <div class="row"><span class="tok">parent · Inter 15</span><span style="font-family:var(--font-parent); font-size:15px; color:#3F3F46;">Reading days this week: 4</span></div>
+</body>
+</html>

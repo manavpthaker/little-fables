@@ -1,0 +1,24 @@
+<!-- @dsCard group="North Star" viewport="1180x820" name="The Room at Golden Hour" subtitle="The north-star scene — everything derives from this image" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Fables — North Star</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html, body { height: 100%; }
+  body { display: grid; place-items: center; overflow: hidden; }
+  #scene { width: 100vw; height: 100vh; }
+  #scene svg { width: 100%; height: 100%; display: block; }
+</style>
+</head>
+<body>
+<div id="scene"></div>
+<script>
+  fetch("north-star.svg")
+    .then(function (r) { return r.text(); })
+    .then(function (t) { document.getElementById("scene").innerHTML = t; });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* Little Fables — motion. Handmade, not shaky.
+   Transitions are physical and continuous — no camera cuts within a scene.
+   Every animated treatment has a reduced-motion variant (usually: hold the
+   resting frame, or a 200ms dissolve).                                     */
+
+:root {
+  /* loops */
+  --motion-breath:  2600ms; /* @kind other */  /* buddy idle breath (2–3s)                  */
+  --motion-wobble:  2000ms; /* @kind other */  /* line boil on drawn elements — 3 discrete
+                                frames over 2s, never interpolated        */
+  --motion-bloom:   1400ms; /* @kind other */  /* wash bloom swell (breathe-along circle)   */
+
+  /* transitions */
+  --motion-page-turn:  700ms; /* @kind other */  /* page rises / turns                      */
+  --motion-kamishibai: 520ms; /* @kind other */  /* side-slide between scenes               */
+  --motion-endpaper:   900ms; /* @kind other */  /* wash field open/close beat (= loading)  */
+  --motion-settle:     260ms; /* @kind other */  /* small objects easing into place         */
+
+  /* easing */
+  --ease-drawn:  cubic-bezier(0.34, 0.05, 0.18, 1); /* @kind other */  /* confident pull    */
+  --ease-settle: cubic-bezier(0.22, 1.0, 0.36, 1); /* @kind other */   /* gentle land       */
+  --ease-slide:  cubic-bezier(0.33, 0.0, 0.16, 1); /* @kind other */   /* kamishibai        */
+
+  /* reduced-motion replacement */
+  --motion-reduced-dissolve: 200ms; /* @kind other */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* loops hold their resting frame */
+    --motion-breath: 0ms; /* @kind other */
+    --motion-wobble: 0ms; /* @kind other */
+    --motion-bloom:  0ms; /* @kind other */
+    /* transitions become quiet dissolves */
+    --motion-page-turn:  var(--motion-reduced-dissolve); /* @kind other */
+    --motion-kamishibai: var(--motion-reduced-dissolve); /* @kind other */
+    --motion-endpaper:   var(--motion-reduced-dissolve); /* @kind other */
+  }
+}

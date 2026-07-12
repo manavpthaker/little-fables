@@ -1,0 +1,28 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Paper & Ink" subtitle="Warm paper ground, warm ink — never flat, never #000" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { display: flex; align-items: center; gap: 14px; padding: 20px 24px; }
+  .sw { width: 92px; height: 96px; border-radius: var(--radius-soft); display: flex; flex-direction: column; justify-content: flex-end; padding: 8px 10px; box-sizing: border-box; background-image: var(--texture-paper); color: var(--ink-soft); }
+  .sw b { font-family: var(--font-parent); font-size: 11px; font-weight: 500; letter-spacing: 0.02em; }
+  .sw span { font-family: var(--font-parent); font-size: 10px; opacity: 0.75; }
+  .inks { display: flex; flex-direction: column; gap: 10px; margin-left: 16px; }
+  .ink-row { display: flex; align-items: center; gap: 10px; font-family: var(--font-parent); font-size: 11px; color: var(--ink-soft); }
+  .stroke { width: 120px; height: 34px; }
+</style>
+</head>
+<body>
+  <div class="sw lf-drawn-border" style="background-color: var(--paper);"><b>paper</b><span>#F4EBD8</span></div>
+  <div class="sw lf-drawn-border" style="background-color: var(--paper-bright);"><b>paper-bright</b><span>#F9F2E3</span></div>
+  <div class="sw lf-drawn-border" style="background-color: var(--paper-deep);"><b>paper-deep</b><span>#EADCC0</span></div>
+  <div class="inks">
+    <div class="ink-row"><svg class="stroke" viewBox="0 0 120 34"><path d="M4 20 Q 34 12 62 18 T 116 16" fill="none" stroke="#46362A" stroke-width="3.4" stroke-linecap="round" filter="url(#lf-wobble)"></path></svg>ink · #46362A</div>
+    <div class="ink-row"><svg class="stroke" viewBox="0 0 120 34"><path d="M4 20 Q 34 12 62 18 T 116 16" fill="none" stroke="#6E5B49" stroke-width="2.6" stroke-linecap="round" filter="url(#lf-wobble)"></path></svg>ink-soft · #6E5B49</div>
+    <div class="ink-row"><svg class="stroke" viewBox="0 0 120 34"><path d="M4 20 Q 34 12 62 18 T 116 16" fill="none" stroke="#97836B" stroke-width="2" stroke-linecap="round" filter="url(#lf-wobble)"></path></svg>ink-faint · #97836B</div>
+  </div>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>

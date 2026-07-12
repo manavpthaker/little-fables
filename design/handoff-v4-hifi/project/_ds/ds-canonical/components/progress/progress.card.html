@@ -1,0 +1,42 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Progress in the Room" subtitle="Suns on the sill, star words on the wall, medallions on the shelf — only ever accumulating" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="../../assets/lf-filters.js"></script>
+<script type="text/babel">
+const { ReadingSuns, StarWord, Medallion } = window.LittleFablesDesignSystem_d603a2;
+function Demo() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 20, padding: "20px 28px" }}>
+      <div style={{ display: "flex", gap: 40, alignItems: "flex-end" }}>
+        <ReadingSuns count={4}></ReadingSuns>
+        <div style={{ display: "flex", gap: 18, alignItems: "flex-start", paddingBottom: 10 }}>
+          <StarWord word="moon" pin="berry" rotate={-2}></StarWord>
+          <StarWord word="wobbly" pin="river" rotate={1.6} style={{ marginTop: 14 }}></StarWord>
+          <StarWord word="enormous" pin="marigold" rotate={-1}></StarWord>
+        </div>
+      </div>
+      <div style={{ display: "flex", gap: 26, alignItems: "flex-end" }}>
+        <Medallion label="ten stories" pigment="marigold"></Medallion>
+        <Medallion label="brave reader" pigment="river"></Medallion>
+        <Medallion pigment="berry"></Medallion>
+        <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: 17, color: "var(--ink-soft)", maxWidth: 260, lineHeight: 1.4 }}>
+          No empty slots, no streaks to break, no counters. Things simply arrive in the room and stay.
+        </p>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo></Demo>);
+</script>
+</body>
+</html>

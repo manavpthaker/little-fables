@@ -1,0 +1,19 @@
+<!-- @dsCard group="Type" viewport="700x200" name="Reading Text — Alegreya" subtitle="≥24px, ~65 words per page; star words lowercase italic; lamplight highlight" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { padding: 26px 34px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+  .reading { font-size: var(--text-reading); line-height: var(--leading-reading); color: var(--ink); max-width: 620px; }
+  .glow { background: radial-gradient(ellipse 105% 120% at 50% 55%, var(--glow-lamplight), transparent 78%); border-radius: 8px; padding: 0 4px; margin: 0 -2px; }
+  .star-word { font-style: italic; }
+  .meta { font-family: var(--font-parent); font-size: 11px; color: var(--ink-soft); display: flex; gap: 18px; }
+</style>
+</head>
+<body>
+  <p class="reading">The bridge swung under Miko's paws. It felt <span class="glow star-word">wobbly</span>, like a boat made of rope. Miko took one small brave step.</p>
+  <div class="meta"><span>Alegreya 400 · 28px / 1.52</span><span>word highlight = warm lamplight glow, never marker-yellow blocks</span></div>
+</body>
+</html>

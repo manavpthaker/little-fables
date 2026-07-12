@@ -1,0 +1,32 @@
+<!-- @dsCard group="Home" viewport="1180x820" name="Home — the Room" subtitle="Acceptance test: buddy + speech, Continue beacon, suns on the sill, ≤5 decisions, book opens in ≤2 taps" -->
+<!-- @startingPoint section="Screens" subtitle="The room as Home — interactive: tap a book to read" viewport="1180x820" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Little Fables — Home</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  html, body { height: 100%; overflow: hidden; }
+  @keyframes lf-home-beacon {
+    from { box-shadow: 0 0 22px 4px var(--glow-lamplight); }
+    to   { box-shadow: 0 0 44px 14px var(--glow-lamplight); }
+  }
+  .lf-home-beacon { animation: lf-home-beacon var(--motion-breath, 2600ms) ease-in-out infinite alternate; }
+  @media (prefers-reduced-motion: reduce) {
+    .lf-home-beacon { animation: none; box-shadow: 0 0 34px 9px var(--glow-lamplight); }
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script src="../../assets/lf-filters.js"></script>
+<script type="text/babel" src="RoomScene.jsx"></script>
+<script type="text/babel" src="Home.jsx"></script>
+</body>
+</html>

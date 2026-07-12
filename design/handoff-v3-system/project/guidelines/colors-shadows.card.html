@@ -1,0 +1,30 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Colored Shadows" subtitle="Cool dusk for daytime, warm bark for contact — never neutral grey" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { display: flex; align-items: center; gap: 34px; padding: 22px 30px; }
+  .demo { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .block { width: 96px; height: 62px; border-radius: 12px 10px 13px 11px; background-color: var(--paper-bright); background-image: var(--texture-paper); }
+  .dusk { box-shadow: 10px 12px 0 -2px var(--shadow-cool); }
+  .bark { box-shadow: 0 7px 10px -3px var(--shadow-warm); }
+  .grey { box-shadow: 10px 12px 0 -2px rgba(0,0,0,0.25); position: relative; }
+  .demo b { font-family: var(--font-parent); font-size: 11px; font-weight: 500; color: var(--ink-soft); }
+  .no { color: var(--accent-action-deep); }
+  svg.cross { position: absolute; inset: -14px; width: 124px; height: 90px; }
+</style>
+</head>
+<body>
+  <div class="demo"><div class="block lf-drawn-border dusk"></div><b>dusk shadow · daytime</b></div>
+  <div class="demo"><div class="block lf-drawn-border bark"></div><b>bark shadow · contact</b></div>
+  <div class="demo">
+    <div class="block grey">
+      <svg class="cross" viewBox="0 0 124 90"><path d="M8 8 L116 82 M116 8 L8 82" stroke="#D95B43" stroke-width="4" stroke-linecap="round" filter="url(#lf-wobble)"></path></svg>
+    </div>
+    <b class="no">never grey</b>
+  </div>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>

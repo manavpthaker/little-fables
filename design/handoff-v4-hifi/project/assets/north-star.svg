@@ -1,0 +1,420 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 820" font-family="Alegreya, Georgia, serif">
+  
+  <defs>
+    <filter id="ns-wob" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3" result="n"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.6"></feDisplacementMap>
+    </filter>
+    <filter id="ns-wob2" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="2" seed="7" result="n"></feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="7"></feDisplacementMap>
+    </filter>
+    <filter id="ns-wash" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="0.7" result="b"></feGaussianBlur>
+      <feTurbulence type="fractalNoise" baseFrequency="0.032" numOctaves="3" seed="9" result="n"></feTurbulence>
+      <feDisplacementMap in="b" in2="n" scale="12"></feDisplacementMap>
+    </filter>
+    <filter id="ns-washsoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="b"></feGaussianBlur>
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="4" result="n"></feTurbulence>
+      <feDisplacementMap in="b" in2="n" scale="22"></feDisplacementMap>
+    </filter>
+    <filter id="ns-grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="11" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.34  0 0 0 0 0.26  0 0 0 0 0.15  0 0 0 0.055 0"></feColorMatrix>
+    </filter>
+    <filter id="ns-fiber">
+      <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="3" seed="6" stitchTiles="stitch"></feTurbulence>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.38  0 0 0 0 0.29  0 0 0 0 0.17  0 0 0 0.05 0"></feColorMatrix>
+    </filter>
+    <linearGradient id="ns-wallgrad" x1="0" y1="0" x2="1" y2="0.7">
+      <stop offset="0" stop-color="#F8F0DD"></stop>
+      <stop offset="0.5" stop-color="#F4EBD8"></stop>
+      <stop offset="1" stop-color="#EFE3C8"></stop>
+    </linearGradient>
+    <linearGradient id="ns-sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E2AC"></stop>
+      <stop offset="0.55" stop-color="#F1C97E"></stop>
+      <stop offset="1" stop-color="#EDB35E"></stop>
+    </linearGradient>
+    <linearGradient id="ns-beam" x1="0.05" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#F3C77A" stop-opacity="0.55"></stop>
+      <stop offset="0.55" stop-color="#F3C77A" stop-opacity="0.24"></stop>
+      <stop offset="1" stop-color="#F3C77A" stop-opacity="0"></stop>
+    </linearGradient>
+    <radialGradient id="ns-vign" cx="0.42" cy="0.42" r="0.85">
+      <stop offset="0.62" stop-color="#5D6A8A" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#5D6A8A" stop-opacity="0.06"></stop>
+    </radialGradient>
+  </defs>
+
+  
+  <rect id="ns-wall" width="1180" height="820" fill="url(#ns-wallgrad)"></rect>
+  <g id="ns-wallwash" filter="url(#ns-washsoft)">
+    <ellipse cx="212" cy="268" rx="170" ry="210" fill="#EFC85C" opacity="0.11"></ellipse>
+    <ellipse cx="352" cy="296" rx="52" ry="180" fill="#F3C77A" opacity="0.13"></ellipse>
+    <ellipse cx="1010" cy="110" rx="280" ry="160" fill="#5D6A8A" opacity="0.05"></ellipse>
+  </g>
+
+  
+  <g id="ns-floor">
+    <rect x="0" y="574" width="1180" height="246" fill="#C89A5E" opacity="0.46" filter="url(#ns-wash)"></rect>
+    <rect x="0" y="574" width="1180" height="246" fill="#5B4637" opacity="0.13" filter="url(#ns-washsoft)"></rect>
+    <rect x="0" y="690" width="1180" height="130" fill="#5B4637" opacity="0.14" filter="url(#ns-washsoft)"></rect>
+    <path d="M0 575 Q 300 572 590 574 T 1180 572" fill="none" stroke="#46362A" stroke-width="2.4" opacity="0.45" filter="url(#ns-wob)"></path>
+    <g stroke="#46362A" fill="none" stroke-width="1.6" opacity="0.28" filter="url(#ns-wob)">
+      <path d="M0 618 Q 400 615 800 617 T 1180 615"></path>
+      <path d="M0 664 Q 380 668 760 665 T 1180 666"></path>
+      <path d="M0 716 Q 420 712 840 715 L1180 713"></path>
+      <path d="M0 772 Q 390 776 780 772 T 1180 774"></path>
+    </g>
+    <g stroke="#46362A" stroke-width="1.5" opacity="0.2" filter="url(#ns-wob)">
+      <path d="M210 618 L208 664"></path><path d="M566 664 L564 716"></path>
+      <path d="M902 618 L900 663"></path><path d="M330 716 L328 772"></path>
+      <path d="M1040 664 L1038 716"></path><path d="M700 574 L698 617"></path>
+      <path d="M120 716 L118 771"></path><path d="M840 772 L838 820"></path>
+    </g>
+  </g>
+
+  
+  <g id="ns-beamlight" filter="url(#ns-washsoft)">
+    <polygon points="320,240 332,432 800,806 400,818" fill="url(#ns-beam)"></polygon>
+    <polygon points="326,320 332,430 660,804 470,812" fill="#F3C77A" opacity="0.16"></polygon>
+    <ellipse cx="560" cy="756" rx="210" ry="52" fill="#EFC85C" opacity="0.22"></ellipse>
+  </g>
+
+  
+  <g id="ns-window">
+    <rect x="110" y="118" width="204" height="294" fill="url(#ns-sky)" filter="url(#ns-wash)"></rect>
+    <g filter="url(#ns-wash)">
+      <circle cx="178" cy="330" r="25" fill="#F9E7AE" opacity="0.98"></circle>
+      <circle cx="178" cy="330" r="44" fill="#F1BE6B" opacity="0.5"></circle>
+      <path d="M110 376 Q 176 354 238 370 Q 278 379 314 366 L314 412 L110 412 Z" fill="#5D6A8A" opacity="0.3"></path>
+      <path d="M110 394 Q 200 380 314 390 L314 412 L110 412 Z" fill="#5B4B7A" opacity="0.22"></path>
+      <ellipse cx="150" cy="160" rx="34" ry="12" fill="#F9F2E3" opacity="0.5"></ellipse>
+      <ellipse cx="262" cy="200" rx="42" ry="13" fill="#F9F2E3" opacity="0.42"></ellipse>
+    </g>
+    <path d="M232 186 q 7 -7 13 0 q 6 -7 13 0" fill="none" stroke="#46362A" stroke-width="1.8" opacity="0.55" filter="url(#ns-wob)"></path>
+    <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+      <rect x="96" y="104" width="232" height="322" rx="3" stroke-width="3"></rect>
+      <rect x="110" y="118" width="204" height="294" rx="2" stroke-width="2.2" opacity="0.9"></rect>
+      <path d="M212 120 L211 410" stroke-width="2.6"></path>
+      <path d="M112 262 L312 264" stroke-width="2.6"></path>
+    </g>
+    <g filter="url(#ns-wash)" opacity="0.45">
+      <path d="M96 104 h232 v14 h-232 z M96 412 h232 v14 h-232 z M96 104 v322 h14 v-322 z M314 104 v322 h14 v-322 z" fill="#C89A5E"></path>
+    </g>
+    <rect x="84" y="426" width="256" height="15" fill="#C89A5E" opacity="0.6" filter="url(#ns-wash)"></rect>
+    <path d="M84 426 h256 M86 441 h252" stroke="#46362A" stroke-width="2.2" fill="none" filter="url(#ns-wob)"></path>
+    <g id="ns-plant">
+      <path d="M150 426 l4 -22 q 10 -3 20 0 l4 22 z" fill="#D95B43" opacity="0.55" filter="url(#ns-wash)"></path>
+      <path d="M150 426 l4 -22 q 10 -3 20 0 l4 22" fill="none" stroke="#46362A" stroke-width="2" filter="url(#ns-wob)"></path>
+      <g filter="url(#ns-wash)">
+        <path d="M164 402 q -14 -12 -10 -28 q 14 6 12 28" fill="#7C9A62" opacity="0.6"></path>
+        <path d="M165 402 q 2 -22 14 -30 q 6 16 -10 30" fill="#7C9A62" opacity="0.5"></path>
+        <path d="M163 404 q -2 -14 2 -20 q 6 8 2 20" fill="#5F7C48" opacity="0.5"></path>
+      </g>
+    </g>
+    <polygon points="120,441 300,441 330,470 96,470" fill="#EFC85C" opacity="0.1" filter="url(#ns-washsoft)"></polygon>
+  </g>
+
+  
+  <g id="ns-words">
+    <g transform="rotate(-2 508 196)">
+      <rect x="452" y="166" width="112" height="60" rx="4" fill="#F9F2E3" opacity="0.9" filter="url(#ns-wash)"></rect>
+      <rect x="452" y="166" width="112" height="60" rx="4" fill="none" stroke="#6E5B49" stroke-width="1.8" filter="url(#ns-wob)"></rect>
+      <circle cx="508" cy="172" r="4" fill="#9B4A6B" filter="url(#ns-wob)"></circle>
+      <text x="508" y="205" text-anchor="middle" font-size="24" font-style="italic" fill="#46362A">moon</text>
+    </g>
+    <g transform="rotate(1.6 634 226)">
+      <rect x="578" y="196" width="112" height="60" rx="4" fill="#F9F2E3" opacity="0.9" filter="url(#ns-wash)"></rect>
+      <rect x="578" y="196" width="112" height="60" rx="4" fill="none" stroke="#6E5B49" stroke-width="1.8" filter="url(#ns-wob)"></rect>
+      <circle cx="634" cy="202" r="4" fill="#4E7FA3" filter="url(#ns-wob)"></circle>
+      <text x="634" y="235" text-anchor="middle" font-size="24" font-style="italic" fill="#46362A">wobbly</text>
+    </g>
+    <g transform="rotate(-1.2 748 186)">
+      <rect x="692" y="156" width="112" height="60" rx="4" fill="#F9F2E3" opacity="0.9" filter="url(#ns-wash)"></rect>
+      <rect x="692" y="156" width="112" height="60" rx="4" fill="none" stroke="#6E5B49" stroke-width="1.8" filter="url(#ns-wob)"></rect>
+      <circle cx="748" cy="162" r="4" fill="#E2A93B" filter="url(#ns-wob)"></circle>
+      <text x="748" y="195" text-anchor="middle" font-size="24" font-style="italic" fill="#46362A">brave</text>
+    </g>
+  </g>
+
+  
+  <g id="ns-shelf">
+    <rect x="814" y="310" width="300" height="288" fill="#5D6A8A" opacity="0.1" filter="url(#ns-washsoft)"></rect>
+    <g filter="url(#ns-wash)">
+      <path d="M800 296 h328 v14 h-328 z" fill="#C89A5E" opacity="0.72"></path>
+      <path d="M800 452 h328 v12 h-328 z" fill="#C89A5E" opacity="0.68"></path>
+      <path d="M800 596 h328 v12 h-328 z" fill="#C89A5E" opacity="0.68"></path>
+      <path d="M800 296 v322 h13 v-322 z" fill="#B98A50" opacity="0.72"></path>
+      <path d="M1115 296 v322 h13 v-322 z" fill="#B98A50" opacity="0.72"></path>
+      <path d="M800 296 h328 v5 h-328 z" fill="#F3C77A" opacity="0.6"></path>
+    </g>
+    <g fill="none" stroke="#46362A" stroke-width="2.6" filter="url(#ns-wob)">
+      <path d="M800 296 h328"></path><path d="M801 310 h326"></path>
+      <path d="M800 452 h328"></path><path d="M802 464 h325"></path>
+      <path d="M800 596 h328"></path><path d="M801 608 h327"></path>
+      <path d="M800 296 v322"></path><path d="M813 310 v286"></path>
+      <path d="M1128 296 v322"></path><path d="M1115 310 v286"></path>
+    </g>
+    <path d="M810 608 l-2 12 M1120 608 l2 12 M900 608 l0 10 M1030 608 l0 10" stroke="#46362A" stroke-width="2.6" filter="url(#ns-wob)"></path>
+    <ellipse cx="975" cy="630" rx="180" ry="16" fill="#5D6A8A" opacity="0.16" filter="url(#ns-washsoft)"></ellipse>
+
+    
+    <g id="ns-toy" transform="translate(850 252)">
+      <g filter="url(#ns-wash)">
+        <path d="M8 30 q -4 -14 10 -16 q 14 -2 22 4 q 6 -12 16 -10 q 8 2 6 12 l -4 6 q 4 8 -4 12 l -38 0 q -8 -2 -8 -8" fill="#EFC85C" opacity="0.85"></path>
+        <circle cx="16" cy="38" r="5" fill="#5B4637" opacity="0.75"></circle>
+        <circle cx="42" cy="38" r="5" fill="#5B4637" opacity="0.75"></circle>
+      </g>
+      <g fill="none" stroke="#46362A" stroke-width="1.9" filter="url(#ns-wob)">
+        <path d="M8 30 q -4 -14 10 -16 q 14 -2 22 4 q 6 -12 16 -10 q 8 2 6 12 l -4 6 q 4 8 -4 12 l -38 0 q -8 -2 -8 -8 z"></path>
+        <path d="M62 14 l 8 3 l -8 3"></path>
+        <circle cx="16" cy="38" r="5"></circle>
+        <circle cx="42" cy="38" r="5"></circle>
+      </g>
+      <circle cx="52" cy="13" r="1.5" fill="#46362A"></circle>
+    </g>
+
+    
+    <g id="ns-book-miko" transform="translate(826 338) rotate(-1.2 41 57)">
+      <rect x="0" y="0" width="82" height="114" rx="4" fill="#4E7FA3" opacity="0.58" filter="url(#ns-wash)"></rect>
+      <rect x="70" y="2" width="10" height="110" fill="#3D6685" opacity="0.4" filter="url(#ns-wash)"></rect>
+      <g filter="url(#ns-wash)">
+        <path d="M10 74 Q 41 60 72 74" fill="none" stroke="#F9F2E3" stroke-width="5" opacity="0.85"></path>
+        <ellipse cx="41" cy="88" rx="9" ry="6" fill="#E2A93B" opacity="0.95"></ellipse>
+      </g>
+      <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+        <rect x="0" y="0" width="82" height="114" rx="4" stroke-width="2.4"></rect>
+        <path d="M10 74 Q 41 60 72 74" stroke-width="1.6"></path>
+        <path d="M12 66 L12 80 M70 66 L70 80" stroke-width="2"></path>
+        <path d="M18 71 l0 6 M27 68.5 l0 6 M36 67 l0 6 M46 67 l0 6 M55 68.5 l0 6 M64 70.5 l0 6" stroke-width="1.4"></path>
+        <path d="M48 86 q 4 -6 2 -9 M36 85 l-3 -4" stroke-width="1.6"></path>
+      </g>
+      <text x="41" y="26" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F9F2E3">Miko and the</text>
+      <text x="41" y="42" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F9F2E3">Wobbly Bridge</text>
+    </g>
+    <g id="ns-book-moose" transform="translate(920 336) rotate(0.8 41 58)">
+      <rect x="0" y="0" width="82" height="116" rx="4" fill="#7C9A62" opacity="0.55" filter="url(#ns-wash)"></rect>
+      <g filter="url(#ns-wash)">
+        <path d="M18 116 q 2 -34 24 -40 q 26 -6 30 -20 l 10 0 l 0 60 z" fill="#5B4637" opacity="0.72"></path>
+      </g>
+      <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+        <rect x="0" y="0" width="82" height="116" rx="4" stroke-width="2.4"></rect>
+        <path d="M62 58 q 2 -12 -6 -18 M62 56 q 12 -4 14 -16 M70 44 q 6 2 8 -4" stroke-width="2"></path>
+      </g>
+      <circle cx="66" cy="66" r="1.5" fill="#F9F2E3"></circle>
+      <text x="40" y="24" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="12" fill="#3E4F30">The Moose Who</text>
+      <text x="40" y="39" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="12" fill="#3E4F30">Knew About</text>
+      <text x="40" y="54" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F9F2E3">Bigness</text>
+    </g>
+    <g id="ns-book-papa" transform="translate(1014 338) rotate(-0.6 41 57)">
+      <rect x="0" y="0" width="82" height="114" rx="4" fill="#5B4B7A" opacity="0.62" filter="url(#ns-wash)"></rect>
+      <g filter="url(#ns-wash)">
+        <path d="M58 30 a 17 17 0 1 0 12 28 a 14 14 0 0 1 -12 -28" fill="#EFC85C" opacity="0.95"></path>
+        <circle cx="20" cy="20" r="1.6" fill="#F9F2E3"></circle><circle cx="34" cy="14" r="1.3" fill="#F9F2E3"></circle><circle cx="14" cy="38" r="1.3" fill="#F9F2E3"></circle>
+      </g>
+      <g fill="none" stroke="#F0E6CF" stroke-width="1.8" filter="url(#ns-wob)" opacity="0.9">
+        <path d="M14 114 L44 52 M24 114 L54 52"></path>
+        <path d="M22 96 l14 0 M28 82 l14 0 M34 68 l13 0"></path>
+      </g>
+      <rect x="0" y="0" width="82" height="114" rx="4" fill="none" stroke="#46362A" stroke-width="2.4" filter="url(#ns-wob)"></rect>
+      <text x="41" y="98" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F0E6CF">Papa Gets</text>
+      <text x="41" y="112" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F0E6CF">the Moon</text>
+    </g>
+    <g id="ns-book-boat" transform="translate(830 482) rotate(0.9 41 57)">
+      <rect x="0" y="0" width="82" height="112" rx="4" fill="#2E8B8B" opacity="0.5" filter="url(#ns-wash)"></rect>
+      <g filter="url(#ns-wash)">
+        <path d="M0 84 q 20 -6 41 0 t 41 0 l0 28 l-82 0 z" fill="#2E8B8B" opacity="0.6"></path>
+        <path d="M28 74 q 12 -10 30 -4 l -6 10 q -12 4 -24 -6" fill="#7C9A62" opacity="0.9"></path>
+      </g>
+      <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+        <rect x="0" y="0" width="82" height="112" rx="4" stroke-width="2.4"></rect>
+        <path d="M28 74 q 12 -10 30 -4" stroke-width="1.6"></path>
+        <path d="M44 70 L44 52 q 8 6 0 10" stroke-width="1.8"></path>
+        <path d="M8 90 q 10 -4 20 0 M52 92 q 10 -4 20 0" stroke-width="1.4" opacity="0.7"></path>
+      </g>
+      <text x="41" y="26" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F9F2E3">A Boat</text>
+      <text x="41" y="42" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#F9F2E3">of Leaves</text>
+    </g>
+    <g id="ns-book-snail" transform="translate(922 480) rotate(-0.9 41 58)">
+      <rect x="0" y="0" width="82" height="114" rx="4" fill="#E2A93B" opacity="0.48" filter="url(#ns-wash)"></rect>
+      <g filter="url(#ns-wash)">
+        <path d="M18 92 q 18 8 42 0 q 6 -2 8 -10 q 3 4 1 10 q 8 2 6 6 l -60 2 z" fill="#EFC85C" opacity="0.9"></path>
+      </g>
+      <path d="M22 88 q 0 -22 20 -22 q 18 0 18 16 q 0 14 -14 14 q -11 0 -11 -11 q 0 -9 9 -9" fill="none" stroke="#5B4637" stroke-width="6" opacity="0.9" stroke-linecap="round" filter="url(#ns-wob)"></path>
+      <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+        <rect x="0" y="0" width="82" height="114" rx="4" stroke-width="2.4"></rect>
+        <path d="M66 80 q 2 -6 6 -6 M72 78 l2 -6" stroke-width="1.6"></path>
+        <path d="M10 100 l4 -6 M70 102 l4 -6" stroke-width="1.4" opacity="0.7"></path>
+      </g>
+      <circle cx="73" cy="74" r="1.2" fill="#46362A"></circle>
+      <text x="41" y="26" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#5B4637">The Quiet</text>
+      <text x="41" y="42" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="13" fill="#5B4637">Snail</text>
+    </g>
+    <g id="ns-book-azad" transform="translate(1016 482) rotate(1.1 41 57)">
+      <rect x="0" y="0" width="82" height="112" rx="4" fill="#F9F2E3" opacity="0.95" filter="url(#ns-wash)"></rect>
+      <g fill="none" stroke="#97836B" stroke-width="1.7" filter="url(#ns-wob)">
+        <path d="M30 62 q -8 10 2 16 q 10 6 20 -2 q 8 -7 2 -15 q 10 2 12 -4 q -6 -2 -10 0 q -4 -8 -14 -6 q -10 2 -12 11"></path>
+        <path d="M38 70 q 6 -4 12 0" opacity="0.8"></path>
+        <path d="M42 78 l-2 8 m 8 -8 l2 8" opacity="0.8"></path>
+        <path d="M24 90 q 18 4 36 0" opacity="0.5"></path>
+      </g>
+      <circle cx="47" cy="60" r="1.3" fill="#6E5B49"></circle>
+      <rect x="0" y="0" width="82" height="112" rx="4" fill="none" stroke="#46362A" stroke-width="2.4" filter="url(#ns-wob)"></rect>
+      <path d="M8 10 l2.6 5.4 5.9 .6 -4.4 4 1.3 5.8 -5.4 -3 -5.4 3 1.3 -5.8 -4.4 -4 5.9 -.6 z" fill="#D95B43" opacity="0.9" filter="url(#ns-wob)"></path>
+      <text x="45" y="28" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="12.5" fill="#46362A">Azad&#39;s</text>
+      <text x="45" y="43" text-anchor="middle" font-family="&#39;Young Serif&#39;, Georgia, serif" font-size="12.5" fill="#46362A">Bird Book</text>
+    </g>
+  </g>
+
+  
+  <g id="ns-rug">
+    <ellipse cx="478" cy="694" rx="216" ry="72" fill="#5D6A8A" opacity="0.13" filter="url(#ns-washsoft)"></ellipse>
+    <g filter="url(#ns-wash)">
+      <ellipse cx="462" cy="684" rx="208" ry="70" fill="#7C9A62" opacity="0.48"></ellipse>
+      <ellipse cx="462" cy="684" rx="156" ry="52" fill="#EFC85C" opacity="0.52"></ellipse>
+      <ellipse cx="462" cy="684" rx="104" ry="34" fill="#F9F2E3" opacity="0.78"></ellipse>
+      <ellipse cx="462" cy="684" rx="52" ry="17" fill="#D97757" opacity="0.34"></ellipse>
+    </g>
+    <g fill="none" stroke="#46362A" stroke-width="2" opacity="0.55" filter="url(#ns-wob2)">
+      <ellipse cx="462" cy="684" rx="208" ry="70"></ellipse>
+      <ellipse cx="462" cy="684" rx="156" ry="52"></ellipse>
+      <ellipse cx="462" cy="684" rx="104" ry="34"></ellipse>
+      <ellipse cx="462" cy="684" rx="52" ry="17"></ellipse>
+    </g>
+    <ellipse cx="384" cy="664" rx="132" ry="42" fill="#EFC85C" opacity="0.13" filter="url(#ns-washsoft)"></ellipse>
+  </g>
+
+  
+  <g id="ns-puzzle" transform="translate(160 724)">
+    <ellipse cx="80" cy="58" rx="98" ry="14" fill="#5D6A8A" opacity="0.12" filter="url(#ns-washsoft)"></ellipse>
+    <rect x="0" y="8" width="150" height="52" rx="8" fill="#C89A5E" opacity="0.5" filter="url(#ns-wash)"></rect>
+    <rect x="0" y="8" width="150" height="52" rx="8" fill="none" stroke="#46362A" stroke-width="2.2" filter="url(#ns-wob)"></rect>
+    <g filter="url(#ns-wash)">
+      <circle cx="34" cy="34" r="15" fill="#7C9A62" opacity="0.85"></circle>
+      <rect x="62" y="20" width="28" height="28" rx="3" fill="#EFC85C" opacity="0.9"></rect>
+      <path d="M104 48 l14 -26 l14 26 z" fill="#5B4637" opacity="0.35"></path>
+    </g>
+    <g fill="none" stroke="#46362A" stroke-width="1.8" filter="url(#ns-wob)">
+      <circle cx="34" cy="34" r="15"></circle>
+      <rect x="62" y="20" width="28" height="28" rx="3"></rect>
+      <path d="M104 48 l14 -26 l14 26 z"></path>
+    </g>
+    <circle cx="34" cy="34" r="2.6" fill="#46362A"></circle>
+    <circle cx="76" cy="34" r="2.6" fill="#46362A"></circle>
+    <g transform="translate(172 24) rotate(14)">
+      <path d="M0 26 l13 -24 l13 24 z" fill="#4E7FA3" opacity="0.85" filter="url(#ns-wash)"></path>
+      <path d="M0 26 l13 -24 l13 24 z" fill="none" stroke="#46362A" stroke-width="1.8" filter="url(#ns-wob)"></path>
+      <circle cx="13" cy="18" r="2.6" fill="#46362A"></circle>
+    </g>
+  </g>
+
+  
+  <g id="ns-table">
+    <ellipse cx="704" cy="642" rx="100" ry="13" fill="#5D6A8A" opacity="0.14" filter="url(#ns-washsoft)"></ellipse>
+    <g filter="url(#ns-wash)">
+      <rect x="612" y="520" width="170" height="14" rx="3" fill="#C89A5E" opacity="0.6"></rect>
+      <path d="M626 534 l-4 74 h8 l4 -74 z M768 534 l4 72 h-8 l-4 -72 z" fill="#B98A50" opacity="0.55"></path>
+    </g>
+    <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+      <rect x="612" y="520" width="170" height="14" rx="3" stroke-width="2.4"></rect>
+      <path d="M626 534 l-4 74 M634 534 l-4 72 M768 534 l4 74 M760 534 l4 72" stroke-width="2.2"></path>
+      <path d="M628 574 l138 1" stroke-width="1.8" opacity="0.7"></path>
+    </g>
+    <g id="ns-littlebook" transform="translate(646 498)">
+      <g filter="url(#ns-wash)">
+        <path d="M0 14 q 24 -10 46 -4 l0 16 q -22 -6 -46 4 z" fill="#F9F2E3"></path>
+        <path d="M92 14 q -24 -10 -46 -4 l0 16 q 22 -6 46 4 z" fill="#F9F2E3"></path>
+      </g>
+      <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+        <path d="M0 14 q 24 -10 46 -4 q 22 -6 46 4 M0 14 l0 12 q 24 -10 46 -4 q 22 -6 46 4 l0 -12 M46 10 l0 16" stroke-width="1.8"></path>
+        <path d="M8 13 q 14 -6 32 -3 M10 18 q 14 -6 30 -3 M54 10 q 14 -2 30 3 M56 15 q 14 -2 28 3" stroke-width="1.1" opacity="0.55"></path>
+      </g>
+    </g>
+    <g id="ns-cup" transform="translate(732 484)">
+      <path d="M0 14 l3 22 q 10 4 20 0 l3 -22 z" fill="#4E7FA3" opacity="0.5" filter="url(#ns-wash)"></path>
+      <path d="M0 14 l3 22 q 10 4 20 0 l3 -22 z" fill="none" stroke="#46362A" stroke-width="2" filter="url(#ns-wob)"></path>
+      <g stroke-width="3" filter="url(#ns-wob)">
+        <path d="M6 14 L2 -8" stroke="#E2A93B"></path>
+        <path d="M13 13 L13 -12" stroke="#7C9A62"></path>
+        <path d="M20 14 L25 -6" stroke="#9B4A6B"></path>
+      </g>
+      <path d="M2 -8 l-1.6 -4 M13 -12 l0 -4.5 M25 -6 l1.6 -4" stroke="#46362A" stroke-width="2.4" filter="url(#ns-wob)"></path>
+    </g>
+  </g>
+
+  
+  <g id="ns-buddy">
+    <ellipse cx="452" cy="698" rx="66" ry="14" fill="#5B4637" opacity="0.3" filter="url(#ns-washsoft)"></ellipse>
+    <g filter="url(#ns-wash)">
+      <ellipse cx="398" cy="678" rx="24" ry="15" fill="#B98A50" opacity="0.75" transform="rotate(-14 398 678)"></ellipse>
+      <ellipse cx="470" cy="682" rx="24" ry="15" fill="#B98A50" opacity="0.75" transform="rotate(10 470 682)"></ellipse>
+      <ellipse cx="392" cy="681" rx="9" ry="7" fill="#F3D9A0" opacity="0.9" transform="rotate(-14 392 681)"></ellipse>
+      <ellipse cx="477" cy="685" rx="9" ry="7" fill="#F3D9A0" opacity="0.9" transform="rotate(10 477 685)"></ellipse>
+      <path d="M394 668 q -10 -52 18 -74 q 22 -16 44 2 q 26 24 14 72 q -38 14 -76 0" fill="#C89A5E" opacity="0.8"></path>
+      <ellipse cx="433" cy="640" rx="24" ry="30" fill="#F3D9A0" opacity="0.85"></ellipse>
+      <path d="M398 610 q -16 18 -6 40 q 8 8 16 2 q -8 -20 -2 -38 z" fill="#B98A50" opacity="0.8"></path>
+      <path d="M468 608 q 16 18 8 42 q -8 8 -16 2 q 6 -22 0 -40 z" fill="#B98A50" opacity="0.8"></path>
+      <circle cx="432" cy="566" r="35" fill="#C89A5E" opacity="0.85"></circle>
+      <circle cx="406" cy="537" r="11.5" fill="#C89A5E" opacity="0.92"></circle>
+      <circle cx="458" cy="537" r="11.5" fill="#C89A5E" opacity="0.92"></circle>
+      <circle cx="406" cy="538" r="5" fill="#F3D9A0" opacity="0.9"></circle>
+      <circle cx="458" cy="538" r="5" fill="#F3D9A0" opacity="0.9"></circle>
+      <ellipse cx="432" cy="578" rx="14" ry="10" fill="#F3D9A0" opacity="0.95"></ellipse>
+      <path d="M404 542 q -8 14 -4 30 q 2 10 10 16 q -16 -22 -6 -46" fill="#F3C77A" opacity="0.55"></path>
+    </g>
+    <g fill="none" stroke="#46362A" stroke-width="2.2" filter="url(#ns-wob)">
+      <path d="M400 664 q -12 -50 16 -71 q 22 -16 44 2 q 26 24 13 69"></path>
+      <path d="M398 610 q -15 18 -6 39 q 8 7 15 2"></path>
+      <path d="M468 608 q 15 18 7 41 q -8 7 -15 2"></path>
+      <ellipse cx="398" cy="678" rx="24" ry="15" transform="rotate(-14 398 678)"></ellipse>
+      <ellipse cx="470" cy="682" rx="24" ry="15" transform="rotate(10 470 682)"></ellipse>
+      <path d="M403 586 A 35 35 0 1 1 461 586"></path>
+      <circle cx="406" cy="537" r="11.5"></circle>
+      <circle cx="458" cy="537" r="11.5"></circle>
+      <path d="M424 583 q 8 6 16 0" stroke-width="2"></path>
+      <ellipse cx="432" cy="573" rx="4.5" ry="3.4" fill="#46362A" stroke="none"></ellipse>
+    </g>
+    <circle cx="419" cy="562" r="2.7" fill="#46362A"></circle>
+    <circle cx="445" cy="562" r="2.7" fill="#46362A"></circle>
+    <path d="M414 574 q 3 2 6 0 M442 574 q 3 2 6 0" stroke="#D95B43" stroke-width="2" opacity="0.35" fill="none" filter="url(#ns-wob)"></path>
+  </g>
+
+  
+  <g id="ns-guitar">
+    <ellipse cx="78" cy="596" rx="54" ry="10" fill="#5D6A8A" opacity="0.18" filter="url(#ns-washsoft)"></ellipse>
+    <g filter="url(#ns-wash)">
+      <path d="M78 468 Q 44 464 38 492 Q 34 508 46 518 Q 28 530 30 552 Q 34 580 64 584 Q 94 586 98 558 Q 100 540 86 530 Q 100 518 96 494 Q 92 472 78 468 Z" fill="#E2A93B" opacity="0.7"></path>
+      <path d="M60 470 L44 384 l14 -4 l18 88 z" fill="#C89A5E" opacity="0.7"></path>
+      <rect x="34" y="362" width="24" height="22" rx="4" fill="#B98A50" opacity="0.8" transform="rotate(-11 46 373)"></rect>
+    </g>
+    <g fill="none" stroke="#46362A" filter="url(#ns-wob)">
+      <path d="M78 468 Q 44 464 38 492 Q 34 508 46 518 Q 28 530 30 552 Q 34 580 64 584 Q 94 586 98 558 Q 100 540 86 530 Q 100 518 96 494 Q 92 472 78 468 Z" stroke-width="2.4"></path>
+      <circle cx="65" cy="522" r="9.5" stroke-width="2"></circle>
+      <path d="M60 470 L44 384 M58 380 L76 468" stroke-width="2"></path>
+      <rect x="34" y="362" width="24" height="22" rx="4" stroke-width="2" transform="rotate(-11 46 373)"></rect>
+      <path d="M50 396 l14 -3 M53 412 l14 -3 M56 428 l14 -3 M59 446 l14 -3" stroke-width="1.4" opacity="0.7"></path>
+      <path d="M52 386 L62 552 M58 384 L68 551" stroke-width="1" opacity="0.8"></path>
+      <path d="M54 556 l22 -4" stroke-width="2.4"></path>
+    </g>
+    <circle cx="65" cy="522" r="6.5" fill="#5B4637" opacity="0.55" filter="url(#ns-wash)"></circle>
+  </g>
+
+  
+  <g id="ns-motes" fill="#F3C77A">
+    <circle cx="392" cy="430" r="2.2" opacity="0.55"></circle>
+    <circle cx="452" cy="500" r="1.7" opacity="0.5"></circle>
+    <circle cx="368" cy="360" r="1.5" opacity="0.5"></circle>
+    <circle cx="500" cy="560" r="2" opacity="0.45"></circle>
+    <circle cx="424" cy="304" r="1.4" opacity="0.45"></circle>
+    <circle cx="540" cy="620" r="1.6" opacity="0.4"></circle>
+    <circle cx="352" cy="472" r="1.3" opacity="0.45"></circle>
+  </g>
+
+  
+  <g id="ns-finish"><rect width="1180" height="820" fill="url(#ns-vign)"></rect>
+  <rect width="1180" height="820" filter="url(#ns-fiber)"></rect>
+  <rect width="1180" height="820" filter="url(#ns-grain)"></rect></g>
+</svg>

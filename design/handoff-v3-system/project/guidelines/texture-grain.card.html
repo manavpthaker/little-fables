@@ -1,0 +1,32 @@
+<!-- @dsCard group="Texture" viewport="700x160" name="Paper Grain" subtitle="Every surface shows fiber — if it has area, it has grain" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { display: flex; align-items: center; gap: 20px; padding: 20px 28px; }
+  .sw { width: 150px; height: 104px; border-radius: var(--radius-soft); }
+  .flat { background-color: var(--paper); background-image: none; position: relative; }
+  .lbl { font-family: var(--font-parent); font-size: 11px; color: var(--ink-soft); margin-top: 6px; text-align: center; }
+  svg.cross { position: absolute; inset: -8px; width: 166px; height: 120px; }
+</style>
+</head>
+<body>
+  <div>
+    <div class="sw lf-paper lf-drawn-border"></div>
+    <div class="lbl">paper + fiber (always)</div>
+  </div>
+  <div>
+    <div class="sw lf-paper lf-drawn-border" style="background-color: color-mix(in srgb, var(--pigment-sage) 30%, var(--paper));"></div>
+    <div class="lbl">grain rides over washes too</div>
+  </div>
+  <div>
+    <div class="sw flat">
+      <svg class="cross" viewBox="0 0 166 120"><path d="M12 12 L154 108 M154 12 L12 108" stroke="#D95B43" stroke-width="4" stroke-linecap="round" filter="url(#lf-wobble)"></path></svg>
+    </div>
+    <div class="lbl" style="color: var(--accent-action-deep);">flat color — never</div>
+  </div>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>

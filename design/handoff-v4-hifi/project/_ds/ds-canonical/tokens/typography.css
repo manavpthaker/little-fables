@@ -1,0 +1,30 @@
+/* Little Fables — type. Type is always SET, never hand-drawn.
+   (One exception, codified in the WritingMoment component: the child's own
+   words may appear in watercolor handwriting — his words, not UI.)
+   Reading text >= 24px, ~65 words max per page.                      */
+
+:root {
+  --font-display: "Young Serif", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Alegreya", "Iowan Old Style", Georgia, serif;
+  --font-parent:  "Inter", -apple-system, "Segoe UI", sans-serif;  /* parent surfaces ONLY */
+
+  /* ---- child-facing scale (nothing below 24px is load-bearing) ---- */
+  --text-display-xl: 64px;   /* book title on cover page        */
+  --text-display:    44px;   /* screen-level display            */
+  --text-title:      30px;   /* display floor — never smaller   */
+  --text-reading-lg: 32px;   /* early-reader spreads            */
+  --text-reading:    28px;   /* story text default (min 24px)   */
+  --text-speech:     26px;   /* buddy speech balloons           */
+  --text-label:      24px;   /* child-facing labels, star words */
+
+  /* adult-adjacent only (parent surfaces, captions never required
+     for the child to operate anything) */
+  --text-caption: 17px;
+  --text-parent:  15px;
+
+  --leading-display: 1.12;
+  --leading-reading: 1.52;
+  --leading-speech:  1.35;
+
+  --reading-max-words: 65; /* @kind other */   /* documentation: max words per page */
+}

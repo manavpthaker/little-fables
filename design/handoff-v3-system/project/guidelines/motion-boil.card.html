@@ -1,0 +1,31 @@
+<!-- @dsCard group="Motion" viewport="700x170" name="Line Boil" subtitle="Drawn elements wobble on 2s — three discrete frames, handmade not shaky; reduced motion holds one frame" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { display: flex; align-items: center; gap: 30px; padding: 20px 30px; }
+  .lbl { font-family: var(--font-parent); font-size: 11px; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  svg { display: block; }
+</style>
+</head>
+<body>
+  <div>
+    <svg width="150" height="100" viewBox="0 0 150 100">
+      <rect x="12" y="10" width="126" height="80" rx="12" fill="none" stroke="#46362A" stroke-width="2.4" filter="url(#lf-boil)"></rect>
+      <path d="M34 62 Q 52 34 74 52 T 118 44" fill="none" stroke="#D95B43" stroke-width="3" stroke-linecap="round" filter="url(#lf-boil)"></path>
+    </svg>
+    <div class="lbl">alive — #lf-boil, 2s × 3 frames</div>
+  </div>
+  <div>
+    <svg width="150" height="100" viewBox="0 0 150 100">
+      <rect x="12" y="10" width="126" height="80" rx="12" fill="none" stroke="#46362A" stroke-width="2.4" filter="url(#lf-wobble)"></rect>
+      <path d="M34 62 Q 52 34 74 52 T 118 44" fill="none" stroke="#5D6A8A" stroke-width="3" stroke-linecap="round" filter="url(#lf-wobble)"></path>
+    </svg>
+    <div class="lbl">reduced motion — one held frame</div>
+  </div>
+  <p style="font-family: var(--font-body); font-style: italic; font-size: 17px; color: var(--ink-soft); max-width: 240px; line-height: 1.4;">Never interpolated. The line jumps between hands, like a picture book breathing.</p>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>

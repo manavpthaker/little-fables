@@ -1,0 +1,23 @@
+/* Little Fables — sound annotations (documentation tokens).
+   Feedback is FOLEY ONLY: real materials, close-mic'd, soft.
+   One sound family per intent type. No jingles, ever. No synth tones.
+   Values name a family/gesture, not a file — audio assets ship with the app.
+
+   paper  — navigation & pages     (page turn, card slide, endpaper)
+   wood   — confirmation & placing (tap accept, object set down, book close)
+   pencil — creation & authorship  (words appearing, drawing, star-word pin)
+   cloth  — the buddy              (shifts, lean-in — barely audible)
+   chime? — NO. Celebration is light + a warm paper/wood flourish.        */
+
+:root {
+  --sound-navigate:   "paper/soft-slide"; /* @kind other */
+  --sound-page-turn:  "paper/page-turn"; /* @kind other */
+  --sound-endpaper:   "paper/heavy-leaf"; /* @kind other */
+  --sound-confirm:    "wood/warm-tap"; /* @kind other */
+  --sound-place:      "wood/set-down"; /* @kind other */
+  --sound-create:     "pencil/scratch-short"; /* @kind other */
+  --sound-word-apear: "pencil/scratch-word"; /* @kind other */
+  --sound-buddy:      "cloth/shift"; /* @kind other */
+  --sound-celebrate:  "paper+wood/flourish"; /* @kind other */   /* with lantern light, no confetti-noise */
+  --sound-listening:  "room-tone/quiet"; /* @kind other */       /* mic open = the room goes attentive    */
+}

@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Terracotta Is Reserved" subtitle="The single hero action per screen — if two things are terracotta, one is wrong" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { display: flex; align-items: center; gap: 18px; padding: 20px 28px; }
+  .obj { width: 118px; height: 84px; border-radius: 14px 12px 15px 13px; background-color: var(--surface-card); background-image: var(--texture-paper); display: grid; place-items: center; font-size: 24px; color: var(--ink-soft); position: relative; }
+  .hero { background-color: color-mix(in srgb, var(--accent-action) 30%, var(--paper-bright)); color: var(--accent-action-deep); box-shadow: 0 0 26px 4px var(--glow-lamplight); }
+  .note { font-family: var(--font-body); font-size: 17px; font-style: italic; color: var(--ink-soft); margin-left: 8px; max-width: 190px; line-height: 1.35; }
+</style>
+</head>
+<body>
+  <div class="obj lf-drawn-border">rest</div>
+  <div class="obj hero lf-drawn-border lf-drawn-border--bold">the one action</div>
+  <div class="obj lf-drawn-border">rest</div>
+  <p class="note">One terracotta action per screen, lit like lamplight.</p>
+  <script src="../assets/lf-filters.js"></script>
+</body>
+</html>
