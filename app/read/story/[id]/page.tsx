@@ -401,6 +401,9 @@ function ReaderPages({
 
   const listenStopRef = useRef<(() => void) | null>(null)
   const oneShotSpeakRef = useRef<SpeakHandle | null>(null)
+  // Scroll viewport for the reading text — used to keep the narrated word in
+  // view on short screens (phone-landscape), where a long page scrolls.
+  const textColRef = useRef<HTMLDivElement | null>(null)
 
   const page: Page | undefined = pages[pageIdx]
   const words = useMemo(() => (page ? page.text.split(/\s+/).filter(Boolean) : []), [page])
@@ -954,6 +957,20 @@ function ReaderPages({
     [transport, wordMeaning],
   )
 
+  // Follow the narration: when the highlighted word changes during playback,
+  // keep it in view. `block: 'nearest'` only scrolls when the word has actually
+  // gone past an edge, so words already on screen never jitter, and a paused
+  // child scrolling by hand is never fought (wordIdx doesn't change when
+  // paused). This is what makes a long page readable on a short phone screen.
+  useEffect(() => {
+    if (transport.wordIdx < 0) return
+    const col = textColRef.current
+    if (!col) return
+    const spans = col.querySelectorAll('span[role="button"]')
+    const el = spans[transport.wordIdx] as HTMLElement | undefined
+    el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }, [transport.wordIdx])
+
   // ---- Kamishibai swipe: page follows finger 1:1 (A1). ----
   const [dragDx, setDragDx] = useState(0)
   const swipeRef = useRef<{ startX: number; startY: number; pid: number | null; committed: boolean }>({
@@ -1199,6 +1216,7 @@ function ReaderPages({
 
         {/* Top: quiet chapter/book label — atmosphere, not a control. */}
         <div
+          className="lf-reader-chapline"
           style={{
             paddingTop: 26,
             textAlign: 'center',
@@ -1329,6 +1347,8 @@ function ReaderPages({
 
             {/* Right: words + teaching card */}
             <div
+              ref={textColRef}
+              className="lf-reader-textcol"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -1339,6 +1359,7 @@ function ReaderPages({
               }}
             >
               <div
+                className="lf-reader-textcard"
                 style={{
                   background: 'var(--paper-bright, var(--lf-cream-card))',
                   border: '1.5px solid var(--lf-cream-line)',
@@ -1521,6 +1542,7 @@ function ReaderPages({
 
         {/* Ribbon scrubber → chapter timeline (drag to seek by page). */}
         <Ribbon
+          className="lf-reader-ribbon"
           chapter={chapterLabel}
           pageIdx={pageIdx}
           totalPages={total}
@@ -1535,6 +1557,7 @@ function ReaderPages({
              touch-only child can leave the page. Auto-turn (in play mode) still
              respects gates via useReaderTransport. */}
         <Transport
+          className="lf-reader-transport"
           playing={transport.playing}
           onPlayToggle={transport.toggle}
           onPrev={goPrev}

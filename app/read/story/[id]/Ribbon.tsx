@@ -23,9 +23,11 @@ export interface RibbonProps {
   totalPages: number
   /** Called when a drag or tap finalizes on a specific page. */
   onSeek: (pageIdx: number) => void
+  /** Optional wrapper class (small-screen reader overrides target this). */
+  className?: string
 }
 
-export function Ribbon({ chapter, pageIdx, totalPages, onSeek }: RibbonProps) {
+export function Ribbon({ chapter, pageIdx, totalPages, onSeek, className }: RibbonProps) {
   const trackRef = useRef<HTMLDivElement | null>(null)
   const speakRef = useRef<SpeakHandle | null>(null)
   const [dragIdx, setDragIdx] = useState<number | null>(null)
@@ -111,8 +113,9 @@ export function Ribbon({ chapter, pageIdx, totalPages, onSeek }: RibbonProps) {
   const pct = totalPages > 1 ? (visIdx / (totalPages - 1)) * 100 : 0
 
   return (
-    <div style={{ padding: '0 32px 6px', flexShrink: 0 }}>
+    <div className={className} style={{ padding: '0 32px 6px', flexShrink: 0 }}>
       <div
+        className="lf-reader-ribbon-label"
         style={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -129,6 +132,7 @@ export function Ribbon({ chapter, pageIdx, totalPages, onSeek }: RibbonProps) {
       </div>
       <div
         ref={trackRef}
+        className="lf-reader-ribbon-track"
         role="slider"
         aria-label="Chapter scrubber"
         aria-valuemin={1}
