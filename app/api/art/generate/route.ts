@@ -65,6 +65,9 @@ export async function POST(req: NextRequest) {
     }
     return NextResponse.json({ error: 'expected {kind:"sheet",characterId} or {kind:"book",bookId}' }, { status: 400 })
   } catch (e) {
+    // Log the full error server-side so it shows in Vercel runtime logs, and
+    // return the message to the Art tab.
+    console.error('[art/generate] failed:', (e as Error).stack || (e as Error).message)
     return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
 }
