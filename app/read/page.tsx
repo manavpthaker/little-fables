@@ -493,7 +493,7 @@ export default function Home() {
             zIndex: 3,
           }}
         >
-          <SpeechBubble style={{ font: '700 17px/1.45 var(--font-body)' }}>
+          <SpeechBubble style={{ font: '700 17px/1.45 var(--font-body)', color: '#46362A' }}>
             {speechLine}
           </SpeechBubble>
         </div>
@@ -844,7 +844,7 @@ function ShelfRow({
                 }}
               >
                 <BookCoverArt book={b} width={78} height={104} />
-                {ring !== undefined && (
+                {ring !== undefined && ring > 0 && (
                   <span
                     aria-hidden="true"
                     style={{
