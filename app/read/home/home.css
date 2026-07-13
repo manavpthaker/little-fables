@@ -190,6 +190,16 @@
 .lf-home .lfh-make .lfh-plus { width: 32px; height: 32px; }
 .lf-home .lfh-make span { font-family: var(--font-label); font-weight: 800; font-size: 12.5px; line-height: 1.1; padding: 0 6px; }
 
+/* reading days this week */
+.lf-home .lfh-days { display: flex; gap: 8px; padding: 0 4px; flex-wrap: wrap; }
+.lf-home .lfh-day {
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--font-label); font-weight: 800; font-size: 12px;
+  background: var(--paper-deep); color: var(--ink-faint); border: 1.5px solid var(--card-line);
+}
+.lf-home .lfh-day.lit { background: var(--mustard); color: #3C2E22; border-color: transparent; }
+.lf-home .lfh-day.today { outline: 2px solid var(--terra); outline-offset: 1px; }
+
 .lf-home .lfh-note { text-align: center; color: var(--ink-faint); font-family: var(--font-label); font-size: 12.5px; padding-top: 6px; }
 
 @media (prefers-reduced-motion: reduce) {
