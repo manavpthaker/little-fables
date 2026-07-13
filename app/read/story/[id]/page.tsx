@@ -59,7 +59,9 @@ import type {
   GenerateResponse,
   Page,
 } from '@/types/story'
-import { DrawnConfetti, DrawnScene, IntentToast, KidScreen, MicIcon, SpeakerIcon } from '../../art'
+import { DrawnConfetti, IntentToast, KidScreen, MicIcon, SpeakerIcon } from '../../art'
+import { ReaderScene } from './ReaderScene'
+import './reader.css'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import { ChapterEnd, ComfortRitualBeat, BookComplete } from './EndPhase'
 import { Transport } from './Transport'
@@ -1063,7 +1065,7 @@ function ReaderPages({
       }}
     >
       <div
-        className="lf-room"
+        className="lf-room lf-read"
         data-register="story"
         style={{
           position: 'relative',
@@ -1328,15 +1330,11 @@ function ReaderPages({
                   }
                 />
               ) : (
-                // v3.2 Phase 1 — semantic scene key → drawn scene. If the
-                // key is registered, we render the dedicated drawn scene;
-                // otherwise <DrawnScene /> falls through to the drawn
-                // endpaper placeholder tinted with the story's wash. Never
-                // emoji, never gradient wash.
-                <DrawnScene
-                  sceneKey={page.scene ?? null}
-                  washKey={page.wash ?? chapter.wash ?? book.wash}
-                />
+                // No real illustration for this page yet — show an intentional
+                // colored scene panel keyed to the book (its cover's spine
+                // color + motif), not an empty placeholder. The art pipeline
+                // can replace this per page over time.
+                <ReaderScene book={book} />
               )}
             </div>
 
