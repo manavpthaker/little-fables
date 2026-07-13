@@ -1,0 +1,42 @@
+/* Parent Corner design tokens.
+ *
+ * The parent surfaces were authored against a `--lf-p-*` token set (plus
+ * --font-ui and --radius-p-*) that was never actually defined anywhere in the
+ * app, so borders, card surfaces, the muted page background, and the UI font
+ * all collapsed to nothing — leaving flat, borderless, default-font text you
+ * couldn't tell apart. This declares them.
+ *
+ * Deliberately a calm, grown-up neutral palette (distinct from the kid app's
+ * warm playroom) with a faint warm tint + terracotta accent so it still reads
+ * as the same product. Scoped to `.lf-parent` so it can never leak into the
+ * child-facing screens. Light surface only. */
+
+.lf-parent {
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* surfaces */
+  --lf-p-background: #ffffff; /* cards, inputs, header */
+  --lf-p-card: #ffffff;
+  --lf-p-muted: #f4f1ea; /* warm off-white page bg — white cards lift off it */
+  --lf-p-muted-foreground: #6f675d; /* secondary text — passes AA on white + muted */
+
+  /* text */
+  --lf-p-foreground: #2a2420; /* warm near-black */
+
+  /* lines */
+  --lf-p-border: #e2dcd1; /* visible-but-soft warm hairline */
+
+  /* accent / primary action */
+  --lf-p-primary: #b8562f; /* terracotta — ties to the kid app's --terra */
+  --lf-p-primary-foreground: #ffffff;
+
+  /* radii */
+  --radius-p-card: 12px;
+  --radius-p-md: 8px;
+
+  min-height: 100dvh;
+  background: var(--lf-p-muted);
+  color: var(--lf-p-foreground);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}

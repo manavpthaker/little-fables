@@ -7,6 +7,7 @@
 // Inter, sentence-case copy, no emoji, no exclamation points.
 
 import Link from 'next/link'
+import './parent.css'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Check,
@@ -141,6 +142,7 @@ function PCard({
         background: 'var(--lf-p-card)',
         border: '1px solid var(--lf-p-border)',
         borderRadius: 'var(--radius-p-card)',
+        boxShadow: '0 1px 2px rgba(42, 36, 32, 0.05)',
         padding: padded ? 24 : 0,
       }}
     >
@@ -2870,25 +2872,29 @@ function ParentCorner() {
           <ChevronLeft size={16} /> {universe.childName}&rsquo;s world
         </Link>
         <h1 style={{ margin: 0, font: '700 18px var(--font-ui)' }}>Parent corner</h1>
-        <nav style={{ marginLeft: 8, display: 'flex', gap: 4 }}>
-          {tabs.map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setTab(id)}
-              style={{
-                border: 'none',
-                cursor: 'pointer',
-                padding: '7px 14px',
-                borderRadius: 6,
-                background: tab === id ? 'var(--lf-p-muted)' : 'transparent',
-                font: '500 14px var(--font-ui)',
-                color: tab === id ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
-              }}
-            >
-              {label}
-            </button>
-          ))}
+        <nav style={{ marginLeft: 8, display: 'flex', gap: 2 }}>
+          {tabs.map(([id, label]) => {
+            const active = tab === id
+            return (
+              <button
+                key={id}
+                type="button"
+                onClick={() => setTab(id)}
+                style={{
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '7px 15px',
+                  borderRadius: 'var(--radius-p-md)',
+                  background: active ? 'rgba(184,86,47,0.10)' : 'transparent',
+                  font: `${active ? 600 : 500} 14px var(--font-ui)`,
+                  color: active ? 'var(--lf-p-primary)' : 'var(--lf-p-muted-foreground)',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {label}
+              </button>
+            )
+          })}
         </nav>
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
           {user && (
@@ -3132,7 +3138,11 @@ export default function Parent() {
   const [skippedAuth, setSkippedAuth] = useState(false)
 
   if (loading) return null
-  if (!user && !skippedAuth) return <SignIn onSkip={() => setSkippedAuth(true)} />
-  if (!passed) return <Gate onPass={() => setPassed(true)} />
-  return <ParentCorner />
+  let screen: React.ReactNode
+  if (!user && !skippedAuth) screen = <SignIn onSkip={() => setSkippedAuth(true)} />
+  else if (!passed) screen = <Gate onPass={() => setPassed(true)} />
+  else screen = <ParentCorner />
+  // `.lf-parent` scopes the parent design tokens (see parent.css) so borders,
+  // card surfaces, the UI font, and radii actually render.
+  return <div className="lf-parent">{screen}</div>
 }
