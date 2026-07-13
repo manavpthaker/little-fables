@@ -1,0 +1,198 @@
+/* Little Fables — clean home (v4 rebuild).
+ *
+ * A fresh design layer, deliberately independent of the old drawn-room system
+ * (.lf-room / read.css). Warm storybook feel, but a plain responsive layout —
+ * no fixed painting, no percent overlays, no lighting washes. The books are the
+ * heroes. Scoped entirely under `.lf-home`. */
+
+.lf-home {
+  --paper:      #E7DBC0;
+  --paper-deep: #DCCDAC;
+  --card:       #FBF5E8;
+  --card-line:  #E4D6B8;
+  --ink:        #3C2E22;
+  --ink-soft:   #6A5842;
+  --ink-faint:  #9C8968;
+  --terra:      #D2603A;
+  --terra-deep: #B4492A;
+  --terra-tint: #F3D9C6;
+
+  /* storybook spine palette — saturated but grounded, each book distinct */
+  --forest: #4E7A54;
+  --denim:  #4A668A;
+  --plum:   #7C4B6C;
+  --teal:   #3B7A80;
+  --mustard:#CE9236;
+  --brick:  #B14D31;
+  --clay:   #C06A45;
+  --slate:  #5E6E82;
+
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-label: ui-rounded, "SF Pro Rounded", "Segoe UI", system-ui, sans-serif;
+
+  --radius: 18px;
+  --shadow: 0 6px 20px -8px rgba(60,46,34,.35);
+  --shadow-soft: 0 3px 10px -4px rgba(60,46,34,.28);
+
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 90% at 78% 8%, rgba(255,247,229,.55), transparent 60%),
+    radial-gradient(90% 70% at 12% 100%, rgba(206,146,54,.12), transparent 55%),
+    var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  padding: clamp(16px, 3vw, 34px);
+  display: flex;
+  justify-content: center;
+  overscroll-behavior: contain;
+}
+.lf-home * { box-sizing: border-box; }
+
+.lf-home .lfh-wrap {
+  width: 100%;
+  max-width: 1120px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.4vw, 30px);
+  animation: lfh-rise .5s cubic-bezier(.2,.9,.3,1) both;
+}
+@keyframes lfh-rise { from { opacity: 0; transform: translateY(10px); } }
+
+/* ---------- greeting ---------- */
+.lf-home .lfh-hello { display: flex; align-items: center; gap: 16px; }
+.lf-home .lfh-buddy {
+  width: clamp(64px, 8vw, 88px);
+  height: clamp(64px, 8vw, 88px);
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 6px rgba(60,46,34,.2));
+}
+.lf-home .lfh-buddy:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; border-radius: 50%; }
+.lf-home .lfh-bubble {
+  position: relative;
+  background: var(--card);
+  border: 1.5px solid var(--card-line);
+  border-radius: 16px;
+  padding: 12px 18px;
+  box-shadow: var(--shadow-soft);
+  font-size: clamp(16px, 2.1vw, 22px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  max-width: 40ch;
+}
+.lf-home .lfh-bubble::before {
+  content: "";
+  position: absolute; left: -9px; top: 50%;
+  width: 16px; height: 16px;
+  background: var(--card);
+  border-left: 1.5px solid var(--card-line);
+  border-bottom: 1.5px solid var(--card-line);
+  transform: translateY(-50%) rotate(45deg);
+}
+.lf-home .lfh-stats { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; }
+.lf-home .lfh-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--card); border: 1.5px solid var(--card-line); border-radius: 999px;
+  padding: 8px 14px;
+  font-family: var(--font-label); font-weight: 700; font-size: 14px; color: var(--ink-soft);
+  box-shadow: var(--shadow-soft); cursor: pointer; text-decoration: none;
+}
+.lf-home .lfh-chip b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.lf-home .lfh-chip:focus-visible { outline: 3px solid var(--terra); outline-offset: 2px; }
+@media (max-width: 620px) { .lf-home .lfh-stats { display: none; } }
+
+/* ---------- keep-reading hero ---------- */
+.lf-home .lfh-hero {
+  display: flex; align-items: stretch; gap: clamp(16px, 2.5vw, 28px);
+  background: var(--card); border: 2.5px solid var(--terra); border-radius: var(--radius);
+  padding: clamp(16px, 2.2vw, 24px);
+  box-shadow: var(--shadow), 0 0 0 5px var(--terra-tint);
+  text-decoration: none; color: inherit; cursor: pointer;
+  transition: transform .14s ease;
+}
+.lf-home .lfh-hero:hover { transform: translateY(-2px); }
+.lf-home .lfh-hero:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.lf-home .lfh-hero .lfh-cover { width: clamp(84px, 11vw, 116px); flex-shrink: 0; }
+.lf-home .lfh-hero-body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+.lf-home .lfh-eyebrow {
+  font-family: var(--font-label); font-weight: 800; font-size: 12px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--terra-deep);
+}
+.lf-home .lfh-hero-title { font-size: clamp(23px, 3.6vw, 36px); font-weight: 700; line-height: 1.05; text-wrap: balance; margin: 0; }
+.lf-home .lfh-hero-sub { color: var(--ink-soft); font-size: clamp(15px, 1.8vw, 18px); font-weight: 500; }
+.lf-home .lfh-play { align-self: center; flex-shrink: 0; display: inline-flex; flex-direction: column; align-items: center; gap: 8px; color: var(--ink-soft); font-family: var(--font-label); font-weight: 800; font-size: 14px; }
+.lf-home .lfh-play-btn {
+  width: clamp(62px, 8vw, 80px); height: clamp(62px, 8vw, 80px); border-radius: 50%;
+  background: var(--terra);
+  box-shadow: 0 8px 22px -6px rgba(180,73,42,.7), inset 0 -3px 8px rgba(0,0,0,.12);
+  display: grid; place-items: center;
+  transition: transform .12s ease;
+}
+.lf-home .lfh-hero:hover .lfh-play-btn { transform: translateY(-2px) scale(1.03); }
+
+/* ---------- shelf ---------- */
+.lf-home .lfh-shelf-head { display: flex; align-items: baseline; gap: 12px; padding: 0 4px; }
+.lf-home .lfh-shelf-head h2 { margin: 0; font-size: clamp(19px, 2.4vw, 26px); font-weight: 700; }
+.lf-home .lfh-shelf-head span { font-family: var(--font-label); font-size: 13px; font-weight: 700; color: var(--ink-faint); }
+
+.lf-home .lfh-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: clamp(12px, 1.8vw, 20px);
+  align-items: start;
+}
+
+.lf-home .lfh-book {
+  all: unset;
+  cursor: pointer; display: flex; flex-direction: column; gap: 8px;
+  border-radius: 12px; transition: transform .14s cubic-bezier(.2,.9,.3,1);
+}
+.lf-home .lfh-book:hover { transform: translateY(-5px); }
+.lf-home .lfh-book:focus-visible { outline: 3px solid var(--terra); outline-offset: 4px; }
+.lf-home .lfh-book .lfh-cover { width: 100%; }
+.lf-home .lfh-book-title { font-size: 13.5px; font-weight: 700; line-height: 1.15; color: var(--ink); padding: 0 3px; text-wrap: balance; }
+
+/* a book cover = colored front + cream title panel + small motif, all legible */
+.lf-home .lfh-cover {
+  position: relative; aspect-ratio: 3 / 4; border-radius: 6px 9px 9px 6px;
+  background: var(--spine, var(--forest));
+  box-shadow: var(--shadow); overflow: hidden; border: 2px solid rgba(0,0,0,.16);
+}
+.lf-home .lfh-cover::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 9%; background: rgba(0,0,0,.16); }
+.lf-home .lfh-cover .lfh-motif { position: absolute; top: 11%; left: 50%; transform: translateX(-50%); width: 44%; color: rgba(255,255,255,.92); }
+.lf-home .lfh-cover .lfh-panel {
+  position: absolute; left: 8%; right: 6%; bottom: 8%;
+  background: rgba(251,245,232,.94); border-radius: 4px; padding: 5px 6px 6px; text-align: center;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+}
+.lf-home .lfh-cover .lfh-panel span { display: block; font-size: clamp(8px, 1vw, 10px); font-weight: 700; line-height: 1.08; color: var(--ink); }
+
+/* progress bar under a mid-flight book */
+.lf-home .lfh-progress { height: 5px; border-radius: 3px; background: var(--paper-deep); overflow: hidden; margin: 0 3px; }
+.lf-home .lfh-progress i { display: block; height: 100%; background: var(--terra); border-radius: 3px; }
+
+/* make-a-story tile */
+.lf-home .lfh-make {
+  all: unset; cursor: pointer; aspect-ratio: 3 / 4; border-radius: 9px;
+  border: 2.5px dashed color-mix(in oklab, var(--terra) 55%, transparent);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  color: var(--terra-deep); text-align: center;
+  background: color-mix(in oklab, var(--terra) 6%, transparent);
+  transition: background .15s ease, transform .14s ease;
+}
+.lf-home .lfh-make:hover { background: color-mix(in oklab, var(--terra) 12%, transparent); transform: translateY(-4px); }
+.lf-home .lfh-make:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
+.lf-home .lfh-make .lfh-plus { width: 32px; height: 32px; }
+.lf-home .lfh-make span { font-family: var(--font-label); font-weight: 800; font-size: 12.5px; line-height: 1.1; padding: 0 6px; }
+
+.lf-home .lfh-note { text-align: center; color: var(--ink-faint); font-family: var(--font-label); font-size: 12.5px; padding-top: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lf-home .lfh-wrap { animation: none; }
+  .lf-home .lfh-book, .lf-home .lfh-hero, .lf-home .lfh-make, .lf-home .lfh-play-btn { transition: none; }
+}
