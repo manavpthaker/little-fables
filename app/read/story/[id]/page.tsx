@@ -50,6 +50,7 @@ import {
   type WordTimestamp,
 } from '@/lib/read/speech'
 import { checkBadges } from '@/lib/read/badges'
+import { fetchBookOverrides, type BookOverrides } from '@/lib/read/artOverrides'
 import { getBuddy } from '@/lib/read/buddies'
 import type {
   Book,
@@ -404,6 +405,21 @@ function ReaderPages({
 
   const page: Page | undefined = pages[pageIdx]
   const words = useMemo(() => (page ? page.text.split(/\s+/).filter(Boolean) : []), [page])
+
+  // Approved art overrides (published on prod via Parent Corner → Art). Applied
+  // over page.img so an approval goes live on the next open, with no redeploy.
+  // Best-effort + non-blocking: absent overrides just leave the placeholder.
+  const [artOverrides, setArtOverrides] = useState<BookOverrides>({ pages: {} })
+  useEffect(() => {
+    let live = true
+    void fetchBookOverrides(book.id).then((o) => {
+      if (live) setArtOverrides(o)
+    })
+    return () => {
+      live = false
+    }
+  }, [book.id])
+  const effectiveImg = artOverrides.pages[`${chapterIdx}-${pageIdx}`] ?? page?.img
 
   // Mystery-word test — is this page's star the book's hidden heritage word?
   const isMysteryStar = useMemo(() => {
@@ -1295,10 +1311,10 @@ function ReaderPages({
                 justifyContent: 'center',
               }}
             >
-              {page.img ? (
+              {effectiveImg ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
-                  src={page.img}
+                  src={effectiveImg}
                   alt=""
                   style={
                     fullBleed

@@ -2724,50 +2724,170 @@ function ArtScenesSubTab() {
   )
 }
 
+// Production art review — talks to the Supabase-backed routes. Generate,
+// review (candidates via signed URLs), and approve — all live. An approval is
+// published to the public bucket and shows in the reader on next open.
+interface SheetRow {
+  characterId: string
+  name: string
+  role: string
+  pending: Array<{ id: string; url: string }>
+  approvedUrl: string | null
+}
+interface ScenePend {
+  id: string
+  chapterIdx: number | null
+  pageIdx: number | null
+  kind: string
+  url: string
+}
+
 function ArtTab() {
   const [sub, setSub] = useState<'characters' | 'scenes'>('characters')
-  const subs: Array<[typeof sub, string]> = [
-    ['characters', 'Characters'],
-    ['scenes', 'Scenes'],
-  ]
-  return (
-    <div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, flexWrap: 'wrap' }}>
-        <p style={{ margin: 0, font: '400 13.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
-          Review the art queue. Approve to publish; reject to skip. Dev-only — production builds cannot write.
+  const [configured, setConfigured] = useState<boolean | null>(null)
+  const [sheets, setSheets] = useState<SheetRow[]>([])
+  const [bookId, setBookId] = useState('')
+  const [scenes, setScenes] = useState<{ pending: ScenePend[]; approved: ScenePend[] }>({ pending: [], approved: [] })
+  const [busy, setBusy] = useState<string | null>(null)
+  const [msg, setMsg] = useState('')
+
+  const loadSheets = useCallback(async () => {
+    const r = await fetch('/api/art/list?kind=sheets')
+    if (r.status === 503) { setConfigured(false); return }
+    setConfigured(true)
+    const j = await r.json()
+    setSheets(j.sheets ?? [])
+  }, [])
+  const loadScenes = useCallback(async (id: string) => {
+    if (!id) { setScenes({ pending: [], approved: [] }); return }
+    const r = await fetch(`/api/art/list?kind=scenes&book=${encodeURIComponent(id)}`)
+    if (r.status === 503) { setConfigured(false); return }
+    setConfigured(true)
+    const j = await r.json()
+    setScenes({ pending: j.pending ?? [], approved: j.approved ?? [] })
+  }, [])
+
+  useEffect(() => { void loadSheets() }, [loadSheets])
+  useEffect(() => { void loadScenes(bookId) }, [bookId, loadScenes])
+
+  const act = useCallback(async (key: string, url: string, body: object, after: () => Promise<void>) => {
+    setBusy(key); setMsg('')
+    try {
+      const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) })
+      const j = await r.json().catch(() => ({}))
+      if (!r.ok) setMsg(j.error ?? 'Something went wrong.')
+      else await after()
+    } catch (e) { setMsg((e as Error).message) } finally { setBusy(null) }
+  }, [])
+
+  if (configured === false) {
+    return (
+      <PCard title="Art isn't set up for production yet">
+        <p style={{ margin: 0, font: '400 13.5px/1.6 var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+          To generate + approve art on the live site, follow <code>docs/art-production-setup.md</code>: create the
+          <code> art-candidates</code> (private) and <code>art-live</code> (public) Supabase buckets, run the
+          <code> art_artifacts</code> migration, and add <code>SUPABASE_SERVICE_ROLE_KEY</code>, <code>GEMINI_API_KEY</code>,
+          and <code>ANTHROPIC_API_KEY</code> to Vercel. Then reload this tab.
         </p>
-        <div
-          style={{
-            marginLeft: 'auto',
-            display: 'inline-flex',
-            padding: 3,
-            background: 'var(--lf-p-background)',
-            border: '1px solid var(--lf-p-border)',
-            borderRadius: 999,
-            gap: 2,
-          }}
-        >
-          {subs.map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setSub(id)}
-              style={{
-                border: 'none',
-                cursor: 'pointer',
-                padding: '6px 14px',
-                borderRadius: 999,
-                background: sub === id ? 'var(--lf-p-muted)' : 'transparent',
-                font: '500 13px var(--font-ui)',
-                color: sub === id ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
-              }}
-            >
-              {label}
+      </PCard>
+    )
+  }
+
+  return (
+    <div style={{ maxWidth: 920 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
+        <p style={{ margin: 0, font: '400 13.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+          Generate, review, and approve — live. Approved art appears in {`the reader`} on next open. Nothing un-approved is public.
+        </p>
+        <div style={{ marginLeft: 'auto', display: 'inline-flex', padding: 3, background: 'var(--lf-p-background)', border: '1px solid var(--lf-p-border)', borderRadius: 999, gap: 2 }}>
+          {(['characters', 'scenes'] as const).map((id) => (
+            <button key={id} type="button" onClick={() => setSub(id)}
+              style={{ border: 'none', cursor: 'pointer', padding: '6px 14px', borderRadius: 999, background: sub === id ? 'rgba(184,86,47,0.10)' : 'transparent', font: '500 13px var(--font-ui)', color: sub === id ? 'var(--lf-p-primary)' : 'var(--lf-p-muted-foreground)' }}>
+              {id === 'characters' ? 'Characters' : 'Scenes'}
             </button>
           ))}
         </div>
       </div>
-      {sub === 'characters' ? <ArtCharactersSubTab /> : <ArtScenesSubTab />}
+      {msg && <PCard><div style={{ padding: 10, font: '500 13px var(--font-ui)' }}>{msg}</div></PCard>}
+
+      {sub === 'characters' && (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12, marginTop: 12 }}>
+          {sheets.map((s) => (
+            <PCard key={s.characterId} padded={false}>
+              <div style={{ padding: 12 }}>
+                <div style={{ font: '600 13px var(--font-ui)', marginBottom: 8 }}>{s.name}</div>
+                {s.approvedUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={s.approvedUrl} alt="" style={{ width: '100%', borderRadius: 8, border: '2px solid #7BA87B', aspectRatio: '1', objectFit: 'cover' }} />
+                ) : s.pending.length ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {s.pending.map((p) => (
+                      <div key={p.id}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={p.url} alt="" style={{ width: '100%', borderRadius: 8, background: 'var(--lf-p-muted)' }} />
+                        <div style={{ display: 'flex', gap: 6, marginTop: 6 }}>
+                          <PButton size="sm" onClick={() => act(`ap-${p.id}`, '/api/art/approve', { id: p.id }, loadSheets)}>{busy === `ap-${p.id}` ? '…' : 'Approve'}</PButton>
+                          <PButton size="sm" variant="ghost" onClick={() => act(`rj-${p.id}`, '/api/art/reject', { id: p.id }, loadSheets)}>Reject</PButton>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ aspectRatio: '1', borderRadius: 8, background: 'var(--lf-p-muted)', display: 'grid', placeItems: 'center', font: '400 12px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>none yet</div>
+                )}
+                <div style={{ marginTop: 8 }}>
+                  <PButton size="sm" variant="secondary" onClick={() => act(`gen-${s.characterId}`, '/api/art/generate', { kind: 'sheet', characterId: s.characterId }, loadSheets)}>
+                    {busy === `gen-${s.characterId}` ? 'Generating…' : 'Generate'}
+                  </PButton>
+                </div>
+              </div>
+            </PCard>
+          ))}
+        </div>
+      )}
+
+      {sub === 'scenes' && (
+        <div style={{ marginTop: 12 }}>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 14, flexWrap: 'wrap' }}>
+            <select value={bookId} onChange={(e) => setBookId(e.target.value)} style={{ padding: '8px 10px', borderRadius: 8, border: '1px solid var(--lf-p-border)', font: '400 14px var(--font-ui)' }}>
+              <option value="">Choose a book…</option>
+              {PACK_BOOKS.map((b) => <option key={b.id} value={b.id}>{b.title}</option>)}
+            </select>
+            {bookId && (
+              <PButton size="sm" onClick={() => act(`genbook-${bookId}`, '/api/art/generate', { kind: 'book', bookId }, () => loadScenes(bookId))}>
+                {busy === `genbook-${bookId}` ? 'Generating… (may take a while)' : 'Generate this book'}
+              </PButton>
+            )}
+          </div>
+          {bookId && (scenes.pending.length + scenes.approved.length === 0) && (
+            <p style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>No art yet — tap “Generate this book”.</p>
+          )}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12 }}>
+            {scenes.pending.map((p) => (
+              <PCard key={p.id} padded={false}>
+                <div style={{ padding: 10 }}>
+                  <div style={{ font: '600 12px var(--font-ui)', marginBottom: 6 }}>{p.kind === 'cover' ? 'Cover' : `ch${p.chapterIdx} · p${p.pageIdx}`}</div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.url} alt="" style={{ width: '100%', borderRadius: 8, background: 'var(--lf-p-muted)' }} />
+                  <div style={{ display: 'flex', gap: 6, marginTop: 6 }}>
+                    <PButton size="sm" onClick={() => act(`ap-${p.id}`, '/api/art/approve', { id: p.id }, () => loadScenes(bookId))}>{busy === `ap-${p.id}` ? '…' : 'Approve'}</PButton>
+                    <PButton size="sm" variant="ghost" onClick={() => act(`rj-${p.id}`, '/api/art/reject', { id: p.id }, () => loadScenes(bookId))}>Reject</PButton>
+                  </div>
+                </div>
+              </PCard>
+            ))}
+            {scenes.approved.map((p) => (
+              <PCard key={p.id} padded={false}>
+                <div style={{ padding: 10 }}>
+                  <div style={{ font: '600 12px var(--font-ui)', marginBottom: 6, color: '#4f7a4f' }}>✓ {p.kind === 'cover' ? 'Cover' : `ch${p.chapterIdx} · p${p.pageIdx}`}</div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={p.url} alt="" style={{ width: '100%', borderRadius: 8, border: '2px solid #7BA87B' }} />
+                </div>
+              </PCard>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
