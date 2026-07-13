@@ -1,0 +1,33 @@
+/* Little Fables — story kitchen (v4 rebuild, Stage 3). A token bridge + crisp
+ * borders so the make-a-story flow matches the rest of v4, without touching the
+ * (working) interview/generation logic. Scoped to .lf-kitchen. */
+.lf-kitchen {
+  --lf-cream:          #E7DBC0;
+  --lf-cream-card:     #FBF5E8;
+  --lf-cream-line:     #E4D6B8;
+  --lf-espresso:       #3C2E22;
+  --lf-espresso-soft:  #6A5842;
+  --lf-espresso-faint: #9C8968;
+  --lf-coral:          #D2603A;
+  --lf-coral-deep:     #B4492A;
+  --lf-pastel-lilac:   #E7DEF0;
+  --lf-pastel-mint:    #DCE8D8;
+  --lf-pastel-peach:   #F3DBCB;
+  --paper-bright:      #FBF5E8;
+  --glow-lamplight:    rgba(242, 196, 96, 0.5);
+}
+
+/* De-wobble: turn the hand-drawn chip/button borders into the same crisp,
+   rounded borders used everywhere else in v4. */
+.lf-kitchen button.lf-drawn-border,
+.lf-kitchen .lf-drawn-border {
+  border-radius: 16px !important;
+}
+.lf-kitchen .lf-drawn-border::before {
+  filter: none !important;
+  border-radius: 16px !important;
+  border-color: var(--lf-cream-line) !important;
+}
+.lf-kitchen .lf-drawn-border--bold::before {
+  border-color: var(--lf-coral) !important;
+}

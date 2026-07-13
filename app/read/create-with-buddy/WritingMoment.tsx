@@ -73,7 +73,7 @@ export function WritingMoment({ buddy, recipe, spokenLine }: WritingMomentProps)
   return (
     <KidScreen label="Writing your story" style={{ padding: 0 }}>
       <div
-        className="lf-room"
+        className="lf-room lf-kitchen"
         style={{
           position: 'relative',
           minHeight: '100dvh',
