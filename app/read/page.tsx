@@ -30,6 +30,7 @@ import { listen, recognitionAvailable } from '@/lib/read/speech'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import { BUDDIES, cp, getBuddy } from '@/lib/read/buddies'
 import { loadShelf } from '@/lib/read/packs'
+import { fetchCoverOverrides } from '@/lib/read/artOverrides'
 import {
   currentWeekSuns,
   loadBadges,
@@ -74,6 +75,12 @@ export default function Home() {
     setBuddy(getBuddy(bs.activeId))
     setEnergy(bs.energy)
     setShelf(loadShelf())
+    // Approved cover art (published on prod via Parent Corner → Art) lights up
+    // the shelf without a redeploy. Best-effort + non-blocking.
+    void fetchCoverOverrides().then((covers) => {
+      if (Object.keys(covers).length === 0) return
+      setShelf((prev) => prev.map((b) => (covers[b.id] ? { ...b, coverImage: covers[b.id] } : b)))
+    })
     setSuns(currentWeekSuns())
     setBadgeCount(loadBadges().ids.length)
     setWordCount(loadWordBook().words.length)
