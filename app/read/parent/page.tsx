@@ -1987,10 +1987,793 @@ function MadeByAzadTab({
   )
 }
 
+// ---------- Art tab (v3.3 art pipeline review surface) ----------
+// The three art scripts (art-characters / art-director / art-generate) drop
+// pending candidates into public/art-preview/. Parents approve or reject
+// each candidate here; approvals move the file into approved/ and (for
+// scenes) patch the pack JSON so the reader picks up the new img.
+
+import charactersJson from '@/content/art/characters.json'
+import { PACK_BOOKS } from '@/lib/read/packs'
+
+type ArtCharacterMeta = {
+  id: string
+  name: string
+  emoji?: string
+  role?: string
+}
+
+type SheetManifestRow = {
+  characterId: string
+  name: string
+  role: string
+  pending: string[]
+  approved: string[]
+}
+
+type ScenePageRow = {
+  chapterIdx: number
+  pageIdx: number
+  pending: string[]
+  approved: string[]
+}
+
+type SceneManifest = {
+  bookId: string
+  pages: ScenePageRow[]
+}
+
+const ART_CHARACTERS: ArtCharacterMeta[] =
+  ((charactersJson as { characters?: ArtCharacterMeta[] }).characters ?? [])
+
+function ArtThumb({ src, alt }: { src: string; alt: string }) {
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      alt={alt}
+      style={{
+        width: '100%',
+        aspectRatio: '1 / 1',
+        objectFit: 'cover',
+        borderRadius: 'var(--radius-p-md)',
+        border: '1px solid var(--lf-p-border)',
+        background: 'var(--lf-p-muted)',
+        display: 'block',
+      }}
+    />
+  )
+}
+
+function CandidateGrid({
+  urls,
+  actions,
+}: {
+  urls: string[]
+  actions?: (url: string) => React.ReactNode
+}) {
+  if (!urls.length) return null
+  return (
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+        gap: 12,
+      }}
+    >
+      {urls.map((u) => (
+        <div key={u} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <ArtThumb src={u} alt="" />
+          {actions ? (
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{actions(u)}</div>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Convert an /art-preview/... URL back to the relative path the approve/reject
+// endpoints expect ("sheets/char_azi/pending/candidate-XYZ.png").
+function urlToTargetPath(url: string): string {
+  const prefix = '/art-preview/'
+  return url.startsWith(prefix) ? url.slice(prefix.length) : url
+}
+
+function CharacterDrawer({
+  row,
+  onClose,
+  onChanged,
+}: {
+  row: SheetManifestRow
+  onClose: () => void
+  onChanged: () => void
+}) {
+  const [busy, setBusy] = useState<string | null>(null)
+  const character = ART_CHARACTERS.find((c) => c.id === row.characterId)
+
+  const approve = async (url: string) => {
+    setBusy(url)
+    try {
+      const res = await fetch('/api/art/approve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ kind: 'sheet', targetPath: urlToTargetPath(url) }),
+      })
+      if (!res.ok) {
+        const j = (await res.json().catch(() => ({}))) as { error?: string }
+        alert(`Approve failed: ${j.error ?? res.statusText}`)
+      } else {
+        onChanged()
+      }
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  const reject = async (url: string) => {
+    setBusy(url)
+    try {
+      const res = await fetch('/api/art/reject', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetPath: urlToTargetPath(url) }),
+      })
+      if (!res.ok) {
+        const j = (await res.json().catch(() => ({}))) as { error?: string }
+        alert(`Reject failed: ${j.error ?? res.statusText}`)
+      } else {
+        onChanged()
+      }
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(15, 15, 15, 0.4)',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        zIndex: 50,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: 'min(560px, 100%)',
+          background: 'var(--lf-p-background)',
+          borderLeft: '1px solid var(--lf-p-border)',
+          padding: '24px 22px',
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 20,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ font: '600 17px var(--font-ui)' }}>
+              {character?.emoji ? <span aria-hidden style={{ marginRight: 6 }}>{character.emoji}</span> : null}
+              {row.name}
+            </div>
+            {row.role && (
+              <div style={{ font: '400 13px/1.4 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginTop: 3 }}>
+                {row.role}
+              </div>
+            )}
+          </div>
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            style={{
+              width: 32,
+              height: 32,
+              border: '1px solid var(--lf-p-border)',
+              background: 'transparent',
+              borderRadius: 'var(--radius-p-md)',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--lf-p-muted-foreground)',
+            }}
+          >
+            <X size={14} />
+          </button>
+        </div>
+
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>
+            Approved references ({row.approved.length})
+          </div>
+          {row.approved.length ? (
+            <CandidateGrid urls={row.approved} />
+          ) : (
+            <div style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+              No approved reference sheets yet.
+            </div>
+          )}
+        </div>
+
+        <div>
+          <div style={{ font: '600 13.5px var(--font-ui)', marginBottom: 8 }}>
+            Pending candidates ({row.pending.length})
+          </div>
+          {row.pending.length ? (
+            <CandidateGrid
+              urls={row.pending}
+              actions={(u) => (
+                <>
+                  <PButton size="sm" onClick={() => void approve(u)} disabled={busy === u}>
+                    <Check size={12} /> Approve
+                  </PButton>
+                  <PButton size="sm" variant="secondary" onClick={() => void reject(u)} disabled={busy === u}>
+                    <X size={12} /> Reject
+                  </PButton>
+                </>
+              )}
+            />
+          ) : (
+            <div
+              style={{
+                font: '400 13px/1.5 var(--font-ui)',
+                color: 'var(--lf-p-muted-foreground)',
+                padding: 12,
+                background: 'var(--lf-p-muted)',
+                borderRadius: 'var(--radius-p-md)',
+                border: '1px dashed var(--lf-p-border)',
+              }}
+            >
+              No candidates queued. Run <code>npm run art:characters -- --char {row.characterId}</code> locally to generate some.
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SceneDrawer({
+  book,
+  manifest,
+  onClose,
+  onChanged,
+}: {
+  book: Book
+  manifest: SceneManifest | null
+  onClose: () => void
+  onChanged: () => void
+}) {
+  const [busy, setBusy] = useState<string | null>(null)
+
+  // Build the full page list from the book so we show "no art yet" rows too.
+  const rows = useMemo(() => {
+    const byKey = new Map<string, ScenePageRow>()
+    for (const r of manifest?.pages ?? []) {
+      byKey.set(`${r.chapterIdx}-${r.pageIdx}`, r)
+    }
+    const out: ScenePageRow[] = []
+    book.chapters.forEach((ch, ci) => {
+      ch.pages.forEach((_p, pi) => {
+        const key = `${ci}-${pi}`
+        out.push(byKey.get(key) ?? { chapterIdx: ci, pageIdx: pi, pending: [], approved: [] })
+      })
+    })
+    return out
+  }, [book, manifest])
+
+  const approve = async (row: ScenePageRow, url: string) => {
+    setBusy(url)
+    try {
+      const res = await fetch('/api/art/approve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kind: 'scene',
+          targetPath: urlToTargetPath(url),
+          bookId: book.id,
+          chapterIdx: row.chapterIdx,
+          pageIdx: row.pageIdx,
+        }),
+      })
+      if (!res.ok) {
+        const j = (await res.json().catch(() => ({}))) as { error?: string }
+        alert(`Approve failed: ${j.error ?? res.statusText}`)
+      } else {
+        onChanged()
+      }
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  const reject = async (url: string) => {
+    setBusy(url)
+    try {
+      const res = await fetch('/api/art/reject', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ targetPath: urlToTargetPath(url) }),
+      })
+      if (!res.ok) {
+        const j = (await res.json().catch(() => ({}))) as { error?: string }
+        alert(`Reject failed: ${j.error ?? res.statusText}`)
+      } else {
+        onChanged()
+      }
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(15, 15, 15, 0.4)',
+        display: 'flex',
+        justifyContent: 'flex-end',
+        zIndex: 50,
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          width: 'min(680px, 100%)',
+          background: 'var(--lf-p-background)',
+          borderLeft: '1px solid var(--lf-p-border)',
+          padding: '24px 22px',
+          overflowY: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 20,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ font: '600 17px var(--font-ui)' }}>{book.title}</div>
+            <div style={{ font: '400 13px/1.4 var(--font-ui)', color: 'var(--lf-p-muted-foreground)', marginTop: 3 }}>
+              {rows.filter((r) => r.approved.length).length} of {rows.length} pages illustrated
+            </div>
+          </div>
+          <button
+            type="button"
+            aria-label="Close"
+            onClick={onClose}
+            style={{
+              width: 32,
+              height: 32,
+              border: '1px solid var(--lf-p-border)',
+              background: 'transparent',
+              borderRadius: 'var(--radius-p-md)',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'var(--lf-p-muted-foreground)',
+            }}
+          >
+            <X size={14} />
+          </button>
+        </div>
+
+        {manifest === null ? (
+          <div style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+            Loading…
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            {rows.map((r) => {
+              const key = `${r.chapterIdx}-${r.pageIdx}`
+              const label = book.kind === 'chapter'
+                ? `Ch ${r.chapterIdx + 1} · page ${r.pageIdx + 1}`
+                : `Page ${r.pageIdx + 1}`
+              return (
+                <div
+                  key={key}
+                  style={{
+                    padding: 12,
+                    border: '1px solid var(--lf-p-border)',
+                    borderRadius: 'var(--radius-p-md)',
+                    background: 'var(--lf-p-background)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 10,
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <div style={{ font: '600 13px var(--font-ui)' }}>{label}</div>
+                    <div style={{ marginLeft: 'auto', font: '400 12px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+                      {r.approved.length
+                        ? 'approved'
+                        : r.pending.length
+                          ? `pending: ${r.pending.length}`
+                          : 'no art yet'}
+                    </div>
+                  </div>
+                  {r.approved.length > 0 && (
+                    <div style={{ width: 120 }}>
+                      <ArtThumb src={r.approved[0]} alt="" />
+                    </div>
+                  )}
+                  {r.pending.length > 0 && (
+                    <CandidateGrid
+                      urls={r.pending}
+                      actions={(u) => (
+                        <>
+                          <PButton size="sm" onClick={() => void approve(r, u)} disabled={busy === u}>
+                            <Check size={12} /> Approve
+                          </PButton>
+                          <PButton size="sm" variant="secondary" onClick={() => void reject(u)} disabled={busy === u}>
+                            <X size={12} /> Reject
+                          </PButton>
+                        </>
+                      )}
+                    />
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function ArtCharactersSubTab() {
+  const [rows, setRows] = useState<SheetManifestRow[] | null>(null)
+  const [open, setOpen] = useState<string | null>(null)
+
+  const reload = useCallback(async () => {
+    try {
+      const res = await fetch('/api/art/list?kind=sheets', { cache: 'no-store' })
+      if (!res.ok) throw new Error(res.statusText)
+      const data = (await res.json()) as SheetManifestRow[]
+      setRows(data)
+    } catch {
+      setRows([])
+    }
+  }, [])
+
+  useEffect(() => {
+    void reload()
+  }, [reload])
+
+  if (rows === null) {
+    return (
+      <div style={{ font: '400 13.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+        Loading characters…
+      </div>
+    )
+  }
+
+  const activeRow = open ? rows.find((r) => r.characterId === open) ?? null : null
+
+  return (
+    <div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+          gap: 12,
+        }}
+      >
+        {rows.map((r) => {
+          const character = ART_CHARACTERS.find((c) => c.id === r.characterId)
+          const approvedCount = r.approved.length
+          const pendingCount = r.pending.length
+          return (
+            <button
+              key={r.characterId}
+              type="button"
+              onClick={() => setOpen(r.characterId)}
+              className="lf-press"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: 6,
+                textAlign: 'left',
+                padding: 16,
+                background: 'var(--lf-p-card)',
+                border: '1px solid var(--lf-p-border)',
+                borderRadius: 'var(--radius-p-card)',
+                cursor: 'pointer',
+                color: 'var(--lf-p-foreground)',
+                font: 'inherit',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                {character?.emoji && <span aria-hidden style={{ fontSize: 20 }}>{character.emoji}</span>}
+                <div style={{ font: '600 14.5px var(--font-ui)' }}>{r.name}</div>
+              </div>
+              {r.role && (
+                <div
+                  style={{
+                    font: '400 12.5px/1.4 var(--font-ui)',
+                    color: 'var(--lf-p-muted-foreground)',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {r.role}
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: 8, marginTop: 6, flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '2px 8px',
+                    borderRadius: 999,
+                    font: '500 11.5px var(--font-ui)',
+                    background: approvedCount > 0 ? '#f0fdf4' : 'var(--lf-p-muted)',
+                    color: approvedCount > 0 ? '#15803d' : 'var(--lf-p-muted-foreground)',
+                    border: `1px solid ${approvedCount > 0 ? '#bbf7d0' : 'var(--lf-p-border)'}`,
+                  }}
+                >
+                  {approvedCount} approved
+                </span>
+                {pendingCount > 0 && (
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '2px 8px',
+                      borderRadius: 999,
+                      font: '500 11.5px var(--font-ui)',
+                      background: '#fef3c7',
+                      color: '#92400e',
+                      border: '1px solid #fde68a',
+                    }}
+                  >
+                    {pendingCount} pending
+                  </span>
+                )}
+              </div>
+            </button>
+          )
+        })}
+      </div>
+      {activeRow && (
+        <CharacterDrawer
+          row={activeRow}
+          onClose={() => setOpen(null)}
+          onChanged={() => {
+            void reload()
+          }}
+        />
+      )}
+    </div>
+  )
+}
+
+function ArtScenesSubTab() {
+  const books = useMemo(() => PACK_BOOKS.slice(), [])
+  const [manifests, setManifests] = useState<Record<string, SceneManifest>>({})
+  const [open, setOpen] = useState<string | null>(null)
+  const [loadingBook, setLoadingBook] = useState<string | null>(null)
+
+  const totals = useMemo(() => {
+    const t: Record<string, number> = {}
+    for (const b of books) {
+      let n = 0
+      for (const ch of b.chapters) n += ch.pages.length
+      t[b.id] = n
+    }
+    return t
+  }, [books])
+
+  const reloadAll = useCallback(async () => {
+    // Fan out — one manifest per book, tolerated failures.
+    const results = await Promise.all(
+      books.map(async (b) => {
+        try {
+          const res = await fetch(`/api/art/list?kind=scenes&book=${encodeURIComponent(b.id)}`, {
+            cache: 'no-store',
+          })
+          if (!res.ok) return [b.id, null] as const
+          const data = (await res.json()) as SceneManifest
+          return [b.id, data] as const
+        } catch {
+          return [b.id, null] as const
+        }
+      }),
+    )
+    const next: Record<string, SceneManifest> = {}
+    for (const [id, m] of results) {
+      if (m) next[id] = m
+    }
+    setManifests(next)
+  }, [books])
+
+  useEffect(() => {
+    void reloadAll()
+  }, [reloadAll])
+
+  const reloadOne = async (bookId: string) => {
+    setLoadingBook(bookId)
+    try {
+      const res = await fetch(`/api/art/list?kind=scenes&book=${encodeURIComponent(bookId)}`, {
+        cache: 'no-store',
+      })
+      if (res.ok) {
+        const data = (await res.json()) as SceneManifest
+        setManifests((prev) => ({ ...prev, [bookId]: data }))
+      }
+    } finally {
+      setLoadingBook(null)
+    }
+  }
+
+  const activeBook = open ? books.find((b) => b.id === open) ?? null : null
+
+  return (
+    <div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+          gap: 12,
+        }}
+      >
+        {books.map((b) => {
+          const m = manifests[b.id]
+          const approved = m?.pages.filter((p) => p.approved.length).length ?? 0
+          const pending = m?.pages.reduce((sum, p) => sum + p.pending.length, 0) ?? 0
+          const total = totals[b.id] ?? 0
+          return (
+            <button
+              key={b.id}
+              type="button"
+              onClick={() => setOpen(b.id)}
+              className="lf-press"
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+                gap: 6,
+                textAlign: 'left',
+                padding: 16,
+                background: 'var(--lf-p-card)',
+                border: '1px solid var(--lf-p-border)',
+                borderRadius: 'var(--radius-p-card)',
+                cursor: 'pointer',
+                color: 'var(--lf-p-foreground)',
+                font: 'inherit',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                {b.coverEmoji && <span aria-hidden style={{ fontSize: 20 }}>{b.coverEmoji}</span>}
+                <div style={{ font: '600 14.5px var(--font-ui)' }}>{b.title}</div>
+              </div>
+              {b.by && (
+                <div style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+                  {b.by}
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: 8, marginTop: 6, flexWrap: 'wrap' }}>
+                <span
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '2px 8px',
+                    borderRadius: 999,
+                    font: '500 11.5px var(--font-ui)',
+                    background: approved === total && total > 0 ? '#f0fdf4' : 'var(--lf-p-muted)',
+                    color: approved === total && total > 0 ? '#15803d' : 'var(--lf-p-muted-foreground)',
+                    border: `1px solid ${approved === total && total > 0 ? '#bbf7d0' : 'var(--lf-p-border)'}`,
+                  }}
+                >
+                  {approved}/{total} illustrated
+                </span>
+                {pending > 0 && (
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '2px 8px',
+                      borderRadius: 999,
+                      font: '500 11.5px var(--font-ui)',
+                      background: '#fef3c7',
+                      color: '#92400e',
+                      border: '1px solid #fde68a',
+                    }}
+                  >
+                    {pending} pending
+                  </span>
+                )}
+              </div>
+            </button>
+          )
+        })}
+      </div>
+      {activeBook && (
+        <SceneDrawer
+          book={activeBook}
+          manifest={manifests[activeBook.id] ?? null}
+          onClose={() => setOpen(null)}
+          onChanged={() => {
+            void reloadOne(activeBook.id)
+          }}
+        />
+      )}
+      {loadingBook && (
+        <div style={{ position: 'fixed', bottom: 24, right: 24, font: '400 12px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+          Refreshing {loadingBook}…
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ArtTab() {
+  const [sub, setSub] = useState<'characters' | 'scenes'>('characters')
+  const subs: Array<[typeof sub, string]> = [
+    ['characters', 'Characters'],
+    ['scenes', 'Scenes'],
+  ]
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16, flexWrap: 'wrap' }}>
+        <p style={{ margin: 0, font: '400 13.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+          Review the art queue. Approve to publish; reject to skip. Dev-only — production builds cannot write.
+        </p>
+        <div
+          style={{
+            marginLeft: 'auto',
+            display: 'inline-flex',
+            padding: 3,
+            background: 'var(--lf-p-background)',
+            border: '1px solid var(--lf-p-border)',
+            borderRadius: 999,
+            gap: 2,
+          }}
+        >
+          {subs.map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setSub(id)}
+              style={{
+                border: 'none',
+                cursor: 'pointer',
+                padding: '6px 14px',
+                borderRadius: 999,
+                background: sub === id ? 'var(--lf-p-muted)' : 'transparent',
+                font: '500 13px var(--font-ui)',
+                color: sub === id ? 'var(--lf-p-foreground)' : 'var(--lf-p-muted-foreground)',
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+      {sub === 'characters' ? <ArtCharactersSubTab /> : <ArtScenesSubTab />}
+    </div>
+  )
+}
+
 // ---------- Parent Corner ----------
 function ParentCorner() {
   const { user } = useAuth()
-  const [tab, setTab] = useState<'profile' | 'stories' | 'made-by-azad' | 'retells' | 'universe'>('profile')
+  const [tab, setTab] = useState<'profile' | 'stories' | 'made-by-azad' | 'art' | 'retells' | 'universe'>('profile')
   const [universe, setUniverse] = useState<Universe | null>(null)
   const [profile, setProfile] = useState<ChildProfile>(DEFAULT_PROFILE)
   const [retells, setRetells] = useState<Retell[]>([])
@@ -2043,6 +2826,7 @@ function ParentCorner() {
     ['profile', 'Profile'],
     ['stories', 'Stories'],
     ['made-by-azad', `Made by ${universe.childName}`],
+    ['art', 'Art'],
     ['retells', 'Retellings'],
     ['universe', `${universe.childName}’s universe`],
   ]
@@ -2207,6 +2991,8 @@ function ParentCorner() {
             refresh={() => setBooks(loadStories())}
           />
         )}
+
+        {tab === 'art' && <ArtTab />}
 
         {tab === 'universe' && <UniverseTab universe={universe} persist={persistUniverse} />}
 

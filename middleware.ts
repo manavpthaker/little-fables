@@ -11,6 +11,7 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith('/api/tts') ||
     pathname.startsWith('/api/listen') ||
     pathname.startsWith('/api/respond') ||
+    pathname.startsWith('/api/art') ||
     pathname === '/sw.js' ||
     pathname === '/manifest.webmanifest' ||
     pathname.startsWith('/icons/')

@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "art:characters": "tsx scripts/art-characters.ts",
+    "art:director": "tsx scripts/art-director.ts",
+    "art:generate": "tsx scripts/art-generate.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
