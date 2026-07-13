@@ -1,0 +1,49 @@
+/* Little Fables — badge shelf (v4 rebuild, Stage 3). Clean cards on the
+ * .lf-home foundation. */
+
+.lf-home .lfb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+}
+.lf-home .lfb-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  padding: 18px 12px 16px;
+  background: var(--card);
+  border: 1.5px solid var(--card-line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+.lf-home .lfb-card[data-earned="false"] { opacity: 0.72; box-shadow: none; background: transparent; }
+
+.lf-home .lfb-medal {
+  width: 88px; height: 88px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 38px;
+  background: var(--medal, var(--mustard));
+  border: 3px solid rgba(0, 0, 0, 0.14);
+  box-shadow: 0 6px 16px -7px rgba(60, 46, 34, 0.5), inset 0 -3px 8px rgba(0, 0, 0, 0.12);
+}
+.lf-home .lfb-medal[data-earned="false"] {
+  background: var(--paper-deep);
+  border: 2px dashed var(--card-line);
+  box-shadow: none;
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
+.lf-home .lfb-name { font-size: 16px; font-weight: 700; color: var(--ink); }
+.lf-home .lfb-card[data-earned="false"] .lfb-name { color: var(--ink-faint); }
+.lf-home .lfb-how {
+  font-family: var(--font-label);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  line-height: 1.4;
+  text-wrap: balance;
+}

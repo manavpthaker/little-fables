@@ -48,6 +48,7 @@ import { loadShelf } from '@/lib/read/packs'
 import { loadProgress } from '@/lib/read/storage'
 import { InterviewPhase } from './InterviewPhase'
 import { WritingMoment } from './WritingMoment'
+import './kitchen.css'
 
 // ---------- Guardrails helper (Agent B owns the module) ----------
 // Best-effort: dynamic import so a missing module doesn't break the flow.
@@ -840,7 +841,7 @@ export default function CreateWithBuddy() {
   if (!buddy) {
     return (
       <KidScreen label="Story kitchen">
-        <div className="lf-room" style={{ padding: 48, textAlign: 'center', color: 'var(--ink-soft, #6E5B49)' }}>
+        <div className="lf-room lf-kitchen" style={{ padding: 48, textAlign: 'center', color: 'var(--ink-soft, #6E5B49)' }}>
           Loading…
         </div>
       </KidScreen>
@@ -856,8 +857,7 @@ export default function CreateWithBuddy() {
   if (phase === 'interview') {
     return (
       <KidScreen label="Story kitchen" style={{ padding: 0 }}>
-        <div className="lf-room" style={{ position: 'absolute', inset: 0 }}>
-          <DeskChrome />
+        <div className="lf-room lf-kitchen" style={{ position: 'absolute', inset: 0 }}>
           <KitchenBackButton onTap={goBack} />
           <InterviewPhase
             buddy={buddy}
@@ -880,7 +880,7 @@ export default function CreateWithBuddy() {
   return (
     <KidScreen label="Story kitchen" style={{ padding: 0 }}>
       <div
-        className="lf-room"
+        className="lf-room lf-kitchen"
         style={{
           position: 'relative',
           minHeight: '100dvh',
@@ -895,7 +895,6 @@ export default function CreateWithBuddy() {
           padding: '32px 24px',
         }}
       >
-        <DeskChrome />
         <KitchenBackButton onTap={goBack} />
 
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 18, maxWidth: 720, flexWrap: 'wrap', justifyContent: 'center', zIndex: 2 }}>
@@ -1229,70 +1228,3 @@ function KitchenBackButton({ onTap }: { onTap: () => void }) {
   )
 }
 
-/* ================= DeskChrome =================
- * A soft drawn writing-desk backdrop: the cover of an open book, an inkpot,
- * a couple of pens. Decorative — never blocks controls. Reduced motion safe.
- */
-function DeskChrome() {
-  return (
-    <div
-      aria-hidden="true"
-      style={{
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-        overflow: 'hidden',
-        zIndex: 0,
-      }}
-    >
-      {/* wood desk plank along the bottom */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: '30%',
-          background: 'linear-gradient(180deg, rgba(91,70,55,.16), rgba(91,70,55,.28))',
-        }}
-      />
-      <svg
-        style={{ position: 'absolute', left: 20, bottom: 24, opacity: 0.75 }}
-        width={200}
-        height={140}
-        viewBox="0 0 200 140"
-      >
-        {/* open book */}
-        <path d="M 10 40 L 100 24 L 100 118 L 10 130 Z" fill="#F9F2E3" stroke="#46362A" strokeWidth="3" />
-        <path d="M 190 40 L 100 24 L 100 118 L 190 130 Z" fill="#F9F2E3" stroke="#46362A" strokeWidth="3" />
-        {/* lines */}
-        {[54, 68, 82, 96].map((y) => (
-          <line key={`l-${y}`} x1="24" y1={y - (y - 54) * 0.06} x2="92" y2={y - (y - 54) * 0.06 - 3}
-            stroke="#97836B" strokeWidth="1.4" opacity=".55" />
-        ))}
-        {[54, 68, 82, 96].map((y) => (
-          <line key={`r-${y}`} x1="108" y1={y - (y - 54) * 0.06 - 3} x2="176" y2={y - (y - 54) * 0.06}
-            stroke="#97836B" strokeWidth="1.4" opacity=".55" />
-        ))}
-      </svg>
-      <svg
-        style={{ position: 'absolute', right: 40, bottom: 30, opacity: 0.8 }}
-        width={130}
-        height={140}
-        viewBox="0 0 130 140"
-      >
-        {/* inkpot */}
-        <path
-          d="M 34 60 Q 34 46 50 46 L 90 46 Q 106 46 106 60 L 100 118 Q 100 130 88 130 L 52 130 Q 40 130 40 118 Z"
-          fill="#2E8B8B"
-          stroke="#46362A"
-          strokeWidth="3"
-        />
-        <ellipse cx="70" cy="46" rx="30" ry="6" fill="#4E7FA3" stroke="#46362A" strokeWidth="2.4" />
-        {/* pen */}
-        <path d="M 26 20 L 100 78 L 96 88 L 22 30 Z" fill="#5B4637" stroke="#46362A" strokeWidth="2.4" />
-        <path d="M 96 88 L 108 96" stroke="#46362A" strokeWidth="2" />
-      </svg>
-    </div>
-  )
-}
