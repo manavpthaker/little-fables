@@ -19,13 +19,16 @@ export interface TransportProps {
   onNext: () => void
   canPrev: boolean
   canNext: boolean
+  /** Optional wrapper class (small-screen reader overrides target this). */
+  className?: string
 }
 
-export function Transport({ playing, onPlayToggle, onPrev, onNext, canPrev, canNext }: TransportProps) {
+export function Transport({ playing, onPlayToggle, onPrev, onNext, canPrev, canNext, className }: TransportProps) {
   return (
     <div
       role="group"
       aria-label="Reader controls"
+      className={className}
       style={{
         display: 'flex',
         alignItems: 'center',

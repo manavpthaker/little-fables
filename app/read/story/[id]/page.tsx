@@ -215,31 +215,25 @@ function ReaderBook({
 
   // Phase: reading | chapterEnd | comfortRitual | bookComplete
   // v3 removes the standalone ChapterMap phase — the Contents overlay lives
-  // inside the reader, opened via the folio dog-ear. But we still land there
-  // for multi-chapter books on first entry (unless ?resume=1) so the child
-  // picks a chapter first.
+  // inside the reader, opened via the folio dog-ear.
   const [chapterIdx, setChapterIdx] = useState<number | null>(null)
   const [phase, setPhase] = useState<'reading' | 'chapterEnd' | 'comfortRitual' | 'bookComplete'>('reading')
   const [showContents, setShowContents] = useState(false)
 
   useEffect(() => {
     if (chapterIdx !== null) return
+    // Tapping a book (or Continue) goes straight into reading, resuming the
+    // saved chapter — the pageIdx effect in ReaderPages resumes the saved page.
+    // We no longer force the Contents chapter-map on entry: it made "tap my
+    // book" feel like opening a menu, and (with the old back model) trapped the
+    // child in a page<->Contents loop with no way back to the room. The chapter
+    // map is opt-in via the folio dog-ear.
     if (!isMultiChapter) {
       setChapterIdx(0)
       return
     }
     const prog = getProgress(book.id)
-    const resume =
-      typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('resume')
-    if (resume) {
-      const cur = Math.min(book.chapters.length - 1, prog?.chapter ?? 0)
-      setChapterIdx(cur)
-    } else {
-      // Land on Contents for multi-chapter books (§A3: "back always goes up
-      // one level: page → Contents → room" — so Contents is the natural gate).
-      setChapterIdx(Math.min(book.chapters.length - 1, prog?.chapter ?? 0))
-      setShowContents(true)
-    }
+    setChapterIdx(Math.min(book.chapters.length - 1, prog?.chapter ?? 0))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [book.id, isMultiChapter])
 
@@ -291,10 +285,11 @@ function ReaderBook({
         chapterIdx={chapterIdx}
         chapter={chapter}
         onExit={() => {
-          // §A3: back is always one level up. From the page, that's Contents
-          // when multi-chapter — otherwise, the room.
-          if (isMultiChapter) setShowContents(true)
-          else onExit()
+          // Back always leaves the book and returns to the room — one tap, from
+          // any page, every book (single- or multi-chapter). The chapter map is
+          // the folio dog-ear, never the back target; making it the back target
+          // created a page<->Contents loop with no exit to the room.
+          onExit()
         }}
         onOpenContents={() => setShowContents(true)}
         onFinishChapter={async () => {
@@ -401,6 +396,9 @@ function ReaderPages({
 
   const listenStopRef = useRef<(() => void) | null>(null)
   const oneShotSpeakRef = useRef<SpeakHandle | null>(null)
+  // Scroll viewport for the reading text — used to keep the narrated word in
+  // view on short screens (phone-landscape), where a long page scrolls.
+  const textColRef = useRef<HTMLDivElement | null>(null)
 
   const page: Page | undefined = pages[pageIdx]
   const words = useMemo(() => (page ? page.text.split(/\s+/).filter(Boolean) : []), [page])
@@ -954,6 +952,20 @@ function ReaderPages({
     [transport, wordMeaning],
   )
 
+  // Follow the narration: when the highlighted word changes during playback,
+  // keep it in view. `block: 'nearest'` only scrolls when the word has actually
+  // gone past an edge, so words already on screen never jitter, and a paused
+  // child scrolling by hand is never fought (wordIdx doesn't change when
+  // paused). This is what makes a long page readable on a short phone screen.
+  useEffect(() => {
+    if (transport.wordIdx < 0) return
+    const col = textColRef.current
+    if (!col) return
+    const spans = col.querySelectorAll('span[role="button"]')
+    const el = spans[transport.wordIdx] as HTMLElement | undefined
+    el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' })
+  }, [transport.wordIdx])
+
   // ---- Kamishibai swipe: page follows finger 1:1 (A1). ----
   const [dragDx, setDragDx] = useState(0)
   const swipeRef = useRef<{ startX: number; startY: number; pid: number | null; committed: boolean }>({
@@ -972,11 +984,11 @@ function ReaderPages({
       pid: e.pointerId,
       committed: false,
     }
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId)
-    } catch {
-      /* ignore */
-    }
+    // P0: do NOT setPointerCapture here. Capturing on pointerdown retargets all
+    // subsequent pointer events to this surface, which steals word taps/holds
+    // (PageWord never gets its pointerup) — "words are the timeline" dies on
+    // touch while working fine with a mouse. We only capture once the gesture
+    // has actually committed to a horizontal swipe (see onSwipeMove).
   }, [])
 
   const onSwipeMove = useCallback(
@@ -996,6 +1008,15 @@ function ReaderPages({
           return
         }
         swipeRef.current = { ...s, committed: true }
+        // Now that this is definitively a horizontal page-turn (past the 24px
+        // slop, and a word tap/hold could no longer be intended), take pointer
+        // capture so the drag keeps tracking even if the finger slides off the
+        // surface. Taps never reach here, so they're no longer stolen.
+        try {
+          e.currentTarget.setPointerCapture(e.pointerId)
+        } catch {
+          /* ignore — some environments don't support capture */
+        }
       }
       setDragDx(dx)
     },
@@ -1190,6 +1211,7 @@ function ReaderPages({
 
         {/* Top: quiet chapter/book label — atmosphere, not a control. */}
         <div
+          className="lf-reader-chapline"
           style={{
             paddingTop: 26,
             textAlign: 'center',
@@ -1320,6 +1342,8 @@ function ReaderPages({
 
             {/* Right: words + teaching card */}
             <div
+              ref={textColRef}
+              className="lf-reader-textcol"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -1330,6 +1354,7 @@ function ReaderPages({
               }}
             >
               <div
+                className="lf-reader-textcard"
                 style={{
                   background: 'var(--paper-bright, var(--lf-cream-card))',
                   border: '1.5px solid var(--lf-cream-line)',
@@ -1512,6 +1537,7 @@ function ReaderPages({
 
         {/* Ribbon scrubber → chapter timeline (drag to seek by page). */}
         <Ribbon
+          className="lf-reader-ribbon"
           chapter={chapterLabel}
           pageIdx={pageIdx}
           totalPages={total}
@@ -1526,6 +1552,7 @@ function ReaderPages({
              touch-only child can leave the page. Auto-turn (in play mode) still
              respects gates via useReaderTransport. */}
         <Transport
+          className="lf-reader-transport"
           playing={transport.playing}
           onPlayToggle={transport.toggle}
           onPrev={goPrev}

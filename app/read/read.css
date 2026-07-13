@@ -247,6 +247,46 @@
   }
 }
 
+/* ==============================================================
+   Small-screen reader — phone held in landscape (short viewport).
+   The iPad-sized bottom chrome (chapter line + ribbon label + transport
+   padding) plus the big reading-card padding eats ~half of a ~390px-tall
+   screen, so the story text clips. On a short viewport we compress the
+   chrome and the card so the WORDS get the height back — the book is the
+   point. Touch targets stay >=44px (A1 floor). `!important` is needed to
+   beat the reader's inline styles. Breakpoint 500px cleanly separates
+   phone-landscape (<=430px tall) from iPad (>=768px tall).
+   ============================================================== */
+@media (max-height: 500px) {
+  /* Chapter line: keep it (it clears the top-corner controls) but quieter. */
+  .lf-reader-chapline { padding-top: 18px !important; font-size: 13px !important; }
+
+  /* Reading card: reclaim its generous padding + tighten the line box so a
+     couple more lines fit before any scroll. Still large, still legible. */
+  .lf-reader-textcol { padding-top: 10px !important; }
+  .lf-reader-textcard { padding: 14px 20px !important; }
+  .lf-reader-textcard p { font-size: 22px !important; line-height: 1.5 !important; }
+
+  /* Ribbon: drop the duplicate chapter/page label row (the folio dog-ear
+     already shows "N of M"); trim the track to the 44px floor. */
+  .lf-reader-ribbon { padding-bottom: 0 !important; }
+  .lf-reader-ribbon-label { display: none !important; }
+  .lf-reader-ribbon-track { height: 44px !important; }
+
+  /* Transport: shave the tall bottom padding; the 78px play + 60px chevrons
+     stay full size. */
+  .lf-reader-transport { padding: 6px 0 10px !important; }
+
+  /* --- Room (home) on a short screen --- */
+  /* The spoken-greeting bubble duplicates what the buddy says aloud and the
+     card's "Today's adventure" label; on a cramped phone-landscape it just
+     stacks on top of the buddy + card, so hide it here (it stays on iPad). */
+  .lf-room-bubble { display: none !important; }
+  /* Raise the hero card so its bottom (the Start button) isn't clipped below
+     the fold on a ~390px-tall screen. */
+  .lf-room-continue { top: 40% !important; }
+}
+
 /* Kamishibai slide — page turns follow the finger. */
 @keyframes lf-kamishibai-in {
   from { transform: translateX(100%); }

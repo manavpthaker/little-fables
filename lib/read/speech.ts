@@ -132,6 +132,23 @@ export const webTtsSource: TtsSource = {
 
 // ---------------- AudioSession over HTMLAudioElement ----------------
 
+// P0 — iOS autoplay. Continuous "read-to-me" mode turns pages from a
+// setTimeout, i.e. OUTSIDE any user gesture. iOS rejects `.play()` on a fresh
+// element in that state. The fix is to reuse ONE audio element for narration:
+// the first play happens inside the play-button tap (a real gesture), which
+// unlocks that element for the rest of the session, so subsequent auto-turn
+// pages play through the already-unlocked element. Non-continuous one-shots
+// (word hold, ribbon "page four") stay on their own throwaway elements — those
+// are always gesture-initiated, so they're never blocked.
+let sharedNarrationAudio: HTMLAudioElement | null = null
+function getSharedNarrationAudio(): HTMLAudioElement {
+  if (!sharedNarrationAudio) {
+    sharedNarrationAudio = new Audio()
+    sharedNarrationAudio.preload = 'auto'
+  }
+  return sharedNarrationAudio
+}
+
 class WebAudioSession implements AudioSession {
   private audio: HTMLAudioElement
   private objectUrl: string
@@ -139,21 +156,33 @@ class WebAudioSession implements AudioSession {
   private rafId: number | null = null
   private lastWordIdx = -1
   private cancelled = false
+  private shared: boolean
   private onWord?: (i: number) => void
   private onEnd?: () => void
+  private onBlocked?: () => void
 
   constructor(
     blob: Blob,
     timestamps: WordTimestamp[],
     onWord?: (i: number) => void,
     onEnd?: () => void,
+    onBlocked?: () => void,
+    shared = false,
   ) {
     this.objectUrl = URL.createObjectURL(blob)
-    this.audio = new Audio(this.objectUrl)
+    this.shared = shared
+    if (shared) {
+      // Reuse the persistent (user-unlocked) narration element.
+      this.audio = getSharedNarrationAudio()
+      this.audio.src = this.objectUrl
+    } else {
+      this.audio = new Audio(this.objectUrl)
+    }
     this.audio.preload = 'auto'
     this.timestamps = timestamps
     this.onWord = onWord
     this.onEnd = onEnd
+    this.onBlocked = onBlocked
 
     this.audio.onended = () => {
       this.stopTick()
@@ -174,8 +203,13 @@ class WebAudioSession implements AudioSession {
       await this.audio.play()
       this.startTick()
     } catch {
-      // autoplay blocked or similar — surface as end so caller can retry
-      this.onEnd?.()
+      // Playback was rejected — almost always iOS autoplay policy blocking a
+      // non-gesture play(). This is NOT the end of the page: reporting it as
+      // `end` is exactly what made the reader silently race through pages.
+      // Surface it as `blocked` so the transport pauses and waits for a tap.
+      if (this.cancelled) return
+      if (this.onBlocked) this.onBlocked()
+      else this.onEnd?.()
     }
   }
 
@@ -195,9 +229,20 @@ class WebAudioSession implements AudioSession {
   cancel(): void {
     this.cancelled = true
     this.stopTick()
+    // Detach handlers first so a pause()/src-clear can't fire a stale onEnd
+    // (critical for the shared element, which outlives this session).
+    this.audio.onended = null
+    this.audio.onerror = null
     try {
       this.audio.pause()
-      this.audio.src = ''
+      if (this.shared) {
+        // Leave the element alive (and unlocked) for the next page; just clear
+        // the source so it stops referencing this blob.
+        this.audio.removeAttribute('src')
+        this.audio.load()
+      } else {
+        this.audio.src = ''
+      }
     } catch {
       // ignore
     }
@@ -241,6 +286,21 @@ class WebAudioSession implements AudioSession {
 export interface SpeakOptions {
   onWord?: (wordIndex: number) => void
   onEnd?: () => void
+  /**
+   * Playback was rejected before it could start — practically always iOS
+   * autoplay policy blocking a non-gesture `.play()`. Distinct from `onEnd`:
+   * the page did NOT finish, so a continuous reader must pause (and wait for a
+   * tap) rather than auto-turn. If omitted, a block falls back to `onEnd` for
+   * back-compat.
+   */
+  onBlocked?: () => void
+  /**
+   * Continuous "read-to-me" narration. Routes playback through the single
+   * user-unlocked audio element so setTimeout-driven auto-turn pages aren't
+   * blocked by iOS. One-shot cues (word hold, page-label announce) leave this
+   * off — they're gesture-initiated and don't need the shared element.
+   */
+  continuous?: boolean
   /** Provider override (default: web or native based on Capacitor detection). */
   source?: TtsSource
   /** Kid-app voice selection. */
@@ -281,11 +341,24 @@ export function speak(text: string, opts: SpeakOptions = {}): SpeakHandle {
     opts.onEnd?.()
   }
 
+  const blocked = () => {
+    if (cancelled) return
+    if (opts.onBlocked) opts.onBlocked()
+    else opts.onEnd?.()
+  }
+
   ;(async () => {
     try {
       const result = await source.fetch(text, { voice: opts.voice })
       if (cancelled) return
-      session = new WebAudioSession(result.audio, result.timestamps, opts.onWord, finish)
+      session = new WebAudioSession(
+        result.audio,
+        result.timestamps,
+        opts.onWord,
+        finish,
+        blocked,
+        !!opts.continuous,
+      )
       if (typeof opts.startOffset === 'number' && opts.startOffset > 0) {
         session.seek(opts.startOffset)
       }

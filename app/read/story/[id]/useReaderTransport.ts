@@ -91,8 +91,17 @@ export function useReaderTransport({ page, gated, onAutoNext, isLastPage }: Opti
       handleRef.current = speak(page.text, {
         source: page.source,
         allowSpeechSynthFallback: true,
+        continuous: true,
         startOffset: startOffsetSec,
         onWord: (i) => setWordIdx(i),
+        onBlocked: () => {
+          // iOS refused to start playback outside a user gesture (auto-turn
+          // fires from a timer). Do NOT auto-turn — that silently races pages.
+          // Pause and keep position so the next tap of the terracotta play
+          // (a real gesture) resumes narration from here.
+          clearAutoTurn()
+          setPlaying(false)
+        },
         onEnd: () => {
           setWordIdx(-1)
           // End of page. In continuous play mode: 1.5s breath → auto-turn.

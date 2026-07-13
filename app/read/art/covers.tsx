@@ -19,8 +19,11 @@
 import type { CSSProperties } from 'react'
 import type { WashKey } from '@/types/story'
 
-const INK = 'var(--ink, #46362A)'
-const INK_SOFT = 'var(--ink-soft, #6E5B49)'
+// A book cover is a physical light-paper object, so its ink is FIXED dark — it
+// must not follow the room's lantern register (which flips --ink to light cream
+// at dusk/night and was bleaching every cover title + frame into invisibility).
+const INK = '#46362A'
+const INK_SOFT = '#6E5B49'
 
 // Wash-tinted watercolor stops for the cover front. Small palette by wash key.
 const WASH_STOPS: Record<WashKey, { paper: string; wash: string; accent: string }> = {
@@ -103,7 +106,9 @@ export function BookCoverArt({
         fill={stops.paper}
         filter="url(#lf-wash-edge)"
       />
-      {/* wash — a broad radial swipe over the front, keyed to wash */}
+      {/* wash — a broad swipe over the front, keyed to wash. Kept light so the
+          paper, motif, and title stay legible (a heavier wash bleached the
+          covers into pale ghosts on the shelf). */}
       <rect
         x="14"
         y="8"
@@ -111,7 +116,7 @@ export function BookCoverArt({
         height="112"
         rx="3"
         fill={stops.wash}
-        opacity="0.55"
+        opacity="0.32"
         filter="url(#lf-wash-edge)"
       />
       {/* accent — a secondary swirl at the bottom */}
@@ -121,7 +126,7 @@ export function BookCoverArt({
         rx="42"
         ry="18"
         fill={stops.accent}
-        opacity="0.7"
+        opacity="0.45"
         filter="url(#lf-wash-edge)"
       />
 
@@ -129,8 +134,9 @@ export function BookCoverArt({
       <CoverMotif kind={motifKind} />
 
 
-      {/* title — hand-lettered in the display font */}
-      <foreignObject x="14" y="80" width="76" height="36">
+      {/* title — hand-lettered in the display font. A soft cream halo lifts it
+          off the wash so it stays readable at shelf size. */}
+      <foreignObject x="12" y="78" width="80" height="38">
         <div
           style={{
             width: '100%',
@@ -138,8 +144,9 @@ export function BookCoverArt({
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            font: '700 10.5px/1.15 var(--font-display, YoungSerif)',
+            font: '700 11.5px/1.12 var(--font-display, YoungSerif)',
             color: INK,
+            textShadow: '0 1px 0 rgba(255,250,238,.9), 0 0 3px rgba(255,250,238,.8)',
             textAlign: 'center',
             padding: '2px 4px',
             overflow: 'hidden',
