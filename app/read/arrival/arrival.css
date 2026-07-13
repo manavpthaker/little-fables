@@ -1,0 +1,97 @@
+/* Little Fables — first arrival / buddy picker (v4 rebuild, Stage 3).
+ * A legible "pick a friend" grid, on the clean .lf-home foundation (wrapped in
+ * .lf-home for the paper ground + tokens). Replaces the scattered-creatures-in
+ * -a-painting screen. */
+
+.lf-home .lfa-wrap {
+  width: 100%;
+  max-width: 920px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: lfh-rise .5s cubic-bezier(.2,.9,.3,1) both;
+}
+.lf-home .lfa-title {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 700;
+  text-align: center;
+  text-wrap: balance;
+}
+.lf-home .lfa-sub {
+  margin: 0 0 8px;
+  font-family: var(--font-label);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+.lf-home .lfa-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+}
+
+.lf-home .lfa-card {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px 14px;
+  background: var(--card);
+  border: 2px solid var(--card-line);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  transition: transform .14s cubic-bezier(.2,.9,.3,1), border-color .14s ease, box-shadow .14s ease;
+}
+.lf-home .lfa-card:hover { transform: translateY(-4px); }
+.lf-home .lfa-card:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
+.lf-home .lfa-card[data-chosen="true"] {
+  border-color: var(--terra);
+  box-shadow: var(--shadow), 0 0 0 4px var(--terra-tint);
+  transform: translateY(-4px);
+}
+
+.lf-home .lfa-face {
+  width: 96px; height: 96px;
+  display: grid; place-items: center;
+  filter: drop-shadow(0 4px 6px rgba(60,46,34,.18));
+}
+.lf-home .lfa-name { font-size: 18px; font-weight: 700; }
+.lf-home .lfa-trait { font-family: var(--font-label); font-size: 12.5px; font-weight: 600; color: var(--ink-soft); }
+.lf-home .lfa-nature {
+  margin-top: 4px;
+  font-family: var(--font-label);
+  font-weight: 800;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1.5px solid var(--card-line);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+.lf-home .lfa-card[data-chosen="true"] .lfa-nature {
+  color: var(--terra-deep);
+  border-color: color-mix(in oklab, var(--terra) 40%, transparent);
+}
+
+/* the "let's read" ribbon shown on the chosen card */
+.lf-home .lfa-go {
+  margin-top: 6px;
+  font-family: var(--font-label);
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--terra-deep);
+  min-height: 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lf-home .lfa-wrap { animation: none; }
+  .lf-home .lfa-card { transition: none; }
+}
