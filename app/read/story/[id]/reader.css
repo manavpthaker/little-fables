@@ -1,0 +1,48 @@
+/* Little Fables — reader token bridge (v4 rebuild, Stage 2).
+ *
+ * The reader still uses the old `var(--lf-*)` names in its inline styles, but
+ * those tokens were never actually defined — the reader ran on the fallback
+ * hex in each `var(..., #fallback)`, and any reference WITHOUT a fallback (the
+ * folio dog-ear) painted black. Defining the tokens here on a `.lf-read` scope
+ * gives the reader one clean, consistent palette (matching the home) and fixes
+ * the black folio. Colors only — the reader keeps its branded serif. */
+.lf-read {
+  --lf-cream:          #E7DBC0;
+  --lf-cream-card:     #FBF5E8;
+  --lf-cream-line:     #E4D6B8;
+  --lf-espresso:       #3C2E22;
+  --lf-espresso-soft:  #6A5842;
+  --lf-espresso-faint: #9C8968;
+  --lf-coral:          #D2603A;
+  --lf-coral-deep:     #B4492A;
+  --lf-pastel-lilac:   #E7DEF0;
+  --lf-pastel-mint:    #DCE8D8;
+  --lf-pastel-peach:   #F3DBCB;
+  --paper-bright:      #FBF5E8;
+  --glow-lamplight:    rgba(242, 196, 96, 0.5);
+}
+
+/* Page-art scene panel (ReaderScene) — a warm, intentional colored panel with
+   the book's motif, in place of the old empty dotted endpaper placeholder. */
+.lf-read .lf-reader-scene {
+  position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 4 / 3;
+  max-height: 100%;
+  border-radius: 22px;
+  background:
+    radial-gradient(130% 100% at 50% 0%, rgba(255, 255, 255, 0.30), transparent 58%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.16), transparent 34%),
+    var(--spine, #4E7A54);
+  border: 2px solid rgba(0, 0, 0, 0.14);
+  box-shadow: 0 8px 26px -10px rgba(60, 46, 34, 0.4);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.lf-read .lf-reader-scene-motif {
+  width: 34%;
+  max-width: 220px;
+  color: rgba(255, 255, 255, 0.9);
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
+}
