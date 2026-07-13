@@ -12,10 +12,15 @@ const API_BASE = 'https://generativelanguage.googleapis.com/v1beta/models'
 
 // Ordered from most preferred → fallback. First entry that returns an image
 // wins and its id is echoed back so the caller records it in meta.json.
+// Model ids verified against Generative Language API v1beta ListModels
+// (July 2026): the flagship is `gemini-3-pro-image` ("Nano Banana Pro");
+// `gemini-3.1-flash-image` is "Nano Banana 2" (faster/cheaper); `gemini-2.5-
+// flash-image` is the original "Nano Banana". Imagen models use a
+// `:predict` endpoint (not generateContent) so they're not in this list.
 export const GEMINI_IMAGE_MODELS = [
-  'gemini-2.5-flash-image-preview',
-  'gemini-2.0-flash-exp-image-generation',
-  'imagen-3.0-generate-002',
+  'gemini-3-pro-image',
+  'gemini-3.1-flash-image',
+  'gemini-2.5-flash-image',
 ] as const
 
 export type GeminiImageModel = string
@@ -106,31 +111,41 @@ async function tryOneModel(
   }
   parts.push({ text: opts.prompt })
 
-  const body: Record<string, unknown> = {
-    contents: [{ parts }],
-    generationConfig: {
-      responseModalities: ['Image'],
-      candidateCount: Math.max(1, Math.min(4, opts.candidateCount ?? 1)),
-    },
+  // Nano Banana Pro (`gemini-3-pro-image`) rejects `candidateCount > 1`
+  // with "Multiple candidates is not enabled for this model". Loop instead:
+  // one API request per candidate. Also lets us bail early on error without
+  // losing partial results.
+  const wanted = Math.max(1, Math.min(4, opts.candidateCount ?? 1))
+  const gathered: GeminiCandidate[] = []
+  for (let n = 0; n < wanted; n++) {
+    const body: Record<string, unknown> = {
+      contents: [{ parts }],
+      generationConfig: {
+        responseModalities: ['Image'],
+        candidateCount: 1,
+      },
+    }
+    const resp = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    })
+    if (!resp.ok) {
+      const errBody = await resp.text().catch(() => '')
+      // If we've already gathered at least one image, surface those and mark
+      // the model successful — the caller writes what it got.
+      if (gathered.length > 0) break
+      return { ok: false, status: resp.status, body: errBody }
+    }
+    const json = (await resp.json()) as GenerateContentResponse
+    const cands = extractCandidates(json)
+    if (cands.length === 0) {
+      if (gathered.length > 0) break
+      return { ok: false, status: 200, body: JSON.stringify(json).slice(0, 500) }
+    }
+    gathered.push(...cands)
   }
-
-  const resp = await fetch(url, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify(body),
-  })
-
-  if (!resp.ok) {
-    const errBody = await resp.text().catch(() => '')
-    return { ok: false, status: resp.status, body: errBody }
-  }
-
-  const json = (await resp.json()) as GenerateContentResponse
-  const cands = extractCandidates(json)
-  if (cands.length === 0) {
-    return { ok: false, status: 200, body: JSON.stringify(json).slice(0, 500) }
-  }
-  return { ok: true, candidates: cands }
+  return { ok: true, candidates: gathered }
 }
 
 /**

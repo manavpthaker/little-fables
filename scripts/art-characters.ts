@@ -22,6 +22,7 @@ import {
   characterPendingDir,
   characterCandidateFilename,
   characterCandidateMetaFilename,
+  extFromMime,
   timestampSlug,
 } from '../lib/art/paths'
 
@@ -200,12 +201,14 @@ async function main() {
       const cands = result.candidates.slice(0, args.count)
       for (let i = 0; i < cands.length; i++) {
         const idx = i + 1
-        const pngName = characterCandidateFilename(ts, idx)
+        const ext = extFromMime(cands[i].mimeType)
+        const imgName = characterCandidateFilename(ts, idx, ext)
         const metaName = characterCandidateMetaFilename(ts, idx)
-        writeFileSync(join(pendingDir, pngName), Buffer.from(cands[i].base64, 'base64'))
+        writeFileSync(join(pendingDir, imgName), Buffer.from(cands[i].base64, 'base64'))
         writeMeta(pendingDir, metaName, {
           prompt,
           model: result.model,
+          mimeType: cands[i].mimeType,
           generatedAt: new Date().toISOString(),
           status: 'pending',
           kind: 'character-sheet',

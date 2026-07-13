@@ -53,8 +53,19 @@ export function timestampSlug(): string {
   )
 }
 
-export function characterCandidateFilename(ts: string, idx: number): string {
-  return `candidate-${ts}-${String(idx).padStart(2, '0')}.png`
+/** Derive a file extension from a mime type returned by Gemini. Nano Banana
+ *  Pro returns JPEG; the older 2.5-flash-image variant sometimes returns PNG.
+ *  Approve-flow scans by prefix, so any extension is fine as long as sidecar
+ *  meta.json ends with .meta.json. */
+export function extFromMime(mimeType: string | undefined): 'png' | 'jpg' | 'webp' {
+  const m = (mimeType || '').toLowerCase()
+  if (m.includes('jpeg') || m.includes('jpg')) return 'jpg'
+  if (m.includes('webp')) return 'webp'
+  return 'png'
+}
+
+export function characterCandidateFilename(ts: string, idx: number, ext: string = 'png'): string {
+  return `candidate-${ts}-${String(idx).padStart(2, '0')}.${ext}`
 }
 export function characterCandidateMetaFilename(ts: string, idx: number): string {
   return `candidate-${ts}-${String(idx).padStart(2, '0')}.meta.json`
@@ -65,8 +76,9 @@ export function sceneCandidateFilename(
   pageIdx: number,
   ts: string,
   idx: number,
+  ext: string = 'png',
 ): string {
-  return `${chapterIdx}-${pageIdx}-candidate-${ts}-${String(idx).padStart(2, '0')}.png`
+  return `${chapterIdx}-${pageIdx}-candidate-${ts}-${String(idx).padStart(2, '0')}.${ext}`
 }
 export function sceneCandidateMetaFilename(
   chapterIdx: number,

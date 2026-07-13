@@ -21,6 +21,7 @@ import {
   REPO_ROOT,
   characterApprovedDir,
   directorPlanPath,
+  extFromMime,
   scenePendingDir,
   sceneCandidateFilename,
   sceneCandidateMetaFilename,
@@ -189,6 +190,7 @@ function countPendingForPage(bookId: string, chapterIdx: number, pageIdx: number
 interface SceneMeta {
   prompt: string
   model: string
+  mimeType?: string
   generatedAt: string
   status: 'pending'
   kind: 'scene'
@@ -294,12 +296,14 @@ async function main() {
       const cands = result.candidates.slice(0, args.count)
       for (let i = 0; i < cands.length; i++) {
         const idx = i + 1
-        const pngName = sceneCandidateFilename(entry.chapterIdx, entry.pageIdx, ts, idx)
+        const ext = extFromMime(cands[i].mimeType)
+        const imgName = sceneCandidateFilename(entry.chapterIdx, entry.pageIdx, ts, idx, ext)
         const metaName = sceneCandidateMetaFilename(entry.chapterIdx, entry.pageIdx, ts, idx)
-        writeFileSync(join(pendingDir, pngName), Buffer.from(cands[i].base64, 'base64'))
+        writeFileSync(join(pendingDir, imgName), Buffer.from(cands[i].base64, 'base64'))
         const meta: SceneMeta = {
           prompt,
           model: result.model,
+          mimeType: cands[i].mimeType,
           generatedAt: new Date().toISOString(),
           status: 'pending',
           kind: 'scene',
