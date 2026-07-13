@@ -66,6 +66,15 @@ function characterPrompt(c: CharacterBibleEntry): string {
   const anchors = (c.visualAnchors ?? []).join(', ') || 'clear silhouette, memorable feature'
   const loves = c.loves ?? '—'
   const roleFourEight = c.roleByBand?.['4-8'] ?? c.role
+  // Some character names collide with IP trademarks (e.g. "Pooh" → Winnie
+  // the Pooh) and get rejected by Google's PROHIBITED_CONTENT filter.
+  // Strip / substitute the name in the prompt while keeping the identity
+  // fields (traits, role, visual anchors) that actually shape the drawing.
+  const IP_SAFE_NAMES: Record<string, string> = {
+    Pooh: 'the honey farmer',
+  }
+  const safeName = IP_SAFE_NAMES[c.name] ?? c.name
+  const safeRole = c.role.replace(/\bPooh\b/g, 'the honey farmer')
 
   return [
     "Character reference sheet for a children's book character.",
@@ -73,7 +82,7 @@ function characterPrompt(c: CharacterBibleEntry): string {
     "gentle warm palette (paper cream + warm ink + occasional wash pigments —",
     "marigold, sage, terracotta, dusk).",
     "",
-    `Character: ${c.name} — ${c.role}. Species: ${inferSpecies(c)}.`,
+    `Character: ${safeName} — ${safeRole}. Species: ${inferSpecies(c)}.`,
     `Traits: ${traits}.`,
     `Loves: ${loves}.`,
     `Visual anchors: ${anchors}.`,
