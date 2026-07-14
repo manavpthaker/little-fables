@@ -9,7 +9,8 @@
     "lint": "next lint",
     "art:characters": "tsx scripts/art-characters.ts",
     "art:director": "tsx scripts/art-director.ts",
-    "art:generate": "tsx scripts/art-generate.ts"
+    "art:generate": "tsx scripts/art-generate.ts",
+    "books:add": "tsx scripts/add-book.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

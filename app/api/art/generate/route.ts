@@ -10,7 +10,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import charactersJson from '@/content/art/characters.json'
 import packJson from '@/content/packs/pack-000-family-originals.json'
-import { admin, artConfigured, uploadCandidate, ARTIFACTS_TABLE } from '@/lib/art/supabase-admin'
+import { admin, artConfigured, uploadCandidate, ARTIFACTS_TABLE, CANDIDATES_BUCKET } from '@/lib/art/supabase-admin'
 import { insertPending } from '@/lib/art/store'
 import { generateGeminiImage, type GeminiImagePart } from '@/lib/art/gemini'
 import {
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.GEMINI_API_KEY
   if (!apiKey) return NextResponse.json({ error: 'GEMINI_API_KEY not set in this environment.' }, { status: 503 })
 
-  let body: { kind?: string; characterId?: string; bookId?: string; count?: number }
+  let body: { kind?: string; characterId?: string; bookId?: string; count?: number; limit?: number }
   try {
     body = await req.json()
   } catch {
@@ -61,7 +61,10 @@ export async function POST(req: NextRequest) {
       return await genSheet(db, apiKey, body.characterId, Math.min(2, Math.max(1, body.count ?? 1)))
     }
     if (body.kind === 'book' && body.bookId) {
-      return await genBook(db, apiKey, body.bookId)
+      // Chunked: generate up to `limit` missing images per call; the Art tab
+      // loops while `remaining > 0`. Keeps each call well inside serverless
+      // limits regardless of book length.
+      return await genBook(db, apiKey, body.bookId, Math.min(8, Math.max(1, body.limit ?? 4)))
     }
     return NextResponse.json({ error: 'expected {kind:"sheet",characterId} or {kind:"book",bookId}' }, { status: 400 })
   } catch (e) {
@@ -70,13 +73,6 @@ export async function POST(req: NextRequest) {
     console.error('[art/generate] failed:', (e as Error).stack || (e as Error).message)
     return NextResponse.json({ error: (e as Error).message }, { status: 500 })
   }
-}
-
-async function alreadyHas(db: NonNullable<ReturnType<typeof admin>>, filter: Record<string, unknown>): Promise<boolean> {
-  let q = db.from(ARTIFACTS_TABLE).select('id', { count: 'exact', head: true }).in('status', ['pending', 'approved'])
-  for (const [k, v] of Object.entries(filter)) q = q.eq(k, v)
-  const { count } = await q
-  return (count ?? 0) > 0
 }
 
 async function genSheet(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, characterId: string, count: number) {
@@ -115,6 +111,26 @@ Bible ids allowed: ${compactBible.map((c) => c.id).join(', ')}. Use [] if none a
   return extractJSON(text) as ScenePlanEntry[]
 }
 
+/** The director plan is cached in the private bucket so chunked generation
+ *  calls (and re-runs) don't re-pay the Anthropic pass per call. */
+async function getPlan(db: NonNullable<ReturnType<typeof admin>>, bookId: string): Promise<ScenePlanEntry[]> {
+  const path = `plans/${bookId}.json`
+  const dl = await db.storage.from(CANDIDATES_BUCKET).download(path)
+  if (!dl.error && dl.data) {
+    try {
+      return JSON.parse(await dl.data.text()) as ScenePlanEntry[]
+    } catch {
+      /* corrupt cache → regenerate */
+    }
+  }
+  const plan = await directorPlan(bookId)
+  await db.storage
+    .from(CANDIDATES_BUCKET)
+    .upload(path, Buffer.from(JSON.stringify(plan)), { contentType: 'application/json', upsert: true })
+    .catch(() => {})
+  return plan
+}
+
 /** Fetch approved character-sheet refs (public live URLs) for a scene. */
 async function sceneRefs(db: NonNullable<ReturnType<typeof admin>>, charIds: string[], styleRefs: GeminiImagePart[]): Promise<GeminiImagePart[]> {
   const refs: GeminiImagePart[] = []
@@ -134,32 +150,47 @@ async function sceneRefs(db: NonNullable<ReturnType<typeof admin>>, charIds: str
   return [...refs, ...styleRefs].slice(0, 14)
 }
 
-async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, bookId: string) {
-  const plan = await directorPlan(bookId)
+async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, bookId: string, limit: number) {
+  const plan = await getPlan(db, bookId)
+
+  // One query for everything already generated for this book → occupied slots.
+  const { data: existing } = await db
+    .from(ARTIFACTS_TABLE)
+    .select('kind, chapter_idx, page_idx')
+    .eq('book_id', bookId)
+    .in('status', ['pending', 'approved'])
+  const occupied = new Set(
+    ((existing ?? []) as Array<{ kind: string; chapter_idx: number | null; page_idx: number | null }>).map((r) =>
+      r.kind === 'cover' ? 'cover' : `${r.chapter_idx}-${r.page_idx}`,
+    ),
+  )
+
+  // Work list in order: cover first, then plan entries not yet generated.
+  type Slot = { kind: 'cover' } | { kind: 'scene'; entry: ScenePlanEntry }
+  const todo: Slot[] = []
+  if (!occupied.has('cover')) todo.push({ kind: 'cover' })
+  for (const entry of plan) {
+    if (!occupied.has(`${entry.chapterIdx}-${entry.pageIdx}`)) todo.push({ kind: 'scene', entry })
+  }
+
   const styleRefs = await loadStyleRefs()
   let created = 0
-  let skipped = 0
-
-  // Cover: use the first plan entry's characters as a hint.
-  if (!(await alreadyHas(db, { kind: 'cover', book_id: bookId }))) {
-    const coverChars = plan[0]?.characters ?? []
-    const refs = await sceneRefs(db, coverChars, styleRefs)
-    const coverPrompt = `Square book COVER, warm watercolor + ink. An iconic, inviting moment. Characters: ${coverChars.map((id) => BIBLE_BY_ID[id]?.name).filter(Boolean).join(', ') || '(setting only)'}. No text, no title, no border.`
-    const res = await generateGeminiImage({ apiKey, prompt: coverPrompt, referenceImages: refs })
-    const cand = res.candidates[0]
-    if (cand) {
-      const path = `books/${bookId}/cover/${stamp()}.${extFor(cand.mimeType)}`
-      await uploadCandidate(db, path, Buffer.from(cand.base64, 'base64'), cand.mimeType)
-      await insertPending(db, { kind: 'cover', bookId, candidatePath: path, model: res.model, prompt: coverPrompt })
-      created++
-    }
-  } else skipped++
-
-  for (const entry of plan) {
-    if (await alreadyHas(db, { kind: 'scene', book_id: bookId, chapter_idx: entry.chapterIdx, page_idx: entry.pageIdx })) {
-      skipped++
+  for (const slot of todo.slice(0, limit)) {
+    if (slot.kind === 'cover') {
+      const coverChars = plan[0]?.characters ?? []
+      const refs = await sceneRefs(db, coverChars, styleRefs)
+      const coverPrompt = `Square book COVER, warm watercolor + ink. An iconic, inviting moment. Characters: ${coverChars.map((id) => BIBLE_BY_ID[id]?.name).filter(Boolean).join(', ') || '(setting only)'}. No text, no title, no border.`
+      const res = await generateGeminiImage({ apiKey, prompt: coverPrompt, referenceImages: refs })
+      const cand = res.candidates[0]
+      if (cand) {
+        const path = `books/${bookId}/cover/${stamp()}.${extFor(cand.mimeType)}`
+        await uploadCandidate(db, path, Buffer.from(cand.base64, 'base64'), cand.mimeType)
+        await insertPending(db, { kind: 'cover', bookId, candidatePath: path, model: res.model, prompt: coverPrompt })
+        created++
+      }
       continue
     }
+    const entry = slot.entry
     const refs = await sceneRefs(db, entry.characters ?? [], styleRefs)
     const prompt = scenePrompt(entry, BIBLE_BY_ID)
     const res = await generateGeminiImage({ apiKey, prompt, referenceImages: refs })
@@ -173,5 +204,10 @@ async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string
     })
     created++
   }
-  return NextResponse.json({ ok: true, kind: 'book', bookId, created, skipped, plan: plan.length })
+
+  const remaining = Math.max(0, todo.length - Math.min(limit, todo.length))
+  return NextResponse.json({
+    ok: true, kind: 'book', bookId, created,
+    done: todo.length - remaining, total: todo.length + occupied.size, remaining,
+  })
 }

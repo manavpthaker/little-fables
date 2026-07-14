@@ -2780,6 +2780,53 @@ function ArtTab() {
     } catch (e) { setMsg((e as Error).message) } finally { setBusy(null) }
   }, [])
 
+  const [progress, setProgress] = useState('')
+
+  // Batch: generate candidates for every character that has nothing yet.
+  // Sequential (one serverless call each) with live progress + incremental
+  // refresh, so a single tap covers the whole cast.
+  const generateAllSheets = useCallback(async () => {
+    const targets = sheets.filter((s) => !s.approvedUrl && s.pending.length === 0)
+    if (!targets.length) { setMsg('Every character already has a sheet or candidates to review.'); return }
+    setBusy('all-sheets'); setMsg('')
+    try {
+      for (let i = 0; i < targets.length; i++) {
+        setProgress(`Generating sheets… ${i + 1}/${targets.length} (${targets[i].name})`)
+        const r = await fetch('/api/art/generate', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ kind: 'sheet', characterId: targets[i].characterId, count: 2 }),
+        })
+        if (!r.ok) {
+          const j = await r.json().catch(() => ({}))
+          setMsg(`${targets[i].name}: ${j.error ?? 'failed'} — continuing with the rest.`)
+        }
+        await loadSheets()
+      }
+    } finally { setBusy(null); setProgress('') }
+  }, [sheets, loadSheets])
+
+  // Chunked book generation: loop { limit } scenes per call until none remain,
+  // with live progress. Robust for long books (no serverless timeout).
+  const generateBook = useCallback(async (id: string) => {
+    setBusy(`genbook-${id}`); setMsg('')
+    try {
+      // eslint-disable-next-line no-constant-condition
+      while (true) {
+        const r = await fetch('/api/art/generate', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ kind: 'book', bookId: id, limit: 4 }),
+        })
+        const j = await r.json().catch(() => ({}))
+        if (!r.ok) { setMsg(j.error ?? 'Something went wrong.'); break }
+        await loadScenes(id)
+        const total = j.total ?? 0
+        const doneCount = Math.max(0, total - (j.remaining ?? 0))
+        setProgress(`Generating scenes… ${doneCount}/${total}`)
+        if (!j.remaining) break
+      }
+    } catch (e) { setMsg((e as Error).message) } finally { setBusy(null); setProgress('') }
+  }, [loadScenes])
+
   if (configured === false) {
     return (
       <PCard title="Art isn't set up for production yet">
@@ -2809,9 +2856,21 @@ function ArtTab() {
         </div>
       </div>
       {msg && <PCard><div style={{ padding: 10, font: '500 13px var(--font-ui)' }}>{msg}</div></PCard>}
+      {progress && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '10px 0', font: '500 13.5px var(--font-ui)', color: 'var(--lf-p-primary)' }}>
+          <span className="lf-breath" style={{ width: 9, height: 9, borderRadius: '50%', background: 'var(--lf-p-primary)', display: 'inline-block' }} />
+          {progress}
+        </div>
+      )}
 
       {sub === 'characters' && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12, marginTop: 12 }}>
+        <>
+          <div style={{ margin: '4px 0 12px' }}>
+            <PButton size="sm" disabled={busy !== null} onClick={() => void generateAllSheets()}>
+              {busy === 'all-sheets' ? 'Generating all…' : 'Generate all missing sheets'}
+            </PButton>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 }}>
           {sheets.map((s) => (
             <PCard key={s.characterId} padded={false}>
               <div style={{ padding: 12 }}>
@@ -2836,14 +2895,20 @@ function ArtTab() {
                   <div style={{ aspectRatio: '1', borderRadius: 8, background: 'var(--lf-p-muted)', display: 'grid', placeItems: 'center', font: '400 12px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>none yet</div>
                 )}
                 <div style={{ marginTop: 8 }}>
-                  <PButton size="sm" variant="secondary" onClick={() => act(`gen-${s.characterId}`, '/api/art/generate', { kind: 'sheet', characterId: s.characterId }, loadSheets)}>
-                    {busy === `gen-${s.characterId}` ? 'Generating…' : 'Generate'}
+                  <PButton
+                    size="sm"
+                    variant="secondary"
+                    disabled={busy !== null}
+                    onClick={() => act(`gen-${s.characterId}`, '/api/art/generate', { kind: 'sheet', characterId: s.characterId, count: 2 }, loadSheets)}
+                  >
+                    {busy === `gen-${s.characterId}` ? 'Generating…' : s.approvedUrl || s.pending.length ? 'Redo' : 'Generate'}
                   </PButton>
                 </div>
               </div>
             </PCard>
           ))}
-        </div>
+          </div>
+        </>
       )}
 
       {sub === 'scenes' && (
@@ -2854,8 +2919,8 @@ function ArtTab() {
               {PACK_BOOKS.map((b) => <option key={b.id} value={b.id}>{b.title}</option>)}
             </select>
             {bookId && (
-              <PButton size="sm" onClick={() => act(`genbook-${bookId}`, '/api/art/generate', { kind: 'book', bookId }, () => loadScenes(bookId))}>
-                {busy === `genbook-${bookId}` ? 'Generating… (may take a while)' : 'Generate this book'}
+              <PButton size="sm" disabled={busy !== null} onClick={() => generateBook(bookId)}>
+                {busy === `genbook-${bookId}` ? 'Generating…' : 'Generate this book'}
               </PButton>
             )}
           </div>
