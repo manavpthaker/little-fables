@@ -2742,10 +2742,150 @@ interface ScenePend {
   url: string
 }
 
+// Downscale a photo client-side (phones produce 5–10MB images; Vercel caps
+// request bodies at ~4.5MB). Falls back to the raw file for formats the
+// browser can't decode, as long as it's small enough.
+async function fileToUploadable(file: File): Promise<{ data: string; mimeType: string }> {
+  const raw = async () => {
+    if (file.size > 3_500_000) throw new Error('That photo is too large — try a screenshot of it instead.')
+    const buf = await file.arrayBuffer()
+    let bin = ''
+    const bytes = new Uint8Array(buf)
+    for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i])
+    return { data: btoa(bin), mimeType: file.type || 'image/jpeg' }
+  }
+  const url = URL.createObjectURL(file)
+  try {
+    const img = document.createElement('img')
+    await new Promise<void>((res, rej) => {
+      img.onload = () => res()
+      img.onerror = () => rej(new Error('decode'))
+      img.src = url
+    })
+    const max = 1600
+    const scale = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight))
+    const w = Math.round(img.naturalWidth * scale)
+    const h = Math.round(img.naturalHeight * scale)
+    const canvas = document.createElement('canvas')
+    canvas.width = w
+    canvas.height = h
+    canvas.getContext('2d')!.drawImage(img, 0, 0, w, h)
+    const dataUrl = canvas.toDataURL('image/jpeg', 0.85)
+    return { data: dataUrl.split(',')[1], mimeType: 'image/jpeg' }
+  } catch {
+    return raw()
+  } finally {
+    URL.revokeObjectURL(url)
+  }
+}
+
+// Reference editor for one character: the parent's photos of the real plush +
+// art-direction notes. Generation is conditioned on these, so the model
+// recreates THE character instead of guessing from the bible text.
+function CharacterRefEditor({
+  characterId,
+  name,
+  onGenerate,
+  busy,
+}: {
+  characterId: string
+  name: string
+  onGenerate: () => void
+  busy: boolean
+}) {
+  const [refs, setRefs] = useState<Array<{ path: string; url: string }>>([])
+  const [notes, setNotes] = useState('')
+  const [savedNotes, setSavedNotes] = useState('')
+  const [working, setWorking] = useState(false)
+  const [err, setErr] = useState('')
+
+  const load = useCallback(async () => {
+    const r = await fetch(`/api/art/refs?characterId=${encodeURIComponent(characterId)}`)
+    if (!r.ok) return
+    const j = await r.json()
+    setRefs(j.refs ?? [])
+    setNotes(j.notes ?? '')
+    setSavedNotes(j.notes ?? '')
+  }, [characterId])
+  useEffect(() => { void load() }, [load])
+
+  const post = useCallback(async (body: object) => {
+    setWorking(true); setErr('')
+    try {
+      const r = await fetch('/api/art/refs', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ characterId, ...body }) })
+      const j = await r.json().catch(() => ({}))
+      if (!r.ok) setErr(j.error ?? 'Something went wrong.')
+      else await load()
+    } catch (e) { setErr((e as Error).message) } finally { setWorking(false) }
+  }, [characterId, load])
+
+  const onFiles = useCallback(async (files: FileList | null) => {
+    if (!files?.length) return
+    setWorking(true); setErr('')
+    try {
+      for (const f of Array.from(files)) {
+        const { data, mimeType } = await fileToUploadable(f)
+        await post({ action: 'upload', data, mimeType })
+      }
+    } catch (e) { setErr((e as Error).message); setWorking(false) }
+  }, [post])
+
+  return (
+    <PCard title={`${name} — reference material`} description="Add photos of the real character and describe what matters. Generation copies these instead of guessing.">
+      {err && <div style={{ font: '500 13px var(--font-ui)', color: '#b4492a', marginBottom: 10 }}>{err}</div>}
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+        {refs.map((r) => (
+          <div key={r.path} style={{ position: 'relative' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={r.url} alt="" style={{ width: 96, height: 96, objectFit: 'cover', borderRadius: 8, border: '1px solid var(--lf-p-border)' }} />
+            <button
+              type="button"
+              aria-label="Remove reference"
+              onClick={() => post({ action: 'remove', path: r.path })}
+              style={{ position: 'absolute', top: -6, right: -6, width: 22, height: 22, borderRadius: '50%', border: '1px solid var(--lf-p-border)', background: 'var(--lf-p-background)', cursor: 'pointer', font: '600 12px var(--font-ui)', lineHeight: '20px' }}
+            >
+              ×
+            </button>
+          </div>
+        ))}
+        <label
+          style={{ width: 96, height: 96, borderRadius: 8, border: '1.5px dashed var(--lf-p-border)', display: 'grid', placeItems: 'center', cursor: 'pointer', font: '500 12px var(--font-ui)', color: 'var(--lf-p-muted-foreground)', textAlign: 'center' }}
+        >
+          {working ? '…' : '+ Add photo'}
+          <input type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={(e) => { void onFiles(e.target.files); e.target.value = '' }} />
+        </label>
+      </div>
+      <div style={{ marginTop: 14 }}>
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          placeholder={'Art direction — e.g. "round belly, red felt collar, ears flop forward, seam down the chest"'}
+          rows={3}
+          style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--lf-p-border)', borderRadius: 8, font: '400 14px/1.5 var(--font-ui)', background: 'var(--lf-p-background)', color: 'var(--lf-p-foreground)', resize: 'vertical' }}
+        />
+        <div style={{ display: 'flex', gap: 8, marginTop: 8, alignItems: 'center' }}>
+          <PButton size="sm" variant="secondary" disabled={working || notes === savedNotes} onClick={() => post({ action: 'notes', notes })}>
+            {notes === savedNotes ? 'Notes saved' : 'Save notes'}
+          </PButton>
+          <PButton size="sm" disabled={busy || working} onClick={onGenerate}>
+            {busy ? 'Generating…' : `Generate ${name} from these`}
+          </PButton>
+          {refs.length === 0 && (
+            <span style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+              No photos yet — generation will use the written description only.
+            </span>
+          )}
+        </div>
+      </div>
+    </PCard>
+  )
+}
+
 function ArtTab() {
   const [sub, setSub] = useState<'characters' | 'scenes'>('characters')
   const [configured, setConfigured] = useState<boolean | null>(null)
   const [sheets, setSheets] = useState<SheetRow[]>([])
+  const [refChar, setRefChar] = useState<string | null>(null)
   const [bookId, setBookId] = useState('')
   const [scenes, setScenes] = useState<{ pending: ScenePend[]; approved: ScenePend[] }>({ pending: [], approved: [] })
   const [busy, setBusy] = useState<string | null>(null)
@@ -2865,11 +3005,24 @@ function ArtTab() {
 
       {sub === 'characters' && (
         <>
-          <div style={{ margin: '4px 0 12px' }}>
+          <div style={{ margin: '4px 0 12px', display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
             <PButton size="sm" disabled={busy !== null} onClick={() => void generateAllSheets()}>
               {busy === 'all-sheets' ? 'Generating all…' : 'Generate all missing sheets'}
             </PButton>
+            <span style={{ font: '400 12.5px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>
+              Tip: tap “References” on a character first — photos of the real thing beat the written description.
+            </span>
           </div>
+          {refChar && (
+            <div style={{ margin: '0 0 14px' }}>
+              <CharacterRefEditor
+                characterId={refChar}
+                name={sheets.find((s) => s.characterId === refChar)?.name ?? refChar}
+                busy={busy === `gen-${refChar}`}
+                onGenerate={() => act(`gen-${refChar}`, '/api/art/generate', { kind: 'sheet', characterId: refChar, count: 2 }, loadSheets)}
+              />
+            </div>
+          )}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: 12 }}>
           {sheets.map((s) => (
             <PCard key={s.characterId} padded={false}>
@@ -2894,10 +3047,17 @@ function ArtTab() {
                 ) : (
                   <div style={{ aspectRatio: '1', borderRadius: 8, background: 'var(--lf-p-muted)', display: 'grid', placeItems: 'center', font: '400 12px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>none yet</div>
                 )}
-                <div style={{ marginTop: 8 }}>
+                <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                   <PButton
                     size="sm"
-                    variant="secondary"
+                    variant={refChar === s.characterId ? 'primary' : 'secondary'}
+                    onClick={() => setRefChar(refChar === s.characterId ? null : s.characterId)}
+                  >
+                    References
+                  </PButton>
+                  <PButton
+                    size="sm"
+                    variant="ghost"
                     disabled={busy !== null}
                     onClick={() => act(`gen-${s.characterId}`, '/api/art/generate', { kind: 'sheet', characterId: s.characterId, count: 2 }, loadSheets)}
                   >

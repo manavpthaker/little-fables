@@ -28,24 +28,54 @@ function inferSpecies(c: CharacterBibleEntry): string {
   return 'child'
 }
 
-export function characterPrompt(c: CharacterBibleEntry): string {
+export interface CharacterPromptOpts {
+  /** How many parent-uploaded reference photos precede the style refs. When
+   *  present, the model is told to RECREATE the character shown in them
+   *  rather than invent one from the text description. */
+  photoRefCount?: number
+  /** Free-text art direction from the family ("round belly, red felt collar,
+   *  ears flop forward"). Takes priority over the bible's visual anchors. */
+  notes?: string
+}
+
+export function characterPrompt(c: CharacterBibleEntry, opts: CharacterPromptOpts = {}): string {
   const traits = (c.traits ?? []).join(', ') || 'gentle, distinct, kind'
   const anchors = (c.visualAnchors ?? []).join(', ') || 'clear silhouette, memorable feature'
   const loves = c.loves ?? '—'
   const roleFourEight = c.roleByBand?.['4-8'] ?? c.role
   const safeName = IP_SAFE_NAMES[c.name] ?? c.name
   const safeRole = c.role.replace(/\bPooh\b/g, 'the honey farmer')
+  const nRefs = opts.photoRefCount ?? 0
+
+  const identity = nRefs > 0
+    ? [
+        `THE CHARACTER: the FIRST ${nRefs === 1 ? 'reference image shows' : `${nRefs} reference images show`} the actual character — a real, beloved toy/figure.`,
+        'Recreate THIS exact character faithfully: same colors, same markings, same proportions,',
+        'same face, same materials and stitching details. Do NOT invent a different design.',
+        'The remaining reference images show only the ILLUSTRATION STYLE to render it in.',
+        '',
+        `Name for context: ${safeName} — ${safeRole}.`,
+      ]
+    : [
+        `Character: ${safeName} — ${safeRole}. Species: ${inferSpecies(c)}.`,
+        `Traits: ${traits}.`,
+        `Loves: ${loves}.`,
+        `Visual anchors: ${anchors}.`,
+        `Age band context (4-8): ${roleFourEight}.`,
+      ]
+
+  const direction = opts.notes?.trim()
+    ? ['', 'ART DIRECTION FROM THE FAMILY (highest priority):', opts.notes.trim()]
+    : []
+
   return [
     "Character reference sheet for a children's book character.",
     'Style: warm hand-drawn watercolor with ink linework, textured paper feel,',
     'gentle warm palette (paper cream + warm ink + occasional wash pigments —',
     'marigold, sage, terracotta, dusk).',
     '',
-    `Character: ${safeName} — ${safeRole}. Species: ${inferSpecies(c)}.`,
-    `Traits: ${traits}.`,
-    `Loves: ${loves}.`,
-    `Visual anchors: ${anchors}.`,
-    `Age band context (4-8): ${roleFourEight}.`,
+    ...identity,
+    ...direction,
     '',
     'Show the character in three poses on a single sheet:',
     '(1) idle standing three-quarter view,',

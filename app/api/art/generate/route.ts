@@ -75,21 +75,47 @@ export async function POST(req: NextRequest) {
   }
 }
 
+/** Load the parent-uploaded reference photos + art-direction notes for a
+ *  character from refs/{charId}/ in the private bucket. */
+async function loadCharacterRefs(
+  db: NonNullable<ReturnType<typeof admin>>,
+  characterId: string,
+): Promise<{ photos: GeminiImagePart[]; notes: string }> {
+  const photos: GeminiImagePart[] = []
+  let notes = ''
+  const { data: files } = await db.storage.from(CANDIDATES_BUCKET).list(`refs/${characterId}`)
+  for (const f of files ?? []) {
+    const dl = await db.storage.from(CANDIDATES_BUCKET).download(`refs/${characterId}/${f.name}`)
+    if (dl.error || !dl.data) continue
+    if (f.name === 'notes.txt') {
+      notes = await dl.data.text()
+      continue
+    }
+    const buf = Buffer.from(await dl.data.arrayBuffer())
+    const mime = f.name.endsWith('.png') ? 'image/png' : f.name.endsWith('.webp') ? 'image/webp' : 'image/jpeg'
+    photos.push({ mimeType: mime, data: buf.toString('base64') })
+  }
+  return { photos: photos.slice(0, 6), notes }
+}
+
 async function genSheet(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, characterId: string, count: number) {
   const c = BIBLE_BY_ID[characterId]
   if (!c) return NextResponse.json({ error: `unknown character ${characterId}` }, { status: 404 })
-  const styleRefs = await loadStyleRefs()
+  const [styleRefs, { photos, notes }] = await Promise.all([loadStyleRefs(), loadCharacterRefs(db, characterId)])
+  // Parent photos FIRST (the character), then style refs (the look) — capped.
+  const referenceImages = [...photos, ...styleRefs].slice(0, 14)
+  const prompt = characterPrompt(c, { photoRefCount: photos.length, notes })
   const created: string[] = []
   for (let i = 0; i < count; i++) {
-    const res = await generateGeminiImage({ apiKey, prompt: characterPrompt(c), referenceImages: styleRefs })
+    const res = await generateGeminiImage({ apiKey, prompt, referenceImages })
     for (const cand of res.candidates) {
       const ext = extFor(cand.mimeType)
       const path = `sheets/${characterId}/${stamp()}.${ext}`
       await uploadCandidate(db, path, Buffer.from(cand.base64, 'base64'), cand.mimeType)
-      created.push(await insertPending(db, { kind: 'sheet', characterId, candidatePath: path, model: res.model, prompt: characterPrompt(c) }))
+      created.push(await insertPending(db, { kind: 'sheet', characterId, candidatePath: path, model: res.model, prompt }))
     }
   }
-  return NextResponse.json({ ok: true, kind: 'sheet', characterId, created: created.length })
+  return NextResponse.json({ ok: true, kind: 'sheet', characterId, created: created.length, usedPhotoRefs: photos.length })
 }
 
 // ---- book: director plan (Anthropic) → cover + scenes ----
