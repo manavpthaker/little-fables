@@ -69,8 +69,12 @@ export async function approveArtifact(db: SupabaseClient, id: string): Promise<s
         : `books/${row.book_id}/${row.chapter_idx}-${row.page_idx}.${ext}`
   const liveUrl = await publishToLive(db, row.candidate_path, livePath, contentTypeOf(row.candidate_path))
 
-  // Supersede any previously-approved artifact for the same slot.
-  const match = db.from(ARTIFACTS_TABLE).update({ status: 'rejected' }).eq('status', 'approved')
+  // Pick-one semantics: approving this candidate retires everything else in
+  // the same slot — the previously-approved image AND any pending siblings.
+  const match = db
+    .from(ARTIFACTS_TABLE)
+    .update({ status: 'rejected' })
+    .in('status', ['approved', 'pending'])
   if (row.kind === 'sheet') await match.eq('kind', 'sheet').eq('character_id', row.character_id).neq('id', id)
   else if (row.kind === 'cover') await match.eq('kind', 'cover').eq('book_id', row.book_id).neq('id', id)
   else

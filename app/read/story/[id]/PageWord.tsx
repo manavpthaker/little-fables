@@ -112,7 +112,9 @@ export function PageWord({
       style={{
         display: 'inline',
         cursor: 'pointer',
-        padding: '0 3px',
+        // 2px (not 3) — keeps the tap target while tightening inter-word gaps
+        // so lines don't read as over-justified "rivers".
+        padding: '0 2px',
         borderRadius: 4,
         touchAction: 'manipulation',
         WebkitUserSelect: 'none',

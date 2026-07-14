@@ -22,27 +22,43 @@
   --glow-lamplight:    rgba(242, 196, 96, 0.5);
 }
 
-/* Page-art scene panel (ReaderScene) — a warm, intentional colored panel with
-   the book's motif, in place of the old empty dotted endpaper placeholder. */
+/* Page-art scene panel (ReaderScene) — for pages without a real illustration
+   yet. A quiet endpaper WASH of the book's color on paper (not a saturated
+   slab), with the book's motif as a soft watermark. Matches the text card's
+   radius, border weight, and shadow so the two read as one open spread. */
 .lf-read .lf-reader-scene {
   position: relative;
   width: min(100%, 520px);
   aspect-ratio: 4 / 3;
   max-height: 100%;
   border-radius: 22px;
+  /* Endpaper: warm cream field with only a whisper of the book's tint — the
+     MOTIF carries the color. Cool spines (slate, denim) stay cozy this way
+     instead of graying the whole panel. */
+  background: #f4ead5; /* fallback for old browsers */
   background:
-    radial-gradient(130% 100% at 50% 0%, rgba(255, 255, 255, 0.30), transparent 58%),
-    linear-gradient(to top, rgba(0, 0, 0, 0.16), transparent 34%),
-    var(--spine, #4E7A54);
-  border: 2px solid rgba(0, 0, 0, 0.14);
-  box-shadow: 0 8px 26px -10px rgba(60, 46, 34, 0.4);
+    radial-gradient(120% 90% at 50% 10%, rgba(255, 252, 243, 0.55), transparent 64%),
+    color-mix(in srgb, var(--spine, #4e7a54) 12%, #f6ecd6);
+  border: 1.5px solid var(--lf-cream-line);
+  border-color: color-mix(in srgb, var(--spine, #4e7a54) 26%, var(--lf-cream-line));
+  box-shadow: 0 6px 20px rgba(94, 62, 26, 0.12);
   display: grid;
   place-items: center;
   overflow: hidden;
 }
 .lf-read .lf-reader-scene-motif {
-  width: 34%;
-  max-width: 220px;
-  color: rgba(255, 255, 255, 0.9);
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.18));
+  width: 46%;
+  max-width: 250px;
+  color: var(--spine, #4e7a54);
+  opacity: 0.85;
+}
+
+/* Vertically balance the spread: center the text card (and any ask/choice
+   blocks) in the column. The flex spacers collapse to nothing when the text
+   overflows, so long pages still scroll from the top. */
+.lf-read .lf-reader-textcol::before,
+.lf-read .lf-reader-textcol::after {
+  content: '';
+  flex: 1 1 0;
+  min-height: 0;
 }
