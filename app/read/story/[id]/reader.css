@@ -53,6 +53,19 @@
   opacity: 0.85;
 }
 
+/* Generate-while-reading: a page's illustration fades in over the endpaper
+   when it lands (and on every page turn, so art entrances feel gentle). */
+.lf-read .lf-page-art-fade {
+  animation: lf-art-fade-in 700ms ease-out both;
+}
+@keyframes lf-art-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lf-read .lf-page-art-fade { animation: none; }
+}
+
 /* Vertically balance the spread: center the text card (and any ask/choice
    blocks) in the column. The flex spacers collapse to nothing when the text
    overflows, so long pages still scroll from the top. */

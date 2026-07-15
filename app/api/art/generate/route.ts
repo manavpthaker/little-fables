@@ -15,12 +15,11 @@ import { insertPending } from '@/lib/art/store'
 import { generateGeminiImage, type GeminiImagePart } from '@/lib/art/gemini'
 import {
   characterPrompt,
-  scenePrompt,
+  detectCharacters,
   loadStyleRefs,
+  passageScenePrompt,
   type CharacterBibleEntry,
-  type ScenePlanEntry,
 } from '@/lib/art/prompts'
-import { callAnthropicJSON, extractJSON } from '@/lib/art/anthropic'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -118,43 +117,39 @@ async function genSheet(db: NonNullable<ReturnType<typeof admin>>, apiKey: strin
   return NextResponse.json({ ok: true, kind: 'sheet', characterId, created: created.length, usedPhotoRefs: photos.length })
 }
 
-// ---- book: director plan (Anthropic) → cover + scenes ----
+// ---- book: passage-based cover + scenes ----
+// Each page's brief is built directly from its text (characters detected by
+// name against the bible). This replaced the whole-book Anthropic plan, whose
+// output overflowed the model budget on long books and died mid-JSON.
 
-async function directorPlan(bookId: string): Promise<ScenePlanEntry[]> {
-  const book = (packJson as { stories: Array<{ id: string; title: string; chapters?: Array<{ pages: Array<{ text: string; scene?: string | null }> }> }> }).stories.find((s) => s.id === bookId)
-  if (!book) throw new Error(`book ${bookId} not in pack`)
-  const anthropicKey = process.env.ANTHROPIC_API_KEY
-  if (!anthropicKey) throw new Error('ANTHROPIC_API_KEY not set (needed for the director plan).')
-  const compactBible = BIBLE.map((c) => ({ id: c.id, name: c.name, role: c.role, visualAnchors: c.visualAnchors }))
-  const pages = (book.chapters ?? []).flatMap((ch, ci) =>
-    ch.pages.map((p, pi) => ({ chapterIdx: ci, pageIdx: pi, sceneKey: p.scene ?? null, text: p.text })),
-  )
-  const system = `You are the art director for a warm watercolor+ink children's picture book. For EACH page produce one plan entry. Return ONLY a JSON array, one object per page in order:
-{"chapterIdx":n,"pageIdx":n,"sceneKey":string|null,"characters":[bible ids present],"setting":str,"action":str,"mood":str,"composition":str,"paletteHint":"canyon|sunset|meadow|lilac|blush|river|snow|honey","styleAnchors":[]}
-Bible ids allowed: ${compactBible.map((c) => c.id).join(', ')}. Use [] if none appear. No prose, JSON only.`
-  const user = `Book: ${book.title}\nBible: ${JSON.stringify(compactBible)}\nPages:\n${JSON.stringify(pages).slice(0, 12000)}`
-  const { text } = await callAnthropicJSON({ apiKey: anthropicKey, model: process.env.ART_DIRECTOR_MODEL || 'claude-haiku-4-5-20251001', system, user, maxTokens: 8000 })
-  return extractJSON(text) as ScenePlanEntry[]
+interface BookPageSlot {
+  chapterIdx: number
+  pageIdx: number
+  chapterTitle?: string
+  text: string
+  prevText?: string
+  hasImg: boolean
 }
 
-/** The director plan is cached in the private bucket so chunked generation
- *  calls (and re-runs) don't re-pay the Anthropic pass per call. */
-async function getPlan(db: NonNullable<ReturnType<typeof admin>>, bookId: string): Promise<ScenePlanEntry[]> {
-  const path = `plans/${bookId}.json`
-  const dl = await db.storage.from(CANDIDATES_BUCKET).download(path)
-  if (!dl.error && dl.data) {
-    try {
-      return JSON.parse(await dl.data.text()) as ScenePlanEntry[]
-    } catch {
-      /* corrupt cache → regenerate */
-    }
-  }
-  const plan = await directorPlan(bookId)
-  await db.storage
-    .from(CANDIDATES_BUCKET)
-    .upload(path, Buffer.from(JSON.stringify(plan)), { contentType: 'application/json', upsert: true })
-    .catch(() => {})
-  return plan
+function packPages(bookId: string): { title: string; slots: BookPageSlot[] } {
+  const book = (packJson as { stories: Array<{ id: string; title: string; chapters?: Array<{ title?: string; pages: Array<{ text: string; img?: string }> }> }> }).stories.find(
+    (s) => s.id === bookId,
+  )
+  if (!book) throw new Error(`book ${bookId} not in pack`)
+  const slots: BookPageSlot[] = []
+  ;(book.chapters ?? []).forEach((ch, ci) =>
+    ch.pages.forEach((p, pi) =>
+      slots.push({
+        chapterIdx: ci,
+        pageIdx: pi,
+        chapterTitle: ch.title,
+        text: p.text,
+        prevText: ch.pages[pi - 1]?.text,
+        hasImg: !!p.img,
+      }),
+    ),
+  )
+  return { title: book.title, slots }
 }
 
 /** Fetch approved character-sheet refs (public live URLs) for a scene. */
@@ -177,7 +172,7 @@ async function sceneRefs(db: NonNullable<ReturnType<typeof admin>>, charIds: str
 }
 
 async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, bookId: string, limit: number) {
-  const plan = await getPlan(db, bookId)
+  const { title, slots } = packPages(bookId)
 
   // One query for everything already generated for this book → occupied slots.
   const { data: existing } = await db
@@ -191,21 +186,21 @@ async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string
     ),
   )
 
-  // Work list in order: cover first, then plan entries not yet generated.
-  type Slot = { kind: 'cover' } | { kind: 'scene'; entry: ScenePlanEntry }
+  // Work list in order: cover first, then pages without art.
+  type Slot = { kind: 'cover' } | { kind: 'scene'; entry: BookPageSlot }
   const todo: Slot[] = []
   if (!occupied.has('cover')) todo.push({ kind: 'cover' })
-  for (const entry of plan) {
-    if (!occupied.has(`${entry.chapterIdx}-${entry.pageIdx}`)) todo.push({ kind: 'scene', entry })
+  for (const entry of slots) {
+    if (!entry.hasImg && !occupied.has(`${entry.chapterIdx}-${entry.pageIdx}`)) todo.push({ kind: 'scene', entry })
   }
 
   const styleRefs = await loadStyleRefs()
   let created = 0
   for (const slot of todo.slice(0, limit)) {
     if (slot.kind === 'cover') {
-      const coverChars = plan[0]?.characters ?? []
-      const refs = await sceneRefs(db, coverChars, styleRefs)
-      const coverPrompt = `Square book COVER, warm watercolor + ink. An iconic, inviting moment. Characters: ${coverChars.map((id) => BIBLE_BY_ID[id]?.name).filter(Boolean).join(', ') || '(setting only)'}. No text, no title, no border.`
+      const coverChars = detectCharacters(slots.slice(0, 6).map((s) => s.text).join('\n'), BIBLE)
+      const refs = await sceneRefs(db, coverChars.map((c) => c.id), styleRefs)
+      const coverPrompt = `Square book COVER, warm watercolor + ink. An iconic, inviting moment from "${title}". Characters: ${coverChars.map((c) => c.name).join(', ') || '(setting only)'} — match the character reference sheets exactly. No text, no title, no border.`
       const res = await generateGeminiImage({ apiKey, prompt: coverPrompt, referenceImages: refs })
       const cand = res.candidates[0]
       if (cand) {
@@ -217,9 +212,17 @@ async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string
       continue
     }
     const entry = slot.entry
-    const refs = await sceneRefs(db, entry.characters ?? [], styleRefs)
-    const prompt = scenePrompt(entry, BIBLE_BY_ID)
-    const res = await generateGeminiImage({ apiKey, prompt, referenceImages: refs })
+    const characters = detectCharacters(entry.text, BIBLE)
+    const refs = await sceneRefs(db, characters.map((c) => c.id), styleRefs)
+    const prompt = passageScenePrompt({
+      bookTitle: title,
+      chapterTitle: entry.chapterTitle,
+      pageText: entry.text,
+      prevText: entry.prevText,
+      characters,
+      photoRefCount: Math.max(0, refs.length - styleRefs.length),
+    })
+    const res = await generateGeminiImage({ apiKey, prompt, referenceImages: refs, preferModel: 'gemini-3.1-flash-image' })
     const cand = res.candidates[0]
     if (!cand) continue
     const path = `books/${bookId}/${entry.chapterIdx}-${entry.pageIdx}/${stamp()}.${extFor(cand.mimeType)}`
