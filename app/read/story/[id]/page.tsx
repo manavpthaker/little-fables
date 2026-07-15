@@ -423,7 +423,62 @@ function ReaderPages({
       live = false
     }
   }, [book.id])
-  const effectiveImg = artOverrides.pages[`${chapterIdx}-${pageIdx}`] ?? page?.img
+
+  // Generate-while-reading: pages without art ask /api/art/page for one. The
+  // server generates it on first request (then it's cached forever) and the
+  // image FADES IN over the endpaper when it lands. Fully best-effort — the
+  // route answers 'disabled' when the art env is off, and reading never waits.
+  const [autoArt, setAutoArt] = useState<Record<string, string>>({})
+  const artInflight = useRef<Set<string>>(new Set())
+  const artDisabled = useRef(false)
+  const requestPageArt = useCallback(
+    (ci: number, pi: number) => {
+      const key = `${ci}-${pi}`
+      if (artDisabled.current || artInflight.current.has(key)) return
+      artInflight.current.add(key)
+      const attempt = async (tries: number): Promise<void> => {
+        try {
+          const r = await fetch('/api/art/page', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ bookId: book.id, chapterIdx: ci, pageIdx: pi }),
+          })
+          const j = (await r.json().catch(() => ({}))) as { url?: string; status?: string }
+          if (j.url) {
+            setAutoArt((prev) => ({ ...prev, [key]: j.url! }))
+          } else if (j.status === 'disabled') {
+            artDisabled.current = true
+          } else if (j.status === 'generating' && tries < 40) {
+            setTimeout(() => void attempt(tries + 1), 3000)
+          } else {
+            artInflight.current.delete(key) // allow a later retry
+          }
+        } catch {
+          artInflight.current.delete(key)
+        }
+      }
+      void attempt(0)
+    },
+    [book.id],
+  )
+  useEffect(() => {
+    // Only pack/family books have server-known text; generated books skip
+    // (the route answers 'disabled' once and we stop asking).
+    if (!page) return
+    const key = `${chapterIdx}-${pageIdx}`
+    if (!page.img && !artOverrides.pages[key] && !autoArt[key]) {
+      requestPageArt(chapterIdx, pageIdx)
+    }
+    // Prefetch the NEXT page's art so it's usually ready by the page turn.
+    const next = pages[pageIdx + 1]
+    if (next && !next.img && !artOverrides.pages[`${chapterIdx}-${pageIdx + 1}`]) {
+      requestPageArt(chapterIdx, pageIdx + 1)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chapterIdx, pageIdx, page])
+
+  const effectiveImg =
+    autoArt[`${chapterIdx}-${pageIdx}`] ?? artOverrides.pages[`${chapterIdx}-${pageIdx}`] ?? page?.img
 
   // Mystery-word test — is this page's star the book's hidden heritage word?
   const isMysteryStar = useMemo(() => {
@@ -1318,6 +1373,8 @@ function ReaderPages({
               {effectiveImg ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
+                  key={effectiveImg}
+                  className="lf-page-art-fade"
                   src={effectiveImg}
                   alt=""
                   style={

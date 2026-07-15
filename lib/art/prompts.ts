@@ -135,6 +135,72 @@ export function scenePrompt(
   ].join('\n')
 }
 
+// ---------- passage-based scene prompts (generate-while-reading) ----------
+// Instead of a fragile whole-book art-director plan (which overflows the model
+// budget on long books), each page's brief is built directly from its text:
+// characters detected by NAME against the bible, the passage handed to the
+// image model to illustrate. No planning call, no truncation, fully per-page.
+
+/** Bible characters actually mentioned in the text (word-boundary name match). */
+export function detectCharacters(
+  text: string,
+  bible: CharacterBibleEntry[],
+): CharacterBibleEntry[] {
+  const found: CharacterBibleEntry[] = []
+  for (const c of bible) {
+    const re = new RegExp(`\\b${c.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+    if (re.test(text)) found.push(c)
+  }
+  // Focal cap — a busy page can name half the cast; the illustration reads
+  // better (and refs stay under budget) with at most 3.
+  return found.slice(0, 3)
+}
+
+export function passageScenePrompt(opts: {
+  bookTitle: string
+  chapterTitle?: string
+  pageText: string
+  /** Previous page text — one beat of context so the scene flows. */
+  prevText?: string
+  characters: CharacterBibleEntry[]
+  /** How many character reference images precede the style refs. */
+  photoRefCount: number
+}): string {
+  const chars = opts.characters.length
+    ? opts.characters
+        .map((c) => {
+          const safe = IP_SAFE_NAMES[c.name] ?? c.name
+          const anchors = (c.visualAnchors ?? []).join(', ')
+          return `  - ${safe}${anchors ? ` — ${anchors}` : ''}`
+        })
+        .join('\n')
+    : '  - (no named characters — illustrate the setting and mood)'
+  const refLine =
+    opts.photoRefCount > 0
+      ? `The FIRST ${opts.photoRefCount === 1 ? 'reference image is' : `${opts.photoRefCount} reference images are`} the character reference sheet(s) — match them exactly (same colors, markings, proportions). The remaining references show the illustration style.`
+      : 'The reference images show the illustration style.'
+  return [
+    "One interior illustration for a children's picture book.",
+    'Style: warm hand-drawn watercolor with ink linework, textured paper feel,',
+    'gentle warm palette (paper cream + warm ink + wash pigments — marigold, sage, terracotta, dusk).',
+    refLine,
+    '',
+    `Book: ${opts.bookTitle}${opts.chapterTitle ? ` — chapter "${opts.chapterTitle}"` : ''}.`,
+    'Characters in this scene:',
+    chars,
+    '',
+    'Illustrate THIS moment from the story:',
+    opts.prevText ? `(previous beat, for context only: ${opts.prevText.slice(0, 240)})` : '',
+    `"${opts.pageText.slice(0, 700)}"`,
+    '',
+    'One clear focal moment, uncluttered background, generous negative space.',
+    'Landscape composition. No text, no captions, no borders, no page numbers.',
+    'Cozy and safe for a 4-year-old — nothing frightening.',
+  ]
+    .filter(Boolean)
+    .join('\n')
+}
+
 // The 3 fixed style references shipped in the repo (deployed under public/).
 const STYLE_REF_PATHS = [
   'public/art/miko-01-zoomtown.jpg',
