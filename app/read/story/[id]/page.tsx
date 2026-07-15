@@ -429,6 +429,9 @@ function ReaderPages({
   // image FADES IN over the endpaper when it lands. Fully best-effort — the
   // route answers 'disabled' when the art env is off, and reading never waits.
   const [autoArt, setAutoArt] = useState<Record<string, string>>({})
+  // Pages whose art is being generated RIGHT NOW — drives the "painting this
+  // page…" indicator on the endpaper.
+  const [artPainting, setArtPainting] = useState<Record<string, boolean>>({})
   const artInflight = useRef<Set<string>>(new Set())
   const artDisabled = useRef(false)
   const requestPageArt = useCallback(
@@ -436,6 +439,8 @@ function ReaderPages({
       const key = `${ci}-${pi}`
       if (artDisabled.current || artInflight.current.has(key)) return
       artInflight.current.add(key)
+      setArtPainting((prev) => ({ ...prev, [key]: true }))
+      const settle = () => setArtPainting((prev) => ({ ...prev, [key]: false }))
       const attempt = async (tries: number): Promise<void> => {
         try {
           const r = await fetch('/api/art/page', {
@@ -446,15 +451,19 @@ function ReaderPages({
           const j = (await r.json().catch(() => ({}))) as { url?: string; status?: string }
           if (j.url) {
             setAutoArt((prev) => ({ ...prev, [key]: j.url! }))
+            settle()
           } else if (j.status === 'disabled') {
             artDisabled.current = true
+            settle()
           } else if (j.status === 'generating' && tries < 40) {
             setTimeout(() => void attempt(tries + 1), 3000)
           } else {
             artInflight.current.delete(key) // allow a later retry
+            settle()
           }
         } catch {
           artInflight.current.delete(key)
+          settle()
         }
       }
       void attempt(0)
@@ -1410,8 +1419,10 @@ function ReaderPages({
                 // No real illustration for this page yet — show an intentional
                 // colored scene panel keyed to the book (its cover's spine
                 // color + motif), not an empty placeholder. The art pipeline
-                // can replace this per page over time.
-                <ReaderScene book={book} />
+                // can replace this per page over time. While generate-while-
+                // reading is making this page's art, the panel shows the
+                // "painting this page…" indicator.
+                <ReaderScene book={book} painting={!!artPainting[`${chapterIdx}-${pageIdx}`]} />
               )}
             </div>
 
