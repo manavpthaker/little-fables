@@ -1,327 +1,92 @@
 [
   {
-    "word": "And",
+    "word": "The",
     "start": 0.035,
-    "end": 0.174
+    "end": 0.151
   },
   {
-    "word": "then",
-    "start": 0.244,
-    "end": 0.569
+    "word": "other",
+    "start": 0.209,
+    "end": 0.406
   },
   {
-    "word": "it",
-    "start": 0.778,
-    "end": 0.94
-  },
-  {
-    "word": "was",
-    "start": 0.998,
-    "end": 1.138
-  },
-  {
-    "word": "over.",
-    "start": 1.207,
-    "end": 1.718
-  },
-  {
-    "word": "Just",
-    "start": 2.043,
-    "end": 2.426
-  },
-  {
-    "word": "like",
-    "start": 2.543,
-    "end": 2.786
-  },
-  {
-    "word": "that.",
-    "start": 2.833,
-    "end": 3.39
+    "word": "kind.",
+    "start": 0.476,
+    "end": 1.022
   },
   {
     "word": "The",
-    "start": 3.773,
-    "end": 3.913
+    "start": 1.265,
+    "end": 1.393
   },
   {
-    "word": "bigness",
-    "start": 4.005,
-    "end": 4.54
+    "word": "kind",
+    "start": 1.463,
+    "end": 1.8
   },
   {
-    "word": "had",
-    "start": 4.598,
-    "end": 4.725
+    "word": "that",
+    "start": 1.881,
+    "end": 2.02
   },
   {
-    "word": "passed",
-    "start": 4.783,
-    "end": 5.19
+    "word": "makes",
+    "start": 2.09,
+    "end": 2.334
   },
   {
-    "word": "through",
-    "start": 5.248,
-    "end": 5.561
-  },
-  {
-    "word": "him",
-    "start": 5.608,
-    "end": 5.77
-  },
-  {
-    "word": "like",
-    "start": 5.84,
-    "end": 6.037
-  },
-  {
-    "word": "a",
-    "start": 6.072,
-    "end": 6.107
-  },
-  {
-    "word": "summer",
-    "start": 6.2,
-    "end": 6.525
-  },
-  {
-    "word": "storm",
-    "start": 6.606,
-    "end": 7.07
-  },
-  {
-    "word": "-",
-    "start": 7.314,
-    "end": 7.349
-  },
-  {
-    "word": "loud",
-    "start": 7.523,
-    "end": 7.999
-  },
-  {
-    "word": "and",
-    "start": 8.115,
-    "end": 8.348
-  },
-  {
-    "word": "wild",
-    "start": 8.464,
-    "end": 9.056
-  },
-  {
-    "word": "and",
-    "start": 9.137,
-    "end": 9.334
-  },
-  {
-    "word": "terrible",
-    "start": 9.404,
-    "end": 10.089
-  },
-  {
-    "word": "-",
-    "start": 10.159,
-    "end": 10.182
-  },
-  {
-    "word": "and",
-    "start": 10.31,
-    "end": 10.484
-  },
-  {
-    "word": "now",
-    "start": 10.577,
-    "end": 10.855
-  },
-  {
-    "word": "it",
-    "start": 10.937,
-    "end": 11.018
-  },
-  {
-    "word": "was",
-    "start": 11.064,
-    "end": 11.18
-  },
-  {
-    "word": "gone,",
-    "start": 11.25,
-    "end": 11.761
-  },
-  {
-    "word": "leaving",
-    "start": 11.935,
-    "end": 12.33
-  },
-  {
-    "word": "Azi",
-    "start": 12.446,
-    "end": 12.899
-  },
-  {
-    "word": "standing",
-    "start": 12.968,
-    "end": 13.479
-  },
-  {
-    "word": "there",
-    "start": 13.537,
-    "end": 13.816
-  },
-  {
-    "word": "in",
-    "start": 13.897,
-    "end": 14.013
-  },
-  {
-    "word": "the",
-    "start": 14.071,
-    "end": 14.141
-  },
-  {
-    "word": "sudden",
-    "start": 14.234,
-    "end": 14.594
-  },
-  {
-    "word": "quiet.",
-    "start": 14.675,
-    "end": 15.406
-  },
-  {
-    "word": "His",
-    "start": 15.685,
-    "end": 15.882
+    "word": "your",
+    "start": 2.38,
+    "end": 2.531
   },
   {
     "word": "hands",
-    "start": 15.952,
-    "end": 16.347
+    "start": 2.601,
+    "end": 2.914
   },
   {
-    "word": "were",
-    "start": 16.405,
-    "end": 16.567
+    "word": "want",
+    "start": 2.972,
+    "end": 3.181
   },
   {
-    "word": "still",
-    "start": 16.614,
-    "end": 16.904
+    "word": "to",
+    "start": 3.228,
+    "end": 3.286
   },
   {
-    "word": "clenched.",
-    "start": 16.985,
-    "end": 17.682
+    "word": "push",
+    "start": 3.355,
+    "end": 3.715
   },
   {
-    "word": "His",
-    "start": 18.007,
-    "end": 18.192
+    "word": "and",
+    "start": 3.866,
+    "end": 4.052
   },
   {
-    "word": "heart",
-    "start": 18.262,
-    "end": 18.541
+    "word": "your",
+    "start": 4.11,
+    "end": 4.249
   },
   {
-    "word": "was",
-    "start": 18.61,
-    "end": 18.75
+    "word": "words",
+    "start": 4.319,
+    "end": 4.702
   },
   {
-    "word": "still",
-    "start": 18.819,
-    "end": 19.144
+    "word": "want",
+    "start": 4.76,
+    "end": 4.969
   },
   {
-    "word": "pounding.",
-    "start": 19.237,
-    "end": 19.969
+    "word": "to",
+    "start": 5.004,
+    "end": 5.062
   },
   {
-    "word": "His",
-    "start": 20.294,
-    "end": 20.491
-  },
-  {
-    "word": "breath",
-    "start": 20.572,
-    "end": 20.898
-  },
-  {
-    "word": "came",
-    "start": 20.979,
-    "end": 21.257
-  },
-  {
-    "word": "in",
-    "start": 21.304,
-    "end": 21.385
-  },
-  {
-    "word": "little",
-    "start": 21.501,
-    "end": 21.768
-  },
-  {
-    "word": "gasps,",
-    "start": 21.803,
-    "end": 22.593
-  },
-  {
-    "word": "like",
-    "start": 22.744,
-    "end": 22.941
-  },
-  {
-    "word": "he",
-    "start": 22.976,
-    "end": 23.045
-  },
-  {
-    "word": "had",
-    "start": 23.115,
-    "end": 23.231
-  },
-  {
-    "word": "been",
-    "start": 23.278,
-    "end": 23.44
-  },
-  {
-    "word": "running",
-    "start": 23.498,
-    "end": 23.87
-  },
-  {
-    "word": "even",
-    "start": 23.986,
-    "end": 24.23
-  },
-  {
-    "word": "though",
-    "start": 24.264,
-    "end": 24.473
-  },
-  {
-    "word": "his",
-    "start": 24.52,
-    "end": 24.648
-  },
-  {
-    "word": "feet",
-    "start": 24.729,
-    "end": 25.031
-  },
-  {
-    "word": "hadn't",
-    "start": 25.1,
-    "end": 25.449
-  },
-  {
-    "word": "moved.",
-    "start": 25.518,
-    "end": 26.099
+    "word": "bite.",
+    "start": 5.12,
+    "end": 5.561
   }
 ]

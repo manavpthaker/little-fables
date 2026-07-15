@@ -1,0 +1,32 @@
+[
+  {
+    "word": "\"My",
+    "start": 0.07,
+    "end": 0.302
+  },
+  {
+    "word": "tummy",
+    "start": 0.383,
+    "end": 0.662
+  },
+  {
+    "word": "feels",
+    "start": 0.731,
+    "end": 1.022
+  },
+  {
+    "word": "wiggly,\"",
+    "start": 1.091,
+    "end": 1.579
+  },
+  {
+    "word": "he",
+    "start": 1.66,
+    "end": 1.741
+  },
+  {
+    "word": "said.",
+    "start": 1.811,
+    "end": 2.218
+  }
+]

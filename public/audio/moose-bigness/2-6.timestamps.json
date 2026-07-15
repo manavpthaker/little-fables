@@ -1,222 +1,37 @@
 [
   {
-    "word": "And",
-    "start": 0.035,
-    "end": 0.163
+    "word": "He",
+    "start": 0.058,
+    "end": 0.151
   },
   {
-    "word": "then",
-    "start": 0.209,
-    "end": 0.383
+    "word": "couldn't",
+    "start": 0.197,
+    "end": 0.476
   },
   {
-    "word": "the",
-    "start": 0.441,
-    "end": 0.511
+    "word": "stop",
+    "start": 0.511,
+    "end": 0.766
   },
   {
-    "word": "moose",
-    "start": 0.58,
-    "end": 0.917
+    "word": "thinking",
+    "start": 0.836,
+    "end": 1.173
   },
   {
-    "word": "stepped",
-    "start": 0.964,
-    "end": 1.347
+    "word": "about",
+    "start": 1.219,
+    "end": 1.463
   },
   {
-    "word": "into",
-    "start": 1.382,
-    "end": 1.544
+    "word": "his",
+    "start": 1.509,
+    "end": 1.614
   },
   {
-    "word": "the",
-    "start": 1.614,
-    "end": 1.683
-  },
-  {
-    "word": "darkness.",
-    "start": 1.718,
-    "end": 2.496
-  },
-  {
-    "word": "The",
-    "start": 2.821,
-    "end": 2.949
-  },
-  {
-    "word": "woods",
-    "start": 3.007,
-    "end": 3.332
-  },
-  {
-    "word": "swallowed",
-    "start": 3.39,
-    "end": 3.889
-  },
-  {
-    "word": "it",
-    "start": 3.936,
-    "end": 4.017
-  },
-  {
-    "word": "whole",
-    "start": 4.063,
-    "end": 4.54
-  },
-  {
-    "word": "-",
-    "start": 4.563,
-    "end": 4.586
-  },
-  {
-    "word": "the",
-    "start": 4.76,
-    "end": 4.853
-  },
-  {
-    "word": "great",
-    "start": 4.923,
-    "end": 5.178
-  },
-  {
-    "word": "body,",
-    "start": 5.248,
-    "end": 5.805
-  },
-  {
-    "word": "the",
-    "start": 5.979,
-    "end": 6.072
-  },
-  {
-    "word": "patient",
-    "start": 6.13,
-    "end": 6.571
-  },
-  {
-    "word": "eyes,",
-    "start": 6.641,
-    "end": 7.245
-  },
-  {
-    "word": "the",
-    "start": 7.419,
-    "end": 7.523
-  },
-  {
-    "word": "antlers",
-    "start": 7.616,
-    "end": 8.115
-  },
-  {
-    "word": "like",
-    "start": 8.197,
-    "end": 8.406
-  },
-  {
-    "word": "branches,",
-    "start": 8.464,
-    "end": 9.276
-  },
-  {
-    "word": "the",
-    "start": 9.52,
-    "end": 9.636
-  },
-  {
-    "word": "scar",
-    "start": 9.718,
-    "end": 10.205
-  },
-  {
-    "word": "like",
-    "start": 10.286,
-    "end": 10.484
-  },
-  {
-    "word": "a",
-    "start": 10.519,
-    "end": 10.542
-  },
-  {
-    "word": "story.",
-    "start": 10.623,
-    "end": 11.331
-  },
-  {
-    "word": "Azi",
-    "start": 11.842,
-    "end": 12.295
-  },
-  {
-    "word": "was",
-    "start": 12.365,
-    "end": 12.516
-  },
-  {
-    "word": "alone",
-    "start": 12.574,
-    "end": 12.992
-  },
-  {
-    "word": "at",
-    "start": 13.026,
-    "end": 13.096
-  },
-  {
-    "word": "the",
-    "start": 13.142,
-    "end": 13.212
-  },
-  {
-    "word": "window",
-    "start": 13.27,
-    "end": 13.595
-  },
-  {
-    "word": "again.",
-    "start": 13.665,
-    "end": 14.257
-  },
-  {
-    "word": "But",
-    "start": 14.582,
-    "end": 14.745
-  },
-  {
-    "word": "he",
-    "start": 14.803,
-    "end": 14.872
-  },
-  {
-    "word": "didn't",
-    "start": 14.93,
-    "end": 15.186
-  },
-  {
-    "word": "feel",
-    "start": 15.256,
-    "end": 15.581
-  },
-  {
-    "word": "alone.",
-    "start": 15.662,
-    "end": 16.289
-  },
-  {
-    "word": "Not",
-    "start": 16.533,
-    "end": 16.846
-  },
-  {
-    "word": "at",
-    "start": 16.927,
-    "end": 17.078
-  },
-  {
-    "word": "all.",
-    "start": 17.136,
-    "end": 17.589
+    "word": "words.",
+    "start": 1.672,
+    "end": 2.287
   }
 ]

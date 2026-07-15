@@ -2,276 +2,226 @@
   {
     "word": "It",
     "start": 0.035,
-    "end": 0.139
+    "end": 0.163
   },
   {
     "word": "was",
-    "start": 0.197,
-    "end": 0.325
+    "start": 0.209,
+    "end": 0.36
   },
   {
     "word": "Monday",
-    "start": 0.418,
-    "end": 0.766
+    "start": 0.453,
+    "end": 0.813
   },
   {
     "word": "morning",
-    "start": 0.836,
-    "end": 1.242
+    "start": 0.894,
+    "end": 1.324
   },
   {
     "word": "in",
-    "start": 1.335,
-    "end": 1.463
+    "start": 1.44,
+    "end": 1.567
   },
   {
     "word": "the",
-    "start": 1.509,
-    "end": 1.579
+    "start": 1.614,
+    "end": 1.683
   },
   {
     "word": "playroom",
-    "start": 1.625,
-    "end": 2.101
+    "start": 1.73,
+    "end": 2.206
   },
   {
     "word": "at",
-    "start": 2.148,
-    "end": 2.218
+    "start": 2.264,
+    "end": 2.334
   },
   {
     "word": "The",
-    "start": 2.252,
-    "end": 2.322
+    "start": 2.38,
+    "end": 2.45
   },
   {
     "word": "Westfield,",
-    "start": 2.368,
-    "end": 3.193
+    "start": 2.508,
+    "end": 3.332
   },
   {
     "word": "and",
-    "start": 3.251,
-    "end": 3.425
+    "start": 3.402,
+    "end": 3.564
   },
   {
     "word": "Azi",
-    "start": 3.518,
-    "end": 3.878
+    "start": 3.657,
+    "end": 3.994
   },
   {
     "word": "sat",
-    "start": 3.947,
-    "end": 4.191
+    "start": 4.087,
+    "end": 4.4
   },
   {
     "word": "cross-legged",
-    "start": 4.284,
-    "end": 4.992
+    "start": 4.516,
+    "end": 5.352
   },
   {
     "word": "on",
-    "start": 5.027,
-    "end": 5.097
+    "start": 5.433,
+    "end": 5.538
   },
   {
     "word": "the",
-    "start": 5.143,
-    "end": 5.213
+    "start": 5.584,
+    "end": 5.654
   },
   {
     "word": "circular",
-    "start": 5.271,
-    "end": 5.77
+    "start": 5.724,
+    "end": 6.235
   },
   {
     "word": "rug",
-    "start": 5.84,
-    "end": 6.118
+    "start": 6.304,
+    "end": 6.571
   },
   {
     "word": "with",
-    "start": 6.2,
-    "end": 6.374
+    "start": 6.641,
+    "end": 6.792
   },
   {
     "word": "his",
-    "start": 6.42,
-    "end": 6.536
+    "start": 6.838,
+    "end": 6.931
   },
   {
     "word": "guitar",
-    "start": 6.583,
-    "end": 7.059
+    "start": 6.989,
+    "end": 7.488
   },
   {
     "word": "across",
-    "start": 7.129,
-    "end": 7.5
+    "start": 7.546,
+    "end": 7.918
   },
   {
     "word": "his",
-    "start": 7.535,
-    "end": 7.639
+    "start": 7.964,
+    "end": 8.092
   },
   {
     "word": "lap.",
-    "start": 7.721,
-    "end": 8.139
+    "start": 8.162,
+    "end": 8.766
   },
   {
     "word": "The",
-    "start": 8.464,
-    "end": 8.603
+    "start": 9.88,
+    "end": 10.019
   },
   {
     "word": "autumn",
-    "start": 8.684,
-    "end": 9.044
+    "start": 10.101,
+    "end": 10.437
   },
   {
     "word": "light",
-    "start": 9.091,
-    "end": 9.334
+    "start": 10.507,
+    "end": 10.855
   },
   {
     "word": "spilled",
-    "start": 9.404,
-    "end": 9.799
+    "start": 10.971,
+    "end": 11.494
   },
   {
     "word": "through",
-    "start": 9.857,
-    "end": 10.112
+    "start": 11.552,
+    "end": 11.807
   },
   {
     "word": "the",
-    "start": 10.147,
-    "end": 10.217
+    "start": 11.842,
+    "end": 11.912
   },
   {
     "word": "window",
-    "start": 10.263,
-    "end": 10.693
+    "start": 11.958,
+    "end": 12.411
   },
   {
     "word": "where",
-    "start": 10.867,
-    "end": 11.076
+    "start": 12.562,
+    "end": 12.794
   },
   {
     "word": "Papa's",
-    "start": 11.122,
-    "end": 11.517
-  },
-  {
-    "word": "Gujarati",
-    "start": 11.587,
-    "end": 12.225
-  },
-  {
-    "word": "tablet",
-    "start": 12.295,
-    "end": 12.759
-  },
-  {
-    "word": "rested",
     "start": 12.841,
     "end": 13.224
   },
   {
-    "word": "quietly,",
+    "word": "Gujarati",
     "start": 13.282,
-    "end": 14.06
+    "end": 13.909
+  },
+  {
+    "word": "tablet",
+    "start": 13.978,
+    "end": 14.454
+  },
+  {
+    "word": "rested",
+    "start": 14.571,
+    "end": 14.977
+  },
+  {
+    "word": "quietly,",
+    "start": 15.047,
+    "end": 15.859
   },
   {
     "word": "catching",
-    "start": 14.211,
-    "end": 14.652
+    "start": 16.01,
+    "end": 16.451
   },
   {
     "word": "the",
-    "start": 14.733,
-    "end": 14.814
+    "start": 16.521,
+    "end": 16.591
   },
   {
     "word": "colorful",
-    "start": 14.872,
-    "end": 15.337
+    "start": 16.66,
+    "end": 17.171
   },
   {
     "word": "spines",
-    "start": 15.418,
-    "end": 15.871
+    "start": 17.241,
+    "end": 17.81
   },
   {
     "word": "of",
-    "start": 15.917,
-    "end": 15.987
+    "start": 17.868,
+    "end": 17.937
   },
   {
     "word": "books",
-    "start": 16.08,
-    "end": 16.405
+    "start": 18.054,
+    "end": 18.541
   },
   {
     "word": "tucked",
-    "start": 16.475,
-    "end": 16.8
+    "start": 18.692,
+    "end": 19.064
   },
   {
     "word": "everywhere.",
-    "start": 16.846,
-    "end": 17.508
-  },
-  {
-    "word": "\"¡Whisker-wiggle",
-    "start": 17.949,
-    "end": 18.959
-  },
-  {
-    "word": "roll",
-    "start": 19.017,
-    "end": 19.296
-  },
-  {
-    "word": "call!\"",
-    "start": 19.365,
+    "start": 19.122,
     "end": 19.9
-  },
-  {
-    "word": "Azi",
-    "start": 20.109,
-    "end": 20.457
-  },
-  {
-    "word": "announced,",
-    "start": 20.503,
-    "end": 21.084
-  },
-  {
-    "word": "strumming",
-    "start": 21.328,
-    "end": 21.792
-  },
-  {
-    "word": "his",
-    "start": 21.862,
-    "end": 21.989
-  },
-  {
-    "word": "three-chord",
-    "start": 22.047,
-    "end": 22.639
-  },
-  {
-    "word": "progression:",
-    "start": 22.686,
-    "end": 23.452
-  },
-  {
-    "word": "C-G-Am.",
-    "start": 23.696,
-    "end": 24.729
   }
 ]

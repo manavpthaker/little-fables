@@ -1,0 +1,82 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "farmhouse.",
+    "start": 0.221,
+    "end": 1.068
+  },
+  {
+    "word": "The",
+    "start": 1.277,
+    "end": 1.393
+  },
+  {
+    "word": "meadow.",
+    "start": 1.463,
+    "end": 1.974
+  },
+  {
+    "word": "The",
+    "start": 2.148,
+    "end": 2.264
+  },
+  {
+    "word": "mountains.",
+    "start": 2.334,
+    "end": 3.17
+  },
+  {
+    "word": "The",
+    "start": 3.344,
+    "end": 3.46
+  },
+  {
+    "word": "first",
+    "start": 3.541,
+    "end": 3.901
+  },
+  {
+    "word": "stars",
+    "start": 4.017,
+    "end": 4.54
+  },
+  {
+    "word": "beginning",
+    "start": 4.609,
+    "end": 4.981
+  },
+  {
+    "word": "to",
+    "start": 5.027,
+    "end": 5.085
+  },
+  {
+    "word": "peek",
+    "start": 5.166,
+    "end": 5.41
+  },
+  {
+    "word": "through",
+    "start": 5.468,
+    "end": 5.712
+  },
+  {
+    "word": "the",
+    "start": 5.747,
+    "end": 5.817
+  },
+  {
+    "word": "purple",
+    "start": 5.863,
+    "end": 6.235
+  },
+  {
+    "word": "sky.",
+    "start": 6.281,
+    "end": 6.827
+  }
+]

@@ -1,107 +1,127 @@
 [
   {
-    "word": "Something",
-    "start": 0.035,
-    "end": 0.418
+    "word": "He",
+    "start": 0.07,
+    "end": 0.163
   },
   {
-    "word": "softer.",
-    "start": 0.511,
-    "end": 1.161
+    "word": "just",
+    "start": 0.244,
+    "end": 0.511
   },
   {
-    "word": "Something",
-    "start": 1.602,
-    "end": 1.997
-  },
-  {
-    "word": "that",
-    "start": 2.055,
-    "end": 2.183
-  },
-  {
-    "word": "looked",
-    "start": 2.229,
-    "end": 2.485
-  },
-  {
-    "word": "a",
-    "start": 2.554,
-    "end": 2.635
-  },
-  {
-    "word": "little",
-    "start": 2.728,
-    "end": 2.972
-  },
-  {
-    "word": "bit",
-    "start": 3.007,
-    "end": 3.17
-  },
-  {
-    "word": "like",
-    "start": 3.228,
-    "end": 3.437
-  },
-  {
-    "word": "sad.",
-    "start": 3.495,
-    "end": 4.029
-  },
-  {
-    "word": "And",
-    "start": 4.412,
-    "end": 4.574
+    "word": "knew",
+    "start": 0.569,
+    "end": 0.766
   },
   {
     "word": "that",
-    "start": 4.632,
-    "end": 4.795
+    "start": 0.836,
+    "end": 0.964
   },
   {
-    "word": "made",
-    "start": 4.853,
+    "word": "his",
+    "start": 1.01,
+    "end": 1.126
+  },
+  {
+    "word": "body",
+    "start": 1.196,
+    "end": 1.498
+  },
+  {
+    "word": "felt",
+    "start": 1.579,
+    "end": 1.846
+  },
+  {
+    "word": "wrong,",
+    "start": 1.904,
+    "end": 2.45
+  },
+  {
+    "word": "and",
+    "start": 2.624,
+    "end": 2.786
+  },
+  {
+    "word": "his",
+    "start": 2.844,
+    "end": 2.949
+  },
+  {
+    "word": "feelings",
+    "start": 3.019,
+    "end": 3.471
+  },
+  {
+    "word": "felt",
+    "start": 3.529,
+    "end": 3.773
+  },
+  {
+    "word": "wrong,",
+    "start": 3.82,
+    "end": 4.261
+  },
+  {
+    "word": "and",
+    "start": 4.307,
+    "end": 4.47
+  },
+  {
+    "word": "everything",
+    "start": 4.551,
     "end": 5.05
   },
   {
-    "word": "Azi",
-    "start": 5.097,
-    "end": 5.445
+    "word": "felt",
+    "start": 5.166,
+    "end": 5.433
   },
   {
-    "word": "feel",
-    "start": 5.526,
-    "end": 5.747
+    "word": "like",
+    "start": 5.492,
+    "end": 5.666
   },
   {
-    "word": "worse",
-    "start": 5.817,
-    "end": 6.13
+    "word": "it",
+    "start": 5.7,
+    "end": 5.759
   },
   {
-    "word": "than",
-    "start": 6.165,
-    "end": 6.316
+    "word": "was",
+    "start": 5.805,
+    "end": 5.898
   },
   {
-    "word": "the",
-    "start": 6.362,
-    "end": 6.432
+    "word": "going",
+    "start": 5.944,
+    "end": 6.142
   },
   {
-    "word": "bigness",
-    "start": 6.478,
-    "end": 6.896
+    "word": "to",
+    "start": 6.188,
+    "end": 6.246
   },
   {
-    "word": "ever",
-    "start": 6.954,
-    "end": 7.152
+    "word": "spill",
+    "start": 6.327,
+    "end": 6.664
   },
   {
-    "word": "had.",
-    "start": 7.221,
-    "end": 7.628
+    "word": "over",
+    "start": 6.734,
+    "end": 6.978
+  },
+  {
+    "word": "any",
+    "start": 7.07,
+    "end": 7.314
+  },
+  {
+    "word": "second.",
+    "start": 7.407,
+    "end": 8.011
   }
 ]

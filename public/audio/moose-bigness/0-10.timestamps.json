@@ -1,322 +1,47 @@
 [
   {
-    "word": "But",
+    "word": "Too",
     "start": 0.046,
-    "end": 0.174
-  },
-  {
-    "word": "the",
-    "start": 0.221,
-    "end": 0.302
-  },
-  {
-    "word": "bigness",
-    "start": 0.383,
-    "end": 0.906
-  },
-  {
-    "word": "didn't",
-    "start": 0.975,
-    "end": 1.277
-  },
-  {
-    "word": "hear",
-    "start": 1.347,
-    "end": 1.602
-  },
-  {
-    "word": "Mama's",
-    "start": 1.683,
-    "end": 2.067
-  },
-  {
-    "word": "softness.",
-    "start": 2.101,
-    "end": 2.972
-  },
-  {
-    "word": "The",
-    "start": 3.413,
-    "end": 3.553
-  },
-  {
-    "word": "bigness",
-    "start": 3.634,
-    "end": 4.133
-  },
-  {
-    "word": "only",
-    "start": 4.214,
-    "end": 4.54
-  },
-  {
-    "word": "heard:",
-    "start": 4.621,
-    "end": 5.178
-  },
-  {
-    "word": "Someone",
-    "start": 5.619,
-    "end": 6.072
-  },
-  {
-    "word": "is",
-    "start": 6.107,
-    "end": 6.223
-  },
-  {
-    "word": "asking",
-    "start": 6.293,
-    "end": 6.792
-  },
-  {
-    "word": "me",
-    "start": 6.861,
-    "end": 6.966
-  },
-  {
-    "word": "to",
-    "start": 7.036,
-    "end": 7.105
-  },
-  {
-    "word": "do",
-    "start": 7.175,
-    "end": 7.349
-  },
-  {
-    "word": "something.",
-    "start": 7.43,
-    "end": 8.115
-  },
-  {
-    "word": "Someone",
-    "start": 8.499,
-    "end": 8.94
-  },
-  {
-    "word": "wants",
-    "start": 8.998,
-    "end": 9.323
-  },
-  {
-    "word": "me",
-    "start": 9.392,
-    "end": 9.485
-  },
-  {
-    "word": "to",
-    "start": 9.543,
-    "end": 9.613
-  },
-  {
-    "word": "stop.",
-    "start": 9.694,
-    "end": 10.321
-  },
-  {
-    "word": "And",
-    "start": 10.762,
-    "end": 10.948
-  },
-  {
-    "word": "the",
-    "start": 11.018,
-    "end": 11.099
-  },
-  {
-    "word": "bigness",
-    "start": 11.169,
-    "end": 11.726
-  },
-  {
-    "word": "-",
-    "start": 11.9,
-    "end": 11.923
-  },
-  {
-    "word": "the",
-    "start": 12.132,
-    "end": 12.26
-  },
-  {
-    "word": "one",
-    "start": 12.341,
-    "end": 12.562
-  },
-  {
-    "word": "that",
-    "start": 12.597,
-    "end": 12.725
-  },
-  {
-    "word": "had",
-    "start": 12.771,
-    "end": 12.864
-  },
-  {
-    "word": "been",
-    "start": 12.899,
-    "end": 13.05
-  },
-  {
-    "word": "building",
-    "start": 13.108,
-    "end": 13.514
-  },
-  {
-    "word": "all",
-    "start": 13.572,
-    "end": 13.711
-  },
-  {
-    "word": "day,",
-    "start": 13.781,
-    "end": 14.28
-  },
-  {
-    "word": "the",
-    "start": 14.431,
-    "end": 14.559
-  },
-  {
-    "word": "one",
-    "start": 14.64,
-    "end": 14.872
-  },
-  {
-    "word": "that",
-    "start": 14.907,
-    "end": 15.058
-  },
-  {
-    "word": "came",
-    "start": 15.116,
-    "end": 15.395
-  },
-  {
-    "word": "from",
-    "start": 15.441,
-    "end": 15.615
-  },
-  {
-    "word": "too",
-    "start": 15.708,
-    "end": 15.929
+    "end": 0.209
   },
   {
     "word": "much",
-    "start": 15.999,
-    "end": 16.219
+    "start": 0.279,
+    "end": 0.476
   },
   {
-    "word": "running",
-    "start": 16.301,
-    "end": 16.649
+    "word": "running.",
+    "start": 0.534,
+    "end": 0.952
   },
   {
-    "word": "and",
-    "start": 16.707,
-    "end": 16.8
-  },
-  {
-    "word": "too",
-    "start": 16.87,
-    "end": 17.044
+    "word": "Too",
+    "start": 1.161,
+    "end": 1.335
   },
   {
     "word": "much",
-    "start": 17.113,
-    "end": 17.311
+    "start": 1.393,
+    "end": 1.567
   },
   {
-    "word": "excitement",
-    "start": 17.369,
-    "end": 18.042
+    "word": "excitement.",
+    "start": 1.625,
+    "end": 2.38
   },
   {
-    "word": "and",
-    "start": 18.1,
-    "end": 18.193
+    "word": "Too",
+    "start": 2.705,
+    "end": 2.902
   },
   {
-    "word": "not",
-    "start": 18.263,
-    "end": 18.449
+    "word": "much",
+    "start": 2.984,
+    "end": 3.204
   },
   {
-    "word": "enough",
-    "start": 18.507,
-    "end": 18.75
-  },
-  {
-    "word": "rest",
-    "start": 18.832,
-    "end": 19.215
-  },
-  {
-    "word": "-",
-    "start": 19.343,
-    "end": 19.366
-  },
-  {
-    "word": "burst",
-    "start": 19.61,
-    "end": 19.993
-  },
-  {
-    "word": "out",
-    "start": 20.062,
-    "end": 20.236
-  },
-  {
-    "word": "before",
-    "start": 20.295,
-    "end": 20.643
-  },
-  {
-    "word": "Azi",
-    "start": 20.689,
-    "end": 21.084
-  },
-  {
-    "word": "could",
-    "start": 21.13,
-    "end": 21.293
-  },
-  {
-    "word": "catch",
-    "start": 21.339,
-    "end": 21.665
-  },
-  {
-    "word": "it.",
-    "start": 21.734,
-    "end": 21.955
-  },
-  {
-    "word": ">",
-    "start": 22.001,
-    "end": 22.024
-  },
-  {
-    "word": "\"GO",
-    "start": 22.059,
-    "end": 22.396
-  },
-  {
-    "word": "AWAY!\"",
-    "start": 22.477,
-    "end": 23.104
-  },
-  {
-    "word": "Azi",
-    "start": 23.162,
-    "end": 23.603
-  },
-  {
-    "word": "shouted.",
-    "start": 23.661,
-    "end": 24.288
+    "word": "everything.",
+    "start": 3.32,
+    "end": 3.982
   }
 ]

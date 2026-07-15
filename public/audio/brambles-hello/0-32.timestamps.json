@@ -1,0 +1,117 @@
+[
+  {
+    "word": "\"Hello,",
+    "start": 0.035,
+    "end": 0.604
+  },
+  {
+    "word": "little",
+    "start": 0.65,
+    "end": 0.929
+  },
+  {
+    "word": "one,\"",
+    "start": 0.987,
+    "end": 1.382
+  },
+  {
+    "word": "the",
+    "start": 1.556,
+    "end": 1.66
+  },
+  {
+    "word": "grizzly",
+    "start": 1.718,
+    "end": 2.159
+  },
+  {
+    "word": "said.",
+    "start": 2.218,
+    "end": 2.635
+  },
+  {
+    "word": "His",
+    "start": 2.844,
+    "end": 3.03
+  },
+  {
+    "word": "voice",
+    "start": 3.1,
+    "end": 3.437
+  },
+  {
+    "word": "was",
+    "start": 3.483,
+    "end": 3.622
+  },
+  {
+    "word": "deep",
+    "start": 3.738,
+    "end": 4.04
+  },
+  {
+    "word": "and",
+    "start": 4.156,
+    "end": 4.342
+  },
+  {
+    "word": "warm,",
+    "start": 4.423,
+    "end": 4.957
+  },
+  {
+    "word": "like",
+    "start": 5.016,
+    "end": 5.201
+  },
+  {
+    "word": "the",
+    "start": 5.236,
+    "end": 5.306
+  },
+  {
+    "word": "inside",
+    "start": 5.387,
+    "end": 5.898
+  },
+  {
+    "word": "of",
+    "start": 5.933,
+    "end": 5.979
+  },
+  {
+    "word": "a",
+    "start": 6.037,
+    "end": 6.06
+  },
+  {
+    "word": "hollow",
+    "start": 6.118,
+    "end": 6.42
+  },
+  {
+    "word": "log",
+    "start": 6.502,
+    "end": 6.838
+  },
+  {
+    "word": "on",
+    "start": 6.908,
+    "end": 6.989
+  },
+  {
+    "word": "a",
+    "start": 7.036,
+    "end": 7.07
+  },
+  {
+    "word": "sunny",
+    "start": 7.14,
+    "end": 7.419
+  },
+  {
+    "word": "day.",
+    "start": 7.488,
+    "end": 7.93
+  }
+]

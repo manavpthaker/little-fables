@@ -1,137 +1,22 @@
 [
   {
-    "word": "Pandies",
-    "start": 0.058,
+    "word": "Dory",
+    "start": 0.151,
     "end": 0.488
   },
   {
-    "word": "spoke",
-    "start": 0.534,
-    "end": 0.824
+    "word": "yawned.",
+    "start": 0.557,
+    "end": 1.115
   },
   {
-    "word": "again,",
-    "start": 0.859,
-    "end": 1.37
+    "word": "\"Got",
+    "start": 1.289,
+    "end": 1.649
   },
   {
-    "word": "gently:",
-    "start": 1.486,
-    "end": 2.218
-  },
-  {
-    "word": "\"Mama",
-    "start": 2.543,
-    "end": 3.065
-  },
-  {
-    "word": "is",
-    "start": 3.135,
-    "end": 3.239
-  },
-  {
-    "word": "right",
-    "start": 3.309,
-    "end": 3.506
-  },
-  {
-    "word": "outside.",
-    "start": 3.541,
-    "end": 4.261
-  },
-  {
-    "word": "That's",
-    "start": 4.47,
-    "end": 4.737
-  },
-  {
-    "word": "very",
-    "start": 4.795,
-    "end": 5.027
-  },
-  {
-    "word": "close.",
-    "start": 5.097,
-    "end": 5.689
-  },
-  {
-    "word": "And",
-    "start": 5.863,
-    "end": 6.002
-  },
-  {
-    "word": "she",
-    "start": 6.06,
-    "end": 6.165
-  },
-  {
-    "word": "always",
-    "start": 6.235,
-    "end": 6.502
-  },
-  {
-    "word": "comes",
-    "start": 6.548,
-    "end": 6.757
-  },
-  {
-    "word": "back",
-    "start": 6.815,
-    "end": 6.989
-  },
-  {
-    "word": "to",
-    "start": 7.036,
-    "end": 7.105
-  },
-  {
-    "word": "check.",
-    "start": 7.163,
-    "end": 7.674
-  },
-  {
-    "word": "That's",
-    "start": 7.999,
-    "end": 8.278
-  },
-  {
-    "word": "her",
-    "start": 8.324,
-    "end": 8.406
-  },
-  {
-    "word": "promise.\"",
-    "start": 8.464,
-    "end": 9.172
-  },
-  {
-    "word": "\"Like",
-    "start": 9.613,
-    "end": 9.996
-  },
-  {
-    "word": "the",
-    "start": 10.031,
-    "end": 10.112
-  },
-  {
-    "word": "moon's",
-    "start": 10.17,
-    "end": 10.507
-  },
-  {
-    "word": "promise?\"",
-    "start": 10.553,
-    "end": 11.32
-  },
-  {
-    "word": "\"Just",
-    "start": 11.529,
-    "end": 11.958
-  },
-  {
-    "word": "like.\"",
-    "start": 12.028,
-    "end": 12.597
+    "word": "what?\"",
+    "start": 1.707,
+    "end": 2.159
   }
 ]

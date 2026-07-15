@@ -1,0 +1,42 @@
+[
+  {
+    "word": "Waiting",
+    "start": 0.058,
+    "end": 0.418
+  },
+  {
+    "word": "for",
+    "start": 0.488,
+    "end": 0.604
+  },
+  {
+    "word": "someone",
+    "start": 0.673,
+    "end": 1.057
+  },
+  {
+    "word": "to",
+    "start": 1.091,
+    "end": 1.161
+  },
+  {
+    "word": "ask",
+    "start": 1.242,
+    "end": 1.463
+  },
+  {
+    "word": "the",
+    "start": 1.533,
+    "end": 1.614
+  },
+  {
+    "word": "right",
+    "start": 1.672,
+    "end": 1.881
+  },
+  {
+    "word": "way.",
+    "start": 1.939,
+    "end": 2.287
+  }
+]

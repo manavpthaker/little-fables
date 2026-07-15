@@ -1,0 +1,32 @@
+[
+  {
+    "word": "That",
+    "start": 0.046,
+    "end": 0.255
+  },
+  {
+    "word": "night,",
+    "start": 0.313,
+    "end": 0.604
+  },
+  {
+    "word": "Azi",
+    "start": 0.65,
+    "end": 0.929
+  },
+  {
+    "word": "fell",
+    "start": 0.987,
+    "end": 1.161
+  },
+  {
+    "word": "asleep",
+    "start": 1.207,
+    "end": 1.556
+  },
+  {
+    "word": "easily.",
+    "start": 1.614,
+    "end": 2.067
+  }
+]

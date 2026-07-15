@@ -1,0 +1,52 @@
+[
+  {
+    "word": "Up",
+    "start": 0.035,
+    "end": 0.186
+  },
+  {
+    "word": "the",
+    "start": 0.267,
+    "end": 0.348
+  },
+  {
+    "word": "stairs,",
+    "start": 0.418,
+    "end": 1.033
+  },
+  {
+    "word": "where",
+    "start": 1.091,
+    "end": 1.335
+  },
+  {
+    "word": "each",
+    "start": 1.393,
+    "end": 1.625
+  },
+  {
+    "word": "step",
+    "start": 1.683,
+    "end": 2.009
+  },
+  {
+    "word": "creaked",
+    "start": 2.125,
+    "end": 2.554
+  },
+  {
+    "word": "its",
+    "start": 2.601,
+    "end": 2.74
+  },
+  {
+    "word": "familiar",
+    "start": 2.798,
+    "end": 3.355
+  },
+  {
+    "word": "creak.",
+    "start": 3.437,
+    "end": 3.947
+  }
+]

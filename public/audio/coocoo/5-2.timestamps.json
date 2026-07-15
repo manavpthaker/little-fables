@@ -1,0 +1,527 @@
+[
+  {
+    "word": "When",
+    "start": 0.035,
+    "end": 0.221
+  },
+  {
+    "word": "you",
+    "start": 0.302,
+    "end": 0.43
+  },
+  {
+    "word": "do",
+    "start": 0.58,
+    "end": 0.755
+  },
+  {
+    "word": "the",
+    "start": 0.836,
+    "end": 0.917
+  },
+  {
+    "word": "thing.",
+    "start": 0.987,
+    "end": 1.486
+  },
+  {
+    "word": "Not",
+    "start": 1.997,
+    "end": 2.194
+  },
+  {
+    "word": "perfectly.",
+    "start": 2.264,
+    "end": 3.1
+  },
+  {
+    "word": "Not",
+    "start": 3.309,
+    "end": 3.518
+  },
+  {
+    "word": "even",
+    "start": 3.576,
+    "end": 3.785
+  },
+  {
+    "word": "happily.",
+    "start": 3.855,
+    "end": 4.574
+  },
+  {
+    "word": "Just",
+    "start": 5.016,
+    "end": 5.399
+  },
+  {
+    "word": "--",
+    "start": 5.677,
+    "end": 5.759
+  },
+  {
+    "word": "when",
+    "start": 5.933,
+    "end": 6.107
+  },
+  {
+    "word": "you",
+    "start": 6.153,
+    "end": 6.235
+  },
+  {
+    "word": "pick",
+    "start": 6.351,
+    "end": 6.548
+  },
+  {
+    "word": "up",
+    "start": 6.606,
+    "end": 6.711
+  },
+  {
+    "word": "the",
+    "start": 6.769,
+    "end": 6.838
+  },
+  {
+    "word": "fork",
+    "start": 6.92,
+    "end": 7.291
+  },
+  {
+    "word": "because",
+    "start": 7.361,
+    "end": 7.651
+  },
+  {
+    "word": "you",
+    "start": 7.686,
+    "end": 7.779
+  },
+  {
+    "word": "already",
+    "start": 7.895,
+    "end": 8.278
+  },
+  {
+    "word": "know",
+    "start": 8.336,
+    "end": 8.499
+  },
+  {
+    "word": "how.",
+    "start": 8.58,
+    "end": 9.079
+  },
+  {
+    "word": "When",
+    "start": 9.52,
+    "end": 9.706
+  },
+  {
+    "word": "you",
+    "start": 9.752,
+    "end": 9.834
+  },
+  {
+    "word": "step",
+    "start": 9.95,
+    "end": 10.228
+  },
+  {
+    "word": "into",
+    "start": 10.286,
+    "end": 10.449
+  },
+  {
+    "word": "the",
+    "start": 10.507,
+    "end": 10.577
+  },
+  {
+    "word": "shower",
+    "start": 10.635,
+    "end": 11.018
+  },
+  {
+    "word": "because",
+    "start": 11.099,
+    "end": 11.378
+  },
+  {
+    "word": "your",
+    "start": 11.413,
+    "end": 11.54
+  },
+  {
+    "word": "body",
+    "start": 11.61,
+    "end": 11.947
+  },
+  {
+    "word": "knows",
+    "start": 12.016,
+    "end": 12.283
+  },
+  {
+    "word": "the",
+    "start": 12.341,
+    "end": 12.423
+  },
+  {
+    "word": "way.",
+    "start": 12.492,
+    "end": 13.026
+  },
+  {
+    "word": "When",
+    "start": 13.41,
+    "end": 13.595
+  },
+  {
+    "word": "you",
+    "start": 13.642,
+    "end": 13.723
+  },
+  {
+    "word": "feel",
+    "start": 13.839,
+    "end": 14.153
+  },
+  {
+    "word": "the",
+    "start": 14.222,
+    "end": 14.292
+  },
+  {
+    "word": "buzzy-bright",
+    "start": 14.408,
+    "end": 15.186
+  },
+  {
+    "word": "feeling",
+    "start": 15.256,
+    "end": 15.627
+  },
+  {
+    "word": "coming",
+    "start": 15.697,
+    "end": 16.08
+  },
+  {
+    "word": "and",
+    "start": 16.196,
+    "end": 16.359
+  },
+  {
+    "word": "you",
+    "start": 16.428,
+    "end": 16.51
+  },
+  {
+    "word": "say,",
+    "start": 16.626,
+    "end": 17.067
+  },
+  {
+    "word": "before",
+    "start": 17.113,
+    "end": 17.555
+  },
+  {
+    "word": "the",
+    "start": 17.589,
+    "end": 17.659
+  },
+  {
+    "word": "sharp",
+    "start": 17.717,
+    "end": 17.984
+  },
+  {
+    "word": "words,",
+    "start": 18.065,
+    "end": 18.716
+  },
+  {
+    "word": "\"I",
+    "start": 18.89,
+    "end": 19.041
+  },
+  {
+    "word": "need",
+    "start": 19.168,
+    "end": 19.389
+  },
+  {
+    "word": "a",
+    "start": 19.435,
+    "end": 19.459
+  },
+  {
+    "word": "minute,",
+    "start": 19.517,
+    "end": 19.993
+  },
+  {
+    "word": "I'm",
+    "start": 20.109,
+    "end": 20.283
+  },
+  {
+    "word": "getting",
+    "start": 20.341,
+    "end": 20.608
+  },
+  {
+    "word": "too",
+    "start": 20.678,
+    "end": 20.852
+  },
+  {
+    "word": "full\"",
+    "start": 20.968,
+    "end": 21.537
+  },
+  {
+    "word": "--",
+    "start": 21.781,
+    "end": 21.827
+  },
+  {
+    "word": "every",
+    "start": 21.978,
+    "end": 22.28
+  },
+  {
+    "word": "time",
+    "start": 22.349,
+    "end": 22.628
+  },
+  {
+    "word": "that",
+    "start": 22.675,
+    "end": 22.837
+  },
+  {
+    "word": "happens,",
+    "start": 22.907,
+    "end": 23.557
+  },
+  {
+    "word": "I",
+    "start": 23.638,
+    "end": 23.685
+  },
+  {
+    "word": "get",
+    "start": 23.801,
+    "end": 23.975
+  },
+  {
+    "word": "a",
+    "start": 24.021,
+    "end": 24.044
+  },
+  {
+    "word": "little",
+    "start": 24.091,
+    "end": 24.335
+  },
+  {
+    "word": "smaller.",
+    "start": 24.381,
+    "end": 25.089
+  },
+  {
+    "word": "Every",
+    "start": 25.786,
+    "end": 26.076
+  },
+  {
+    "word": "time",
+    "start": 26.134,
+    "end": 26.39
+  },
+  {
+    "word": "you're",
+    "start": 26.425,
+    "end": 26.61
+  },
+  {
+    "word": "kind",
+    "start": 26.645,
+    "end": 26.947
+  },
+  {
+    "word": "from",
+    "start": 27.017,
+    "end": 27.168
+  },
+  {
+    "word": "the",
+    "start": 27.214,
+    "end": 27.295
+  },
+  {
+    "word": "inside",
+    "start": 27.365,
+    "end": 28.073
+  },
+  {
+    "word": "--",
+    "start": 28.189,
+    "end": 28.282
+  },
+  {
+    "word": "not",
+    "start": 28.363,
+    "end": 28.572
+  },
+  {
+    "word": "because",
+    "start": 28.63,
+    "end": 28.956
+  },
+  {
+    "word": "someone",
+    "start": 28.99,
+    "end": 29.339
+  },
+  {
+    "word": "told",
+    "start": 29.385,
+    "end": 29.64
+  },
+  {
+    "word": "you",
+    "start": 29.687,
+    "end": 29.768
+  },
+  {
+    "word": "to",
+    "start": 29.826,
+    "end": 29.884
+  },
+  {
+    "word": "be,",
+    "start": 29.942,
+    "end": 30.349
+  },
+  {
+    "word": "but",
+    "start": 30.523,
+    "end": 30.685
+  },
+  {
+    "word": "because",
+    "start": 30.732,
+    "end": 31.045
+  },
+  {
+    "word": "you",
+    "start": 31.08,
+    "end": 31.161
+  },
+  {
+    "word": "feel",
+    "start": 31.277,
+    "end": 31.521
+  },
+  {
+    "word": "it",
+    "start": 31.579,
+    "end": 31.66
+  },
+  {
+    "word": "there",
+    "start": 31.707,
+    "end": 32.09
+  },
+  {
+    "word": "--",
+    "start": 32.206,
+    "end": 32.287
+  },
+  {
+    "word": "I",
+    "start": 32.38,
+    "end": 32.438
+  },
+  {
+    "word": "get",
+    "start": 32.554,
+    "end": 32.74
+  },
+  {
+    "word": "smaller.",
+    "start": 32.81,
+    "end": 33.483
+  },
+  {
+    "word": "Every",
+    "start": 34.18,
+    "end": 34.47
+  },
+  {
+    "word": "time",
+    "start": 34.516,
+    "end": 34.783
+  },
+  {
+    "word": "you",
+    "start": 34.818,
+    "end": 34.923
+  },
+  {
+    "word": "try",
+    "start": 35.004,
+    "end": 35.387
+  },
+  {
+    "word": "even",
+    "start": 35.503,
+    "end": 35.77
+  },
+  {
+    "word": "when",
+    "start": 35.817,
+    "end": 35.956
+  },
+  {
+    "word": "you",
+    "start": 36.002,
+    "end": 36.084
+  },
+  {
+    "word": "don't",
+    "start": 36.142,
+    "end": 36.362
+  },
+  {
+    "word": "want",
+    "start": 36.42,
+    "end": 36.641
+  },
+  {
+    "word": "to,",
+    "start": 36.699,
+    "end": 37.105
+  },
+  {
+    "word": "I",
+    "start": 37.279,
+    "end": 37.337
+  },
+  {
+    "word": "get",
+    "start": 37.454,
+    "end": 37.628
+  },
+  {
+    "word": "smaller.",
+    "start": 37.686,
+    "end": 38.301
+  }
+]

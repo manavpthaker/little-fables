@@ -1,0 +1,47 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.325
+  },
+  {
+    "word": "listened,",
+    "start": 0.395,
+    "end": 0.929
+  },
+  {
+    "word": "his",
+    "start": 1.01,
+    "end": 1.149
+  },
+  {
+    "word": "hand",
+    "start": 1.219,
+    "end": 1.474
+  },
+  {
+    "word": "still",
+    "start": 1.556,
+    "end": 1.788
+  },
+  {
+    "word": "pressed",
+    "start": 1.858,
+    "end": 2.171
+  },
+  {
+    "word": "against",
+    "start": 2.194,
+    "end": 2.496
+  },
+  {
+    "word": "the",
+    "start": 2.543,
+    "end": 2.612
+  },
+  {
+    "word": "window.",
+    "start": 2.659,
+    "end": 3.146
+  }
+]

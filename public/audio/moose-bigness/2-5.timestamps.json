@@ -1,187 +1,132 @@
 [
   {
-    "word": "The",
-    "start": 0.128,
-    "end": 0.244
+    "word": "About",
+    "start": 0.035,
+    "end": 0.36
   },
   {
-    "word": "moose's",
-    "start": 0.313,
-    "end": 0.801
+    "word": "the",
+    "start": 0.406,
+    "end": 0.488
   },
   {
-    "word": "voice",
-    "start": 0.882,
-    "end": 1.277
+    "word": "way",
+    "start": 0.546,
+    "end": 0.731
   },
   {
-    "word": "grew",
-    "start": 1.324,
-    "end": 1.556
+    "word": "they",
+    "start": 0.801,
+    "end": 0.94
   },
   {
-    "word": "softer,",
-    "start": 1.649,
-    "end": 2.403
+    "word": "had",
+    "start": 0.975,
+    "end": 1.08
   },
   {
-    "word": "more",
-    "start": 2.577,
-    "end": 2.833
+    "word": "pushed.",
+    "start": 1.149,
+    "end": 1.776
   },
   {
-    "word": "distant,",
-    "start": 2.891,
-    "end": 3.646
+    "word": "About",
+    "start": 2.055,
+    "end": 2.38
   },
   {
-    "word": "like",
-    "start": 3.796,
-    "end": 4.017
+    "word": "the",
+    "start": 2.415,
+    "end": 2.485
   },
   {
-    "word": "it",
-    "start": 4.063,
-    "end": 4.133
+    "word": "way",
+    "start": 2.543,
+    "end": 2.694
   },
   {
-    "word": "was",
+    "word": "they",
+    "start": 2.752,
+    "end": 2.879
+  },
+  {
+    "word": "had",
+    "start": 2.926,
+    "end": 3.019
+  },
+  {
+    "word": "pounded.",
+    "start": 3.1,
+    "end": 3.855
+  },
+  {
+    "word": "About",
     "start": 4.18,
-    "end": 4.296
-  },
-  {
-    "word": "already",
-    "start": 4.365,
-    "end": 4.818
-  },
-  {
-    "word": "beginning",
-    "start": 4.888,
-    "end": 5.317
-  },
-  {
-    "word": "to",
-    "start": 5.375,
-    "end": 5.445
-  },
-  {
-    "word": "fade",
-    "start": 5.538,
-    "end": 5.909
-  },
-  {
-    "word": "into",
-    "start": 5.944,
-    "end": 6.107
+    "end": 4.505
   },
   {
     "word": "the",
+    "start": 4.54,
+    "end": 4.621
+  },
+  {
+    "word": "way",
+    "start": 4.679,
+    "end": 4.888
+  },
+  {
+    "word": "they",
+    "start": 4.969,
+    "end": 5.108
+  },
+  {
+    "word": "had",
+    "start": 5.155,
+    "end": 5.271
+  },
+  {
+    "word": "moved",
+    "start": 5.352,
+    "end": 5.77
+  },
+  {
+    "word": "so",
+    "start": 5.851,
+    "end": 6.084
+  },
+  {
+    "word": "fast",
     "start": 6.177,
-    "end": 6.246
+    "end": 6.699
   },
   {
-    "word": "forest.",
-    "start": 6.316,
-    "end": 7.059
+    "word": "that",
+    "start": 6.745,
+    "end": 6.92
   },
   {
-    "word": ">",
-    "start": 7.755,
-    "end": 7.779
+    "word": "his",
+    "start": 6.978,
+    "end": 7.117
   },
   {
-    "word": "*I",
-    "start": 7.93,
-    "end": 8.197
+    "word": "heart",
+    "start": 7.198,
+    "end": 7.488
   },
   {
-    "word": "will",
-    "start": 8.313,
-    "end": 8.522
+    "word": "couldn't",
+    "start": 7.558,
+    "end": 7.895
   },
   {
-    "word": "be",
-    "start": 8.591,
-    "end": 8.707
+    "word": "catch",
+    "start": 7.953,
+    "end": 8.278
   },
   {
-    "word": "waiting.",
-    "start": 8.766,
-    "end": 9.427
-  },
-  {
-    "word": "I",
-    "start": 9.636,
-    "end": 9.764
-  },
-  {
-    "word": "am",
-    "start": 9.88,
-    "end": 10.031
-  },
-  {
-    "word": "always",
-    "start": 10.147,
-    "end": 10.704
-  },
-  {
-    "word": "waiting",
-    "start": 10.762,
-    "end": 11.18
-  },
-  {
-    "word": "-",
-    "start": 11.355,
-    "end": 11.389
-  },
-  {
-    "word": "for",
-    "start": 11.668,
-    "end": 11.819
-  },
-  {
-    "word": "the",
-    "start": 11.877,
-    "end": 11.947
-  },
-  {
-    "word": "children",
-    "start": 12.005,
-    "end": 12.458
-  },
-  {
-    "word": "who",
-    "start": 12.504,
-    "end": 12.632
-  },
-  {
-    "word": "are",
-    "start": 12.69,
-    "end": 12.817
-  },
-  {
-    "word": "learning",
-    "start": 12.864,
-    "end": 13.235
-  },
-  {
-    "word": "to",
-    "start": 13.317,
-    "end": 13.386
-  },
-  {
-    "word": "be",
-    "start": 13.456,
-    "end": 13.572
-  },
-  {
-    "word": "gentle",
-    "start": 13.63,
-    "end": 14.095
-  },
-  {
-    "word": "giants.*",
-    "start": 14.176,
-    "end": 14.954
+    "word": "up.",
+    "start": 8.359,
+    "end": 8.719
   }
 ]

@@ -1,0 +1,62 @@
+[
+  {
+    "word": "If",
+    "start": 0.035,
+    "end": 0.139
+  },
+  {
+    "word": "I",
+    "start": 0.209,
+    "end": 0.232
+  },
+  {
+    "word": "couldn't",
+    "start": 0.325,
+    "end": 0.627
+  },
+  {
+    "word": "climb",
+    "start": 0.662,
+    "end": 0.952
+  },
+  {
+    "word": "high",
+    "start": 1.01,
+    "end": 1.207
+  },
+  {
+    "word": "enough,",
+    "start": 1.254,
+    "end": 1.683
+  },
+  {
+    "word": "maybe",
+    "start": 1.858,
+    "end": 2.159
+  },
+  {
+    "word": "I",
+    "start": 2.218,
+    "end": 2.241
+  },
+  {
+    "word": "could",
+    "start": 2.31,
+    "end": 2.473
+  },
+  {
+    "word": "build",
+    "start": 2.508,
+    "end": 2.763
+  },
+  {
+    "word": "high",
+    "start": 2.821,
+    "end": 3.007
+  },
+  {
+    "word": "enough.",
+    "start": 3.053,
+    "end": 3.471
+  }
+]

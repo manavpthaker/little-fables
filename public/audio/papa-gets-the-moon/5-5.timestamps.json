@@ -1,0 +1,47 @@
+[
+  {
+    "word": "I",
+    "start": 0.058,
+    "end": 0.093
+  },
+  {
+    "word": "pushed",
+    "start": 0.209,
+    "end": 0.534
+  },
+  {
+    "word": "open",
+    "start": 0.592,
+    "end": 0.813
+  },
+  {
+    "word": "the",
+    "start": 0.859,
+    "end": 0.929
+  },
+  {
+    "word": "door,",
+    "start": 0.987,
+    "end": 1.405
+  },
+  {
+    "word": "very",
+    "start": 1.521,
+    "end": 1.8
+  },
+  {
+    "word": "slowly,",
+    "start": 1.881,
+    "end": 2.554
+  },
+  {
+    "word": "very",
+    "start": 2.67,
+    "end": 2.937
+  },
+  {
+    "word": "quietly.",
+    "start": 3.007,
+    "end": 3.715
+  }
+]

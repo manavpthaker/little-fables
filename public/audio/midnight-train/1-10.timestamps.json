@@ -1,227 +1,197 @@
 [
   {
-    "word": "Azi",
-    "start": 0.035,
-    "end": 0.395
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
   },
   {
-    "word": "took",
-    "start": 0.453,
-    "end": 0.697
+    "word": "conductor",
+    "start": 0.197,
+    "end": 0.72
+  },
+  {
+    "word": "stood",
+    "start": 0.789,
+    "end": 1.068
+  },
+  {
+    "word": "beside",
+    "start": 1.115,
+    "end": 1.474
   },
   {
     "word": "the",
-    "start": 0.755,
-    "end": 0.836
+    "start": 1.509,
+    "end": 1.579
   },
   {
-    "word": "bell.",
-    "start": 0.894,
-    "end": 1.405
+    "word": "door.",
+    "start": 1.625,
+    "end": 2.078
   },
   {
-    "word": "It",
-    "start": 1.788,
-    "end": 1.927
-  },
-  {
-    "word": "was",
-    "start": 1.985,
-    "end": 2.101
-  },
-  {
-    "word": "lighter",
-    "start": 2.218,
+    "word": "He",
+    "start": 2.461,
     "end": 2.601
   },
   {
-    "word": "than",
+    "word": "was",
     "start": 2.659,
-    "end": 2.81
+    "end": 2.798
   },
   {
-    "word": "air,",
-    "start": 2.891,
-    "end": 3.355
+    "word": "tall--the",
+    "start": 2.868,
+    "end": 3.68
   },
   {
-    "word": "but",
-    "start": 3.425,
-    "end": 3.622
+    "word": "tallest",
+    "start": 3.727,
+    "end": 4.145
   },
   {
-    "word": "somehow",
-    "start": 3.704,
-    "end": 4.307
+    "word": "person",
+    "start": 4.214,
+    "end": 4.586
   },
   {
-    "word": "he",
-    "start": 4.4,
-    "end": 4.481
+    "word": "Azi",
+    "start": 4.679,
+    "end": 5.039
   },
   {
-    "word": "could",
-    "start": 4.54,
-    "end": 4.702
+    "word": "had",
+    "start": 5.097,
+    "end": 5.213
   },
   {
-    "word": "feel",
-    "start": 4.76,
-    "end": 5.016
+    "word": "ever",
+    "start": 5.271,
+    "end": 5.492
   },
   {
-    "word": "its",
-    "start": 5.085,
-    "end": 5.224
-  },
-  {
-    "word": "weight---a",
-    "start": 5.283,
-    "end": 6.107
-  },
-  {
-    "word": "good",
-    "start": 6.223,
-    "end": 6.42
-  },
-  {
-    "word": "weight,",
-    "start": 6.49,
-    "end": 6.978
-  },
-  {
-    "word": "like",
-    "start": 7.105,
-    "end": 7.338
+    "word": "seen--with",
+    "start": 5.561,
+    "end": 6.467
   },
   {
     "word": "a",
-    "start": 7.372,
-    "end": 7.407
+    "start": 6.513,
+    "end": 6.548
   },
   {
-    "word": "promise.",
-    "start": 7.465,
-    "end": 8.255
+    "word": "long",
+    "start": 6.618,
+    "end": 6.92
   },
   {
-    "word": "\"Gracias,\"",
-    "start": 8.766,
-    "end": 10.019
-  },
-  {
-    "word": "he",
-    "start": 10.194,
-    "end": 10.275
-  },
-  {
-    "word": "said.",
-    "start": 10.344,
-    "end": 10.855
-  },
-  {
-    "word": "\"Thank",
-    "start": 11.029,
-    "end": 11.505
-  },
-  {
-    "word": "you.\"",
-    "start": 11.587,
-    "end": 11.981
-  },
-  {
-    "word": "The",
-    "start": 12.678,
-    "end": 12.794
-  },
-  {
-    "word": "Queen",
-    "start": 12.864,
-    "end": 13.201
-  },
-  {
-    "word": "smiled",
-    "start": 13.317,
-    "end": 13.897
+    "word": "coat",
+    "start": 7.036,
+    "end": 7.43
   },
   {
     "word": "and",
-    "start": 13.967,
-    "end": 14.06
+    "start": 7.558,
+    "end": 7.732
   },
   {
-    "word": "kissed",
-    "start": 14.129,
-    "end": 14.454
+    "word": "a",
+    "start": 7.802,
+    "end": 7.825
+  },
+  {
+    "word": "cap",
+    "start": 7.883,
+    "end": 8.231
+  },
+  {
+    "word": "pulled",
+    "start": 8.348,
+    "end": 8.673
+  },
+  {
+    "word": "low.",
+    "start": 8.742,
+    "end": 9.183
+  },
+  {
+    "word": "But",
+    "start": 9.625,
+    "end": 9.799
   },
   {
     "word": "his",
-    "start": 14.501,
-    "end": 14.617
+    "start": 9.857,
+    "end": 9.985
   },
   {
-    "word": "forehead,",
-    "start": 14.687,
-    "end": 15.302
+    "word": "eyes",
+    "start": 10.066,
+    "end": 10.31
+  },
+  {
+    "word": "were",
+    "start": 10.356,
+    "end": 10.507
+  },
+  {
+    "word": "kind,",
+    "start": 10.553,
+    "end": 11.215
   },
   {
     "word": "and",
-    "start": 15.337,
-    "end": 15.488
+    "start": 11.389,
+    "end": 11.54
   },
   {
-    "word": "where",
-    "start": 15.546,
-    "end": 15.743
-  },
-  {
-    "word": "her",
-    "start": 15.79,
-    "end": 15.882
-  },
-  {
-    "word": "lips",
-    "start": 15.952,
-    "end": 16.231
-  },
-  {
-    "word": "touched,",
-    "start": 16.289,
-    "end": 16.869
+    "word": "when",
+    "start": 11.598,
+    "end": 11.749
   },
   {
     "word": "he",
-    "start": 16.939,
-    "end": 17.043
+    "start": 11.796,
+    "end": 11.842
   },
   {
-    "word": "felt",
-    "start": 17.113,
-    "end": 17.369
+    "word": "smiled,",
+    "start": 11.912,
+    "end": 12.574
   },
   {
-    "word": "warm",
-    "start": 17.438,
-    "end": 17.868
+    "word": "his",
+    "start": 12.701,
+    "end": 12.864
   },
   {
-    "word": "and",
-    "start": 17.961,
-    "end": 18.123
+    "word": "whole",
+    "start": 12.922,
+    "end": 13.293
   },
   {
-    "word": "sleepy",
-    "start": 18.204,
-    "end": 18.785
+    "word": "face",
+    "start": 13.351,
+    "end": 13.735
   },
   {
-    "word": "and",
-    "start": 18.913,
-    "end": 19.098
+    "word": "crinkled",
+    "start": 13.793,
+    "end": 14.303
   },
   {
-    "word": "safe.",
-    "start": 19.191,
-    "end": 19.807
+    "word": "like",
+    "start": 14.362,
+    "end": 14.559
+  },
+  {
+    "word": "wrapping",
+    "start": 14.594,
+    "end": 15
+  },
+  {
+    "word": "paper.",
+    "start": 15.07,
+    "end": 15.592
   }
 ]

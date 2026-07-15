@@ -1,307 +1,57 @@
 [
   {
-    "word": "That",
-    "start": 0.046,
-    "end": 0.302
+    "word": "The",
+    "start": 0.035,
+    "end": 0.139
   },
   {
-    "word": "night,",
-    "start": 0.383,
-    "end": 0.871
+    "word": "biggest",
+    "start": 0.197,
+    "end": 0.534
   },
   {
-    "word": "Azi",
-    "start": 0.987,
-    "end": 1.37
-  },
-  {
-    "word": "fell",
-    "start": 1.428,
-    "end": 1.625
-  },
-  {
-    "word": "asleep",
-    "start": 1.672,
-    "end": 2.078
-  },
-  {
-    "word": "easily.",
-    "start": 2.194,
-    "end": 2.844
-  },
-  {
-    "word": "Mama",
-    "start": 3.123,
-    "end": 3.471
-  },
-  {
-    "word": "tucked",
-    "start": 3.529,
-    "end": 3.855
-  },
-  {
-    "word": "the",
-    "start": 3.913,
-    "end": 3.994
-  },
-  {
-    "word": "blanket",
-    "start": 4.04,
-    "end": 4.423
-  },
-  {
-    "word": "around",
-    "start": 4.458,
-    "end": 4.795
-  },
-  {
-    "word": "him",
-    "start": 4.865,
-    "end": 5.05
-  },
-  {
-    "word": "-",
-    "start": 5.143,
-    "end": 5.166
-  },
-  {
-    "word": "the",
-    "start": 5.236,
-    "end": 5.352
-  },
-  {
-    "word": "soft",
-    "start": 5.433,
-    "end": 5.817
-  },
-  {
-    "word": "one",
-    "start": 5.886,
-    "end": 6.095
-  },
-  {
-    "word": "from",
-    "start": 6.153,
-    "end": 6.327
-  },
-  {
-    "word": "home",
-    "start": 6.397,
-    "end": 6.687
-  },
-  {
-    "word": "that",
-    "start": 6.734,
-    "end": 6.885
-  },
-  {
-    "word": "smelled",
-    "start": 6.943,
-    "end": 7.326
-  },
-  {
-    "word": "like",
-    "start": 7.372,
-    "end": 7.535
-  },
-  {
-    "word": "their",
-    "start": 7.57,
-    "end": 7.732
-  },
-  {
-    "word": "house",
-    "start": 7.79,
-    "end": 8.057
-  },
-  {
-    "word": "in",
-    "start": 8.092,
-    "end": 8.162
-  },
-  {
-    "word": "Rahway.",
-    "start": 8.243,
-    "end": 8.916
-  },
-  {
-    "word": "Papa",
-    "start": 9.242,
-    "end": 9.567
-  },
-  {
-    "word": "kissed",
-    "start": 9.625,
-    "end": 9.915
-  },
-  {
-    "word": "his",
-    "start": 9.95,
-    "end": 10.054
-  },
-  {
-    "word": "forehead",
-    "start": 10.124,
-    "end": 10.612
-  },
-  {
-    "word": "and",
-    "start": 10.681,
-    "end": 10.82
-  },
-  {
-    "word": "whispered",
-    "start": 10.89,
-    "end": 11.297
-  },
-  {
-    "word": "the",
-    "start": 11.331,
-    "end": 11.401
-  },
-  {
-    "word": "words",
-    "start": 11.459,
-    "end": 11.819
-  },
-  {
-    "word": "he",
-    "start": 11.877,
-    "end": 11.97
-  },
-  {
-    "word": "always",
-    "start": 12.04,
-    "end": 12.388
-  },
-  {
-    "word": "whispered.",
-    "start": 12.446,
-    "end": 13.131
-  },
-  {
-    "word": "\"Good",
-    "start": 13.34,
-    "end": 13.665
-  },
-  {
-    "word": "night.",
-    "start": 13.711,
-    "end": 14.269
-  },
-  {
-    "word": "Sweet",
-    "start": 14.385,
-    "end": 14.698
-  },
-  {
-    "word": "dreams.",
-    "start": 14.745,
-    "end": 15.488
-  },
-  {
-    "word": "I'll",
-    "start": 15.732,
-    "end": 15.929
-  },
-  {
-    "word": "see",
-    "start": 15.987,
-    "end": 16.138
-  },
-  {
-    "word": "you",
-    "start": 16.173,
-    "end": 16.254
-  },
-  {
-    "word": "in",
-    "start": 16.312,
-    "end": 16.37
-  },
-  {
-    "word": "the",
-    "start": 16.417,
-    "end": 16.486
-  },
-  {
-    "word": "morning.",
-    "start": 16.533,
-    "end": 17.067
-  },
-  {
-    "word": "I",
-    "start": 17.241,
-    "end": 17.334
-  },
-  {
-    "word": "love",
-    "start": 17.485,
-    "end": 17.729
-  },
-  {
-    "word": "you",
-    "start": 17.775,
-    "end": 17.891
-  },
-  {
-    "word": "to",
-    "start": 17.984,
-    "end": 18.065
-  },
-  {
-    "word": "infinity",
-    "start": 18.147,
-    "end": 18.762
-  },
-  {
-    "word": "and",
-    "start": 18.832,
-    "end": 18.971
-  },
-  {
-    "word": "*más",
-    "start": 18.994,
-    "end": 19.342
-  },
-  {
-    "word": "allá*.\"",
-    "start": 19.424,
-    "end": 19.981
+    "word": "creature",
+    "start": 0.604,
+    "end": 0.998
   },
   {
     "word": "Azi",
-    "start": 20.492,
-    "end": 20.991
+    "start": 1.057,
+    "end": 1.393
   },
   {
-    "word": "closed",
-    "start": 21.107,
-    "end": 21.548
+    "word": "had",
+    "start": 1.451,
+    "end": 1.579
+  },
+  {
+    "word": "ever",
+    "start": 1.637,
+    "end": 1.892
+  },
+  {
+    "word": "seen",
+    "start": 1.974,
+    "end": 2.264
+  },
+  {
+    "word": "in",
+    "start": 2.322,
+    "end": 2.392
   },
   {
     "word": "his",
-    "start": 21.595,
-    "end": 21.711
+    "start": 2.461,
+    "end": 2.577
   },
   {
-    "word": "eyes.",
-    "start": 21.781,
-    "end": 22.373
+    "word": "whole",
+    "start": 2.624,
+    "end": 2.856
   },
   {
-    "word": "And",
-    "start": 22.756,
-    "end": 22.942
-  },
-  {
-    "word": "he",
-    "start": 23.023,
-    "end": 23.104
-  },
-  {
-    "word": "dreamed.",
-    "start": 23.197,
-    "end": 23.847
+    "word": "life.",
+    "start": 2.914,
+    "end": 3.309
   }
 ]

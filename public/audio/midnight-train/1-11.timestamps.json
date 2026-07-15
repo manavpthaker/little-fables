@@ -1,232 +1,112 @@
 [
   {
-    "word": "\"The",
+    "word": "\"Welcome",
     "start": 0.07,
-    "end": 0.255
-  },
-  {
-    "word": "train",
-    "start": 0.313,
     "end": 0.58
   },
   {
-    "word": "is",
-    "start": 0.639,
-    "end": 0.72
+    "word": "aboard",
+    "start": 0.627,
+    "end": 0.964
   },
   {
-    "word": "waiting,\"",
-    "start": 0.789,
-    "end": 1.335
+    "word": "the",
+    "start": 0.998,
+    "end": 1.068
   },
   {
-    "word": "Clara",
-    "start": 1.428,
-    "end": 1.765
+    "word": "Midnight",
+    "start": 1.126,
+    "end": 1.556
   },
   {
-    "word": "said",
-    "start": 1.823,
-    "end": 2.009
-  },
-  {
-    "word": "softly.",
-    "start": 2.078,
-    "end": 2.775
-  },
-  {
-    "word": "\"It's",
-    "start": 2.984,
-    "end": 3.32
-  },
-  {
-    "word": "time",
-    "start": 3.379,
-    "end": 3.634
-  },
-  {
-    "word": "to",
-    "start": 3.657,
-    "end": 3.715
-  },
-  {
-    "word": "go",
-    "start": 3.773,
-    "end": 3.924
-  },
-  {
-    "word": "home.\"",
-    "start": 4.005,
-    "end": 4.493
-  },
-  {
-    "word": "Azi",
-    "start": 5.097,
-    "end": 5.503
-  },
-  {
-    "word": "didn't",
-    "start": 5.561,
-    "end": 5.851
-  },
-  {
-    "word": "want",
-    "start": 5.909,
-    "end": 6.13
-  },
-  {
-    "word": "to",
-    "start": 6.177,
-    "end": 6.246
-  },
-  {
-    "word": "leave---not",
-    "start": 6.327,
-    "end": 7.326
-  },
-  {
-    "word": "ever---but",
-    "start": 7.384,
-    "end": 8.371
-  },
-  {
-    "word": "somehow",
-    "start": 8.429,
-    "end": 8.882
+    "word": "Train,\"",
+    "start": 1.591,
+    "end": 2.171
   },
   {
     "word": "he",
-    "start": 8.998,
-    "end": 9.091
+    "start": 2.38,
+    "end": 2.45
   },
   {
-    "word": "understood.",
-    "start": 9.172,
-    "end": 10.054
+    "word": "said,",
+    "start": 2.519,
+    "end": 3.019
   },
   {
-    "word": "The",
-    "start": 10.565,
-    "end": 10.693
+    "word": "his",
+    "start": 3.262,
+    "end": 3.413
   },
   {
-    "word": "magic",
-    "start": 10.762,
-    "end": 11.134
+    "word": "voice",
+    "start": 3.495,
+    "end": 3.82
   },
   {
-    "word": "of",
-    "start": 11.192,
-    "end": 11.238
+    "word": "deep",
+    "start": 3.878,
+    "end": 4.168
   },
   {
-    "word": "Christmas",
-    "start": 11.308,
-    "end": 11.714
+    "word": "and",
+    "start": 4.238,
+    "end": 4.365
   },
   {
-    "word": "Eve",
-    "start": 11.807,
-    "end": 12.04
-  },
-  {
-    "word": "was",
-    "start": 12.086,
-    "end": 12.214
-  },
-  {
-    "word": "precious",
-    "start": 12.295,
-    "end": 12.759
-  },
-  {
-    "word": "because",
-    "start": 12.829,
-    "end": 13.131
-  },
-  {
-    "word": "it",
-    "start": 13.166,
-    "end": 13.235
-  },
-  {
-    "word": "didn't",
-    "start": 13.293,
-    "end": 13.584
-  },
-  {
-    "word": "last",
-    "start": 13.653,
-    "end": 13.967
-  },
-  {
-    "word": "forever.",
-    "start": 14.036,
-    "end": 14.698
-  },
-  {
-    "word": "It",
-    "start": 15.081,
-    "end": 15.232
-  },
-  {
-    "word": "came",
-    "start": 15.29,
-    "end": 15.557
-  },
-  {
-    "word": "once",
-    "start": 15.615,
-    "end": 15.882
-  },
-  {
-    "word": "a",
-    "start": 15.917,
-    "end": 15.952
-  },
-  {
-    "word": "year,",
-    "start": 16.033,
-    "end": 16.475
+    "word": "warm",
+    "start": 4.447,
+    "end": 4.76
   },
   {
     "word": "like",
-    "start": 16.556,
-    "end": 16.753
+    "start": 4.83,
+    "end": 5.016
   },
   {
-    "word": "a",
-    "start": 16.788,
-    "end": 16.811
+    "word": "cocoa.",
+    "start": 5.05,
+    "end": 5.712
   },
   {
-    "word": "gift",
-    "start": 16.881,
-    "end": 17.194
+    "word": "\"All",
+    "start": 6.223,
+    "end": 6.525
   },
   {
-    "word": "you",
-    "start": 17.252,
-    "end": 17.345
+    "word": "aboard",
+    "start": 6.583,
+    "end": 7.001
   },
   {
-    "word": "had",
-    "start": 17.438,
-    "end": 17.577
+    "word": "for",
+    "start": 7.059,
+    "end": 7.187
   },
   {
-    "word": "to",
-    "start": 17.624,
-    "end": 17.67
+    "word": "the",
+    "start": 7.233,
+    "end": 7.303
   },
   {
-    "word": "wait",
-    "start": 17.74,
-    "end": 17.937
+    "word": "Land",
+    "start": 7.372,
+    "end": 7.697
   },
   {
-    "word": "for.",
-    "start": 18.007,
-    "end": 18.483
+    "word": "of",
+    "start": 7.755,
+    "end": 7.825
+  },
+  {
+    "word": "Christmas",
+    "start": 7.895,
+    "end": 8.313
+  },
+  {
+    "word": "Dreams.\"",
+    "start": 8.371,
+    "end": 9.044
   }
 ]

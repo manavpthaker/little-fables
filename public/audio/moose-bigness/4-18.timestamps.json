@@ -1,0 +1,37 @@
+[
+  {
+    "word": "You",
+    "start": 0.035,
+    "end": 0.174
+  },
+  {
+    "word": "are",
+    "start": 0.244,
+    "end": 0.372
+  },
+  {
+    "word": "bigger",
+    "start": 0.418,
+    "end": 0.673
+  },
+  {
+    "word": "than",
+    "start": 0.72,
+    "end": 0.848
+  },
+  {
+    "word": "you",
+    "start": 0.906,
+    "end": 0.998
+  },
+  {
+    "word": "know,",
+    "start": 1.068,
+    "end": 1.335
+  },
+  {
+    "word": "Azi.",
+    "start": 1.37,
+    "end": 1.834
+  }
+]

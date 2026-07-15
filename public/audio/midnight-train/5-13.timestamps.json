@@ -1,0 +1,37 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.163
+  },
+  {
+    "word": "train",
+    "start": 0.209,
+    "end": 0.499
+  },
+  {
+    "word": "will",
+    "start": 0.557,
+    "end": 0.72
+  },
+  {
+    "word": "always",
+    "start": 0.778,
+    "end": 1.068
+  },
+  {
+    "word": "wait",
+    "start": 1.126,
+    "end": 1.324
+  },
+  {
+    "word": "for",
+    "start": 1.382,
+    "end": 1.509
+  },
+  {
+    "word": "you.",
+    "start": 1.579,
+    "end": 1.858
+  }
+]

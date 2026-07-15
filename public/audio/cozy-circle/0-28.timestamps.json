@@ -1,0 +1,42 @@
+[
+  {
+    "word": "Like",
+    "start": 0.035,
+    "end": 0.325
+  },
+  {
+    "word": "it",
+    "start": 0.36,
+    "end": 0.43
+  },
+  {
+    "word": "had",
+    "start": 0.464,
+    "end": 0.569
+  },
+  {
+    "word": "found",
+    "start": 0.627,
+    "end": 0.929
+  },
+  {
+    "word": "somewhere",
+    "start": 0.998,
+    "end": 1.393
+  },
+  {
+    "word": "to",
+    "start": 1.428,
+    "end": 1.498
+  },
+  {
+    "word": "sit",
+    "start": 1.556,
+    "end": 1.765
+  },
+  {
+    "word": "down.",
+    "start": 1.811,
+    "end": 2.334
+  }
+]

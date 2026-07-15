@@ -1,0 +1,32 @@
+[
+  {
+    "word": "You",
+    "start": 0.046,
+    "end": 0.151
+  },
+  {
+    "word": "think",
+    "start": 0.232,
+    "end": 0.453
+  },
+  {
+    "word": "you",
+    "start": 0.511,
+    "end": 0.604
+  },
+  {
+    "word": "are",
+    "start": 0.662,
+    "end": 0.778
+  },
+  {
+    "word": "not",
+    "start": 0.836,
+    "end": 1.01
+  },
+  {
+    "word": "kind.",
+    "start": 1.08,
+    "end": 1.602
+  }
+]

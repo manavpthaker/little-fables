@@ -1,0 +1,47 @@
+[
+  {
+    "word": "He",
+    "start": 0.058,
+    "end": 0.174
+  },
+  {
+    "word": "ate",
+    "start": 0.244,
+    "end": 0.476
+  },
+  {
+    "word": "three",
+    "start": 0.522,
+    "end": 0.789
+  },
+  {
+    "word": "bites",
+    "start": 0.848,
+    "end": 1.184
+  },
+  {
+    "word": "before",
+    "start": 1.254,
+    "end": 1.591
+  },
+  {
+    "word": "anyone",
+    "start": 1.649,
+    "end": 2.043
+  },
+  {
+    "word": "said",
+    "start": 2.078,
+    "end": 2.264
+  },
+  {
+    "word": "a",
+    "start": 2.299,
+    "end": 2.322
+  },
+  {
+    "word": "word.",
+    "start": 2.368,
+    "end": 2.763
+  }
+]

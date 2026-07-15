@@ -1,0 +1,52 @@
+[
+  {
+    "word": "Not",
+    "start": 0.035,
+    "end": 0.244
+  },
+  {
+    "word": "a",
+    "start": 0.29,
+    "end": 0.313
+  },
+  {
+    "word": "toy.",
+    "start": 0.372,
+    "end": 0.894
+  },
+  {
+    "word": "Not",
+    "start": 1.103,
+    "end": 1.3
+  },
+  {
+    "word": "a",
+    "start": 1.347,
+    "end": 1.37
+  },
+  {
+    "word": "lamp.",
+    "start": 1.451,
+    "end": 1.939
+  },
+  {
+    "word": "Not",
+    "start": 2.113,
+    "end": 2.299
+  },
+  {
+    "word": "a",
+    "start": 2.334,
+    "end": 2.357
+  },
+  {
+    "word": "pretend",
+    "start": 2.403,
+    "end": 2.856
+  },
+  {
+    "word": "moon.",
+    "start": 2.949,
+    "end": 3.448
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "moose's",
+    "start": 0.209,
+    "end": 0.615
+  },
+  {
+    "word": "eyes",
+    "start": 0.685,
+    "end": 0.987
+  },
+  {
+    "word": "seemed",
+    "start": 1.033,
+    "end": 1.289
+  },
+  {
+    "word": "to",
+    "start": 1.312,
+    "end": 1.37
+  },
+  {
+    "word": "shine",
+    "start": 1.44,
+    "end": 1.776
+  },
+  {
+    "word": "in",
+    "start": 1.811,
+    "end": 1.869
+  },
+  {
+    "word": "the",
+    "start": 1.904,
+    "end": 1.974
+  },
+  {
+    "word": "last",
+    "start": 2.02,
+    "end": 2.287
+  },
+  {
+    "word": "of",
+    "start": 2.334,
+    "end": 2.38
+  },
+  {
+    "word": "the",
+    "start": 2.426,
+    "end": 2.496
+  },
+  {
+    "word": "light.",
+    "start": 2.554,
+    "end": 2.902
+  }
+]

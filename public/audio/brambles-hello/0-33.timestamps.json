@@ -1,0 +1,42 @@
+[
+  {
+    "word": "Bramble",
+    "start": 0.046,
+    "end": 0.383
+  },
+  {
+    "word": "tried",
+    "start": 0.406,
+    "end": 0.615
+  },
+  {
+    "word": "to",
+    "start": 0.639,
+    "end": 0.685
+  },
+  {
+    "word": "speak",
+    "start": 0.72,
+    "end": 0.952
+  },
+  {
+    "word": "again.",
+    "start": 0.998,
+    "end": 1.463
+  },
+  {
+    "word": "He",
+    "start": 1.556,
+    "end": 1.683
+  },
+  {
+    "word": "squeaked",
+    "start": 1.741,
+    "end": 2.09
+  },
+  {
+    "word": "instead.",
+    "start": 2.136,
+    "end": 2.67
+  }
+]

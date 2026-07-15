@@ -1,0 +1,267 @@
+[
+  {
+    "word": "Not",
+    "start": 0.035,
+    "end": 0.29
+  },
+  {
+    "word": "all",
+    "start": 0.348,
+    "end": 0.534
+  },
+  {
+    "word": "at",
+    "start": 0.592,
+    "end": 0.662
+  },
+  {
+    "word": "once",
+    "start": 0.743,
+    "end": 1.265
+  },
+  {
+    "word": "--",
+    "start": 1.382,
+    "end": 1.44
+  },
+  {
+    "word": "gently,",
+    "start": 1.765,
+    "end": 2.485
+  },
+  {
+    "word": "the",
+    "start": 2.694,
+    "end": 2.81
+  },
+  {
+    "word": "way",
+    "start": 2.879,
+    "end": 3.053
+  },
+  {
+    "word": "dreams",
+    "start": 3.135,
+    "end": 3.669
+  },
+  {
+    "word": "shift.",
+    "start": 3.785,
+    "end": 4.505
+  },
+  {
+    "word": "The",
+    "start": 5.201,
+    "end": 5.329
+  },
+  {
+    "word": "walls",
+    "start": 5.399,
+    "end": 5.863
+  },
+  {
+    "word": "went",
+    "start": 5.944,
+    "end": 6.153
+  },
+  {
+    "word": "soft",
+    "start": 6.223,
+    "end": 6.711
+  },
+  {
+    "word": "at",
+    "start": 6.769,
+    "end": 6.85
+  },
+  {
+    "word": "the",
+    "start": 6.885,
+    "end": 6.966
+  },
+  {
+    "word": "edges.",
+    "start": 7.059,
+    "end": 7.755
+  },
+  {
+    "word": "And",
+    "start": 8.266,
+    "end": 8.44
+  },
+  {
+    "word": "suddenly",
+    "start": 8.533,
+    "end": 9.114
+  },
+  {
+    "word": "Azi",
+    "start": 9.323,
+    "end": 9.741
+  },
+  {
+    "word": "was",
+    "start": 9.799,
+    "end": 9.915
+  },
+  {
+    "word": "watching",
+    "start": 9.985,
+    "end": 10.368
+  },
+  {
+    "word": "breakfast",
+    "start": 10.437,
+    "end": 10.971
+  },
+  {
+    "word": "the",
+    "start": 11.041,
+    "end": 11.146
+  },
+  {
+    "word": "way",
+    "start": 11.204,
+    "end": 11.355
+  },
+  {
+    "word": "you",
+    "start": 11.413,
+    "end": 11.517
+  },
+  {
+    "word": "watch",
+    "start": 11.598,
+    "end": 11.865
+  },
+  {
+    "word": "something",
+    "start": 11.923,
+    "end": 12.353
+  },
+  {
+    "word": "from",
+    "start": 12.423,
+    "end": 12.585
+  },
+  {
+    "word": "outside",
+    "start": 12.643,
+    "end": 13.142
+  },
+  {
+    "word": "of",
+    "start": 13.177,
+    "end": 13.235
+  },
+  {
+    "word": "it",
+    "start": 13.293,
+    "end": 13.433
+  },
+  {
+    "word": "--",
+    "start": 13.607,
+    "end": 13.653
+  },
+  {
+    "word": "the",
+    "start": 14.164,
+    "end": 14.269
+  },
+  {
+    "word": "kitchen,",
+    "start": 14.327,
+    "end": 14.919
+  },
+  {
+    "word": "the",
+    "start": 15.012,
+    "end": 15.128
+  },
+  {
+    "word": "plate,",
+    "start": 15.186,
+    "end": 15.72
+  },
+  {
+    "word": "the",
+    "start": 15.929,
+    "end": 16.045
+  },
+  {
+    "word": "kale",
+    "start": 16.115,
+    "end": 16.486
+  },
+  {
+    "word": "from",
+    "start": 16.521,
+    "end": 16.672
+  },
+  {
+    "word": "the",
+    "start": 16.718,
+    "end": 16.788
+  },
+  {
+    "word": "garden,",
+    "start": 16.846,
+    "end": 17.392
+  },
+  {
+    "word": "Papa",
+    "start": 17.508,
+    "end": 17.856
+  },
+  {
+    "word": "going",
+    "start": 17.914,
+    "end": 18.181
+  },
+  {
+    "word": "quiet",
+    "start": 18.262,
+    "end": 18.704
+  },
+  {
+    "word": "and",
+    "start": 18.762,
+    "end": 18.843
+  },
+  {
+    "word": "patient,",
+    "start": 18.913,
+    "end": 19.586
+  },
+  {
+    "word": "and",
+    "start": 19.702,
+    "end": 19.865
+  },
+  {
+    "word": "Azi",
+    "start": 19.981,
+    "end": 20.387
+  },
+  {
+    "word": "with",
+    "start": 20.445,
+    "end": 20.596
+  },
+  {
+    "word": "his",
+    "start": 20.631,
+    "end": 20.747
+  },
+  {
+    "word": "arms",
+    "start": 20.805,
+    "end": 21.119
+  },
+  {
+    "word": "crossed.",
+    "start": 21.177,
+    "end": 21.85
+  }
+]

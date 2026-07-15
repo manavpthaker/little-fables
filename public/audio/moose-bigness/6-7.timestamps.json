@@ -1,0 +1,32 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.139
+  },
+  {
+    "word": "moose",
+    "start": 0.197,
+    "end": 0.464
+  },
+  {
+    "word": "glanced",
+    "start": 0.511,
+    "end": 0.906
+  },
+  {
+    "word": "at",
+    "start": 0.952,
+    "end": 1.033
+  },
+  {
+    "word": "its",
+    "start": 1.08,
+    "end": 1.231
+  },
+  {
+    "word": "scar.",
+    "start": 1.265,
+    "end": 1.811
+  }
+]

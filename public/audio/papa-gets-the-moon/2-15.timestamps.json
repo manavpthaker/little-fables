@@ -1,0 +1,122 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.07
+  },
+  {
+    "word": "set",
+    "start": 0.197,
+    "end": 0.418
+  },
+  {
+    "word": "it",
+    "start": 0.476,
+    "end": 0.546
+  },
+  {
+    "word": "down",
+    "start": 0.592,
+    "end": 0.859
+  },
+  {
+    "word": "in",
+    "start": 0.917,
+    "end": 0.975
+  },
+  {
+    "word": "the",
+    "start": 1.01,
+    "end": 1.08
+  },
+  {
+    "word": "backyard,",
+    "start": 1.115,
+    "end": 1.788
+  },
+  {
+    "word": "next",
+    "start": 1.858,
+    "end": 2.136
+  },
+  {
+    "word": "to",
+    "start": 2.171,
+    "end": 2.229
+  },
+  {
+    "word": "the",
+    "start": 2.287,
+    "end": 2.357
+  },
+  {
+    "word": "garden",
+    "start": 2.415,
+    "end": 2.775
+  },
+  {
+    "word": "where",
+    "start": 2.833,
+    "end": 3.019
+  },
+  {
+    "word": "the",
+    "start": 3.053,
+    "end": 3.123
+  },
+  {
+    "word": "tomatoes",
+    "start": 3.181,
+    "end": 3.68
+  },
+  {
+    "word": "were",
+    "start": 3.738,
+    "end": 3.901
+  },
+  {
+    "word": "sleeping",
+    "start": 3.936,
+    "end": 4.423
+  },
+  {
+    "word": "and",
+    "start": 4.493,
+    "end": 4.632
+  },
+  {
+    "word": "the",
+    "start": 4.69,
+    "end": 4.76
+  },
+  {
+    "word": "basil",
+    "start": 4.83,
+    "end": 5.317
+  },
+  {
+    "word": "was",
+    "start": 5.399,
+    "end": 5.538
+  },
+  {
+    "word": "dreaming",
+    "start": 5.596,
+    "end": 5.991
+  },
+  {
+    "word": "of",
+    "start": 6.049,
+    "end": 6.118
+  },
+  {
+    "word": "being",
+    "start": 6.188,
+    "end": 6.478
+  },
+  {
+    "word": "pesto.",
+    "start": 6.571,
+    "end": 7.198
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "word": "The",
+    "start": 0.07,
+    "end": 0.151
+  },
+  {
+    "word": "Coocoo's",
+    "start": 0.221,
+    "end": 0.72
+  },
+  {
+    "word": "crossed",
+    "start": 0.789,
+    "end": 1.184
+  },
+  {
+    "word": "arms",
+    "start": 1.242,
+    "end": 1.591
+  },
+  {
+    "word": "uncrossed",
+    "start": 1.707,
+    "end": 2.415
+  },
+  {
+    "word": "--",
+    "start": 2.531,
+    "end": 2.624
+  },
+  {
+    "word": "just",
+    "start": 2.752,
+    "end": 3.123
+  },
+  {
+    "word": "slightly.",
+    "start": 3.274,
+    "end": 4.017
+  },
+  {
+    "word": "Like",
+    "start": 4.528,
+    "end": 4.783
+  },
+  {
+    "word": "something",
+    "start": 4.841,
+    "end": 5.271
+  },
+  {
+    "word": "in",
+    "start": 5.387,
+    "end": 5.538
+  },
+  {
+    "word": "it",
+    "start": 5.608,
+    "end": 5.724
+  },
+  {
+    "word": "had",
+    "start": 5.793,
+    "end": 5.909
+  },
+  {
+    "word": "been",
+    "start": 5.956,
+    "end": 6.107
+  },
+  {
+    "word": "waiting",
+    "start": 6.165,
+    "end": 6.513
+  },
+  {
+    "word": "for",
+    "start": 6.571,
+    "end": 6.676
+  },
+  {
+    "word": "that.",
+    "start": 6.722,
+    "end": 7.129
+  }
+]

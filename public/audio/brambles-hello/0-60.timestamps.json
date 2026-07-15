@@ -1,0 +1,82 @@
+[
+  {
+    "word": "And",
+    "start": 0.035,
+    "end": 0.151
+  },
+  {
+    "word": "he",
+    "start": 0.209,
+    "end": 0.279
+  },
+  {
+    "word": "understood",
+    "start": 0.36,
+    "end": 0.824
+  },
+  {
+    "word": "something",
+    "start": 0.882,
+    "end": 1.242
+  },
+  {
+    "word": "now,",
+    "start": 1.312,
+    "end": 1.602
+  },
+  {
+    "word": "the",
+    "start": 1.718,
+    "end": 1.823
+  },
+  {
+    "word": "way",
+    "start": 1.881,
+    "end": 2.009
+  },
+  {
+    "word": "you",
+    "start": 2.067,
+    "end": 2.159
+  },
+  {
+    "word": "understand",
+    "start": 2.276,
+    "end": 2.752
+  },
+  {
+    "word": "a",
+    "start": 2.81,
+    "end": 2.844
+  },
+  {
+    "word": "song",
+    "start": 2.914,
+    "end": 3.274
+  },
+  {
+    "word": "after",
+    "start": 3.39,
+    "end": 3.704
+  },
+  {
+    "word": "you've",
+    "start": 3.762,
+    "end": 3.947
+  },
+  {
+    "word": "sung",
+    "start": 3.971,
+    "end": 4.168
+  },
+  {
+    "word": "it",
+    "start": 4.226,
+    "end": 4.296
+  },
+  {
+    "word": "through.",
+    "start": 4.331,
+    "end": 4.795
+  }
+]

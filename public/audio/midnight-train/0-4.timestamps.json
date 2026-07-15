@@ -1,42 +1,42 @@
 [
   {
-    "word": "And",
-    "start": 0.035,
-    "end": 0.139
+    "word": "But",
+    "start": 0.046,
+    "end": 0.186
   },
   {
-    "word": "the",
-    "start": 0.186,
-    "end": 0.255
+    "word": "Christmas",
+    "start": 0.244,
+    "end": 0.708
   },
   {
-    "word": "red",
-    "start": 0.313,
-    "end": 0.522
+    "word": "Eve",
+    "start": 0.801,
+    "end": 1.033
   },
   {
-    "word": "train's",
-    "start": 0.569,
-    "end": 0.975
+    "word": "is",
+    "start": 1.068,
+    "end": 1.149
   },
   {
-    "word": "lantern",
-    "start": 1.045,
-    "end": 1.474
+    "word": "different",
+    "start": 1.219,
+    "end": 1.591
   },
   {
-    "word": "flickered",
-    "start": 1.556,
-    "end": 1.927
+    "word": "from",
+    "start": 1.637,
+    "end": 1.788
   },
   {
-    "word": "to",
-    "start": 1.962,
-    "end": 2.032
+    "word": "other",
+    "start": 1.846,
+    "end": 2.043
   },
   {
-    "word": "life.",
-    "start": 2.101,
-    "end": 2.508
+    "word": "nights.",
+    "start": 2.113,
+    "end": 2.543
   }
 ]

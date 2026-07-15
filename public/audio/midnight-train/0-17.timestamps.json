@@ -1,177 +1,137 @@
 [
   {
     "word": "The",
-    "start": 0.058,
-    "end": 0.151
+    "start": 0.07,
+    "end": 0.163
   },
   {
-    "word": "train",
+    "word": "train's",
     "start": 0.209,
-    "end": 0.511
+    "end": 0.604
   },
   {
-    "word": "curved",
-    "start": 0.627,
+    "word": "wheels",
+    "start": 0.65,
     "end": 0.998
   },
   {
-    "word": "around",
-    "start": 1.033,
-    "end": 1.335
+    "word": "began",
+    "start": 1.057,
+    "end": 1.382
   },
   {
-    "word": "the",
-    "start": 1.393,
-    "end": 1.463
+    "word": "to",
+    "start": 1.44,
+    "end": 1.509
   },
   {
-    "word": "Christmas",
-    "start": 1.521,
-    "end": 1.939
+    "word": "turn--slowly",
+    "start": 1.579,
+    "end": 2.786
   },
   {
-    "word": "tree",
-    "start": 1.997,
-    "end": 2.252
+    "word": "at",
+    "start": 2.833,
+    "end": 2.902
   },
   {
-    "word": "one",
-    "start": 2.322,
-    "end": 2.543
+    "word": "first,",
+    "start": 2.972,
+    "end": 3.425
   },
   {
-    "word": "last",
-    "start": 2.589,
-    "end": 2.856
+    "word": "then",
+    "start": 3.541,
+    "end": 3.808
   },
   {
-    "word": "time---but",
-    "start": 2.902,
-    "end": 4.156
+    "word": "with",
+    "start": 3.878,
+    "end": 4.029
   },
   {
-    "word": "the",
-    "start": 4.191,
-    "end": 4.272
+    "word": "purpose.",
+    "start": 4.087,
+    "end": 4.69
   },
   {
-    "word": "living",
-    "start": 4.342,
-    "end": 4.609
-  },
-  {
-    "word": "room",
-    "start": 4.667,
-    "end": 4.841
-  },
-  {
-    "word": "was",
-    "start": 4.888,
-    "end": 5.004
-  },
-  {
-    "word": "gone",
+    "word": "Its",
     "start": 5.074,
-    "end": 5.341
+    "end": 5.306
   },
   {
-    "word": "now.",
+    "word": "bell",
     "start": 5.387,
-    "end": 5.886
+    "end": 5.642
   },
   {
-    "word": "In",
-    "start": 6.327,
-    "end": 6.478
+    "word": "rang",
+    "start": 5.735,
+    "end": 5.968
   },
   {
-    "word": "its",
-    "start": 6.525,
-    "end": 6.676
-  },
-  {
-    "word": "place",
-    "start": 6.757,
-    "end": 7.175
-  },
-  {
-    "word": "stretched",
-    "start": 7.233,
-    "end": 7.663
+    "word": "out:",
+    "start": 6.049,
+    "end": 6.42
   },
   {
     "word": "a",
-    "start": 7.709,
-    "end": 7.732
+    "start": 6.594,
+    "end": 6.664
   },
   {
-    "word": "world",
-    "start": 7.802,
-    "end": 8.197
-  },
-  {
-    "word": "Azi",
-    "start": 8.278,
-    "end": 8.649
-  },
-  {
-    "word": "had",
-    "start": 8.707,
-    "end": 8.824
-  },
-  {
-    "word": "never",
-    "start": 8.87,
-    "end": 9.079
-  },
-  {
-    "word": "seen,",
-    "start": 9.149,
-    "end": 9.741
-  },
-  {
-    "word": "painted",
-    "start": 9.892,
-    "end": 10.333
-  },
-  {
-    "word": "in",
-    "start": 10.391,
-    "end": 10.461
+    "word": "single",
+    "start": 6.78,
+    "end": 7.21
   },
   {
     "word": "silver",
-    "start": 10.553,
-    "end": 11.018
+    "start": 7.268,
+    "end": 7.697
   },
   {
-    "word": "and",
-    "start": 11.111,
-    "end": 11.273
+    "word": "note",
+    "start": 7.779,
+    "end": 8.127
   },
   {
-    "word": "blue",
-    "start": 11.343,
-    "end": 11.819
+    "word": "that",
+    "start": 8.185,
+    "end": 8.382
   },
   {
-    "word": "and",
-    "start": 11.865,
-    "end": 12.051
+    "word": "rose",
+    "start": 8.452,
+    "end": 8.8
   },
   {
-    "word": "soft,",
-    "start": 12.144,
-    "end": 12.759
+    "word": "through",
+    "start": 8.847,
+    "end": 9.091
   },
   {
-    "word": "soft",
-    "start": 12.875,
-    "end": 13.293
+    "word": "the",
+    "start": 9.125,
+    "end": 9.195
   },
   {
-    "word": "white.",
-    "start": 13.363,
-    "end": 13.874
+    "word": "house",
+    "start": 9.253,
+    "end": 9.601
+  },
+  {
+    "word": "like",
+    "start": 9.648,
+    "end": 9.857
+  },
+  {
+    "word": "a",
+    "start": 9.892,
+    "end": 9.927
+  },
+  {
+    "word": "wish.",
+    "start": 10.008,
+    "end": 10.542
   }
 ]

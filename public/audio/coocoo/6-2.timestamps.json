@@ -1,0 +1,332 @@
+[
+  {
+    "word": "Not",
+    "start": 0.035,
+    "end": 0.279
+  },
+  {
+    "word": "gone.",
+    "start": 0.36,
+    "end": 0.987
+  },
+  {
+    "word": "It",
+    "start": 1.498,
+    "end": 1.66
+  },
+  {
+    "word": "wouldn't",
+    "start": 1.73,
+    "end": 2.148
+  },
+  {
+    "word": "always",
+    "start": 2.229,
+    "end": 2.728
+  },
+  {
+    "word": "be",
+    "start": 2.786,
+    "end": 2.902
+  },
+  {
+    "word": "gone.",
+    "start": 2.961,
+    "end": 3.529
+  },
+  {
+    "word": "It",
+    "start": 3.971,
+    "end": 4.098
+  },
+  {
+    "word": "would",
+    "start": 4.133,
+    "end": 4.296
+  },
+  {
+    "word": "come",
+    "start": 4.342,
+    "end": 4.563
+  },
+  {
+    "word": "back",
+    "start": 4.621,
+    "end": 4.899
+  },
+  {
+    "word": "when",
+    "start": 4.957,
+    "end": 5.097
+  },
+  {
+    "word": "he",
+    "start": 5.155,
+    "end": 5.213
+  },
+  {
+    "word": "forgot",
+    "start": 5.306,
+    "end": 5.654
+  },
+  {
+    "word": "again",
+    "start": 5.7,
+    "end": 6.072
+  },
+  {
+    "word": "--",
+    "start": 6.281,
+    "end": 6.374
+  },
+  {
+    "word": "when",
+    "start": 6.583,
+    "end": 6.78
+  },
+  {
+    "word": "the",
+    "start": 6.827,
+    "end": 6.931
+  },
+  {
+    "word": "\"I",
+    "start": 7.047,
+    "end": 7.21
+  },
+  {
+    "word": "can't\"",
+    "start": 7.326,
+    "end": 7.79
+  },
+  {
+    "word": "was",
+    "start": 7.814,
+    "end": 7.964
+  },
+  {
+    "word": "really",
+    "start": 8.034,
+    "end": 8.301
+  },
+  {
+    "word": "an",
+    "start": 8.348,
+    "end": 8.429
+  },
+  {
+    "word": "\"I",
+    "start": 8.487,
+    "end": 8.58
+  },
+  {
+    "word": "won't,\"",
+    "start": 8.696,
+    "end": 9.218
+  },
+  {
+    "word": "when",
+    "start": 9.3,
+    "end": 9.485
+  },
+  {
+    "word": "the",
+    "start": 9.52,
+    "end": 9.59
+  },
+  {
+    "word": "buzzy",
+    "start": 9.648,
+    "end": 9.985
+  },
+  {
+    "word": "feeling",
+    "start": 10.066,
+    "end": 10.437
+  },
+  {
+    "word": "built",
+    "start": 10.507,
+    "end": 10.797
+  },
+  {
+    "word": "and",
+    "start": 10.867,
+    "end": 10.971
+  },
+  {
+    "word": "he",
+    "start": 11.029,
+    "end": 11.099
+  },
+  {
+    "word": "let",
+    "start": 11.169,
+    "end": 11.32
+  },
+  {
+    "word": "it",
+    "start": 11.366,
+    "end": 11.424
+  },
+  {
+    "word": "go",
+    "start": 11.471,
+    "end": 11.598
+  },
+  {
+    "word": "sharp,",
+    "start": 11.68,
+    "end": 12.272
+  },
+  {
+    "word": "when",
+    "start": 12.423,
+    "end": 12.597
+  },
+  {
+    "word": "he",
+    "start": 12.655,
+    "end": 12.713
+  },
+  {
+    "word": "stood",
+    "start": 12.783,
+    "end": 13.061
+  },
+  {
+    "word": "in",
+    "start": 13.108,
+    "end": 13.166
+  },
+  {
+    "word": "front",
+    "start": 13.235,
+    "end": 13.456
+  },
+  {
+    "word": "of",
+    "start": 13.502,
+    "end": 13.56
+  },
+  {
+    "word": "what",
+    "start": 13.63,
+    "end": 13.793
+  },
+  {
+    "word": "he",
+    "start": 13.851,
+    "end": 13.92
+  },
+  {
+    "word": "already",
+    "start": 14.013,
+    "end": 14.466
+  },
+  {
+    "word": "knew",
+    "start": 14.536,
+    "end": 14.838
+  },
+  {
+    "word": "and",
+    "start": 14.954,
+    "end": 15.093
+  },
+  {
+    "word": "pretended",
+    "start": 15.151,
+    "end": 15.743
+  },
+  {
+    "word": "he",
+    "start": 15.813,
+    "end": 15.894
+  },
+  {
+    "word": "didn't",
+    "start": 15.975,
+    "end": 16.266
+  },
+  {
+    "word": "know",
+    "start": 16.312,
+    "end": 16.486
+  },
+  {
+    "word": "it.",
+    "start": 16.556,
+    "end": 16.869
+  },
+  {
+    "word": "That",
+    "start": 17.194,
+    "end": 17.496
+  },
+  {
+    "word": "was",
+    "start": 17.566,
+    "end": 17.705
+  },
+  {
+    "word": "the",
+    "start": 17.775,
+    "end": 17.845
+  },
+  {
+    "word": "deal.",
+    "start": 17.903,
+    "end": 18.367
+  },
+  {
+    "word": "But",
+    "start": 18.75,
+    "end": 18.936
+  },
+  {
+    "word": "tonight",
+    "start": 18.982,
+    "end": 19.47
+  },
+  {
+    "word": "it",
+    "start": 19.54,
+    "end": 19.667
+  },
+  {
+    "word": "was",
+    "start": 19.714,
+    "end": 19.83
+  },
+  {
+    "word": "small",
+    "start": 19.888,
+    "end": 20.225
+  },
+  {
+    "word": "enough",
+    "start": 20.283,
+    "end": 20.561
+  },
+  {
+    "word": "that",
+    "start": 20.619,
+    "end": 20.793
+  },
+  {
+    "word": "Azi",
+    "start": 20.875,
+    "end": 21.235
+  },
+  {
+    "word": "could",
+    "start": 21.281,
+    "end": 21.478
+  },
+  {
+    "word": "sleep.",
+    "start": 21.537,
+    "end": 22.059
+  }
+]

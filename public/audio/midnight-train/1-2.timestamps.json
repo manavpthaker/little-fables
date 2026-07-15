@@ -1,137 +1,162 @@
 [
   {
-    "word": "\"Welcome,",
-    "start": 0.058,
-    "end": 0.755
+    "word": "Truly",
+    "start": 0.151,
+    "end": 0.801
   },
   {
-    "word": "dreamers,\"",
-    "start": 0.789,
-    "end": 1.556
+    "word": "alive.",
+    "start": 0.917,
+    "end": 1.765
   },
   {
-    "word": "she",
-    "start": 1.73,
-    "end": 1.869
+    "word": "He",
+    "start": 2.577,
+    "end": 2.694
   },
   {
-    "word": "said,",
-    "start": 1.95,
-    "end": 2.403
+    "word": "could",
+    "start": 2.74,
+    "end": 2.902
+  },
+  {
+    "word": "hear",
+    "start": 2.961,
+    "end": 3.193
+  },
+  {
+    "word": "tiny",
+    "start": 3.286,
+    "end": 3.657
+  },
+  {
+    "word": "voices",
+    "start": 3.738,
+    "end": 4.203
+  },
+  {
+    "word": "now,",
+    "start": 4.284,
+    "end": 4.679
   },
   {
     "word": "and",
-    "start": 2.496,
-    "end": 2.67
-  },
-  {
-    "word": "her",
-    "start": 2.728,
-    "end": 2.81
-  },
-  {
-    "word": "voice",
-    "start": 2.879,
-    "end": 3.181
-  },
-  {
-    "word": "was",
-    "start": 3.216,
-    "end": 3.332
-  },
-  {
-    "word": "like",
-    "start": 3.402,
-    "end": 3.564
-  },
-  {
-    "word": "a",
-    "start": 3.599,
-    "end": 3.622
-  },
-  {
-    "word": "lullaby.",
-    "start": 3.68,
-    "end": 4.47
-  },
-  {
-    "word": "\"I",
-    "start": 4.911,
-    "end": 5.108
-  },
-  {
-    "word": "am",
-    "start": 5.224,
-    "end": 5.375
+    "start": 4.702,
+    "end": 4.83
   },
   {
     "word": "the",
-    "start": 5.445,
-    "end": 5.515
+    "start": 4.876,
+    "end": 4.946
   },
   {
-    "word": "Christmas",
-    "start": 5.561,
-    "end": 5.968
+    "word": "clop-clop",
+    "start": 5.004,
+    "end": 5.747
   },
   {
-    "word": "Queen,",
-    "start": 6.037,
-    "end": 6.513
+    "word": "of",
+    "start": 5.817,
+    "end": 5.875
+  },
+  {
+    "word": "a",
+    "start": 5.933,
+    "end": 5.956
+  },
+  {
+    "word": "horse-drawn",
+    "start": 6.049,
+    "end": 6.664
+  },
+  {
+    "word": "carriage",
+    "start": 6.734,
+    "end": 7.245
+  },
+  {
+    "word": "no",
+    "start": 7.314,
+    "end": 7.523
+  },
+  {
+    "word": "bigger",
+    "start": 7.616,
+    "end": 7.918
+  },
+  {
+    "word": "than",
+    "start": 7.988,
+    "end": 8.139
+  },
+  {
+    "word": "his",
+    "start": 8.208,
+    "end": 8.336
+  },
+  {
+    "word": "hand.",
+    "start": 8.406,
+    "end": 8.998
+  },
+  {
+    "word": "He",
+    "start": 9.601,
+    "end": 9.718
+  },
+  {
+    "word": "could",
+    "start": 9.776,
+    "end": 9.95
+  },
+  {
+    "word": "smell",
+    "start": 10.008,
+    "end": 10.333
+  },
+  {
+    "word": "gingerbread",
+    "start": 10.426,
+    "end": 11.088
   },
   {
     "word": "and",
-    "start": 6.757,
-    "end": 6.931
+    "start": 11.146,
+    "end": 11.262
   },
   {
-    "word": "this",
-    "start": 6.989,
-    "end": 7.14
+    "word": "pine",
+    "start": 11.343,
+    "end": 11.807
   },
   {
-    "word": "is",
-    "start": 7.198,
-    "end": 7.279
+    "word": "and",
+    "start": 11.854,
+    "end": 11.993
   },
   {
-    "word": "my",
-    "start": 7.349,
-    "end": 7.477
+    "word": "something",
+    "start": 12.086,
+    "end": 12.504
   },
   {
-    "word": "home.",
-    "start": 7.558,
-    "end": 7.941
+    "word": "sweet",
+    "start": 12.62,
+    "end": 12.992
   },
   {
-    "word": "Tonight,",
-    "start": 8.22,
-    "end": 8.742
+    "word": "he",
+    "start": 13.05,
+    "end": 13.119
   },
   {
-    "word": "it",
-    "start": 8.789,
-    "end": 8.928
+    "word": "couldn't",
+    "start": 13.177,
+    "end": 13.491
   },
   {
-    "word": "is",
-    "start": 8.975,
-    "end": 9.056
-  },
-  {
-    "word": "your",
-    "start": 9.114,
-    "end": 9.3
-  },
-  {
-    "word": "home",
-    "start": 9.369,
-    "end": 9.601
-  },
-  {
-    "word": "too.\"",
-    "start": 9.648,
-    "end": 10.124
+    "word": "name.",
+    "start": 13.549,
+    "end": 14.071
   }
 ]

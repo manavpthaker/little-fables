@@ -1,0 +1,62 @@
+[
+  {
+    "word": "The",
+    "start": 0.07,
+    "end": 0.163
+  },
+  {
+    "word": "moose's",
+    "start": 0.232,
+    "end": 0.743
+  },
+  {
+    "word": "voice",
+    "start": 0.836,
+    "end": 1.207
+  },
+  {
+    "word": "continued,",
+    "start": 1.254,
+    "end": 2.043
+  },
+  {
+    "word": "slow",
+    "start": 2.194,
+    "end": 2.635
+  },
+  {
+    "word": "and",
+    "start": 2.752,
+    "end": 2.902
+  },
+  {
+    "word": "patient,",
+    "start": 2.995,
+    "end": 3.646
+  },
+  {
+    "word": "in",
+    "start": 3.727,
+    "end": 3.889
+  },
+  {
+    "word": "no",
+    "start": 3.982,
+    "end": 4.214
+  },
+  {
+    "word": "hurry",
+    "start": 4.307,
+    "end": 4.69
+  },
+  {
+    "word": "at",
+    "start": 4.783,
+    "end": 4.934
+  },
+  {
+    "word": "all.",
+    "start": 4.992,
+    "end": 5.387
+  }
+]

@@ -1,317 +1,97 @@
 [
   {
-    "word": "\"But",
-    "start": 0.058,
-    "end": 0.302
+    "word": "Later,",
+    "start": 0.174,
+    "end": 0.673
   },
   {
-    "word": "what",
-    "start": 0.348,
-    "end": 0.499
+    "word": "when",
+    "start": 0.731,
+    "end": 0.917
   },
   {
-    "word": "if",
-    "start": 0.546,
-    "end": 0.615
+    "word": "the",
+    "start": 0.952,
+    "end": 1.022
   },
   {
-    "word": "I",
-    "start": 0.697,
-    "end": 0.72
+    "word": "sky",
+    "start": 1.068,
+    "end": 1.393
   },
   {
-    "word": "forget?\"",
-    "start": 0.836,
-    "end": 1.602
+    "word": "outside",
+    "start": 1.474,
+    "end": 2.009
   },
   {
-    "word": "Azi's",
-    "start": 2.299,
-    "end": 2.728
+    "word": "had",
+    "start": 2.055,
+    "end": 2.171
   },
   {
-    "word": "voice",
-    "start": 2.786,
+    "word": "turned",
+    "start": 2.218,
+    "end": 2.531
+  },
+  {
+    "word": "the",
+    "start": 2.566,
+    "end": 2.635
+  },
+  {
+    "word": "color",
+    "start": 2.682,
+    "end": 3.007
+  },
+  {
+    "word": "of",
+    "start": 3.065,
     "end": 3.123
   },
   {
-    "word": "was",
-    "start": 3.17,
-    "end": 3.297
+    "word": "honey",
+    "start": 3.204,
+    "end": 3.483
   },
   {
-    "word": "small",
-    "start": 3.355,
-    "end": 3.889
+    "word": "and",
+    "start": 3.553,
+    "end": 3.68
   },
   {
-    "word": "in",
-    "start": 4.005,
-    "end": 4.122
+    "word": "ash,",
+    "start": 3.796,
+    "end": 4.272
+  },
+  {
+    "word": "Azi",
+    "start": 4.551,
+    "end": 4.957
+  },
+  {
+    "word": "sat",
+    "start": 5.05,
+    "end": 5.306
+  },
+  {
+    "word": "by",
+    "start": 5.364,
+    "end": 5.468
   },
   {
     "word": "the",
-    "start": 4.168,
-    "end": 4.238
+    "start": 5.526,
+    "end": 5.596
   },
   {
-    "word": "darkening",
-    "start": 4.296,
-    "end": 4.795
+    "word": "farmhouse",
+    "start": 5.642,
+    "end": 6.177
   },
   {
-    "word": "room.",
-    "start": 4.865,
-    "end": 5.364
-  },
-  {
-    "word": "\"What",
-    "start": 5.875,
-    "end": 6.223
-  },
-  {
-    "word": "if",
-    "start": 6.269,
-    "end": 6.351
-  },
-  {
-    "word": "the",
-    "start": 6.42,
-    "end": 6.502
-  },
-  {
-    "word": "bigness",
-    "start": 6.571,
-    "end": 7.07
-  },
-  {
-    "word": "comes",
-    "start": 7.14,
-    "end": 7.419
-  },
-  {
-    "word": "too",
-    "start": 7.477,
-    "end": 7.651
-  },
-  {
-    "word": "fast",
-    "start": 7.732,
-    "end": 8.243
-  },
-  {
-    "word": "and",
-    "start": 8.301,
-    "end": 8.44
-  },
-  {
-    "word": "I",
-    "start": 8.522,
-    "end": 8.545
-  },
-  {
-    "word": "can't",
-    "start": 8.661,
-    "end": 8.905
-  },
-  {
-    "word": "remember",
-    "start": 8.963,
-    "end": 9.404
-  },
-  {
-    "word": "the",
-    "start": 9.462,
-    "end": 9.543
-  },
-  {
-    "word": "secret?",
-    "start": 9.613,
-    "end": 10.333
-  },
-  {
-    "word": "What",
-    "start": 10.716,
-    "end": 10.913
-  },
-  {
-    "word": "if",
-    "start": 10.96,
-    "end": 11.029
-  },
-  {
-    "word": "I",
-    "start": 11.111,
-    "end": 11.134
-  },
-  {
-    "word": "push",
-    "start": 11.285,
-    "end": 11.668
-  },
-  {
-    "word": "and",
-    "start": 11.749,
-    "end": 11.9
-  },
-  {
-    "word": "hit",
-    "start": 11.993,
-    "end": 12.33
-  },
-  {
-    "word": "and",
-    "start": 12.399,
-    "end": 12.55
-  },
-  {
-    "word": "say",
-    "start": 12.632,
-    "end": 12.829
-  },
-  {
-    "word": "mean",
-    "start": 12.922,
-    "end": 13.189
-  },
-  {
-    "word": "things",
-    "start": 13.27,
-    "end": 13.677
-  },
-  {
-    "word": "all",
-    "start": 13.746,
-    "end": 13.978
-  },
-  {
-    "word": "over",
-    "start": 14.048,
-    "end": 14.292
-  },
-  {
-    "word": "again?\"",
-    "start": 14.362,
-    "end": 14.988
-  },
-  {
-    "word": "The",
-    "start": 15.685,
-    "end": 15.813
-  },
-  {
-    "word": "moose's",
-    "start": 15.882,
-    "end": 16.335
-  },
-  {
-    "word": "eyes",
-    "start": 16.451,
-    "end": 16.893
-  },
-  {
-    "word": "seemed",
-    "start": 16.951,
-    "end": 17.252
-  },
-  {
-    "word": "to",
-    "start": 17.287,
-    "end": 17.357
-  },
-  {
-    "word": "smile",
-    "start": 17.438,
-    "end": 18.042
-  },
-  {
-    "word": "-",
-    "start": 18.158,
-    "end": 18.181
-  },
-  {
-    "word": "if",
-    "start": 18.355,
-    "end": 18.541
-  },
-  {
-    "word": "moose",
-    "start": 18.657,
-    "end": 18.982
-  },
-  {
-    "word": "eyes",
-    "start": 19.04,
-    "end": 19.319
-  },
-  {
-    "word": "could",
-    "start": 19.389,
-    "end": 19.598
-  },
-  {
-    "word": "smile.",
-    "start": 19.656,
-    "end": 20.236
-  },
-  {
-    "word": "There",
-    "start": 20.561,
-    "end": 20.782
-  },
-  {
-    "word": "was",
-    "start": 20.817,
-    "end": 20.956
-  },
-  {
-    "word": "warmth",
-    "start": 21.072,
-    "end": 21.502
-  },
-  {
-    "word": "there,",
-    "start": 21.583,
-    "end": 22.047
-  },
-  {
-    "word": "and",
-    "start": 22.105,
-    "end": 22.291
-  },
-  {
-    "word": "patience,",
-    "start": 22.372,
-    "end": 23.139
-  },
-  {
-    "word": "and",
-    "start": 23.266,
-    "end": 23.417
-  },
-  {
-    "word": "something",
-    "start": 23.499,
-    "end": 23.916
-  },
-  {
-    "word": "that",
-    "start": 23.975,
-    "end": 24.125
-  },
-  {
-    "word": "looked",
-    "start": 24.183,
-    "end": 24.427
-  },
-  {
-    "word": "like",
-    "start": 24.485,
-    "end": 24.694
-  },
-  {
-    "word": "understanding.",
-    "start": 24.764,
-    "end": 25.704
+    "word": "window.",
+    "start": 6.223,
+    "end": 6.722
   }
 ]

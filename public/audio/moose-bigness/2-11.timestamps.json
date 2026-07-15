@@ -1,262 +1,92 @@
 [
   {
-    "word": "\"Thank",
+    "word": "He",
     "start": 0.058,
-    "end": 0.453
+    "end": 0.139
   },
   {
-    "word": "you",
-    "start": 0.522,
-    "end": 0.65
-  },
-  {
-    "word": "for",
-    "start": 0.743,
-    "end": 0.882
-  },
-  {
-    "word": "telling",
-    "start": 0.94,
-    "end": 1.324
-  },
-  {
-    "word": "us,",
-    "start": 1.393,
-    "end": 1.637
-  },
-  {
-    "word": "*beta*,\"",
-    "start": 1.788,
-    "end": 2.728
-  },
-  {
-    "word": "Papa",
-    "start": 2.972,
-    "end": 3.309
-  },
-  {
-    "word": "said.",
-    "start": 3.379,
-    "end": 3.924
-  },
-  {
-    "word": "Mama",
-    "start": 4.528,
-    "end": 4.876
-  },
-  {
-    "word": "kissed",
-    "start": 4.946,
-    "end": 5.283
-  },
-  {
-    "word": "the",
-    "start": 5.317,
-    "end": 5.387
-  },
-  {
-    "word": "top",
-    "start": 5.445,
-    "end": 5.712
-  },
-  {
-    "word": "of",
-    "start": 5.782,
-    "end": 5.84
-  },
-  {
-    "word": "Azi's",
-    "start": 5.909,
-    "end": 6.327
-  },
-  {
-    "word": "head",
-    "start": 6.385,
-    "end": 6.734
-  },
-  {
-    "word": "-",
-    "start": 6.85,
-    "end": 6.873
-  },
-  {
-    "word": "the",
-    "start": 7.117,
-    "end": 7.233
-  },
-  {
-    "word": "same",
-    "start": 7.314,
-    "end": 7.686
-  },
-  {
-    "word": "head",
-    "start": 7.755,
-    "end": 8.011
-  },
-  {
-    "word": "that",
-    "start": 8.069,
-    "end": 8.22
-  },
-  {
-    "word": "had",
-    "start": 8.266,
-    "end": 8.382
-  },
-  {
-    "word": "been",
-    "start": 8.429,
-    "end": 8.591
-  },
-  {
-    "word": "full",
-    "start": 8.673,
-    "end": 8.986
-  },
-  {
-    "word": "of",
-    "start": 9.056,
-    "end": 9.114
-  },
-  {
-    "word": "sharp",
-    "start": 9.207,
-    "end": 9.532
-  },
-  {
-    "word": "words,",
-    "start": 9.613,
-    "end": 10.298
-  },
-  {
-    "word": "now",
-    "start": 10.472,
-    "end": 10.67
-  },
-  {
-    "word": "quiet",
-    "start": 10.751,
-    "end": 11.343
-  },
-  {
-    "word": "and",
-    "start": 11.424,
-    "end": 11.54
-  },
-  {
-    "word": "calm.",
-    "start": 11.633,
-    "end": 12.307
-  },
-  {
-    "word": "\"We",
-    "start": 12.69,
-    "end": 13.003
-  },
-  {
-    "word": "know",
-    "start": 13.073,
-    "end": 13.363
-  },
-  {
-    "word": "your",
-    "start": 13.479,
-    "end": 13.7
-  },
-  {
-    "word": "heart,",
-    "start": 13.816,
-    "end": 14.362
-  },
-  {
-    "word": "*mi",
-    "start": 14.385,
-    "end": 14.698
-  },
-  {
-    "word": "amor*,\"",
-    "start": 14.768,
-    "end": 15.615
-  },
-  {
-    "word": "she",
-    "start": 15.79,
-    "end": 15.94
-  },
-  {
-    "word": "said.",
-    "start": 16.022,
-    "end": 16.625
-  },
-  {
-    "word": "\"Your",
-    "start": 16.834,
-    "end": 17.252
-  },
-  {
-    "word": "heart",
-    "start": 17.369,
-    "end": 17.67
-  },
-  {
-    "word": "is",
-    "start": 17.728,
-    "end": 17.821
-  },
-  {
-    "word": "so",
-    "start": 17.891,
-    "end": 18.112
-  },
-  {
-    "word": "kind.",
-    "start": 18.204,
-    "end": 18.855
-  },
-  {
-    "word": "Even",
-    "start": 19.064,
-    "end": 19.423
-  },
-  {
-    "word": "when",
-    "start": 19.482,
-    "end": 19.632
-  },
-  {
-    "word": "the",
-    "start": 19.679,
-    "end": 19.749
-  },
-  {
-    "word": "bigness",
-    "start": 19.83,
-    "end": 20.306
-  },
-  {
-    "word": "makes",
-    "start": 20.376,
-    "end": 20.619
+    "word": "said",
+    "start": 0.197,
+    "end": 0.383
   },
   {
     "word": "it",
-    "start": 20.677,
-    "end": 20.759
+    "start": 0.43,
+    "end": 0.499
   },
   {
-    "word": "hard",
-    "start": 20.828,
-    "end": 21.119
+    "word": "quiet",
+    "start": 0.557,
+    "end": 0.987
+  },
+  {
+    "word": "and",
+    "start": 1.033,
+    "end": 1.138
+  },
+  {
+    "word": "certain,",
+    "start": 1.207,
+    "end": 1.776
+  },
+  {
+    "word": "the",
+    "start": 2.02,
+    "end": 2.125
+  },
+  {
+    "word": "way",
+    "start": 2.171,
+    "end": 2.287
+  },
+  {
+    "word": "you",
+    "start": 2.345,
+    "end": 2.438
+  },
+  {
+    "word": "say",
+    "start": 2.519,
+    "end": 2.694
+  },
+  {
+    "word": "things",
+    "start": 2.763,
+    "end": 3.053
+  },
+  {
+    "word": "that",
+    "start": 3.111,
+    "end": 3.239
+  },
+  {
+    "word": "feel",
+    "start": 3.297,
+    "end": 3.553
+  },
+  {
+    "word": "too",
+    "start": 3.634,
+    "end": 3.808
+  },
+  {
+    "word": "true",
+    "start": 3.878,
+    "end": 4.191
   },
   {
     "word": "to",
-    "start": 21.177,
-    "end": 21.246
+    "start": 4.238,
+    "end": 4.307
   },
   {
-    "word": "show.\"",
-    "start": 21.339,
-    "end": 21.943
+    "word": "argue",
+    "start": 4.389,
+    "end": 4.737
+  },
+  {
+    "word": "with.",
+    "start": 4.76,
+    "end": 5.085
   }
 ]

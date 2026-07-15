@@ -1,0 +1,67 @@
+[
+  {
+    "word": "(Take",
+    "start": 0.081,
+    "end": 0.383
+  },
+  {
+    "word": "a",
+    "start": 0.418,
+    "end": 0.453
+  },
+  {
+    "word": "slow",
+    "start": 0.511,
+    "end": 0.755
+  },
+  {
+    "word": "breath",
+    "start": 0.824,
+    "end": 1.08
+  },
+  {
+    "word": "here.",
+    "start": 1.138,
+    "end": 1.44
+  },
+  {
+    "word": "In",
+    "start": 1.556,
+    "end": 1.741
+  },
+  {
+    "word": "through",
+    "start": 1.8,
+    "end": 2.067
+  },
+  {
+    "word": "your",
+    "start": 2.113,
+    "end": 2.229
+  },
+  {
+    "word": "nose...",
+    "start": 2.299,
+    "end": 2.74
+  },
+  {
+    "word": "out",
+    "start": 2.81,
+    "end": 3.019
+  },
+  {
+    "word": "through",
+    "start": 3.053,
+    "end": 3.297
+  },
+  {
+    "word": "your",
+    "start": 3.332,
+    "end": 3.46
+  },
+  {
+    "word": "mouth...)",
+    "start": 3.506,
+    "end": 3.924
+  }
+]

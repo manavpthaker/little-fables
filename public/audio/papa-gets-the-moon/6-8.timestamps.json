@@ -1,0 +1,52 @@
+[
+  {
+    "word": "He",
+    "start": 0.128,
+    "end": 0.255
+  },
+  {
+    "word": "smiled--that",
+    "start": 0.325,
+    "end": 1.533
+  },
+  {
+    "word": "sleepy,",
+    "start": 1.625,
+    "end": 2.229
+  },
+  {
+    "word": "satisfied",
+    "start": 2.287,
+    "end": 3.007
+  },
+  {
+    "word": "smile",
+    "start": 3.065,
+    "end": 3.518
+  },
+  {
+    "word": "that",
+    "start": 3.553,
+    "end": 3.692
+  },
+  {
+    "word": "means",
+    "start": 3.75,
+    "end": 4.04
+  },
+  {
+    "word": "everything",
+    "start": 4.122,
+    "end": 4.574
+  },
+  {
+    "word": "is",
+    "start": 4.632,
+    "end": 4.714
+  },
+  {
+    "word": "right.",
+    "start": 4.795,
+    "end": 5.259
+  }
+]

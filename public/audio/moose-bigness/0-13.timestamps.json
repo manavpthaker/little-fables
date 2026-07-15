@@ -1,197 +1,87 @@
 [
   {
-    "word": "He",
-    "start": 0.058,
-    "end": 0.139
-  },
-  {
-    "word": "didn't",
-    "start": 0.197,
-    "end": 0.43
-  },
-  {
-    "word": "even",
-    "start": 0.476,
-    "end": 0.662
-  },
-  {
-    "word": "know",
-    "start": 0.72,
-    "end": 0.94
-  },
-  {
-    "word": "why",
-    "start": 1.057,
-    "end": 1.358
-  },
-  {
-    "word": "he",
-    "start": 1.451,
-    "end": 1.521
-  },
-  {
-    "word": "said",
-    "start": 1.602,
-    "end": 1.846
-  },
-  {
-    "word": "it.",
-    "start": 1.904,
-    "end": 2.183
-  },
-  {
-    "word": "He",
-    "start": 2.334,
-    "end": 2.461
-  },
-  {
-    "word": "just",
-    "start": 2.531,
-    "end": 2.775
-  },
-  {
-    "word": "needed",
-    "start": 2.844,
-    "end": 3.193
+    "word": "Not",
+    "start": 0.035,
+    "end": 0.255
   },
   {
     "word": "the",
-    "start": 3.251,
-    "end": 3.344
+    "start": 0.29,
+    "end": 0.36
   },
   {
-    "word": "biggest,",
-    "start": 3.437,
-    "end": 3.924
+    "word": "good",
+    "start": 0.406,
+    "end": 0.569
   },
   {
-    "word": "sharpest",
-    "start": 4.017,
-    "end": 4.609
+    "word": "kind",
+    "start": 0.615,
+    "end": 0.801
   },
   {
-    "word": "words",
-    "start": 4.69,
-    "end": 5.132
+    "word": "of",
+    "start": 0.848,
+    "end": 0.906
   },
   {
-    "word": "he",
-    "start": 5.201,
-    "end": 5.283
-  },
-  {
-    "word": "could",
-    "start": 5.341,
-    "end": 5.503
-  },
-  {
-    "word": "find.",
-    "start": 5.561,
-    "end": 6.165
-  },
-  {
-    "word": "Words",
-    "start": 6.339,
-    "end": 6.734
-  },
-  {
-    "word": "that",
-    "start": 6.792,
-    "end": 6.931
-  },
-  {
-    "word": "could",
-    "start": 6.966,
-    "end": 7.117
-  },
-  {
-    "word": "match",
-    "start": 7.175,
-    "end": 7.477
-  },
-  {
-    "word": "the",
-    "start": 7.546,
-    "end": 7.651
-  },
-  {
-    "word": "bigness",
-    "start": 7.721,
-    "end": 8.243
-  },
-  {
-    "word": "inside",
-    "start": 8.324,
-    "end": 8.8
-  },
-  {
-    "word": "him.",
-    "start": 8.835,
-    "end": 9.195
-  },
-  {
-    "word": "Words",
-    "start": 9.369,
-    "end": 9.787
-  },
-  {
-    "word": "that",
-    "start": 9.845,
-    "end": 9.985
-  },
-  {
-    "word": "could",
-    "start": 10.019,
-    "end": 10.182
-  },
-  {
-    "word": "hurt",
-    "start": 10.24,
-    "end": 10.588
-  },
-  {
-    "word": "as",
-    "start": 10.658,
-    "end": 10.82
-  },
-  {
-    "word": "much",
-    "start": 10.913,
-    "end": 11.134
-  },
-  {
-    "word": "as",
-    "start": 11.18,
-    "end": 11.285
-  },
-  {
-    "word": "everything",
-    "start": 11.401,
-    "end": 11.958
-  },
-  {
-    "word": "felt",
-    "start": 12.074,
-    "end": 12.469
+    "word": "bigness,",
+    "start": 0.964,
+    "end": 1.44
   },
   {
     "word": "like",
-    "start": 12.585,
-    "end": 12.806
+    "start": 1.474,
+    "end": 1.672
   },
   {
-    "word": "it",
-    "start": 12.841,
-    "end": 12.91
+    "word": "when",
+    "start": 1.707,
+    "end": 1.846
   },
   {
-    "word": "was",
-    "start": 12.968,
-    "end": 13.108
+    "word": "your",
+    "start": 1.881,
+    "end": 2.009
   },
   {
-    "word": "hurting.",
-    "start": 13.189,
-    "end": 13.758
+    "word": "heart",
+    "start": 2.067,
+    "end": 2.276
+  },
+  {
+    "word": "swells",
+    "start": 2.345,
+    "end": 2.775
+  },
+  {
+    "word": "because",
+    "start": 2.844,
+    "end": 3.135
+  },
+  {
+    "word": "you",
+    "start": 3.158,
+    "end": 3.239
+  },
+  {
+    "word": "love",
+    "start": 3.32,
+    "end": 3.495
+  },
+  {
+    "word": "someone",
+    "start": 3.529,
+    "end": 3.866
+  },
+  {
+    "word": "so",
+    "start": 3.913,
+    "end": 4.04
+  },
+  {
+    "word": "much.",
+    "start": 4.11,
+    "end": 4.458
   }
 ]

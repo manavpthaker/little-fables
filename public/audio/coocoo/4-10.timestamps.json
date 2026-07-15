@@ -1,0 +1,162 @@
+[
+  {
+    "word": "A",
+    "start": 0.035,
+    "end": 0.07
+  },
+  {
+    "word": "long",
+    "start": 0.186,
+    "end": 0.511
+  },
+  {
+    "word": "quiet",
+    "start": 0.627,
+    "end": 1.138
+  },
+  {
+    "word": "stretched",
+    "start": 1.254,
+    "end": 1.683
+  },
+  {
+    "word": "through",
+    "start": 1.741,
+    "end": 1.985
+  },
+  {
+    "word": "the",
+    "start": 2.009,
+    "end": 2.078
+  },
+  {
+    "word": "room.",
+    "start": 2.136,
+    "end": 2.554
+  },
+  {
+    "word": "Azi",
+    "start": 2.647,
+    "end": 3.053
+  },
+  {
+    "word": "sat",
+    "start": 3.135,
+    "end": 3.402
+  },
+  {
+    "word": "with",
+    "start": 3.46,
+    "end": 3.634
+  },
+  {
+    "word": "it.",
+    "start": 3.692,
+    "end": 3.947
+  },
+  {
+    "word": "Not",
+    "start": 4.156,
+    "end": 4.377
+  },
+  {
+    "word": "comfortable,",
+    "start": 4.447,
+    "end": 5.12
+  },
+  {
+    "word": "not",
+    "start": 5.294,
+    "end": 5.515
+  },
+  {
+    "word": "uncomfortable.",
+    "start": 5.608,
+    "end": 6.606
+  },
+  {
+    "word": "Just",
+    "start": 6.78,
+    "end": 7.14
+  },
+  {
+    "word": "true.",
+    "start": 7.21,
+    "end": 7.709
+  },
+  {
+    "word": "The",
+    "start": 8.034,
+    "end": 8.162
+  },
+  {
+    "word": "way",
+    "start": 8.22,
+    "end": 8.371
+  },
+  {
+    "word": "things",
+    "start": 8.44,
+    "end": 8.696
+  },
+  {
+    "word": "are",
+    "start": 8.742,
+    "end": 8.87
+  },
+  {
+    "word": "true",
+    "start": 8.905,
+    "end": 9.137
+  },
+  {
+    "word": "at",
+    "start": 9.172,
+    "end": 9.253
+  },
+  {
+    "word": "midnight,",
+    "start": 9.323,
+    "end": 9.857
+  },
+  {
+    "word": "when",
+    "start": 9.903,
+    "end": 10.054
+  },
+  {
+    "word": "there's",
+    "start": 10.089,
+    "end": 10.298
+  },
+  {
+    "word": "no",
+    "start": 10.344,
+    "end": 10.449
+  },
+  {
+    "word": "noise",
+    "start": 10.565,
+    "end": 10.902
+  },
+  {
+    "word": "left",
+    "start": 10.948,
+    "end": 11.157
+  },
+  {
+    "word": "to",
+    "start": 11.192,
+    "end": 11.25
+  },
+  {
+    "word": "hide",
+    "start": 11.308,
+    "end": 11.529
+  },
+  {
+    "word": "behind.",
+    "start": 11.564,
+    "end": 12.144
+  }
+]

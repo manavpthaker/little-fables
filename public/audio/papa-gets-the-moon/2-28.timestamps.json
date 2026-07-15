@@ -1,0 +1,42 @@
+[
+  {
+    "word": "(Another",
+    "start": 0.07,
+    "end": 0.522
+  },
+  {
+    "word": "slow",
+    "start": 0.592,
+    "end": 0.859
+  },
+  {
+    "word": "breath...",
+    "start": 0.929,
+    "end": 1.405
+  },
+  {
+    "word": "let",
+    "start": 1.649,
+    "end": 1.823
+  },
+  {
+    "word": "your",
+    "start": 1.869,
+    "end": 2.009
+  },
+  {
+    "word": "hands",
+    "start": 2.067,
+    "end": 2.368
+  },
+  {
+    "word": "go",
+    "start": 2.426,
+    "end": 2.589
+  },
+  {
+    "word": "soft...)",
+    "start": 2.682,
+    "end": 3.251
+  }
+]

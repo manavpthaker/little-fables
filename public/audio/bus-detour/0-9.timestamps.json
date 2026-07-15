@@ -1,292 +1,82 @@
 [
   {
-    "word": "\"You",
-    "start": 0.081,
-    "end": 0.267
-  },
-  {
-    "word": "know",
-    "start": 0.325,
-    "end": 0.476
-  },
-  {
-    "word": "what?\"",
-    "start": 0.522,
-    "end": 1.091
-  },
-  {
     "word": "Azi",
-    "start": 1.207,
-    "end": 1.579
+    "start": 0.023,
+    "end": 0.383
   },
   {
-    "word": "said,",
-    "start": 1.66,
-    "end": 2.113
-  },
-  {
-    "word": "his",
-    "start": 2.264,
-    "end": 2.426
-  },
-  {
-    "word": "three-chord",
-    "start": 2.485,
-    "end": 3.111
-  },
-  {
-    "word": "pattern",
-    "start": 3.158,
-    "end": 3.541
-  },
-  {
-    "word": "shifting",
-    "start": 3.611,
-    "end": 4.04
-  },
-  {
-    "word": "to",
-    "start": 4.11,
-    "end": 4.203
-  },
-  {
-    "word": "something",
-    "start": 4.284,
-    "end": 4.656
-  },
-  {
-    "word": "gentler.",
-    "start": 4.737,
-    "end": 5.422
-  },
-  {
-    "word": "\"This",
-    "start": 5.805,
-    "end": 6.153
-  },
-  {
-    "word": "reminds",
-    "start": 6.235,
-    "end": 6.676
-  },
-  {
-    "word": "me",
-    "start": 6.734,
-    "end": 6.896
-  },
-  {
-    "word": "of",
-    "start": 6.954,
-    "end": 7.012
-  },
-  {
-    "word": "when",
-    "start": 7.07,
-    "end": 7.21
-  },
-  {
-    "word": "Lito",
-    "start": 7.268,
-    "end": 7.558
-  },
-  {
-    "word": "calls",
-    "start": 7.639,
-    "end": 7.872
-  },
-  {
-    "word": "from",
-    "start": 7.918,
-    "end": 8.069
-  },
-  {
-    "word": "Colombia",
-    "start": 8.139,
-    "end": 8.696
+    "word": "grinned",
+    "start": 0.464,
+    "end": 0.975
   },
   {
     "word": "and",
-    "start": 8.777,
-    "end": 8.94
+    "start": 1.057,
+    "end": 1.231
+  },
+  {
+    "word": "played",
+    "start": 1.312,
+    "end": 1.695
   },
   {
     "word": "the",
-    "start": 8.986,
-    "end": 9.056
+    "start": 1.73,
+    "end": 1.811
   },
   {
-    "word": "internet",
-    "start": 9.125,
-    "end": 9.52
+    "word": "closing",
+    "start": 1.869,
+    "end": 2.345
   },
   {
-    "word": "gets",
-    "start": 9.578,
-    "end": 9.776
+    "word": "chord.",
+    "start": 2.426,
+    "end": 2.984
   },
   {
-    "word": "fuzzy.",
-    "start": 9.822,
-    "end": 10.449
+    "word": "\"¡Todos",
+    "start": 3.309,
+    "end": 4.017
   },
   {
-    "word": "We",
-    "start": 10.774,
-    "end": 10.902
+    "word": "listos!\"",
+    "start": 4.133,
+    "end": 5.039
   },
   {
-    "word": "have",
-    "start": 10.983,
-    "end": 11.146
+    "word": "he",
+    "start": 5.155,
+    "end": 5.248
   },
   {
-    "word": "to",
-    "start": 11.169,
-    "end": 11.227
+    "word": "called",
+    "start": 5.317,
+    "end": 5.631
   },
   {
-    "word": "find",
-    "start": 11.297,
-    "end": 11.505
+    "word": "out.",
+    "start": 5.689,
+    "end": 6.037
   },
   {
-    "word": "different",
-    "start": 11.575,
-    "end": 11.889
+    "word": "\"Everyone",
+    "start": 6.107,
+    "end": 6.908
   },
   {
-    "word": "ways",
-    "start": 11.923,
-    "end": 12.132
+    "word": "ready",
+    "start": 6.966,
+    "end": 7.221
   },
   {
-    "word": "to",
-    "start": 12.179,
-    "end": 12.237
+    "word": "for",
+    "start": 7.291,
+    "end": 7.43
   },
   {
-    "word": "connect.\"",
-    "start": 12.307,
-    "end": 12.98
-  },
-  {
-    "word": "\"Like",
-    "start": 13.584,
-    "end": 14.025
-  },
-  {
-    "word": "when",
-    "start": 14.06,
-    "end": 14.234
-  },
-  {
-    "word": "your",
-    "start": 14.28,
-    "end": 14.431
-  },
-  {
-    "word": "Mama",
-    "start": 14.501,
-    "end": 14.907
-  },
-  {
-    "word": "sings",
-    "start": 15.023,
-    "end": 15.371
-  },
-  {
-    "word": "in",
-    "start": 15.429,
-    "end": 15.499
-  },
-  {
-    "word": "español",
-    "start": 15.557,
-    "end": 16.161
-  },
-  {
-    "word": "and",
-    "start": 16.289,
-    "end": 16.463
-  },
-  {
-    "word": "I",
-    "start": 16.579,
-    "end": 16.672
-  },
-  {
-    "word": "don't",
-    "start": 16.788,
-    "end": 16.997
-  },
-  {
-    "word": "know",
-    "start": 17.043,
-    "end": 17.206
-  },
-  {
-    "word": "the",
-    "start": 17.275,
-    "end": 17.345
-  },
-  {
-    "word": "words,",
-    "start": 17.403,
-    "end": 17.879
-  },
-  {
-    "word": "but",
-    "start": 17.914,
-    "end": 18.065
-  },
-  {
-    "word": "I",
-    "start": 18.111,
-    "end": 18.135
-  },
-  {
-    "word": "can",
-    "start": 18.193,
-    "end": 18.332
-  },
-  {
-    "word": "still",
-    "start": 18.39,
-    "end": 18.634
-  },
-  {
-    "word": "clap",
-    "start": 18.715,
-    "end": 19.005
-  },
-  {
-    "word": "along,\"",
-    "start": 19.075,
-    "end": 19.597
-  },
-  {
-    "word": "Clappy",
-    "start": 19.806,
-    "end": 20.213
-  },
-  {
-    "word": "added,",
-    "start": 20.294,
-    "end": 20.758
-  },
-  {
-    "word": "bouncing",
-    "start": 20.875,
-    "end": 21.327
-  },
-  {
-    "word": "a",
-    "start": 21.385,
-    "end": 21.409
-  },
-  {
-    "word": "little.",
-    "start": 21.455,
-    "end": 21.815
+    "word": "camp!\"",
+    "start": 7.5,
+    "end": 8.15
   }
 ]

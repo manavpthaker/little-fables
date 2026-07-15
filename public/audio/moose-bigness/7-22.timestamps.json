@@ -1,0 +1,27 @@
+[
+  {
+    "word": "Something",
+    "start": 0.035,
+    "end": 0.406
+  },
+  {
+    "word": "that",
+    "start": 0.453,
+    "end": 0.58
+  },
+  {
+    "word": "looked",
+    "start": 0.662,
+    "end": 0.929
+  },
+  {
+    "word": "like",
+    "start": 0.998,
+    "end": 1.219
+  },
+  {
+    "word": "wonder.",
+    "start": 1.289,
+    "end": 1.765
+  }
+]

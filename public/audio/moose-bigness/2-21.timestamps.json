@@ -1,57 +1,92 @@
 [
   {
-    "word": "Slow",
-    "start": 0.035,
-    "end": 0.476
-  },
-  {
-    "word": "and",
-    "start": 0.627,
-    "end": 0.824
-  },
-  {
-    "word": "patient.",
-    "start": 0.917,
-    "end": 1.579
-  },
-  {
-    "word": "Big",
-    "start": 1.753,
-    "end": 2.171
-  },
-  {
-    "word": "and",
-    "start": 2.264,
-    "end": 2.496
-  },
-  {
-    "word": "gentle.",
-    "start": 2.612,
-    "end": 3.251
-  },
-  {
     "word": "And",
-    "start": 3.425,
-    "end": 3.634
+    "start": 0.035,
+    "end": 0.163
   },
   {
-    "word": "was",
-    "start": 3.715,
-    "end": 3.878
+    "word": "its",
+    "start": 0.232,
+    "end": 0.372
   },
   {
-    "word": "glad.",
-    "start": 3.947,
+    "word": "eyes",
+    "start": 0.453,
+    "end": 0.917
+  },
+  {
+    "word": "-",
+    "start": 1.091,
+    "end": 1.115
+  },
+  {
+    "word": "even",
+    "start": 1.265,
+    "end": 1.591
+  },
+  {
+    "word": "from",
+    "start": 1.66,
+    "end": 1.858
+  },
+  {
+    "word": "far",
+    "start": 1.974,
+    "end": 2.241
+  },
+  {
+    "word": "away,",
+    "start": 2.299,
+    "end": 2.821
+  },
+  {
+    "word": "even",
+    "start": 3.03,
+    "end": 3.309
+  },
+  {
+    "word": "through",
+    "start": 3.355,
+    "end": 3.599
+  },
+  {
+    "word": "the",
+    "start": 3.622,
+    "end": 3.692
+  },
+  {
+    "word": "window",
+    "start": 3.738,
+    "end": 4.063
+  },
+  {
+    "word": "glass",
+    "start": 4.122,
     "end": 4.551
   },
   {
-    "word": "*The",
-    "start": 5.062,
-    "end": 5.259
+    "word": "-",
+    "start": 4.702,
+    "end": 4.748
   },
   {
-    "word": "End*",
-    "start": 5.352,
-    "end": 5.84
+    "word": "its",
+    "start": 4.923,
+    "end": 5.132
+  },
+  {
+    "word": "eyes",
+    "start": 5.213,
+    "end": 5.642
+  },
+  {
+    "word": "looked",
+    "start": 5.724,
+    "end": 6.002
+  },
+  {
+    "word": "ancient.",
+    "start": 6.072,
+    "end": 6.815
   }
 ]

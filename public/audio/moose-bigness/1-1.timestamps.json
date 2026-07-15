@@ -1,232 +1,252 @@
 [
   {
-    "word": ">",
-    "start": 0.058,
-    "end": 0.116
-  },
-  {
-    "word": "*You",
-    "start": 0.151,
-    "end": 0.348
-  },
-  {
-    "word": "think",
-    "start": 0.476,
-    "end": 0.789
-  },
-  {
-    "word": "you",
-    "start": 0.871,
-    "end": 0.975
-  },
-  {
-    "word": "are",
-    "start": 1.045,
-    "end": 1.184
-  },
-  {
-    "word": "not",
-    "start": 1.254,
-    "end": 1.509
-  },
-  {
-    "word": "kind.*",
-    "start": 1.591,
-    "end": 2.508
-  },
-  {
-    "word": "Azi's",
-    "start": 3.32,
-    "end": 3.843
-  },
-  {
-    "word": "eyes",
-    "start": 3.924,
-    "end": 4.319
-  },
-  {
-    "word": "went",
-    "start": 4.412,
-    "end": 4.644
-  },
-  {
-    "word": "wide.",
-    "start": 4.714,
-    "end": 5.329
-  },
-  {
-    "word": "He",
-    "start": 5.712,
-    "end": 5.828
-  },
-  {
-    "word": "pressed",
-    "start": 5.921,
-    "end": 6.269
-  },
-  {
-    "word": "his",
-    "start": 6.316,
-    "end": 6.444
-  },
-  {
-    "word": "hand",
-    "start": 6.525,
-    "end": 6.885
-  },
-  {
-    "word": "flat",
-    "start": 7.001,
-    "end": 7.349
-  },
-  {
-    "word": "against",
-    "start": 7.396,
-    "end": 7.721
-  },
-  {
-    "word": "the",
-    "start": 7.767,
-    "end": 7.837
-  },
-  {
-    "word": "glass,",
-    "start": 7.883,
-    "end": 8.522
-  },
-  {
-    "word": "as",
-    "start": 8.591,
-    "end": 8.754
-  },
-  {
-    "word": "if",
-    "start": 8.824,
-    "end": 8.916
-  },
-  {
-    "word": "he",
-    "start": 8.975,
-    "end": 9.033
-  },
-  {
-    "word": "could",
-    "start": 9.079,
-    "end": 9.253
-  },
-  {
-    "word": "touch",
-    "start": 9.288,
-    "end": 9.601
-  },
-  {
-    "word": "the",
-    "start": 9.683,
-    "end": 9.764
-  },
-  {
-    "word": "moose",
-    "start": 9.845,
-    "end": 10.194
-  },
-  {
-    "word": "through",
-    "start": 10.228,
-    "end": 10.484
-  },
-  {
-    "word": "the",
-    "start": 10.519,
-    "end": 10.588
-  },
-  {
-    "word": "window.",
-    "start": 10.635,
-    "end": 11.32
-  },
-  {
-    "word": ">",
-    "start": 12.434,
-    "end": 12.458
-  },
-  {
-    "word": "*I",
-    "start": 12.574,
-    "end": 12.783
-  },
-  {
-    "word": "watched",
-    "start": 12.934,
-    "end": 13.351
-  },
-  {
-    "word": "you",
-    "start": 13.398,
-    "end": 13.502
-  },
-  {
-    "word": "today.*",
-    "start": 13.572,
-    "end": 14.362
-  },
-  {
-    "word": "The",
-    "start": 14.965,
-    "end": 15.081
-  },
-  {
-    "word": "moose's",
-    "start": 15.151,
-    "end": 15.557
+    "word": "Her",
+    "start": 0.07,
+    "end": 0.174
   },
   {
     "word": "voice",
-    "start": 15.627,
-    "end": 15.975
+    "start": 0.232,
+    "end": 0.499
   },
   {
-    "word": "continued,",
-    "start": 16.022,
-    "end": 16.881
+    "word": "was",
+    "start": 0.546,
+    "end": 0.673
   },
   {
-    "word": "slow",
-    "start": 17.032,
-    "end": 17.508
+    "word": "soft,",
+    "start": 0.743,
+    "end": 1.324
+  },
+  {
+    "word": "the",
+    "start": 1.474,
+    "end": 1.579
+  },
+  {
+    "word": "way",
+    "start": 1.637,
+    "end": 1.776
+  },
+  {
+    "word": "it",
+    "start": 1.823,
+    "end": 1.892
+  },
+  {
+    "word": "always",
+    "start": 1.939,
+    "end": 2.241
+  },
+  {
+    "word": "was.",
+    "start": 2.299,
+    "end": 2.856
+  },
+  {
+    "word": "The",
+    "start": 3.297,
+    "end": 3.425
+  },
+  {
+    "word": "way",
+    "start": 3.483,
+    "end": 3.657
+  },
+  {
+    "word": "it",
+    "start": 3.704,
+    "end": 3.773
+  },
+  {
+    "word": "had",
+    "start": 3.82,
+    "end": 3.901
+  },
+  {
+    "word": "been",
+    "start": 3.947,
+    "end": 4.11
+  },
+  {
+    "word": "soft",
+    "start": 4.191,
+    "end": 4.609
+  },
+  {
+    "word": "when",
+    "start": 4.656,
+    "end": 4.807
+  },
+  {
+    "word": "she",
+    "start": 4.841,
+    "end": 4.946
+  },
+  {
+    "word": "sang",
+    "start": 5.016,
+    "end": 5.294
+  },
+  {
+    "word": "him",
+    "start": 5.352,
+    "end": 5.457
+  },
+  {
+    "word": "to",
+    "start": 5.515,
+    "end": 5.584
+  },
+  {
+    "word": "sleep",
+    "start": 5.666,
+    "end": 5.979
+  },
+  {
+    "word": "as",
+    "start": 6.037,
+    "end": 6.118
+  },
+  {
+    "word": "a",
+    "start": 6.165,
+    "end": 6.2
+  },
+  {
+    "word": "baby,",
+    "start": 6.258,
+    "end": 6.931
   },
   {
     "word": "and",
-    "start": 17.624,
-    "end": 17.81
+    "start": 7.21,
+    "end": 7.372
   },
   {
-    "word": "patient,",
-    "start": 17.879,
-    "end": 18.611
+    "word": "soft",
+    "start": 7.465,
+    "end": 7.872
+  },
+  {
+    "word": "when",
+    "start": 7.918,
+    "end": 8.069
+  },
+  {
+    "word": "she",
+    "start": 8.115,
+    "end": 8.22
+  },
+  {
+    "word": "kissed",
+    "start": 8.29,
+    "end": 8.626
+  },
+  {
+    "word": "his",
+    "start": 8.684,
+    "end": 8.789
+  },
+  {
+    "word": "scraped",
+    "start": 8.847,
+    "end": 9.3
+  },
+  {
+    "word": "knees,",
+    "start": 9.381,
+    "end": 10.043
+  },
+  {
+    "word": "and",
+    "start": 10.194,
+    "end": 10.356
+  },
+  {
+    "word": "soft",
+    "start": 10.437,
+    "end": 10.809
+  },
+  {
+    "word": "when",
+    "start": 10.855,
+    "end": 10.995
+  },
+  {
+    "word": "she",
+    "start": 11.041,
+    "end": 11.146
+  },
+  {
+    "word": "whispered",
+    "start": 11.215,
+    "end": 11.68
+  },
+  {
+    "word": "\"I",
+    "start": 11.854,
+    "end": 12.051
+  },
+  {
+    "word": "love",
+    "start": 12.202,
+    "end": 12.457
+  },
+  {
+    "word": "you\"",
+    "start": 12.516,
+    "end": 12.922
   },
   {
     "word": "in",
-    "start": 18.727,
-    "end": 18.889
+    "start": 13.096,
+    "end": 13.212
   },
   {
-    "word": "no",
-    "start": 18.971,
-    "end": 19.145
+    "word": "the",
+    "start": 13.259,
+    "end": 13.328
   },
   {
-    "word": "hurry",
-    "start": 19.226,
-    "end": 19.563
+    "word": "dark",
+    "start": 13.386,
+    "end": 13.677
   },
   {
-    "word": "at",
-    "start": 19.621,
-    "end": 19.702
+    "word": "of",
+    "start": 13.746,
+    "end": 13.793
   },
   {
-    "word": "all.",
-    "start": 19.76,
-    "end": 20.317
+    "word": "his",
+    "start": 13.851,
+    "end": 13.944
+  },
+  {
+    "word": "bedroom",
+    "start": 14.013,
+    "end": 14.431
+  },
+  {
+    "word": "back",
+    "start": 14.501,
+    "end": 14.698
+  },
+  {
+    "word": "home",
+    "start": 14.756,
+    "end": 14.965
+  },
+  {
+    "word": "in",
+    "start": 15,
+    "end": 15.07
+  },
+  {
+    "word": "Rahway.",
+    "start": 15.139,
+    "end": 15.801
   }
 ]

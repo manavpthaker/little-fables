@@ -1,0 +1,32 @@
+[
+  {
+    "word": "And",
+    "start": 0.035,
+    "end": 0.139
+  },
+  {
+    "word": "the",
+    "start": 0.186,
+    "end": 0.255
+  },
+  {
+    "word": "forest,",
+    "start": 0.337,
+    "end": 0.813
+  },
+  {
+    "word": "very",
+    "start": 0.859,
+    "end": 1.103
+  },
+  {
+    "word": "softly,",
+    "start": 1.184,
+    "end": 1.741
+  },
+  {
+    "word": "whispered...",
+    "start": 1.765,
+    "end": 2.368
+  }
+]

@@ -1,272 +1,82 @@
 [
   {
-    "word": "\"No",
+    "word": "\"Pandies,",
     "start": 0.035,
-    "end": 0.372
+    "end": 0.813
   },
   {
-    "word": "problem!\"",
-    "start": 0.453,
-    "end": 1.115
+    "word": "present",
+    "start": 1.022,
+    "end": 1.521
   },
   {
-    "word": "Jujy",
-    "start": 1.265,
-    "end": 1.602
+    "word": "and",
+    "start": 1.602,
+    "end": 1.765
   },
   {
-    "word": "announced",
-    "start": 1.649,
-    "end": 2.055
+    "word": "accounted",
+    "start": 1.811,
+    "end": 2.276
   },
   {
-    "word": "confidently.",
-    "start": 2.125,
-    "end": 2.972
+    "word": "for,\"",
+    "start": 2.334,
+    "end": 2.798
   },
   {
-    "word": "\"We'll",
-    "start": 3.297,
-    "end": 3.657
-  },
-  {
-    "word": "just...",
-    "start": 3.715,
-    "end": 4.261
-  },
-  {
-    "word": "um...\"",
-    "start": 4.377,
-    "end": 5.074
-  },
-  {
-    "word": "He",
-    "start": 5.584,
-    "end": 5.724
-  },
-  {
-    "word": "paused,",
-    "start": 5.805,
-    "end": 6.351
-  },
-  {
-    "word": "forgetting",
-    "start": 6.432,
-    "end": 6.873
-  },
-  {
-    "word": "his",
-    "start": 6.943,
-    "end": 7.047
-  },
-  {
-    "word": "plan",
-    "start": 7.117,
-    "end": 7.419
-  },
-  {
-    "word": "halfway",
-    "start": 7.512,
-    "end": 7.86
-  },
-  {
-    "word": "through.",
-    "start": 7.918,
-    "end": 8.44
-  },
-  {
-    "word": "\"Take",
-    "start": 8.882,
-    "end": 9.265
+    "word": "rumbled",
+    "start": 3.123,
+    "end": 3.576
   },
   {
     "word": "the",
-    "start": 9.3,
-    "end": 9.369
+    "start": 3.622,
+    "end": 3.704
   },
   {
-    "word": "mystery",
-    "start": 9.427,
-    "end": 9.787
+    "word": "wise",
+    "start": 3.762,
+    "end": 4.063
   },
   {
-    "word": "route?\"",
-    "start": 9.845,
-    "end": 10.286
+    "word": "panda",
+    "start": 4.122,
+    "end": 4.563
   },
   {
-    "word": "suggested",
-    "start": 10.437,
-    "end": 10.983
-  },
-  {
-    "word": "Dory",
-    "start": 11.041,
-    "end": 11.355
-  },
-  {
-    "word": "cheerfully.",
-    "start": 11.413,
-    "end": 12.179
-  },
-  {
-    "word": "\"There's",
-    "start": 12.69,
-    "end": 13.177
-  },
-  {
-    "word": "no",
-    "start": 13.259,
-    "end": 13.433
-  },
-  {
-    "word": "such",
-    "start": 13.514,
-    "end": 13.769
-  },
-  {
-    "word": "thing",
-    "start": 13.827,
-    "end": 14.036
-  },
-  {
-    "word": "as",
-    "start": 14.094,
-    "end": 14.176
-  },
-  {
-    "word": "a",
-    "start": 14.234,
-    "end": 14.269
-  },
-  {
-    "word": "mystery",
-    "start": 14.338,
-    "end": 14.768
-  },
-  {
-    "word": "route,\"",
-    "start": 14.838,
-    "end": 15.372
-  },
-  {
-    "word": "Azu",
-    "start": 15.615,
-    "end": 16.022
-  },
-  {
-    "word": "said,",
-    "start": 16.103,
-    "end": 16.567
+    "word": "from",
+    "start": 4.621,
+    "end": 4.783
   },
   {
     "word": "his",
-    "start": 16.649,
-    "end": 16.788
+    "start": 4.841,
+    "end": 4.946
   },
   {
-    "word": "voice",
-    "start": 16.858,
-    "end": 17.113
+    "word": "driver's",
+    "start": 4.992,
+    "end": 5.457
   },
   {
-    "word": "getting",
-    "start": 17.148,
-    "end": 17.392
+    "word": "position",
+    "start": 5.503,
+    "end": 5.979
   },
   {
-    "word": "smaller.",
-    "start": 17.462,
-    "end": 18.112
+    "word": "near",
+    "start": 6.049,
+    "end": 6.235
   },
   {
-    "word": "He",
-    "start": 18.321,
-    "end": 18.449
+    "word": "the",
+    "start": 6.304,
+    "end": 6.374
   },
   {
-    "word": "strummed",
-    "start": 18.507,
-    "end": 18.901
-  },
-  {
-    "word": "his",
-    "start": 18.936,
-    "end": 19.041
-  },
-  {
-    "word": "guitar",
-    "start": 19.099,
-    "end": 19.517
-  },
-  {
-    "word": "nervously:",
-    "start": 19.598,
-    "end": 20.399
-  },
-  {
-    "word": "C-G-Am,",
-    "start": 20.608,
-    "end": 21.734
-  },
-  {
-    "word": "C-G-Am.",
-    "start": 21.85,
-    "end": 23.209
-  },
-  {
-    "word": "Clappy",
-    "start": 23.65,
-    "end": 24.033
-  },
-  {
-    "word": "clapped",
-    "start": 24.091,
-    "end": 24.451
-  },
-  {
-    "word": "once,",
-    "start": 24.521,
-    "end": 25.043
-  },
-  {
-    "word": "then",
-    "start": 25.136,
-    "end": 25.333
-  },
-  {
-    "word": "stopped",
-    "start": 25.403,
-    "end": 25.821
-  },
-  {
-    "word": "when",
-    "start": 25.856,
-    "end": 25.995
-  },
-  {
-    "word": "he",
-    "start": 26.042,
-    "end": 26.1
-  },
-  {
-    "word": "realized",
-    "start": 26.169,
-    "end": 26.634
-  },
-  {
-    "word": "everyone",
-    "start": 26.692,
-    "end": 27.063
-  },
-  {
-    "word": "was",
-    "start": 27.086,
-    "end": 27.203
-  },
-  {
-    "word": "worried.",
-    "start": 27.261,
-    "end": 27.771
+    "word": "door.",
+    "start": 6.42,
+    "end": 6.803
   }
 ]

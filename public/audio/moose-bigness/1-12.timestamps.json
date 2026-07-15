@@ -1,262 +1,32 @@
 [
   {
-    "word": ">",
-    "start": 0.081,
-    "end": 0.116
+    "word": "\"You're",
+    "start": 0.07,
+    "end": 0.36
   },
   {
-    "word": "*We",
-    "start": 0.139,
-    "end": 0.29
+    "word": "going",
+    "start": 0.383,
+    "end": 0.557
   },
   {
-    "word": "have",
-    "start": 0.348,
-    "end": 0.522
+    "word": "to",
+    "start": 0.604,
+    "end": 0.662
   },
   {
-    "word": "more",
-    "start": 0.592,
-    "end": 0.824
-  },
-  {
-    "word": "power",
-    "start": 0.882,
+    "word": "JAIL!\"",
+    "start": 0.731,
     "end": 1.207
   },
   {
-    "word": "than",
-    "start": 1.265,
-    "end": 1.416
+    "word": "Azi",
+    "start": 1.242,
+    "end": 1.533
   },
   {
-    "word": "most,",
-    "start": 1.498,
-    "end": 1.858
-  },
-  {
-    "word": "Azi.",
-    "start": 1.892,
-    "end": 2.473
-  },
-  {
-    "word": "We",
-    "start": 2.717,
-    "end": 2.856
-  },
-  {
-    "word": "can",
-    "start": 2.902,
-    "end": 3.053
-  },
-  {
-    "word": "hurt",
-    "start": 3.111,
-    "end": 3.413
-  },
-  {
-    "word": "more",
-    "start": 3.506,
-    "end": 3.692
-  },
-  {
-    "word": "than",
-    "start": 3.727,
-    "end": 3.878
-  },
-  {
-    "word": "most.",
-    "start": 3.947,
-    "end": 4.516
-  },
-  {
-    "word": "But",
-    "start": 4.841,
-    "end": 5.004
-  },
-  {
-    "word": "that",
-    "start": 5.039,
-    "end": 5.224
-  },
-  {
-    "word": "same",
-    "start": 5.341,
-    "end": 5.642
-  },
-  {
-    "word": "power",
-    "start": 5.689,
-    "end": 6.06
-  },
-  {
-    "word": "-",
-    "start": 6.304,
-    "end": 6.327
-  },
-  {
-    "word": "that",
-    "start": 6.536,
-    "end": 6.734
-  },
-  {
-    "word": "same",
-    "start": 6.827,
-    "end": 7.152
-  },
-  {
-    "word": "bigness",
-    "start": 7.21,
-    "end": 7.755
-  },
-  {
-    "word": "-",
-    "start": 7.93,
-    "end": 7.999
-  },
-  {
-    "word": "can",
-    "start": 8.15,
-    "end": 8.313
-  },
-  {
-    "word": "also",
-    "start": 8.382,
-    "end": 8.707
-  },
-  {
-    "word": "protect.",
-    "start": 8.789,
-    "end": 9.555
-  },
-  {
-    "word": "Can",
-    "start": 9.938,
-    "end": 10.112
-  },
-  {
-    "word": "also",
-    "start": 10.17,
-    "end": 10.495
-  },
-  {
-    "word": "hold.",
-    "start": 10.588,
-    "end": 11.122
-  },
-  {
-    "word": "Can",
-    "start": 11.366,
-    "end": 11.529
-  },
-  {
-    "word": "also",
-    "start": 11.587,
-    "end": 11.9
-  },
-  {
-    "word": "comfort.*",
-    "start": 11.993,
-    "end": 12.759
-  },
-  {
-    "word": "The",
-    "start": 13.27,
-    "end": 13.386
-  },
-  {
-    "word": "moose",
-    "start": 13.468,
-    "end": 13.793
-  },
-  {
-    "word": "took",
-    "start": 13.839,
-    "end": 14.071
-  },
-  {
-    "word": "one",
-    "start": 14.153,
-    "end": 14.443
-  },
-  {
-    "word": "slow",
-    "start": 14.512,
-    "end": 14.872
-  },
-  {
-    "word": "step",
-    "start": 14.954,
-    "end": 15.244
-  },
-  {
-    "word": "forward.",
-    "start": 15.337,
-    "end": 16.045
-  },
-  {
-    "word": "Just",
-    "start": 16.324,
-    "end": 16.614
-  },
-  {
-    "word": "one.",
-    "start": 16.707,
-    "end": 17.241
-  },
-  {
-    "word": "But",
-    "start": 17.682,
-    "end": 17.856
-  },
-  {
-    "word": "somehow",
-    "start": 17.914,
-    "end": 18.448
-  },
-  {
-    "word": "it",
-    "start": 18.541,
-    "end": 18.646
-  },
-  {
-    "word": "felt",
-    "start": 18.704,
-    "end": 18.924
-  },
-  {
-    "word": "like",
-    "start": 18.982,
-    "end": 19.156
-  },
-  {
-    "word": "the",
-    "start": 19.191,
-    "end": 19.273
-  },
-  {
-    "word": "whole",
-    "start": 19.331,
-    "end": 19.609
-  },
-  {
-    "word": "forest",
-    "start": 19.667,
-    "end": 20.155
-  },
-  {
-    "word": "shifted",
-    "start": 20.271,
-    "end": 20.724
-  },
-  {
-    "word": "with",
-    "start": 20.77,
-    "end": 20.933
-  },
-  {
-    "word": "it.",
-    "start": 20.991,
-    "end": 21.339
+    "word": "yelled.",
+    "start": 1.591,
+    "end": 2.009
   }
 ]

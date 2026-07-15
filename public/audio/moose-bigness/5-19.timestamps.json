@@ -1,0 +1,67 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.43
+  },
+  {
+    "word": "breathed",
+    "start": 0.499,
+    "end": 0.94
+  },
+  {
+    "word": "out.",
+    "start": 1.022,
+    "end": 1.347
+  },
+  {
+    "word": "He",
+    "start": 1.498,
+    "end": 1.614
+  },
+  {
+    "word": "counted",
+    "start": 1.683,
+    "end": 2.101
+  },
+  {
+    "word": "to",
+    "start": 2.148,
+    "end": 2.206
+  },
+  {
+    "word": "six.",
+    "start": 2.287,
+    "end": 2.844
+  },
+  {
+    "word": "One...",
+    "start": 3.053,
+    "end": 3.622
+  },
+  {
+    "word": "two...",
+    "start": 3.796,
+    "end": 4.331
+  },
+  {
+    "word": "three...",
+    "start": 4.656,
+    "end": 5.166
+  },
+  {
+    "word": "four...",
+    "start": 5.41,
+    "end": 6.002
+  },
+  {
+    "word": "five...",
+    "start": 6.385,
+    "end": 7.129
+  },
+  {
+    "word": "six.",
+    "start": 7.639,
+    "end": 8.336
+  }
+]

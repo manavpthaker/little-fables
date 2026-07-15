@@ -1,0 +1,32 @@
+[
+  {
+    "word": "You",
+    "start": 0.046,
+    "end": 0.174
+  },
+  {
+    "word": "already",
+    "start": 0.255,
+    "end": 0.534
+  },
+  {
+    "word": "knew",
+    "start": 0.569,
+    "end": 0.708
+  },
+  {
+    "word": "how",
+    "start": 0.766,
+    "end": 0.906
+  },
+  {
+    "word": "all",
+    "start": 0.975,
+    "end": 1.126
+  },
+  {
+    "word": "along.",
+    "start": 1.184,
+    "end": 1.637
+  }
+]

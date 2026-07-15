@@ -1,272 +1,177 @@
 [
   {
-    "word": "Standing",
-    "start": 0.128,
-    "end": 0.65
+    "word": "Its",
+    "start": 0.035,
+    "end": 0.197
   },
   {
-    "word": "at",
-    "start": 0.708,
-    "end": 0.778
+    "word": "antlers",
+    "start": 0.255,
+    "end": 0.731
   },
   {
-    "word": "the",
-    "start": 0.813,
-    "end": 0.882
+    "word": "spread",
+    "start": 0.778,
+    "end": 1.115
   },
   {
-    "word": "edge",
-    "start": 0.964,
-    "end": 1.138
+    "word": "wide",
+    "start": 1.184,
+    "end": 1.567
+  },
+  {
+    "word": "like",
+    "start": 1.614,
+    "end": 1.811
+  },
+  {
+    "word": "branches",
+    "start": 1.858,
+    "end": 2.473
+  },
+  {
+    "word": "-",
+    "start": 2.601,
+    "end": 2.624
+  },
+  {
+    "word": "like",
+    "start": 2.868,
+    "end": 3.088
+  },
+  {
+    "word": "it",
+    "start": 3.123,
+    "end": 3.193
+  },
+  {
+    "word": "was",
+    "start": 3.239,
+    "end": 3.367
+  },
+  {
+    "word": "carrying",
+    "start": 3.425,
+    "end": 3.913
+  },
+  {
+    "word": "a",
+    "start": 3.982,
+    "end": 4.017
+  },
+  {
+    "word": "whole",
+    "start": 4.087,
+    "end": 4.377
+  },
+  {
+    "word": "tree",
+    "start": 4.423,
+    "end": 4.807
+  },
+  {
+    "word": "on",
+    "start": 4.876,
+    "end": 4.992
+  },
+  {
+    "word": "its",
+    "start": 5.05,
+    "end": 5.19
+  },
+  {
+    "word": "head,",
+    "start": 5.259,
+    "end": 5.642
+  },
+  {
+    "word": "a",
+    "start": 5.759,
+    "end": 5.84
+  },
+  {
+    "word": "tree",
+    "start": 5.921,
+    "end": 6.269
+  },
+  {
+    "word": "made",
+    "start": 6.339,
+    "end": 6.56
   },
   {
     "word": "of",
-    "start": 1.161,
-    "end": 1.219
+    "start": 6.594,
+    "end": 6.653
   },
   {
-    "word": "the",
-    "start": 1.265,
-    "end": 1.335
+    "word": "bone",
+    "start": 6.734,
+    "end": 7.105
   },
   {
-    "word": "woods,",
-    "start": 1.382,
-    "end": 1.904
+    "word": "and",
+    "start": 7.152,
+    "end": 7.256
   },
   {
-    "word": "patient",
-    "start": 2.02,
-    "end": 2.589
+    "word": "wisdom",
+    "start": 7.338,
+    "end": 7.802
   },
   {
-    "word": "as",
-    "start": 2.659,
-    "end": 2.763
+    "word": "and",
+    "start": 7.895,
+    "end": 8.046
   },
   {
-    "word": "the",
-    "start": 2.833,
-    "end": 2.902
+    "word": "years",
+    "start": 8.139,
+    "end": 8.591
   },
   {
-    "word": "trees,",
-    "start": 2.949,
-    "end": 3.576
+    "word": "and",
+    "start": 8.661,
+    "end": 8.812
   },
   {
-    "word": "gentle",
-    "start": 3.657,
-    "end": 4.18
+    "word": "years",
+    "start": 8.893,
+    "end": 9.253
   },
   {
-    "word": "as",
-    "start": 4.226,
-    "end": 4.319
+    "word": "of",
+    "start": 9.311,
+    "end": 9.381
   },
   {
-    "word": "the",
-    "start": 4.389,
-    "end": 4.458
+    "word": "standing",
+    "start": 9.451,
+    "end": 9.961
   },
   {
-    "word": "wind,",
-    "start": 4.516,
-    "end": 5.004
-  },
-  {
-    "word": "ancient",
-    "start": 5.074,
-    "end": 5.608
-  },
-  {
-    "word": "as",
-    "start": 5.666,
-    "end": 5.77
-  },
-  {
-    "word": "the",
-    "start": 5.828,
-    "end": 5.898
-  },
-  {
-    "word": "mountains",
-    "start": 5.968,
-    "end": 6.444
-  },
-  {
-    "word": "themselves.",
-    "start": 6.513,
-    "end": 7.361
-  },
-  {
-    "word": "Waiting.",
-    "start": 7.605,
-    "end": 8.266
-  },
-  {
-    "word": "Always",
-    "start": 8.44,
-    "end": 9.056
-  },
-  {
-    "word": "waiting.",
-    "start": 9.125,
-    "end": 9.718
-  },
-  {
-    "word": "For",
-    "start": 9.927,
+    "word": "at",
+    "start": 10.019,
     "end": 10.101
   },
   {
-    "word": "all",
-    "start": 10.17,
-    "end": 10.391
+    "word": "the",
+    "start": 10.136,
+    "end": 10.217
   },
   {
-    "word": "the",
-    "start": 10.449,
+    "word": "edge",
+    "start": 10.298,
     "end": 10.519
   },
   {
-    "word": "children",
-    "start": 10.577,
-    "end": 11.041
+    "word": "of",
+    "start": 10.553,
+    "end": 10.623
   },
   {
-    "word": "who",
-    "start": 11.099,
-    "end": 11.215
-  },
-  {
-    "word": "were",
-    "start": 11.25,
-    "end": 11.389
-  },
-  {
-    "word": "learning",
-    "start": 11.436,
-    "end": 11.819
-  },
-  {
-    "word": "-",
-    "start": 11.993,
-    "end": 12.016
-  },
-  {
-    "word": "one",
-    "start": 12.132,
-    "end": 12.446
-  },
-  {
-    "word": "slow",
-    "start": 12.527,
-    "end": 12.899
-  },
-  {
-    "word": "breath",
-    "start": 12.992,
-    "end": 13.305
-  },
-  {
-    "word": "at",
-    "start": 13.351,
-    "end": 13.433
-  },
-  {
-    "word": "a",
-    "start": 13.479,
-    "end": 13.514
-  },
-  {
-    "word": "time,",
-    "start": 13.572,
-    "end": 14.118
-  },
-  {
-    "word": "one",
-    "start": 14.292,
-    "end": 14.582
-  },
-  {
-    "word": "planted",
-    "start": 14.652,
-    "end": 15.139
-  },
-  {
-    "word": "foot",
-    "start": 15.221,
-    "end": 15.488
-  },
-  {
-    "word": "at",
-    "start": 15.546,
-    "end": 15.627
-  },
-  {
-    "word": "a",
-    "start": 15.673,
-    "end": 15.708
-  },
-  {
-    "word": "time,",
-    "start": 15.766,
-    "end": 16.289
-  },
-  {
-    "word": "one",
-    "start": 16.533,
-    "end": 16.834
-  },
-  {
-    "word": "hand-on-heart",
-    "start": 16.916,
-    "end": 17.81
-  },
-  {
-    "word": "at",
-    "start": 17.868,
-    "end": 17.949
-  },
-  {
-    "word": "a",
-    "start": 17.995,
-    "end": 18.03
-  },
-  {
-    "word": "time",
-    "start": 18.088,
-    "end": 18.518
-  },
-  {
-    "word": "-",
-    "start": 18.611,
-    "end": 18.646
-  },
-  {
-    "word": "to",
-    "start": 18.82,
-    "end": 18.936
-  },
-  {
-    "word": "be",
-    "start": 19.006,
-    "end": 19.122
-  },
-  {
-    "word": "gentle",
-    "start": 19.18,
-    "end": 19.598
-  },
-  {
-    "word": "giants",
-    "start": 19.656,
-    "end": 20.167
-  },
-  {
-    "word": "too.",
-    "start": 20.248,
-    "end": 20.712
+    "word": "things.",
+    "start": 10.693,
+    "end": 11.169
   }
 ]

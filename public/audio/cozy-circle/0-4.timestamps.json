@@ -1,307 +1,57 @@
 [
   {
-    "word": "Pandies",
-    "start": 0.151,
-    "end": 0.685
+    "word": "\"I'll",
+    "start": 0.081,
+    "end": 0.337
   },
   {
-    "word": "spoke",
-    "start": 0.743,
-    "end": 1.149
+    "word": "be",
+    "start": 0.383,
+    "end": 0.464
   },
   {
-    "word": "in",
-    "start": 1.196,
-    "end": 1.265
+    "word": "right",
+    "start": 0.534,
+    "end": 0.743
   },
   {
-    "word": "his",
-    "start": 1.347,
-    "end": 1.463
+    "word": "outside,\"",
+    "start": 0.789,
+    "end": 1.498
   },
   {
-    "word": "slow,",
-    "start": 1.521,
-    "end": 1.985
+    "word": "Mama",
+    "start": 1.614,
+    "end": 1.869
   },
   {
-    "word": "steady",
-    "start": 2.02,
-    "end": 2.357
-  },
-  {
-    "word": "voice:",
-    "start": 2.426,
-    "end": 2.972
-  },
-  {
-    "word": "\"First,",
-    "start": 3.669,
-    "end": 4.377
-  },
-  {
-    "word": "your",
-    "start": 4.458,
-    "end": 4.621
-  },
-  {
-    "word": "blanket",
-    "start": 4.679,
-    "end": 5.085
-  },
-  {
-    "word": "goes",
-    "start": 5.143,
-    "end": 5.375
-  },
-  {
-    "word": "here--\"",
-    "start": 5.445,
-    "end": 5.944
-  },
-  {
-    "word": "He",
-    "start": 6.188,
-    "end": 6.304
-  },
-  {
-    "word": "tucked",
-    "start": 6.362,
-    "end": 6.641
-  },
-  {
-    "word": "it",
-    "start": 6.676,
-    "end": 6.745
-  },
-  {
-    "word": "around",
-    "start": 6.78,
-    "end": 7.094
-  },
-  {
-    "word": "Azi's",
-    "start": 7.187,
-    "end": 7.558
-  },
-  {
-    "word": "feet.",
-    "start": 7.605,
-    "end": 8.034
-  },
-  {
-    "word": "\"Then",
-    "start": 8.243,
-    "end": 8.533
-  },
-  {
-    "word": "your",
-    "start": 8.58,
-    "end": 8.707
-  },
-  {
-    "word": "friends",
-    "start": 8.754,
-    "end": 9.044
-  },
-  {
-    "word": "go",
-    "start": 9.091,
-    "end": 9.218
-  },
-  {
-    "word": "here--\"",
-    "start": 9.311,
-    "end": 9.729
-  },
-  {
-    "word": "Jujy,",
-    "start": 9.88,
-    "end": 10.461
-  },
-  {
-    "word": "Dory,",
-    "start": 10.519,
-    "end": 11.088
-  },
-  {
-    "word": "Slothie,",
-    "start": 11.157,
-    "end": 11.831
-  },
-  {
-    "word": "all",
-    "start": 11.889,
-    "end": 12.144
-  },
-  {
-    "word": "in",
-    "start": 12.202,
-    "end": 12.26
-  },
-  {
-    "word": "their",
-    "start": 12.307,
-    "end": 12.457
-  },
-  {
-    "word": "spots.",
-    "start": 12.504,
-    "end": 13.166
-  },
-  {
-    "word": "\"Then",
-    "start": 13.444,
-    "end": 13.711
-  },
-  {
-    "word": "your",
-    "start": 13.758,
-    "end": 13.897
-  },
-  {
-    "word": "breathing",
-    "start": 13.944,
-    "end": 14.315
-  },
-  {
-    "word": "goes",
-    "start": 14.373,
-    "end": 14.582
-  },
-  {
-    "word": "like",
-    "start": 14.64,
-    "end": 14.826
-  },
-  {
-    "word": "this--\"",
-    "start": 14.872,
-    "end": 15.406
-  },
-  {
-    "word": "Slow",
-    "start": 15.685,
-    "end": 16.057
-  },
-  {
-    "word": "in.",
-    "start": 16.149,
-    "end": 16.509
-  },
-  {
-    "word": "Slower",
-    "start": 16.834,
-    "end": 17.31
-  },
-  {
-    "word": "out.",
-    "start": 17.38,
-    "end": 17.844
+    "word": "said.",
+    "start": 1.927,
+    "end": 2.299
   },
   {
     "word": "\"And",
-    "start": 18.227,
-    "end": 18.506
+    "start": 2.508,
+    "end": 2.705
   },
   {
-    "word": "that",
-    "start": 18.576,
-    "end": 18.796
+    "word": "you",
+    "start": 2.786,
+    "end": 2.879
   },
   {
-    "word": "makes",
-    "start": 18.866,
-    "end": 19.098
+    "word": "won't",
+    "start": 2.937,
+    "end": 3.146
   },
   {
-    "word": "a",
-    "start": 19.144,
-    "end": 19.179
+    "word": "be",
+    "start": 3.204,
+    "end": 3.309
   },
   {
-    "word": "circle.",
-    "start": 19.249,
-    "end": 19.818
-  },
-  {
-    "word": "A",
-    "start": 20.027,
-    "end": 20.12
-  },
-  {
-    "word": "Cozy",
-    "start": 20.213,
-    "end": 20.665
-  },
-  {
-    "word": "Circle.",
-    "start": 20.735,
-    "end": 21.292
-  },
-  {
-    "word": "Nothing",
-    "start": 21.536,
-    "end": 21.908
-  },
-  {
-    "word": "gets",
-    "start": 21.966,
-    "end": 22.175
-  },
-  {
-    "word": "in",
-    "start": 22.233,
-    "end": 22.36
-  },
-  {
-    "word": "that",
-    "start": 22.43,
-    "end": 22.581
-  },
-  {
-    "word": "doesn't",
-    "start": 22.639,
-    "end": 22.918
-  },
-  {
-    "word": "belong.",
-    "start": 22.964,
-    "end": 23.556
-  },
-  {
-    "word": "Nothing",
-    "start": 23.73,
-    "end": 24.113
-  },
-  {
-    "word": "gets",
-    "start": 24.16,
-    "end": 24.357
-  },
-  {
-    "word": "out",
-    "start": 24.404,
-    "end": 24.555
-  },
-  {
-    "word": "that",
-    "start": 24.601,
-    "end": 24.729
-  },
-  {
-    "word": "wants",
-    "start": 24.787,
-    "end": 25.007
-  },
-  {
-    "word": "to",
-    "start": 25.054,
-    "end": 25.124
-  },
-  {
-    "word": "stay.\"",
-    "start": 25.193,
-    "end": 25.774
+    "word": "alone.\"",
+    "start": 3.367,
+    "end": 3.959
   }
 ]

@@ -1,0 +1,82 @@
+[
+  {
+    "word": "The",
+    "start": 0.151,
+    "end": 0.279
+  },
+  {
+    "word": "train",
+    "start": 0.348,
+    "end": 0.708
+  },
+  {
+    "word": "climbed",
+    "start": 0.801,
+    "end": 1.277
+  },
+  {
+    "word": "one",
+    "start": 1.347,
+    "end": 1.602
+  },
+  {
+    "word": "final",
+    "start": 1.683,
+    "end": 2.067
+  },
+  {
+    "word": "mountain,",
+    "start": 2.136,
+    "end": 2.647
+  },
+  {
+    "word": "and",
+    "start": 2.694,
+    "end": 2.844
+  },
+  {
+    "word": "there--at",
+    "start": 2.914,
+    "end": 3.599
+  },
+  {
+    "word": "the",
+    "start": 3.646,
+    "end": 3.715
+  },
+  {
+    "word": "very",
+    "start": 3.773,
+    "end": 4.029
+  },
+  {
+    "word": "top--stood",
+    "start": 4.087,
+    "end": 4.957
+  },
+  {
+    "word": "a",
+    "start": 4.992,
+    "end": 5.016
+  },
+  {
+    "word": "castle",
+    "start": 5.074,
+    "end": 5.573
+  },
+  {
+    "word": "made",
+    "start": 5.642,
+    "end": 5.933
+  },
+  {
+    "word": "of",
+    "start": 5.956,
+    "end": 6.014
+  },
+  {
+    "word": "candlelight.",
+    "start": 6.084,
+    "end": 6.873
+  }
+]

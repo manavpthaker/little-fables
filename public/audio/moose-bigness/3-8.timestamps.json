@@ -1,0 +1,102 @@
+[
+  {
+    "word": "I",
+    "start": 0.046,
+    "end": 0.081
+  },
+  {
+    "word": "saw",
+    "start": 0.197,
+    "end": 0.406
+  },
+  {
+    "word": "you",
+    "start": 0.476,
+    "end": 0.569
+  },
+  {
+    "word": "share",
+    "start": 0.639,
+    "end": 0.859
+  },
+  {
+    "word": "your",
+    "start": 0.894,
+    "end": 1.01
+  },
+  {
+    "word": "pinecones",
+    "start": 1.068,
+    "end": 1.776
+  },
+  {
+    "word": "with",
+    "start": 1.823,
+    "end": 1.962
+  },
+  {
+    "word": "the",
+    "start": 1.997,
+    "end": 2.067
+  },
+  {
+    "word": "squirrel",
+    "start": 2.113,
+    "end": 2.554
+  },
+  {
+    "word": "who",
+    "start": 2.601,
+    "end": 2.717
+  },
+  {
+    "word": "came",
+    "start": 2.775,
+    "end": 2.995
+  },
+  {
+    "word": "too",
+    "start": 3.042,
+    "end": 3.17
+  },
+  {
+    "word": "close.",
+    "start": 3.228,
+    "end": 3.855
+  },
+  {
+    "word": "You",
+    "start": 4.667,
+    "end": 4.83
+  },
+  {
+    "word": "didn't",
+    "start": 4.888,
+    "end": 5.178
+  },
+  {
+    "word": "have",
+    "start": 5.236,
+    "end": 5.445
+  },
+  {
+    "word": "to.",
+    "start": 5.503,
+    "end": 5.921
+  },
+  {
+    "word": "But",
+    "start": 6.618,
+    "end": 6.803
+  },
+  {
+    "word": "you",
+    "start": 6.861,
+    "end": 6.954
+  },
+  {
+    "word": "did.",
+    "start": 7.024,
+    "end": 7.546
+  }
+]

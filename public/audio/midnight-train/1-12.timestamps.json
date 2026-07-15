@@ -1,222 +1,47 @@
 [
   {
-    "word": "They",
-    "start": 0.046,
-    "end": 0.186
+    "word": "\"¿A",
+    "start": 0.035,
+    "end": 0.174
   },
   {
-    "word": "walked",
+    "word": "dónde",
     "start": 0.244,
-    "end": 0.534
+    "end": 0.488
   },
   {
-    "word": "back",
-    "start": 0.592,
-    "end": 0.813
+    "word": "vamos?\"",
+    "start": 0.546,
+    "end": 1.126
   },
   {
-    "word": "through",
-    "start": 0.871,
-    "end": 1.103
+    "word": "Azi",
+    "start": 1.3,
+    "end": 1.695
   },
   {
-    "word": "the",
-    "start": 1.138,
-    "end": 1.207
+    "word": "asked.",
+    "start": 1.776,
+    "end": 2.241
   },
   {
-    "word": "snow",
-    "start": 1.265,
-    "end": 1.579
+    "word": "Where",
+    "start": 2.566,
+    "end": 2.81
   },
   {
-    "word": "to",
-    "start": 1.66,
-    "end": 1.73
+    "word": "are",
+    "start": 2.844,
+    "end": 2.972
   },
   {
-    "word": "where",
-    "start": 1.788,
-    "end": 1.962
+    "word": "we",
+    "start": 3.007,
+    "end": 3.088
   },
   {
-    "word": "the",
-    "start": 1.997,
-    "end": 2.067
-  },
-  {
-    "word": "train",
-    "start": 2.113,
-    "end": 2.392
-  },
-  {
-    "word": "waited,",
-    "start": 2.473,
-    "end": 2.961
-  },
-  {
-    "word": "its",
-    "start": 3.077,
-    "end": 3.274
-  },
-  {
-    "word": "lantern",
-    "start": 3.355,
-    "end": 3.855
-  },
-  {
-    "word": "glowing",
-    "start": 3.913,
-    "end": 4.261
-  },
-  {
-    "word": "soft",
-    "start": 4.342,
-    "end": 4.772
-  },
-  {
-    "word": "and",
-    "start": 4.818,
-    "end": 4.946
-  },
-  {
-    "word": "steady.",
-    "start": 5.016,
-    "end": 5.712
-  },
-  {
-    "word": "The",
-    "start": 6.525,
-    "end": 6.664
-  },
-  {
-    "word": "other",
-    "start": 6.745,
-    "end": 6.954
-  },
-  {
-    "word": "children",
-    "start": 7.012,
-    "end": 7.419
-  },
-  {
-    "word": "were",
-    "start": 7.465,
-    "end": 7.605
-  },
-  {
-    "word": "climbing",
-    "start": 7.639,
-    "end": 8.011
-  },
-  {
-    "word": "aboard",
-    "start": 8.069,
-    "end": 8.417
-  },
-  {
-    "word": "too,",
-    "start": 8.464,
-    "end": 9.009
-  },
-  {
-    "word": "some",
-    "start": 9.125,
-    "end": 9.439
-  },
-  {
-    "word": "waving",
-    "start": 9.485,
-    "end": 9.857
-  },
-  {
-    "word": "goodbye",
-    "start": 9.915,
-    "end": 10.391
-  },
-  {
-    "word": "to",
-    "start": 10.449,
-    "end": 10.542
-  },
-  {
-    "word": "mice",
-    "start": 10.635,
-    "end": 10.948
-  },
-  {
-    "word": "friends",
-    "start": 10.995,
-    "end": 11.401
-  },
-  {
-    "word": "and",
-    "start": 11.447,
-    "end": 11.575
-  },
-  {
-    "word": "snowflake",
-    "start": 11.656,
-    "end": 12.26
-  },
-  {
-    "word": "dancers,",
-    "start": 12.295,
-    "end": 13.154
-  },
-  {
-    "word": "some",
-    "start": 13.363,
-    "end": 13.63
-  },
-  {
-    "word": "already",
-    "start": 13.665,
-    "end": 14.071
-  },
-  {
-    "word": "yawning,",
-    "start": 14.129,
-    "end": 14.768
-  },
-  {
-    "word": "the",
-    "start": 14.942,
-    "end": 15.058
-  },
-  {
-    "word": "magic",
-    "start": 15.139,
-    "end": 15.534
-  },
-  {
-    "word": "settling",
-    "start": 15.604,
-    "end": 16.022
-  },
-  {
-    "word": "into",
-    "start": 16.068,
-    "end": 16.219
-  },
-  {
-    "word": "their",
-    "start": 16.289,
-    "end": 16.451
-  },
-  {
-    "word": "bones",
-    "start": 16.509,
-    "end": 16.927
-  },
-  {
-    "word": "like",
-    "start": 16.985,
-    "end": 17.206
-  },
-  {
-    "word": "warmth.",
-    "start": 17.276,
-    "end": 17.879
+    "word": "going?",
+    "start": 3.146,
+    "end": 3.599
   }
 ]

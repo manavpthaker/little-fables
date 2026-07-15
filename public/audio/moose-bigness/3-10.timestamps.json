@@ -1,0 +1,122 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.081
+  },
+  {
+    "word": "saw",
+    "start": 0.197,
+    "end": 0.43
+  },
+  {
+    "word": "you",
+    "start": 0.499,
+    "end": 0.604
+  },
+  {
+    "word": "whisper",
+    "start": 0.685,
+    "end": 1.115
+  },
+  {
+    "word": "'sorry'",
+    "start": 1.196,
+    "end": 1.753
+  },
+  {
+    "word": "to",
+    "start": 1.788,
+    "end": 1.869
+  },
+  {
+    "word": "the",
+    "start": 1.939,
+    "end": 2.009
+  },
+  {
+    "word": "flower",
+    "start": 2.067,
+    "end": 2.496
+  },
+  {
+    "word": "you",
+    "start": 2.589,
+    "end": 2.717
+  },
+  {
+    "word": "accidentally",
+    "start": 2.833,
+    "end": 3.529
+  },
+  {
+    "word": "stepped",
+    "start": 3.587,
+    "end": 3.936
+  },
+  {
+    "word": "on.",
+    "start": 4.005,
+    "end": 4.249
+  },
+  {
+    "word": "Even",
+    "start": 4.307,
+    "end": 4.563
+  },
+  {
+    "word": "though",
+    "start": 4.598,
+    "end": 4.795
+  },
+  {
+    "word": "no",
+    "start": 4.841,
+    "end": 4.969
+  },
+  {
+    "word": "one",
+    "start": 5.039,
+    "end": 5.178
+  },
+  {
+    "word": "was",
+    "start": 5.213,
+    "end": 5.352
+  },
+  {
+    "word": "watching.",
+    "start": 5.433,
+    "end": 6.049
+  },
+  {
+    "word": "Even",
+    "start": 6.142,
+    "end": 6.374
+  },
+  {
+    "word": "though",
+    "start": 6.409,
+    "end": 6.606
+  },
+  {
+    "word": "the",
+    "start": 6.641,
+    "end": 6.711
+  },
+  {
+    "word": "flower",
+    "start": 6.769,
+    "end": 7.187
+  },
+  {
+    "word": "couldn't",
+    "start": 7.268,
+    "end": 7.605
+  },
+  {
+    "word": "hear.",
+    "start": 7.674,
+    "end": 8.046
+  }
+]

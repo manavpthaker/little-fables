@@ -1,207 +1,47 @@
 [
   {
-    "word": "The",
-    "start": 0.058,
-    "end": 0.151
+    "word": "\"I",
+    "start": 0.035,
+    "end": 0.209
   },
   {
-    "word": "moose",
-    "start": 0.221,
-    "end": 0.546
+    "word": "don't",
+    "start": 0.279,
+    "end": 0.464
   },
   {
-    "word": "lowered",
-    "start": 0.639,
-    "end": 1.022
+    "word": "WANT",
+    "start": 0.511,
+    "end": 0.731
   },
   {
-    "word": "its",
-    "start": 1.057,
-    "end": 1.173
+    "word": "to!",
+    "start": 0.778,
+    "end": 1.045
   },
   {
-    "word": "great",
-    "start": 1.219,
-    "end": 1.474
+    "word": "I",
+    "start": 1.091,
+    "end": 1.138
   },
   {
-    "word": "head,",
-    "start": 1.544,
-    "end": 1.927
+    "word": "don't",
+    "start": 1.196,
+    "end": 1.37
   },
   {
-    "word": "and",
-    "start": 1.962,
-    "end": 2.113
+    "word": "CARE",
+    "start": 1.428,
+    "end": 1.695
   },
   {
-    "word": "Azi",
-    "start": 2.206,
-    "end": 2.601
+    "word": "about",
+    "start": 1.73,
+    "end": 1.985
   },
   {
-    "word": "saw",
-    "start": 2.67,
-    "end": 2.879
-  },
-  {
-    "word": "something",
-    "start": 2.961,
-    "end": 3.413
-  },
-  {
-    "word": "he",
-    "start": 3.529,
-    "end": 3.646
-  },
-  {
-    "word": "hadn't",
-    "start": 3.727,
-    "end": 4.017
-  },
-  {
-    "word": "noticed",
-    "start": 4.075,
-    "end": 4.423
-  },
-  {
-    "word": "before.",
-    "start": 4.47,
-    "end": 5.12
-  },
-  {
-    "word": "A",
-    "start": 5.631,
-    "end": 5.724
-  },
-  {
-    "word": "scar.",
-    "start": 5.84,
-    "end": 6.525
-  },
-  {
-    "word": "Long",
-    "start": 7.221,
-    "end": 7.581
-  },
-  {
-    "word": "and",
-    "start": 7.663,
-    "end": 7.79
-  },
-  {
-    "word": "pale,",
-    "start": 7.872,
-    "end": 8.417
-  },
-  {
-    "word": "running",
-    "start": 8.533,
-    "end": 8.847
-  },
-  {
-    "word": "along",
-    "start": 8.905,
-    "end": 9.195
-  },
-  {
-    "word": "the",
-    "start": 9.242,
-    "end": 9.311
-  },
-  {
-    "word": "moose's",
-    "start": 9.358,
-    "end": 9.741
-  },
-  {
-    "word": "shoulder",
-    "start": 9.787,
-    "end": 10.159
-  },
-  {
-    "word": "like",
-    "start": 10.24,
-    "end": 10.414
-  },
-  {
-    "word": "a",
-    "start": 10.449,
-    "end": 10.472
-  },
-  {
-    "word": "river",
-    "start": 10.588,
-    "end": 10.89
-  },
-  {
-    "word": "through",
-    "start": 10.96,
-    "end": 11.204
-  },
-  {
-    "word": "a",
-    "start": 11.238,
-    "end": 11.262
-  },
-  {
-    "word": "valley.",
-    "start": 11.331,
-    "end": 11.889
-  },
-  {
-    "word": "Old",
-    "start": 12.132,
-    "end": 12.492
-  },
-  {
-    "word": "and",
-    "start": 12.55,
-    "end": 12.643
-  },
-  {
-    "word": "healed,",
-    "start": 12.713,
-    "end": 13.166
-  },
-  {
-    "word": "but",
-    "start": 13.189,
-    "end": 13.351
-  },
-  {
-    "word": "still",
-    "start": 13.41,
-    "end": 13.7
-  },
-  {
-    "word": "there.",
-    "start": 13.758,
-    "end": 14.245
-  },
-  {
-    "word": "Still",
-    "start": 14.756,
-    "end": 15.047
-  },
-  {
-    "word": "part",
-    "start": 15.128,
-    "end": 15.348
-  },
-  {
-    "word": "of",
-    "start": 15.395,
-    "end": 15.453
-  },
-  {
-    "word": "the",
-    "start": 15.511,
-    "end": 15.581
-  },
-  {
-    "word": "story.",
-    "start": 15.627,
-    "end": 16.242
+    "word": "you!\"",
+    "start": 2.055,
+    "end": 2.403
   }
 ]

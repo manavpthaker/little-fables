@@ -1,177 +1,227 @@
 [
   {
+    "word": "Downstairs,",
+    "start": 0.151,
+    "end": 1.091
+  },
+  {
+    "word": "the",
+    "start": 1.184,
+    "end": 1.3
+  },
+  {
+    "word": "Christmas",
+    "start": 1.347,
+    "end": 1.8
+  },
+  {
+    "word": "tree",
+    "start": 1.858,
+    "end": 2.101
+  },
+  {
+    "word": "glowed",
+    "start": 2.171,
+    "end": 2.67
+  },
+  {
+    "word": "like",
+    "start": 2.717,
+    "end": 2.902
+  },
+  {
+    "word": "a",
+    "start": 2.937,
+    "end": 2.961
+  },
+  {
+    "word": "tower",
+    "start": 3.03,
+    "end": 3.437
+  },
+  {
+    "word": "of",
+    "start": 3.518,
+    "end": 3.587
+  },
+  {
+    "word": "captured",
+    "start": 3.68,
+    "end": 4.191
+  },
+  {
+    "word": "starlight.",
+    "start": 4.249,
+    "end": 5.05
+  },
+  {
+    "word": "Beneath",
+    "start": 5.375,
+    "end": 5.759
+  },
+  {
+    "word": "it,",
+    "start": 5.828,
+    "end": 6.107
+  },
+  {
+    "word": "the",
+    "start": 6.223,
+    "end": 6.327
+  },
+  {
+    "word": "little",
+    "start": 6.397,
+    "end": 6.641
+  },
+  {
+    "word": "village",
+    "start": 6.676,
+    "end": 7.094
+  },
+  {
+    "word": "slept",
+    "start": 7.129,
+    "end": 7.477
+  },
+  {
+    "word": "too--tiny",
+    "start": 7.535,
+    "end": 8.766
+  },
+  {
+    "word": "houses",
+    "start": 8.847,
+    "end": 9.392
+  },
+  {
+    "word": "with",
+    "start": 9.462,
+    "end": 9.625
+  },
+  {
+    "word": "painted",
+    "start": 9.694,
+    "end": 10.112
+  },
+  {
+    "word": "windows,",
+    "start": 10.17,
+    "end": 10.855
+  },
+  {
+    "word": "snow-dusted",
+    "start": 11.064,
+    "end": 12.005
+  },
+  {
+    "word": "roofs,",
+    "start": 12.086,
+    "end": 12.701
+  },
+  {
+    "word": "and",
+    "start": 12.794,
+    "end": 12.98
+  },
+  {
+    "word": "lampposts",
+    "start": 13.096,
+    "end": 13.897
+  },
+  {
+    "word": "that",
+    "start": 13.955,
+    "end": 14.118
+  },
+  {
+    "word": "flickered",
+    "start": 14.211,
+    "end": 14.675
+  },
+  {
+    "word": "with",
+    "start": 14.721,
+    "end": 14.872
+  },
+  {
+    "word": "real",
+    "start": 14.965,
+    "end": 15.29
+  },
+  {
+    "word": "warmth.",
+    "start": 15.406,
+    "end": 16.057
+  },
+  {
     "word": "The",
-    "start": 0.058,
-    "end": 0.151
-  },
-  {
-    "word": "red",
-    "start": 0.221,
-    "end": 0.406
+    "start": 16.44,
+    "end": 16.567
   },
   {
     "word": "train",
-    "start": 0.464,
-    "end": 0.859
+    "start": 16.625,
+    "end": 16.916
   },
   {
-    "word": "sat",
-    "start": 0.975,
-    "end": 1.242
+    "word": "tracks",
+    "start": 16.974,
+    "end": 17.345
   },
   {
-    "word": "perfectly",
-    "start": 1.358,
-    "end": 1.939
+    "word": "curved",
+    "start": 17.438,
+    "end": 17.833
   },
   {
-    "word": "still",
-    "start": 2.009,
-    "end": 2.334
+    "word": "around",
+    "start": 17.879,
+    "end": 18.181
   },
   {
-    "word": "on",
-    "start": 2.415,
-    "end": 2.508
-  },
-  {
-    "word": "its",
-    "start": 2.554,
-    "end": 2.705
-  },
-  {
-    "word": "tracks.",
-    "start": 2.763,
-    "end": 3.483
-  },
-  {
-    "word": "It",
-    "start": 3.762,
-    "end": 3.901
-  },
-  {
-    "word": "had",
-    "start": 3.947,
-    "end": 4.052
-  },
-  {
-    "word": "been",
-    "start": 4.087,
-    "end": 4.272
-  },
-  {
-    "word": "still",
-    "start": 4.354,
-    "end": 4.783
+    "word": "them",
+    "start": 18.228,
+    "end": 18.367
   },
   {
     "word": "all",
-    "start": 4.957,
-    "end": 5.294
+    "start": 18.425,
+    "end": 18.657
   },
   {
-    "word": "day,",
-    "start": 5.387,
-    "end": 5.921
-  },
-  {
-    "word": "all",
-    "start": 6.072,
-    "end": 6.409
-  },
-  {
-    "word": "week,",
-    "start": 6.502,
-    "end": 7.036
-  },
-  {
-    "word": "all",
-    "start": 7.163,
-    "end": 7.5
-  },
-  {
-    "word": "December.",
-    "start": 7.581,
-    "end": 8.336
-  },
-  {
-    "word": "Just",
-    "start": 8.661,
-    "end": 8.951
+    "word": "like",
+    "start": 18.808,
+    "end": 19.04
   },
   {
     "word": "a",
-    "start": 9.009,
-    "end": 9.033
+    "start": 19.075,
+    "end": 19.098
   },
   {
-    "word": "toy",
-    "start": 9.091,
-    "end": 9.334
+    "word": "silver",
+    "start": 19.191,
+    "end": 19.632
   },
   {
-    "word": "train",
-    "start": 9.404,
-    "end": 9.776
+    "word": "river",
+    "start": 19.749,
+    "end": 20.074
   },
   {
-    "word": "beneath",
-    "start": 9.857,
-    "end": 10.159
+    "word": "frozen",
+    "start": 20.225,
+    "end": 20.735
   },
   {
-    "word": "a",
-    "start": 10.205,
-    "end": 10.228
+    "word": "in",
+    "start": 20.805,
+    "end": 20.91
   },
   {
-    "word": "Christmas",
-    "start": 10.275,
-    "end": 10.704
-  },
-  {
-    "word": "tree.",
-    "start": 10.762,
-    "end": 11.273
-  },
-  {
-    "word": "But",
-    "start": 11.714,
-    "end": 11.9
-  },
-  {
-    "word": "Christmas",
-    "start": 11.958,
-    "end": 12.423
-  },
-  {
-    "word": "Eve",
-    "start": 12.516,
-    "end": 12.783
-  },
-  {
-    "word": "is",
-    "start": 12.817,
-    "end": 12.91
-  },
-  {
-    "word": "different",
-    "start": 12.968,
-    "end": 13.328
-  },
-  {
-    "word": "from",
-    "start": 13.375,
-    "end": 13.514
-  },
-  {
-    "word": "other",
-    "start": 13.572,
-    "end": 13.758
-  },
-  {
-    "word": "nights.",
-    "start": 13.816,
-    "end": 14.42
+    "word": "time.",
+    "start": 20.991,
+    "end": 21.56
   }
 ]

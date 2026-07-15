@@ -1,312 +1,82 @@
 [
   {
-    "word": "Azi",
-    "start": 0.023,
-    "end": 0.337
-  },
-  {
-    "word": "remembered.",
-    "start": 0.406,
-    "end": 1.091
-  },
-  {
     "word": "The",
-    "start": 1.533,
-    "end": 1.66
+    "start": 0.058,
+    "end": 0.163
   },
   {
-    "word": "purple",
-    "start": 1.73,
-    "end": 2.101
+    "word": "bigness",
+    "start": 0.244,
+    "end": 0.743
   },
   {
-    "word": "flower",
-    "start": 2.159,
-    "end": 2.589
+    "word": "only",
+    "start": 0.824,
+    "end": 1.173
   },
   {
-    "word": "with",
-    "start": 2.659,
-    "end": 2.786
+    "word": "heard:",
+    "start": 1.254,
+    "end": 1.846
   },
   {
-    "word": "the",
-    "start": 2.821,
-    "end": 2.891
-  },
-  {
-    "word": "bent",
-    "start": 2.937,
-    "end": 3.181
-  },
-  {
-    "word": "stem.",
-    "start": 3.251,
-    "end": 3.773
-  },
-  {
-    "word": "The",
-    "start": 4.214,
-    "end": 4.342
-  },
-  {
-    "word": "way",
-    "start": 4.412,
-    "end": 4.609
-  },
-  {
-    "word": "he",
-    "start": 4.69,
-    "end": 4.772
-  },
-  {
-    "word": "had",
-    "start": 4.841,
-    "end": 4.969
-  },
-  {
-    "word": "felt",
-    "start": 5.027,
-    "end": 5.294
-  },
-  {
-    "word": "bad,",
-    "start": 5.375,
-    "end": 5.956
-  },
-  {
-    "word": "even",
-    "start": 6.165,
-    "end": 6.432
-  },
-  {
-    "word": "though",
-    "start": 6.478,
-    "end": 6.711
-  },
-  {
-    "word": "it",
-    "start": 6.757,
-    "end": 6.827
-  },
-  {
-    "word": "was",
-    "start": 6.885,
-    "end": 7.024
-  },
-  {
-    "word": "just",
-    "start": 7.152,
-    "end": 7.465
-  },
-  {
-    "word": "a",
-    "start": 7.523,
-    "end": 7.558
-  },
-  {
-    "word": "flower.",
-    "start": 7.628,
-    "end": 8.348
-  },
-  {
-    "word": "The",
-    "start": 8.731,
-    "end": 8.858
-  },
-  {
-    "word": "way",
-    "start": 8.928,
-    "end": 9.102
-  },
-  {
-    "word": "the",
-    "start": 9.16,
-    "end": 9.242
-  },
-  {
-    "word": "word",
-    "start": 9.3,
-    "end": 9.59
-  },
-  {
-    "word": "\"sorry\"",
-    "start": 9.648,
-    "end": 10.414
-  },
-  {
-    "word": "had",
-    "start": 10.461,
-    "end": 10.6
-  },
-  {
-    "word": "come",
-    "start": 10.67,
-    "end": 10.89
-  },
-  {
-    "word": "out",
-    "start": 10.937,
-    "end": 11.169
-  },
-  {
-    "word": "all",
-    "start": 11.25,
-    "end": 11.505
-  },
-  {
-    "word": "on",
-    "start": 11.575,
-    "end": 11.656
-  },
-  {
-    "word": "its",
-    "start": 11.714,
-    "end": 11.842
-  },
-  {
-    "word": "own.",
-    "start": 11.912,
-    "end": 12.388
-  },
-  {
-    "word": ">",
-    "start": 13.34,
-    "end": 13.375
-  },
-  {
-    "word": "*I",
-    "start": 13.502,
-    "end": 13.688
-  },
-  {
-    "word": "saw",
-    "start": 13.839,
-    "end": 14.083
-  },
-  {
-    "word": "you",
-    "start": 14.153,
-    "end": 14.257
-  },
-  {
-    "word": "wave",
-    "start": 14.338,
-    "end": 14.64
-  },
-  {
-    "word": "goodbye",
-    "start": 14.663,
-    "end": 15.07
-  },
-  {
-    "word": "to",
-    "start": 15.116,
-    "end": 15.197
-  },
-  {
-    "word": "the",
-    "start": 15.267,
-    "end": 15.337
-  },
-  {
-    "word": "horses.",
-    "start": 15.395,
-    "end": 16.08
-  },
-  {
-    "word": "Even",
-    "start": 16.405,
-    "end": 16.66
-  },
-  {
-    "word": "though",
-    "start": 16.707,
-    "end": 16.904
-  },
-  {
-    "word": "they",
-    "start": 16.939,
-    "end": 17.055
-  },
-  {
-    "word": "couldn't",
-    "start": 17.113,
-    "end": 17.403
-  },
-  {
-    "word": "wave",
-    "start": 17.461,
-    "end": 17.728
-  },
-  {
-    "word": "back.",
-    "start": 17.786,
-    "end": 18.309
-  },
-  {
-    "word": "Even",
-    "start": 18.692,
-    "end": 18.994
-  },
-  {
-    "word": "though",
-    "start": 19.04,
-    "end": 19.249
-  },
-  {
-    "word": "waving",
-    "start": 19.296,
-    "end": 19.632
-  },
-  {
-    "word": "at",
-    "start": 19.679,
-    "end": 19.76
-  },
-  {
-    "word": "horses",
-    "start": 19.818,
-    "end": 20.236
+    "word": "Someone",
+    "start": 2.229,
+    "end": 2.833
   },
   {
     "word": "is",
-    "start": 20.294,
-    "end": 20.387
+    "start": 2.891,
+    "end": 3.065
   },
   {
-    "word": "maybe",
-    "start": 20.445,
-    "end": 20.712
+    "word": "asking",
+    "start": 3.158,
+    "end": 3.669
   },
   {
-    "word": "a",
-    "start": 20.758,
-    "end": 20.782
+    "word": "me",
+    "start": 3.738,
+    "end": 3.866
   },
   {
-    "word": "little",
-    "start": 20.828,
-    "end": 21.095
+    "word": "to",
+    "start": 3.924,
+    "end": 4.029
   },
   {
-    "word": "silly.",
-    "start": 21.153,
-    "end": 21.734
+    "word": "do",
+    "start": 4.145,
+    "end": 4.342
   },
   {
-    "word": "You",
-    "start": 22.175,
-    "end": 22.337
+    "word": "something.",
+    "start": 4.458,
+    "end": 5.062
   },
   {
-    "word": "waved",
-    "start": 22.419,
-    "end": 22.732
+    "word": "Someone",
+    "start": 5.271,
+    "end": 5.817
   },
   {
-    "word": "anyway.*",
-    "start": 22.779,
-    "end": 23.394
+    "word": "wants",
+    "start": 5.863,
+    "end": 6.13
+  },
+  {
+    "word": "me",
+    "start": 6.188,
+    "end": 6.293
+  },
+  {
+    "word": "to",
+    "start": 6.339,
+    "end": 6.409
+  },
+  {
+    "word": "stop.",
+    "start": 6.502,
+    "end": 7.07
   }
 ]

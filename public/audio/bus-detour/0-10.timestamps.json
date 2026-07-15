@@ -1,287 +1,57 @@
 [
   {
-    "word": "\"Or",
-    "start": 0.058,
-    "end": 0.255
+    "word": "But",
+    "start": 0.046,
+    "end": 0.197
   },
   {
     "word": "when",
-    "start": 0.313,
-    "end": 0.476
+    "start": 0.232,
+    "end": 0.395
   },
   {
-    "word": "Papa",
-    "start": 0.546,
-    "end": 0.859
+    "word": "they",
+    "start": 0.441,
+    "end": 0.569
   },
   {
-    "word": "reads",
-    "start": 0.929,
-    "end": 1.184
+    "word": "climbed",
+    "start": 0.639,
+    "end": 0.998
   },
   {
-    "word": "from",
-    "start": 1.231,
-    "end": 1.393
+    "word": "aboard",
+    "start": 1.033,
+    "end": 1.37
   },
   {
-    "word": "his",
-    "start": 1.451,
-    "end": 1.567
+    "word": "Pandies'",
+    "start": 1.44,
+    "end": 1.997
   },
   {
-    "word": "Gujarati",
-    "start": 1.637,
-    "end": 2.218
+    "word": "yellow",
+    "start": 2.032,
+    "end": 2.322
   },
   {
-    "word": "tablet",
-    "start": 2.287,
-    "end": 2.81
+    "word": "bus,",
+    "start": 2.392,
+    "end": 2.856
   },
   {
-    "word": "and",
-    "start": 2.856,
-    "end": 2.995
+    "word": "something",
+    "start": 3.065,
+    "end": 3.483
   },
   {
-    "word": "the",
-    "start": 3.053,
-    "end": 3.123
+    "word": "felt",
+    "start": 3.599,
+    "end": 3.866
   },
   {
-    "word": "letters",
-    "start": 3.193,
-    "end": 3.576
-  },
-  {
-    "word": "look",
-    "start": 3.657,
-    "end": 3.843
-  },
-  {
-    "word": "like",
-    "start": 3.901,
-    "end": 4.075
-  },
-  {
-    "word": "music",
-    "start": 4.133,
-    "end": 4.493
-  },
-  {
-    "word": "to",
-    "start": 4.551,
-    "end": 4.621
-  },
-  {
-    "word": "me,\"",
-    "start": 4.702,
-    "end": 5.306
-  },
-  {
-    "word": "Azi",
-    "start": 5.422,
-    "end": 5.747
-  },
-  {
-    "word": "continued,",
-    "start": 5.805,
-    "end": 6.594
-  },
-  {
-    "word": "feeling",
-    "start": 6.711,
-    "end": 7.082
-  },
-  {
-    "word": "the",
-    "start": 7.14,
-    "end": 7.21
-  },
-  {
-    "word": "knot",
-    "start": 7.268,
-    "end": 7.523
-  },
-  {
-    "word": "in",
-    "start": 7.57,
-    "end": 7.628
-  },
-  {
-    "word": "his",
-    "start": 7.686,
-    "end": 7.79
-  },
-  {
-    "word": "chest",
-    "start": 7.86,
-    "end": 8.29
-  },
-  {
-    "word": "loosening.",
-    "start": 8.382,
-    "end": 9.149
-  },
-  {
-    "word": "Jujy",
-    "start": 9.845,
-    "end": 10.298
-  },
-  {
-    "word": "puffed",
-    "start": 10.379,
-    "end": 10.728
-  },
-  {
-    "word": "up",
-    "start": 10.786,
-    "end": 10.89
-  },
-  {
-    "word": "proudly.",
-    "start": 10.96,
-    "end": 11.819
-  },
-  {
-    "word": "\"See?",
-    "start": 12.028,
-    "end": 12.864
-  },
-  {
-    "word": "I",
-    "start": 12.992,
-    "end": 13.073
-  },
-  {
-    "word": "knew",
-    "start": 13.189,
-    "end": 13.386
-  },
-  {
-    "word": "this",
-    "start": 13.456,
-    "end": 13.63
-  },
-  {
-    "word": "detour",
-    "start": 13.746,
-    "end": 14.257
-  },
-  {
-    "word": "would",
-    "start": 14.315,
-    "end": 14.454
-  },
-  {
-    "word": "work",
-    "start": 14.501,
-    "end": 14.733
-  },
-  {
-    "word": "out!\"",
-    "start": 14.826,
-    "end": 15.372
-  },
-  {
-    "word": "\"You",
-    "start": 15.697,
-    "end": 16.057
-  },
-  {
-    "word": "were",
-    "start": 16.126,
-    "end": 16.277
-  },
-  {
-    "word": "scared",
-    "start": 16.324,
-    "end": 16.683
-  },
-  {
-    "word": "too,\"",
-    "start": 16.73,
-    "end": 17.322
-  },
-  {
-    "word": "Dory",
-    "start": 17.496,
-    "end": 17.844
-  },
-  {
-    "word": "pointed",
-    "start": 17.914,
-    "end": 18.227
-  },
-  {
-    "word": "out",
-    "start": 18.274,
-    "end": 18.425
-  },
-  {
-    "word": "with",
-    "start": 18.46,
-    "end": 18.599
-  },
-  {
-    "word": "a",
-    "start": 18.634,
-    "end": 18.657
-  },
-  {
-    "word": "giggle.",
-    "start": 18.715,
-    "end": 19.237
-  },
-  {
-    "word": "\"Was",
-    "start": 19.621,
-    "end": 20.05
-  },
-  {
-    "word": "not!\"",
-    "start": 20.178,
-    "end": 20.805
-  },
-  {
-    "word": "Jujy",
-    "start": 21.014,
-    "end": 21.374
-  },
-  {
-    "word": "protested,",
-    "start": 21.432,
-    "end": 22.279
-  },
-  {
-    "word": "then",
-    "start": 22.453,
-    "end": 22.686
-  },
-  {
-    "word": "grinned.",
-    "start": 22.767,
-    "end": 23.347
-  },
-  {
-    "word": "\"Okay,",
-    "start": 23.626,
-    "end": 24.578
-  },
-  {
-    "word": "maybe",
-    "start": 24.694,
-    "end": 25.008
-  },
-  {
-    "word": "a",
-    "start": 25.054,
-    "end": 25.077
-  },
-  {
-    "word": "little.\"",
-    "start": 25.159,
-    "end": 25.693
+    "word": "different.",
+    "start": 3.936,
+    "end": 4.528
   }
 ]

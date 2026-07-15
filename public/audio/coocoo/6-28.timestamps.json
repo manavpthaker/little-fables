@@ -1,0 +1,32 @@
+[
+  {
+    "word": "The",
+    "start": 0.046,
+    "end": 0.139
+  },
+  {
+    "word": "Coocoo",
+    "start": 0.197,
+    "end": 0.58
+  },
+  {
+    "word": "is",
+    "start": 0.65,
+    "end": 0.743
+  },
+  {
+    "word": "very",
+    "start": 0.813,
+    "end": 1.091
+  },
+  {
+    "word": "small",
+    "start": 1.149,
+    "end": 1.474
+  },
+  {
+    "word": "tonight.",
+    "start": 1.544,
+    "end": 2.078
+  }
+]

@@ -1,297 +1,132 @@
 [
   {
-    "word": ">",
-    "start": 0.058,
-    "end": 0.104
-  },
-  {
-    "word": "*Then",
-    "start": 0.139,
-    "end": 0.348
-  },
-  {
-    "word": "you",
-    "start": 0.406,
-    "end": 0.488
-  },
-  {
-    "word": "will",
-    "start": 0.522,
-    "end": 0.685
-  },
-  {
-    "word": "try",
-    "start": 0.731,
-    "end": 0.964
-  },
-  {
-    "word": "again.*",
-    "start": 1.033,
-    "end": 1.544
-  },
-  {
-    "word": "The",
-    "start": 1.869,
-    "end": 1.985
-  },
-  {
-    "word": "moose's",
-    "start": 2.055,
-    "end": 2.461
-  },
-  {
-    "word": "voice",
-    "start": 2.543,
-    "end": 2.902
+    "word": "Dinner",
+    "start": 0.046,
+    "end": 0.395
   },
   {
     "word": "was",
-    "start": 2.937,
-    "end": 3.077
+    "start": 0.488,
+    "end": 0.662
   },
   {
-    "word": "kind.",
-    "start": 3.158,
-    "end": 3.785
+    "word": "over.",
+    "start": 0.743,
+    "end": 1.219
   },
   {
-    "word": "No",
-    "start": 4.029,
-    "end": 4.226
+    "word": "Bath",
+    "start": 1.312,
+    "end": 1.672
   },
   {
-    "word": "judgment.",
-    "start": 4.342,
-    "end": 4.992
+    "word": "was",
+    "start": 1.753,
+    "end": 1.927
   },
   {
-    "word": "No",
-    "start": 5.143,
-    "end": 5.341
+    "word": "done.",
+    "start": 2.009,
+    "end": 2.531
   },
   {
-    "word": "disappointment.",
-    "start": 5.433,
-    "end": 6.362
+    "word": "Pajamas",
+    "start": 2.705,
+    "end": 3.239
   },
   {
-    "word": "Just",
-    "start": 6.571,
-    "end": 6.873
+    "word": "were",
+    "start": 3.297,
+    "end": 3.471
   },
   {
-    "word": "truth.",
-    "start": 6.92,
-    "end": 7.465
+    "word": "on",
+    "start": 3.529,
+    "end": 3.727
   },
   {
-    "word": ">",
-    "start": 7.535,
-    "end": 7.581
-  },
-  {
-    "word": "*That",
-    "start": 8.185,
-    "end": 8.58
-  },
-  {
-    "word": "is",
-    "start": 8.638,
-    "end": 8.731
-  },
-  {
-    "word": "what",
-    "start": 8.789,
-    "end": 8.951
-  },
-  {
-    "word": "gentle",
-    "start": 9.021,
-    "end": 9.381
-  },
-  {
-    "word": "giants",
-    "start": 9.427,
-    "end": 9.834
-  },
-  {
-    "word": "do,",
-    "start": 9.892,
-    "end": 10.077
-  },
-  {
-    "word": "Azi.",
-    "start": 10.112,
-    "end": 10.6
-  },
-  {
-    "word": "We",
-    "start": 10.646,
-    "end": 10.774
-  },
-  {
-    "word": "don't",
-    "start": 10.832,
-    "end": 11.029
-  },
-  {
-    "word": "get",
-    "start": 11.076,
-    "end": 11.215
-  },
-  {
-    "word": "it",
-    "start": 11.262,
-    "end": 11.331
-  },
-  {
-    "word": "right",
-    "start": 11.389,
-    "end": 11.61
-  },
-  {
-    "word": "every",
-    "start": 11.656,
-    "end": 11.877
-  },
-  {
-    "word": "time.",
-    "start": 11.923,
-    "end": 12.388
-  },
-  {
-    "word": "Sometimes",
-    "start": 12.666,
-    "end": 13.235
-  },
-  {
-    "word": "our",
-    "start": 13.293,
-    "end": 13.398
-  },
-  {
-    "word": "bigness",
-    "start": 13.456,
-    "end": 13.839
-  },
-  {
-    "word": "still",
-    "start": 13.886,
-    "end": 14.164
-  },
-  {
-    "word": "crashes",
-    "start": 14.245,
-    "end": 14.663
-  },
-  {
-    "word": "through.",
-    "start": 14.733,
-    "end": 15.209
-  },
-  {
-    "word": "Sometimes",
-    "start": 15.453,
-    "end": 15.964
-  },
-  {
-    "word": "we",
-    "start": 16.022,
-    "end": 16.115
-  },
-  {
-    "word": "still",
-    "start": 16.173,
-    "end": 16.416
-  },
-  {
-    "word": "knock",
-    "start": 16.486,
-    "end": 16.707
-  },
-  {
-    "word": "down",
-    "start": 16.788,
-    "end": 16.974
-  },
-  {
-    "word": "saplings",
-    "start": 17.043,
-    "end": 17.659
-  },
-  {
-    "word": "and",
-    "start": 17.705,
-    "end": 17.81
-  },
-  {
-    "word": "trample",
-    "start": 17.856,
-    "end": 18.274
-  },
-  {
-    "word": "flowers",
-    "start": 18.32,
-    "end": 18.808
-  },
-  {
-    "word": "and",
-    "start": 18.855,
-    "end": 18.947
-  },
-  {
-    "word": "frighten",
-    "start": 19.029,
-    "end": 19.4
+    "word": "-",
+    "start": 3.855,
+    "end": 3.878
   },
   {
     "word": "the",
-    "start": 19.447,
-    "end": 19.516
+    "start": 4.029,
+    "end": 4.133
+  },
+  {
+    "word": "soft",
+    "start": 4.214,
+    "end": 4.621
+  },
+  {
+    "word": "blue",
+    "start": 4.69,
+    "end": 4.981
   },
   {
     "word": "ones",
-    "start": 19.586,
-    "end": 19.807
+    "start": 5.039,
+    "end": 5.352
   },
   {
-    "word": "we",
-    "start": 19.865,
-    "end": 19.969
+    "word": "with",
+    "start": 5.422,
+    "end": 5.584
   },
   {
-    "word": "love.*",
-    "start": 20.039,
-    "end": 20.55
+    "word": "the",
+    "start": 5.619,
+    "end": 5.689
   },
   {
-    "word": "The",
-    "start": 20.933,
-    "end": 21.049
+    "word": "little",
+    "start": 5.747,
+    "end": 5.991
   },
   {
-    "word": "moose",
-    "start": 21.13,
-    "end": 21.49
+    "word": "rockets",
+    "start": 6.049,
+    "end": 6.583
   },
   {
-    "word": "glanced",
-    "start": 21.548,
-    "end": 22.001
+    "word": "that",
+    "start": 6.653,
+    "end": 6.838
   },
   {
-    "word": "at",
-    "start": 22.047,
-    "end": 22.129
+    "word": "Papa",
+    "start": 6.908,
+    "end": 7.245
   },
   {
-    "word": "its",
-    "start": 22.187,
-    "end": 22.314
+    "word": "had",
+    "start": 7.303,
+    "end": 7.43
   },
   {
-    "word": "scar.",
-    "start": 22.349,
-    "end": 22.918
+    "word": "packed",
+    "start": 7.5,
+    "end": 7.825
+  },
+  {
+    "word": "specially",
+    "start": 7.883,
+    "end": 8.417
+  },
+  {
+    "word": "for",
+    "start": 8.487,
+    "end": 8.591
+  },
+  {
+    "word": "the",
+    "start": 8.649,
+    "end": 8.719
+  },
+  {
+    "word": "trip.",
+    "start": 8.766,
+    "end": 9.23
   }
 ]

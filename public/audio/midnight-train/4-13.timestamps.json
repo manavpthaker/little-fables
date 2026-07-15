@@ -1,0 +1,82 @@
+[
+  {
+    "word": "Somewhere",
+    "start": 0.151,
+    "end": 0.569
+  },
+  {
+    "word": "far",
+    "start": 0.639,
+    "end": 0.871
+  },
+  {
+    "word": "away,",
+    "start": 0.929,
+    "end": 1.37
+  },
+  {
+    "word": "he",
+    "start": 1.416,
+    "end": 1.509
+  },
+  {
+    "word": "heard",
+    "start": 1.579,
+    "end": 1.753
+  },
+  {
+    "word": "the",
+    "start": 1.788,
+    "end": 1.858
+  },
+  {
+    "word": "conductor's",
+    "start": 1.892,
+    "end": 2.461
+  },
+  {
+    "word": "voice:",
+    "start": 2.519,
+    "end": 3.065
+  },
+  {
+    "word": "\"Approaching",
+    "start": 3.506,
+    "end": 4.017
+  },
+  {
+    "word": "home",
+    "start": 4.075,
+    "end": 4.261
+  },
+  {
+    "word": "station.",
+    "start": 4.296,
+    "end": 4.888
+  },
+  {
+    "word": "All",
+    "start": 4.981,
+    "end": 5.201
+  },
+  {
+    "word": "dreamers",
+    "start": 5.259,
+    "end": 5.724
+  },
+  {
+    "word": "prepare",
+    "start": 5.793,
+    "end": 6.153
+  },
+  {
+    "word": "for",
+    "start": 6.2,
+    "end": 6.316
+  },
+  {
+    "word": "arrival.\"",
+    "start": 6.374,
+    "end": 7.036
+  }
+]

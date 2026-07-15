@@ -1,0 +1,32 @@
+[
+  {
+    "word": "I",
+    "start": 0.046,
+    "end": 0.081
+  },
+  {
+    "word": "walked",
+    "start": 0.174,
+    "end": 0.43
+  },
+  {
+    "word": "slowly",
+    "start": 0.476,
+    "end": 0.859
+  },
+  {
+    "word": "through",
+    "start": 0.906,
+    "end": 1.126
+  },
+  {
+    "word": "the",
+    "start": 1.161,
+    "end": 1.231
+  },
+  {
+    "word": "backyard.",
+    "start": 1.265,
+    "end": 1.962
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.139
+  },
+  {
+    "word": "playroom",
+    "start": 0.197,
+    "end": 0.697
+  },
+  {
+    "word": "fell",
+    "start": 0.766,
+    "end": 0.964
+  },
+  {
+    "word": "silent",
+    "start": 1.045,
+    "end": 1.521
+  },
+  {
+    "word": "except",
+    "start": 1.579,
+    "end": 1.974
+  },
+  {
+    "word": "for",
+    "start": 2.032,
+    "end": 2.183
+  },
+  {
+    "word": "one",
+    "start": 2.252,
+    "end": 2.508
+  },
+  {
+    "word": "deep,",
+    "start": 2.577,
+    "end": 3.03
+  },
+  {
+    "word": "echoing",
+    "start": 3.1,
+    "end": 3.529
+  },
+  {
+    "word": "note",
+    "start": 3.599,
+    "end": 3.889
+  },
+  {
+    "word": "hanging",
+    "start": 3.947,
+    "end": 4.307
+  },
+  {
+    "word": "in",
+    "start": 4.365,
+    "end": 4.435
+  },
+  {
+    "word": "the",
+    "start": 4.481,
+    "end": 4.551
+  },
+  {
+    "word": "air",
+    "start": 4.632,
+    "end": 4.841
+  },
+  {
+    "word": "like",
+    "start": 4.911,
+    "end": 5.085
+  },
+  {
+    "word": "a",
+    "start": 5.12,
+    "end": 5.143
+  },
+  {
+    "word": "question",
+    "start": 5.213,
+    "end": 5.619
+  },
+  {
+    "word": "mark.",
+    "start": 5.677,
+    "end": 6.072
+  }
+]

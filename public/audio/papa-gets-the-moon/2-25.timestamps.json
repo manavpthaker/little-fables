@@ -1,0 +1,62 @@
+[
+  {
+    "word": "I",
+    "start": 0.046,
+    "end": 0.093
+  },
+  {
+    "word": "climbed",
+    "start": 0.186,
+    "end": 0.534
+  },
+  {
+    "word": "back",
+    "start": 0.58,
+    "end": 0.766
+  },
+  {
+    "word": "down,",
+    "start": 0.824,
+    "end": 1.265
+  },
+  {
+    "word": "one",
+    "start": 1.382,
+    "end": 1.602
+  },
+  {
+    "word": "wobbly",
+    "start": 1.649,
+    "end": 2.067
+  },
+  {
+    "word": "step",
+    "start": 2.125,
+    "end": 2.368
+  },
+  {
+    "word": "at",
+    "start": 2.415,
+    "end": 2.485
+  },
+  {
+    "word": "a",
+    "start": 2.519,
+    "end": 2.554
+  },
+  {
+    "word": "time,",
+    "start": 2.612,
+    "end": 3.053
+  },
+  {
+    "word": "thinking",
+    "start": 3.123,
+    "end": 3.483
+  },
+  {
+    "word": "harder.",
+    "start": 3.553,
+    "end": 4.005
+  }
+]

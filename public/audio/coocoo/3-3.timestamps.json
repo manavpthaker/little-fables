@@ -1,0 +1,452 @@
+[
+  {
+    "word": "And",
+    "start": 0.035,
+    "end": 0.151
+  },
+  {
+    "word": "he",
+    "start": 0.221,
+    "end": 0.279
+  },
+  {
+    "word": "could",
+    "start": 0.337,
+    "end": 0.511
+  },
+  {
+    "word": "see",
+    "start": 0.58,
+    "end": 1.033
+  },
+  {
+    "word": "--",
+    "start": 1.115,
+    "end": 1.184
+  },
+  {
+    "word": "now",
+    "start": 1.335,
+    "end": 1.579
+  },
+  {
+    "word": "that",
+    "start": 1.649,
+    "end": 1.788
+  },
+  {
+    "word": "he",
+    "start": 1.834,
+    "end": 1.881
+  },
+  {
+    "word": "was",
+    "start": 1.939,
+    "end": 2.055
+  },
+  {
+    "word": "on",
+    "start": 2.125,
+    "end": 2.218
+  },
+  {
+    "word": "the",
+    "start": 2.264,
+    "end": 2.345
+  },
+  {
+    "word": "outside",
+    "start": 2.415,
+    "end": 2.937
+  },
+  {
+    "word": "looking",
+    "start": 2.984,
+    "end": 3.274
+  },
+  {
+    "word": "in",
+    "start": 3.355,
+    "end": 3.564
+  },
+  {
+    "word": "--",
+    "start": 3.715,
+    "end": 3.762
+  },
+  {
+    "word": "that",
+    "start": 3.889,
+    "end": 4.075
+  },
+  {
+    "word": "it",
+    "start": 4.133,
+    "end": 4.214
+  },
+  {
+    "word": "wasn't",
+    "start": 4.284,
+    "end": 4.609
+  },
+  {
+    "word": "true.",
+    "start": 4.644,
+    "end": 5.132
+  },
+  {
+    "word": "He",
+    "start": 5.573,
+    "end": 5.7
+  },
+  {
+    "word": "could",
+    "start": 5.747,
+    "end": 5.933
+  },
+  {
+    "word": "see",
+    "start": 5.979,
+    "end": 6.165
+  },
+  {
+    "word": "his",
+    "start": 6.235,
+    "end": 6.374
+  },
+  {
+    "word": "own",
+    "start": 6.444,
+    "end": 6.629
+  },
+  {
+    "word": "hands,",
+    "start": 6.711,
+    "end": 7.279
+  },
+  {
+    "word": "hanging",
+    "start": 7.454,
+    "end": 7.837
+  },
+  {
+    "word": "at",
+    "start": 7.895,
+    "end": 7.976
+  },
+  {
+    "word": "his",
+    "start": 8.034,
+    "end": 8.162
+  },
+  {
+    "word": "sides,",
+    "start": 8.208,
+    "end": 8.835
+  },
+  {
+    "word": "perfectly",
+    "start": 9.009,
+    "end": 9.625
+  },
+  {
+    "word": "capable.",
+    "start": 9.694,
+    "end": 10.379
+  },
+  {
+    "word": "He",
+    "start": 10.704,
+    "end": 10.844
+  },
+  {
+    "word": "could",
+    "start": 10.902,
+    "end": 11.076
+  },
+  {
+    "word": "see",
+    "start": 11.134,
+    "end": 11.355
+  },
+  {
+    "word": "that",
+    "start": 11.413,
+    "end": 11.552
+  },
+  {
+    "word": "his",
+    "start": 11.61,
+    "end": 11.738
+  },
+  {
+    "word": "mouth",
+    "start": 11.819,
+    "end": 12.121
+  },
+  {
+    "word": "actually",
+    "start": 12.237,
+    "end": 12.783
+  },
+  {
+    "word": "was",
+    "start": 12.852,
+    "end": 13.003
+  },
+  {
+    "word": "watering",
+    "start": 13.096,
+    "end": 13.607
+  },
+  {
+    "word": "a",
+    "start": 13.665,
+    "end": 13.688
+  },
+  {
+    "word": "little",
+    "start": 13.746,
+    "end": 14.013
+  },
+  {
+    "word": "at",
+    "start": 14.06,
+    "end": 14.141
+  },
+  {
+    "word": "the",
+    "start": 14.199,
+    "end": 14.269
+  },
+  {
+    "word": "smell",
+    "start": 14.327,
+    "end": 14.629
+  },
+  {
+    "word": "of",
+    "start": 14.687,
+    "end": 14.745
+  },
+  {
+    "word": "the",
+    "start": 14.803,
+    "end": 14.873
+  },
+  {
+    "word": "beans.",
+    "start": 14.931,
+    "end": 15.535
+  },
+  {
+    "word": "He",
+    "start": 15.918,
+    "end": 16.034
+  },
+  {
+    "word": "could",
+    "start": 16.092,
+    "end": 16.266
+  },
+  {
+    "word": "see",
+    "start": 16.324,
+    "end": 16.545
+  },
+  {
+    "word": "the",
+    "start": 16.591,
+    "end": 16.672
+  },
+  {
+    "word": "part",
+    "start": 16.742,
+    "end": 16.997
+  },
+  {
+    "word": "of",
+    "start": 17.044,
+    "end": 17.114
+  },
+  {
+    "word": "him",
+    "start": 17.183,
+    "end": 17.334
+  },
+  {
+    "word": "that",
+    "start": 17.404,
+    "end": 17.555
+  },
+  {
+    "word": "had",
+    "start": 17.601,
+    "end": 17.729
+  },
+  {
+    "word": "sat",
+    "start": 17.787,
+    "end": 18.066
+  },
+  {
+    "word": "down",
+    "start": 18.124,
+    "end": 18.414
+  },
+  {
+    "word": "on",
+    "start": 18.484,
+    "end": 18.576
+  },
+  {
+    "word": "the",
+    "start": 18.623,
+    "end": 18.692
+  },
+  {
+    "word": "floor",
+    "start": 18.751,
+    "end": 19.064
+  },
+  {
+    "word": "inside",
+    "start": 19.134,
+    "end": 19.726
+  },
+  {
+    "word": "and",
+    "start": 19.772,
+    "end": 19.865
+  },
+  {
+    "word": "refused,",
+    "start": 19.935,
+    "end": 20.736
+  },
+  {
+    "word": "and",
+    "start": 20.91,
+    "end": 21.049
+  },
+  {
+    "word": "it",
+    "start": 21.107,
+    "end": 21.177
+  },
+  {
+    "word": "was",
+    "start": 21.235,
+    "end": 21.363
+  },
+  {
+    "word": "such",
+    "start": 21.432,
+    "end": 21.723
+  },
+  {
+    "word": "a",
+    "start": 21.769,
+    "end": 21.792
+  },
+  {
+    "word": "small",
+    "start": 21.874,
+    "end": 22.257
+  },
+  {
+    "word": "part.",
+    "start": 22.338,
+    "end": 22.86
+  },
+  {
+    "word": "Such",
+    "start": 23.186,
+    "end": 23.441
+  },
+  {
+    "word": "a",
+    "start": 23.476,
+    "end": 23.499
+  },
+  {
+    "word": "stubborn,",
+    "start": 23.615,
+    "end": 24.242
+  },
+  {
+    "word": "tired,",
+    "start": 24.312,
+    "end": 24.95
+  },
+  {
+    "word": "small",
+    "start": 24.997,
+    "end": 25.415
+  },
+  {
+    "word": "part.",
+    "start": 25.496,
+    "end": 26.065
+  },
+  {
+    "word": "And",
+    "start": 26.343,
+    "end": 26.494
+  },
+  {
+    "word": "all",
+    "start": 26.564,
+    "end": 26.785
+  },
+  {
+    "word": "the",
+    "start": 26.854,
+    "end": 26.924
+  },
+  {
+    "word": "rest",
+    "start": 26.994,
+    "end": 27.226
+  },
+  {
+    "word": "of",
+    "start": 27.272,
+    "end": 27.342
+  },
+  {
+    "word": "him",
+    "start": 27.4,
+    "end": 27.586
+  },
+  {
+    "word": "had",
+    "start": 27.667,
+    "end": 27.818
+  },
+  {
+    "word": "just",
+    "start": 27.899,
+    "end": 28.236
+  },
+  {
+    "word": "gone",
+    "start": 28.317,
+    "end": 28.607
+  },
+  {
+    "word": "along",
+    "start": 28.642,
+    "end": 28.979
+  },
+  {
+    "word": "with",
+    "start": 29.049,
+    "end": 29.223
+  },
+  {
+    "word": "it.",
+    "start": 29.281,
+    "end": 29.571
+  }
+]

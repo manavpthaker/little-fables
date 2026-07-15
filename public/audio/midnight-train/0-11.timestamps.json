@@ -1,337 +1,42 @@
 [
   {
-    "word": "She",
-    "start": 0.046,
-    "end": 0.174
-  },
-  {
-    "word": "took",
-    "start": 0.232,
-    "end": 0.418
-  },
-  {
-    "word": "his",
-    "start": 0.476,
-    "end": 0.604
-  },
-  {
-    "word": "hand---her",
-    "start": 0.673,
-    "end": 1.695
-  },
-  {
-    "word": "fingers",
-    "start": 1.765,
-    "end": 2.218
-  },
-  {
-    "word": "were",
-    "start": 2.287,
-    "end": 2.461
-  },
-  {
-    "word": "warm,",
-    "start": 2.508,
-    "end": 3.042
-  },
-  {
-    "word": "like",
-    "start": 3.158,
-    "end": 3.39
-  },
-  {
-    "word": "she'd",
-    "start": 3.425,
-    "end": 3.669
-  },
-  {
-    "word": "been",
-    "start": 3.704,
-    "end": 3.866
-  },
-  {
-    "word": "holding",
-    "start": 3.936,
-    "end": 4.261
-  },
-  {
-    "word": "them",
-    "start": 4.319,
-    "end": 4.458
-  },
-  {
-    "word": "near",
-    "start": 4.516,
-    "end": 4.714
-  },
-  {
-    "word": "a",
-    "start": 4.772,
-    "end": 4.795
-  },
-  {
-    "word": "fire---and",
-    "start": 4.865,
-    "end": 5.909
-  },
-  {
-    "word": "together",
-    "start": 5.979,
-    "end": 6.536
-  },
-  {
-    "word": "they",
-    "start": 6.78,
-    "end": 6.978
-  },
-  {
-    "word": "walked",
-    "start": 7.047,
-    "end": 7.419
-  },
-  {
-    "word": "toward",
-    "start": 7.488,
-    "end": 7.86
+    "word": "Downstairs,",
+    "start": 0.058,
+    "end": 0.848
   },
   {
     "word": "the",
-    "start": 7.906,
-    "end": 7.976
+    "start": 0.894,
+    "end": 1.01
   },
   {
-    "word": "tree.",
-    "start": 8.034,
-    "end": 8.649
+    "word": "tree",
+    "start": 1.068,
+    "end": 1.277
   },
   {
-    "word": "With",
-    "start": 9.033,
-    "end": 9.253
+    "word": "lights",
+    "start": 1.347,
+    "end": 1.614
   },
   {
-    "word": "each",
-    "start": 9.346,
-    "end": 9.648
+    "word": "pulsed",
+    "start": 1.672,
+    "end": 2.032
   },
   {
-    "word": "step,",
-    "start": 9.718,
-    "end": 10.414
+    "word": "once.",
+    "start": 2.113,
+    "end": 2.647
   },
   {
-    "word": "the",
-    "start": 10.588,
-    "end": 10.704
+    "word": "Just",
+    "start": 2.821,
+    "end": 3.204
   },
   {
-    "word": "room",
-    "start": 10.786,
-    "end": 11.076
-  },
-  {
-    "word": "seemed",
-    "start": 11.227,
-    "end": 11.587
-  },
-  {
-    "word": "to",
-    "start": 11.622,
-    "end": 11.68
-  },
-  {
-    "word": "grow",
-    "start": 11.738,
-    "end": 11.947
-  },
-  {
-    "word": "larger",
-    "start": 12.04,
-    "end": 12.516
-  },
-  {
-    "word": "around",
-    "start": 12.597,
-    "end": 12.992
-  },
-  {
-    "word": "them.",
-    "start": 13.061,
-    "end": 13.514
-  },
-  {
-    "word": "Or",
-    "start": 13.839,
-    "end": 14.002
-  },
-  {
-    "word": "perhaps",
-    "start": 14.071,
-    "end": 14.605
-  },
-  {
-    "word": "they",
-    "start": 14.675,
-    "end": 14.814
-  },
-  {
-    "word": "were",
-    "start": 14.849,
-    "end": 15
-  },
-  {
-    "word": "growing",
-    "start": 15.035,
-    "end": 15.372
-  },
-  {
-    "word": "smaller.",
-    "start": 15.453,
-    "end": 16.184
-  },
-  {
-    "word": "The",
-    "start": 16.567,
-    "end": 16.695
-  },
-  {
-    "word": "tiny",
-    "start": 16.765,
-    "end": 17.217
-  },
-  {
-    "word": "village",
-    "start": 17.287,
-    "end": 17.74
-  },
-  {
-    "word": "was",
-    "start": 17.786,
-    "end": 17.96
-  },
-  {
-    "word": "now",
-    "start": 18.03,
-    "end": 18.228
-  },
-  {
-    "word": "a",
-    "start": 18.309,
-    "end": 18.344
-  },
-  {
-    "word": "real",
-    "start": 18.46,
-    "end": 18.796
-  },
-  {
-    "word": "village.",
-    "start": 18.878,
-    "end": 19.516
-  },
-  {
-    "word": "The",
-    "start": 19.795,
-    "end": 19.923
-  },
-  {
-    "word": "train",
-    "start": 19.992,
-    "end": 20.48
-  },
-  {
-    "word": "was",
-    "start": 20.596,
-    "end": 20.77
-  },
-  {
-    "word": "now",
-    "start": 20.84,
-    "end": 21.002
-  },
-  {
-    "word": "a",
-    "start": 21.072,
-    "end": 21.095
-  },
-  {
-    "word": "real",
-    "start": 21.188,
-    "end": 21.455
-  },
-  {
-    "word": "train,",
-    "start": 21.525,
-    "end": 22.059
-  },
-  {
-    "word": "gleaming",
-    "start": 22.337,
-    "end": 22.883
-  },
-  {
-    "word": "red",
-    "start": 22.999,
-    "end": 23.289
-  },
-  {
-    "word": "with",
-    "start": 23.359,
-    "end": 23.533
-  },
-  {
-    "word": "golden",
-    "start": 23.603,
-    "end": 24.091
-  },
-  {
-    "word": "trim,",
-    "start": 24.172,
-    "end": 24.694
-  },
-  {
-    "word": "steam",
-    "start": 24.903,
-    "end": 25.426
-  },
-  {
-    "word": "puffing",
-    "start": 25.553,
-    "end": 25.983
-  },
-  {
-    "word": "from",
-    "start": 26.064,
-    "end": 26.227
-  },
-  {
-    "word": "its",
-    "start": 26.273,
-    "end": 26.401
-  },
-  {
-    "word": "stack",
-    "start": 26.447,
-    "end": 26.877
-  },
-  {
-    "word": "in",
-    "start": 26.97,
-    "end": 27.098
-  },
-  {
-    "word": "soft",
-    "start": 27.214,
-    "end": 27.655
-  },
-  {
-    "word": "white",
-    "start": 27.736,
-    "end": 28.119
-  },
-  {
-    "word": "clouds.",
-    "start": 28.177,
-    "end": 28.99
+    "word": "once.",
+    "start": 3.297,
+    "end": 3.831
   }
 ]

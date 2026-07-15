@@ -1,0 +1,147 @@
+[
+  {
+    "word": "He",
+    "start": 0.035,
+    "end": 0.163
+  },
+  {
+    "word": "didn't",
+    "start": 0.255,
+    "end": 0.557
+  },
+  {
+    "word": "feel",
+    "start": 0.615,
+    "end": 0.836
+  },
+  {
+    "word": "scared",
+    "start": 0.894,
+    "end": 1.265
+  },
+  {
+    "word": "of",
+    "start": 1.312,
+    "end": 1.37
+  },
+  {
+    "word": "it.",
+    "start": 1.44,
+    "end": 1.765
+  },
+  {
+    "word": "He",
+    "start": 2.206,
+    "end": 2.345
+  },
+  {
+    "word": "felt",
+    "start": 2.426,
+    "end": 2.775
+  },
+  {
+    "word": "--",
+    "start": 2.984,
+    "end": 3.03
+  },
+  {
+    "word": "something",
+    "start": 3.413,
+    "end": 3.808
+  },
+  {
+    "word": "else.",
+    "start": 3.878,
+    "end": 4.4
+  },
+  {
+    "word": "Something",
+    "start": 5.004,
+    "end": 5.387
+  },
+  {
+    "word": "more",
+    "start": 5.457,
+    "end": 5.654
+  },
+  {
+    "word": "like",
+    "start": 5.7,
+    "end": 5.944
+  },
+  {
+    "word": "understanding.",
+    "start": 6.002,
+    "end": 7.117
+  },
+  {
+    "word": "Like",
+    "start": 7.558,
+    "end": 7.79
+  },
+  {
+    "word": "recognizing",
+    "start": 7.848,
+    "end": 8.533
+  },
+  {
+    "word": "something",
+    "start": 8.615,
+    "end": 8.986
+  },
+  {
+    "word": "in",
+    "start": 9.044,
+    "end": 9.114
+  },
+  {
+    "word": "a",
+    "start": 9.172,
+    "end": 9.195
+  },
+  {
+    "word": "mirror",
+    "start": 9.288,
+    "end": 9.648
+  },
+  {
+    "word": "that",
+    "start": 9.729,
+    "end": 9.868
+  },
+  {
+    "word": "you'd",
+    "start": 9.915,
+    "end": 10.089
+  },
+  {
+    "word": "been",
+    "start": 10.124,
+    "end": 10.263
+  },
+  {
+    "word": "walking",
+    "start": 10.321,
+    "end": 10.681
+  },
+  {
+    "word": "past",
+    "start": 10.774,
+    "end": 11.157
+  },
+  {
+    "word": "without",
+    "start": 11.204,
+    "end": 11.529
+  },
+  {
+    "word": "looking",
+    "start": 11.575,
+    "end": 11.865
+  },
+  {
+    "word": "at.",
+    "start": 11.947,
+    "end": 12.33
+  }
+]

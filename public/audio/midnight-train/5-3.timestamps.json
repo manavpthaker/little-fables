@@ -1,0 +1,132 @@
+[
+  {
+    "word": "He",
+    "start": 0.046,
+    "end": 0.139
+  },
+  {
+    "word": "lay",
+    "start": 0.221,
+    "end": 0.395
+  },
+  {
+    "word": "very",
+    "start": 0.476,
+    "end": 0.766
+  },
+  {
+    "word": "still",
+    "start": 0.836,
+    "end": 1.115
+  },
+  {
+    "word": "for",
+    "start": 1.184,
+    "end": 1.289
+  },
+  {
+    "word": "a",
+    "start": 1.347,
+    "end": 1.37
+  },
+  {
+    "word": "moment,",
+    "start": 1.428,
+    "end": 1.892
+  },
+  {
+    "word": "remembering.",
+    "start": 1.974,
+    "end": 2.705
+  },
+  {
+    "word": "The",
+    "start": 2.879,
+    "end": 3.007
+  },
+  {
+    "word": "train.",
+    "start": 3.065,
+    "end": 3.599
+  },
+  {
+    "word": "The",
+    "start": 3.75,
+    "end": 3.878
+  },
+  {
+    "word": "forest.",
+    "start": 3.959,
+    "end": 4.609
+  },
+  {
+    "word": "The",
+    "start": 4.702,
+    "end": 4.818
+  },
+  {
+    "word": "castle.",
+    "start": 4.888,
+    "end": 5.492
+  },
+  {
+    "word": "The",
+    "start": 5.608,
+    "end": 5.747
+  },
+  {
+    "word": "dance.",
+    "start": 5.817,
+    "end": 6.385
+  },
+  {
+    "word": "Had",
+    "start": 6.594,
+    "end": 6.757
+  },
+  {
+    "word": "it",
+    "start": 6.815,
+    "end": 6.885
+  },
+  {
+    "word": "been",
+    "start": 6.92,
+    "end": 7.082
+  },
+  {
+    "word": "real?",
+    "start": 7.152,
+    "end": 7.605
+  },
+  {
+    "word": "Had",
+    "start": 7.721,
+    "end": 7.906
+  },
+  {
+    "word": "any",
+    "start": 7.976,
+    "end": 8.185
+  },
+  {
+    "word": "of",
+    "start": 8.243,
+    "end": 8.301
+  },
+  {
+    "word": "it",
+    "start": 8.359,
+    "end": 8.44
+  },
+  {
+    "word": "been",
+    "start": 8.487,
+    "end": 8.649
+  },
+  {
+    "word": "real?",
+    "start": 8.707,
+    "end": 9.137
+  }
+]

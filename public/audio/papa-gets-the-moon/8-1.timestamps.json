@@ -1,0 +1,37 @@
+[
+  {
+    "word": "the",
+    "start": 0.07,
+    "end": 0.163
+  },
+  {
+    "word": "moon",
+    "start": 0.221,
+    "end": 0.499
+  },
+  {
+    "word": "sat",
+    "start": 0.615,
+    "end": 0.836
+  },
+  {
+    "word": "quietly",
+    "start": 0.906,
+    "end": 1.405
+  },
+  {
+    "word": "on",
+    "start": 1.474,
+    "end": 1.556
+  },
+  {
+    "word": "its",
+    "start": 1.602,
+    "end": 1.741
+  },
+  {
+    "word": "bench...",
+    "start": 1.8,
+    "end": 2.264
+  }
+]

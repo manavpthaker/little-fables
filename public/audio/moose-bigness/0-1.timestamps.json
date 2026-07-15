@@ -1,47 +1,237 @@
 [
   {
-    "word": "Azi",
+    "word": "It",
     "start": 0.035,
-    "end": 0.383
+    "end": 0.151
   },
   {
-    "word": "had",
-    "start": 0.441,
-    "end": 0.546
-  },
-  {
-    "word": "spent",
-    "start": 0.592,
-    "end": 0.871
+    "word": "was",
+    "start": 0.209,
+    "end": 0.337
   },
   {
     "word": "the",
-    "start": 0.906,
-    "end": 0.987
+    "start": 0.395,
+    "end": 0.464
   },
   {
-    "word": "whole",
-    "start": 1.045,
-    "end": 1.312
+    "word": "kind",
+    "start": 0.522,
+    "end": 0.766
   },
   {
-    "word": "day",
-    "start": 1.358,
-    "end": 1.649
+    "word": "of",
+    "start": 0.824,
+    "end": 0.882
   },
   {
-    "word": "exploring",
-    "start": 1.741,
-    "end": 2.368
+    "word": "place",
+    "start": 0.964,
+    "end": 1.347
   },
   {
-    "word": "Bernadette's",
-    "start": 2.438,
-    "end": 2.984
+    "word": "where",
+    "start": 1.37,
+    "end": 1.544
   },
   {
-    "word": "farm.",
-    "start": 3.042,
-    "end": 3.495
+    "word": "the",
+    "start": 1.567,
+    "end": 1.637
+  },
+  {
+    "word": "mountains",
+    "start": 1.695,
+    "end": 2.183
+  },
+  {
+    "word": "came",
+    "start": 2.241,
+    "end": 2.554
+  },
+  {
+    "word": "right",
+    "start": 2.67,
+    "end": 2.961
+  },
+  {
+    "word": "up",
+    "start": 3.007,
+    "end": 3.111
+  },
+  {
+    "word": "to",
+    "start": 3.17,
+    "end": 3.228
+  },
+  {
+    "word": "the",
+    "start": 3.297,
+    "end": 3.367
+  },
+  {
+    "word": "windows",
+    "start": 3.425,
+    "end": 3.959
+  },
+  {
+    "word": "and",
+    "start": 4.017,
+    "end": 4.122
+  },
+  {
+    "word": "peeked",
+    "start": 4.203,
+    "end": 4.528
+  },
+  {
+    "word": "inside,",
+    "start": 4.574,
+    "end": 5.375
+  },
+  {
+    "word": "where",
+    "start": 5.584,
+    "end": 5.793
+  },
+  {
+    "word": "the",
+    "start": 5.828,
+    "end": 5.898
+  },
+  {
+    "word": "trees",
+    "start": 5.956,
+    "end": 6.385
+  },
+  {
+    "word": "whispered",
+    "start": 6.502,
+    "end": 7.024
+  },
+  {
+    "word": "secrets",
+    "start": 7.105,
+    "end": 7.581
+  },
+  {
+    "word": "to",
+    "start": 7.639,
+    "end": 7.721
+  },
+  {
+    "word": "each",
+    "start": 7.802,
+    "end": 7.964
+  },
+  {
+    "word": "other",
+    "start": 8.011,
+    "end": 8.22
+  },
+  {
+    "word": "in",
+    "start": 8.278,
+    "end": 8.359
+  },
+  {
+    "word": "voices",
+    "start": 8.452,
+    "end": 8.998
+  },
+  {
+    "word": "too",
+    "start": 9.079,
+    "end": 9.288
+  },
+  {
+    "word": "low",
+    "start": 9.404,
+    "end": 9.625
+  },
+  {
+    "word": "for",
+    "start": 9.706,
+    "end": 9.845
+  },
+  {
+    "word": "grown-ups",
+    "start": 9.903,
+    "end": 10.391
+  },
+  {
+    "word": "to",
+    "start": 10.437,
+    "end": 10.519
+  },
+  {
+    "word": "hear,",
+    "start": 10.612,
+    "end": 11.088
+  },
+  {
+    "word": "and",
+    "start": 11.297,
+    "end": 11.436
+  },
+  {
+    "word": "where",
+    "start": 11.482,
+    "end": 11.633
+  },
+  {
+    "word": "the",
+    "start": 11.668,
+    "end": 11.738
+  },
+  {
+    "word": "sky",
+    "start": 11.784,
+    "end": 12.225
+  },
+  {
+    "word": "turned",
+    "start": 12.307,
+    "end": 12.62
+  },
+  {
+    "word": "colors",
+    "start": 12.69,
+    "end": 13.119
+  },
+  {
+    "word": "at",
+    "start": 13.177,
+    "end": 13.282
+  },
+  {
+    "word": "sunset",
+    "start": 13.363,
+    "end": 13.978
+  },
+  {
+    "word": "that",
+    "start": 14.048,
+    "end": 14.222
+  },
+  {
+    "word": "didn't",
+    "start": 14.269,
+    "end": 14.536
+  },
+  {
+    "word": "have",
+    "start": 14.594,
+    "end": 14.779
+  },
+  {
+    "word": "names",
+    "start": 14.849,
+    "end": 15.197
+  },
+  {
+    "word": "yet.",
+    "start": 15.267,
+    "end": 15.72
   }
 ]

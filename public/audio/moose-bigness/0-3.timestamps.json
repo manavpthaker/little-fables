@@ -2,261 +2,321 @@
   {
     "word": "In",
     "start": 0.035,
-    "end": 0.151
+    "end": 0.139
   },
   {
     "word": "the",
     "start": 0.197,
-    "end": 0.29
+    "end": 0.267
   },
   {
-    "word": "afternoon,",
-    "start": 0.372,
-    "end": 1.231
+    "word": "morning,",
+    "start": 0.337,
+    "end": 0.906
   },
   {
     "word": "he",
-    "start": 1.405,
-    "end": 1.498
+    "start": 0.952,
+    "end": 1.057
   },
   {
     "word": "had",
-    "start": 1.567,
-    "end": 1.683
+    "start": 1.126,
+    "end": 1.265
   },
   {
-    "word": "run",
-    "start": 1.776,
-    "end": 2.009
+    "word": "watched",
+    "start": 1.347,
+    "end": 1.811
   },
   {
-    "word": "through",
-    "start": 2.067,
-    "end": 2.334
+    "word": "the",
+    "start": 1.858,
+    "end": 1.95
   },
   {
-    "word": "meadows",
-    "start": 2.415,
-    "end": 2.891
+    "word": "horses",
+    "start": 2.032,
+    "end": 2.531
   },
   {
-    "word": "that",
-    "start": 2.949,
-    "end": 3.123
+    "word": "in",
+    "start": 2.589,
+    "end": 2.682
+  },
+  {
+    "word": "their",
+    "start": 2.74,
+    "end": 2.902
+  },
+  {
+    "word": "paddock",
+    "start": 2.961,
+    "end": 3.402
+  },
+  {
+    "word": "-",
+    "start": 3.576,
+    "end": 3.599
+  },
+  {
+    "word": "the",
+    "start": 3.808,
+    "end": 3.924
+  },
+  {
+    "word": "big",
+    "start": 4.005,
+    "end": 4.238
+  },
+  {
+    "word": "bay",
+    "start": 4.319,
+    "end": 4.54
+  },
+  {
+    "word": "mare",
+    "start": 4.621,
+    "end": 4.946
+  },
+  {
+    "word": "with",
+    "start": 4.992,
+    "end": 5.155
+  },
+  {
+    "word": "the",
+    "start": 5.201,
+    "end": 5.271
+  },
+  {
+    "word": "white",
+    "start": 5.352,
+    "end": 5.677
+  },
+  {
+    "word": "blaze",
+    "start": 5.724,
+    "end": 6.118
+  },
+  {
+    "word": "on",
+    "start": 6.153,
+    "end": 6.246
+  },
+  {
+    "word": "her",
+    "start": 6.304,
+    "end": 6.397
+  },
+  {
+    "word": "forehead,",
+    "start": 6.467,
+    "end": 7.117
+  },
+  {
+    "word": "the",
+    "start": 7.326,
+    "end": 7.43
+  },
+  {
+    "word": "gray",
+    "start": 7.5,
+    "end": 7.779
+  },
+  {
+    "word": "gelding",
+    "start": 7.86,
+    "end": 8.336
+  },
+  {
+    "word": "who",
+    "start": 8.394,
+    "end": 8.533
+  },
+  {
+    "word": "snorted",
+    "start": 8.615,
+    "end": 9.137
+  },
+  {
+    "word": "when",
+    "start": 9.183,
+    "end": 9.346
+  },
+  {
+    "word": "Azi",
+    "start": 9.439,
+    "end": 9.845
+  },
+  {
+    "word": "came",
+    "start": 9.903,
+    "end": 10.17
+  },
+  {
+    "word": "too",
+    "start": 10.217,
+    "end": 10.403
+  },
+  {
+    "word": "close,",
+    "start": 10.472,
+    "end": 11.064
+  },
+  {
+    "word": "and",
+    "start": 11.238,
+    "end": 11.413
+  },
+  {
+    "word": "the",
+    "start": 11.471,
+    "end": 11.54
+  },
+  {
+    "word": "little",
+    "start": 11.598,
+    "end": 11.9
+  },
+  {
+    "word": "spotted",
+    "start": 11.947,
+    "end": 12.388
+  },
+  {
+    "word": "pony",
+    "start": 12.457,
+    "end": 12.887
+  },
+  {
+    "word": "who",
+    "start": 12.945,
+    "end": 13.096
   },
   {
     "word": "seemed",
-    "start": 3.193,
-    "end": 3.541
-  },
-  {
-    "word": "to",
-    "start": 3.576,
-    "end": 3.657
-  },
-  {
-    "word": "stretch",
-    "start": 3.773,
-    "end": 4.214
-  },
-  {
-    "word": "all",
-    "start": 4.284,
-    "end": 4.493
-  },
-  {
-    "word": "the",
-    "start": 4.551,
-    "end": 4.621
-  },
-  {
-    "word": "way",
-    "start": 4.679,
-    "end": 4.853
-  },
-  {
-    "word": "to",
-    "start": 4.911,
-    "end": 4.981
-  },
-  {
-    "word": "the",
-    "start": 5.05,
-    "end": 5.12
-  },
-  {
-    "word": "mountains.",
-    "start": 5.178,
-    "end": 6.084
-  },
-  {
-    "word": "His",
-    "start": 6.409,
-    "end": 6.618
-  },
-  {
-    "word": "legs",
-    "start": 6.734,
-    "end": 7.152
-  },
-  {
-    "word": "had",
-    "start": 7.21,
-    "end": 7.361
-  },
-  {
-    "word": "pumped",
-    "start": 7.454,
-    "end": 7.883
-  },
-  {
-    "word": "and",
-    "start": 7.93,
-    "end": 8.034
-  },
-  {
-    "word": "pumped,",
-    "start": 8.127,
-    "end": 8.684
-  },
-  {
-    "word": "and",
-    "start": 8.731,
-    "end": 8.893
-  },
-  {
-    "word": "the",
-    "start": 8.951,
-    "end": 9.021
-  },
-  {
-    "word": "tall",
-    "start": 9.091,
-    "end": 9.416
-  },
-  {
-    "word": "grass",
-    "start": 9.485,
-    "end": 9.961
-  },
-  {
-    "word": "had",
-    "start": 10.008,
-    "end": 10.136
-  },
-  {
-    "word": "tickled",
-    "start": 10.182,
-    "end": 10.565
-  },
-  {
-    "word": "his",
-    "start": 10.623,
-    "end": 10.739
-  },
-  {
-    "word": "palms",
-    "start": 10.82,
-    "end": 11.308
-  },
-  {
-    "word": "as",
-    "start": 11.366,
-    "end": 11.459
-  },
-  {
-    "word": "he",
-    "start": 11.529,
-    "end": 11.598
-  },
-  {
-    "word": "ran,",
-    "start": 11.714,
-    "end": 12.26
-  },
-  {
-    "word": "and",
-    "start": 12.341,
-    "end": 12.492
-  },
-  {
-    "word": "the",
-    "start": 12.55,
-    "end": 12.62
-  },
-  {
-    "word": "wind",
-    "start": 12.69,
-    "end": 12.98
-  },
-  {
-    "word": "had",
-    "start": 13.05,
-    "end": 13.177
-  },
-  {
-    "word": "pulled",
-    "start": 13.247,
+    "start": 13.177,
     "end": 13.537
   },
   {
-    "word": "at",
+    "word": "to",
     "start": 13.572,
-    "end": 13.653
+    "end": 13.642
   },
   {
-    "word": "his",
-    "start": 13.7,
-    "end": 13.816
+    "word": "understand",
+    "start": 13.758,
+    "end": 14.547
   },
   {
-    "word": "hair",
-    "start": 13.886,
-    "end": 14.234
+    "word": "that",
+    "start": 14.629,
+    "end": 14.837
   },
   {
-    "word": "like",
-    "start": 14.35,
-    "end": 14.559
-  },
-  {
-    "word": "it",
-    "start": 14.594,
-    "end": 14.663
+    "word": "Azi",
+    "start": 14.965,
+    "end": 15.406
   },
   {
     "word": "was",
-    "start": 14.698,
-    "end": 14.803
+    "start": 15.476,
+    "end": 15.627
   },
   {
-    "word": "trying",
-    "start": 14.872,
-    "end": 15.186
+    "word": "a",
+    "start": 15.685,
+    "end": 15.72
   },
   {
-    "word": "to",
-    "start": 15.244,
-    "end": 15.302
+    "word": "person",
+    "start": 15.813,
+    "end": 16.335
   },
   {
-    "word": "tell",
-    "start": 15.383,
-    "end": 15.604
+    "word": "worth",
+    "start": 16.451,
+    "end": 16.788
   },
   {
-    "word": "him",
-    "start": 15.673,
-    "end": 15.79
+    "word": "knowing.",
+    "start": 16.858,
+    "end": 17.461
   },
   {
-    "word": "something",
-    "start": 15.882,
-    "end": 16.3
+    "word": "They",
+    "start": 17.786,
+    "end": 17.972
   },
   {
-    "word": "important.",
-    "start": 16.358,
-    "end": 17.218
+    "word": "had",
+    "start": 18.03,
+    "end": 18.146
+  },
+  {
+    "word": "moved",
+    "start": 18.228,
+    "end": 18.657
+  },
+  {
+    "word": "through",
+    "start": 18.715,
+    "end": 18.947
+  },
+  {
+    "word": "the",
+    "start": 18.982,
+    "end": 19.052
+  },
+  {
+    "word": "morning",
+    "start": 19.11,
+    "end": 19.447
+  },
+  {
+    "word": "mist",
+    "start": 19.516,
+    "end": 19.841
+  },
+  {
+    "word": "like",
+    "start": 19.923,
+    "end": 20.143
+  },
+  {
+    "word": "dreams",
+    "start": 20.19,
+    "end": 20.689
+  },
+  {
+    "word": "that",
+    "start": 20.735,
+    "end": 20.875
+  },
+  {
+    "word": "hadn't",
+    "start": 20.944,
+    "end": 21.223
+  },
+  {
+    "word": "quite",
+    "start": 21.269,
+    "end": 21.525
+  },
+  {
+    "word": "woken",
+    "start": 21.56,
+    "end": 21.861
+  },
+  {
+    "word": "up",
+    "start": 21.92,
+    "end": 22.024
+  },
+  {
+    "word": "yet.",
+    "start": 22.094,
+    "end": 22.535
   }
 ]

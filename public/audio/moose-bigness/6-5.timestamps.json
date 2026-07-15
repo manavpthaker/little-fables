@@ -1,0 +1,57 @@
+[
+  {
+    "word": "The",
+    "start": 0.046,
+    "end": 0.151
+  },
+  {
+    "word": "moose's",
+    "start": 0.221,
+    "end": 0.662
+  },
+  {
+    "word": "voice",
+    "start": 0.731,
+    "end": 1.115
+  },
+  {
+    "word": "was",
+    "start": 1.161,
+    "end": 1.324
+  },
+  {
+    "word": "kind.",
+    "start": 1.44,
+    "end": 2.09
+  },
+  {
+    "word": "No",
+    "start": 2.334,
+    "end": 2.577
+  },
+  {
+    "word": "judgment.",
+    "start": 2.694,
+    "end": 3.32
+  },
+  {
+    "word": "No",
+    "start": 3.437,
+    "end": 3.68
+  },
+  {
+    "word": "disappointment.",
+    "start": 3.796,
+    "end": 4.748
+  },
+  {
+    "word": "Just",
+    "start": 4.899,
+    "end": 5.317
+  },
+  {
+    "word": "truth.",
+    "start": 5.41,
+    "end": 5.933
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "word": "I",
+    "start": 0.058,
+    "end": 0.093
+  },
+  {
+    "word": "went",
+    "start": 0.151,
+    "end": 0.313
+  },
+  {
+    "word": "back",
+    "start": 0.36,
+    "end": 0.546
+  },
+  {
+    "word": "home",
+    "start": 0.604,
+    "end": 0.859
+  },
+  {
+    "word": "and",
+    "start": 0.917,
+    "end": 1.045
+  },
+  {
+    "word": "into",
+    "start": 1.103,
+    "end": 1.265
+  },
+  {
+    "word": "Azi's",
+    "start": 1.335,
+    "end": 1.683
+  },
+  {
+    "word": "playroom.",
+    "start": 1.73,
+    "end": 2.252
+  }
+]

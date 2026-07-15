@@ -1,0 +1,267 @@
+[
+  {
+    "word": "\"Every",
+    "start": 0.035,
+    "end": 0.441
+  },
+  {
+    "word": "child",
+    "start": 0.522,
+    "end": 0.964
+  },
+  {
+    "word": "who",
+    "start": 1.01,
+    "end": 1.126
+  },
+  {
+    "word": "visits",
+    "start": 1.207,
+    "end": 1.544
+  },
+  {
+    "word": "the",
+    "start": 1.602,
+    "end": 1.672
+  },
+  {
+    "word": "Castle",
+    "start": 1.73,
+    "end": 2.125
+  },
+  {
+    "word": "of",
+    "start": 2.159,
+    "end": 2.218
+  },
+  {
+    "word": "Christmas",
+    "start": 2.276,
+    "end": 2.694
+  },
+  {
+    "word": "Dreams",
+    "start": 2.752,
+    "end": 3.146
+  },
+  {
+    "word": "receives",
+    "start": 3.239,
+    "end": 3.715
+  },
+  {
+    "word": "a",
+    "start": 3.773,
+    "end": 3.796
+  },
+  {
+    "word": "gift,\"",
+    "start": 3.866,
+    "end": 4.481
+  },
+  {
+    "word": "she",
+    "start": 4.551,
+    "end": 4.702
+  },
+  {
+    "word": "said.",
+    "start": 4.772,
+    "end": 5.283
+  },
+  {
+    "word": "\"This",
+    "start": 5.886,
+    "end": 6.211
+  },
+  {
+    "word": "bell",
+    "start": 6.293,
+    "end": 6.548
+  },
+  {
+    "word": "will",
+    "start": 6.618,
+    "end": 6.815
+  },
+  {
+    "word": "always",
+    "start": 6.873,
+    "end": 7.221
+  },
+  {
+    "word": "ring",
+    "start": 7.291,
+    "end": 7.477
+  },
+  {
+    "word": "for",
+    "start": 7.558,
+    "end": 7.686
+  },
+  {
+    "word": "you,",
+    "start": 7.755,
+    "end": 7.93
+  },
+  {
+    "word": "Azi.",
+    "start": 7.964,
+    "end": 8.591
+  },
+  {
+    "word": "On",
+    "start": 9.195,
+    "end": 9.381
+  },
+  {
+    "word": "cold",
+    "start": 9.474,
+    "end": 9.799
+  },
+  {
+    "word": "nights",
+    "start": 9.892,
+    "end": 10.194
+  },
+  {
+    "word": "when",
+    "start": 10.228,
+    "end": 10.368
+  },
+  {
+    "word": "you",
+    "start": 10.403,
+    "end": 10.484
+  },
+  {
+    "word": "feel",
+    "start": 10.565,
+    "end": 10.797
+  },
+  {
+    "word": "alone,",
+    "start": 10.867,
+    "end": 11.413
+  },
+  {
+    "word": "shake",
+    "start": 11.529,
+    "end": 11.831
+  },
+  {
+    "word": "it",
+    "start": 11.877,
+    "end": 11.958
+  },
+  {
+    "word": "once,",
+    "start": 12.04,
+    "end": 12.55
+  },
+  {
+    "word": "and",
+    "start": 12.597,
+    "end": 12.771
+  },
+  {
+    "word": "remember:",
+    "start": 12.852,
+    "end": 13.526
+  },
+  {
+    "word": "you",
+    "start": 13.909,
+    "end": 14.013
+  },
+  {
+    "word": "danced",
+    "start": 14.095,
+    "end": 14.536
+  },
+  {
+    "word": "with",
+    "start": 14.582,
+    "end": 14.721
+  },
+  {
+    "word": "the",
+    "start": 14.756,
+    "end": 14.826
+  },
+  {
+    "word": "stars",
+    "start": 14.872,
+    "end": 15.267
+  },
+  {
+    "word": "tonight.",
+    "start": 15.325,
+    "end": 15.975
+  },
+  {
+    "word": "You",
+    "start": 16.579,
+    "end": 16.718
+  },
+  {
+    "word": "rode",
+    "start": 16.8,
+    "end": 17.09
+  },
+  {
+    "word": "the",
+    "start": 17.125,
+    "end": 17.194
+  },
+  {
+    "word": "Midnight",
+    "start": 17.252,
+    "end": 17.717
+  },
+  {
+    "word": "Train.",
+    "start": 17.763,
+    "end": 18.379
+  },
+  {
+    "word": "Magic",
+    "start": 18.889,
+    "end": 19.423
+  },
+  {
+    "word": "is",
+    "start": 19.493,
+    "end": 19.632
+  },
+  {
+    "word": "real,",
+    "start": 19.749,
+    "end": 20.352
+  },
+  {
+    "word": "and",
+    "start": 20.526,
+    "end": 20.701
+  },
+  {
+    "word": "it",
+    "start": 20.77,
+    "end": 20.863
+  },
+  {
+    "word": "lives",
+    "start": 20.933,
+    "end": 21.281
+  },
+  {
+    "word": "inside",
+    "start": 21.351,
+    "end": 21.85
+  },
+  {
+    "word": "you.\"",
+    "start": 21.896,
+    "end": 22.256
+  }
+]

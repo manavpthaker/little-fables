@@ -1,312 +1,197 @@
 [
   {
-    "word": ">",
-    "start": 0.046,
-    "end": 0.093
+    "word": "He",
+    "start": 0.058,
+    "end": 0.139
   },
   {
-    "word": "*The",
-    "start": 0.116,
-    "end": 0.267
+    "word": "didn't",
+    "start": 0.197,
+    "end": 0.464
   },
   {
-    "word": "same",
-    "start": 0.348,
-    "end": 0.685
+    "word": "even",
+    "start": 0.511,
+    "end": 0.72
   },
   {
-    "word": "hands",
-    "start": 0.755,
-    "end": 1.115
+    "word": "know",
+    "start": 0.778,
+    "end": 0.998
   },
   {
-    "word": "that",
-    "start": 1.173,
-    "end": 1.324
+    "word": "why",
+    "start": 1.08,
+    "end": 1.358
   },
   {
-    "word": "push",
-    "start": 1.382,
-    "end": 1.683
+    "word": "he",
+    "start": 1.44,
+    "end": 1.521
   },
   {
-    "word": "can",
-    "start": 1.741,
+    "word": "said",
+    "start": 1.637,
     "end": 1.892
   },
   {
-    "word": "also",
-    "start": 1.962,
-    "end": 2.334
+    "word": "it.",
+    "start": 1.95,
+    "end": 2.183
   },
   {
-    "word": "hug.",
-    "start": 2.415,
-    "end": 2.856
+    "word": "He",
+    "start": 2.508,
+    "end": 2.635
   },
   {
-    "word": "The",
-    "start": 3.1,
-    "end": 3.216
+    "word": "just",
+    "start": 2.717,
+    "end": 2.937
   },
   {
-    "word": "same",
-    "start": 3.286,
-    "end": 3.564
+    "word": "needed",
+    "start": 2.995,
+    "end": 3.297
   },
   {
-    "word": "voice",
-    "start": 3.622,
-    "end": 3.994
+    "word": "the",
+    "start": 3.344,
+    "end": 3.425
+  },
+  {
+    "word": "biggest,",
+    "start": 3.518,
+    "end": 4.18
+  },
+  {
+    "word": "sharpest",
+    "start": 4.249,
+    "end": 4.934
+  },
+  {
+    "word": "words",
+    "start": 5.004,
+    "end": 5.387
+  },
+  {
+    "word": "he",
+    "start": 5.457,
+    "end": 5.538
+  },
+  {
+    "word": "could",
+    "start": 5.596,
+    "end": 5.759
+  },
+  {
+    "word": "find.",
+    "start": 5.817,
+    "end": 6.339
+  },
+  {
+    "word": "Words",
+    "start": 6.78,
+    "end": 7.279
   },
   {
     "word": "that",
-    "start": 4.04,
-    "end": 4.191
+    "start": 7.338,
+    "end": 7.5
   },
   {
-    "word": "bites",
-    "start": 4.261,
-    "end": 4.632
-  },
-  {
-    "word": "can",
-    "start": 4.702,
-    "end": 4.841
-  },
-  {
-    "word": "also",
-    "start": 4.899,
-    "end": 5.248
-  },
-  {
-    "word": "say",
-    "start": 5.341,
-    "end": 5.666
-  },
-  {
-    "word": "'I",
-    "start": 5.875,
-    "end": 6.026
-  },
-  {
-    "word": "love",
-    "start": 6.177,
-    "end": 6.397
-  },
-  {
-    "word": "you.'",
-    "start": 6.444,
-    "end": 6.954
-  },
-  {
-    "word": "The",
+    "word": "could",
     "start": 7.558,
-    "end": 7.686
+    "end": 7.744
   },
   {
-    "word": "same",
-    "start": 7.755,
-    "end": 8.046
+    "word": "match",
+    "start": 7.802,
+    "end": 8.139
   },
   {
-    "word": "heart",
-    "start": 8.104,
-    "end": 8.382
+    "word": "the",
+    "start": 8.208,
+    "end": 8.301
+  },
+  {
+    "word": "bigness",
+    "start": 8.371,
+    "end": 8.916
+  },
+  {
+    "word": "inside",
+    "start": 8.986,
+    "end": 9.532
+  },
+  {
+    "word": "him.",
+    "start": 9.578,
+    "end": 9.88
+  },
+  {
+    "word": "Words",
+    "start": 10.321,
+    "end": 10.739
   },
   {
     "word": "that",
-    "start": 8.429,
-    "end": 8.58
+    "start": 10.797,
+    "end": 10.925
   },
   {
-    "word": "lets",
-    "start": 8.638,
-    "end": 8.87
+    "word": "could",
+    "start": 10.971,
+    "end": 11.146
   },
   {
-    "word": "the",
-    "start": 8.928,
-    "end": 9.009
+    "word": "hurt",
+    "start": 11.204,
+    "end": 11.482
   },
   {
-    "word": "bigness",
-    "start": 9.102,
-    "end": 9.567
+    "word": "as",
+    "start": 11.529,
+    "end": 11.633
   },
   {
-    "word": "burst",
-    "start": 9.636,
-    "end": 9.927
+    "word": "much",
+    "start": 11.714,
+    "end": 11.912
   },
   {
-    "word": "out",
-    "start": 9.996,
-    "end": 10.252
+    "word": "as",
+    "start": 11.958,
+    "end": 12.051
   },
   {
-    "word": "can",
-    "start": 10.426,
-    "end": 10.623
+    "word": "everything",
+    "start": 12.121,
+    "end": 12.55
   },
   {
-    "word": "also",
-    "start": 10.704,
-    "end": 11.204
+    "word": "felt",
+    "start": 12.666,
+    "end": 12.934
   },
   {
-    "word": "let",
-    "start": 11.331,
-    "end": 11.505
+    "word": "like",
+    "start": 12.992,
+    "end": 13.189
   },
   {
-    "word": "the",
-    "start": 11.552,
-    "end": 11.622
+    "word": "it",
+    "start": 13.235,
+    "end": 13.305
   },
   {
-    "word": "kindness",
-    "start": 11.691,
-    "end": 12.341
+    "word": "was",
+    "start": 13.363,
+    "end": 13.491
   },
   {
-    "word": "rise",
-    "start": 12.423,
-    "end": 12.748
-  },
-  {
-    "word": "up.*",
-    "start": 12.794,
-    "end": 13.34
-  },
-  {
-    "word": "\"But",
-    "start": 13.781,
-    "end": 14.048
-  },
-  {
-    "word": "how?\"",
-    "start": 14.118,
-    "end": 14.71
-  },
-  {
-    "word": "Azi",
-    "start": 14.756,
-    "end": 15.116
-  },
-  {
-    "word": "asked.",
-    "start": 15.197,
-    "end": 15.732
-  },
-  {
-    "word": "\"How",
-    "start": 15.824,
-    "end": 16.161
-  },
-  {
-    "word": "do",
-    "start": 16.219,
-    "end": 16.312
-  },
-  {
-    "word": "I",
-    "start": 16.393,
-    "end": 16.417
-  },
-  {
-    "word": "let",
-    "start": 16.509,
-    "end": 16.649
-  },
-  {
-    "word": "the",
-    "start": 16.684,
-    "end": 16.753
-  },
-  {
-    "word": "kindness",
-    "start": 16.811,
-    "end": 17.392
-  },
-  {
-    "word": "rise",
-    "start": 17.473,
-    "end": 17.81
-  },
-  {
-    "word": "up",
-    "start": 17.856,
-    "end": 17.996
-  },
-  {
-    "word": "when",
-    "start": 18.054,
-    "end": 18.205
-  },
-  {
-    "word": "the",
-    "start": 18.24,
-    "end": 18.309
-  },
-  {
-    "word": "bigness",
-    "start": 18.367,
-    "end": 18.774
-  },
-  {
-    "word": "is",
-    "start": 18.832,
-    "end": 18.901
-  },
-  {
-    "word": "so",
-    "start": 18.959,
-    "end": 19.168
-  },
-  {
-    "word": "fast?\"",
-    "start": 19.284,
-    "end": 19.946
-  },
-  {
-    "word": ">",
-    "start": 20.12,
-    "end": 20.144
-  },
-  {
-    "word": "*You",
-    "start": 20.178,
-    "end": 20.434
-  },
-  {
-    "word": "are",
-    "start": 20.515,
-    "end": 20.654
-  },
-  {
-    "word": "bigger",
-    "start": 20.713,
-    "end": 21.026
-  },
-  {
-    "word": "than",
-    "start": 21.096,
-    "end": 21.235
-  },
-  {
-    "word": "you",
-    "start": 21.305,
-    "end": 21.421
-  },
-  {
-    "word": "know,",
-    "start": 21.502,
-    "end": 21.839
-  },
-  {
-    "word": "Azi.*",
-    "start": 21.885,
-    "end": 22.466
+    "word": "hurting.",
+    "start": 13.56,
+    "end": 14.094
   }
 ]

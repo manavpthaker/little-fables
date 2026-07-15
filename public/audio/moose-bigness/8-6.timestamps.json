@@ -1,0 +1,42 @@
+[
+  {
+    "word": "He",
+    "start": 0.046,
+    "end": 0.151
+  },
+  {
+    "word": "dreamed",
+    "start": 0.221,
+    "end": 0.604
+  },
+  {
+    "word": "of",
+    "start": 0.639,
+    "end": 0.708
+  },
+  {
+    "word": "horses",
+    "start": 0.789,
+    "end": 1.184
+  },
+  {
+    "word": "standing",
+    "start": 1.231,
+    "end": 1.683
+  },
+  {
+    "word": "in",
+    "start": 1.73,
+    "end": 1.788
+  },
+  {
+    "word": "morning",
+    "start": 1.858,
+    "end": 2.171
+  },
+  {
+    "word": "mist.",
+    "start": 2.229,
+    "end": 2.682
+  }
+]

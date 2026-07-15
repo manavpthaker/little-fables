@@ -1,242 +1,62 @@
 [
   {
-    "word": "As",
-    "start": 0.035,
-    "end": 0.174
-  },
-  {
-    "word": "the",
-    "start": 0.255,
-    "end": 0.325
-  },
-  {
-    "word": "bus",
-    "start": 0.383,
-    "end": 0.662
-  },
-  {
-    "word": "turned",
-    "start": 0.731,
-    "end": 1.045
-  },
-  {
-    "word": "down",
-    "start": 1.091,
-    "end": 1.393
-  },
-  {
-    "word": "an",
-    "start": 1.451,
-    "end": 1.533
-  },
-  {
-    "word": "unfamiliar",
-    "start": 1.649,
-    "end": 2.322
-  },
-  {
-    "word": "street,",
-    "start": 2.392,
-    "end": 2.995
-  },
-  {
-    "word": "Azi",
-    "start": 3.17,
-    "end": 3.541
-  },
-  {
-    "word": "felt",
-    "start": 3.611,
-    "end": 3.843
-  },
-  {
-    "word": "his",
-    "start": 3.901,
-    "end": 4.017
-  },
-  {
-    "word": "chest",
-    "start": 4.098,
-    "end": 4.481
-  },
-  {
-    "word": "get",
-    "start": 4.551,
-    "end": 4.737
-  },
-  {
-    "word": "tight.",
-    "start": 4.783,
-    "end": 5.329
-  },
-  {
-    "word": "This",
-    "start": 5.712,
-    "end": 5.979
-  },
-  {
-    "word": "wasn't",
-    "start": 6.06,
-    "end": 6.362
-  },
-  {
-    "word": "the",
-    "start": 6.397,
-    "end": 6.467
-  },
-  {
-    "word": "plan.",
-    "start": 6.513,
-    "end": 7.059
-  },
-  {
-    "word": "Plans",
-    "start": 7.268,
-    "end": 7.732
-  },
-  {
-    "word": "were",
-    "start": 7.79,
-    "end": 7.941
-  },
-  {
-    "word": "supposed",
-    "start": 7.976,
-    "end": 8.382
-  },
-  {
-    "word": "to",
-    "start": 8.406,
-    "end": 8.464
-  },
-  {
-    "word": "work.",
-    "start": 8.533,
-    "end": 9.021
-  },
-  {
-    "word": "But",
-    "start": 9.625,
-    "end": 9.81
-  },
-  {
-    "word": "then",
-    "start": 9.857,
-    "end": 10.089
-  },
-  {
     "word": "Loki",
-    "start": 10.205,
-    "end": 10.565
+    "start": 0.058,
+    "end": 0.348
   },
   {
-    "word": "handed",
-    "start": 10.646,
-    "end": 10.96
+    "word": "folded",
+    "start": 0.43,
+    "end": 0.836
   },
   {
-    "word": "him",
-    "start": 11.006,
-    "end": 11.134
+    "word": "a",
+    "start": 0.882,
+    "end": 0.917
   },
   {
-    "word": "the",
-    "start": 11.215,
-    "end": 11.285
+    "word": "perfect",
+    "start": 0.998,
+    "end": 1.416
   },
   {
     "word": "origami",
-    "start": 11.355,
-    "end": 11.889
+    "start": 1.474,
+    "end": 2.009
   },
   {
-    "word": "crane.",
-    "start": 11.947,
-    "end": 12.516
+    "word": "crane",
+    "start": 2.067,
+    "end": 2.426
   },
   {
-    "word": "\"Sometimes",
-    "start": 12.957,
-    "end": 13.827
+    "word": "while",
+    "start": 2.473,
+    "end": 2.717
   },
   {
-    "word": "the",
-    "start": 13.909,
-    "end": 13.99
+    "word": "announcing,",
+    "start": 2.752,
+    "end": 3.46
   },
   {
-    "word": "best",
-    "start": 14.071,
-    "end": 14.385
+    "word": "\"Loki",
+    "start": 3.785,
+    "end": 4.365
   },
   {
-    "word": "path",
-    "start": 14.466,
-    "end": 14.838
+    "word": "here,",
+    "start": 4.435,
+    "end": 4.725
   },
   {
-    "word": "isn't",
-    "start": 14.907,
-    "end": 15.197
+    "word": "thinking",
+    "start": 4.76,
+    "end": 5.12
   },
   {
-    "word": "the",
-    "start": 15.232,
-    "end": 15.302
-  },
-  {
-    "word": "one",
-    "start": 15.372,
-    "end": 15.499
-  },
-  {
-    "word": "you",
-    "start": 15.534,
-    "end": 15.627
-  },
-  {
-    "word": "planned.\"",
-    "start": 15.708,
-    "end": 16.405
-  },
-  {
-    "word": "And",
-    "start": 16.846,
-    "end": 17.02
-  },
-  {
-    "word": "Dory",
-    "start": 17.101,
-    "end": 17.438
-  },
-  {
-    "word": "added,",
-    "start": 17.508,
-    "end": 18.019
-  },
-  {
-    "word": "\"Look!",
-    "start": 18.193,
-    "end": 18.866
-  },
-  {
-    "word": "New",
-    "start": 19.017,
-    "end": 19.215
-  },
-  {
-    "word": "things",
-    "start": 19.273,
-    "end": 19.563
-  },
-  {
-    "word": "to",
-    "start": 19.621,
-    "end": 19.702
-  },
-  {
-    "word": "see!\"",
-    "start": 19.795,
-    "end": 20.317
+    "word": "ahead.\"",
+    "start": 5.19,
+    "end": 5.724
   }
 ]

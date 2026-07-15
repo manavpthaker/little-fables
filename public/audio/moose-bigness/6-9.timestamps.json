@@ -1,0 +1,122 @@
+[
+  {
+    "word": "The",
+    "start": 0.046,
+    "end": 0.151
+  },
+  {
+    "word": "moose",
+    "start": 0.232,
+    "end": 0.639
+  },
+  {
+    "word": "began",
+    "start": 0.685,
+    "end": 1.033
+  },
+  {
+    "word": "to",
+    "start": 1.103,
+    "end": 1.173
+  },
+  {
+    "word": "turn,",
+    "start": 1.254,
+    "end": 1.869
+  },
+  {
+    "word": "its",
+    "start": 2.043,
+    "end": 2.241
+  },
+  {
+    "word": "great",
+    "start": 2.322,
+    "end": 2.647
+  },
+  {
+    "word": "body",
+    "start": 2.74,
+    "end": 3.158
+  },
+  {
+    "word": "moving",
+    "start": 3.286,
+    "end": 3.773
+  },
+  {
+    "word": "like",
+    "start": 3.866,
+    "end": 4.052
+  },
+  {
+    "word": "a",
+    "start": 4.087,
+    "end": 4.11
+  },
+  {
+    "word": "ship",
+    "start": 4.226,
+    "end": 4.528
+  },
+  {
+    "word": "through",
+    "start": 4.598,
+    "end": 4.876
+  },
+  {
+    "word": "fog,",
+    "start": 4.957,
+    "end": 5.538
+  },
+  {
+    "word": "like",
+    "start": 5.712,
+    "end": 5.909
+  },
+  {
+    "word": "a",
+    "start": 5.944,
+    "end": 5.979
+  },
+  {
+    "word": "cloud",
+    "start": 6.072,
+    "end": 6.641
+  },
+  {
+    "word": "drifting",
+    "start": 6.769,
+    "end": 7.291
+  },
+  {
+    "word": "across",
+    "start": 7.349,
+    "end": 7.767
+  },
+  {
+    "word": "the",
+    "start": 7.825,
+    "end": 7.906
+  },
+  {
+    "word": "face",
+    "start": 7.999,
+    "end": 8.348
+  },
+  {
+    "word": "of",
+    "start": 8.394,
+    "end": 8.452
+  },
+  {
+    "word": "the",
+    "start": 8.51,
+    "end": 8.58
+  },
+  {
+    "word": "moon.",
+    "start": 8.649,
+    "end": 9.195
+  }
+]

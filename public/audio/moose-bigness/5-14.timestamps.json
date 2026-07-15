@@ -1,0 +1,37 @@
+[
+  {
+    "word": "Second:",
+    "start": 0.035,
+    "end": 0.65
+  },
+  {
+    "word": "Breathe",
+    "start": 0.824,
+    "end": 1.324
+  },
+  {
+    "word": "slow,",
+    "start": 1.405,
+    "end": 1.962
+  },
+  {
+    "word": "like",
+    "start": 2.078,
+    "end": 2.31
+  },
+  {
+    "word": "the",
+    "start": 2.357,
+    "end": 2.426
+  },
+  {
+    "word": "mountain",
+    "start": 2.508,
+    "end": 2.937
+  },
+  {
+    "word": "air.",
+    "start": 3.007,
+    "end": 3.471
+  }
+]

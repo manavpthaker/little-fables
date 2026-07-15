@@ -1,0 +1,97 @@
+[
+  {
+    "word": "A",
+    "start": 0.035,
+    "end": 0.07
+  },
+  {
+    "word": "grizzly",
+    "start": 0.163,
+    "end": 0.604
+  },
+  {
+    "word": "bear",
+    "start": 0.662,
+    "end": 0.929
+  },
+  {
+    "word": "stood",
+    "start": 0.998,
+    "end": 1.254
+  },
+  {
+    "word": "above",
+    "start": 1.289,
+    "end": 1.544
+  },
+  {
+    "word": "him,",
+    "start": 1.591,
+    "end": 1.823
+  },
+  {
+    "word": "taller",
+    "start": 1.869,
+    "end": 2.31
+  },
+  {
+    "word": "than",
+    "start": 2.368,
+    "end": 2.519
+  },
+  {
+    "word": "three",
+    "start": 2.577,
+    "end": 2.833
+  },
+  {
+    "word": "Brambles",
+    "start": 2.891,
+    "end": 3.402
+  },
+  {
+    "word": "stacked",
+    "start": 3.46,
+    "end": 3.889
+  },
+  {
+    "word": "together,",
+    "start": 3.947,
+    "end": 4.481
+  },
+  {
+    "word": "with",
+    "start": 4.563,
+    "end": 4.748
+  },
+  {
+    "word": "paws",
+    "start": 4.83,
+    "end": 5.306
+  },
+  {
+    "word": "as",
+    "start": 5.375,
+    "end": 5.526
+  },
+  {
+    "word": "wide",
+    "start": 5.642,
+    "end": 6.026
+  },
+  {
+    "word": "as",
+    "start": 6.06,
+    "end": 6.153
+  },
+  {
+    "word": "dinner",
+    "start": 6.223,
+    "end": 6.467
+  },
+  {
+    "word": "plates.",
+    "start": 6.513,
+    "end": 7.012
+  }
+]

@@ -87,7 +87,7 @@
               "text": "\"Take the mystery route?\" suggested Dory cheerfully."
             },
             {
-              "text": "\"There's no such thing as a mystery route,\" Azu said, his voice getting smaller. He strummed his guitar nervously: C-G-Am, C-G-Am."
+              "text": "\"There's no such thing as a mystery route,\" Azi said, his voice getting smaller. He strummed his guitar nervously: C-G-Am, C-G-Am."
             },
             {
               "text": "Clappy clapped once, then stopped when he realized everyone was worried."
@@ -105,8 +105,7 @@
               "text": "\"And Warren leads to the community center,\" added Inu. \"I remember from when we went there for the Diwali celebration.\""
             },
             {
-              "text": "\"¡La celebración!\" Azi's eyes lit up. \"I remember too! Dadi brought those amazing samosas.\"",
-              "star": "celebración"
+              "text": "\"¡La celebración!\" Azi's eyes lit up. \"I remember too! Dadi brought those amazing samosas.\""
             },
             {
               "text": "Pandies nodded slowly. \"Community center route it is. Everyone hold on.\""
@@ -136,8 +135,7 @@
               "text": "\"Or when Papa reads from his Gujarati tablet and the letters look like music to me,\" Azi continued, feeling the knot in his chest loosening."
             },
             {
-              "text": "Jujy puffed up proudly. \"See? I knew this detour would work out!\"",
-              "star": "detour"
+              "text": "Jujy puffed up proudly. \"See? I knew this detour would work out!\""
             },
             {
               "text": "\"You were scared too,\" Dory pointed out with a giggle."
@@ -161,8 +159,7 @@
               "text": "\"And we learned something,\" Citie added. \"There are lots of ways to get where you need to go.\""
             },
             {
-              "text": "As they gathered their backpacks, Azi played one more chord progression on his guitar—but this time, he added a little flourish at the end.",
-              "star": "flourish"
+              "text": "As they gathered their backpacks, Azi played one more chord progression on his guitar—but this time, he added a little flourish at the end."
             },
             {
               "text": "\"¿Qué fue eso?\" asked a familiar voice. Mama had come to walk him to the camp entrance."
@@ -190,6 +187,9 @@
             },
             {
               "text": "And in the gentle darkness, Azi hummed his three chords one more time, adding that extra flourish that sounded like discovery, like courage, like coming home by a different route."
+            },
+            {
+              "text": "C-G-Am... and one note more."
             }
           ]
         }
@@ -283,8 +283,7 @@
               "text": "It was harder this time. The little voice was louder. What if she runs too? What if she runs too?"
             },
             {
-              "text": "Bramble's hello was almost a whisper. But he said it.",
-              "star": "whisper"
+              "text": "Bramble's hello was almost a whisper. But he said it."
             },
             {
               "text": "\"Hello.\""
@@ -401,8 +400,7 @@
               "text": "\"BOO!\" called the deer, who had never said boo to anyone in her whole life."
             },
             {
-              "text": "Bramble and Mose jumped. They flopped onto their backs in the moss. They wiggled their paws in the air and made silly bear sounds — uh-oh-oh and ooh-ooh-ooh — until the bunny was giggling, and the fox was rolling, and the deer was making the soft snorty laugh that deer make when no one is looking.",
-              "star": "giggling"
+              "text": "Bramble and Mose jumped. They flopped onto their backs in the moss. They wiggled their paws in the air and made silly bear sounds — uh-oh-oh and ooh-ooh-ooh — until the bunny was giggling, and the fox was rolling, and the deer was making the soft snorty laugh that deer make when no one is looking."
             },
             {
               "text": "They played all afternoon. The bunny scared them from behind a stump. The fox scared them from inside a bush. The deer scared them from up on a little hill."
@@ -420,8 +418,7 @@
               "text": "And he understood something now, the way you understand a song after you've sung it through."
             },
             {
-              "text": "Brave wasn't not being scared.",
-              "star": "brave"
+              "text": "Brave wasn't not being scared."
             },
             {
               "text": "Brave was saying hello anyway."
@@ -481,68 +478,190 @@
       "originNote": "Bedtime-specific by design — shines in bedtime mode / quiet time. Star-counting pages get the breathe-along treatment.",
       "chapters": [
         {
-          "title": "",
+          "title": "The Cozy Circle",
           "pages": [
             {
-              "text": "The day had been big. Big playing. Big feelings. Big everything. Now Azi's room was getting dark, and the space between his bed and the door felt very, very far. \"Stay,\" Azi whispered to Mama. \"I'll be right outside,\" Mama said. \"And you won't be alone.\"",
-              "scene": "bedroom-night"
+              "text": "The day had been big."
             },
             {
-              "text": "Jujy stood up a little straighter on the pillow. \"Night Watch time,\" he announced quietly. \"I've got this.\" Dory yawned. \"Got what?\" \"The... the thing.\" Jujy paused. \"The important thing.\" \"Oh good,\" said Dory, already forgetting what they were talking about.",
-              "scene": "bedroom-night"
+              "text": "Big playing. Big feelings. Big everything."
             },
             {
-              "text": "Slothie didn't say anything at all. Slothie just breathed. In... slow... out... slower. Baby Slothie tucked against Slothie's arm, rising and falling like a tiny boat on a gentle wave.",
-              "scene": "bedroom-night"
+              "text": "Now Azi's room was getting dark, and the space between his bed and the door felt very, very far."
             },
             {
-              "text": "Azi's body still felt too awake. Too buzzy. Too much. \"My tummy feels wiggly,\" he said. Pandies nodded slowly from the foot of the bed. \"Wiggly feelings like to visit at bedtime. They're looking for a place to rest.\" \"Where do they rest?\" \"In the Cozy Circle.\"",
-              "scene": "bedroom-night",
-              "ask": {
-                "question": "Let's make the Cozy Circle with Azi: blanket… friends… and one slow breath.",
-                "answers": [],
-                "praise": "There it is. Your circle is cozy and strong.",
-                "hint": "Pull your blanket close and breathe out sloooow.",
-                "skill": "calming down"
-              }
+              "text": "\"Stay,\" Azi whispered to Mama."
             },
             {
-              "text": "Pandies spoke in his slow, steady voice: \"First, your blanket goes here—\" He tucked it around Azi's feet. \"Then your friends go here—\" Jujy, Dory, Slothie, all in their spots. \"Then your breathing goes like this—\" Slow in. Slower out. \"And that makes a circle. A Cozy Circle. Nothing gets in that doesn't belong. Nothing gets out that wants to stay.\"",
-              "scene": "bedroom-night",
-              "breathe": true
+              "text": "\"I'll be right outside,\" Mama said. \"And you won't be alone.\""
             },
             {
-              "text": "Azi looked at his circle. Blanket. Friends. Breath. The wiggly feeling in his tummy didn't disappear. But it got quieter. Like it had found somewhere to sit down.",
-              "scene": "bedroom-night"
+              "text": "Jujy stood up a little straighter on the pillow."
             },
             {
-              "text": "\"What if I need Mama?\" Azi whispered. Jujy puffed up. \"I'll get her! I'll—wait, can I open doors?\" \"No,\" said Dory dreamily. \"Right. Well. I'll... think very hard about opening the door.\"",
-              "scene": "bedroom-night"
+              "text": "\"Night Watch time,\" he announced quietly. \"I've got this.\""
             },
             {
-              "text": "Pandies spoke again, gently: \"Mama is right outside. That's very close. And she always comes back to check. That's her promise.\" \"Like the moon's promise?\" \"Just like.\"",
-              "scene": "bedroom-night"
+              "text": "Dory yawned. \"Got what?\""
             },
             {
-              "text": "Azi looked at the window. The moon was there. It didn't say anything, because moons don't talk. But it watched. It had always watched. It would keep watching until morning came.",
-              "scene": "bedroom-night"
+              "text": "\"The... the thing.\" Jujy paused. \"The important thing.\""
             },
             {
-              "text": "\"Slothie,\" Azi whispered. \"Can we count?\" Slothie breathed in. \"One star,\" Azi said. Slothie breathed out. \"Two stars.\" In. \"Three stars.\" Out.",
-              "scene": "bedroom-night",
-              "breathe": true
+              "text": "\"Oh good,\" said Dory, already forgetting what they were talking about."
             },
             {
-              "text": "Somewhere around star number seven, the wiggly feeling settled all the way down. Somewhere around star number nine, Azi's eyes got heavy. Somewhere around star number ten—",
-              "scene": "bedroom-night"
+              "text": "Slothie didn't say anything at all."
             },
             {
-              "text": "The Cozy Circle held. Jujy kept watch (mostly). Dory dreamed beside him. Slothie barely moved. And the moon glowed soft and steady, watching over all the children who were learning that the distance between bed and door isn't so far after all.",
-              "scene": "bedroom-night"
+              "text": "Slothie just breathed."
             },
             {
-              "text": "Mama peeked in, just like she promised. Azi was already dreaming. But somewhere in his dream, he knew she came. And that was enough.",
-              "scene": "bedroom-night"
+              "text": "In... slow... out... slower."
+            },
+            {
+              "text": "Baby Slothie tucked against Slothie's arm, rising and falling like a tiny boat on a gentle wave."
+            },
+            {
+              "text": "Azi's body still felt too awake. Too buzzy. Too much."
+            },
+            {
+              "text": "\"My tummy feels wiggly,\" he said."
+            },
+            {
+              "text": "Pandies nodded slowly from the foot of the bed. \"Wiggly feelings like to visit at bedtime. They're looking for a place to rest.\""
+            },
+            {
+              "text": "\"Where do they rest?\""
+            },
+            {
+              "text": "\"In the Cozy Circle.\""
+            },
+            {
+              "text": "Pandies spoke in his slow, steady voice:"
+            },
+            {
+              "text": "\"First, your blanket goes here—\" He tucked it around Azi's feet."
+            },
+            {
+              "text": "\"Then your friends go here—\" Jujy, Dory, Slothie, all in their spots."
+            },
+            {
+              "text": "\"Then your breathing goes like this—\" Slow in. Slower out."
+            },
+            {
+              "text": "\"And that makes a circle. A Cozy Circle. Nothing gets in that doesn't belong. Nothing gets out that wants to stay.\""
+            },
+            {
+              "text": "Azi looked at his circle."
+            },
+            {
+              "text": "Blanket. Friends. Breath."
+            },
+            {
+              "text": "The wiggly feeling in his tummy didn't disappear."
+            },
+            {
+              "text": "But it got quieter."
+            },
+            {
+              "text": "Like it had found somewhere to sit down."
+            },
+            {
+              "text": "\"What if I need Mama?\" Azi whispered."
+            },
+            {
+              "text": "Jujy puffed up. \"I'll get her! I'll—wait, can I open doors?\""
+            },
+            {
+              "text": "\"No,\" said Dory dreamily."
+            },
+            {
+              "text": "\"Right. Well. I'll... think very hard about opening the door.\""
+            },
+            {
+              "text": "Pandies spoke again, gently:"
+            },
+            {
+              "text": "\"Mama is right outside. That's very close. And she always comes back to check. That's her promise.\""
+            },
+            {
+              "text": "\"Like the moon's promise?\""
+            },
+            {
+              "text": "\"Just like.\""
+            },
+            {
+              "text": "Azi looked at the window."
+            },
+            {
+              "text": "The moon was there."
+            },
+            {
+              "text": "It didn't say anything, because moons don't talk."
+            },
+            {
+              "text": "But it watched. It had always watched. It would keep watching until morning came."
+            },
+            {
+              "text": "\"Slothie,\" Azi whispered. \"Can we count?\""
+            },
+            {
+              "text": "Slothie breathed in."
+            },
+            {
+              "text": "\"One star,\" Azi said."
+            },
+            {
+              "text": "Slothie breathed out."
+            },
+            {
+              "text": "\"Two stars.\""
+            },
+            {
+              "text": "In."
+            },
+            {
+              "text": "\"Three stars.\""
+            },
+            {
+              "text": "Out."
+            },
+            {
+              "text": "Somewhere around star number seven, the wiggly feeling settled all the way down."
+            },
+            {
+              "text": "Somewhere around star number nine, Azi's eyes got heavy."
+            },
+            {
+              "text": "Somewhere around star number ten—"
+            },
+            {
+              "text": "The Cozy Circle held."
+            },
+            {
+              "text": "Jujy kept watch (mostly)."
+            },
+            {
+              "text": "Dory dreamed beside him."
+            },
+            {
+              "text": "Slothie barely moved."
+            },
+            {
+              "text": "And the moon glowed soft and steady, watching over all the children who were learning that the distance between bed and door isn't so far after all."
+            },
+            {
+              "text": "Mama peeked in, just like she promised."
+            },
+            {
+              "text": "Azi was already dreaming."
+            },
+            {
+              "text": "But somewhere in his dream, he knew she came."
+            },
+            {
+              "text": "And that was enough."
             }
           ]
         }
@@ -585,346 +704,752 @@
       "originNote": "Set at the real Adirondacks farm. 9 parts grouped into 3 chapters.",
       "chapters": [
         {
-          "title": "Big Feelings at the Farm",
+          "title": "The Edge of Everything Wild",
           "pages": [
             {
-              "text": "The farmhouse at Saranac Lake sat at the edge of everything wild. It was the kind of place where the mountains came right up to the windows and peeked inside, where the trees whispered secrets to each other in voices too low for grown-ups to hear, and where the sky turned colors at sunset that didn't have names yet.",
-              "scene": "farm"
+              "text": "The farmhouse at Saranac Lake sat at the edge of everything wild."
             },
             {
-              "text": "Azi had spent the whole day exploring Bernadette's farm.",
-              "scene": "farm"
+              "text": "It was the kind of place where the mountains came right up to the windows and peeked inside, where the trees whispered secrets to each other in voices too low for grown-ups to hear, and where the sky turned colors at sunset that didn't have names yet."
             },
             {
-              "text": "In the morning, he had watched the horses in their paddock - the big bay mare with the white blaze on her forehead, the gray gelding who snorted when Azi came too close, and the little spotted pony who seemed to understand that Azi was a person worth knowing. They had moved through the morning mist like dreams that hadn't quite woken up yet.",
-              "scene": "farm"
+              "text": "Azi had spent the whole day exploring Bernadette's farm."
             },
             {
-              "text": "In the afternoon, he had run through meadows that seemed to stretch all the way to the mountains. His legs had pumped and pumped, and the tall grass had tickled his palms as he ran, and the wind had pulled at his hair like it was trying to tell him something important.",
-              "scene": "farm"
+              "text": "In the morning, he had watched the horses in their paddock - the big bay mare with the white blaze on her forehead, the gray gelding who snorted when Azi came too close, and the little spotted pony who seemed to understand that Azi was a person worth knowing. They had moved through the morning mist like dreams that hadn't quite woken up yet."
             },
             {
-              "text": "He had collected pinecones - seventeen of them - each one different, each one smelling like secrets. He had shared three with a squirrel who came too close and then seemed surprised by its own bravery. He had whispered \"sorry\" to a purple flower he accidentally stepped on. He had waved goodbye to the horses even though they couldn't wave back.",
-              "scene": "farm"
+              "text": "In the afternoon, he had run through meadows that seemed to stretch all the way to the mountains. His legs had pumped and pumped, and the tall grass had tickled his palms as he ran, and the wind had pulled at his hair like it was trying to tell him something important."
             },
             {
-              "text": "It had been a big day. The biggest kind of day. But now the day was ending. The sun was dropping behind the Adirondack peaks, painting the sky in oranges and pinks and purples that looked almost too beautiful to be real. And Azi's body didn't feel quiet at all.",
-              "scene": "farm"
+              "text": "He had collected pinecones - seventeen of them - each one different, each one smelling like secrets. He had shared three with a squirrel who came too close and then seemed surprised by its own bravery. He had whispered \"sorry\" to a purple flower he accidentally stepped on. He had waved goodbye to the horses even though they couldn't wave back."
             },
             {
-              "text": "It felt like too much. Too much running. Too much excitement. Too much everything. His legs felt twitchy, like they wanted to run even though there was nowhere left to run to. His chest felt tight, like someone had wrapped a rubber band around his heart. His thoughts felt buzzy, like bees who had forgotten where their hive was.",
-              "scene": "farm"
+              "text": "It had been a big day. The biggest kind of day."
             },
             {
-              "text": "And somewhere inside - somewhere deep in the middle of him - a bigness was rising. Not the good kind of bigness, like when your heart swells because you love someone so much. The other kind. The kind that makes your hands want to push and your words want to bite. Azi didn't know the bigness was coming. Not yet.",
-              "scene": "farm"
+              "text": "But now the day was ending. The sun was dropping behind the Adirondack peaks, painting the sky in oranges and pinks and purples that looked almost too beautiful to be real."
             },
             {
-              "text": "He just knew that his body felt wrong, and his feelings felt wrong, and everything felt like it was going to spill over any second.",
-              "scene": "farm"
+              "text": "And Azi's body didn't feel quiet at all."
             },
             {
-              "text": "\"Time to wash up for dinner, *mi amor*,\" Mama said. Her voice was soft, the way it always was. The way it had been soft when she sang him to sleep as a baby, and soft when she kissed his scraped knees, and soft when she whispered \"I love you\" in the dark of his bedroom back home in Rahway.",
-              "scene": "farm"
+              "text": "It felt like too much."
             },
             {
-              "text": "But the bigness didn't hear Mama's softness. The bigness only heard: Someone is asking me to do something. Someone wants me to stop. And the bigness - the one that had been building all day, the one that came from too much running and too much excitement and not enough rest - burst out before Azi could catch it. > \"GO AWAY!\" Azi shouted.",
-              "scene": "farm"
+              "text": "Too much running. Too much excitement. Too much everything."
             },
             {
-              "text": "His voice didn't sound like his voice. It was too loud. Too sharp. Too much. > \"I don't WANT to! I don't CARE about you!\" His hands moved before his heart could stop them. They pushed at Mama's legs - hard, harder than he meant to, harder than he knew they could push.",
-              "scene": "farm"
+              "text": "His legs felt twitchy, like they wanted to run even though there was nowhere left to run to. His chest felt tight, like someone had wrapped a rubber band around his heart. His thoughts felt buzzy, like bees who had forgotten where their hive was."
             },
             {
-              "text": "Papa stepped closer, the way he always did when things got hard. His steady Papa presence, his warm Papa hands reaching out to help. But Azi's fists found him too. They pounded against Papa's knees - wild and fast, like something inside had come loose, like a storm had broken free of its cage. > \"You're going to JAIL!\" Azi yelled.",
-              "scene": "farm"
+              "text": "And somewhere inside - somewhere deep in the middle of him - a bigness was rising."
             },
             {
-              "text": "He didn't even know why he said it. He just needed the biggest, sharpest words he could find. Words that could match the bigness inside him. Words that could hurt as much as everything felt like it was hurting.",
-              "scene": "farm"
+              "text": "Not the good kind of bigness, like when your heart swells because you love someone so much."
             },
             {
-              "text": "And then it was over. Just like that. The bigness had passed through him like a summer storm - loud and wild and terrible - and now it was gone, leaving Azi standing there in the sudden quiet. His hands were still clenched. His heart was still pounding. His breath came in little gasps, like he had been running even though his feet hadn't moved.",
-              "scene": "farm",
-              "breathe": true
+              "text": "The other kind. The kind that makes your hands want to push and your words want to bite."
             },
             {
-              "text": "Mama and Papa hadn't yelled back. They hadn't run away. They were still right there - quiet, steady, waiting. The way mountains wait. The way the moon waits. The way love waits, even when you push against it with all your might. But Azi could see something in their eyes. Not anger. No. That would have been easier, somehow.",
-              "scene": "farm"
+              "text": "Azi didn't know the bigness was coming. Not yet."
             },
             {
-              "text": "Something softer. Something that looked a little bit like sad. And that made Azi feel worse than the bigness ever had.",
-              "scene": "farm"
-            },
-            {
-              "text": "Later, when the sky outside had turned the color of honey and ash, Azi sat by the farmhouse window. Dinner was over. Bath was done. Pajamas were on - the soft blue ones with the little rockets that Papa had packed specially for the trip. But sleep felt very far away.",
-              "scene": "farm"
-            },
-            {
-              "text": "Azi pressed his forehead against the cool glass and watched the Adirondack woods settle into darkness. The trees were becoming shadows. The meadows were becoming mysteries. The mountains were becoming shapes darker than the darkening sky. He couldn't stop thinking about his hands.",
-              "scene": "farm"
-            },
-            {
-              "text": "About the way they had pushed. About the way they had pounded. About the way they had moved so fast that his heart couldn't catch up. He couldn't stop thinking about his words. The sharp ones. The mean ones. The ones that had burst out of him like they belonged to someone else. > \"I'm not kind,\" Azi whispered to the window.",
-              "scene": "farm"
-            },
-            {
-              "text": "The glass fogged a little where his breath touched it. > \"I'm not a kind person.\" He said it quiet and certain, the way you say things that feel too true to argue with. And then Azi saw it.",
-              "scene": "farm",
-              "breathe": true
-            },
-            {
-              "text": "At the edge of the woods, where the last light touched the first shadow, something was moving. No. Not moving. Standing. Standing more still than anything Azi had ever seen. It was a moose. The biggest creature Azi had ever seen in his whole life.",
-              "scene": "farm"
-            },
-            {
-              "text": "Bigger than the horses in Bernadette's paddock. Bigger than Papa. Bigger, even, than the stories Papa told about the elephants they would see someday in India. Its antlers spread wide like branches - like it was carrying a whole tree on its head, a tree made of bone and wisdom and years and years of standing at the edge of things.",
-              "scene": "farm"
-            },
-            {
-              "text": "Its legs were long and impossibly still, like they had grown roots into the earth and weren't planning to move until they were good and ready. And its eyes - even from far away, even through the window glass - its eyes looked ancient. Like they had seen a thousand forests grow. Like they had seen a thousand forests fall.",
-              "scene": "farm"
-            },
-            {
-              "text": "Like they had seen ten thousand storms pass through, and stayed standing through every single one.",
-              "scene": "farm"
-            },
-            {
-              "text": "The moose wasn't moving. It was just standing there, at the edge of everything, looking straight at the farmhouse window. Looking straight at Azi. Azi's breath caught in his chest. He didn't call for Mama. He didn't call for Papa. He didn't move at all. Something told him this was a moment that needed to stay quiet.",
-              "scene": "farm",
-              "breathe": true
-            },
-            {
-              "text": "Something told him this was a moment that was just for him. *(Take a slow breath here. In through your nose... out through your mouth...)* And then - impossibly, magically, in the way that things only happen at the edge of everything wild - the moose spoke.",
-              "scene": "farm",
-              "breathe": true
+              "text": "He just knew that his body felt wrong, and his feelings felt wrong, and everything felt like it was going to spill over any second."
             }
           ]
         },
         {
-          "title": "The Moose's Secret",
+          "title": "When the Bigness Burst",
           "pages": [
             {
-              "text": "Not out loud. Not in words that made sound. But somehow, in the space between Azi's thoughts - in the quiet place where wishes live and dreams begin - a voice appeared. It was low and slow, like wind through pine needles. Like honey pouring from a jar. Like the sound a mountain might make if mountains could talk.",
-              "scene": "farm"
+              "text": "\"Time to wash up for dinner, mi amor,\" Mama said."
             },
             {
-              "text": "> *You think you are not kind.* Azi's eyes went wide. He pressed his hand flat against the glass, as if he could touch the moose through the window. > *I watched you today.* The moose's voice continued, slow and patient, in no hurry at all.",
-              "scene": "farm"
+              "text": "Her voice was soft, the way it always was. The way it had been soft when she sang him to sleep as a baby, and soft when she kissed his scraped knees, and soft when she whispered \"I love you\" in the dark of his bedroom back home in Rahway."
             },
             {
-              "text": "> *I saw you share your pinecones with the squirrel who came too close. You didn't have to. But you did.* Azi felt something loosen in his chest. Just a little. The moose had seen that? > *I saw you whisper 'sorry' to the flower you accidentally stepped on. Even though no one was watching. Even though the flower couldn't hear.*",
-              "scene": "farm"
+              "text": "But the bigness didn't hear Mama's softness."
             },
             {
-              "text": "Azi remembered. The purple flower with the bent stem. The way he had felt bad, even though it was just a flower. The way the word \"sorry\" had come out all on its own. > *I saw you wave goodbye to the horses. Even though they couldn't wave back. Even though waving at horses is maybe a little silly. You waved anyway.*",
-              "scene": "farm"
+              "text": "The bigness only heard: Someone is asking me to do something. Someone wants me to stop."
             },
             {
-              "text": "The moose's eyes seemed to shine in the last of the light. > *Your kindness is real, Azi. It lives inside you. It is part of who you are.* \"But -\" Azi started. > *But sometimes, when you get very tired, the bigness buries it.*",
-              "scene": "farm"
+              "text": "And the bigness - the one that had been building all day, the one that came from too much running and too much excitement and not enough rest - burst out before Azi could catch it."
             },
             {
-              "text": "\"The bigness,\" Azi whispered. \"It comes so fast.\" His voice was small in the quiet room, but somehow he knew the moose could hear him. \"And then my hands - they push before I can stop them. And my words - they come out sharp and mean, even though I don't want them to be sharp and mean.\"",
-              "scene": "farm"
+              "text": "\"GO AWAY!\" Azi shouted."
             },
             {
-              "text": "A tear slipped down Azi's cheek. He hadn't even felt it coming. \"And then afterward, I feel so bad. Because I hurt the people I love the most. And I don't know how to stop.\" > *I know.* The moose's voice was gentler now. Almost tender. > *I know about bigness.*",
-              "scene": "farm"
+              "text": "His voice didn't sound like his voice. It was too loud. Too sharp. Too much."
             },
             {
-              "text": "The moose lowered its great head, and Azi saw something he hadn't noticed before. A scar. Long and pale, running along the moose's shoulder like a river through a valley. Old and healed, but still there. Still part of the story.",
-              "scene": "farm"
+              "text": "\"I don't WANT to! I don't CARE about you!\""
             },
             {
-              "text": "> *When I was young - when I was not so different from you - I did not know how to be gentle with my bigness.* The moose's voice had changed. It was still slow, still patient, but now there was something else in it. Something that sounded like remembering.",
-              "scene": "farm"
+              "text": "His hands moved before his heart could stop them. They pushed at Mama's legs - hard, harder than he meant to, harder than he knew they could push."
             },
             {
-              "text": "> *I crashed through the forest. I didn't mean to crash. But my body was big, and my feelings were big, and everything felt too fast.* Azi listened, his hand still pressed against the window.",
-              "scene": "farm"
+              "text": "Papa stepped closer, the way he always did when things got hard. His steady Papa presence, his warm Papa hands reaching out to help."
             },
             {
-              "text": "> *I knocked down saplings - young trees that were just learning to grow. I trampled flowers that had just begun to bloom. I frightened rabbits and birds and even other moose who were only trying to help.* The moose lifted its eyes to Azi's. > *I hurt things I did not mean to hurt.* Azi stared at the scar. \"What happened?\" > *I learned.*",
-              "scene": "farm"
+              "text": "But Azi's fists found him too."
             },
             {
-              "text": "The moose lifted its head again. The antlers caught the last of the twilight, and for a moment they seemed to glow - like they were holding a little bit of the sun inside them for safekeeping. > *I learned that the biggest creatures must practice the deepest gentleness.*",
-              "scene": "farm"
+              "text": "They pounded against Papa's knees - wild and fast, like something inside had come loose, like a storm had broken free of its cage."
             },
             {
-              "text": "> *We have more power than most, Azi. We can hurt more than most. But that same power - that same bigness - can also protect. Can also hold. Can also comfort.* The moose took one slow step forward. Just one. But somehow it felt like the whole forest shifted with it.",
-              "scene": "farm"
+              "text": "\"You're going to JAIL!\" Azi yelled."
             },
             {
-              "text": "> *The same hands that push can also hug. The same voice that bites can also say 'I love you.' The same heart that lets the bigness burst out can also let the kindness rise up.* \"But how?\" Azi asked. \"How do I let the kindness rise up when the bigness is so fast?\" > *You are bigger than you know, Azi.*",
-              "scene": "farm"
+              "text": "He didn't even know why he said it. He just needed the biggest, sharpest words he could find. Words that could match the bigness inside him. Words that could hurt as much as everything felt like it was hurting."
             },
             {
-              "text": "The moose's voice was warm now. Certain. > *Your feelings are big. Your love is big. Your body is getting bigger every day. And big things - truly big things - need to learn the Gentle Giant's Secret.* \"What's the secret?\" Azi whispered. And the moose began to teach.",
-              "scene": "farm",
-              "ask": {
-                "question": "The Gentle Giant's Secret starts with one slow breath. Can you do a moose-sized breath with Azi?",
-                "answers": [],
-                "praise": "Moose-sized! In through your nose… and out like a slow wind.",
-                "hint": "Big animals breathe slooowly. Try one.",
-                "skill": "calming down"
-              }
+              "text": "And then it was over."
             },
             {
-              "text": "The moose stood even more still - so still that Azi could see the whole world reflected in its dark eyes. The farmhouse. The meadow. The mountains. The first stars beginning to peek through the purple sky. All of it, held in those ancient, patient eyes.",
-              "scene": "farm"
+              "text": "Just like that."
             },
             {
-              "text": "> *When you feel the bigness rising - when your hands want to push and your words want to bite - you do three things.* Azi leaned closer to the window. His breath had stopped fogging the glass. Everything felt very quiet. Very important. *(Let's learn the secret together. Ready?)*",
-              "scene": "farm",
-              "breathe": true
+              "text": "The bigness had passed through him like a summer storm - loud and wild and terrible - and now it was gone, leaving Azi standing there in the sudden quiet."
             },
             {
-              "text": "> *First: Stand still, like a moose in the meadow.* The moose didn't move. Not a single muscle. It was like watching a mountain pretend to be an animal. > *When your body wants to move fast - when your legs want to run and your arms want to swing and everything wants to go go go - you tell it to wait.*",
-              "scene": "farm"
+              "text": "His hands were still clenched. His heart was still pounding. His breath came in little gasps, like he had been running even though his feet hadn't moved."
             },
             {
-              "text": "Azi tried it. He pressed his feet flat against the floor, feeling the cool wood beneath his socks. > *Just for a moment. You plant your feet like roots going down into the earth. Down through the floor. Down through the dirt. Down to where the underground rivers flow and the old stones sleep.*",
-              "scene": "farm"
+              "text": "Mama and Papa hadn't yelled back."
             },
             {
-              "text": "Azi imagined it. Roots growing from his feet - down through the farmhouse, down through the foundation, down into the dark earth of the Adirondacks where nothing could move him. His legs felt different. Heavier. More still. *(Try it now. Plant your feet. Feel the roots growing down...)*",
-              "scene": "farm"
+              "text": "They hadn't run away."
             },
             {
-              "text": "> *Second: Breathe slow, like the mountain air.* Azi could almost feel the moose breathing - could almost see its great chest rising and falling, slow as the tide, slow as the seasons, slow as the mountains themselves growing one inch taller every thousand years.",
-              "scene": "farm",
-              "breathe": true
+              "text": "They were still right there - quiet, steady, waiting. The way mountains wait. The way the moon waits. The way love waits, even when you push against it with all your might."
             },
             {
-              "text": "> *In through your nose. Long and slow. Like you're smelling all the pinecones you collected today. Like you're breathing in the whole meadow at once.* Azi breathed in. He counted to four in his head. One... two... three... four. > *Out through your mouth. Even slower. Like you're blowing on soup that's too hot. Like you're making ripples on a still pond.*",
-              "scene": "farm",
-              "breathe": true
+              "text": "But Azi could see something in their eyes."
             },
             {
-              "text": "Azi breathed out. He counted to six. One... two... three... four... five... six. > *Mountain air takes its time. It doesn't rush. It moves through the valleys and over the peaks and around the trees, and it never once hurries. You breathe like the mountains breathe - big and slow and patient.*",
-              "scene": "farm",
-              "breathe": true
+              "text": "Not anger. No. That would have been easier, somehow."
             },
             {
-              "text": "Azi breathed again. In for four. Out for six. The tightness in his chest started to soften, like ice melting in the sun. *(Breathe with Azi now. In... two... three... four... Out... two... three... four... five... six...)*",
-              "scene": "farm",
-              "breathe": true
+              "text": "Something softer. Something that looked a little bit like sad."
             },
             {
-              "text": "> *Third: Find the soft place behind your strong.* The moose's voice was gentler now. Almost a whisper in Azi's mind. > *Put your hand on your heart.* Azi lifted his hand from the window glass and placed it on his chest. Under his rocket pajamas, he could feel his heart beating. Thump... thump... thump.",
-              "scene": "farm"
-            },
-            {
-              "text": "> *Underneath the bigness - underneath the fast and the loud and the tight - your kindness is waiting.* Azi closed his eyes. He tried to feel past the leftover tightness, past the memory of his sharp words and pushing hands.",
-              "scene": "farm"
-            },
-            {
-              "text": "> *It never leaves, Azi. Your kindness never leaves. It just gets buried sometimes. Like seeds get buried under snow in winter. But winter always ends. And the seeds are still there, waiting to grow.* And there it was.",
-              "scene": "farm"
-            },
-            {
-              "text": "Underneath everything - underneath the tiredness and the overwhelm and the terrible feeling of having hurt the people he loved - Azi felt something warm. Something soft. Something that remembered sharing pinecones and whispering sorry to flowers and waving goodbye to horses. His kindness. Still there. Still his. *(Put your hand on your heart. Can you feel your kindness waiting there?)*",
-              "scene": "farm"
+              "text": "And that made Azi feel worse than the bigness ever had."
             }
           ]
         },
         {
-          "title": "The Promise and the Return",
+          "title": "The Window and the Quiet",
           "pages": [
             {
-              "text": "\"But what if I forget?\" Azi's voice was small in the darkening room. \"What if the bigness comes too fast and I can't remember the secret? What if I push and hit and say mean things all over again?\" The moose's eyes seemed to smile - if moose eyes could smile. There was warmth there, and patience, and something that looked like understanding.",
-              "scene": "farm"
+              "text": "Later, when the sky outside had turned the color of honey and ash, Azi sat by the farmhouse window."
             },
             {
-              "text": "> *Then you will try again.* The moose's voice was kind. No judgment. No disappointment. Just truth. > *That is what gentle giants do, Azi. We don't get it right every time. Sometimes our bigness still crashes through. Sometimes we still knock down saplings and trample flowers and frighten the ones we love.* The moose glanced at its scar.",
-              "scene": "farm"
+              "text": "Dinner was over. Bath was done. Pajamas were on - the soft blue ones with the little rockets that Papa had packed specially for the trip."
             },
             {
-              "text": "> *But we keep practicing. We keep standing still. We keep breathing slow. We keep finding the soft place. And every time we find it, it gets a little easier to find again.*",
-              "scene": "farm",
-              "breathe": true
+              "text": "But sleep felt very far away."
             },
             {
-              "text": "The moose began to turn, its great body moving like a ship through fog, like a cloud drifting across the face of the moon. > *And Azi -* It paused at the edge of the shadows, one hoof raised, antlers silhouetted against the darkening sky.",
-              "scene": "farm"
+              "text": "Azi pressed his forehead against the cool glass and watched the Adirondack woods settle into darkness. The trees were becoming shadows. The meadows were becoming mysteries. The mountains were becoming shapes darker than the darkening sky."
             },
             {
-              "text": "> *Whenever you need to remember - whenever the bigness starts to rise and you feel like you might crash through - close your eyes.* Azi listened, holding his breath. > *Find yourself back here. At the edge of the Adirondack woods. At the edge of everything wild. Where the last light touches the first shadow.*",
-              "scene": "farm",
-              "breathe": true
+              "text": "He couldn't stop thinking about his hands."
             },
             {
-              "text": "The moose's voice grew softer, more distant, like it was already beginning to fade into the forest. > *I will be waiting. I am always waiting - for the children who are learning to be gentle giants.*",
-              "scene": "farm"
+              "text": "About the way they had pushed. About the way they had pounded. About the way they had moved so fast that his heart couldn't catch up."
             },
             {
-              "text": "And then the moose stepped into the darkness. The woods swallowed it whole - the great body, the patient eyes, the antlers like branches, the scar like a story. Azi was alone at the window again. But he didn't feel alone. Not at all.",
-              "scene": "farm"
+              "text": "He couldn't stop thinking about his words."
             },
             {
-              "text": "Azi found Mama and Papa in the farmhouse living room. They were sitting together on the old couch - the one with the faded flowers on it that had probably been there since before Azi was born, maybe since before Mama and Papa were born. They were talking quietly, the way grown-ups do when they're trying to figure something out.",
-              "scene": "farm"
+              "text": "The sharp ones. The mean ones. The ones that had burst out of him like they belonged to someone else."
             },
             {
-              "text": "When they saw Azi in the doorway, they stopped talking. And they opened their arms. Azi walked over slowly. Not running - the way he might have run before the moose. Not crashing - the way he had crashed when the bigness was in charge. Just walking. One foot, then the other. Steady and sure.",
-              "scene": "farm"
+              "text": "\"I'm not kind,\" Azi whispered to the window."
             },
             {
-              "text": "He climbed into the space between them - the Azi-shaped space that always seemed to be waiting for him, no matter what - and felt their arms wrap around him. Mama's arm, soft and warm, that smelled like the lavender soap she always used. Papa's arm, strong and steady, that felt like the safest place in the world.",
-              "scene": "farm"
+              "text": "The glass fogged a little where his breath touched it."
             },
             {
-              "text": "\"I'm sorry,\" Azi said. His voice was small, but the words were real. \"My bigness came out. My hands did things my heart didn't mean. My words were sharp when I didn't want them to be sharp.\" Papa's hand smoothed Azi's hair - the same hand that had caught Azi's fists just a few hours ago, now gentle as a cloud.",
-              "scene": "farm"
+              "text": "\"I'm not a kind person.\""
             },
             {
-              "text": "\"Thank you for telling us, *beta*,\" Papa said. Mama kissed the top of Azi's head - the same head that had been full of sharp words, now quiet and calm. \"We know your heart, *mi amor*,\" she said. \"Your heart is so kind. Even when the bigness makes it hard to show.\"",
-              "scene": "farm"
+              "text": "He said it quiet and certain, the way you say things that feel too true to argue with."
             },
             {
-              "text": "\"I saw a moose,\" Azi said. The words tumbled out like pinecones from a full pocket. \"At the edge of the woods. It was the biggest thing I've ever seen. And it talked to me - not out loud, but in the quiet place. And it taught me the Gentle Giant's Secret.\" Mama and Papa looked at each other over Azi's head.",
-              "scene": "farm"
+              "text": "And then Azi saw it."
             },
             {
-              "text": "Something passed between them - something that wasn't doubt, something that wasn't the way grown-ups sometimes look when they think children are making things up. Something that looked like wonder. \"Will you teach us?\" Papa asked.",
-              "scene": "farm"
+              "text": "At the edge of the woods, where the last light touched the first shadow, something was moving."
             },
             {
-              "text": "So Azi did. Together, the three of them stood in the middle of the farmhouse living room - Mama and Papa and Azi, surrounded by old furniture and gentle shadows. \"First,\" Azi said, \"you stand still like a moose in the meadow.\"",
-              "scene": "farm"
+              "text": "No. Not moving. Standing."
             },
             {
-              "text": "He planted his feet, and Mama planted her feet, and Papa planted his feet. Three sets of roots growing down through the old wooden floor. \"Then you breathe slow, like the mountain air.\" They breathed together. In for four. Out for six. Three sets of lungs, breathing like the mountains breathe. \"Then you find the soft place behind your strong.\"",
-              "scene": "farm",
-              "breathe": true
+              "text": "Standing more still than anything Azi had ever seen."
             },
             {
-              "text": "Three hands went to three hearts. Three people feeling for the kindness underneath everything else. And in that farmhouse at the edge of everything wild, Azi felt his kindness rise back up - whole and warm and ready. Not because the bigness was gone forever. But because now he knew how to find his way back.",
-              "scene": "farm"
+              "text": "It was a moose."
             },
             {
-              "text": "That night, Azi fell asleep easily. Mama tucked the blanket around him - the soft one from home that smelled like their house in Rahway. Papa kissed his forehead and whispered the words he always whispered. \"Good night. Sweet dreams. I'll see you in the morning. I love you to infinity and *más allá*.\" Azi closed his eyes. And he dreamed.",
-              "scene": "farm"
+              "text": "The biggest creature Azi had ever seen in his whole life."
             },
             {
-              "text": "He dreamed of meadows that stretched all the way to the mountains. He dreamed of horses standing in morning mist. He dreamed of pinecones that smelled like secrets, and purple flowers that forgave him for stepping on them, and squirrels who were braver than they knew. And he dreamed of a moose.",
-              "scene": "farm"
+              "text": "Bigger than the horses in Bernadette's paddock. Bigger than Papa. Bigger, even, than the stories Papa told about the elephants they would see someday in India."
             },
             {
-              "text": "Standing at the edge of the woods, patient as the trees, gentle as the wind, ancient as the mountains themselves. Waiting. Always waiting. For all the children who were learning - one slow breath at a time, one planted foot at a time, one hand-on-heart at a time - to be gentle giants too.",
-              "scene": "farm",
-              "breathe": true
+              "text": "Its antlers spread wide like branches - like it was carrying a whole tree on its head, a tree made of bone and wisdom and years and years of standing at the edge of things."
             },
             {
-              "text": "And somewhere in the Adirondack darkness, at the edge of everything wild, the moose lifted its great head toward the stars. The scar on its shoulder gleamed pale in the moonlight - a reminder that even the wisest giants were once young, were once learning, were once crashing through forests they didn't mean to crash through. The moose breathed in the mountain air.",
-              "scene": "farm",
-              "breathe": true
+              "text": "Its legs were long and impossibly still, like they had grown roots into the earth and weren't planning to move until they were good and ready."
             },
             {
-              "text": "Slow and patient. Big and gentle. And was glad. *The End*",
-              "scene": "farm"
+              "text": "And its eyes - even from far away, even through the window glass - its eyes looked ancient."
+            },
+            {
+              "text": "Like they had seen a thousand forests grow."
+            },
+            {
+              "text": "Like they had seen a thousand forests fall."
+            },
+            {
+              "text": "Like they had seen ten thousand storms pass through, and stayed standing through every single one."
+            },
+            {
+              "text": "The moose wasn't moving."
+            },
+            {
+              "text": "It was just standing there, at the edge of everything, looking straight at the farmhouse window."
+            },
+            {
+              "text": "Looking straight at Azi."
+            },
+            {
+              "text": "Azi's breath caught in his chest. He didn't call for Mama. He didn't call for Papa. He didn't move at all."
+            },
+            {
+              "text": "Something told him this was a moment that needed to stay quiet."
+            },
+            {
+              "text": "Something told him this was a moment that was just for him."
+            },
+            {
+              "text": "(Take a slow breath here. In through your nose... out through your mouth...)"
+            },
+            {
+              "text": "And then - impossibly, magically, in the way that things only happen at the edge of everything wild - the moose spoke."
+            }
+          ]
+        },
+        {
+          "title": "The Voice in the Quiet",
+          "pages": [
+            {
+              "text": "Not out loud."
+            },
+            {
+              "text": "Not in words that made sound."
+            },
+            {
+              "text": "But somehow, in the space between Azi's thoughts - in the quiet place where wishes live and dreams begin - a voice appeared."
+            },
+            {
+              "text": "It was low and slow, like wind through pine needles. Like honey pouring from a jar. Like the sound a mountain might make if mountains could talk."
+            },
+            {
+              "text": "You think you are not kind."
+            },
+            {
+              "text": "Azi's eyes went wide. He pressed his hand flat against the glass, as if he could touch the moose through the window."
+            },
+            {
+              "text": "I watched you today."
+            },
+            {
+              "text": "The moose's voice continued, slow and patient, in no hurry at all."
+            },
+            {
+              "text": "I saw you share your pinecones with the squirrel who came too close. You didn't have to. But you did."
+            },
+            {
+              "text": "Azi felt something loosen in his chest. Just a little. The moose had seen that?"
+            },
+            {
+              "text": "I saw you whisper 'sorry' to the flower you accidentally stepped on. Even though no one was watching. Even though the flower couldn't hear."
+            },
+            {
+              "text": "Azi remembered. The purple flower with the bent stem. The way he had felt bad, even though it was just a flower. The way the word \"sorry\" had come out all on its own."
+            },
+            {
+              "text": "I saw you wave goodbye to the horses. Even though they couldn't wave back. Even though waving at horses is maybe a little silly. You waved anyway."
+            },
+            {
+              "text": "The moose's eyes seemed to shine in the last of the light."
+            },
+            {
+              "text": "Your kindness is real, Azi. It lives inside you. It is part of who you are."
+            },
+            {
+              "text": "\"But -\" Azi started."
+            },
+            {
+              "text": "But sometimes, when you get very tired, the bigness buries it."
+            },
+            {
+              "text": "\"The bigness,\" Azi whispered. \"It comes so fast.\""
+            },
+            {
+              "text": "His voice was small in the quiet room, but somehow he knew the moose could hear him."
+            },
+            {
+              "text": "\"And then my hands - they push before I can stop them. And my words - they come out sharp and mean, even though I don't want them to be sharp and mean.\""
+            },
+            {
+              "text": "A tear slipped down Azi's cheek. He hadn't even felt it coming."
+            },
+            {
+              "text": "\"And then afterward, I feel so bad. Because I hurt the people I love the most. And I don't know how to stop.\""
+            },
+            {
+              "text": "I know."
+            },
+            {
+              "text": "The moose's voice was gentler now. Almost tender."
+            },
+            {
+              "text": "I know about bigness."
+            }
+          ]
+        },
+        {
+          "title": "The Moose's Scar",
+          "pages": [
+            {
+              "text": "The moose lowered its great head, and Azi saw something he hadn't noticed before."
+            },
+            {
+              "text": "A scar."
+            },
+            {
+              "text": "Long and pale, running along the moose's shoulder like a river through a valley. Old and healed, but still there. Still part of the story."
+            },
+            {
+              "text": "When I was young - when I was not so different from you - I did not know how to be gentle with my bigness."
+            },
+            {
+              "text": "The moose's voice had changed. It was still slow, still patient, but now there was something else in it. Something that sounded like remembering."
+            },
+            {
+              "text": "I crashed through the forest. I didn't mean to crash. But my body was big, and my feelings were big, and everything felt too fast."
+            },
+            {
+              "text": "Azi listened, his hand still pressed against the window."
+            },
+            {
+              "text": "I knocked down saplings - young trees that were just learning to grow. I trampled flowers that had just begun to bloom. I frightened rabbits and birds and even other moose who were only trying to help."
+            },
+            {
+              "text": "The moose lifted its eyes to Azi's."
+            },
+            {
+              "text": "I hurt things I did not mean to hurt."
+            },
+            {
+              "text": "Azi stared at the scar. \"What happened?\""
+            },
+            {
+              "text": "I learned."
+            },
+            {
+              "text": "The moose lifted its head again. The antlers caught the last of the twilight, and for a moment they seemed to glow - like they were holding a little bit of the sun inside them for safekeeping."
+            },
+            {
+              "text": "I learned that the biggest creatures must practice the deepest gentleness."
+            },
+            {
+              "text": "We have more power than most, Azi. We can hurt more than most. But that same power - that same bigness - can also protect. Can also hold. Can also comfort."
+            },
+            {
+              "text": "The moose took one slow step forward. Just one. But somehow it felt like the whole forest shifted with it."
+            },
+            {
+              "text": "The same hands that push can also hug. The same voice that bites can also say 'I love you.' The same heart that lets the bigness burst out can also let the kindness rise up."
+            },
+            {
+              "text": "\"But how?\" Azi asked. \"How do I let the kindness rise up when the bigness is so fast?\""
+            },
+            {
+              "text": "You are bigger than you know, Azi."
+            },
+            {
+              "text": "The moose's voice was warm now. Certain."
+            },
+            {
+              "text": "Your feelings are big. Your love is big. Your body is getting bigger every day. And big things - truly big things - need to learn the Gentle Giant's Secret."
+            },
+            {
+              "text": "\"What's the secret?\" Azi whispered."
+            },
+            {
+              "text": "And the moose began to teach."
+            }
+          ]
+        },
+        {
+          "title": "The Gentle Giant's Secret",
+          "pages": [
+            {
+              "text": "The moose stood even more still - so still that Azi could see the whole world reflected in its dark eyes."
+            },
+            {
+              "text": "The farmhouse. The meadow. The mountains. The first stars beginning to peek through the purple sky."
+            },
+            {
+              "text": "All of it, held in those ancient, patient eyes."
+            },
+            {
+              "text": "When you feel the bigness rising - when your hands want to push and your words want to bite - you do three things."
+            },
+            {
+              "text": "Azi leaned closer to the window. His breath had stopped fogging the glass. Everything felt very quiet. Very important."
+            },
+            {
+              "text": "(Let's learn the secret together. Ready?)"
+            },
+            {
+              "text": "First: Stand still, like a moose in the meadow."
+            },
+            {
+              "text": "The moose didn't move. Not a single muscle. It was like watching a mountain pretend to be an animal."
+            },
+            {
+              "text": "When your body wants to move fast - when your legs want to run and your arms want to swing and everything wants to go go go - you tell it to wait."
+            },
+            {
+              "text": "Azi tried it. He pressed his feet flat against the floor, feeling the cool wood beneath his socks."
+            },
+            {
+              "text": "Just for a moment. You plant your feet like roots going down into the earth. Down through the floor. Down through the dirt. Down to where the underground rivers flow and the old stones sleep."
+            },
+            {
+              "text": "Azi imagined it. Roots growing from his feet - down through the farmhouse, down through the foundation, down into the dark earth of the Adirondacks where nothing could move him."
+            },
+            {
+              "text": "His legs felt different. Heavier. More still."
+            },
+            {
+              "text": "(Try it now. Plant your feet. Feel the roots growing down...)"
+            },
+            {
+              "text": "Second: Breathe slow, like the mountain air."
+            },
+            {
+              "text": "Azi could almost feel the moose breathing - could almost see its great chest rising and falling, slow as the tide, slow as the seasons, slow as the mountains themselves growing one inch taller every thousand years."
+            },
+            {
+              "text": "In through your nose. Long and slow. Like you're smelling all the pinecones you collected today. Like you're breathing in the whole meadow at once."
+            },
+            {
+              "text": "Azi breathed in. He counted to four in his head. One... two... three... four."
+            },
+            {
+              "text": "Out through your mouth. Even slower. Like you're blowing on soup that's too hot. Like you're making ripples on a still pond."
+            },
+            {
+              "text": "Azi breathed out. He counted to six. One... two... three... four... five... six."
+            },
+            {
+              "text": "Mountain air takes its time. It doesn't rush. It moves through the valleys and over the peaks and around the trees, and it never once hurries. You breathe like the mountains breathe - big and slow and patient."
+            },
+            {
+              "text": "Azi breathed again. In for four. Out for six. The tightness in his chest started to soften, like ice melting in the sun."
+            },
+            {
+              "text": "(Breathe with Azi now. In... two... three... four... Out... two... three... four... five... six...)"
+            },
+            {
+              "text": "Third: Find the soft place behind your strong."
+            },
+            {
+              "text": "The moose's voice was gentler now. Almost a whisper in Azi's mind."
+            },
+            {
+              "text": "Put your hand on your heart."
+            },
+            {
+              "text": "Azi lifted his hand from the window glass and placed it on his chest. Under his rocket pajamas, he could feel his heart beating. Thump... thump... thump."
+            },
+            {
+              "text": "Underneath the bigness - underneath the fast and the loud and the tight - your kindness is waiting."
+            },
+            {
+              "text": "Azi closed his eyes. He tried to feel past the leftover tightness, past the memory of his sharp words and pushing hands."
+            },
+            {
+              "text": "It never leaves, Azi. Your kindness never leaves. It just gets buried sometimes. Like seeds get buried under snow in winter. But winter always ends. And the seeds are still there, waiting to grow."
+            },
+            {
+              "text": "And there it was."
+            },
+            {
+              "text": "Underneath everything - underneath the tiredness and the overwhelm and the terrible feeling of having hurt the people he loved - Azi felt something warm. Something soft. Something that remembered sharing pinecones and whispering sorry to flowers and waving goodbye to horses."
+            },
+            {
+              "text": "His kindness."
+            },
+            {
+              "text": "Still there."
+            },
+            {
+              "text": "Still his."
+            },
+            {
+              "text": "(Put your hand on your heart. Can you feel your kindness waiting there?)"
+            }
+          ]
+        },
+        {
+          "title": "The Promise",
+          "pages": [
+            {
+              "text": "\"But what if I forget?\""
+            },
+            {
+              "text": "Azi's voice was small in the darkening room."
+            },
+            {
+              "text": "\"What if the bigness comes too fast and I can't remember the secret? What if I push and hit and say mean things all over again?\""
+            },
+            {
+              "text": "The moose's eyes seemed to smile - if moose eyes could smile. There was warmth there, and patience, and something that looked like understanding."
+            },
+            {
+              "text": "Then you will try again."
+            },
+            {
+              "text": "The moose's voice was kind. No judgment. No disappointment. Just truth."
+            },
+            {
+              "text": "That is what gentle giants do, Azi. We don't get it right every time. Sometimes our bigness still crashes through. Sometimes we still knock down saplings and trample flowers and frighten the ones we love."
+            },
+            {
+              "text": "The moose glanced at its scar."
+            },
+            {
+              "text": "But we keep practicing. We keep standing still. We keep breathing slow. We keep finding the soft place. And every time we find it, it gets a little easier to find again."
+            },
+            {
+              "text": "The moose began to turn, its great body moving like a ship through fog, like a cloud drifting across the face of the moon."
+            },
+            {
+              "text": "And Azi -"
+            },
+            {
+              "text": "It paused at the edge of the shadows, one hoof raised, antlers silhouetted against the darkening sky."
+            },
+            {
+              "text": "Whenever you need to remember - whenever the bigness starts to rise and you feel like you might crash through - close your eyes."
+            },
+            {
+              "text": "Azi listened, holding his breath."
+            },
+            {
+              "text": "Find yourself back here. At the edge of the Adirondack woods. At the edge of everything wild. Where the last light touches the first shadow."
+            },
+            {
+              "text": "The moose's voice grew softer, more distant, like it was already beginning to fade into the forest."
+            },
+            {
+              "text": "I will be waiting. I am always waiting - for the children who are learning to be gentle giants."
+            },
+            {
+              "text": "And then the moose stepped into the darkness."
+            },
+            {
+              "text": "The woods swallowed it whole - the great body, the patient eyes, the antlers like branches, the scar like a story."
+            },
+            {
+              "text": "Azi was alone at the window again."
+            },
+            {
+              "text": "But he didn't feel alone."
+            },
+            {
+              "text": "Not at all."
+            }
+          ]
+        },
+        {
+          "title": "The Return",
+          "pages": [
+            {
+              "text": "Azi found Mama and Papa in the farmhouse living room."
+            },
+            {
+              "text": "They were sitting together on the old couch - the one with the faded flowers on it that had probably been there since before Azi was born, maybe since before Mama and Papa were born. They were talking quietly, the way grown-ups do when they're trying to figure something out."
+            },
+            {
+              "text": "When they saw Azi in the doorway, they stopped talking."
+            },
+            {
+              "text": "And they opened their arms."
+            },
+            {
+              "text": "Azi walked over slowly."
+            },
+            {
+              "text": "Not running - the way he might have run before the moose. Not crashing - the way he had crashed when the bigness was in charge."
+            },
+            {
+              "text": "Just walking. One foot, then the other. Steady and sure."
+            },
+            {
+              "text": "He climbed into the space between them - the Azi-shaped space that always seemed to be waiting for him, no matter what - and felt their arms wrap around him."
+            },
+            {
+              "text": "Mama's arm, soft and warm, that smelled like the lavender soap she always used."
+            },
+            {
+              "text": "Papa's arm, strong and steady, that felt like the safest place in the world."
+            },
+            {
+              "text": "\"I'm sorry,\" Azi said."
+            },
+            {
+              "text": "His voice was small, but the words were real."
+            },
+            {
+              "text": "\"My bigness came out. My hands did things my heart didn't mean. My words were sharp when I didn't want them to be sharp.\""
+            },
+            {
+              "text": "Papa's hand smoothed Azi's hair - the same hand that had caught Azi's fists just a few hours ago, now gentle as a cloud."
+            },
+            {
+              "text": "\"Thank you for telling us, beta,\" Papa said."
+            },
+            {
+              "text": "Mama kissed the top of Azi's head - the same head that had been full of sharp words, now quiet and calm."
+            },
+            {
+              "text": "\"We know your heart, mi amor,\" she said. \"Your heart is so kind. Even when the bigness makes it hard to show.\""
+            },
+            {
+              "text": "\"I saw a moose,\" Azi said."
+            },
+            {
+              "text": "The words tumbled out like pinecones from a full pocket."
+            },
+            {
+              "text": "\"At the edge of the woods. It was the biggest thing I've ever seen. And it talked to me - not out loud, but in the quiet place. And it taught me the Gentle Giant's Secret.\""
+            },
+            {
+              "text": "Mama and Papa looked at each other over Azi's head."
+            },
+            {
+              "text": "Something passed between them - something that wasn't doubt, something that wasn't the way grown-ups sometimes look when they think children are making things up."
+            },
+            {
+              "text": "Something that looked like wonder."
+            },
+            {
+              "text": "\"Will you teach us?\" Papa asked."
+            },
+            {
+              "text": "So Azi did."
+            },
+            {
+              "text": "Together, the three of them stood in the middle of the farmhouse living room - Mama and Papa and Azi, surrounded by old furniture and gentle shadows."
+            },
+            {
+              "text": "\"First,\" Azi said, \"you stand still like a moose in the meadow.\""
+            },
+            {
+              "text": "He planted his feet, and Mama planted her feet, and Papa planted his feet. Three sets of roots growing down through the old wooden floor."
+            },
+            {
+              "text": "\"Then you breathe slow, like the mountain air.\""
+            },
+            {
+              "text": "They breathed together. In for four. Out for six. Three sets of lungs, breathing like the mountains breathe."
+            },
+            {
+              "text": "\"Then you find the soft place behind your strong.\""
+            },
+            {
+              "text": "Three hands went to three hearts. Three people feeling for the kindness underneath everything else."
+            },
+            {
+              "text": "And in that farmhouse at the edge of everything wild, Azi felt his kindness rise back up - whole and warm and ready."
+            },
+            {
+              "text": "Not because the bigness was gone forever."
+            },
+            {
+              "text": "But because now he knew how to find his way back."
+            }
+          ]
+        },
+        {
+          "title": "The Dreaming",
+          "pages": [
+            {
+              "text": "That night, Azi fell asleep easily."
+            },
+            {
+              "text": "Mama tucked the blanket around him - the soft one from home that smelled like their house in Rahway. Papa kissed his forehead and whispered the words he always whispered."
+            },
+            {
+              "text": "\"Good night. Sweet dreams. I'll see you in the morning. I love you to infinity and más allá.\""
+            },
+            {
+              "text": "Azi closed his eyes."
+            },
+            {
+              "text": "And he dreamed."
+            },
+            {
+              "text": "He dreamed of meadows that stretched all the way to the mountains."
+            },
+            {
+              "text": "He dreamed of horses standing in morning mist."
+            },
+            {
+              "text": "He dreamed of pinecones that smelled like secrets, and purple flowers that forgave him for stepping on them, and squirrels who were braver than they knew."
+            },
+            {
+              "text": "And he dreamed of a moose."
+            },
+            {
+              "text": "Standing at the edge of the woods, patient as the trees, gentle as the wind, ancient as the mountains themselves."
+            },
+            {
+              "text": "Waiting."
+            },
+            {
+              "text": "Always waiting."
+            },
+            {
+              "text": "For all the children who were learning - one slow breath at a time, one planted foot at a time, one hand-on-heart at a time - to be gentle giants too."
+            },
+            {
+              "text": "And somewhere in the Adirondack darkness, at the edge of everything wild, the moose lifted its great head toward the stars."
+            },
+            {
+              "text": "The scar on its shoulder gleamed pale in the moonlight - a reminder that even the wisest giants were once young, were once learning, were once crashing through forests they didn't mean to crash through."
+            },
+            {
+              "text": "The moose breathed in the mountain air."
+            },
+            {
+              "text": "Slow and patient."
+            },
+            {
+              "text": "Big and gentle."
+            },
+            {
+              "text": "And was glad."
             }
           ]
         }
@@ -972,15 +1497,13 @@
               "text": "The Westfield was the kind of house that talked at night."
             },
             {
-              "text": "Not in words. In the language that houses use — the creak of a floorboard settling, the tick of a baseboard heater cooling down, the way the wind came around the corner of the backyard and pressed its palm against the kitchen window, just checking.",
-              "star": "settling"
+              "text": "Not in words. In the language that houses use — the creak of a floorboard settling, the tick of a baseboard heater cooling down, the way the wind came around the corner of the backyard and pressed its palm against the kitchen window, just checking."
             },
             {
               "text": "Mama had gone to bed. Papa had gone to bed. Even the garden outside had gone to bed — the kale tucked under its shadow, the beans done with their climbing, the basil holding very still the way basil does when the air gets cool and dark."
             },
             {
-              "text": "In Azi's room, the moon looked in through the window the way it always did. Patient and round and unbothered. It had been watching over children for a very long time. It knew how to wait.",
-              "star": "patient"
+              "text": "In Azi's room, the moon looked in through the window the way it always did. Patient and round and unbothered. It had been watching over children for a very long time. It knew how to wait."
             },
             {
               "text": "Jujy was on the little sofa, slumped sideways the way a cat who means business sleeps when no business is happening. Dory was beside him, facing the wall, deep in whatever dreamy place Dory went when the lights went out. Pandies sat on his shelf, eyes closed, hands folded, wearing that invisible calm the way he always did — like patience was a coat he'd had for years and knew exactly how to put on."
@@ -1358,255 +1881,374 @@
       "originNote": "Christmas Eve dream story — seasonal shelf item. Spanish glossary preserved in the parent guide.",
       "chapters": [
         {
-          "title": "The Sleeping World Wakes",
+          "title": "The Sleeping World",
           "pages": [
             {
-              "text": "The house had grown quiet. The kind of quiet that only comes on Christmas Eve, when even the walls seem to hold their breath. Azi was already sleeping---deep, deep sleeping---curled in his bed upstairs with one arm around Jujy. His breathing was slow and even. His eyes moved gently beneath their lids, chasing dreams that hadn't quite formed yet.",
-              "scene": "train",
-              "breathe": true
+              "text": "The house had grown quiet. The kind of quiet that only comes on Christmas Eve, when even the walls seem to hold their breath."
             },
             {
-              "text": "Downstairs, the Christmas tree glowed like a tower of captured starlight. Beneath it, the little village slept too---tiny houses with painted windows, snow-dusted roofs, and lampposts that flickered with real warmth. The train tracks curved around them all like a silver river frozen in time.",
-              "scene": "train"
+              "text": "Azi was already sleeping—deep, deep sleeping—curled in his bed upstairs with one arm around Jujy. His breathing was slow and even. His eyes moved gently beneath their lids, chasing dreams that hadn't quite formed yet."
             },
             {
-              "text": "The red train sat perfectly still on its tracks. It had been still all day, all week, all December. Just a toy train beneath a Christmas tree. But Christmas Eve is different from other nights.",
-              "scene": "train"
+              "text": "Downstairs, the Christmas tree glowed like a tower of captured starlight. Beneath it, the little village slept too—tiny houses with painted windows, snow-dusted roofs, and lampposts that flickered with real warmth. The train tracks curved around them all like a silver river frozen in time."
             },
             {
-              "text": "Somewhere far away---or perhaps very close---a clock began to chime. One\\... two\\... three\\... The sound traveled through the house like golden thread, weaving under doors and up staircases. Four\\... five\\... six\\... In his bed, Azi stirred. Not waking---not yet---but listening somewhere deep in his dreaming mind. Seven\\... eight\\... nine\\... Downstairs, the tree lights pulsed once. Just once. Ten\\... eleven\\... Twelve.",
-              "scene": "train"
+              "text": "The red train sat perfectly still on its tracks. It had been still all day, all week, all December. Just a toy train beneath a Christmas tree."
             },
             {
-              "text": "And the red train's lantern flickered to life.",
-              "scene": "train"
+              "text": "But Christmas Eve is different from other nights."
             },
             {
-              "text": "It started small---the way all magic does. A single light in a single window. Then another. Then the baker opened his tiny door, carrying a tray of bread no bigger than a fingernail. A lamplighter touched his pole to the streetlights, and they bloomed brighter. Children appeared in doorways, pointing at the sky.",
-              "scene": "train"
+              "text": "Somewhere far away—or perhaps very close—a clock began to chime."
             },
             {
-              "text": "The train's wheels began to turn---slowly at first, then with purpose. Its bell rang out: a single silver note that rose through the house like a wish. And upstairs, Azi opened his eyes inside his dream.",
-              "scene": "train"
+              "text": "One... two... three..."
             },
             {
-              "text": "Azi found himself standing in the living room, though he didn't remember walking there. He was wearing his pajamas still, and his feet were bare on the soft carpet. Everything looked the same---the tree, the presents, the fireplace---but everything felt different. Bigger. More awake. The village beneath the tree was alive.",
-              "scene": "train"
+              "text": "The sound traveled through the house like golden thread, weaving under doors and up staircases."
             },
             {
-              "text": "Truly alive. He could hear tiny voices now, and the clop-clop of a horse-drawn carriage no bigger than his hand. He could smell gingerbread and pine and something sweet he couldn't name. \"There you are,\" said a voice.",
-              "scene": "train"
+              "text": "Four... five... six..."
             },
             {
-              "text": "Azi turned. A girl stood beside the Christmas tree---a girl his size, with dark braids and a white nightgown and eyes that sparkled like she knew a wonderful secret. \"I'm Clara,\" she said. \"I've been waiting for you. The train only comes when someone is ready to believe.\" \"¿El tren?\" Azi asked. \"The train is real?\"",
-              "scene": "train"
+              "text": "In his bed, Azi stirred. Not waking—not yet—but listening somewhere deep in his dreaming mind."
             },
             {
-              "text": "Clara smiled. \"On Christmas Eve, everything is real. Come on---we don't want to miss it.\"",
-              "scene": "train"
+              "text": "Seven... eight... nine..."
             },
             {
-              "text": "She took his hand---her fingers were warm, like she'd been holding them near a fire---and together they walked toward the tree. With each step, the room seemed to grow larger around them. Or perhaps they were growing smaller. The tiny village was now a real village. The train was now a real train, gleaming red with golden trim, steam puffing from its stack in soft white clouds.",
-              "scene": "train"
+              "text": "Downstairs, the tree lights pulsed once. Just once."
             },
             {
-              "text": "Its door stood open, golden light spilling like honey onto the snow.",
-              "scene": "train"
+              "text": "Ten... eleven..."
             },
             {
-              "text": "The conductor stood beside the door. He was tall---the tallest person Azi had ever seen---with a long coat and a cap pulled low. But his eyes were kind, and when he smiled, his whole face crinkled like wrapping paper. \"Welcome aboard the Midnight Train,\" he said, his voice deep and warm like cocoa. \"All aboard for the Land of Christmas Dreams.\"",
-              "scene": "train"
+              "text": "Twelve."
             },
             {
-              "text": "\"¿A dónde vamos?\" Azi asked. Where are we going? \"Ah,\" said the conductor, tipping his cap. \"That depends on you, young traveler. The train goes where hearts need to go. Tonight, it seems your heart has quite the journey planned.\"",
-              "scene": "train"
+              "text": "And the red train's lantern flickered to life."
             },
             {
-              "text": "Azi climbed the golden steps, Clara right behind him. Inside, the train car was beautiful---red velvet seats, frosted windows, lanterns that cast dancing shadows on the ceiling. Other children sat in the seats, children from everywhere, speaking languages Azi didn't understand but somehow felt he knew. The train's bell rang three times. The whistle called out into the night. And they began to move.",
-              "scene": "train"
+              "text": "It started small—the way all magic does."
             },
             {
-              "text": "(Take a slow breath\\... feel the train begin to rock gently beneath you)",
-              "scene": "train",
-              "breathe": true
+              "text": "A single light in a single window. Then another. Then the baker opened his tiny door, carrying a tray of bread no bigger than a fingernail. A lamplighter touched his pole to the streetlights, and they bloomed brighter. Children appeared in doorways, pointing at the sky."
             },
             {
-              "text": "The train curved around the Christmas tree one last time---but the living room was gone now. In its place stretched a world Azi had never seen, painted in silver and blue and soft, soft white.",
-              "scene": "train"
+              "text": "The train's wheels began to turn—slowly at first, then with purpose. Its bell rang out: a single silver note that rose through the house like a wish."
             },
             {
-              "text": "Snow fell past the windows like slow-motion stars. Mountains rose in the distance, wrapped in ribbons of cloud. Rivers of frozen moonlight wound through valleys where ice flowers bloomed in colors that had no names. \"First stop,\" Clara whispered, pressing her face to the glass. \"The Forest of Sugar Plums.\"",
-              "scene": "train"
-            },
-            {
-              "text": "The train slowed as it entered a forest unlike any forest Azi had imagined. The trees were crystalline---branches made of spun sugar, leaves of candied violet and amber. When the wind blew through them, they chimed like tiny bells. Creatures moved between the trees: rabbits made of marzipan, birds with peppermint wings, a fox whose fur shimmered like cinnamon in sunlight.",
-              "scene": "train"
-            },
-            {
-              "text": "\"Can we get off?\" Azi asked. The conductor appeared beside them, holding two cups of something warm that smelled like chocolate and dreams. \"The forest is for looking,\" he said gently. \"Some magic is best kept at a little distance. But you may listen.\"",
-              "scene": "train"
-            },
-            {
-              "text": "Azi listened. And he heard it---a music that seemed to come from everywhere at once. Soft flutes and dancing strings, the kind of music that made you want to twirl even when you were sitting still. It was the trees themselves, he realized. The whole forest was singing. \"Es hermoso,\" Azi breathed. It's beautiful.",
-              "scene": "train",
-              "breathe": true
-            },
-            {
-              "text": "\"It is,\" Clara agreed. \"The Sugar Plum Fairy planted these trees a thousand Christmases ago. Every year they grow a little taller. Every year the song gets a little sweeter.\" (Let the music settle into your chest\\... breathe it in slowly\\...)",
-              "scene": "train",
-              "breathe": true
-            },
-            {
-              "text": "The train rolled on, and the forest gave way to a vast frozen lake that stretched to the horizon. The ice was so clear Azi could see stars reflected in it---but when he looked up, he saw stars in the sky too, perfectly mirrored. \"The Lake of Reflected Wishes,\" Clara said. \"Everything you hope for lives down there, waiting to become real.\"",
-              "scene": "train"
-            },
-            {
-              "text": "Dancers glided across the ice---elegant figures in white and silver, spinning patterns that left trails of glitter behind them. They moved like they were made of moonlight, leaping and twirling in perfect silence.",
-              "scene": "train"
-            },
-            {
-              "text": "One dancer---a woman with a crown of snowflakes---saw the train and raised her hand in greeting. Azi waved back, and she smiled before spinning away into a leap that seemed to last forever. \"That's the Snow Queen,\" Clara whispered. \"She dances every Christmas Eve to keep the ice strong enough to hold all the world's wishes.\"",
-              "scene": "train"
-            },
-            {
-              "text": "Azi watched her until she was just a tiny figure in the distance, still spinning, still leaping, tireless and beautiful.",
-              "scene": "train"
-            },
-            {
-              "text": "Next came mountains---great snow-capped peaks that touched the stars. The train climbed through clouds that tasted like vanilla when Azi breathed them in, higher and higher until--- \"Look!\" Clara cried.",
-              "scene": "train",
-              "breathe": true
-            },
-            {
-              "text": "A city appeared in the valley below, and Azi gasped. It was made entirely of light---not buildings with lights inside them, but buildings made of light itself. Towers of warm gold. Bridges of soft silver. Streets paved with gentle rose and amber.",
-              "scene": "train"
-            },
-            {
-              "text": "\"The City of Christmas Lights,\" the conductor announced. \"Where every light that ever shone on a Christmas tree goes when the tree comes down. They live there forever, keeping the city bright.\" Azi thought of his own Christmas tree lights at home. He wondered if some of them had been here, in this glowing city, before they'd found their way to his living room.",
-              "scene": "train"
-            },
-            {
-              "text": "\"Do the lights remember?\" he asked. \"Do they remember the families they belonged to?\" The conductor's eyes grew soft. \"Oh yes, young traveler. Lights never forget the children who believed in them. That's what makes them shine so bright.\" (Feel that warmth\\... like a hundred tiny lights glowing inside your heart\\...)",
-              "scene": "train"
-            },
-            {
-              "text": "The train climbed one final mountain, and there---at the very top---stood a castle made of candlelight. Not candles, but candlelight itself, shaped into towers and walls and windows that glowed with every color of flame. Orange and gold and that deep blue you only see at the very bottom of a candle, where the fire meets the wax.",
-              "scene": "train"
-            },
-            {
-              "text": "\"The Castle of Christmas Dreams,\" Clara said, her voice full of wonder even though she'd seen it before. \"This is where the train stops. This is where the magic lives.\" The train slowed. The bell rang once---soft and silver. The door opened, and a rush of warm air filled the car, smelling of cinnamon and pine and something else\\... something that smelled exactly like home.",
-              "scene": "train"
+              "text": "And upstairs, Azi opened his eyes inside his dream."
             }
           ]
         },
         {
-          "title": "Aboard the Midnight Train",
+          "title": "The Invitation",
           "pages": [
             {
-              "text": "They stepped off the train into a courtyard of smooth snow. Other children were there too---children who had ridden from other Christmas trees, other living rooms, other dreams. They looked at each other with knowing smiles, the way people do when they share a secret too wonderful for words.",
-              "scene": "train"
+              "text": "Azi found himself standing in the living room, though he didn't remember walking there. He was wearing his pajamas still, and his feet were bare on the soft carpet. Everything looked the same—the tree, the presents, the fireplace—but everything felt different. Bigger. More awake."
             },
             {
-              "text": "The castle doors opened, and out stepped a woman who seemed to be made of moonlight and kindness. Her dress was the color of snow at twilight. Her crown was made of tiny stars. When she smiled, Azi felt warm all the way to his toes.",
-              "scene": "train"
+              "text": "The village beneath the tree was alive."
             },
             {
-              "text": "\"Welcome, dreamers,\" she said, and her voice was like a lullaby. \"I am the Christmas Queen, and this is my home. Tonight, it is your home too.\"",
-              "scene": "train"
+              "text": "Truly alive. He could hear tiny voices now, and the clop-clop of a horse-drawn carriage no bigger than his hand. He could smell gingerbread and pine and something sweet he couldn't name."
             },
             {
-              "text": "Inside, the castle was even more beautiful. A great hall stretched before them, with a ceiling so high it disappeared into soft golden clouds. Tables lined the walls, laden with every treat Azi could imagine: cookies shaped like snowflakes, cups of cocoa that never grew cold, fruits that glittered like jewels.",
-              "scene": "train"
+              "text": "\"There you are,\" said a voice."
             },
             {
-              "text": "But the center of the hall was empty---a great circular floor of polished ice, smooth as glass. \"On Christmas Eve,\" the Queen said, \"we dance. Every child who rides the Midnight Train is invited to join the Christmas Dance. It only happens once a year, and it only happens here.\"",
-              "scene": "train"
+              "text": "Azi turned. A girl stood beside the Christmas tree—a girl his size, with dark braids and a white nightgown and eyes that sparkled like she knew a wonderful secret."
             },
             {
-              "text": "Music began---not from anywhere Azi could see, but from everywhere at once. The same sweet melody from the Sugar Plum Forest, but fuller now, richer, like an orchestra hidden in the walls. Clara took Azi's hand. \"You don't have to know the steps,\" she whispered. \"The music knows them for you.\"",
-              "scene": "train"
+              "text": "\"I'm Clara,\" she said. \"I've been waiting for you. The train only comes when someone is ready to believe.\""
             },
             {
-              "text": "And she was right. The moment Azi stepped onto the ice, his feet knew exactly what to do. He spun and glided and leaped, and he wasn't scared at all---he was flying, he was floating, he was part of the music itself. \"¡Estoy bailando!\" he laughed. \"I'm dancing!\"",
-              "scene": "train"
+              "text": "\"¿El tren?\" Azi asked. \"The train is real?\""
             },
             {
-              "text": "All around him, children danced with mice in tiny suits and soldiers made of wood and ballerinas whose tutus sparkled like fresh snow. The Christmas Queen herself joined them, twirling through the crowd, touching each child gently on the shoulder as she passed. (Feel yourself dancing\\... light as air\\... happy as starlight\\...)",
-              "scene": "train"
+              "text": "Clara smiled. \"On Christmas Eve, everything is real. Come on—we don't want to miss it.\""
             },
             {
-              "text": "When the music finally faded, Azi's cheeks hurt from smiling. Clara was laughing beside him, breathless and bright-eyed. The Christmas Queen approached them, and in her hands she held something small and silver---a tiny bell on a ribbon of midnight blue.",
-              "scene": "train",
-              "breathe": true
+              "text": "She took his hand—her fingers were warm, like she'd been holding them near a fire—and together they walked toward the tree. With each step, the room seemed to grow larger around them. Or perhaps they were growing smaller. The tiny village was now a real village. The train was now a real train, gleaming red with golden trim, steam puffing from its stack in soft white clouds."
             },
             {
-              "text": "\"Every child who visits the Castle of Christmas Dreams receives a gift,\" she said. \"This bell will always ring for you, Azi. On cold nights when you feel alone, shake it once, and remember: you danced with the stars tonight. You rode the Midnight Train. Magic is real, and it lives inside you.\"",
-              "scene": "train"
+              "text": "Its door stood open, golden light spilling like honey onto the snow."
             },
             {
-              "text": "Azi took the bell. It was lighter than air, but somehow he could feel its weight---a good weight, like a promise. \"Gracias,\" he said. \"Thank you.\" The Queen smiled and kissed his forehead, and where her lips touched, he felt warm and sleepy and safe.",
-              "scene": "train"
+              "text": "The conductor stood beside the door. He was tall—the tallest person Azi had ever seen—with a long coat and a cap pulled low. But his eyes were kind, and when he smiled, his whole face crinkled like wrapping paper."
             },
             {
-              "text": "\"The train is waiting,\" Clara said softly. \"It's time to go home.\" Azi didn't want to leave---not ever---but somehow he understood. The magic of Christmas Eve was precious because it didn't last forever. It came once a year, like a gift you had to wait for.",
-              "scene": "train"
+              "text": "\"Welcome aboard the Midnight Train,\" he said, his voice deep and warm like cocoa. \"All aboard for the Land of Christmas Dreams.\""
             },
             {
-              "text": "They walked back through the snow to where the train waited, its lantern glowing soft and steady. The other children were climbing aboard too, some waving goodbye to mice friends and snowflake dancers, some already yawning, the magic settling into their bones like warmth.",
-              "scene": "train"
+              "text": "\"¿A dónde vamos?\" Azi asked. Where are we going?"
             },
             {
-              "text": "The train ride home was quieter. Children curled into their seats, heads against windows, eyes half-closed. The conductor walked the aisles, tucking blankets around small shoulders, humming a tune that sounded like a lullaby.",
-              "scene": "train"
+              "text": "\"Ah,\" said the conductor, tipping his cap. \"That depends on you, young traveler. The train goes where hearts need to go. Tonight, it seems your heart has quite the journey planned.\""
             },
             {
-              "text": "Through the window, Azi watched the City of Lights fade into the distance. Then the Frozen Lake, with its dancing Snow Queen still spinning beneath the stars. Then the Sugar Plum Forest, its trees still singing their sweet, strange song. Clara sat beside him, quiet now. \"Will I see you again?\" Azi asked.",
-              "scene": "train"
+              "text": "Azi climbed the golden steps, Clara right behind him. Inside, the train car was beautiful—red velvet seats, frosted windows, lanterns that cast dancing shadows on the ceiling. Other children sat in the seats, children from everywhere, speaking languages Azi didn't understand but somehow felt he knew."
             },
             {
-              "text": "\"Every Christmas Eve,\" she said. \"The train always comes. And I'll always be here.\" She squeezed his hand once, and her fingers were still warm---but gentler now, softer, like the end of a hug. (Your eyes are getting heavy now\\... that's okay\\... the train knows the way home\\...)",
-              "scene": "train"
+              "text": "The train's bell rang three times. The whistle called out into the night."
             },
             {
-              "text": "The train rocked gently, back and forth, back and forth, like a cradle. Like Papa's arms when he carried Azi to bed. Like Mama's voice humming low and sweet.",
-              "scene": "train"
+              "text": "And they began to move."
             },
             {
-              "text": "The moon appeared in the window---the same moon that watched over all the children of the world. The same moon that had hung over the castle, over the lake, over the whole Land of Christmas Dreams. It seemed to wink, as if to say: I'll keep your secret safe.",
-              "scene": "train"
+              "text": "(Take a slow breath... feel the train begin to rock gently beneath you)"
+            }
+          ]
+        },
+        {
+          "title": "The Journey",
+          "pages": [
+            {
+              "text": "The train curved around the Christmas tree one last time—but the living room was gone now. In its place stretched a world Azi had never seen, painted in silver and blue and soft, soft white."
             },
             {
-              "text": "Azi's eyes were so heavy now. The velvet seat was so soft. The train's rhythm was so steady. Somewhere far away, he heard the conductor's voice: \"Approaching home station. All dreamers prepare for arrival.\"",
-              "scene": "train"
+              "text": "Snow fell past the windows like slow-motion stars. Mountains rose in the distance, wrapped in ribbons of cloud. Rivers of frozen moonlight wound through valleys where ice flowers bloomed in colors that had no names."
             },
             {
-              "text": "But Azi couldn't keep his eyes open anymore. He clutched the tiny silver bell in his hand and let himself sink into the warmth, the softness, the gentle rocking of the train\\... (One last breath in\\... let it out slowly\\... feel yourself floating\\...)",
-              "scene": "train",
-              "breathe": true
+              "text": "\"First stop,\" Clara whispered, pressing her face to the glass. \"The Forest of Sugar Plums.\""
             },
             {
-              "text": "When Azi woke, he was in his own bed. Sunlight streamed through the curtains, golden and gentle. Jujy was tucked under his arm. Downstairs, he could hear Mama singing and Papa laughing, and the smell of something sweet baking. Christmas morning.",
-              "scene": "train"
+              "text": "The train slowed as it entered a forest unlike any forest Azi had imagined. The trees were crystalline—branches made of spun sugar, leaves of candied violet and amber. When the wind blew through them, they chimed like tiny bells."
             },
             {
-              "text": "He lay very still for a moment, remembering. The train. The forest. The castle. The dance. Had it been real? Had any of it been real? Then he felt something in his hand---something small and cool and impossibly light. He opened his fingers.",
-              "scene": "train"
+              "text": "Creatures moved between the trees: rabbits made of marzipan, birds with peppermint wings, a fox whose fur shimmered like cinnamon in sunlight."
             },
             {
-              "text": "The tiny silver bell lay in his palm, catching the morning light. And when he shook it---just once, just gently---it rang with the sweetest sound he had ever heard. \"Era real,\" he whispered. \"It was real.\"",
-              "scene": "train"
+              "text": "\"Can we get off?\" Azi asked."
             },
             {
-              "text": "He smiled and pressed the bell to his heart. Then he jumped out of bed and ran downstairs, ready to tell Mama and Papa about the most wonderful dream---the most wonderful real dream---he had ever had. In the living room, the Christmas tree still glowed. The stockings hung full and waiting. And beneath the tree, the little red train sat quietly on its silver tracks.",
-              "scene": "train"
+              "text": "The conductor appeared beside them, holding two cups of something warm that smelled like chocolate and dreams. \"The forest is for looking,\" he said gently. \"Some magic is best kept at a little distance. But you may listen.\""
             },
             {
-              "text": "Perfectly still. For now.",
-              "scene": "train"
+              "text": "Azi listened. And he heard it—a music that seemed to come from everywhere at once. Soft flutes and dancing strings, the kind of music that made you want to twirl even when you were sitting still. It was the trees themselves, he realized. The whole forest was singing."
             },
             {
-              "text": "Buenas noches, mi amor. Feliz Navidad. The train will always wait for you. \\~ The End \\~ Parent Guide",
-              "scene": "train"
+              "text": "\"Es hermoso,\" Azi breathed. It's beautiful."
+            },
+            {
+              "text": "\"It is,\" Clara agreed. \"The Sugar Plum Fairy planted these trees a thousand Christmases ago. Every year they grow a little taller. Every year the song gets a little sweeter.\""
+            },
+            {
+              "text": "(Let the music settle into your chest... breathe it in slowly...)"
+            },
+            {
+              "text": "The train rolled on, and the forest gave way to a vast frozen lake that stretched to the horizon. The ice was so clear Azi could see stars reflected in it—but when he looked up, he saw stars in the sky too, perfectly mirrored."
+            },
+            {
+              "text": "\"The Lake of Reflected Wishes,\" Clara said. \"Everything you hope for lives down there, waiting to become real.\""
+            },
+            {
+              "text": "Dancers glided across the ice—elegant figures in white and silver, spinning patterns that left trails of glitter behind them. They moved like they were made of moonlight, leaping and twirling in perfect silence."
+            },
+            {
+              "text": "One dancer—a woman with a crown of snowflakes—saw the train and raised her hand in greeting. Azi waved back, and she smiled before spinning away into a leap that seemed to last forever."
+            },
+            {
+              "text": "\"That's the Snow Queen,\" Clara whispered. \"She dances every Christmas Eve to keep the ice strong enough to hold all the world's wishes.\""
+            },
+            {
+              "text": "Azi watched her until she was just a tiny figure in the distance, still spinning, still leaping, tireless and beautiful."
+            },
+            {
+              "text": "Next came mountains—great snow-capped peaks that touched the stars. The train climbed through clouds that tasted like vanilla when Azi breathed them in, higher and higher until—"
+            },
+            {
+              "text": "\"Look!\" Clara cried."
+            },
+            {
+              "text": "A city appeared in the valley below, and Azi gasped. It was made entirely of light—not buildings with lights inside them, but buildings made of light itself. Towers of warm gold. Bridges of soft silver. Streets paved with gentle rose and amber."
+            },
+            {
+              "text": "\"The City of Christmas Lights,\" the conductor announced. \"Where every light that ever shone on a Christmas tree goes when the tree comes down. They live there forever, keeping the city bright.\""
+            },
+            {
+              "text": "Azi thought of his own Christmas tree lights at home. He wondered if some of them had been here, in this glowing city, before they'd found their way to his living room."
+            },
+            {
+              "text": "\"Do the lights remember?\" he asked. \"Do they remember the families they belonged to?\""
+            },
+            {
+              "text": "The conductor's eyes grew soft. \"Oh yes, young traveler. Lights never forget the children who believed in them. That's what makes them shine so bright.\""
+            },
+            {
+              "text": "(Feel that warmth... like a hundred tiny lights glowing inside your heart...)"
+            },
+            {
+              "text": "The train climbed one final mountain, and there—at the very top—stood a castle made of candlelight."
+            },
+            {
+              "text": "Not candles, but candlelight itself, shaped into towers and walls and windows that glowed with every color of flame. Orange and gold and that deep blue you only see at the very bottom of a candle, where the fire meets the wax."
+            },
+            {
+              "text": "\"The Castle of Christmas Dreams,\" Clara said, her voice full of wonder even though she'd seen it before. \"This is where the train stops. This is where the magic lives.\""
+            },
+            {
+              "text": "The train slowed. The bell rang once—soft and silver. The door opened, and a rush of warm air filled the car, smelling of cinnamon and pine and something else... something that smelled exactly like home."
+            }
+          ]
+        },
+        {
+          "title": "The Castle",
+          "pages": [
+            {
+              "text": "They stepped off the train into a courtyard of smooth snow. Other children were there too—children who had ridden from other Christmas trees, other living rooms, other dreams. They looked at each other with knowing smiles, the way people do when they share a secret too wonderful for words."
+            },
+            {
+              "text": "The castle doors opened, and out stepped a woman who seemed to be made of moonlight and kindness. Her dress was the color of snow at twilight. Her crown was made of tiny stars. When she smiled, Azi felt warm all the way to his toes."
+            },
+            {
+              "text": "\"Welcome, dreamers,\" she said, and her voice was like a lullaby. \"I am the Christmas Queen, and this is my home. Tonight, it is your home too.\""
+            },
+            {
+              "text": "Inside, the castle was even more beautiful. A great hall stretched before them, with a ceiling so high it disappeared into soft golden clouds. Tables lined the walls, laden with every treat Azi could imagine: cookies shaped like snowflakes, cups of cocoa that never grew cold, fruits that glittered like jewels."
+            },
+            {
+              "text": "But the center of the hall was empty—a great circular floor of polished ice, smooth as glass."
+            },
+            {
+              "text": "\"On Christmas Eve,\" the Queen said, \"we dance. Every child who rides the Midnight Train is invited to join the Christmas Dance. It only happens once a year, and it only happens here.\""
+            },
+            {
+              "text": "Music began—not from anywhere Azi could see, but from everywhere at once. The same sweet melody from the Sugar Plum Forest, but fuller now, richer, like an orchestra hidden in the walls."
+            },
+            {
+              "text": "Clara took Azi's hand. \"You don't have to know the steps,\" she whispered. \"The music knows them for you.\""
+            },
+            {
+              "text": "And she was right. The moment Azi stepped onto the ice, his feet knew exactly what to do. He spun and glided and leaped, and he wasn't scared at all—he was flying, he was floating, he was part of the music itself."
+            },
+            {
+              "text": "\"¡Estoy bailando!\" he laughed. \"I'm dancing!\""
+            },
+            {
+              "text": "All around him, children danced with mice in tiny suits and soldiers made of wood and ballerinas whose tutus sparkled like fresh snow. The Christmas Queen herself joined them, twirling through the crowd, touching each child gently on the shoulder as she passed."
+            },
+            {
+              "text": "(Feel yourself dancing... light as air... happy as starlight...)"
+            },
+            {
+              "text": "When the music finally faded, Azi's cheeks hurt from smiling. Clara was laughing beside him, breathless and bright-eyed."
+            },
+            {
+              "text": "The Christmas Queen approached them, and in her hands she held something small and silver—a tiny bell on a ribbon of midnight blue."
+            },
+            {
+              "text": "\"Every child who visits the Castle of Christmas Dreams receives a gift,\" she said. \"This bell will always ring for you, Azi. On cold nights when you feel alone, shake it once, and remember: you danced with the stars tonight. You rode the Midnight Train. Magic is real, and it lives inside you.\""
+            },
+            {
+              "text": "Azi took the bell. It was lighter than air, but somehow he could feel its weight—a good weight, like a promise."
+            },
+            {
+              "text": "\"Gracias,\" he said. \"Thank you.\""
+            },
+            {
+              "text": "The Queen smiled and kissed his forehead, and where her lips touched, he felt warm and sleepy and safe."
+            }
+          ]
+        },
+        {
+          "title": "The Return",
+          "pages": [
+            {
+              "text": "\"The train is waiting,\" Clara said softly. \"It's time to go home.\""
+            },
+            {
+              "text": "Azi didn't want to leave—not ever—but somehow he understood. The magic of Christmas Eve was precious because it didn't last forever. It came once a year, like a gift you had to wait for."
+            },
+            {
+              "text": "They walked back through the snow to where the train waited, its lantern glowing soft and steady. The other children were climbing aboard too, some waving goodbye to mice friends and snowflake dancers, some already yawning, the magic settling into their bones like warmth."
+            },
+            {
+              "text": "The train ride home was quieter. Children curled into their seats, heads against windows, eyes half-closed. The conductor walked the aisles, tucking blankets around small shoulders, humming a tune that sounded like a lullaby."
+            },
+            {
+              "text": "Through the window, Azi watched the City of Lights fade into the distance. Then the Frozen Lake, with its dancing Snow Queen still spinning beneath the stars. Then the Sugar Plum Forest, its trees still singing their sweet, strange song."
+            },
+            {
+              "text": "Clara sat beside him, quiet now."
+            },
+            {
+              "text": "\"Will I see you again?\" Azi asked."
+            },
+            {
+              "text": "\"Every Christmas Eve,\" she said. \"The train always comes. And I'll always be here.\""
+            },
+            {
+              "text": "She squeezed his hand once, and her fingers were still warm—but gentler now, softer, like the end of a hug."
+            },
+            {
+              "text": "(Your eyes are getting heavy now... that's okay... the train knows the way home...)"
+            },
+            {
+              "text": "The train rocked gently, back and forth, back and forth, like a cradle. Like Papa's arms when he carried Azi to bed. Like Mama's voice humming low and sweet."
+            },
+            {
+              "text": "The moon appeared in the window—the same moon that watched over all the children of the world. The same moon that had hung over the castle, over the lake, over the whole Land of Christmas Dreams. It seemed to wink, as if to say: I'll keep your secret safe."
+            },
+            {
+              "text": "Azi's eyes were so heavy now. The velvet seat was so soft. The train's rhythm was so steady."
+            },
+            {
+              "text": "Somewhere far away, he heard the conductor's voice: \"Approaching home station. All dreamers prepare for arrival.\""
+            },
+            {
+              "text": "But Azi couldn't keep his eyes open anymore. He clutched the tiny silver bell in his hand and let himself sink into the warmth, the softness, the gentle rocking of the train..."
+            },
+            {
+              "text": "(One last breath in... let it out slowly... feel yourself floating...)"
+            }
+          ]
+        },
+        {
+          "title": "Morning",
+          "pages": [
+            {
+              "text": "When Azi woke, he was in his own bed."
+            },
+            {
+              "text": "Sunlight streamed through the curtains, golden and gentle. Jujy was tucked under his arm. Downstairs, he could hear Mama singing and Papa laughing, and the smell of something sweet baking."
+            },
+            {
+              "text": "Christmas morning."
+            },
+            {
+              "text": "He lay very still for a moment, remembering. The train. The forest. The castle. The dance. Had it been real? Had any of it been real?"
+            },
+            {
+              "text": "Then he felt something in his hand—something small and cool and impossibly light."
+            },
+            {
+              "text": "He opened his fingers."
+            },
+            {
+              "text": "The tiny silver bell lay in his palm, catching the morning light. And when he shook it—just once, just gently—it rang with the sweetest sound he had ever heard."
+            },
+            {
+              "text": "\"Era real,\" he whispered. \"It was real.\""
+            },
+            {
+              "text": "He smiled and pressed the bell to his heart. Then he jumped out of bed and ran downstairs, ready to tell Mama and Papa about the most wonderful dream—the most wonderful real dream—he had ever had."
+            },
+            {
+              "text": "In the living room, the Christmas tree still glowed. The stockings hung full and waiting. And beneath the tree, the little red train sat quietly on its silver tracks."
+            },
+            {
+              "text": "Perfectly still."
+            },
+            {
+              "text": "For now."
+            },
+            {
+              "text": "Buenas noches, mi amor. Feliz Navidad."
+            },
+            {
+              "text": "The train will always wait for you."
             }
           ]
         }
@@ -1660,24 +2302,22 @@
               "text": "Now the house was quiet."
             },
             {
-              "text": "Azi’s hair was still a little damp. His pajamas were soft. His feet were bare on the cool wooden floor."
+              "text": "Azi's hair was still a little damp. His pajamas were soft. His feet were bare on the cool wooden floor."
             },
             {
-              "text": "And outside his window, the moon was rising over Rahway.",
-              "star": "rising"
+              "text": "And outside his window, the moon was rising over Rahway."
             },
             {
-              "text": "It came up slowly, the way moons do—like it had all the time in the world. First just a glow behind the rooftops. Then a sliver of light. Then more and more, until there it was: round and bright and beautiful.",
-              "star": "sliver"
+              "text": "It came up slowly, the way moons do—like it had all the time in the world. First just a glow behind the rooftops. Then a sliver of light. Then more and more, until there it was: round and bright and beautiful."
             },
             {
-              "text": "“Papa,” Azi whispered. “Look.”"
+              "text": "\"Papa,\" Azi whispered. \"Look.\""
             },
             {
               "text": "I came to stand beside him. Together we watched the moon float higher, leaving the rooftops behind."
             },
             {
-              "text": "“Can you get it for me?” he asked. “It’s glowing so nicely. I want to hold it.”"
+              "text": "\"Can you get it for me?\" he asked. \"It's glowing so nicely. I want to hold it.\""
             },
             {
               "text": "I looked at the moon."
@@ -1695,7 +2335,7 @@
               "text": "But Azi was looking at me with those eyes—the ones that believe Papa can do anything."
             },
             {
-              "text": "“I’ll try,” I said."
+              "text": "\"I'll try,\" I said."
             },
             {
               "text": "And I meant it."
@@ -1715,10 +2355,10 @@
               "text": "I carried it out into the night."
             },
             {
-              "text": "The neighborhood was quiet. Porch lights glowed here and there like little golden eyes. Somewhere a dog barked once, then settled. The air smelled like cut grass and somebody’s late dinner."
+              "text": "The neighborhood was quiet. Porch lights glowed here and there like little golden eyes. Somewhere a dog barked once, then settled. The air smelled like cut grass and somebody's late dinner."
             },
             {
-              "text": "I walked past Flo’s house, where her garden was full of flowers that looked silver in the moonlight."
+              "text": "I walked past Flo's house, where her garden was full of flowers that looked silver in the moonlight."
             },
             {
               "text": "I walked past the fire station, where the big red trucks were sleeping in their bays. Even fire trucks need to rest."
@@ -1727,7 +2367,7 @@
               "text": "I walked past the library, with its dark windows full of waiting stories. All those books, dreaming on their shelves."
             },
             {
-              "text": "I walked past Brady and Anne’s house, where the porch light glowed soft and warm. Their cat was sitting in the window, watching me with curious eyes. I waved. The cat blinked slowly, which is how cats wave back."
+              "text": "I walked past Brady and Anne's house, where the porch light glowed soft and warm. Their cat was sitting in the window, watching me with curious eyes. I waved. The cat blinked slowly, which is how cats wave back."
             },
             {
               "text": "Finally, I found the perfect spot: the old oak tree at the corner of our street. Its branches reached up and up like arms trying to touch the sky."
@@ -1772,7 +2412,7 @@
               "text": "I climbed back down, rung by rung, thinking."
             },
             {
-              "text": "“I’ll try again,” I said to the moon."
+              "text": "\"I'll try again,\" I said to the moon."
             },
             {
               "text": "And I meant it."
@@ -1786,34 +2426,34 @@
           "title": "The Tower",
           "pages": [
             {
-              "text": "If I couldn’t climb high enough, maybe I could build high enough."
+              "text": "If I couldn't climb high enough, maybe I could build high enough."
             },
             {
-              "text": "I went back home and into Azi’s playroom."
+              "text": "I went back home and into Azi's playroom."
             },
             {
               "text": "Jujy was there, sitting on the circular rug like he was guarding everything. His black and white fur caught the moonlight from the window."
             },
             {
-              "text": "“What are you doing, Papa?” Jujy seemed to ask with his confident eyes."
+              "text": "\"What are you doing, Papa?\" Jujy seemed to ask with his confident eyes."
             },
             {
-              "text": "“Building a tower,” I said. “To reach the moon.”"
+              "text": "\"Building a tower,\" I said. \"To reach the moon.\""
             },
             {
-              "text": "Jujy tilted his head, thinking about this. Then he gave a little nod, as if to say: Sounds like a plan. I’ll supervise."
+              "text": "Jujy tilted his head, thinking about this. Then he gave a little nod, as if to say: Sounds like a plan. I'll supervise."
             },
             {
-              "text": "I started with the books—Azi’s favorites, the ones he asks for again and again. The ones in English and the ones in Spanish. The heavy ones about dinosaurs and trucks and how things work. The small ones about feelings and friends and finding your way."
+              "text": "I started with the books—Azi's favorites, the ones he asks for again and again. The ones in English and the ones in Spanish. The heavy ones about dinosaurs and trucks and how things work. The small ones about feelings and friends and finding your way."
             },
             {
               "text": "On top of the books, I stacked his puzzles. The one with the animals. The one with the solar system. The one with all the colors that Azi can do faster than anyone."
             },
             {
-              "text": "On top of the puzzles, I added his magic tricks—the cups and balls, the disappearing coin, the wand that never quite does what it’s supposed to but always makes everyone laugh."
+              "text": "On top of the puzzles, I added his magic tricks—the cups and balls, the disappearing coin, the wand that never quite does what it's supposed to but always makes everyone laugh."
             },
             {
-              "text": "On top of those, the red fire trucks. The little guitar. His AKAI keyboard that he’s learning, one patient note at a time."
+              "text": "On top of those, the red fire trucks. The little guitar. His AKAI keyboard that he's learning, one patient note at a time."
             },
             {
               "text": "And on top of everything, every pot and pan and wooden spoon from his play kitchen—because sometimes the silliest things end up being the most important."
@@ -1864,7 +2504,7 @@
               "text": "I climbed back down, one wobbly step at a time, thinking harder."
             },
             {
-              "text": "“I’ll try once more,” I said to the moon."
+              "text": "\"I'll try once more,\" I said to the moon."
             },
             {
               "text": "And I meant it."
@@ -1881,7 +2521,7 @@
               "text": "I sat down in the backyard, next to my tower of love, and thought."
             },
             {
-              "text": "Climbing hadn’t worked. Building hadn’t worked. What else was there?"
+              "text": "Climbing hadn't worked. Building hadn't worked. What else was there?"
             },
             {
               "text": "The night was quiet around me. The bees were asleep in their hives. The honeysuckle was breathing out its sweet smell. Somewhere, a cricket was singing its tiny cricket song."
@@ -1896,7 +2536,7 @@
               "text": "I thought about his favorite lullaby—the one about tomorrow, about the sun coming out, about betting your bottom dollar."
             },
             {
-              "text": "Maybe, I thought, the moon doesn’t need me to reach it."
+              "text": "Maybe, I thought, the moon doesn't need me to reach it."
             },
             {
               "text": "Maybe it needs me to call it."
@@ -1917,7 +2557,7 @@
               "text": "I sang the way Azi sings it—with my whole heart, with both arms reaching up, with everything I had."
             },
             {
-              "text": "The sun’ll come out tomorrow..."
+              "text": "The sun'll come out tomorrow..."
             },
             {
               "text": "And something changed."
@@ -1932,7 +2572,7 @@
               "text": "I kept singing."
             },
             {
-              "text": "Bet your bottom dollar that tomorrow, there’ll be sun..."
+              "text": "Bet your bottom dollar that tomorrow, there'll be sun..."
             },
             {
               "text": "The moon began to drift down."
@@ -1988,7 +2628,7 @@
               "text": "Now I had to get it home."
             },
             {
-              "text": "I held the moon carefully, the way you hold something precious. The way you hold a sleeping kitten, or a glass of water filled to the very top, or a secret you don’t want to spill."
+              "text": "I held the moon carefully, the way you hold something precious. The way you hold a sleeping kitten, or a glass of water filled to the very top, or a secret you don't want to spill."
             },
             {
               "text": "I walked slowly through the backyard."
@@ -2000,10 +2640,10 @@
               "text": "I walked out to the street."
             },
             {
-              "text": "Everything was different now, bathed in the moon’s gentle glow."
+              "text": "Everything was different now, bathed in the moon's gentle glow."
             },
             {
-              "text": "I passed Brady and Anne’s house. The cat was still in the window, but now its eyes were wide with wonder. Even cats don’t see the moon carried home every night."
+              "text": "I passed Brady and Anne's house. The cat was still in the window, but now its eyes were wide with wonder. Even cats don't see the moon carried home every night."
             },
             {
               "text": "I passed the library, and I could have sworn the books inside were pressing against the windows to see."
@@ -2012,7 +2652,7 @@
               "text": "I passed the fire station. One of the big red trucks seemed to blink its headlights at me—just once, softly—like a wink between friends."
             },
             {
-              "text": "I passed Flo’s garden, where the silver flowers had turned to gold in the moon’s close light."
+              "text": "I passed Flo's garden, where the silver flowers had turned to gold in the moon's close light."
             },
             {
               "text": "Step by careful step, I made my way home."
@@ -2044,7 +2684,7 @@
               "text": "Up the stairs, where each step creaked its familiar creak."
             },
             {
-              "text": "To Azi’s room."
+              "text": "To Azi's room."
             },
             {
               "text": "I pushed open the door, very slowly, very quietly."
@@ -2071,13 +2711,13 @@
               "text": "They were all there. All his friends. All his guardians. All waiting."
             },
             {
-              "text": "I crept to the little wooden bench by Azi’s bed."
+              "text": "I crept to the little wooden bench by Azi's bed."
             },
             {
               "text": "And there, very gently, I placed the moon."
             },
             {
-              "text": "It wasn’t as big as it had been in the sky. Somehow, in the journey home, it had become just the right size—small enough to fit on a bench, big enough to fill a room with light."
+              "text": "It wasn't as big as it had been in the sky. Somehow, in the journey home, it had become just the right size—small enough to fit on a bench, big enough to fill a room with light."
             },
             {
               "text": "Not a toy. Not a lamp. Not a pretend moon."
@@ -2112,49 +2752,49 @@
               "text": "Then they found me."
             },
             {
-              "text": "“You got it,” he whispered."
+              "text": "\"You got it,\" he whispered."
             },
             {
-              "text": "“I got it,” I whispered back."
+              "text": "\"I got it,\" I whispered back."
             },
             {
-              "text": "“You really got it.”"
+              "text": "\"You really got it.\""
             },
             {
-              "text": "“I really did.”"
+              "text": "\"I really did.\""
             },
             {
               "text": "He smiled—that sleepy, satisfied smile that means everything is right."
             },
             {
-              "text": "“Was it hard?” he asked."
+              "text": "\"Was it hard?\" he asked."
             },
             {
-              "text": "I thought about the ladder that wasn’t tall enough. The tower that wobbled with love. The song that finally worked."
+              "text": "I thought about the ladder that wasn't tall enough. The tower that wobbled with love. The song that finally worked."
             },
             {
-              "text": "“A little,” I said. “But you’re worth it.”"
+              "text": "\"A little,\" I said. \"But you're worth it.\""
             },
             {
-              "text": "He reached out one small hand and touched the moon’s glow. His fingers passed right through it—not like it wasn’t there, but like it was made of something softer than soft. Something between light and love."
+              "text": "He reached out one small hand and touched the moon's glow. His fingers passed right through it—not like it wasn't there, but like it was made of something softer than soft. Something between light and love."
             },
             {
-              "text": "“It’s warm,” he said."
+              "text": "\"It's warm,\" he said."
             },
             {
-              "text": "“It is.”"
+              "text": "\"It is.\""
             },
             {
-              "text": "“And it hums.”"
+              "text": "\"And it hums.\""
             },
             {
-              "text": "“It does.”"
+              "text": "\"It does.\""
             },
             {
-              "text": "“Like a lullaby.”"
+              "text": "\"Like a lullaby.\""
             },
             {
-              "text": "“Exactly like a lullaby.”"
+              "text": "\"Exactly like a lullaby.\""
             }
           ]
         },
@@ -2168,37 +2808,37 @@
               "text": "The moon glowed beside us, patient and kind."
             },
             {
-              "text": "Pooh and Clappy and Monkie were warm against Azi’s side. Pandies and Citie watched from their chair, steady as always."
+              "text": "Pooh and Clappy and Monkie were warm against Azi's side. Pandies and Citie watched from their chair, steady as always."
             },
             {
-              "text": "“One more hug,” I said."
+              "text": "\"One more hug,\" I said."
             },
             {
-              "text": "He wrapped his sleepy arms around me, the way he does every night. The way I hope he always will, even when he’s bigger than me."
+              "text": "He wrapped his sleepy arms around me, the way he does every night. The way I hope he always will, even when he's bigger than me."
             },
             {
-              "text": "“Good night,” I whispered."
+              "text": "\"Good night,\" I whispered."
             },
             {
-              "text": "“Good night,” he whispered back."
+              "text": "\"Good night,\" he whispered back."
             },
             {
-              "text": "“Sweet dreams.”"
+              "text": "\"Sweet dreams.\""
             },
             {
-              "text": "“Sweet dreams.”"
+              "text": "\"Sweet dreams.\""
             },
             {
-              "text": "“I’ll see you in the morning.”"
+              "text": "\"I'll see you in the morning.\""
             },
             {
-              "text": "“See you in the morning.”"
+              "text": "\"See you in the morning.\""
             },
             {
-              "text": "“I love you to infinity and beyond.”"
+              "text": "\"I love you to infinity and beyond.\""
             },
             {
-              "text": "“Love you to infinity and beyond.”"
+              "text": "\"Love you to infinity and beyond.\""
             },
             {
               "text": "His eyes were already closing. His breath was already slowing. His arms loosened around me, going soft with sleep."
@@ -2245,7 +2885,7 @@
               "text": "and got it."
             },
             {
-              "text": "Because that’s what happens..."
+              "text": "Because that's what happens..."
             },
             {
               "text": "when someone loves you..."
@@ -2466,6 +3106,68 @@
             },
             {
               "text": "Azi strummed his guitar one more time before bed, and in the gentle evening air, his music sounded like words, and his words sounded like love."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "azi-and-the-thunder-symphony",
+      "title": "Azi and the Thunder Symphony",
+      "by": "Made by Papa",
+      "kind": "chapter",
+      "source": "family-original",
+      "status": "complete",
+      "coverEmoji": null,
+      "teachingGoals": [],
+      "vocab": [],
+      "retellPrompts": [],
+      "parentGuide": null,
+      "originNote": "A family original.",
+      "chapters": [
+        {
+          "title": "When the Music Won't Work",
+          "pages": [
+            {
+              "text": "Azi sat cross-legged on his circular rug, fingers pressing the same three chords on his AKAI keyboard over and over. C-G-Am. C-G-Am. The sound echoed through his playroom, but something felt terribly wrong. Each note came out sharp and angry, like the music itself was arguing with him."
+            },
+            {
+              "text": "\"Why won't you work?\" he muttered, his frustration building like steam in a kettle. His friends were scattered around the rug—Jujy with his confident black-and-white stripes, Dory looking dreamy and soft, and gentle Citie sitting quietly nearby, always ready to listen."
+            },
+            {
+              "text": "The morning light streamed through the window, but Azi couldn't feel its warmth. All he could feel was the tangled mess of feelings in his chest—feelings that wanted to burst out like fireworks but had nowhere to go. His hands pressed harder on the keys. The chords crashed together like thunder clouds colliding in a storm."
+            },
+            {
+              "text": "\"Maybe if I play louder,\" Azi thought, and he pounded the keys with more force. BANG. CRASH. CLANK. But the music only sounded worse—harsh and jagged, like broken glass."
+            },
+            {
+              "text": "That's when the hot feeling took over completely. Before he could stop himself, before he could think or breathe or count to three, Azi's hand swept across the keyboard and beyond—SMACK!—striking gentle Citie, who tumbled backward with a small, surprised cry."
+            },
+            {
+              "text": "The playroom fell silent except for one deep, echoing note hanging in the air like a question mark."
+            },
+            {
+              "text": "Azi stared at his hands, then at Citie's wide eyes. His friend's bottom lip trembled, and there was something new in his expression—something that looked like hurt mixed with confusion. \"Citie...\" Azi whispered, feeling his anger drain away and leave behind something cold and heavy in its place."
+            },
+            {
+              "text": "\"I... I didn't mean...\" But the words stuck in his throat like peanut butter."
+            }
+          ]
+        },
+        {
+          "title": "The Note That Changed Everything",
+          "pages": [
+            {
+              "text": "That single note from the keyboard—deep and resonant like the lowest string on Papa's guitar—began to grow and shimmer in ways that music shouldn't. It spread through the air like ripples in a pond, making the walls of the playroom fade and blur at the edges."
+            },
+            {
+              "text": "Azi blinked hard, rubbing his eyes, but the shimmering only grew stronger. The familiar sounds of his house—Mama humming in the kitchen, the neighbor's dog barking—grew distant and muffled, as if he were hearing them from underwater."
+            },
+            {
+              "text": "\"What's happening?\" he asked, but his voice sounded far away, even to himself."
+            },
+            {
+              "text": "The note expanded, wrapping around him"
             }
           ]
         }

@@ -1,0 +1,57 @@
+[
+  {
+    "word": "(One",
+    "start": 0.035,
+    "end": 0.302
+  },
+  {
+    "word": "last",
+    "start": 0.36,
+    "end": 0.685
+  },
+  {
+    "word": "breath",
+    "start": 0.755,
+    "end": 1.045
+  },
+  {
+    "word": "in...",
+    "start": 1.126,
+    "end": 1.428
+  },
+  {
+    "word": "let",
+    "start": 1.939,
+    "end": 2.113
+  },
+  {
+    "word": "it",
+    "start": 2.171,
+    "end": 2.241
+  },
+  {
+    "word": "out",
+    "start": 2.287,
+    "end": 2.461
+  },
+  {
+    "word": "slowly...",
+    "start": 2.543,
+    "end": 3.251
+  },
+  {
+    "word": "feel",
+    "start": 3.576,
+    "end": 3.843
+  },
+  {
+    "word": "yourself",
+    "start": 3.901,
+    "end": 4.319
+  },
+  {
+    "word": "floating...)",
+    "start": 4.389,
+    "end": 5.027
+  }
+]

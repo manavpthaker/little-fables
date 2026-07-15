@@ -1,0 +1,37 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "room",
+    "start": 0.221,
+    "end": 0.453
+  },
+  {
+    "word": "was",
+    "start": 0.522,
+    "end": 0.65
+  },
+  {
+    "word": "full",
+    "start": 0.72,
+    "end": 0.964
+  },
+  {
+    "word": "of",
+    "start": 1.022,
+    "end": 1.08
+  },
+  {
+    "word": "sleeping",
+    "start": 1.138,
+    "end": 1.533
+  },
+  {
+    "word": "friends.",
+    "start": 1.614,
+    "end": 2.206
+  }
+]

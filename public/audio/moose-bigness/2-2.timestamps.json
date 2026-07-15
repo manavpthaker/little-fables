@@ -1,167 +1,32 @@
 [
   {
-    "word": ">",
+    "word": "But",
     "start": 0.035,
-    "end": 0.081
+    "end": 0.197
   },
   {
-    "word": "*But",
-    "start": 0.104,
-    "end": 0.313
+    "word": "sleep",
+    "start": 0.267,
+    "end": 0.615
   },
   {
-    "word": "we",
-    "start": 0.383,
-    "end": 0.488
+    "word": "felt",
+    "start": 0.697,
+    "end": 0.975
   },
   {
-    "word": "keep",
-    "start": 0.569,
-    "end": 0.766
+    "word": "very",
+    "start": 1.045,
+    "end": 1.289
   },
   {
-    "word": "practicing.",
-    "start": 0.836,
-    "end": 1.672
+    "word": "far",
+    "start": 1.358,
+    "end": 1.556
   },
   {
-    "word": "We",
-    "start": 1.881,
-    "end": 2.02
-  },
-  {
-    "word": "keep",
-    "start": 2.09,
-    "end": 2.31
-  },
-  {
-    "word": "standing",
-    "start": 2.38,
-    "end": 2.798
-  },
-  {
-    "word": "still.",
-    "start": 2.879,
-    "end": 3.471
-  },
-  {
-    "word": "We",
-    "start": 3.715,
-    "end": 3.855
-  },
-  {
-    "word": "keep",
-    "start": 3.924,
-    "end": 4.145
-  },
-  {
-    "word": "breathing",
-    "start": 4.191,
-    "end": 4.586
-  },
-  {
-    "word": "slow.",
-    "start": 4.679,
-    "end": 5.317
-  },
-  {
-    "word": "We",
-    "start": 5.596,
-    "end": 5.735
-  },
-  {
-    "word": "keep",
-    "start": 5.805,
-    "end": 6.014
-  },
-  {
-    "word": "finding",
-    "start": 6.095,
-    "end": 6.513
-  },
-  {
-    "word": "the",
-    "start": 6.571,
-    "end": 6.641
-  },
-  {
-    "word": "soft",
-    "start": 6.711,
-    "end": 7.024
-  },
-  {
-    "word": "place.",
-    "start": 7.105,
-    "end": 7.674
-  },
-  {
-    "word": "And",
-    "start": 7.999,
-    "end": 8.185
-  },
-  {
-    "word": "every",
-    "start": 8.278,
-    "end": 8.568
-  },
-  {
-    "word": "time",
-    "start": 8.638,
-    "end": 8.882
-  },
-  {
-    "word": "we",
-    "start": 8.916,
-    "end": 9.033
-  },
-  {
-    "word": "find",
-    "start": 9.125,
-    "end": 9.416
-  },
-  {
-    "word": "it,",
-    "start": 9.485,
-    "end": 9.752
-  },
-  {
-    "word": "it",
-    "start": 9.845,
-    "end": 9.985
-  },
-  {
-    "word": "gets",
-    "start": 10.043,
-    "end": 10.252
-  },
-  {
-    "word": "a",
-    "start": 10.298,
-    "end": 10.321
-  },
-  {
-    "word": "little",
-    "start": 10.379,
-    "end": 10.635
-  },
-  {
-    "word": "easier",
-    "start": 10.704,
-    "end": 11.18
-  },
-  {
-    "word": "to",
-    "start": 11.25,
-    "end": 11.331
-  },
-  {
-    "word": "find",
-    "start": 11.424,
-    "end": 11.714
-  },
-  {
-    "word": "again.*",
-    "start": 11.784,
-    "end": 12.295
+    "word": "away.",
+    "start": 1.602,
+    "end": 2.009
   }
 ]

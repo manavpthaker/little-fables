@@ -1,0 +1,32 @@
+[
+  {
+    "word": "SCARE",
+    "start": 0.035,
+    "end": 0.499
+  },
+  {
+    "word": "THE",
+    "start": 0.534,
+    "end": 0.615
+  },
+  {
+    "word": "BEARS",
+    "start": 0.662,
+    "end": 1.045
+  },
+  {
+    "word": "Today",
+    "start": 1.115,
+    "end": 1.544
+  },
+  {
+    "word": "only.",
+    "start": 1.672,
+    "end": 2.218
+  },
+  {
+    "word": "Free.",
+    "start": 2.368,
+    "end": 2.798
+  }
+]

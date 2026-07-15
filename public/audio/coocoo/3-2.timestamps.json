@@ -1,0 +1,42 @@
+[
+  {
+    "word": "He",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "watched",
+    "start": 0.209,
+    "end": 0.546
+  },
+  {
+    "word": "himself",
+    "start": 0.592,
+    "end": 0.952
+  },
+  {
+    "word": "say",
+    "start": 1.01,
+    "end": 1.254
+  },
+  {
+    "word": "\"I",
+    "start": 1.37,
+    "end": 1.463
+  },
+  {
+    "word": "can't",
+    "start": 1.556,
+    "end": 1.846
+  },
+  {
+    "word": "eat",
+    "start": 1.904,
+    "end": 2.09
+  },
+  {
+    "word": "it.\"",
+    "start": 2.148,
+    "end": 2.392
+  }
+]

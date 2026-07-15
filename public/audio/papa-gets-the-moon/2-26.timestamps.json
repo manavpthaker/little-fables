@@ -1,0 +1,47 @@
+[
+  {
+    "word": "\"I'll",
+    "start": 0.093,
+    "end": 0.325
+  },
+  {
+    "word": "try",
+    "start": 0.36,
+    "end": 0.592
+  },
+  {
+    "word": "once",
+    "start": 0.673,
+    "end": 0.894
+  },
+  {
+    "word": "more,\"",
+    "start": 0.94,
+    "end": 1.219
+  },
+  {
+    "word": "I",
+    "start": 1.242,
+    "end": 1.289
+  },
+  {
+    "word": "said",
+    "start": 1.37,
+    "end": 1.567
+  },
+  {
+    "word": "to",
+    "start": 1.602,
+    "end": 1.649
+  },
+  {
+    "word": "the",
+    "start": 1.707,
+    "end": 1.776
+  },
+  {
+    "word": "moon.",
+    "start": 1.811,
+    "end": 2.125
+  }
+]

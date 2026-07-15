@@ -1,252 +1,152 @@
 [
   {
-    "word": ">",
-    "start": 0.058,
-    "end": 0.081
-  },
-  {
-    "word": "*When",
-    "start": 0.151,
-    "end": 0.406
-  },
-  {
-    "word": "you",
-    "start": 0.453,
-    "end": 0.534
-  },
-  {
-    "word": "feel",
-    "start": 0.615,
-    "end": 0.894
-  },
-  {
-    "word": "the",
-    "start": 0.964,
-    "end": 1.033
+    "word": "The",
+    "start": 0.046,
+    "end": 0.139
   },
   {
     "word": "bigness",
-    "start": 1.091,
-    "end": 1.498
-  },
-  {
-    "word": "rising",
-    "start": 1.567,
-    "end": 1.997
-  },
-  {
-    "word": "-",
-    "start": 2.125,
-    "end": 2.148
-  },
-  {
-    "word": "when",
-    "start": 2.194,
-    "end": 2.368
-  },
-  {
-    "word": "your",
-    "start": 2.403,
-    "end": 2.543
-  },
-  {
-    "word": "hands",
-    "start": 2.601,
-    "end": 2.902
-  },
-  {
-    "word": "want",
-    "start": 2.961,
-    "end": 3.17
-  },
-  {
-    "word": "to",
-    "start": 3.216,
-    "end": 3.274
-  },
-  {
-    "word": "push",
-    "start": 3.355,
-    "end": 3.704
-  },
-  {
-    "word": "and",
-    "start": 3.773,
-    "end": 3.889
-  },
-  {
-    "word": "your",
-    "start": 3.947,
-    "end": 4.098
-  },
-  {
-    "word": "words",
-    "start": 4.156,
-    "end": 4.54
-  },
-  {
-    "word": "want",
-    "start": 4.609,
-    "end": 4.83
-  },
-  {
-    "word": "to",
-    "start": 4.865,
-    "end": 4.934
-  },
-  {
-    "word": "bite",
-    "start": 5.004,
-    "end": 5.445
-  },
-  {
-    "word": "-",
-    "start": 5.503,
-    "end": 5.538
-  },
-  {
-    "word": "you",
-    "start": 5.689,
-    "end": 5.805
-  },
-  {
-    "word": "do",
-    "start": 5.886,
-    "end": 6.084
-  },
-  {
-    "word": "three",
-    "start": 6.2,
-    "end": 6.548
-  },
-  {
-    "word": "things.*",
-    "start": 6.606,
-    "end": 8.127
-  },
-  {
-    "word": "Azi",
-    "start": 8.568,
-    "end": 8.986
-  },
-  {
-    "word": "leaned",
-    "start": 9.067,
-    "end": 9.416
-  },
-  {
-    "word": "closer",
-    "start": 9.497,
-    "end": 9.938
-  },
-  {
-    "word": "to",
-    "start": 10.008,
-    "end": 10.077
-  },
-  {
-    "word": "the",
-    "start": 10.147,
-    "end": 10.217
-  },
-  {
-    "word": "window.",
-    "start": 10.263,
-    "end": 10.855
-  },
-  {
-    "word": "His",
-    "start": 11.099,
-    "end": 11.285
-  },
-  {
-    "word": "breath",
-    "start": 11.366,
-    "end": 11.656
+    "start": 0.209,
+    "end": 0.592
   },
   {
     "word": "had",
-    "start": 11.714,
-    "end": 11.854
+    "start": 0.627,
+    "end": 0.731
   },
   {
-    "word": "stopped",
-    "start": 11.912,
-    "end": 12.249
+    "word": "passed",
+    "start": 0.778,
+    "end": 1.08
   },
   {
-    "word": "fogging",
-    "start": 12.307,
-    "end": 12.69
+    "word": "through",
+    "start": 1.115,
+    "end": 1.358
+  },
+  {
+    "word": "him",
+    "start": 1.405,
+    "end": 1.533
+  },
+  {
+    "word": "like",
+    "start": 1.602,
+    "end": 1.753
+  },
+  {
+    "word": "a",
+    "start": 1.788,
+    "end": 1.811
+  },
+  {
+    "word": "summer",
+    "start": 1.869,
+    "end": 2.148
+  },
+  {
+    "word": "storm",
+    "start": 2.229,
+    "end": 2.659
+  },
+  {
+    "word": "-",
+    "start": 2.81,
+    "end": 2.833
+  },
+  {
+    "word": "loud",
+    "start": 3.111,
+    "end": 3.471
+  },
+  {
+    "word": "and",
+    "start": 3.518,
+    "end": 3.611
+  },
+  {
+    "word": "wild",
+    "start": 3.692,
+    "end": 4.075
+  },
+  {
+    "word": "and",
+    "start": 4.133,
+    "end": 4.226
+  },
+  {
+    "word": "terrible",
+    "start": 4.272,
+    "end": 4.807
+  },
+  {
+    "word": "-",
+    "start": 4.923,
+    "end": 4.969
+  },
+  {
+    "word": "and",
+    "start": 5.248,
+    "end": 5.399
+  },
+  {
+    "word": "now",
+    "start": 5.468,
+    "end": 5.619
+  },
+  {
+    "word": "it",
+    "start": 5.677,
+    "end": 5.747
+  },
+  {
+    "word": "was",
+    "start": 5.793,
+    "end": 5.898
+  },
+  {
+    "word": "gone,",
+    "start": 5.956,
+    "end": 6.455
+  },
+  {
+    "word": "leaving",
+    "start": 6.664,
+    "end": 6.966
+  },
+  {
+    "word": "Azi",
+    "start": 7.047,
+    "end": 7.43
+  },
+  {
+    "word": "standing",
+    "start": 7.488,
+    "end": 7.906
+  },
+  {
+    "word": "there",
+    "start": 7.953,
+    "end": 8.255
+  },
+  {
+    "word": "in",
+    "start": 8.313,
+    "end": 8.452
   },
   {
     "word": "the",
-    "start": 12.748,
-    "end": 12.817
+    "start": 8.499,
+    "end": 8.568
   },
   {
-    "word": "glass.",
-    "start": 12.852,
-    "end": 13.537
-  },
-  {
-    "word": "Everything",
-    "start": 13.862,
-    "end": 14.431
-  },
-  {
-    "word": "felt",
-    "start": 14.501,
-    "end": 14.768
-  },
-  {
-    "word": "very",
-    "start": 14.849,
-    "end": 15.209
+    "word": "sudden",
+    "start": 8.615,
+    "end": 8.916
   },
   {
     "word": "quiet.",
-    "start": 15.279,
-    "end": 15.871
-  },
-  {
-    "word": "Very",
-    "start": 16.115,
-    "end": 16.614
-  },
-  {
-    "word": "important.",
-    "start": 16.73,
-    "end": 17.647
-  },
-  {
-    "word": "*(Let's",
-    "start": 18.088,
-    "end": 18.588
-  },
-  {
-    "word": "learn",
-    "start": 18.646,
-    "end": 18.889
-  },
-  {
-    "word": "the",
-    "start": 18.936,
-    "end": 19.006
-  },
-  {
-    "word": "secret",
-    "start": 19.075,
-    "end": 19.47
-  },
-  {
-    "word": "together.",
-    "start": 19.516,
-    "end": 20.167
-  },
-  {
-    "word": "Ready?)*",
-    "start": 20.341,
-    "end": 21.548
+    "start": 8.998,
+    "end": 9.59
   }
 ]

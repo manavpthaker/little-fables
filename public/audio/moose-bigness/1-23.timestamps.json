@@ -1,187 +1,52 @@
 [
   {
-    "word": "Azi",
-    "start": 0.035,
-    "end": 0.325
+    "word": "Something",
+    "start": 0.058,
+    "end": 0.418
   },
   {
-    "word": "breathed",
-    "start": 0.406,
-    "end": 0.824
+    "word": "softer.",
+    "start": 0.534,
+    "end": 1.207
   },
   {
-    "word": "again.",
-    "start": 0.859,
-    "end": 1.428
+    "word": "Something",
+    "start": 1.451,
+    "end": 1.776
   },
   {
-    "word": "In",
-    "start": 1.637,
-    "end": 1.846
+    "word": "that",
+    "start": 1.823,
+    "end": 1.927
   },
   {
-    "word": "for",
-    "start": 1.927,
-    "end": 2.09
+    "word": "looked",
+    "start": 1.974,
+    "end": 2.183
   },
   {
-    "word": "four.",
-    "start": 2.171,
-    "end": 2.833
+    "word": "a",
+    "start": 2.218,
+    "end": 2.252
   },
   {
-    "word": "Out",
-    "start": 3.077,
-    "end": 3.495
+    "word": "little",
+    "start": 2.322,
+    "end": 2.543
   },
   {
-    "word": "for",
-    "start": 3.669,
-    "end": 3.866
-  },
-  {
-    "word": "six.",
-    "start": 3.959,
-    "end": 4.737
-  },
-  {
-    "word": "The",
-    "start": 5.016,
-    "end": 5.143
-  },
-  {
-    "word": "tightness",
-    "start": 5.213,
-    "end": 5.77
-  },
-  {
-    "word": "in",
-    "start": 5.817,
-    "end": 5.898
-  },
-  {
-    "word": "his",
-    "start": 5.956,
-    "end": 6.084
-  },
-  {
-    "word": "chest",
-    "start": 6.153,
-    "end": 6.571
-  },
-  {
-    "word": "started",
-    "start": 6.653,
-    "end": 7.094
-  },
-  {
-    "word": "to",
-    "start": 7.14,
-    "end": 7.21
-  },
-  {
-    "word": "soften,",
-    "start": 7.291,
-    "end": 7.93
+    "word": "bit",
+    "start": 2.566,
+    "end": 2.694
   },
   {
     "word": "like",
-    "start": 8.046,
-    "end": 8.29
+    "start": 2.752,
+    "end": 2.926
   },
   {
-    "word": "ice",
-    "start": 8.348,
-    "end": 8.777
-  },
-  {
-    "word": "melting",
-    "start": 8.905,
-    "end": 9.311
-  },
-  {
-    "word": "in",
-    "start": 9.358,
-    "end": 9.416
-  },
-  {
-    "word": "the",
-    "start": 9.462,
-    "end": 9.532
-  },
-  {
-    "word": "sun.",
-    "start": 9.578,
-    "end": 10.136
-  },
-  {
-    "word": "*(Breathe",
-    "start": 10.948,
-    "end": 11.645
-  },
-  {
-    "word": "with",
-    "start": 11.691,
-    "end": 11.854
-  },
-  {
-    "word": "Azi",
-    "start": 11.923,
-    "end": 12.341
-  },
-  {
-    "word": "now.",
-    "start": 12.423,
-    "end": 12.98
-  },
-  {
-    "word": "In...",
-    "start": 13.131,
-    "end": 13.723
-  },
-  {
-    "word": "two...",
-    "start": 13.897,
-    "end": 14.478
-  },
-  {
-    "word": "three...",
-    "start": 14.652,
-    "end": 15.325
-  },
-  {
-    "word": "four...",
-    "start": 15.499,
-    "end": 16.161
-  },
-  {
-    "word": "Out...",
-    "start": 16.37,
-    "end": 17.067
-  },
-  {
-    "word": "two...",
-    "start": 17.276,
-    "end": 17.949
-  },
-  {
-    "word": "three...",
-    "start": 18.123,
-    "end": 18.82
-  },
-  {
-    "word": "four...",
-    "start": 19.029,
-    "end": 19.714
-  },
-  {
-    "word": "five...",
-    "start": 19.958,
-    "end": 20.782
-  },
-  {
-    "word": "six...)*",
-    "start": 21.026,
-    "end": 21.85
+    "word": "sad.",
+    "start": 2.984,
+    "end": 3.553
   }
 ]

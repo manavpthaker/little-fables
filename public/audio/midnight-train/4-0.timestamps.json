@@ -1,0 +1,62 @@
+[
+  {
+    "word": "\"The",
+    "start": 0.093,
+    "end": 0.255
+  },
+  {
+    "word": "train",
+    "start": 0.313,
+    "end": 0.557
+  },
+  {
+    "word": "is",
+    "start": 0.604,
+    "end": 0.685
+  },
+  {
+    "word": "waiting,\"",
+    "start": 0.743,
+    "end": 1.231
+  },
+  {
+    "word": "Clara",
+    "start": 1.509,
+    "end": 1.834
+  },
+  {
+    "word": "said",
+    "start": 1.892,
+    "end": 2.078
+  },
+  {
+    "word": "softly.",
+    "start": 2.136,
+    "end": 2.763
+  },
+  {
+    "word": "\"It's",
+    "start": 2.972,
+    "end": 3.251
+  },
+  {
+    "word": "time",
+    "start": 3.297,
+    "end": 3.495
+  },
+  {
+    "word": "to",
+    "start": 3.529,
+    "end": 3.576
+  },
+  {
+    "word": "go",
+    "start": 3.634,
+    "end": 3.738
+  },
+  {
+    "word": "home.\"",
+    "start": 3.808,
+    "end": 4.156
+  }
+]

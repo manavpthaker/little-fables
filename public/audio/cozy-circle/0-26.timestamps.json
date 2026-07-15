@@ -1,0 +1,42 @@
+[
+  {
+    "word": "The",
+    "start": 0.046,
+    "end": 0.163
+  },
+  {
+    "word": "wiggly",
+    "start": 0.232,
+    "end": 0.604
+  },
+  {
+    "word": "feeling",
+    "start": 0.697,
+    "end": 1.068
+  },
+  {
+    "word": "in",
+    "start": 1.126,
+    "end": 1.196
+  },
+  {
+    "word": "his",
+    "start": 1.254,
+    "end": 1.37
+  },
+  {
+    "word": "tummy",
+    "start": 1.44,
+    "end": 1.753
+  },
+  {
+    "word": "didn't",
+    "start": 1.823,
+    "end": 2.067
+  },
+  {
+    "word": "disappear.",
+    "start": 2.113,
+    "end": 2.752
+  }
+]

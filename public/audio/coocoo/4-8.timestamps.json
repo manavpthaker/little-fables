@@ -1,0 +1,47 @@
+[
+  {
+    "word": "\"Before",
+    "start": 0.081,
+    "end": 0.476
+  },
+  {
+    "word": "the",
+    "start": 0.511,
+    "end": 0.58
+  },
+  {
+    "word": "words.\"",
+    "start": 0.627,
+    "end": 1.219
+  },
+  {
+    "word": "A",
+    "start": 1.393,
+    "end": 1.463
+  },
+  {
+    "word": "beat.",
+    "start": 1.533,
+    "end": 1.927
+  },
+  {
+    "word": "\"I",
+    "start": 2.043,
+    "end": 2.183
+  },
+  {
+    "word": "could",
+    "start": 2.252,
+    "end": 2.426
+  },
+  {
+    "word": "have",
+    "start": 2.461,
+    "end": 2.577
+  },
+  {
+    "word": "stopped.\"",
+    "start": 2.612,
+    "end": 3.204
+  }
+]

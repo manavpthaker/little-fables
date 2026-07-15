@@ -1,0 +1,52 @@
+[
+  {
+    "word": "Azi",
+    "start": 0.035,
+    "end": 0.395
+  },
+  {
+    "word": "found",
+    "start": 0.511,
+    "end": 0.824
+  },
+  {
+    "word": "Mama",
+    "start": 0.94,
+    "end": 1.324
+  },
+  {
+    "word": "and",
+    "start": 1.393,
+    "end": 1.509
+  },
+  {
+    "word": "Papa",
+    "start": 1.579,
+    "end": 1.904
+  },
+  {
+    "word": "in",
+    "start": 1.962,
+    "end": 2.043
+  },
+  {
+    "word": "the",
+    "start": 2.09,
+    "end": 2.159
+  },
+  {
+    "word": "farmhouse",
+    "start": 2.229,
+    "end": 2.81
+  },
+  {
+    "word": "living",
+    "start": 2.868,
+    "end": 3.158
+  },
+  {
+    "word": "room.",
+    "start": 3.216,
+    "end": 3.506
+  }
+]

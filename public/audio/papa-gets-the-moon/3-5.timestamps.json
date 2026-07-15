@@ -1,0 +1,97 @@
+[
+  {
+    "word": "I",
+    "start": 0.058,
+    "end": 0.093
+  },
+  {
+    "word": "thought",
+    "start": 0.163,
+    "end": 0.383
+  },
+  {
+    "word": "about",
+    "start": 0.418,
+    "end": 0.627
+  },
+  {
+    "word": "his",
+    "start": 0.673,
+    "end": 0.789
+  },
+  {
+    "word": "favorite",
+    "start": 0.859,
+    "end": 1.242
+  },
+  {
+    "word": "lullaby--the",
+    "start": 1.289,
+    "end": 2.218
+  },
+  {
+    "word": "one",
+    "start": 2.287,
+    "end": 2.415
+  },
+  {
+    "word": "about",
+    "start": 2.438,
+    "end": 2.682
+  },
+  {
+    "word": "tomorrow,",
+    "start": 2.728,
+    "end": 3.379
+  },
+  {
+    "word": "about",
+    "start": 3.402,
+    "end": 3.657
+  },
+  {
+    "word": "the",
+    "start": 3.692,
+    "end": 3.762
+  },
+  {
+    "word": "sun",
+    "start": 3.82,
+    "end": 4.063
+  },
+  {
+    "word": "coming",
+    "start": 4.145,
+    "end": 4.4
+  },
+  {
+    "word": "out,",
+    "start": 4.47,
+    "end": 4.783
+  },
+  {
+    "word": "about",
+    "start": 4.818,
+    "end": 5.097
+  },
+  {
+    "word": "betting",
+    "start": 5.166,
+    "end": 5.457
+  },
+  {
+    "word": "your",
+    "start": 5.492,
+    "end": 5.608
+  },
+  {
+    "word": "bottom",
+    "start": 5.654,
+    "end": 5.933
+  },
+  {
+    "word": "dollar.",
+    "start": 5.991,
+    "end": 6.455
+  }
+]

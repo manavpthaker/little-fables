@@ -1,247 +1,27 @@
 [
   {
-    "word": "The",
-    "start": 0.07,
+    "word": "And",
+    "start": 0.035,
     "end": 0.151
   },
   {
-    "word": "moose's",
-    "start": 0.232,
-    "end": 0.65
+    "word": "then",
+    "start": 0.209,
+    "end": 0.383
   },
   {
-    "word": "voice",
-    "start": 0.72,
-    "end": 1.08
+    "word": "it",
+    "start": 0.441,
+    "end": 0.511
   },
   {
     "word": "was",
-    "start": 1.115,
-    "end": 1.265
+    "start": 0.557,
+    "end": 0.685
   },
   {
-    "word": "warm",
-    "start": 1.347,
-    "end": 1.695
-  },
-  {
-    "word": "now.",
-    "start": 1.765,
-    "end": 2.229
-  },
-  {
-    "word": "Certain.",
-    "start": 2.38,
-    "end": 3.088
-  },
-  {
-    "word": ">",
-    "start": 3.262,
-    "end": 3.286
-  },
-  {
-    "word": "*Your",
-    "start": 3.46,
-    "end": 3.866
-  },
-  {
-    "word": "feelings",
-    "start": 3.936,
-    "end": 4.389
-  },
-  {
-    "word": "are",
-    "start": 4.423,
-    "end": 4.551
-  },
-  {
-    "word": "big.",
-    "start": 4.621,
-    "end": 5.143
-  },
-  {
-    "word": "Your",
-    "start": 5.259,
-    "end": 5.457
-  },
-  {
-    "word": "love",
-    "start": 5.538,
-    "end": 5.886
-  },
-  {
-    "word": "is",
-    "start": 5.944,
-    "end": 6.107
-  },
-  {
-    "word": "big.",
-    "start": 6.2,
-    "end": 6.664
-  },
-  {
-    "word": "Your",
-    "start": 6.78,
-    "end": 7.012
-  },
-  {
-    "word": "body",
-    "start": 7.094,
-    "end": 7.477
-  },
-  {
-    "word": "is",
-    "start": 7.558,
-    "end": 7.674
-  },
-  {
-    "word": "getting",
-    "start": 7.732,
-    "end": 7.988
-  },
-  {
-    "word": "bigger",
-    "start": 8.057,
-    "end": 8.359
-  },
-  {
-    "word": "every",
-    "start": 8.452,
-    "end": 8.777
-  },
-  {
-    "word": "day.",
-    "start": 8.847,
-    "end": 9.369
-  },
-  {
-    "word": "And",
-    "start": 9.578,
-    "end": 9.776
-  },
-  {
-    "word": "big",
-    "start": 9.892,
-    "end": 10.147
-  },
-  {
-    "word": "things",
-    "start": 10.228,
-    "end": 10.739
-  },
-  {
-    "word": "-",
-    "start": 10.832,
-    "end": 10.867
-  },
-  {
-    "word": "truly",
-    "start": 10.96,
-    "end": 11.564
-  },
-  {
-    "word": "big",
-    "start": 11.738,
-    "end": 12.04
-  },
-  {
-    "word": "things",
-    "start": 12.121,
-    "end": 12.597
-  },
-  {
-    "word": "-",
-    "start": 12.666,
-    "end": 12.69
-  },
-  {
-    "word": "need",
-    "start": 12.759,
-    "end": 13.038
-  },
-  {
-    "word": "to",
-    "start": 13.096,
-    "end": 13.177
-  },
-  {
-    "word": "learn",
-    "start": 13.293,
-    "end": 13.63
-  },
-  {
-    "word": "the",
-    "start": 13.711,
-    "end": 13.793
-  },
-  {
-    "word": "Gentle",
-    "start": 13.886,
-    "end": 14.257
-  },
-  {
-    "word": "Giant's",
-    "start": 14.315,
-    "end": 14.803
-  },
-  {
-    "word": "Secret.*",
-    "start": 14.849,
-    "end": 15.639
-  },
-  {
-    "word": "\"What's",
-    "start": 16.08,
-    "end": 16.475
-  },
-  {
-    "word": "the",
-    "start": 16.533,
-    "end": 16.625
-  },
-  {
-    "word": "secret?\"",
-    "start": 16.695,
-    "end": 17.427
-  },
-  {
-    "word": "Azi",
-    "start": 17.543,
-    "end": 17.926
-  },
-  {
-    "word": "whispered.",
-    "start": 17.984,
-    "end": 18.657
-  },
-  {
-    "word": "And",
-    "start": 18.831,
-    "end": 18.994
-  },
-  {
-    "word": "the",
-    "start": 19.052,
-    "end": 19.122
-  },
-  {
-    "word": "moose",
-    "start": 19.191,
-    "end": 19.528
-  },
-  {
-    "word": "began",
-    "start": 19.574,
-    "end": 19.876
-  },
-  {
-    "word": "to",
-    "start": 19.934,
-    "end": 19.992
-  },
-  {
-    "word": "teach.",
-    "start": 20.074,
-    "end": 20.701
+    "word": "over.",
+    "start": 0.755,
+    "end": 1.173
   }
 ]

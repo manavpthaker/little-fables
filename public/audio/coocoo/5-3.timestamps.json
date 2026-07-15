@@ -1,0 +1,127 @@
+[
+  {
+    "word": "I'm",
+    "start": 0.035,
+    "end": 0.174
+  },
+  {
+    "word": "not",
+    "start": 0.221,
+    "end": 0.36
+  },
+  {
+    "word": "here",
+    "start": 0.406,
+    "end": 0.557
+  },
+  {
+    "word": "to",
+    "start": 0.592,
+    "end": 0.65
+  },
+  {
+    "word": "punish",
+    "start": 0.708,
+    "end": 1.01
+  },
+  {
+    "word": "you.",
+    "start": 1.057,
+    "end": 1.37
+  },
+  {
+    "word": "I'm",
+    "start": 1.614,
+    "end": 1.776
+  },
+  {
+    "word": "here",
+    "start": 1.846,
+    "end": 2.02
+  },
+  {
+    "word": "because",
+    "start": 2.067,
+    "end": 2.334
+  },
+  {
+    "word": "you",
+    "start": 2.368,
+    "end": 2.45
+  },
+  {
+    "word": "forgot",
+    "start": 2.543,
+    "end": 2.891
+  },
+  {
+    "word": "what",
+    "start": 2.937,
+    "end": 3.053
+  },
+  {
+    "word": "you",
+    "start": 3.111,
+    "end": 3.193
+  },
+  {
+    "word": "know.",
+    "start": 3.251,
+    "end": 3.599
+  },
+  {
+    "word": "And",
+    "start": 3.669,
+    "end": 3.808
+  },
+  {
+    "word": "when",
+    "start": 3.866,
+    "end": 4.005
+  },
+  {
+    "word": "you",
+    "start": 4.052,
+    "end": 4.133
+  },
+  {
+    "word": "remember",
+    "start": 4.226,
+    "end": 4.69
+  },
+  {
+    "word": "--",
+    "start": 4.841,
+    "end": 4.899
+  },
+  {
+    "word": "I",
+    "start": 5.016,
+    "end": 5.085
+  },
+  {
+    "word": "have",
+    "start": 5.166,
+    "end": 5.329
+  },
+  {
+    "word": "nothing",
+    "start": 5.387,
+    "end": 5.7
+  },
+  {
+    "word": "left",
+    "start": 5.77,
+    "end": 5.979
+  },
+  {
+    "word": "to",
+    "start": 6.014,
+    "end": 6.072
+  },
+  {
+    "word": "be.",
+    "start": 6.13,
+    "end": 6.478
+  }
+]

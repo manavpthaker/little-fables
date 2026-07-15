@@ -1,0 +1,52 @@
+[
+  {
+    "word": "That",
+    "start": 0.046,
+    "end": 0.232
+  },
+  {
+    "word": "night",
+    "start": 0.302,
+    "end": 0.499
+  },
+  {
+    "word": "at",
+    "start": 0.534,
+    "end": 0.604
+  },
+  {
+    "word": "shower",
+    "start": 0.65,
+    "end": 0.964
+  },
+  {
+    "word": "time,",
+    "start": 1.022,
+    "end": 1.463
+  },
+  {
+    "word": "Azi",
+    "start": 1.579,
+    "end": 1.985
+  },
+  {
+    "word": "turned",
+    "start": 2.043,
+    "end": 2.357
+  },
+  {
+    "word": "on",
+    "start": 2.403,
+    "end": 2.485
+  },
+  {
+    "word": "the",
+    "start": 2.519,
+    "end": 2.589
+  },
+  {
+    "word": "water.",
+    "start": 2.635,
+    "end": 3.146
+  }
+]

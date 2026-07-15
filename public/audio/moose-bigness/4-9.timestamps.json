@@ -1,0 +1,47 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.093
+  },
+  {
+    "word": "hurt",
+    "start": 0.209,
+    "end": 0.441
+  },
+  {
+    "word": "things",
+    "start": 0.499,
+    "end": 0.836
+  },
+  {
+    "word": "I",
+    "start": 0.906,
+    "end": 0.929
+  },
+  {
+    "word": "did",
+    "start": 0.998,
+    "end": 1.115
+  },
+  {
+    "word": "not",
+    "start": 1.161,
+    "end": 1.289
+  },
+  {
+    "word": "mean",
+    "start": 1.335,
+    "end": 1.498
+  },
+  {
+    "word": "to",
+    "start": 1.533,
+    "end": 1.579
+  },
+  {
+    "word": "hurt.",
+    "start": 1.649,
+    "end": 2.032
+  }
+]

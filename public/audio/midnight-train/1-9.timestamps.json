@@ -1,267 +1,62 @@
 [
   {
-    "word": "\"Every",
+    "word": "Its",
     "start": 0.035,
-    "end": 0.534
+    "end": 0.197
   },
   {
-    "word": "child",
-    "start": 0.615,
-    "end": 1.01
+    "word": "door",
+    "start": 0.255,
+    "end": 0.499
   },
   {
-    "word": "who",
-    "start": 1.045,
-    "end": 1.161
+    "word": "stood",
+    "start": 0.569,
+    "end": 0.848
   },
   {
-    "word": "visits",
-    "start": 1.231,
-    "end": 1.602
+    "word": "open,",
+    "start": 0.906,
+    "end": 1.324
   },
   {
-    "word": "the",
-    "start": 1.649,
-    "end": 1.73
+    "word": "golden",
+    "start": 1.498,
+    "end": 1.997
   },
   {
-    "word": "Castle",
-    "start": 1.788,
-    "end": 2.229
+    "word": "light",
+    "start": 2.078,
+    "end": 2.345
   },
   {
-    "word": "of",
-    "start": 2.264,
-    "end": 2.322
+    "word": "spilling",
+    "start": 2.426,
+    "end": 2.868
   },
   {
-    "word": "Christmas",
-    "start": 2.392,
-    "end": 2.821
+    "word": "like",
+    "start": 2.949,
+    "end": 3.158
   },
   {
-    "word": "Dreams",
-    "start": 2.879,
-    "end": 3.262
+    "word": "honey",
+    "start": 3.228,
+    "end": 3.576
   },
   {
-    "word": "receives",
-    "start": 3.32,
-    "end": 3.831
-  },
-  {
-    "word": "a",
-    "start": 3.889,
-    "end": 3.924
-  },
-  {
-    "word": "gift,\"",
-    "start": 3.994,
-    "end": 4.528
-  },
-  {
-    "word": "she",
-    "start": 4.644,
-    "end": 4.783
-  },
-  {
-    "word": "said.",
-    "start": 4.865,
-    "end": 5.271
-  },
-  {
-    "word": "\"This",
-    "start": 5.387,
-    "end": 5.793
-  },
-  {
-    "word": "bell",
-    "start": 5.886,
-    "end": 6.177
-  },
-  {
-    "word": "will",
-    "start": 6.258,
-    "end": 6.455
-  },
-  {
-    "word": "always",
-    "start": 6.536,
-    "end": 7.024
-  },
-  {
-    "word": "ring",
-    "start": 7.117,
-    "end": 7.303
-  },
-  {
-    "word": "for",
-    "start": 7.384,
-    "end": 7.512
-  },
-  {
-    "word": "you,",
-    "start": 7.581,
-    "end": 7.825
-  },
-  {
-    "word": "Azi.",
-    "start": 7.86,
-    "end": 8.452
-  },
-  {
-    "word": "On",
-    "start": 8.731,
-    "end": 8.916
-  },
-  {
-    "word": "cold",
-    "start": 8.998,
-    "end": 9.323
-  },
-  {
-    "word": "nights",
-    "start": 9.404,
-    "end": 9.729
-  },
-  {
-    "word": "when",
-    "start": 9.776,
-    "end": 9.938
-  },
-  {
-    "word": "you",
-    "start": 9.985,
-    "end": 10.066
-  },
-  {
-    "word": "feel",
-    "start": 10.159,
-    "end": 10.391
-  },
-  {
-    "word": "alone,",
-    "start": 10.449,
-    "end": 10.96
-  },
-  {
-    "word": "shake",
-    "start": 11.134,
-    "end": 11.447
-  },
-  {
-    "word": "it",
-    "start": 11.482,
-    "end": 11.575
-  },
-  {
-    "word": "once,",
-    "start": 11.645,
-    "end": 12.132
-  },
-  {
-    "word": "and",
-    "start": 12.202,
-    "end": 12.376
-  },
-  {
-    "word": "remember:",
-    "start": 12.458,
-    "end": 13.073
-  },
-  {
-    "word": "you",
-    "start": 13.317,
-    "end": 13.468
-  },
-  {
-    "word": "danced",
-    "start": 13.584,
-    "end": 14.002
-  },
-  {
-    "word": "with",
-    "start": 14.036,
-    "end": 14.176
+    "word": "onto",
+    "start": 3.669,
+    "end": 3.947
   },
   {
     "word": "the",
-    "start": 14.211,
-    "end": 14.28
+    "start": 4.017,
+    "end": 4.087
   },
   {
-    "word": "stars",
-    "start": 14.327,
-    "end": 14.721
-  },
-  {
-    "word": "tonight.",
-    "start": 14.779,
-    "end": 15.314
-  },
-  {
-    "word": "You",
-    "start": 15.523,
-    "end": 15.708
-  },
-  {
-    "word": "rode",
-    "start": 15.836,
-    "end": 16.196
-  },
-  {
-    "word": "the",
-    "start": 16.231,
-    "end": 16.3
-  },
-  {
-    "word": "Midnight",
-    "start": 16.37,
-    "end": 16.811
-  },
-  {
-    "word": "Train.",
-    "start": 16.858,
-    "end": 17.392
-  },
-  {
-    "word": "Magic",
-    "start": 17.566,
-    "end": 18.03
-  },
-  {
-    "word": "is",
-    "start": 18.1,
-    "end": 18.262
-  },
-  {
-    "word": "real,",
-    "start": 18.379,
-    "end": 18.889
-  },
-  {
-    "word": "and",
-    "start": 18.982,
-    "end": 19.156
-  },
-  {
-    "word": "it",
-    "start": 19.226,
-    "end": 19.307
-  },
-  {
-    "word": "lives",
-    "start": 19.377,
-    "end": 19.737
-  },
-  {
-    "word": "inside",
-    "start": 19.83,
-    "end": 20.341
-  },
-  {
-    "word": "you.\"",
-    "start": 20.387,
-    "end": 20.759
+    "word": "snow.",
+    "start": 4.145,
+    "end": 4.632
   }
 ]

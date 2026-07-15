@@ -1,0 +1,67 @@
+[
+  {
+    "word": "Somewhere",
+    "start": 0.035,
+    "end": 0.453
+  },
+  {
+    "word": "around",
+    "start": 0.488,
+    "end": 0.778
+  },
+  {
+    "word": "star",
+    "start": 0.836,
+    "end": 1.08
+  },
+  {
+    "word": "number",
+    "start": 1.149,
+    "end": 1.382
+  },
+  {
+    "word": "seven,",
+    "start": 1.451,
+    "end": 1.858
+  },
+  {
+    "word": "the",
+    "start": 1.904,
+    "end": 2.009
+  },
+  {
+    "word": "wiggly",
+    "start": 2.067,
+    "end": 2.426
+  },
+  {
+    "word": "feeling",
+    "start": 2.485,
+    "end": 2.821
+  },
+  {
+    "word": "settled",
+    "start": 2.914,
+    "end": 3.274
+  },
+  {
+    "word": "all",
+    "start": 3.32,
+    "end": 3.448
+  },
+  {
+    "word": "the",
+    "start": 3.495,
+    "end": 3.564
+  },
+  {
+    "word": "way",
+    "start": 3.622,
+    "end": 3.762
+  },
+  {
+    "word": "down.",
+    "start": 3.82,
+    "end": 4.296
+  }
+]

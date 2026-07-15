@@ -1,0 +1,62 @@
+[
+  {
+    "word": "The",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "moose's",
+    "start": 0.221,
+    "end": 0.615
+  },
+  {
+    "word": "voice",
+    "start": 0.673,
+    "end": 1.01
+  },
+  {
+    "word": "was",
+    "start": 1.045,
+    "end": 1.196
+  },
+  {
+    "word": "gentler",
+    "start": 1.277,
+    "end": 1.73
+  },
+  {
+    "word": "now.",
+    "start": 1.8,
+    "end": 2.125
+  },
+  {
+    "word": "Almost",
+    "start": 2.45,
+    "end": 2.949
+  },
+  {
+    "word": "a",
+    "start": 3.007,
+    "end": 3.042
+  },
+  {
+    "word": "whisper",
+    "start": 3.1,
+    "end": 3.483
+  },
+  {
+    "word": "in",
+    "start": 3.541,
+    "end": 3.611
+  },
+  {
+    "word": "Azi's",
+    "start": 3.704,
+    "end": 4.122
+  },
+  {
+    "word": "mind.",
+    "start": 4.191,
+    "end": 4.679
+  }
+]

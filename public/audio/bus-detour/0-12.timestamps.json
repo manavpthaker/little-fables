@@ -1,267 +1,147 @@
 [
   {
-    "word": "Twenty",
-    "start": 0.046,
-    "end": 0.43
+    "word": "Azi's",
+    "start": 0.035,
+    "end": 0.406
   },
   {
-    "word": "minutes",
-    "start": 0.499,
-    "end": 0.789
+    "word": "stomach",
+    "start": 0.441,
+    "end": 0.824
   },
   {
-    "word": "later,",
-    "start": 0.859,
-    "end": 1.335
+    "word": "did",
+    "start": 0.882,
+    "end": 1.022
   },
   {
-    "word": "they",
+    "word": "a",
+    "start": 1.068,
+    "end": 1.091
+  },
+  {
+    "word": "little",
+    "start": 1.138,
+    "end": 1.37
+  },
+  {
+    "word": "flip.",
     "start": 1.405,
-    "end": 1.556
+    "end": 1.904
   },
   {
-    "word": "pulled",
-    "start": 1.614,
-    "end": 1.939
+    "word": "He",
+    "start": 2.148,
+    "end": 2.276
   },
   {
-    "word": "into",
-    "start": 1.985,
-    "end": 2.148
+    "word": "liked",
+    "start": 2.368,
+    "end": 2.635
+  },
+  {
+    "word": "knowing",
+    "start": 2.694,
+    "end": 2.972
+  },
+  {
+    "word": "exactly",
+    "start": 3.042,
+    "end": 3.564
+  },
+  {
+    "word": "which",
+    "start": 3.622,
+    "end": 3.808
+  },
+  {
+    "word": "streets",
+    "start": 3.866,
+    "end": 4.226
+  },
+  {
+    "word": "they'd",
+    "start": 4.284,
+    "end": 4.505
+  },
+  {
+    "word": "take,",
+    "start": 4.54,
+    "end": 5.004
+  },
+  {
+    "word": "which",
+    "start": 5.178,
+    "end": 5.468
+  },
+  {
+    "word": "traffic",
+    "start": 5.538,
+    "end": 5.956
+  },
+  {
+    "word": "light",
+    "start": 6.026,
+    "end": 6.211
+  },
+  {
+    "word": "would",
+    "start": 6.258,
+    "end": 6.42
+  },
+  {
+    "word": "be",
+    "start": 6.467,
+    "end": 6.56
+  },
+  {
+    "word": "red,",
+    "start": 6.629,
+    "end": 7.082
+  },
+  {
+    "word": "which",
+    "start": 7.233,
+    "end": 7.488
+  },
+  {
+    "word": "house",
+    "start": 7.546,
+    "end": 7.848
+  },
+  {
+    "word": "had",
+    "start": 7.895,
+    "end": 8.022
   },
   {
     "word": "the",
-    "start": 2.218,
-    "end": 2.287
+    "start": 8.069,
+    "end": 8.139
   },
   {
-    "word": "familiar",
-    "start": 2.334,
-    "end": 2.821
+    "word": "friendly",
+    "start": 8.208,
+    "end": 8.591
   },
   {
-    "word": "Wardlaw",
-    "start": 2.914,
-    "end": 3.529
+    "word": "dog",
+    "start": 8.673,
+    "end": 8.928
   },
   {
-    "word": "Hartridge",
-    "start": 3.611,
-    "end": 4.133
+    "word": "in",
+    "start": 8.975,
+    "end": 9.033
   },
   {
-    "word": "parking",
-    "start": 4.18,
-    "end": 4.528
+    "word": "the",
+    "start": 9.079,
+    "end": 9.149
   },
   {
-    "word": "lot.",
-    "start": 4.586,
-    "end": 5.027
-  },
-  {
-    "word": "\"We",
-    "start": 5.631,
-    "end": 5.968
-  },
-  {
-    "word": "made",
-    "start": 6.084,
-    "end": 6.385
-  },
-  {
-    "word": "it,\"",
-    "start": 6.42,
-    "end": 6.827
-  },
-  {
-    "word": "Azi",
-    "start": 6.908,
-    "end": 7.291
-  },
-  {
-    "word": "said,",
-    "start": 7.349,
-    "end": 7.674
-  },
-  {
-    "word": "surprised",
-    "start": 7.721,
-    "end": 8.301
-  },
-  {
-    "word": "at",
-    "start": 8.348,
-    "end": 8.417
-  },
-  {
-    "word": "how",
-    "start": 8.464,
-    "end": 8.615
-  },
-  {
-    "word": "calm",
-    "start": 8.707,
-    "end": 9.056
-  },
-  {
-    "word": "he",
-    "start": 9.125,
-    "end": 9.207
-  },
-  {
-    "word": "felt.",
-    "start": 9.288,
-    "end": 9.799
-  },
-  {
-    "word": "\"Different",
-    "start": 10.24,
-    "end": 10.797
-  },
-  {
-    "word": "path,",
-    "start": 10.855,
-    "end": 11.389
-  },
-  {
-    "word": "same",
-    "start": 11.517,
-    "end": 11.831
-  },
-  {
-    "word": "destination,\"",
-    "start": 11.865,
-    "end": 12.783
-  },
-  {
-    "word": "Loki",
-    "start": 12.899,
-    "end": 13.247
-  },
-  {
-    "word": "noted,",
-    "start": 13.328,
-    "end": 13.839
-  },
-  {
-    "word": "refolding",
-    "start": 13.955,
-    "end": 14.617
-  },
-  {
-    "word": "his",
-    "start": 14.675,
-    "end": 14.779
-  },
-  {
-    "word": "crane",
-    "start": 14.849,
-    "end": 15.244
-  },
-  {
-    "word": "into",
-    "start": 15.29,
-    "end": 15.476
-  },
-  {
-    "word": "something",
-    "start": 15.557,
-    "end": 15.964
-  },
-  {
-    "word": "new.",
-    "start": 16.045,
-    "end": 16.521
-  },
-  {
-    "word": "\"And",
-    "start": 17.125,
-    "end": 17.438
-  },
-  {
-    "word": "we",
-    "start": 17.508,
-    "end": 17.636
-  },
-  {
-    "word": "learned",
-    "start": 17.717,
-    "end": 18.077
-  },
-  {
-    "word": "something,\"",
-    "start": 18.135,
-    "end": 18.82
-  },
-  {
-    "word": "Citie",
-    "start": 18.936,
-    "end": 19.296
-  },
-  {
-    "word": "added.",
-    "start": 19.342,
-    "end": 19.876
-  },
-  {
-    "word": "\"There",
-    "start": 20.05,
-    "end": 20.341
-  },
-  {
-    "word": "are",
-    "start": 20.375,
-    "end": 20.48
-  },
-  {
-    "word": "lots",
-    "start": 20.526,
-    "end": 20.77
-  },
-  {
-    "word": "of",
-    "start": 20.817,
-    "end": 20.886
-  },
-  {
-    "word": "ways",
-    "start": 20.968,
-    "end": 21.281
-  },
-  {
-    "word": "to",
-    "start": 21.339,
-    "end": 21.42
-  },
-  {
-    "word": "get",
-    "start": 21.49,
-    "end": 21.641
-  },
-  {
-    "word": "where",
-    "start": 21.676,
-    "end": 21.838
-  },
-  {
-    "word": "you",
-    "start": 21.885,
-    "end": 21.954
-  },
-  {
-    "word": "need",
-    "start": 22.012,
-    "end": 22.187
-  },
-  {
-    "word": "to",
-    "start": 22.221,
-    "end": 22.268
-  },
-  {
-    "word": "go.\"",
-    "start": 22.326,
-    "end": 22.848
+    "word": "yard.",
+    "start": 9.207,
+    "end": 9.706
   }
 ]

@@ -1,0 +1,52 @@
+[
+  {
+    "word": "Slowly.",
+    "start": 0.035,
+    "end": 0.789
+  },
+  {
+    "word": "Carefully.",
+    "start": 0.964,
+    "end": 1.741
+  },
+  {
+    "word": "Like",
+    "start": 1.916,
+    "end": 2.113
+  },
+  {
+    "word": "a",
+    "start": 2.148,
+    "end": 2.183
+  },
+  {
+    "word": "soap",
+    "start": 2.252,
+    "end": 2.485
+  },
+  {
+    "word": "bubble",
+    "start": 2.554,
+    "end": 2.879
+  },
+  {
+    "word": "floating",
+    "start": 2.949,
+    "end": 3.344
+  },
+  {
+    "word": "on",
+    "start": 3.402,
+    "end": 3.471
+  },
+  {
+    "word": "a",
+    "start": 3.518,
+    "end": 3.541
+  },
+  {
+    "word": "breeze.",
+    "start": 3.587,
+    "end": 4.122
+  }
+]

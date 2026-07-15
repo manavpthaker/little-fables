@@ -1,0 +1,47 @@
+[
+  {
+    "word": "Bet",
+    "start": 0.035,
+    "end": 0.221
+  },
+  {
+    "word": "your",
+    "start": 0.279,
+    "end": 0.395
+  },
+  {
+    "word": "bottom",
+    "start": 0.441,
+    "end": 0.72
+  },
+  {
+    "word": "dollar",
+    "start": 0.789,
+    "end": 1.068
+  },
+  {
+    "word": "that",
+    "start": 1.115,
+    "end": 1.242
+  },
+  {
+    "word": "tomorrow,",
+    "start": 1.289,
+    "end": 1.834
+  },
+  {
+    "word": "there'll",
+    "start": 1.985,
+    "end": 2.241
+  },
+  {
+    "word": "be",
+    "start": 2.276,
+    "end": 2.345
+  },
+  {
+    "word": "sun...",
+    "start": 2.392,
+    "end": 2.833
+  }
+]

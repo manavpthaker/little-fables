@@ -1,267 +1,232 @@
 [
   {
-    "word": "Through",
-    "start": 0.058,
-    "end": 0.337
-  },
-  {
-    "word": "the",
-    "start": 0.383,
-    "end": 0.453
-  },
-  {
-    "word": "window,",
-    "start": 0.511,
-    "end": 1.161
-  },
-  {
     "word": "Azi",
-    "start": 1.312,
-    "end": 1.753
+    "start": 0.023,
+    "end": 0.372
   },
   {
-    "word": "watched",
-    "start": 1.823,
-    "end": 2.241
-  },
-  {
-    "word": "the",
-    "start": 2.299,
-    "end": 2.38
-  },
-  {
-    "word": "City",
-    "start": 2.438,
-    "end": 2.705
-  },
-  {
-    "word": "of",
-    "start": 2.752,
-    "end": 2.821
-  },
-  {
-    "word": "Lights",
-    "start": 2.914,
-    "end": 3.216
-  },
-  {
-    "word": "fade",
-    "start": 3.309,
-    "end": 3.646
-  },
-  {
-    "word": "into",
-    "start": 3.68,
-    "end": 3.889
+    "word": "climbed",
+    "start": 0.453,
+    "end": 0.882
   },
   {
     "word": "the",
-    "start": 3.971,
-    "end": 4.04
+    "start": 0.94,
+    "end": 1.01
   },
   {
-    "word": "distance.",
-    "start": 4.087,
-    "end": 4.957
+    "word": "golden",
+    "start": 1.068,
+    "end": 1.405
   },
   {
-    "word": "Then",
-    "start": 5.399,
-    "end": 5.689
-  },
-  {
-    "word": "the",
-    "start": 5.759,
-    "end": 5.828
-  },
-  {
-    "word": "Frozen",
-    "start": 5.898,
-    "end": 6.327
-  },
-  {
-    "word": "Lake,",
-    "start": 6.409,
-    "end": 6.885
-  },
-  {
-    "word": "with",
-    "start": 6.943,
-    "end": 7.14
-  },
-  {
-    "word": "its",
-    "start": 7.198,
-    "end": 7.349
-  },
-  {
-    "word": "dancing",
-    "start": 7.419,
-    "end": 7.941
-  },
-  {
-    "word": "Snow",
-    "start": 8.034,
-    "end": 8.313
-  },
-  {
-    "word": "Queen",
-    "start": 8.382,
-    "end": 8.696
-  },
-  {
-    "word": "still",
-    "start": 8.812,
-    "end": 9.125
-  },
-  {
-    "word": "spinning",
-    "start": 9.218,
-    "end": 9.659
-  },
-  {
-    "word": "beneath",
-    "start": 9.741,
-    "end": 10.066
-  },
-  {
-    "word": "the",
-    "start": 10.124,
-    "end": 10.205
-  },
-  {
-    "word": "stars.",
-    "start": 10.275,
-    "end": 11.076
-  },
-  {
-    "word": "Then",
-    "start": 11.517,
-    "end": 11.807
-  },
-  {
-    "word": "the",
-    "start": 11.889,
-    "end": 11.97
-  },
-  {
-    "word": "Sugar",
-    "start": 12.028,
-    "end": 12.318
-  },
-  {
-    "word": "Plum",
-    "start": 12.376,
-    "end": 12.643
-  },
-  {
-    "word": "Forest,",
-    "start": 12.736,
-    "end": 13.549
-  },
-  {
-    "word": "its",
-    "start": 13.758,
-    "end": 13.99
-  },
-  {
-    "word": "trees",
-    "start": 14.06,
-    "end": 14.466
-  },
-  {
-    "word": "still",
-    "start": 14.524,
-    "end": 14.838
-  },
-  {
-    "word": "singing",
-    "start": 14.954,
-    "end": 15.325
-  },
-  {
-    "word": "their",
-    "start": 15.383,
-    "end": 15.557
-  },
-  {
-    "word": "sweet,",
-    "start": 15.627,
-    "end": 16.056
-  },
-  {
-    "word": "strange",
-    "start": 16.103,
-    "end": 16.66
-  },
-  {
-    "word": "song.",
-    "start": 16.718,
-    "end": 17.38
+    "word": "steps,",
+    "start": 1.463,
+    "end": 2.148
   },
   {
     "word": "Clara",
-    "start": 17.984,
-    "end": 18.436
+    "start": 2.299,
+    "end": 2.682
+  },
+  {
+    "word": "right",
+    "start": 2.763,
+    "end": 2.995
+  },
+  {
+    "word": "behind",
+    "start": 3.053,
+    "end": 3.402
+  },
+  {
+    "word": "him.",
+    "start": 3.46,
+    "end": 3.82
+  },
+  {
+    "word": "Inside,",
+    "start": 4.331,
+    "end": 5.108
+  },
+  {
+    "word": "the",
+    "start": 5.166,
+    "end": 5.283
+  },
+  {
+    "word": "train",
+    "start": 5.341,
+    "end": 5.619
+  },
+  {
+    "word": "car",
+    "start": 5.7,
+    "end": 5.956
+  },
+  {
+    "word": "was",
+    "start": 6.026,
+    "end": 6.142
+  },
+  {
+    "word": "beautiful--red",
+    "start": 6.211,
+    "end": 7.512
+  },
+  {
+    "word": "velvet",
+    "start": 7.581,
+    "end": 7.93
+  },
+  {
+    "word": "seats,",
+    "start": 7.999,
+    "end": 8.591
+  },
+  {
+    "word": "frosted",
+    "start": 8.766,
+    "end": 9.253
+  },
+  {
+    "word": "windows,",
+    "start": 9.311,
+    "end": 10.008
+  },
+  {
+    "word": "lanterns",
+    "start": 10.286,
+    "end": 10.879
+  },
+  {
+    "word": "that",
+    "start": 10.925,
+    "end": 11.053
+  },
+  {
+    "word": "cast",
+    "start": 11.111,
+    "end": 11.482
+  },
+  {
+    "word": "dancing",
+    "start": 11.598,
+    "end": 12.086
+  },
+  {
+    "word": "shadows",
+    "start": 12.167,
+    "end": 12.62
+  },
+  {
+    "word": "on",
+    "start": 12.678,
+    "end": 12.771
+  },
+  {
+    "word": "the",
+    "start": 12.817,
+    "end": 12.887
+  },
+  {
+    "word": "ceiling.",
+    "start": 12.945,
+    "end": 13.595
+  },
+  {
+    "word": "Other",
+    "start": 14.292,
+    "end": 14.582
+  },
+  {
+    "word": "children",
+    "start": 14.64,
+    "end": 15.07
   },
   {
     "word": "sat",
-    "start": 18.518,
-    "end": 18.796
+    "start": 15.151,
+    "end": 15.383
   },
   {
-    "word": "beside",
-    "start": 18.866,
-    "end": 19.33
+    "word": "in",
+    "start": 15.43,
+    "end": 15.488
   },
   {
-    "word": "him,",
-    "start": 19.365,
-    "end": 19.586
+    "word": "the",
+    "start": 15.534,
+    "end": 15.604
   },
   {
-    "word": "quiet",
-    "start": 19.621,
-    "end": 20.085
+    "word": "seats,",
+    "start": 15.65,
+    "end": 16.219
   },
   {
-    "word": "now.",
-    "start": 20.155,
-    "end": 20.596
+    "word": "children",
+    "start": 16.393,
+    "end": 16.823
   },
   {
-    "word": "\"Will",
-    "start": 21.037,
-    "end": 21.351
+    "word": "from",
+    "start": 16.881,
+    "end": 17.02
   },
   {
-    "word": "I",
-    "start": 21.409,
-    "end": 21.432
+    "word": "everywhere,",
+    "start": 17.089,
+    "end": 17.786
   },
   {
-    "word": "see",
-    "start": 21.513,
-    "end": 21.71
+    "word": "speaking",
+    "start": 17.995,
+    "end": 18.425
   },
   {
-    "word": "you",
-    "start": 21.757,
-    "end": 21.85
-  },
-  {
-    "word": "again?\"",
-    "start": 21.919,
-    "end": 22.419
+    "word": "languages",
+    "start": 18.494,
+    "end": 19.11
   },
   {
     "word": "Azi",
-    "start": 22.744,
-    "end": 23.127
+    "start": 19.203,
+    "end": 19.539
   },
   {
-    "word": "asked.",
-    "start": 23.208,
-    "end": 23.661
+    "word": "didn't",
+    "start": 19.609,
+    "end": 19.864
+  },
+  {
+    "word": "understand",
+    "start": 19.922,
+    "end": 20.607
+  },
+  {
+    "word": "but",
+    "start": 20.723,
+    "end": 20.898
+  },
+  {
+    "word": "somehow",
+    "start": 20.944,
+    "end": 21.281
+  },
+  {
+    "word": "felt",
+    "start": 21.374,
+    "end": 21.641
+  },
+  {
+    "word": "he",
+    "start": 21.699,
+    "end": 21.768
+  },
+  {
+    "word": "knew.",
+    "start": 21.838,
+    "end": 22.209
   }
 ]

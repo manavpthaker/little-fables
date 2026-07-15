@@ -1,0 +1,42 @@
+[
+  {
+    "word": "And",
+    "start": 0.035,
+    "end": 0.163
+  },
+  {
+    "word": "then",
+    "start": 0.209,
+    "end": 0.418
+  },
+  {
+    "word": "the",
+    "start": 0.488,
+    "end": 0.569
+  },
+  {
+    "word": "moose",
+    "start": 0.639,
+    "end": 0.952
+  },
+  {
+    "word": "stepped",
+    "start": 0.998,
+    "end": 1.358
+  },
+  {
+    "word": "into",
+    "start": 1.393,
+    "end": 1.567
+  },
+  {
+    "word": "the",
+    "start": 1.637,
+    "end": 1.707
+  },
+  {
+    "word": "darkness.",
+    "start": 1.765,
+    "end": 2.438
+  }
+]

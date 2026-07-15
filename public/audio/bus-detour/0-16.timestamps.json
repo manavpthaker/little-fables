@@ -1,292 +1,57 @@
 [
   {
-    "word": "\"Maybe",
-    "start": 0.093,
-    "end": 0.43
+    "word": "Clappy",
+    "start": 0.07,
+    "end": 0.418
   },
   {
-    "word": "tomorrow",
-    "start": 0.488,
-    "end": 0.917
+    "word": "clapped",
+    "start": 0.476,
+    "end": 0.813
   },
   {
-    "word": "we'll",
-    "start": 0.987,
-    "end": 1.149
+    "word": "once,",
+    "start": 0.894,
+    "end": 1.254
   },
   {
-    "word": "discover",
-    "start": 1.196,
-    "end": 1.591
+    "word": "then",
+    "start": 1.289,
+    "end": 1.474
   },
   {
-    "word": "a",
-    "start": 1.649,
-    "end": 1.683
+    "word": "stopped",
+    "start": 1.544,
+    "end": 1.962
   },
   {
-    "word": "third,\"",
-    "start": 1.741,
-    "end": 2.276
+    "word": "when",
+    "start": 2.009,
+    "end": 2.148
   },
   {
-    "word": "suggested",
-    "start": 2.519,
-    "end": 3.111
+    "word": "he",
+    "start": 2.194,
+    "end": 2.252
   },
   {
-    "word": "Dory.",
-    "start": 3.158,
-    "end": 3.738
+    "word": "realized",
+    "start": 2.334,
+    "end": 2.891
   },
   {
-    "word": "\"Maybe,\"",
-    "start": 4.017,
-    "end": 4.818
+    "word": "everyone",
+    "start": 2.972,
+    "end": 3.541
   },
   {
-    "word": "Azi",
-    "start": 5.062,
-    "end": 5.422
+    "word": "was",
+    "start": 3.576,
+    "end": 3.715
   },
   {
-    "word": "agreed,",
-    "start": 5.468,
-    "end": 6.026
-  },
-  {
-    "word": "taking",
-    "start": 6.142,
-    "end": 6.467
-  },
-  {
-    "word": "a",
-    "start": 6.525,
-    "end": 6.548
-  },
-  {
-    "word": "bite",
-    "start": 6.606,
-    "end": 6.838
-  },
-  {
-    "word": "of",
-    "start": 6.861,
-    "end": 6.92
-  },
-  {
-    "word": "honey",
-    "start": 7.001,
-    "end": 7.256
-  },
-  {
-    "word": "sweetness.",
-    "start": 7.314,
-    "end": 8.104
-  },
-  {
-    "word": "\"And",
-    "start": 8.487,
-    "end": 8.731
-  },
-  {
-    "word": "that's",
-    "start": 8.789,
-    "end": 9.033
-  },
-  {
-    "word": "okay",
-    "start": 9.091,
-    "end": 9.451
-  },
-  {
-    "word": "too.\"",
-    "start": 9.52,
-    "end": 10.019
-  },
-  {
-    "word": "Outside",
-    "start": 11.134,
-    "end": 11.668
-  },
-  {
-    "word": "his",
-    "start": 11.714,
-    "end": 11.831
-  },
-  {
-    "word": "bedroom",
-    "start": 11.912,
-    "end": 12.307
-  },
-  {
-    "word": "window",
-    "start": 12.376,
-    "end": 12.725
-  },
-  {
-    "word": "that",
-    "start": 12.794,
-    "end": 12.992
-  },
-  {
-    "word": "night,",
-    "start": 13.073,
-    "end": 13.502
-  },
-  {
-    "word": "the",
-    "start": 13.584,
-    "end": 13.7
-  },
-  {
-    "word": "moon",
-    "start": 13.769,
-    "end": 14.025
-  },
-  {
-    "word": "watched",
-    "start": 14.106,
-    "end": 14.489
-  },
-  {
-    "word": "over",
-    "start": 14.536,
-    "end": 14.721
-  },
-  {
-    "word": "all",
-    "start": 14.803,
-    "end": 15.012
-  },
-  {
-    "word": "the",
-    "start": 15.081,
-    "end": 15.151
-  },
-  {
-    "word": "children",
-    "start": 15.209,
-    "end": 15.615
-  },
-  {
-    "word": "who",
-    "start": 15.662,
-    "end": 15.755
-  },
-  {
-    "word": "had",
-    "start": 15.801,
-    "end": 15.906
-  },
-  {
-    "word": "learned",
-    "start": 15.964,
-    "end": 16.254
-  },
-  {
-    "word": "something",
-    "start": 16.312,
-    "end": 16.695
-  },
-  {
-    "word": "new",
-    "start": 16.776,
-    "end": 16.939
-  },
-  {
-    "word": "that",
-    "start": 17.009,
-    "end": 17.183
-  },
-  {
-    "word": "day--about",
-    "start": 17.252,
-    "end": 18.228
-  },
-  {
-    "word": "flexibility,",
-    "start": 18.286,
-    "end": 19.307
-  },
-  {
-    "word": "about",
-    "start": 19.435,
-    "end": 19.772
-  },
-  {
-    "word": "trust,",
-    "start": 19.818,
-    "end": 20.457
-  },
-  {
-    "word": "about",
-    "start": 20.573,
-    "end": 20.84
-  },
-  {
-    "word": "the",
-    "start": 20.875,
-    "end": 20.944
-  },
-  {
-    "word": "many",
-    "start": 21.026,
-    "end": 21.281
-  },
-  {
-    "word": "paths",
-    "start": 21.374,
-    "end": 21.815
-  },
-  {
-    "word": "that",
-    "start": 21.873,
-    "end": 22.013
-  },
-  {
-    "word": "can",
-    "start": 22.059,
-    "end": 22.198
-  },
-  {
-    "word": "lead",
-    "start": 22.291,
-    "end": 22.512
-  },
-  {
-    "word": "you",
-    "start": 22.581,
-    "end": 22.686
-  },
-  {
-    "word": "exactly",
-    "start": 22.814,
-    "end": 23.51
-  },
-  {
-    "word": "where",
-    "start": 23.58,
-    "end": 23.812
-  },
-  {
-    "word": "you",
-    "start": 23.87,
-    "end": 23.975
-  },
-  {
-    "word": "need",
-    "start": 24.056,
-    "end": 24.265
-  },
-  {
-    "word": "to",
-    "start": 24.323,
-    "end": 24.393
-  },
-  {
-    "word": "be.",
-    "start": 24.462,
-    "end": 24.845
+    "word": "worried.",
+    "start": 3.773,
+    "end": 4.249
   }
 ]

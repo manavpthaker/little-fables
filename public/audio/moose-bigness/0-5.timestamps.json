@@ -1,252 +1,307 @@
 [
   {
-    "word": "It",
-    "start": 0.035,
-    "end": 0.139
+    "word": "He",
+    "start": 0.046,
+    "end": 0.151
   },
   {
     "word": "had",
-    "start": 0.186,
-    "end": 0.279
+    "start": 0.221,
+    "end": 0.36
   },
   {
-    "word": "been",
-    "start": 0.325,
-    "end": 0.476
+    "word": "collected",
+    "start": 0.43,
+    "end": 0.906
   },
   {
-    "word": "a",
-    "start": 0.511,
-    "end": 0.546
-  },
-  {
-    "word": "big",
-    "start": 0.627,
-    "end": 0.859
-  },
-  {
-    "word": "day.",
-    "start": 0.929,
-    "end": 1.393
-  },
-  {
-    "word": "The",
-    "start": 1.637,
+    "word": "pinecones",
+    "start": 0.964,
     "end": 1.765
   },
   {
-    "word": "biggest",
-    "start": 1.881,
-    "end": 2.357
+    "word": "-",
+    "start": 1.916,
+    "end": 1.962
   },
   {
-    "word": "kind",
-    "start": 2.473,
-    "end": 2.775
+    "word": "seventeen",
+    "start": 2.171,
+    "end": 2.74
   },
   {
     "word": "of",
-    "start": 2.833,
-    "end": 2.902
+    "start": 2.798,
+    "end": 2.868
   },
   {
-    "word": "day.",
-    "start": 2.972,
-    "end": 3.448
+    "word": "them",
+    "start": 2.914,
+    "end": 3.065
   },
   {
-    "word": "But",
-    "start": 3.773,
-    "end": 3.971
+    "word": "-",
+    "start": 3.239,
+    "end": 3.274
   },
   {
-    "word": "now",
-    "start": 4.029,
-    "end": 4.284
+    "word": "each",
+    "start": 3.483,
+    "end": 3.715
   },
   {
-    "word": "the",
-    "start": 4.377,
-    "end": 4.47
+    "word": "one",
+    "start": 3.785,
+    "end": 3.982
   },
   {
-    "word": "day",
-    "start": 4.54,
-    "end": 4.737
+    "word": "different,",
+    "start": 4.04,
+    "end": 4.702
   },
   {
-    "word": "was",
-    "start": 4.795,
-    "end": 4.934
+    "word": "each",
+    "start": 4.876,
+    "end": 5.12
   },
   {
-    "word": "ending.",
-    "start": 5.004,
-    "end": 5.538
+    "word": "one",
+    "start": 5.201,
+    "end": 5.433
   },
   {
-    "word": "The",
-    "start": 5.747,
-    "end": 5.886
+    "word": "smelling",
+    "start": 5.515,
+    "end": 5.979
   },
   {
-    "word": "sun",
-    "start": 5.968,
-    "end": 6.258
+    "word": "like",
+    "start": 6.06,
+    "end": 6.281
   },
   {
-    "word": "was",
-    "start": 6.327,
-    "end": 6.467
+    "word": "secrets.",
+    "start": 6.351,
+    "end": 7.094
   },
   {
-    "word": "dropping",
-    "start": 6.536,
-    "end": 6.931
+    "word": "He",
+    "start": 7.419,
+    "end": 7.535
   },
   {
-    "word": "behind",
-    "start": 7.001,
-    "end": 7.349
+    "word": "had",
+    "start": 7.605,
+    "end": 7.721
   },
   {
-    "word": "the",
-    "start": 7.407,
-    "end": 7.477
+    "word": "shared",
+    "start": 7.767,
+    "end": 8.081
   },
   {
-    "word": "Adirondack",
-    "start": 7.546,
-    "end": 8.255
+    "word": "three",
+    "start": 8.162,
+    "end": 8.487
   },
   {
-    "word": "peaks,",
-    "start": 8.348,
-    "end": 8.893
+    "word": "with",
+    "start": 8.533,
+    "end": 8.673
   },
   {
-    "word": "painting",
-    "start": 9.044,
-    "end": 9.474
+    "word": "a",
+    "start": 8.719,
+    "end": 8.742
   },
   {
-    "word": "the",
-    "start": 9.543,
-    "end": 9.613
+    "word": "squirrel",
+    "start": 8.812,
+    "end": 9.288
   },
   {
-    "word": "sky",
-    "start": 9.671,
-    "end": 10.066
+    "word": "who",
+    "start": 9.381,
+    "end": 9.532
   },
   {
-    "word": "in",
-    "start": 10.136,
-    "end": 10.228
-  },
-  {
-    "word": "oranges",
-    "start": 10.321,
-    "end": 10.89
-  },
-  {
-    "word": "and",
-    "start": 10.948,
-    "end": 11.064
-  },
-  {
-    "word": "pinks",
-    "start": 11.146,
-    "end": 11.552
-  },
-  {
-    "word": "and",
-    "start": 11.61,
-    "end": 11.738
-  },
-  {
-    "word": "purples",
-    "start": 11.819,
-    "end": 12.307
-  },
-  {
-    "word": "that",
-    "start": 12.376,
-    "end": 12.527
-  },
-  {
-    "word": "looked",
-    "start": 12.574,
-    "end": 12.817
-  },
-  {
-    "word": "almost",
-    "start": 12.864,
-    "end": 13.363
+    "word": "came",
+    "start": 9.59,
+    "end": 9.834
   },
   {
     "word": "too",
-    "start": 13.491,
-    "end": 13.758
+    "start": 9.88,
+    "end": 10.054
   },
   {
-    "word": "beautiful",
-    "start": 13.851,
-    "end": 14.362
+    "word": "close",
+    "start": 10.124,
+    "end": 10.623
+  },
+  {
+    "word": "and",
+    "start": 10.646,
+    "end": 10.809
+  },
+  {
+    "word": "then",
+    "start": 10.867,
+    "end": 11.041
+  },
+  {
+    "word": "seemed",
+    "start": 11.122,
+    "end": 11.436
+  },
+  {
+    "word": "surprised",
+    "start": 11.494,
+    "end": 12.132
+  },
+  {
+    "word": "by",
+    "start": 12.19,
+    "end": 12.318
+  },
+  {
+    "word": "its",
+    "start": 12.376,
+    "end": 12.516
+  },
+  {
+    "word": "own",
+    "start": 12.562,
+    "end": 12.725
+  },
+  {
+    "word": "bravery.",
+    "start": 12.794,
+    "end": 13.479
+  },
+  {
+    "word": "He",
+    "start": 13.758,
+    "end": 13.874
+  },
+  {
+    "word": "had",
+    "start": 13.944,
+    "end": 14.06
+  },
+  {
+    "word": "whispered",
+    "start": 14.118,
+    "end": 14.571
+  },
+  {
+    "word": "\"sorry\"",
+    "start": 14.629,
+    "end": 15.209
   },
   {
     "word": "to",
-    "start": 14.431,
-    "end": 14.501
+    "start": 15.244,
+    "end": 15.36
   },
   {
-    "word": "be",
-    "start": 14.571,
-    "end": 14.675
+    "word": "a",
+    "start": 15.453,
+    "end": 15.476
   },
   {
-    "word": "real.",
-    "start": 14.756,
-    "end": 15.279
+    "word": "purple",
+    "start": 15.546,
+    "end": 15.883
   },
   {
-    "word": "And",
-    "start": 15.604,
-    "end": 15.79
+    "word": "flower",
+    "start": 15.941,
+    "end": 16.347
   },
   {
-    "word": "Azi's",
-    "start": 15.882,
-    "end": 16.324
+    "word": "he",
+    "start": 16.44,
+    "end": 16.521
   },
   {
-    "word": "body",
-    "start": 16.382,
-    "end": 16.695
+    "word": "accidentally",
+    "start": 16.614,
+    "end": 17.415
   },
   {
-    "word": "didn't",
-    "start": 16.765,
-    "end": 17.02
+    "word": "stepped",
+    "start": 17.473,
+    "end": 17.81
   },
   {
-    "word": "feel",
-    "start": 17.067,
-    "end": 17.264
+    "word": "on.",
+    "start": 17.88,
+    "end": 18.182
   },
   {
-    "word": "quiet",
-    "start": 17.334,
-    "end": 17.74
+    "word": "He",
+    "start": 18.333,
+    "end": 18.449
   },
   {
-    "word": "at",
-    "start": 17.786,
-    "end": 17.868
+    "word": "had",
+    "start": 18.507,
+    "end": 18.623
   },
   {
-    "word": "all.",
-    "start": 17.926,
-    "end": 18.367
+    "word": "waved",
+    "start": 18.692,
+    "end": 19.041
+  },
+  {
+    "word": "goodbye",
+    "start": 19.087,
+    "end": 19.586
+  },
+  {
+    "word": "to",
+    "start": 19.633,
+    "end": 19.714
+  },
+  {
+    "word": "the",
+    "start": 19.784,
+    "end": 19.853
+  },
+  {
+    "word": "horses",
+    "start": 19.911,
+    "end": 20.387
+  },
+  {
+    "word": "even",
+    "start": 20.504,
+    "end": 20.794
+  },
+  {
+    "word": "though",
+    "start": 20.84,
+    "end": 21.072
+  },
+  {
+    "word": "they",
+    "start": 21.119,
+    "end": 21.235
+  },
+  {
+    "word": "couldn't",
+    "start": 21.293,
+    "end": 21.583
+  },
+  {
+    "word": "wave",
+    "start": 21.63,
+    "end": 21.862
+  },
+  {
+    "word": "back.",
+    "start": 21.92,
+    "end": 22.373
   }
 ]

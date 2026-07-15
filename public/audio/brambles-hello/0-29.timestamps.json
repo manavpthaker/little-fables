@@ -1,0 +1,47 @@
+[
+  {
+    "word": "He",
+    "start": 0.058,
+    "end": 0.151
+  },
+  {
+    "word": "took",
+    "start": 0.197,
+    "end": 0.383
+  },
+  {
+    "word": "a",
+    "start": 0.418,
+    "end": 0.453
+  },
+  {
+    "word": "tiny",
+    "start": 0.499,
+    "end": 0.813
+  },
+  {
+    "word": "breath.",
+    "start": 0.871,
+    "end": 1.289
+  },
+  {
+    "word": "And",
+    "start": 1.312,
+    "end": 1.474
+  },
+  {
+    "word": "he",
+    "start": 1.533,
+    "end": 1.591
+  },
+  {
+    "word": "said",
+    "start": 1.66,
+    "end": 1.892
+  },
+  {
+    "word": "it.",
+    "start": 1.95,
+    "end": 2.125
+  }
+]

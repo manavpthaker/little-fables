@@ -1,0 +1,47 @@
+[
+  {
+    "word": "\"And",
+    "start": 0.035,
+    "end": 0.255
+  },
+  {
+    "word": "here",
+    "start": 0.325,
+    "end": 0.488
+  },
+  {
+    "word": "we",
+    "start": 0.522,
+    "end": 0.627
+  },
+  {
+    "word": "are,\"",
+    "start": 0.697,
+    "end": 1.091
+  },
+  {
+    "word": "said",
+    "start": 1.207,
+    "end": 1.393
+  },
+  {
+    "word": "the",
+    "start": 1.428,
+    "end": 1.498
+  },
+  {
+    "word": "grizzly,",
+    "start": 1.544,
+    "end": 2.136
+  },
+  {
+    "word": "\"still",
+    "start": 2.206,
+    "end": 2.612
+  },
+  {
+    "word": "talking.\"",
+    "start": 2.682,
+    "end": 3.286
+  }
+]

@@ -1,317 +1,132 @@
 [
   {
-    "word": "And",
+    "word": "Its",
     "start": 0.035,
-    "end": 0.163
+    "end": 0.221
   },
   {
-    "word": "somewhere",
-    "start": 0.244,
-    "end": 0.778
-  },
-  {
-    "word": "in",
-    "start": 0.848,
-    "end": 0.94
-  },
-  {
-    "word": "the",
-    "start": 0.987,
-    "end": 1.068
-  },
-  {
-    "word": "Adirondack",
-    "start": 1.161,
-    "end": 1.916
-  },
-  {
-    "word": "darkness,",
-    "start": 1.997,
-    "end": 2.705
-  },
-  {
-    "word": "at",
-    "start": 2.775,
-    "end": 2.937
-  },
-  {
-    "word": "the",
-    "start": 2.972,
-    "end": 3.053
-  },
-  {
-    "word": "edge",
-    "start": 3.17,
-    "end": 3.46
-  },
-  {
-    "word": "of",
-    "start": 3.506,
-    "end": 3.587
-  },
-  {
-    "word": "everything",
-    "start": 3.704,
-    "end": 4.331
-  },
-  {
-    "word": "wild,",
-    "start": 4.447,
-    "end": 5.027
-  },
-  {
-    "word": "the",
-    "start": 5.143,
-    "end": 5.259
-  },
-  {
-    "word": "moose",
-    "start": 5.341,
-    "end": 5.724
-  },
-  {
-    "word": "lifted",
-    "start": 5.793,
-    "end": 6.177
-  },
-  {
-    "word": "its",
-    "start": 6.235,
-    "end": 6.362
-  },
-  {
-    "word": "great",
-    "start": 6.42,
-    "end": 6.722
-  },
-  {
-    "word": "head",
-    "start": 6.815,
-    "end": 7.082
-  },
-  {
-    "word": "toward",
-    "start": 7.152,
-    "end": 7.523
-  },
-  {
-    "word": "the",
-    "start": 7.57,
-    "end": 7.651
-  },
-  {
-    "word": "stars.",
-    "start": 7.709,
-    "end": 8.382
-  },
-  {
-    "word": "The",
-    "start": 8.429,
-    "end": 8.557
-  },
-  {
-    "word": "scar",
-    "start": 8.638,
-    "end": 9.044
-  },
-  {
-    "word": "on",
-    "start": 9.125,
-    "end": 9.265
-  },
-  {
-    "word": "its",
-    "start": 9.323,
-    "end": 9.462
-  },
-  {
-    "word": "shoulder",
-    "start": 9.509,
-    "end": 9.973
-  },
-  {
-    "word": "gleamed",
-    "start": 10.066,
-    "end": 10.472
-  },
-  {
-    "word": "pale",
-    "start": 10.553,
-    "end": 10.983
-  },
-  {
-    "word": "in",
-    "start": 11.029,
-    "end": 11.099
-  },
-  {
-    "word": "the",
-    "start": 11.146,
-    "end": 11.215
-  },
-  {
-    "word": "moonlight",
-    "start": 11.262,
-    "end": 11.854
-  },
-  {
-    "word": "-",
-    "start": 11.9,
-    "end": 11.923
-  },
-  {
-    "word": "a",
-    "start": 11.947,
-    "end": 12.016
-  },
-  {
-    "word": "reminder",
-    "start": 12.109,
-    "end": 12.643
-  },
-  {
-    "word": "that",
-    "start": 12.713,
-    "end": 12.852
-  },
-  {
-    "word": "even",
-    "start": 12.922,
-    "end": 13.247
-  },
-  {
-    "word": "the",
-    "start": 13.305,
-    "end": 13.386
-  },
-  {
-    "word": "wisest",
-    "start": 13.468,
-    "end": 13.99
-  },
-  {
-    "word": "giants",
-    "start": 14.071,
-    "end": 14.547
+    "word": "legs",
+    "start": 0.302,
+    "end": 0.639
   },
   {
     "word": "were",
-    "start": 14.605,
-    "end": 14.768
+    "start": 0.697,
+    "end": 0.871
   },
   {
-    "word": "once",
-    "start": 14.838,
-    "end": 15.163
+    "word": "long",
+    "start": 0.952,
+    "end": 1.358
   },
   {
-    "word": "young,",
-    "start": 15.232,
-    "end": 15.674
+    "word": "and",
+    "start": 1.451,
+    "end": 1.614
   },
   {
-    "word": "were",
-    "start": 15.743,
-    "end": 15.941
+    "word": "impossibly",
+    "start": 1.695,
+    "end": 2.485
   },
   {
-    "word": "once",
-    "start": 15.999,
-    "end": 16.254
+    "word": "still,",
+    "start": 2.554,
+    "end": 3.135
   },
   {
-    "word": "learning,",
-    "start": 16.335,
-    "end": 16.893
-  },
-  {
-    "word": "were",
-    "start": 16.951,
-    "end": 17.136
-  },
-  {
-    "word": "once",
-    "start": 17.206,
-    "end": 17.45
-  },
-  {
-    "word": "crashing",
-    "start": 17.508,
-    "end": 17.972
-  },
-  {
-    "word": "through",
-    "start": 18.03,
-    "end": 18.286
-  },
-  {
-    "word": "forests",
-    "start": 18.344,
-    "end": 18.959
+    "word": "like",
+    "start": 3.216,
+    "end": 3.402
   },
   {
     "word": "they",
-    "start": 19.029,
-    "end": 19.203
+    "start": 3.437,
+    "end": 3.553
   },
   {
-    "word": "didn't",
-    "start": 19.238,
-    "end": 19.47
+    "word": "had",
+    "start": 3.599,
+    "end": 3.704
   },
   {
-    "word": "mean",
-    "start": 19.516,
-    "end": 19.725
+    "word": "grown",
+    "start": 3.75,
+    "end": 4.04
   },
   {
-    "word": "to",
-    "start": 19.772,
-    "end": 19.842
+    "word": "roots",
+    "start": 4.122,
+    "end": 4.435
   },
   {
-    "word": "crash",
-    "start": 19.911,
-    "end": 20.225
-  },
-  {
-    "word": "through.",
-    "start": 20.283,
-    "end": 20.84
-  },
-  {
-    "word": "The",
-    "start": 21.281,
-    "end": 21.409
-  },
-  {
-    "word": "moose",
-    "start": 21.49,
-    "end": 21.885
-  },
-  {
-    "word": "breathed",
-    "start": 21.955,
-    "end": 22.465
-  },
-  {
-    "word": "in",
-    "start": 22.523,
-    "end": 22.593
+    "word": "into",
+    "start": 4.481,
+    "end": 4.656
   },
   {
     "word": "the",
-    "start": 22.628,
-    "end": 22.698
+    "start": 4.725,
+    "end": 4.807
   },
   {
-    "word": "mountain",
-    "start": 22.756,
-    "end": 23.162
+    "word": "earth",
+    "start": 4.888,
+    "end": 5.178
   },
   {
-    "word": "air.",
-    "start": 23.243,
-    "end": 23.766
+    "word": "and",
+    "start": 5.248,
+    "end": 5.387
+  },
+  {
+    "word": "weren't",
+    "start": 5.457,
+    "end": 5.724
+  },
+  {
+    "word": "planning",
+    "start": 5.77,
+    "end": 6.177
+  },
+  {
+    "word": "to",
+    "start": 6.235,
+    "end": 6.304
+  },
+  {
+    "word": "move",
+    "start": 6.42,
+    "end": 6.78
+  },
+  {
+    "word": "until",
+    "start": 6.827,
+    "end": 7.129
+  },
+  {
+    "word": "they",
+    "start": 7.187,
+    "end": 7.314
+  },
+  {
+    "word": "were",
+    "start": 7.361,
+    "end": 7.5
+  },
+  {
+    "word": "good",
+    "start": 7.546,
+    "end": 7.837
+  },
+  {
+    "word": "and",
+    "start": 7.918,
+    "end": 8.069
+  },
+  {
+    "word": "ready.",
+    "start": 8.15,
+    "end": 8.626
   }
 ]

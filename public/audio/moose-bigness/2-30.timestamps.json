@@ -1,0 +1,62 @@
+[
+  {
+    "word": "Something",
+    "start": 0.046,
+    "end": 0.406
+  },
+  {
+    "word": "told",
+    "start": 0.476,
+    "end": 0.755
+  },
+  {
+    "word": "him",
+    "start": 0.813,
+    "end": 0.964
+  },
+  {
+    "word": "this",
+    "start": 1.045,
+    "end": 1.231
+  },
+  {
+    "word": "was",
+    "start": 1.289,
+    "end": 1.416
+  },
+  {
+    "word": "a",
+    "start": 1.474,
+    "end": 1.509
+  },
+  {
+    "word": "moment",
+    "start": 1.591,
+    "end": 1.974
+  },
+  {
+    "word": "that",
+    "start": 2.02,
+    "end": 2.148
+  },
+  {
+    "word": "was",
+    "start": 2.194,
+    "end": 2.31
+  },
+  {
+    "word": "just",
+    "start": 2.426,
+    "end": 2.717
+  },
+  {
+    "word": "for",
+    "start": 2.775,
+    "end": 2.902
+  },
+  {
+    "word": "him.",
+    "start": 2.972,
+    "end": 3.239
+  }
+]

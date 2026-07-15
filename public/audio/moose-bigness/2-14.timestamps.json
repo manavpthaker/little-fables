@@ -1,212 +1,22 @@
 [
   {
-    "word": "So",
-    "start": 0.151,
-    "end": 0.348
+    "word": "No.",
+    "start": 0.035,
+    "end": 0.406
   },
   {
-    "word": "Azi",
-    "start": 0.441,
-    "end": 0.789
+    "word": "Not",
+    "start": 0.522,
+    "end": 0.766
   },
   {
-    "word": "did.",
+    "word": "moving.",
     "start": 0.836,
-    "end": 1.277
+    "end": 1.335
   },
   {
-    "word": "Together,",
-    "start": 1.521,
-    "end": 2.159
-  },
-  {
-    "word": "the",
-    "start": 2.206,
-    "end": 2.322
-  },
-  {
-    "word": "three",
-    "start": 2.392,
-    "end": 2.635
-  },
-  {
-    "word": "of",
-    "start": 2.682,
-    "end": 2.74
-  },
-  {
-    "word": "them",
-    "start": 2.786,
-    "end": 2.949
-  },
-  {
-    "word": "stood",
-    "start": 3.03,
-    "end": 3.379
-  },
-  {
-    "word": "in",
-    "start": 3.437,
-    "end": 3.495
-  },
-  {
-    "word": "the",
-    "start": 3.529,
-    "end": 3.599
-  },
-  {
-    "word": "middle",
-    "start": 3.657,
-    "end": 3.924
-  },
-  {
-    "word": "of",
-    "start": 3.959,
-    "end": 4.017
-  },
-  {
-    "word": "the",
-    "start": 4.063,
-    "end": 4.133
-  },
-  {
-    "word": "farmhouse",
-    "start": 4.203,
-    "end": 4.795
-  },
-  {
-    "word": "living",
-    "start": 4.853,
-    "end": 5.12
-  },
-  {
-    "word": "room",
-    "start": 5.178,
-    "end": 5.375
-  },
-  {
-    "word": "-",
-    "start": 5.55,
-    "end": 5.666
-  },
-  {
-    "word": "Mama",
-    "start": 5.759,
-    "end": 6.165
-  },
-  {
-    "word": "and",
-    "start": 6.223,
-    "end": 6.351
-  },
-  {
-    "word": "Papa",
-    "start": 6.432,
-    "end": 6.792
-  },
-  {
-    "word": "and",
-    "start": 6.838,
-    "end": 6.954
-  },
-  {
-    "word": "Azi,",
-    "start": 7.047,
-    "end": 7.535
-  },
-  {
-    "word": "surrounded",
-    "start": 7.581,
-    "end": 8.127
-  },
-  {
-    "word": "by",
-    "start": 8.185,
-    "end": 8.336
-  },
-  {
-    "word": "old",
-    "start": 8.429,
-    "end": 8.719
-  },
-  {
-    "word": "furniture",
-    "start": 8.812,
-    "end": 9.346
-  },
-  {
-    "word": "and",
-    "start": 9.392,
-    "end": 9.52
-  },
-  {
-    "word": "gentle",
-    "start": 9.601,
-    "end": 10.019
-  },
-  {
-    "word": "shadows.",
-    "start": 10.077,
-    "end": 10.913
-  },
-  {
-    "word": "\"First,\"",
-    "start": 11.61,
-    "end": 12.632
-  },
-  {
-    "word": "Azi",
-    "start": 12.806,
-    "end": 13.189
-  },
-  {
-    "word": "said,",
-    "start": 13.247,
-    "end": 13.723
-  },
-  {
-    "word": "\"you",
-    "start": 13.967,
-    "end": 14.257
-  },
-  {
-    "word": "stand",
-    "start": 14.338,
-    "end": 14.663
-  },
-  {
-    "word": "still",
-    "start": 14.745,
-    "end": 15.081
-  },
-  {
-    "word": "like",
-    "start": 15.163,
-    "end": 15.348
-  },
-  {
-    "word": "a",
-    "start": 15.383,
-    "end": 15.418
-  },
-  {
-    "word": "moose",
-    "start": 15.511,
-    "end": 15.871
-  },
-  {
-    "word": "in",
-    "start": 15.917,
-    "end": 15.999
-  },
-  {
-    "word": "the",
-    "start": 16.045,
-    "end": 16.115
-  },
-  {
-    "word": "meadow.\"",
-    "start": 16.173,
-    "end": 16.753
+    "word": "Standing.",
+    "start": 1.509,
+    "end": 2.218
   }
 ]

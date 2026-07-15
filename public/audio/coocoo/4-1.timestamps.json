@@ -1,0 +1,52 @@
+[
+  {
+    "word": "The",
+    "start": 0.046,
+    "end": 0.151
+  },
+  {
+    "word": "room",
+    "start": 0.232,
+    "end": 0.499
+  },
+  {
+    "word": "shifted",
+    "start": 0.615,
+    "end": 1.057
+  },
+  {
+    "word": "a",
+    "start": 1.103,
+    "end": 1.138
+  },
+  {
+    "word": "third",
+    "start": 1.207,
+    "end": 1.498
+  },
+  {
+    "word": "time.",
+    "start": 1.556,
+    "end": 2.043
+  },
+  {
+    "word": "Slower",
+    "start": 2.368,
+    "end": 2.891
+  },
+  {
+    "word": "now.",
+    "start": 2.972,
+    "end": 3.437
+  },
+  {
+    "word": "More",
+    "start": 3.715,
+    "end": 3.982
+  },
+  {
+    "word": "careful.",
+    "start": 4.04,
+    "end": 4.725
+  }
+]

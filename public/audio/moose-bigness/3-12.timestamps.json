@@ -1,0 +1,137 @@
+[
+  {
+    "word": "I",
+    "start": 0.035,
+    "end": 0.081
+  },
+  {
+    "word": "saw",
+    "start": 0.232,
+    "end": 0.464
+  },
+  {
+    "word": "you",
+    "start": 0.522,
+    "end": 0.615
+  },
+  {
+    "word": "wave",
+    "start": 0.685,
+    "end": 0.917
+  },
+  {
+    "word": "goodbye",
+    "start": 0.94,
+    "end": 1.277
+  },
+  {
+    "word": "to",
+    "start": 1.312,
+    "end": 1.37
+  },
+  {
+    "word": "the",
+    "start": 1.428,
+    "end": 1.498
+  },
+  {
+    "word": "horses.",
+    "start": 1.544,
+    "end": 2.136
+  },
+  {
+    "word": "Even",
+    "start": 2.287,
+    "end": 2.531
+  },
+  {
+    "word": "though",
+    "start": 2.566,
+    "end": 2.74
+  },
+  {
+    "word": "they",
+    "start": 2.775,
+    "end": 2.879
+  },
+  {
+    "word": "couldn't",
+    "start": 2.914,
+    "end": 3.17
+  },
+  {
+    "word": "wave",
+    "start": 3.204,
+    "end": 3.425
+  },
+  {
+    "word": "back.",
+    "start": 3.471,
+    "end": 3.866
+  },
+  {
+    "word": "Even",
+    "start": 3.982,
+    "end": 4.238
+  },
+  {
+    "word": "though",
+    "start": 4.272,
+    "end": 4.458
+  },
+  {
+    "word": "waving",
+    "start": 4.505,
+    "end": 4.83
+  },
+  {
+    "word": "at",
+    "start": 4.888,
+    "end": 4.957
+  },
+  {
+    "word": "horses",
+    "start": 5.004,
+    "end": 5.375
+  },
+  {
+    "word": "is",
+    "start": 5.445,
+    "end": 5.55
+  },
+  {
+    "word": "maybe",
+    "start": 5.631,
+    "end": 5.898
+  },
+  {
+    "word": "a",
+    "start": 5.944,
+    "end": 5.968
+  },
+  {
+    "word": "little",
+    "start": 6.014,
+    "end": 6.235
+  },
+  {
+    "word": "silly.",
+    "start": 6.269,
+    "end": 6.711
+  },
+  {
+    "word": "You",
+    "start": 6.803,
+    "end": 6.966
+  },
+  {
+    "word": "waved",
+    "start": 7.082,
+    "end": 7.419
+  },
+  {
+    "word": "anyway.",
+    "start": 7.465,
+    "end": 8.022
+  }
+]

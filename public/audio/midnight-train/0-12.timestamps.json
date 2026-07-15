@@ -1,62 +1,12 @@
 [
   {
-    "word": "Its",
-    "start": 0.035,
-    "end": 0.209
+    "word": "Ten...",
+    "start": 0.046,
+    "end": 0.476
   },
   {
-    "word": "door",
-    "start": 0.255,
-    "end": 0.522
-  },
-  {
-    "word": "stood",
-    "start": 0.592,
-    "end": 0.871
-  },
-  {
-    "word": "open,",
-    "start": 0.929,
-    "end": 1.324
-  },
-  {
-    "word": "golden",
-    "start": 1.416,
-    "end": 1.834
-  },
-  {
-    "word": "light",
-    "start": 1.904,
-    "end": 2.159
-  },
-  {
-    "word": "spilling",
-    "start": 2.229,
-    "end": 2.647
-  },
-  {
-    "word": "like",
-    "start": 2.705,
-    "end": 2.891
-  },
-  {
-    "word": "honey",
-    "start": 2.949,
-    "end": 3.239
-  },
-  {
-    "word": "onto",
-    "start": 3.309,
-    "end": 3.518
-  },
-  {
-    "word": "the",
-    "start": 3.587,
-    "end": 3.657
-  },
-  {
-    "word": "snow.",
-    "start": 3.727,
-    "end": 4.238
+    "word": "eleven...",
+    "start": 0.859,
+    "end": 1.405
   }
 ]

@@ -1,0 +1,67 @@
+[
+  {
+    "word": "(Take",
+    "start": 0.058,
+    "end": 0.383
+  },
+  {
+    "word": "a",
+    "start": 0.418,
+    "end": 0.441
+  },
+  {
+    "word": "slow",
+    "start": 0.499,
+    "end": 0.766
+  },
+  {
+    "word": "breath",
+    "start": 0.836,
+    "end": 1.126
+  },
+  {
+    "word": "in...",
+    "start": 1.207,
+    "end": 1.614
+  },
+  {
+    "word": "and",
+    "start": 1.73,
+    "end": 1.904
+  },
+  {
+    "word": "out...",
+    "start": 1.974,
+    "end": 2.45
+  },
+  {
+    "word": "feel",
+    "start": 2.891,
+    "end": 3.193
+  },
+  {
+    "word": "the",
+    "start": 3.251,
+    "end": 3.32
+  },
+  {
+    "word": "quiet",
+    "start": 3.367,
+    "end": 3.773
+  },
+  {
+    "word": "room",
+    "start": 3.831,
+    "end": 4.075
+  },
+  {
+    "word": "around",
+    "start": 4.145,
+    "end": 4.493
+  },
+  {
+    "word": "you...)",
+    "start": 4.563,
+    "end": 4.957
+  }
+]
