@@ -1,92 +1,117 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { MainLayout } from '@/components/shared/MainLayout'
-import { useAuth } from '@/lib/auth/AuthProvider'
-import { Sparkles, BookOpen, Palette, Users, Settings } from 'lucide-react'
 import Link from 'next/link'
+import { BookOpen, Sparkles, Palette, Users } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { useAuth } from '@/lib/auth/AuthProvider'
+import { Hero } from '@/components/relume/Hero'
+import { Features } from '@/components/relume/Features'
+import { Footer } from '@/components/relume/Footer'
 
 export default function Home() {
   const { user, loading } = useAuth()
+
   return (
-    <MainLayout>
-      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-8">
-        {/* Hero Section */}
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <BookOpen className="w-16 h-16 mx-auto text-muted-foreground" />
-          
-          <h1 className="text-4xl md:text-5xl font-bold">
-            Create Stories for Little Ones
-          </h1>
-          
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            AI-powered story creation platform for parents and teachers.
-          </p>
+    <div className="min-h-screen bg-background">
+      <MarketingNav user={user} loading={loading} />
 
-          {/* Centerpiece: the interactive reader app */}
-          <Link
-            href="/read"
-            className="block max-w-xl mx-auto rounded-3xl p-8 text-white text-center shadow-xl hover:scale-[1.02] transition-transform"
-            style={{ background: 'linear-gradient(135deg,#4338ca,#7c3aed,#db2777)' }}
-          >
-            <span className="text-5xl block mb-2">📚✨</span>
-            <span className="text-2xl font-bold block">Open the Story World</span>
-            <span className="text-white/80">Interactive read-aloud stories with voice — made for your child</span>
-          </Link>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            {!loading && (
-              user ? (
-                <>
-                  <Button asChild>
-                    <Link href="/story/create">Start Creating</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/dashboard">Dashboard</Link>
-                  </Button>
-                </>
+      <Hero
+        heading="Bedtime stories that paint themselves."
+        description="AI-illustrated read-aloud tales made for little listeners. Watch each page bloom into a watercolor scene as the story unfolds."
+        image={{ src: '/illustration/jujy-cover.jpg', alt: 'A Little Fables story cover' }}
+        actions={
+          <>
+            <Button size="lg" asChild>
+              <Link href="/read">
+                <BookOpen className="size-5" />
+                Open the Story World
+              </Link>
+            </Button>
+            {!loading &&
+              (user ? (
+                <Button size="lg" variant="outline" asChild>
+                  <Link href="/story/create">Create a story</Link>
+                </Button>
               ) : (
-                <>
-                  <Button asChild>
-                    <Link href="/auth/signup">Get Started</Link>
-                  </Button>
-                  <Button variant="outline" asChild>
-                    <Link href="/auth/login">Sign In</Link>
-                  </Button>
-                </>
-              )
-            )}
-          </div>
-        </div>
+                <Button size="lg" variant="outline" asChild>
+                  <Link href="/auth/signup">Get started</Link>
+                </Button>
+              ))}
+          </>
+        }
+      />
 
-        {/* Feature Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mt-16 max-w-4xl mx-auto">
-          <div className="p-4 border rounded">
-            <Sparkles className="w-6 h-6 mb-2" />
-            <h3 className="font-semibold mb-1">AI-Powered</h3>
-            <p className="text-sm text-muted-foreground">
-              Create stories with AI assistance
-            </p>
-          </div>
+      <Features
+        tagline="What makes Little Fables different"
+        heading="Stories that come alive as you read."
+        description="Every page paints itself in soft watercolor while your child listens. Made for parents, teachers, and the tiny humans they love."
+        cards={[
+          {
+            icon: Sparkles,
+            image: '/illustration/azi-kitchen.jpg',
+            heading: 'Read-aloud, illustrated',
+            description:
+              'Warm narration and hand-painted-looking scenes turn every book into a bedtime moment.',
+            cta: { title: 'Open the reader', href: '/read' },
+          },
+          {
+            icon: Palette,
+            image: '/illustration/azi-scene-03.jpg',
+            heading: 'Paints as you read',
+            description:
+              'Each page reveals its watercolor illustration mid-sentence — a little magic, every turn.',
+            cta: { title: 'See the effect', href: '/read' },
+          },
+          {
+            icon: Users,
+            heading: 'Make your own',
+            description:
+              'Write a story with your child as the hero. Little Fables illustrates the whole thing.',
+            cta: { title: 'Start creating', href: user ? '/story/create' : '/auth/signup' },
+          },
+        ]}
+      />
 
-          <div className="p-4 border rounded">
-            <Palette className="w-6 h-6 mb-2" />
-            <h3 className="font-semibold mb-1">Visual Canvas</h3>
-            <p className="text-sm text-muted-foreground">
-              Design with drag-and-drop tools
-            </p>
-          </div>
+      <Footer />
+    </div>
+  )
+}
 
-          <div className="p-4 border rounded">
-            <Users className="w-6 h-6 mb-2" />
-            <h3 className="font-semibold mb-1">Share & Collaborate</h3>
-            <p className="text-sm text-muted-foreground">
-              Work together on stories
-            </p>
-          </div>
+function MarketingNav({
+  user,
+  loading,
+}: {
+  user: ReturnType<typeof useAuth>['user']
+  loading: boolean
+}) {
+  return (
+    <nav className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur">
+      <div className="container mx-auto flex h-16 items-center justify-between px-[5%]">
+        <Link href="/" className="flex items-center gap-2 font-bold">
+          <BookOpen className="size-5" />
+          Little Fables
+        </Link>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" asChild>
+            <Link href="/read">Read</Link>
+          </Button>
+          {!loading &&
+            (user ? (
+              <Button asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+            ) : (
+              <>
+                <Button variant="ghost" asChild>
+                  <Link href="/auth/login">Sign in</Link>
+                </Button>
+                <Button asChild>
+                  <Link href="/auth/signup">Get started</Link>
+                </Button>
+              </>
+            ))}
         </div>
       </div>
-    </MainLayout>
+    </nav>
   )
 }
