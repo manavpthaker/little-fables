@@ -1,0 +1,9 @@
+{
+  "prompt": "Character reference sheet for a children's book character.\nStyle: warm hand-drawn watercolor with ink linework, textured paper feel,\ngentle warm palette (paper cream + warm ink + occasional wash pigments —\nmarigold, sage, terracotta, dusk).\n\nCharacter: Azi — the child at the center — half Colombian sunshine, half Indian curiosity. Species: child (mixed Colombian and Indian heritage).\nTraits: thoughtful, stubborn, imaginative, courageous when he does not realize he is afraid.\nLoves: guitar (three chords C-G-Am), puzzles, the AKAI keyboard, moon-watching, family video calls to Colombia.\nVisual anchors: soft brown curls, guitar within reach, often barefoot on the circular rug.\nAge band context (4-8): the curious explorer who names his feelings.\n\nShow the character in three poses on a single sheet:\n(1) idle standing three-quarter view,\n(2) listening/leaning-in pose,\n(3) celebrating pose.\n\nClean paper background. No text labels. No border, no frame.\nConsistent character between poses — same shape, same features, same colors.",
+  "model": "gemini-3-pro-image",
+  "mimeType": "image/jpeg",
+  "generatedAt": "2026-07-13T14:00:02.691Z",
+  "status": "approved",
+  "kind": "character-sheet",
+  "characterId": "char_azi"
+}

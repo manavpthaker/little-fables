@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# art pipeline — pending candidates stay local; only approved refs + director plans are tracked
+public/art-preview/sheets/*/pending/
+public/art-preview/scenes/*/pending/
