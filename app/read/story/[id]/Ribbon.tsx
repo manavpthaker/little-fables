@@ -25,9 +25,13 @@ export interface RibbonProps {
   onSeek: (pageIdx: number) => void
   /** Optional wrapper class (small-screen reader overrides target this). */
   className?: string
+  /** Multi-chapter books: makes the label a tappable "Chapter N of M · Title"
+   *  pill that opens Contents — the visible doorway to chapter navigation
+   *  (the folio dog-ear stays as a secondary entrance). */
+  chapterNav?: { idx: number; count: number; onOpen: () => void }
 }
 
-export function Ribbon({ chapter, pageIdx, totalPages, onSeek, className }: RibbonProps) {
+export function Ribbon({ chapter, pageIdx, totalPages, onSeek, className, chapterNav }: RibbonProps) {
   const trackRef = useRef<HTMLDivElement | null>(null)
   const speakRef = useRef<SpeakHandle | null>(null)
   const [dragIdx, setDragIdx] = useState<number | null>(null)
@@ -119,14 +123,73 @@ export function Ribbon({ chapter, pageIdx, totalPages, onSeek, className }: Ribb
         style={{
           display: 'flex',
           justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: 12,
           font: 'italic 600 13px var(--font-body)',
           color: 'var(--lf-espresso-faint)',
           marginBottom: 6,
           userSelect: 'none',
         }}
       >
-        <span>{chapter ?? ' '}</span>
-        <span>
+        {chapterNav ? (
+          <button
+            type="button"
+            aria-label={`Chapters — chapter ${chapterNav.idx + 1} of ${chapterNav.count}. Open the chapter list`}
+            onPointerUp={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              chapterNav.onOpen()
+            }}
+            className="lf-press"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              minHeight: 40,
+              padding: '4px 14px 4px 10px',
+              borderRadius: 999,
+              border: '1.5px solid var(--lf-cream-line)',
+              background: 'var(--lf-cream-card)',
+              color: 'var(--lf-espresso-soft)',
+              cursor: 'pointer',
+              touchAction: 'manipulation',
+              font: '600 13px var(--font-body)',
+              maxWidth: '72%',
+              minWidth: 0,
+            }}
+          >
+            {/* chapter-list glyph */}
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <g stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" fill="none">
+                <path d="M2.5 3.5 h11" />
+                <path d="M2.5 8 h11" />
+                <path d="M2.5 12.5 h11" />
+              </g>
+            </svg>
+            <span style={{ color: 'var(--lf-coral, #D2603A)', whiteSpace: 'nowrap', flexShrink: 0 }}>
+              Chapter {chapterNav.idx + 1} of {chapterNav.count}
+            </span>
+            {chapter && (
+              <span
+                style={{
+                  fontStyle: 'italic',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  minWidth: 0,
+                }}
+              >
+                {chapter}
+              </span>
+            )}
+            <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style={{ flexShrink: 0 }}>
+              <path d="M2 4.5 L6 8.5 L10 4.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+        ) : (
+          <span>{chapter ?? ' '}</span>
+        )}
+        <span style={{ flexShrink: 0 }}>
           page {visIdx + 1} of {totalPages}
         </span>
       </div>

@@ -321,6 +321,10 @@ function ReaderBook({
         <Contents
           book={book}
           currentChapterIdx={chapterIdx}
+          currentPageIdx={(() => {
+            const prog = getProgress(book.id)
+            return prog && prog.chapter === chapterIdx ? prog.page : 0
+          })()}
           onPickChapter={(i) => {
             // v3.1 P1-7 — When jumping to a DIFFERENT chapter, we must not
             // leave the old chapter's page index in place: pageIdx belongs to
@@ -1559,6 +1563,11 @@ function ReaderPages({
             if (gated) return
             setPageIdx(i)
           }}
+          chapterNav={
+            book.chapters.length > 1
+              ? { idx: chapterIdx, count: book.chapters.length, onOpen: onOpenContents }
+              : undefined
+          }
         />
 
         {/* Transport bar — the fixed §A3 controls. */}

@@ -267,10 +267,14 @@
   .lf-reader-textcard { padding: 14px 20px !important; }
   .lf-reader-textcard p { font-size: 22px !important; line-height: 1.5 !important; }
 
-  /* Ribbon: drop the duplicate chapter/page label row (the folio dog-ear
-     already shows "N of M"); trim the track to the 44px floor. */
+  /* Ribbon: keep the label row COMPACT — it now carries the chapter pill (the
+     visible doorway to Contents), which phones need most. Drop only the
+     duplicate right-side "page x of y" (the folio dog-ear shows it); trim the
+     track to the 44px floor. */
   .lf-reader-ribbon { padding-bottom: 0 !important; }
-  .lf-reader-ribbon-label { display: none !important; }
+  .lf-reader-ribbon-label { margin-bottom: 2px !important; }
+  .lf-reader-ribbon-label > span:last-child { display: none !important; }
+  .lf-reader-ribbon-label button { min-height: 32px !important; padding: 2px 10px 2px 8px !important; }
   .lf-reader-ribbon-track { height: 44px !important; }
 
   /* Transport: shave the tall bottom padding; the 78px play + 60px chevrons

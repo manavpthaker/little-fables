@@ -19,6 +19,9 @@ import { BookCoverArt } from '../../art'
 export interface ContentsProps {
   book: Book
   currentChapterIdx: number
+  /** Page the child is on within the current chapter (0-based) — shown on the
+   *  "You are here" row so a parent can see exactly where they are. */
+  currentPageIdx?: number
   onPickChapter: (idx: number) => void
   onClose: () => void
 }
@@ -28,7 +31,7 @@ const INK_SOFT = 'var(--ink-soft, #6E5B49)'
 const INK_FAINT = 'var(--ink-faint, #97836B)'
 const CORAL = 'var(--pigment-terracotta, #D95B43)'
 
-export function Contents({ book, currentChapterIdx, onPickChapter, onClose }: ContentsProps) {
+export function Contents({ book, currentChapterIdx, currentPageIdx, onPickChapter, onClose }: ContentsProps) {
   // Escape closes the overlay (assistive keyboards use it as back).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -123,6 +126,15 @@ export function Contents({ book, currentChapterIdx, onPickChapter, onClose }: Co
           >
             {book.title}
           </h2>
+          <div
+            style={{
+              marginTop: 4,
+              font: 'italic 600 14px var(--font-body)',
+              color: INK_SOFT,
+            }}
+          >
+            You’re in chapter {currentChapterIdx + 1} of {book.chapters.length} — tap any chapter to go there
+          </div>
         </div>
       </header>
 
@@ -232,6 +244,7 @@ export function Contents({ book, currentChapterIdx, onPickChapter, onClose }: Co
                   }}
                 >
                   Chapter {i + 1}
+                  {ch.pages?.length ? ` · ${ch.pages.length} pages` : ''}
                 </div>
                 <div
                   style={{
@@ -253,7 +266,10 @@ export function Contents({ book, currentChapterIdx, onPickChapter, onClose }: Co
                       marginTop: 2,
                     }}
                   >
-                    You are here!
+                    You are here
+                    {typeof currentPageIdx === 'number' && ch.pages?.length
+                      ? ` — page ${Math.min(currentPageIdx, ch.pages.length - 1) + 1} of ${ch.pages.length}`
+                      : '!'}
                   </div>
                 )}
                 {done && !current && (
