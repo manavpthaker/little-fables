@@ -53,17 +53,93 @@
   opacity: 0.85;
 }
 
-/* Generate-while-reading: a page's illustration fades in over the endpaper
-   when it lands (and on every page turn, so art entrances feel gentle). */
-.lf-read .lf-page-art-fade {
-  animation: lf-art-fade-in 700ms ease-out both;
+/* Generate-while-reading: while a page's illustration is being made, the
+   endpaper shows it's "painting" — a soft light sweep + pulsing pigment dots
+   + a quiet label. When the art lands it comes into focus like a watercolor
+   drying: blur → sharp, slightly overscaled → settled. */
+
+/* Light sweep across the painting panel. */
+.lf-read .lf-reader-scene--painting { position: relative; }
+.lf-read .lf-reader-scene--painting::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 252, 240, 0.55) 48%,
+    rgba(255, 252, 240, 0.55) 52%,
+    transparent 70%
+  );
+  transform: translateX(-100%);
+  animation: lf-paint-sweep 2.4s ease-in-out 0.6s infinite;
+  pointer-events: none;
 }
-@keyframes lf-art-fade-in {
-  from { opacity: 0; }
+@keyframes lf-paint-sweep {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* The "painting this page…" indicator — pigment dots in the book's own color.
+   Fades in after a beat so instant answers (cached / disabled) never flash it. */
+.lf-read .lf-painting-indicator {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  opacity: 0;
+  animation: lf-paint-appear 400ms ease-out 900ms both;
+}
+@keyframes lf-paint-appear {
   to { opacity: 1; }
+}
+.lf-read .lf-painting-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50% 46% 52% 48%; /* hand-inked blob, not a perfect circle */
+  background: var(--spine, #4e7a54);
+  opacity: 0.75;
+  animation: lf-paint-dab 1.2s ease-in-out infinite;
+}
+.lf-read .lf-painting-dot:nth-child(2) { animation-delay: 0.18s; }
+.lf-read .lf-painting-dot:nth-child(3) { animation-delay: 0.36s; }
+@keyframes lf-paint-dab {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.45; }
+  40% { transform: translateY(-5px) scale(1.15); opacity: 0.9; }
+}
+.lf-read .lf-painting-label {
+  font: italic 600 13px var(--font-body);
+  color: var(--lf-espresso-soft);
+  margin-left: 4px;
+}
+
+/* Arrival: watercolor coming into focus. */
+.lf-read .lf-page-art-fade {
+  animation: lf-art-develop 1.6s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+}
+@keyframes lf-art-develop {
+  from {
+    opacity: 0;
+    filter: blur(14px) saturate(0.7);
+    transform: scale(1.03);
+  }
+  55% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0) saturate(1);
+    transform: scale(1);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .lf-read .lf-page-art-fade { animation: none; }
+  .lf-read .lf-reader-scene--painting::after { animation: none; }
+  .lf-read .lf-painting-dot { animation: none; opacity: 0.8; }
 }
 
 /* Vertically balance the spread: center the text card (and any ask/choice
