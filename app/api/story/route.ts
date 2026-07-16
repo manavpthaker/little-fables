@@ -58,7 +58,10 @@ import {
 } from '@/lib/read/skills'
 
 export const runtime = 'nodejs'
-export const maxDuration = 90
+// Worst case is two full generation attempts (deterministic-precheck or
+// hard-gate retry) plus a judge call per attempt — 90s produced real 504s in
+// production. The art routes already run at 300 on this plan.
+export const maxDuration = 300
 
 const STORY_MODEL = process.env.STORY_MODEL || 'claude-sonnet-4-6'
 const JUDGE_MODEL = process.env.JUDGE_MODEL || 'claude-haiku-4-5-20251001'
