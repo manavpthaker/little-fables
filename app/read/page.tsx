@@ -66,6 +66,31 @@ export default function Home() {
   const [choiceLogLen, setChoiceLogLen] = useState(0)
   const [progressMap, setProgressMap] = useState<Record<string, ProgressEntry>>({})
 
+  // Book-opening transition: tapping a book lifts its cover off the shelf and
+  // grows it toward the center over a paper backdrop, then the reader takes
+  // over. `opening` pins the tapped cover's rect; `openingOn` (set a frame
+  // later) triggers the CSS transitions.
+  const [opening, setOpening] = useState<{ book: Book; rect: DOMRect } | null>(null)
+  const [openingOn, setOpeningOn] = useState(false)
+  const openBook = useCallback(
+    (book: Book, from: HTMLElement | null) => {
+      const dest = `/read/story/${book.id}`
+      const reduced =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const coverEl = from?.querySelector<HTMLElement>('.lfh-cover')
+      if (reduced || !coverEl) {
+        router.push(dest)
+        return
+      }
+      router.prefetch(dest)
+      setOpening({ book, rect: coverEl.getBoundingClientRect() })
+      requestAnimationFrame(() => requestAnimationFrame(() => setOpeningOn(true)))
+      window.setTimeout(() => router.push(dest), 520)
+    },
+    [router],
+  )
+
   useEffect(() => {
     const bs = loadBuddy()
     if (bs.activeId === null) {
@@ -331,6 +356,10 @@ export default function Home() {
             className="lfh-hero"
             href={`/read/story/${heroBook.id}`}
             aria-label={continueBook ? `Keep reading ${heroBook.title}` : `Start ${heroBook.title}`}
+            onClick={(e) => {
+              e.preventDefault()
+              openBook(heroBook, e.currentTarget)
+            }}
           >
             <HomeBookCover book={heroBook} />
             <div className="lfh-hero-body">
@@ -381,7 +410,7 @@ export default function Home() {
                   type="button"
                   className="lfh-book"
                   aria-label={b.title}
-                  onClick={() => router.push(`/read/story/${b.id}`)}
+                  onClick={(e) => openBook(b, e.currentTarget)}
                 >
                   {/* Title lives ON the cover now (real book, no caption). */}
                   <HomeBookCover book={b} />
@@ -404,8 +433,40 @@ export default function Home() {
 
         <div className="lfh-note">Tap a book to fall in · tap your buddy to talk</div>
       </div>
+
+      {/* Book-opening transition: the tapped cover lifts and grows toward the
+          center over a rising paper backdrop, then the reader route loads. */}
+      {opening && (
+        <>
+          <div className={`lfh-open-backdrop${openingOn ? ' on' : ''}`} aria-hidden="true" />
+          <div
+            className="lfh-open-cover"
+            aria-hidden="true"
+            style={{
+              left: opening.rect.left,
+              top: opening.rect.top,
+              width: opening.rect.width,
+              height: opening.rect.height,
+              transform: openingOn ? openTransform(opening.rect) : 'none',
+            }}
+          >
+            <HomeBookCover book={opening.book} />
+          </div>
+        </>
+      )}
     </div>
   )
+}
+
+/** Transform that carries a shelf cover to the viewport center at a
+ *  satisfying "picked up the book" size. */
+function openTransform(rect: DOMRect): string {
+  const vw = window.innerWidth
+  const vh = window.innerHeight
+  const scale = Math.min((vw * 0.44) / rect.width, (vh * 0.74) / rect.height)
+  const dx = vw / 2 - (rect.left + rect.width / 2)
+  const dy = vh / 2 - (rect.top + rect.height / 2)
+  return `translate(${dx}px, ${dy}px) scale(${scale})`
 }
 
 // ------------------------------------------------------------------
