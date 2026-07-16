@@ -1,4 +1,9 @@
-// POST /api/art/page  { bookId, chapterIdx, pageIdx }
+// POST /api/art/page  { bookId, chapterIdx, pageIdx, pageText?, prevText?,
+//                       bookTitle?, chapterTitle? }
+//
+// The text fields are for GENERATED kid books, which live only in the
+// reader's device storage — the client sends the page text and we illustrate
+// it. Pack books ignore those fields and use the server's copy of the text.
 //
 // Generate-while-reading: called by the reader when a page has no art. Returns
 // the page's illustration URL, generating it on the spot if needed:
@@ -66,7 +71,15 @@ export async function POST(req: NextRequest) {
   if (!apiKey) return NextResponse.json({ status: 'disabled' })
   const db = admin()!
 
-  let body: { bookId?: string; chapterIdx?: number; pageIdx?: number }
+  let body: {
+    bookId?: string
+    chapterIdx?: number
+    pageIdx?: number
+    bookTitle?: string
+    chapterTitle?: string
+    pageText?: string
+    prevText?: string
+  }
   try {
     body = await req.json()
   } catch {
@@ -79,13 +92,34 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'bookId, chapterIdx, pageIdx required' }, { status: 400 })
   }
 
+  // Resolve the page. Pack books use OUR copy of the text (client fields are
+  // ignored). Generated kid books exist only in the reader's device storage,
+  // so the client sends the text along — clamp it so the endpoint can't be fed
+  // arbitrary essays.
   const story = (packJson as { stories: PackStory[] }).stories.find((s) => s.id === bookId)
   const chapter = story?.chapters?.[chapterIdx]
-  const page = chapter?.pages?.[pageIdx]
-  // Only pack books auto-generate (generated/kid books have no stable text
-  // here); unknown page → tell the reader to keep its placeholder.
-  if (!story || !chapter || !page) return NextResponse.json({ status: 'disabled' })
-  if (page.img) return NextResponse.json({ url: page.img })
+  const packPage = chapter?.pages?.[pageIdx]
+  const clamp = (s: unknown, max: number) => (typeof s === 'string' ? s.slice(0, max).trim() : '')
+  let bookTitle: string
+  let chapterTitle: string | undefined
+  let pageText: string
+  let prevText: string | undefined
+  if (story && chapter && packPage) {
+    if (packPage.img) return NextResponse.json({ url: packPage.img })
+    bookTitle = story.title
+    chapterTitle = chapter.title
+    pageText = packPage.text
+    prevText = chapter.pages[pageIdx - 1]?.text
+  } else {
+    pageText = clamp(body.pageText, 1500)
+    if (!pageText) return NextResponse.json({ status: 'disabled' })
+    bookTitle = clamp(body.bookTitle, 120) || 'A story by Azad'
+    chapterTitle = clamp(body.chapterTitle, 120) || undefined
+    prevText = clamp(body.prevText, 1500) || undefined
+    if (chapterIdx < 0 || chapterIdx > 30 || pageIdx < 0 || pageIdx > 60) {
+      return NextResponse.json({ status: 'disabled' })
+    }
+  }
 
   try {
     // Existing state for this slot.
@@ -129,7 +163,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Build the brief straight from the page text.
-    const characters = detectCharacters(page.text, BIBLE)
+    const characters = detectCharacters(pageText, BIBLE)
     const charRefs: GeminiImagePart[] = []
     if (characters.length) {
       const { data: sheets } = await db
@@ -153,10 +187,10 @@ export async function POST(req: NextRequest) {
     }
     const styleRefs = await loadStyleRefs()
     const prompt = passageScenePrompt({
-      bookTitle: story.title,
-      chapterTitle: chapter.title,
-      pageText: page.text,
-      prevText: chapter.pages[pageIdx - 1]?.text,
+      bookTitle,
+      chapterTitle,
+      pageText,
+      prevText,
       characters,
       photoRefCount: charRefs.length,
     })
