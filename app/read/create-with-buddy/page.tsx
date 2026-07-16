@@ -1,23 +1,22 @@
 'use client'
 
-// R19–R22: the STORY KITCHEN, kid-facing.
+// The STORY KITCHEN, kid-facing — prompt-based (v4).
 //
-// End-to-end flow:
-//   1. Cap check — read the parent-set maxCreationsPerDay guardrail (from
-//      lib/read/profile.ts, if Agent B has landed it). If exhausted, buddy
-//      speaks an in-fiction "kitchen is resting" line and bounces to Home.
-//   2. Prompt for the seed. Buddy asks "What's YOUR story about?" and the
-//      mic opens. On transcript we check /api/respond mode:'interview-redirect'
-//      to keep the seed in-bounds.
-//   3. Interview — delegated to <InterviewPhase />. It drives the turn loop
-//      and hands back a KidInterview recipe.
-//   4. Read-back — the buddy speaks the returned readBack; on "no" we run
-//      a single correction turn via /api/respond mode:'interview-correction'.
-//   5. Writing moment — <WritingMoment /> while /api/story mode:'kid-story'
-//      generates the story.
-//   6. Landing — save + push, grant Storyteller badges, persist wildcards,
-//      redirect to /read/story/{id}. On failure the buddy offers a shelf book
-//      instead — NEVER a dead screen.
+// The multi-step interview (seed → redirect → interview → readback →
+// correction) is gone. One screen, one idea:
+//   1. Cap check — read the parent-set maxCreationsPerDay guardrail. If
+//      exhausted, buddy speaks an in-fiction "kitchen is resting" line and
+//      offers a shelf book.
+//   2. Prompt — buddy asks "What's YOUR story about?". The child answers by
+//      tapping chips, talking into the mic, or (with a grown-up) typing.
+//      Everything lands in one visible prompt line.
+//   3. Writing moment — <WritingMoment /> while /api/story mode:'kid-story'
+//      generates. The backend rubric pipeline (deterministic pre-check →
+//      hard-gate judge → deferred soft score) runs unchanged; the prompt is
+//      threaded through the same KidInterview seed the interview used to fill.
+//   4. Landing — save + push, grant Storyteller badges, persist wildcards,
+//      redirect to /read/story/{id}. On failure the buddy offers "try again"
+//      or a shelf book — NEVER a dead screen.
 
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -35,28 +34,18 @@ import { checkBadges } from '@/lib/read/badges'
 import { recordCreation, remaining } from '@/lib/read/kid-creations'
 import { getBuddy, cp } from '@/lib/read/buddies'
 import { loadBuddy } from '@/lib/read/storage'
-import type {
-  Book,
-  BuddyDef,
-  KidInterview,
-  KidInterviewAnswer,
-} from '@/types/story'
+import type { Book, BuddyDef, KidInterview } from '@/types/story'
 import { CreatureSprite, KidScreen, KitchenBack, MicIcon, SpeechBubble } from '../art'
 import type { BuddyKind } from '../art'
 import { loadProfile } from '@/lib/read/profile'
 import { loadShelf } from '@/lib/read/packs'
 import { loadProgress } from '@/lib/read/storage'
-import { InterviewPhase } from './InterviewPhase'
 import { WritingMoment } from './WritingMoment'
 import './kitchen.css'
 
 // ---------- Guardrails helper (Agent B owns the module) ----------
 // Best-effort: dynamic import so a missing module doesn't break the flow.
 interface KidGuardrails {
-  themes?: unknown
-  allowedCast?: string[]
-  allowedSettings?: string[]
-  excludeTerms?: string[]
   maxCreationsPerDay?: number
 }
 async function safeCallGuardrails(): Promise<KidGuardrails> {
@@ -90,7 +79,7 @@ async function loadCap(fallback: number): Promise<number> {
   }
 }
 
-// ---------- kidifyInterest (v3.2 #2) ----------
+// ---------- kidifyInterest ----------
 // Parent-authored profile interest strings ("AKAI keyboard, patience while
 // learning") are not kid-mouth. This helper turns them into 1–3-word tap chips
 // that sound like a 4-year-old suggested them. We first check a hand-curated
@@ -110,7 +99,7 @@ const KID_INTEREST_MAP: Record<string, string> = {
 const KID_FILLER = new Set([
   'and', 'the', 'a', 'an', 'or', 'of', 'with', 'to', 'for', 'in', 'on',
   'my', 'our', 'your', 'his', 'her', 'their',
-  'learning', 'patience', 'while', 'about', 'like', 'love', 'about',
+  'learning', 'patience', 'while', 'about', 'like', 'love',
 ])
 function kidifyInterest(raw: string): string {
   const s = (raw || '').trim()
@@ -126,7 +115,6 @@ function kidifyInterest(raw: string): string {
     .split(/\s+/)
     .filter((w) => w && !KID_FILLER.has(w))
   if (words.length === 0) {
-    // Fallback: first word of the primary chunk.
     const first = primary.toLowerCase().split(/\s+/)[0]
     return first ?? ''
   }
@@ -139,19 +127,11 @@ type Phase =
   | 'loading'
   // Buddy speaks the cap message + offers a shelf book.
   | 'capped'
-  // Ask "what's your story about?" and open the mic.
-  | 'seed'
-  // Show the seed-redirect result (in bounds → continue; out-of-bounds → offer alt).
-  | 'redirect-offer'
-  // Interview loop — delegated to InterviewPhase.
-  | 'interview'
-  // Buddy speaks the read-back; mic opens for yes/no confirmation.
-  | 'readback'
-  // Single correction turn.
-  | 'correction'
+  // One prompt: chips + mic + typed input feed a single visible idea line.
+  | 'prompt'
   // WritingMoment while /api/story is generating.
   | 'writing'
-  // Fatal failure — buddy speaks the "needs more baking" line + shelf offer.
+  // Fatal failure — buddy speaks the "needs more baking" line + try again.
   | 'failed'
 
 // ---------- Component ----------
@@ -162,19 +142,15 @@ export default function CreateWithBuddy() {
   const [phase, setPhase] = useState<Phase>('loading')
   const [buddy, setBuddy] = useState<BuddyDef | null>(null)
   const [energy, setEnergy] = useState<'bouncy' | 'calm'>('bouncy')
-  const [guardrails, setGuardrails] = useState<KidGuardrails>({})
-  const [seed, setSeed] = useState<string>('')
-  const [redirectSuggestion, setRedirectSuggestion] = useState<string | undefined>()
-  const [redirectAttempts, setRedirectAttempts] = useState(0)
-  const [interviewAnswers, setInterviewAnswers] = useState<KidInterviewAnswer[]>([])
-  const [recipe, setRecipe] = useState<KidInterview['recipe']>({})
-  const [readBackLine, setReadBackLine] = useState<string>('')
+  const [promptText, setPromptText] = useState<string>('')
   const [micListening, setMicListening] = useState(false)
   const [buddyLine, setBuddyLine] = useState<string>('')
 
   const speakRef = useRef<SpeakHandle | null>(null)
   const listenRef = useRef<ListenHandle | null>(null)
   const cancelledRef = useRef(false)
+  const promptRef = useRef('')
+  promptRef.current = promptText
 
   const featuredShelfBook = useMemo(() => {
     const shelf = loadBooks()
@@ -190,7 +166,7 @@ export default function CreateWithBuddy() {
     }
   }, [])
 
-  // Boot: pick buddy + guardrails + cap check.
+  // Boot: pick buddy + cap check.
   useEffect(() => {
     ;(async () => {
       const bs = loadBuddy()
@@ -202,14 +178,13 @@ export default function CreateWithBuddy() {
       setEnergy(bs.energy)
 
       const g = await safeCallGuardrails()
-      setGuardrails(g)
       const cap = await loadCap(typeof g.maxCreationsPerDay === 'number' ? g.maxCreationsPerDay : 2)
       const left = remaining(cap)
       if (left <= 0) {
         setPhase('capped')
         return
       }
-      setPhase('seed')
+      setPhase('prompt')
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -221,14 +196,11 @@ export default function CreateWithBuddy() {
     setBuddyLine(line)
     speakRef.current?.cancel()
     speakRef.current = speak(line)
-     
   }, [phase, buddy])
 
-  // ---- Phase: seed ----
-  // v3.2 P2-2b — tap-to-listen only. The buddy speaks the invitation; the
-  // mic stays IDLE until the child taps it. No auto-open on speak's onEnd.
+  // ---- Phase: prompt ----
   useEffect(() => {
-    if (phase !== 'seed' || !buddy) return
+    if (phase !== 'prompt' || !buddy) return
     const q = "What's YOUR story about? Tell me anything!"
     setBuddyLine(q)
     speakRef.current?.cancel()
@@ -236,7 +208,14 @@ export default function CreateWithBuddy() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, buddy])
 
-  const openSeedMic = useCallback(() => {
+  /** Append a chunk of idea (chip tap or mic transcript) to the prompt line. */
+  const appendIdea = useCallback((chunk: string) => {
+    const t = chunk.trim()
+    if (!t) return
+    setPromptText((prev) => (prev.trim() ? `${prev.trim()} ${t}` : t))
+  }, [])
+
+  const openPromptMic = useCallback(() => {
     if (cancelledRef.current) return
     setMicListening(true)
     let got = false
@@ -244,291 +223,39 @@ export default function CreateWithBuddy() {
       timeoutMs: 10000,
       onResult: (t) => {
         got = true
-        setSeed(t)
-        void handleSeedTranscript(t)
+        setMicListening(false)
+        appendIdea(t)
       },
       onEnd: () => {
         if (got || cancelledRef.current) return
         setMicListening(false)
-        // v3.2 P2-2b — empty seed: gentle re-invite, but do NOT auto-open the
-        // mic again. The child taps when ready.
         const line = 'Take your time. Tap the mic when you know.'
         setBuddyLine(line)
         speakRef.current = speak(line)
       },
+      onError: () => {
+        setMicListening(false)
+      },
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase])
+  }, [appendIdea])
 
-  const handleSeedTranscript = useCallback(async (transcript: string) => {
+  // ---- Phase: writing (fires /api/story — the backend rubric pipeline) ----
+  const makeStory = useCallback(async () => {
+    const idea = promptRef.current.trim()
+    if (!idea || cancelledRef.current) return
+    listenRef.current?.stop()
+    listenRef.current = null
+    speakRef.current?.cancel()
     setMicListening(false)
-    setBuddyLine('…thinking…')
-    try {
-      const res = await fetch('/api/respond', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          mode: 'interview-redirect',
-          transcript,
-          guardrails,
-        }),
-      })
-      const data = (await res.json()) as {
-        inBounds?: boolean
-        redirectSuggestion?: string
-        buddyLine?: string
-      }
-      if (data.inBounds === false) {
-        setRedirectSuggestion(data.redirectSuggestion)
-        setBuddyLine(data.buddyLine ?? 'Let\'s try something else together.')
-        speakRef.current = speak(data.buddyLine ?? 'Let\'s try something else together.')
-        setPhase('redirect-offer')
-        return
-      }
-      // In bounds — echo delight AND swap to interview in the same tick, so the
-      // old seed chips can never re-render while Fable finishes the ack line.
-      // v3.2 #1: atomic seed → interview swap. React 18 batches these useState
-      // setters (we're outside any setTimeout/await here), so phase, buddyLine,
-      // and micListening flip together. Speech is fire-and-forget — UI does not
-      // wait for it. InterviewPhase mounts on the next paint with its own chips.
-      const line = data.buddyLine ?? "I LOVE that. Let's build it."
-      speakRef.current?.cancel()
-      setBuddyLine(line)
-      setPhase('interview')
-      speakRef.current = speak(line)
-    } catch {
-      // Degrade: proceed to interview with the raw seed.
-      const line = "Let's build it together."
-      setBuddyLine(line)
-      speakRef.current = speak(line)
-      setPhase('interview')
-    }
-     
-  }, [guardrails, phase])
-
-  // ---- Phase: redirect-offer ----
-  // The buddy has proposed an in-fiction alternative. Kid can accept (yes →
-  // adjust seed) or decline (no → try once more, then proceed with original).
-  const openRedirectMic = useCallback(() => {
-    if (cancelledRef.current) return
-    setMicListening(true)
-    let got = false
-    listenRef.current = listen({
-      timeoutMs: 7000,
-      onResult: (t) => {
-        got = true
-        setMicListening(false)
-        const said = t.toLowerCase()
-        // Simple yes/no heuristic — the child is 4 years old.
-        const accepted = /(yes|yeah|yah|okay|ok|sure|yep|do it|let's|lets)/.test(said)
-        const declined = /(no|nope|nah|not that)/.test(said)
-        if (accepted) {
-          // Accept: fold the suggestion into the seed and start the interview.
-          const nextSeed = redirectSuggestion
-            ? `${seed}\n(Reframed with buddy: ${redirectSuggestion})`
-            : seed
-          setSeed(nextSeed)
-          const line = 'Perfect. Let\'s build it.'
-          setBuddyLine(line)
-          speakRef.current = speak(line, {
-            onEnd: () => {
-              if (!cancelledRef.current) setPhase('interview')
-            },
-          })
-          setTimeout(() => {
-            if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
-          }, 2200)
-          return
-        }
-        if (declined && redirectAttempts < 1) {
-          setRedirectAttempts((n) => n + 1)
-          const line = 'Okay — tap the mic and tell me what we should do.'
-          setBuddyLine(line)
-          // v3.2 P2-2b — do NOT auto-open the mic. The child taps to speak.
-          speakRef.current = speak(line)
-          return
-        }
-        // Ambiguous or second decline: proceed with the original seed. R19
-        // etiquette — no scolding, no dead screens.
-        const line = "Okay. Let's build YOUR way."
-        setBuddyLine(line)
-        speakRef.current = speak(line, {
-          onEnd: () => {
-            if (!cancelledRef.current) setPhase('interview')
-          },
-        })
-        setTimeout(() => {
-          if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
-        }, 2000)
-      },
-      onEnd: () => {
-        if (got || cancelledRef.current) return
-        // Silence — treat as decline; proceed with the child's original idea.
-        setMicListening(false)
-        setPhase('interview')
-      },
-    })
-     
-  }, [seed, redirectSuggestion, redirectAttempts, phase])
-
-  // v3.2 P2-2b — tap-to-listen only. No auto-open timer; the child taps the
-  // mic when ready. The Yes / No chips are already co-present for touch.
-  useEffect(() => {
-    if (phase !== 'redirect-offer' || !buddy) return
-    // Intentionally no mic opening here. The mic button below is the seam.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, buddy])
-
-  // ---- Phase: interview → readback handoff ----
-  const handleInterviewComplete = useCallback(
-    (payload: {
-      answers: KidInterviewAnswer[]
-      recipe: KidInterview['recipe']
-      readBack: string
-      buddyLine: string
-    }) => {
-      setInterviewAnswers(payload.answers)
-      setRecipe(payload.recipe)
-      setReadBackLine(payload.readBack)
-      setBuddyLine(payload.buddyLine)
-      setPhase('readback')
-    },
-    [],
-  )
-
-  const handleInterviewFailure = useCallback((msg: string) => {
-    console.warn('[create-with-buddy] interview failed:', msg)
-    setPhase('failed')
-  }, [])
-
-  // ---- Phase: readback ----
-  const openReadbackMic = useCallback(() => {
-    if (cancelledRef.current) return
-    setMicListening(true)
-    let got = false
-    listenRef.current = listen({
-      timeoutMs: 7000,
-      onResult: (t) => {
-        got = true
-        setMicListening(false)
-        const said = t.trim().toLowerCase()
-        const declined = /(no|nope|nah|not right|wrong|not that)/.test(said)
-        if (declined) {
-          setPhase('correction')
-        } else {
-          // Yes / silence / anything positive → go to writing moment.
-          void kickOffGeneration()
-        }
-      },
-      onEnd: () => {
-        if (got || cancelledRef.current) return
-        setMicListening(false)
-        // v3.2 P2-2b — do NOT auto-continue on silence. Wait for a tap.
-      },
-    })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // v3.2 P2-2b — mic-tap opener for the correction phase. Encapsulates the
-  // listen() call that used to live in the correction useEffect.
-  // Uses a ref for applyCorrection to avoid the declaration-order cycle
-  // (applyCorrection is defined further down and depends on state closures).
-  const applyCorrectionRef = useRef<(t: string) => void | Promise<void>>(() => {})
-  const openCorrectionMic = useCallback(() => {
-    if (cancelledRef.current) return
-    setMicListening(true)
-    let got = false
-    listenRef.current = listen({
-      timeoutMs: 10000,
-      onResult: (t) => {
-        got = true
-        setMicListening(false)
-        void applyCorrectionRef.current(t)
-      },
-      onEnd: () => {
-        if (got || cancelledRef.current) return
-        setMicListening(false)
-        // No auto-continue — chips remain visible.
-      },
-    })
-  }, [])
-
-  useEffect(() => {
-    if (phase !== 'readback' || !buddy) return
-    // v3.2 P2-2b — speak only, never open the mic on our own. The child
-    // taps "That's it!" / "Change it" chips or the mic. No auto-listen.
-    speakRef.current?.cancel()
-    speakRef.current = speak(buddyLine || readBackLine)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase, buddy])
-
-  // ---- Phase: correction ----
-  // v3.2 P2-2b — tap-to-listen only. Buddy speaks the invitation; the child
-  // taps a correction chip or the mic to speak. If they never tap, the mic
-  // is never opened — the "never mind" affordance below sends them on.
-  useEffect(() => {
-    if (phase !== 'correction') return
-    const line = 'Oh! Tell me what to fix.'
-    setBuddyLine(line)
-    speakRef.current?.cancel()
-    speakRef.current = speak(line)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase])
-
-  const applyCorrection = useCallback(async (corrections: string) => {
-    setBuddyLine('…let me fix that…')
-    try {
-      const res = await fetch('/api/respond', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          mode: 'interview-correction',
-          seed,
-          prevRecipe: recipe,
-          corrections,
-        }),
-      })
-      const data = (await res.json()) as {
-        updatedRecipe?: KidInterview['recipe']
-        newReadBack?: string
-        buddyLine?: string
-      }
-      if (data.updatedRecipe) setRecipe(data.updatedRecipe)
-      const newReadBack = data.newReadBack ?? readBackLine
-      setReadBackLine(newReadBack)
-      const spoken = data.buddyLine ?? `${newReadBack} Did I get it now?`
-      setBuddyLine(spoken)
-      speakRef.current?.cancel()
-      speakRef.current = speak(spoken, {
-        onEnd: () => {
-          if (!cancelledRef.current) void kickOffGeneration()
-        },
-      })
-      setTimeout(() => {
-        if (!cancelledRef.current && phase !== 'writing') void kickOffGeneration()
-      }, Math.max(3200, spoken.length * 60))
-    } catch {
-      // Degrade — go straight to generation with the current recipe.
-      void kickOffGeneration()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seed, recipe, readBackLine, phase])
-
-  // v3.2 P2-2b — publish applyCorrection to the ref that openCorrectionMic
-  // reads through, keeping their declaration order clean.
-  useEffect(() => {
-    applyCorrectionRef.current = applyCorrection
-  }, [applyCorrection])
-
-  // ---- Phase: writing (fires /api/story) ----
-  const kickOffGeneration = useCallback(async () => {
-    if (cancelledRef.current) return
     setPhase('writing')
     try {
+      // The prompt rides the same KidInterview seed the interview flow used,
+      // so stepSevenSeed / kidStoryPrompt on the server work unchanged: the
+      // child's idea appears verbatim as originalSeed + an 'idea' extra.
       const interview: KidInterview = {
-        answers: interviewAnswers,
-        recipe,
-        readBack: readBackLine,
+        answers: [],
+        recipe: { extras: [{ slot: 'idea', value: idea }] },
+        readBack: '',
         finishedAt: Date.now(),
       }
       const res = await fetch('/api/story', {
@@ -537,8 +264,8 @@ export default function CreateWithBuddy() {
         body: JSON.stringify({
           mode: 'kid-story',
           interview,
-          originalSeed: seed,
-          idea: seed, // fallback for legacy prompt paths
+          originalSeed: idea,
+          idea, // fallback for legacy prompt paths
           universe: loadUniverse(),
           by: 'Made by Azad',
         }),
@@ -555,8 +282,8 @@ export default function CreateWithBuddy() {
         status?: string
       }
       if (data.status === 'needs-review') {
-        // R19 failure path — surface the "needs more baking" line, not a
-        // dead screen. Parents will see the draft in Parent Corner.
+        // Failure path — surface the "needs more baking" line, not a dead
+        // screen. Parents will see the draft in Parent Corner.
         setPhase('failed')
         return
       }
@@ -575,9 +302,6 @@ export default function CreateWithBuddy() {
         kind: 'quick',
         status: 'complete',
         source: 'generated',
-        // v3.2 #4: coverEmoji is legacy. BookCoverArt dispatches on id/wash/scene
-        // keys, not this string. We keep the field on the type for now but stop
-        // writing '✨' so nothing shows a stray sparkle. Slated for full retirement.
         coverEmoji: data.coverEmoji ?? '',
         coverBg: data.coverBg,
         wash: data.wash,
@@ -596,16 +320,16 @@ export default function CreateWithBuddy() {
         wildcards: (data as Book).wildcards,
         author: 'azad',
         createdAt: Date.now(),
-        idea: seed,
+        idea,
       }
       saveStory(book)
       void pushStory(book)
 
-      // v3.2 P2-2a — fire deferred soft-scoring in the background. The Book
-      // is already saved to the shelf; the kid is heading into the reader
-      // right now. When /api/story-score returns we merge the softScore into
-      // qaRecord and persist. If it fails (timeout, 502, offline) the Book
-      // stays at needs-review — parents see it in the Corner.
+      // Fire deferred soft-scoring in the background. The Book is already on
+      // the shelf; the kid is heading into the reader right now. When
+      // /api/story-score returns we merge the softScore into qaRecord and
+      // persist. If it fails (timeout, 502, offline) the Book stays at
+      // needs-review — parents see it in the Corner.
       const scoreDeferred =
         (data as { scoreDeferred?: boolean }).scoreDeferred === true
       if (scoreDeferred) {
@@ -657,7 +381,6 @@ export default function CreateWithBuddy() {
       // creation count — the persisted `author: 'azad'` on Books is the truth.
       try {
         const kidCount = loadBooks().filter((b) => b.author === 'azad').length
-        // Was the storyteller badge already earned? checkBadges is idempotent.
         const before = new Set(loadBadges().ids)
         await checkBadges({ kidCreationsCount: kidCount })
         void before // (unused — kept for future analytics)
@@ -666,27 +389,30 @@ export default function CreateWithBuddy() {
       }
 
       router.push(`/read/story/${book.id}`)
-    } catch {
+    } catch (e) {
+      console.warn('[create-with-buddy] generation failed:', e)
       setPhase('failed')
     }
-     
-  }, [seed, recipe, readBackLine, interviewAnswers, router])
+  }, [router])
 
   // ---- Phase: failed ----
   useEffect(() => {
     if (phase !== 'failed' || !buddy) return
-    const line = "This story needs more baking — let's check the oven after we read one!"
+    const line = "This story needs more baking — want to try again, or read one first?"
     setBuddyLine(line)
     speakRef.current?.cancel()
     speakRef.current = speak(line)
-     
   }, [phase, buddy])
+
+  const tryAgain = useCallback(() => {
+    speakRef.current?.cancel()
+    setPhase('prompt')
+  }, [])
 
   // ---- Seed suggestion chips (touch-balance) ----
   // Interests from profile + up to two recently-read shelf titles + wildcards.
-  // Rendered co-present with the mic on the seed phase so the child can tap
-  // instead of talking. Handler routes through the same seed transcript path
-  // so the redirect check still runs.
+  // Tapping a chip drops it into the prompt line — the child can stack a few
+  // ("dinosaurs" + "the moon") before hitting Make my story.
   const seedSuggestions = useMemo(() => {
     const out: string[] = []
     try {
@@ -726,116 +452,12 @@ export default function CreateWithBuddy() {
     return dedup
   }, [])
 
-  const pickSeedChip = useCallback(
-    (chipText: string) => {
-      // v3.2 P2-2c — atomic seed → interview swap. Cancel any speech / mic,
-      // set the "thinking" line synchronously (hides chips in the same
-      // render), then hand off to handleSeedTranscript for the async work.
-      listenRef.current?.stop()
-      listenRef.current = null
-      speakRef.current?.cancel()
-      setMicListening(false)
-      setSeed(chipText)
-      setBuddyLine('…thinking…')
-      void handleSeedTranscript(chipText)
-    },
-    [handleSeedTranscript],
-  )
-
-  const acceptRedirect = useCallback(() => {
-    listenRef.current?.stop()
-    listenRef.current = null
-    speakRef.current?.cancel()
-    const nextSeed = redirectSuggestion
-      ? `${seed}\n(Reframed with buddy: ${redirectSuggestion})`
-      : seed
-    setSeed(nextSeed)
-    const line = "Perfect. Let's build it."
-    setBuddyLine(line)
-    speakRef.current = speak(line, {
-      onEnd: () => {
-        if (!cancelledRef.current) setPhase('interview')
-      },
-    })
-    setTimeout(() => {
-      if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
-    }, 2200)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [seed, redirectSuggestion, phase])
-
-  const declineRedirect = useCallback(() => {
-    listenRef.current?.stop()
-    listenRef.current = null
-    speakRef.current?.cancel()
-    const line = "Okay. Let's build YOUR way."
-    setBuddyLine(line)
-    speakRef.current = speak(line, {
-      onEnd: () => {
-        if (!cancelledRef.current) setPhase('interview')
-      },
-    })
-    setTimeout(() => {
-      if (!cancelledRef.current && phase !== 'interview') setPhase('interview')
-    }, 2000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [phase])
-
-  const pickCorrectionChip = useCallback(
-    (chipText: string) => {
-      listenRef.current?.stop()
-      listenRef.current = null
-      speakRef.current?.cancel()
-      void applyCorrection(chipText)
-    },
-    [applyCorrection],
-  )
-
-  const skipCorrection = useCallback(() => {
-    listenRef.current?.stop()
-    listenRef.current = null
-    speakRef.current?.cancel()
-    void kickOffGeneration()
-  }, [kickOffGeneration])
-
   const goBack = useCallback(() => {
-    // Kitchen back: phase → previous phase (or /read at seed).
     listenRef.current?.stop()
     listenRef.current = null
     speakRef.current?.cancel()
-    if (phase === 'seed' || phase === 'capped' || phase === 'failed') {
-      router.push('/read')
-      return
-    }
-    if (phase === 'redirect-offer' || phase === 'interview') {
-      setPhase('seed')
-      return
-    }
-    if (phase === 'correction') {
-      setPhase('readback')
-      return
-    }
-    if (phase === 'readback') {
-      setPhase('interview')
-      return
-    }
     router.push('/read')
-  }, [phase, router])
-
-  // ---- Readback tap-confirm handlers (touch-balance directive) ----
-  // The mic still opens (voice equivalent) — chips just make it decidable
-  // without waiting.
-  const confirmReadback = useCallback(() => {
-    listenRef.current?.stop()
-    listenRef.current = null
-    void kickOffGeneration()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [kickOffGeneration])
-
-  const rejectReadback = useCallback(() => {
-    listenRef.current?.stop()
-    listenRef.current = null
-    setPhase('correction')
-  }, [])
+  }, [router])
 
   // ---- Render ----
   if (!buddy) {
@@ -848,35 +470,22 @@ export default function CreateWithBuddy() {
     )
   }
 
-  // Writing moment is a totally different layout.
+  // Writing moment is a totally different layout. The prompt shows up on the
+  // open book in the child's handwriting.
   if (phase === 'writing') {
-    return <WritingMoment buddy={buddy} recipe={recipe} />
-  }
-
-  // Interview drives its own layout.
-  if (phase === 'interview') {
     return (
-      <KidScreen label="Story kitchen" style={{ padding: 0 }}>
-        <div className="lf-room lf-kitchen" style={{ position: 'absolute', inset: 0 }}>
-          <KitchenBackButton onTap={goBack} />
-          <InterviewPhase
-            buddy={buddy}
-            seed={seed}
-            guardrails={guardrails as Record<string, unknown>}
-            onComplete={handleInterviewComplete}
-            onFailure={handleInterviewFailure}
-          />
-        </div>
-      </KidScreen>
+      <WritingMoment
+        buddy={buddy}
+        recipe={{ extras: [{ slot: 'idea', value: promptText.trim() }] }}
+        spokenLine={`A story about ${promptText.trim()}. Let's find out how it turns out.`}
+      />
     )
   }
 
-  const showReadbackControls = phase === 'readback'
-  const showMic = phase === 'seed' || phase === 'redirect-offer' || phase === 'correction' || phase === 'readback'
+  const canMake = promptText.trim().length > 0
   const buddyKind: BuddyKind = (buddy.id as BuddyKind) ?? 'bramble'
-  const spritePose = phase === 'redirect-offer' ? 'pointing' : micListening ? 'listening' : 'idle'
+  const spritePose = micListening ? 'listening' : 'idle'
 
-  // All the buddy-speak phases share a common layout — the writing desk.
   return (
     <KidScreen label="Story kitchen" style={{ padding: 0 }}>
       <div
@@ -906,247 +515,202 @@ export default function CreateWithBuddy() {
           </SpeechBubble>
         </div>
 
-        {/* Seed phase: drawn suggestion chips co-present with the mic.
-             v3.2 #1 — chips render ONLY while phase === 'seed'. handleSeedTranscript
-             now flips phase to 'interview' in the same tick as the ack speak, so
-             the seed chips can never linger while Fable is speaking. The
-             '…thinking…' guard is kept only to hide chips during the /api/respond
-             await (200–800 ms), when we haven't yet decided in-bounds vs redirect. */}
-        {phase === 'seed' && buddyLine !== '…thinking…' && seedSuggestions.length > 0 && (
-          <div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: 12,
-              justifyContent: 'center',
-              maxWidth: 720,
-              zIndex: 2,
-            }}
-          >
-            {seedSuggestions.map((chip) => (
-              <button
-                key={chip}
-                type="button"
-                onClick={() => pickSeedChip(chip)}
-                className="lf-press lf-drawn-border"
-                style={{
-                  minHeight: 56,
-                  padding: '10px 18px',
-                  borderRadius: '14px 18px 15px 17px',
-                  background: 'var(--paper-bright, #F9F2E3)',
-                  backgroundImage: 'var(--texture-paper)',
-                  color: 'var(--ink, #46362A)',
-                  border: 'none',
-                  font: '700 16px var(--font-body)',
-                  cursor: 'pointer',
-                  fontStyle: 'italic',
-                  touchAction: 'manipulation',
-                }}
-              >
-                {chip}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* Redirect-offer phase: two big tap answers + voice still active. */}
-        {phase === 'redirect-offer' && (
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center', zIndex: 2 }}>
-            <button
-              type="button"
-              onClick={acceptRedirect}
-              className="lf-press lf-drawn-border lf-drawn-border--bold"
+        {phase === 'prompt' && (
+          <>
+            {/* The prompt line — one visible place everything lands. Caveat
+                 handwriting so it reads as the child's own idea on paper. */}
+            <div
+              className="lf-drawn-border"
               style={{
-                minHeight: 68,
-                padding: '14px 28px',
-                borderRadius: '22px 26px 23px 25px',
-                background: 'var(--pigment-terracotta, #D95B43)',
-                backgroundImage: 'var(--texture-paper)',
-                color: '#F9F2E3',
-                border: 'none',
-                font: '700 20px var(--font-display)',
-                boxShadow: '0 8px 18px rgba(217,91,67,.4)',
-                cursor: 'pointer',
-                touchAction: 'manipulation',
-              }}
-            >
-              {redirectSuggestion ? `Yes, ${redirectSuggestion.split(/\s+/).slice(0, 3).join(' ')}!` : 'Yes, let’s!'}
-            </button>
-            <button
-              type="button"
-              onClick={declineRedirect}
-              className="lf-press lf-drawn-border"
-              style={{
-                minHeight: 68,
-                padding: '14px 26px',
-                borderRadius: '22px 26px 23px 25px',
+                width: 'min(560px, 92vw)',
                 background: 'var(--paper-bright, #F9F2E3)',
                 backgroundImage: 'var(--texture-paper)',
-                color: 'var(--ink, #46362A)',
-                border: 'none',
-                font: '700 19px var(--font-display)',
-                cursor: 'pointer',
-                touchAction: 'manipulation',
+                borderRadius: '18px 22px 19px 21px',
+                padding: '14px 18px',
+                zIndex: 2,
               }}
             >
-              Nah, keep my idea
-            </button>
-          </div>
-        )}
+              <textarea
+                value={promptText}
+                onChange={(e) => setPromptText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault()
+                    void makeStory()
+                  }
+                }}
+                placeholder="a bear who wants honey on the moon…"
+                rows={2}
+                aria-label="Your story idea"
+                style={{
+                  width: '100%',
+                  border: 'none',
+                  outline: 'none',
+                  resize: 'none',
+                  background: 'transparent',
+                  fontFamily: "var(--font-child-hand, 'Caveat'), cursive",
+                  fontSize: 28,
+                  lineHeight: 1.25,
+                  color: 'var(--pigment-berry, #9B4A6B)',
+                }}
+              />
+            </div>
 
-        {/* Correction phase: 3 chips + a "never mind" affordance. */}
-        {phase === 'correction' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', zIndex: 2 }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', maxWidth: 640 }}>
-              {[
-                { label: 'The character', text: 'change the character' },
-                { label: 'The place', text: 'change the place' },
-                { label: 'The problem', text: 'change the problem' },
-              ].map((c) => (
+            {/* Idea chips — tap to add to the prompt line. */}
+            {seedSuggestions.length > 0 && (
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 12,
+                  justifyContent: 'center',
+                  maxWidth: 720,
+                  zIndex: 2,
+                }}
+              >
+                {seedSuggestions.map((chip) => (
+                  <button
+                    key={chip}
+                    type="button"
+                    onClick={() => appendIdea(chip)}
+                    className="lf-press lf-drawn-border"
+                    style={{
+                      minHeight: 56,
+                      padding: '10px 18px',
+                      borderRadius: '14px 18px 15px 17px',
+                      background: 'var(--paper-bright, #F9F2E3)',
+                      backgroundImage: 'var(--texture-paper)',
+                      color: 'var(--ink, #46362A)',
+                      border: 'none',
+                      font: '700 16px var(--font-body)',
+                      cursor: 'pointer',
+                      fontStyle: 'italic',
+                      touchAction: 'manipulation',
+                    }}
+                  >
+                    {chip}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Mic + the one big button. */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 22, flexWrap: 'wrap', justifyContent: 'center', zIndex: 2 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
                 <button
-                  key={c.label}
                   type="button"
-                  onClick={() => pickCorrectionChip(c.text)}
-                  className="lf-press lf-drawn-border"
+                  aria-label={micListening ? 'Tap when done' : 'Say it out loud'}
+                  onClick={() => {
+                    if (micListening) {
+                      listenRef.current?.stop()
+                      return
+                    }
+                    speakRef.current?.cancel()
+                    openPromptMic()
+                  }}
+                  className="lf-press lf-drawn-border lf-drawn-border--bold"
                   style={{
-                    minHeight: 56,
-                    padding: '10px 18px',
-                    borderRadius: '14px 18px 15px 17px',
-                    background: 'var(--paper-bright, #F9F2E3)',
-                    backgroundImage: 'var(--texture-paper)',
-                    color: 'var(--ink, #46362A)',
+                    width: 92,
+                    height: 92,
+                    borderRadius: '50% 48% 52% 50%',
                     border: 'none',
-                    font: '700 16px var(--font-body)',
+                    background: micListening
+                      ? 'var(--pigment-terracotta-deep, #C7452F)'
+                      : 'var(--pigment-terracotta, #D95B43)',
+                    backgroundImage: 'var(--texture-paper)',
+                    color: '#F9F2E3',
+                    boxShadow: '0 8px 20px rgba(217,91,67,.4)',
                     cursor: 'pointer',
-                    fontStyle: 'italic',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     touchAction: 'manipulation',
                   }}
                 >
-                  {c.label}
+                  <MicIcon size={42} />
                 </button>
-              ))}
+                <div
+                  style={{
+                    font: '600 14px var(--font-body)',
+                    fontStyle: 'italic',
+                    color: micListening ? 'var(--pigment-terracotta-deep, #C7452F)' : 'var(--ink-soft, #6E5B49)',
+                    minHeight: 20,
+                  }}
+                >
+                  {micListening ? "I'm listening!" : 'tap to talk'}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => void makeStory()}
+                disabled={!canMake}
+                className="lf-press lf-drawn-border lf-drawn-border--bold"
+                style={{
+                  minHeight: 68,
+                  padding: '14px 34px',
+                  borderRadius: '22px 26px 23px 25px',
+                  background: canMake ? 'var(--pigment-terracotta, #D95B43)' : 'var(--paper-bright, #F9F2E3)',
+                  backgroundImage: 'var(--texture-paper)',
+                  color: canMake ? '#F9F2E3' : 'var(--ink-faint, #97836B)',
+                  border: 'none',
+                  font: '700 22px var(--font-display)',
+                  boxShadow: canMake ? '0 8px 18px rgba(217,91,67,.4)' : 'none',
+                  cursor: canMake ? 'pointer' : 'default',
+                  touchAction: 'manipulation',
+                }}
+              >
+                Make my story! ✨
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={skipCorrection}
-              className="lf-press"
-              style={{
-                background: 'transparent',
-                border: 'none',
-                font: '700 14px var(--font-body)',
-                color: 'var(--ink-soft, #6E5B49)',
-                textDecoration: 'underline',
-                cursor: 'pointer',
-                padding: '6px 10px',
-                touchAction: 'manipulation',
-              }}
-            >
-              Never mind, generate it as-is
-            </button>
-          </div>
+          </>
         )}
 
-        {/* Readback: big tap-confirm dialog + voice equivalent (mic still visible). */}
-        {showReadbackControls && (
+        {phase === 'failed' && (
           <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', justifyContent: 'center', zIndex: 2 }}>
             <button
               type="button"
-              onClick={confirmReadback}
+              onClick={tryAgain}
               className="lf-press lf-drawn-border lf-drawn-border--bold"
               style={{
                 minHeight: 68,
                 padding: '14px 34px',
                 borderRadius: '22px 26px 23px 25px',
+                border: 'none',
                 background: 'var(--pigment-terracotta, #D95B43)',
                 backgroundImage: 'var(--texture-paper)',
                 color: '#F9F2E3',
-                border: 'none',
-                font: '700 22px var(--font-display)',
+                font: '700 20px var(--font-display)',
                 boxShadow: '0 8px 18px rgba(217,91,67,.4)',
                 cursor: 'pointer',
               }}
             >
-              That&rsquo;s it!
+              Try again
             </button>
-            <button
-              type="button"
-              onClick={rejectReadback}
-              className="lf-press lf-drawn-border"
-              style={{
-                minHeight: 68,
-                padding: '14px 30px',
-                borderRadius: '22px 26px 23px 25px',
-                background: 'var(--paper-bright, #F9F2E3)',
-                backgroundImage: 'var(--texture-paper)',
-                color: 'var(--ink, #46362A)',
-                border: 'none',
-                font: '700 20px var(--font-display)',
-                cursor: 'pointer',
-              }}
-            >
-              Change it
-            </button>
+            {featuredShelfBook && (
+              <button
+                type="button"
+                className="lf-press lf-drawn-border"
+                onClick={() => router.push(`/read/story/${featuredShelfBook.id}`)}
+                style={{
+                  minHeight: 68,
+                  padding: '14px 30px',
+                  borderRadius: '22px 26px 23px 25px',
+                  border: 'none',
+                  background: 'var(--paper-bright, #F9F2E3)',
+                  backgroundImage: 'var(--texture-paper)',
+                  color: 'var(--ink, #46362A)',
+                  font: '700 19px var(--font-display)',
+                  cursor: 'pointer',
+                }}
+              >
+                Read {featuredShelfBook.title} instead ▶
+              </button>
+            )}
           </div>
         )}
 
-        {showMic && (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, zIndex: 2 }}>
-            <button
-              type="button"
-              aria-label={micListening ? 'Tap when done' : 'Say it out loud'}
-              // v3.2 P2-2b — mic tap opens the listener when idle, stops it
-              // when live. Every phase starts idle; the child owns when to
-              // start listening.
-              onClick={() => {
-                if (micListening) {
-                  listenRef.current?.stop()
-                  return
-                }
-                speakRef.current?.cancel()
-                if (phase === 'seed') openSeedMic()
-                else if (phase === 'redirect-offer') openRedirectMic()
-                else if (phase === 'readback') openReadbackMic()
-                else if (phase === 'correction') openCorrectionMic()
-              }}
-              className="lf-press lf-drawn-border lf-drawn-border--bold"
-              style={{
-                width: 104,
-                height: 104,
-                borderRadius: '50% 48% 52% 50%',
-                border: 'none',
-                background: micListening
-                  ? 'var(--pigment-terracotta-deep, #C7452F)'
-                  : 'var(--pigment-terracotta, #D95B43)',
-                backgroundImage: 'var(--texture-paper)',
-                color: '#F9F2E3',
-                boxShadow: '0 8px 20px rgba(217,91,67,.4)',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                touchAction: 'manipulation',
-              }}
-            >
-              <MicIcon size={48} />
-            </button>
-            <div
-              style={{
-                font: '600 15px var(--font-body)',
-                fontStyle: 'italic',
-                color: micListening ? 'var(--pigment-terracotta-deep, #C7452F)' : 'var(--ink-soft, #6E5B49)',
-                minHeight: 22,
-              }}
-            >
-              {micListening
-                ? "I'm listening!"
-                : showReadbackControls
-                  ? 'tap to say yes / no'
-                  : 'tap to talk'}
-            </div>
-          </div>
-        )}
-
-        {(phase === 'capped' || phase === 'failed') && (
+        {phase === 'capped' && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', zIndex: 2 }}>
             {featuredShelfBook ? (
               <button
@@ -1198,8 +762,8 @@ export default function CreateWithBuddy() {
 
 /* ================= KitchenBackButton =================
  * The drawn door-edge in the top-left corner of every kitchen screen. Tap
- * = phase-aware back (owned by the caller). Positioned absolutely so it
- * never fights the flex-centered content.
+ * = back to the room. Positioned absolutely so it never fights the
+ * flex-centered content.
  */
 function KitchenBackButton({ onTap }: { onTap: () => void }) {
   return (
@@ -1227,4 +791,3 @@ function KitchenBackButton({ onTap }: { onTap: () => void }) {
     </button>
   )
 }
-
