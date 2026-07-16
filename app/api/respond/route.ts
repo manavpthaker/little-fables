@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { dailyLimit, sameOriginOk, underDailyBudget } from '@/lib/server/guard'
 
 export const runtime = 'nodejs'
 export const maxDuration = 20
@@ -645,6 +646,10 @@ async function handleIntent(apiKey: string, body: RespondBody): Promise<NextResp
 }
 
 export async function POST(req: NextRequest) {
+  if (!sameOriginOk(req)) return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  if (!(await underDailyBudget('respond', dailyLimit('respond', 300)))) {
+    return NextResponse.json({ error: 'daily limit reached' }, { status: 429 })
+  }
   let body: RespondBody
   try {
     body = (await req.json()) as RespondBody

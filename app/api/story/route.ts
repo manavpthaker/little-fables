@@ -30,6 +30,7 @@
 // still run because they're free).
 
 import { NextRequest, NextResponse } from 'next/server'
+import { dailyLimit, sameOriginOk, underDailyBudget } from '@/lib/server/guard'
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import type {
@@ -1462,6 +1463,15 @@ function ensureSkillTags(story: GenerateResponseV22, target: SkillNode | null): 
 
 // ---------- Route handler --------------------------------------------------
 export async function POST(req: NextRequest) {
+  if (!sameOriginOk(req)) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  }
+  if (!(await underDailyBudget('story', dailyLimit('story', 30)))) {
+    return NextResponse.json(
+      { error: 'The story kitchen has baked a LOT today — let’s read one and make more tomorrow!' },
+      { status: 429 },
+    )
+  }
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json(
