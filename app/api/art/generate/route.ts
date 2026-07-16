@@ -60,6 +60,10 @@ export async function POST(req: NextRequest) {
     if (body.kind === 'sheet' && body.characterId) {
       return await genSheet(db, apiKey, body.characterId, Math.min(2, Math.max(1, body.count ?? 1)))
     }
+    if (body.kind === 'cover' && body.bookId) {
+      // Cover only — used by the Art tab's "make all missing covers" sweep.
+      return await genCover(db, apiKey, body.bookId)
+    }
     if (body.kind === 'book' && body.bookId) {
       // Chunked: generate up to `limit` missing images per call; the Art tab
       // loops while `remaining > 0`. Keeps each call well inside serverless
@@ -170,6 +174,34 @@ async function sceneRefs(db: NonNullable<ReturnType<typeof admin>>, charIds: str
     }
   }
   return [...refs, ...styleRefs].slice(0, 14)
+}
+
+/** Generate just the COVER candidate for a pack book (skips if one already
+ *  exists). Same brief/refs as the genBook cover step. */
+async function genCover(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, bookId: string) {
+  const { title, slots } = packPages(bookId)
+  const { data: existing } = await db
+    .from(ARTIFACTS_TABLE)
+    .select('id')
+    .eq('kind', 'cover')
+    .eq('book_id', bookId)
+    .in('status', ['pending', 'approved'])
+    .limit(1)
+  if (existing && existing.length > 0) {
+    return NextResponse.json({ ok: true, kind: 'cover', bookId, created: 0, skipped: 'exists' })
+  }
+  const styleRefs = await loadStyleRefs()
+  const storyBrief = fallbackStoryBrief({ title, pagesText: slots.map((s) => s.text) })
+  const coverChars = detectCharacters(slots.slice(0, 6).map((s) => s.text).join('\n'), BIBLE)
+  const refs = await sceneRefs(db, coverChars.map((c) => c.id), styleRefs)
+  const coverPrompt = `Square book COVER, warm watercolor + ink. An iconic, inviting moment from "${title}". ${storyBrief} Characters: ${coverChars.map((c) => c.name).join(', ') || '(setting only)'} — match the character reference sheets exactly. No text, no title, no border.`
+  const res = await generateGeminiImage({ apiKey, prompt: coverPrompt, referenceImages: refs })
+  const cand = res.candidates[0]
+  if (!cand) return NextResponse.json({ error: 'model returned no image' }, { status: 502 })
+  const path = `books/${bookId}/cover/${stamp()}.${extFor(cand.mimeType)}`
+  await uploadCandidate(db, path, Buffer.from(cand.base64, 'base64'), cand.mimeType)
+  await insertPending(db, { kind: 'cover', bookId, candidatePath: path, model: res.model, prompt: coverPrompt })
+  return NextResponse.json({ ok: true, kind: 'cover', bookId, created: 1 })
 }
 
 async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string, bookId: string, limit: number) {

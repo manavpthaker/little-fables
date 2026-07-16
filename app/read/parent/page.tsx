@@ -2967,6 +2967,27 @@ function ArtTab() {
     } catch (e) { setMsg((e as Error).message) } finally { setBusy(null); setProgress('') }
   }, [loadScenes])
 
+  // One tap → a cover candidate for every pack book that doesn't have one.
+  // Candidates land below as pending; approving publishes to the shelf.
+  const generateAllCovers = useCallback(async () => {
+    setBusy('all-covers'); setMsg('')
+    try {
+      let made = 0
+      for (let i = 0; i < books.length; i++) {
+        setProgress(`Covers… ${i + 1}/${books.length} (${books[i].title})`)
+        const r = await fetch('/api/art/generate', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ kind: 'cover', bookId: books[i].id }),
+        })
+        const j = await r.json().catch(() => ({}))
+        if (!r.ok) { setMsg(j.error ?? 'Something went wrong.'); break }
+        if (j.created) made++
+      }
+      setMsg(made ? `${made} new cover${made === 1 ? '' : 's'} ready to review below (pick a book).` : 'Every book already has a cover.')
+      if (bookId) await loadScenes(bookId)
+    } catch (e) { setMsg((e as Error).message) } finally { setBusy(null); setProgress('') }
+  }, [books, bookId, loadScenes])
+
   if (configured === false) {
     return (
       <PCard title="Art isn't set up for production yet">
@@ -3083,6 +3104,9 @@ function ArtTab() {
                 {busy === `genbook-${bookId}` ? 'Generating…' : 'Generate this book'}
               </PButton>
             )}
+            <PButton size="sm" variant="secondary" disabled={busy !== null} onClick={() => void generateAllCovers()}>
+              {busy === 'all-covers' ? 'Making covers…' : 'Make all missing covers'}
+            </PButton>
           </div>
           {bookId && (scenes.pending.length + scenes.approved.length === 0) && (
             <p style={{ font: '400 13px var(--font-ui)', color: 'var(--lf-p-muted-foreground)' }}>No art yet — tap “Generate this book”.</p>

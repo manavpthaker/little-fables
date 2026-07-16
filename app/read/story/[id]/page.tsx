@@ -1434,11 +1434,14 @@ function ReaderPages({
               willChange: 'transform',
             }}
           >
-            {/* Left: art */}
+            {/* Left: art. Any page with a REAL illustration gets the
+                picture-book spread treatment — art fills its page edge to
+                edge (same as the starters' fullBleed pages); only the
+                endpaper placeholder keeps the floating-panel inset. */}
             <div
               style={{
                 position: 'relative',
-                padding: fullBleed ? 0 : '20px 14px 14px 32px',
+                padding: fullBleed || effectiveImg ? 0 : '20px 14px 14px 32px',
                 minHeight: 0,
                 minWidth: 0,
                 overflow: 'hidden',
@@ -1447,43 +1450,41 @@ function ReaderPages({
                 justifyContent: 'center',
               }}
             >
-              {effectiveImg ? (
+              {effectiveImg && (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
                   key={effectiveImg}
                   className="lf-page-art-fade"
                   src={effectiveImg}
                   alt=""
-                  style={
-                    fullBleed
-                      ? {
-                          position: 'absolute',
-                          inset: 0,
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover',
-                          // v3.2 #7 — stronger top-bias so faces stay in frame
-                          // across all pages. Previous 'center 20%' still cropped
-                          // faces on close-portrait pages (e.g. azi-bhen). Most
-                          // children's-book banners have their important content
-                          // in the top half, so 'center top' is the safer default.
-                          objectPosition: 'center top',
-                        }
-                      : {
-                          maxWidth: '100%',
-                          maxHeight: '100%',
-                          width: 'auto',
-                          height: 'auto',
-                          objectFit: 'contain',
-                          borderRadius: 22,
-                          display: 'block',
-                          boxShadow: '0 8px 26px rgba(94,62,26,.18)',
-                          border: '1.5px solid var(--lf-cream-line)',
-                          background: 'var(--paper-bright, #f7f1e3)',
-                        }
-                  }
+                  style={{
+                    // Every real illustration fills its page like a picture
+                    // book. 'center top' keeps faces in frame (v3.2 #7 —
+                    // children's-book art carries its subject in the top half).
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center top',
+                  }}
                 />
-              ) : (
+              )}
+              {effectiveImg && !fullBleed && (
+                // Gutter shadow — the soft fold where the art page meets the
+                // text page, selling the two columns as one open spread.
+                <span
+                  aria-hidden="true"
+                  style={{
+                    position: 'absolute',
+                    inset: '0 0 0 auto',
+                    width: 26,
+                    background: 'linear-gradient(to left, rgba(60,40,20,.18), transparent)',
+                    pointerEvents: 'none',
+                  }}
+                />
+              )}
+              {!effectiveImg && (
                 // No real illustration for this page yet — show an intentional
                 // colored scene panel keyed to the book (its cover's spine
                 // color + motif), not an empty placeholder. The art pipeline

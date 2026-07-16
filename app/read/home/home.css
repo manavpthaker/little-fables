@@ -72,6 +72,24 @@
   filter: drop-shadow(0 4px 6px rgba(60,46,34,.2));
 }
 .lf-home .lfh-buddy:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; border-radius: 50%; }
+/* alive, not pasted on: a soft entrance hop, then a slow breath forever */
+.lf-home .lfh-buddy > * {
+  display: block;
+  animation:
+    lfh-buddy-in .55s cubic-bezier(.34, 1.4, .4, 1) both,
+    lfh-breath 3.8s ease-in-out .6s infinite;
+  transform-origin: 50% 92%;
+}
+@keyframes lfh-buddy-in {
+  from { opacity: 0; transform: translateY(10px) scale(.92); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes lfh-breath {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.014, .984); }
+}
+/* the greeting bubble follows a beat later */
+.lf-home .lfh-bubble { animation: lfh-buddy-in .5s cubic-bezier(.3, 1.2, .4, 1) .18s both; }
 .lf-home .lfh-bubble {
   position: relative;
   background: var(--card);
@@ -313,4 +331,6 @@
 @media (prefers-reduced-motion: reduce) {
   .lf-home .lfh-wrap { animation: none; }
   .lf-home .lfh-book, .lf-home .lfh-hero, .lf-home .lfh-make, .lf-home .lfh-play-btn, .lf-home .lfh-cover { transition: none; }
+  .lf-home .lfh-buddy > *, .lf-home .lfh-bubble { animation: none; }
+  .lf-home .lfh-open-backdrop, .lf-home .lfh-open-cover { transition: none; }
 }
