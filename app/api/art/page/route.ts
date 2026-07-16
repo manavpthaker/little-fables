@@ -30,6 +30,7 @@ import {
   LIVE_BUCKET,
 } from '@/lib/art/supabase-admin'
 import { generateGeminiImage, type GeminiImagePart } from '@/lib/art/gemini'
+import { dailyLimit, sameOriginOk, underDailyBudget } from '@/lib/server/guard'
 import {
   detectCharacters,
   fallbackStoryBrief,
@@ -66,6 +67,9 @@ function extFor(mime: string): string {
 export async function POST(req: NextRequest) {
   if (process.env.ART_AUTO_GENERATE === '0') {
     return NextResponse.json({ status: 'disabled' }, { status: 200 })
+  }
+  if (!sameOriginOk(req)) {
+    return NextResponse.json({ status: 'disabled' }, { status: 403 })
   }
   if (!artConfigured()) return NextResponse.json({ status: 'disabled' })
   const apiKey = process.env.GEMINI_API_KEY
@@ -150,6 +154,13 @@ export async function POST(req: NextRequest) {
     const pending = (rows ?? []).find((r) => r.status === 'pending')
     if (pending && Date.now() - new Date(pending.created_at as string).getTime() < LOCK_FRESH_MS) {
       return NextResponse.json({ status: 'generating' })
+    }
+
+    // Budget gate sits AFTER the cache checks (serving an existing image is
+    // free) and BEFORE generation. 'disabled' tells the reader to keep its
+    // endpaper and stop asking for this session.
+    if (!(await underDailyBudget('art', dailyLimit('art', 150)))) {
+      return NextResponse.json({ status: 'disabled' })
     }
 
     // Take the lock (a pending row). Reuse a stale pending row if present.

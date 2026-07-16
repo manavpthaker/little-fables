@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import type { WordTimestamp } from '@/lib/read/speech'
+import { dailyLimit, sameOriginOk, underDailyBudget } from '@/lib/server/guard'
 
 // Prefer Fluid Compute Node runtime for cold-start friendliness + longer timeout.
 export const runtime = 'nodejs'
@@ -70,9 +71,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'invalid JSON body' }, { status: 400 })
   }
 
+  if (!sameOriginOk(req)) {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  }
+
   const text = (body.text ?? '').trim()
   if (!text) {
     return NextResponse.json({ error: 'text is required' }, { status: 400 })
+  }
+  // Page texts run ~350 chars; anything much bigger isn't ours.
+  if (text.length > 2000) {
+    return NextResponse.json({ error: 'text too long' }, { status: 400 })
+  }
+  if (!(await underDailyBudget('tts', dailyLimit('tts', 500)))) {
+    return NextResponse.json({ error: 'daily narration budget reached' }, { status: 429 })
   }
   const voiceKind = body.voice ?? 'narrator'
 

@@ -13,6 +13,7 @@
 //   →    { softScore, breakdown, revisionsUsed, notes?, status }
 
 import { NextRequest, NextResponse } from 'next/server'
+import { dailyLimit, sameOriginOk, underDailyBudget } from '@/lib/server/guard'
 import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import type {
@@ -166,6 +167,10 @@ interface ScoreRequestBody {
 }
 
 export async function POST(req: NextRequest) {
+  if (!sameOriginOk(req)) return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  if (!(await underDailyBudget('score', dailyLimit('score', 60)))) {
+    return NextResponse.json({ error: 'daily limit reached' }, { status: 429 })
+  }
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return NextResponse.json({ error: 'ANTHROPIC_API_KEY missing' }, { status: 500 })
