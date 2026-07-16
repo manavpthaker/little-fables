@@ -11,8 +11,15 @@
  *   # Book Title                      ← first heading = title (or --title)
  *   *optional subtitle / byline*      ← italic-only lines near the top are skipped
  *
- *   Paragraphs separated by blank lines. EACH PARAGRAPH = ONE READER PAGE.
- *   Text is imported VERBATIM — only markdown emphasis markers are stripped.
+ *   Paragraphs separated by blank lines. Short paragraphs are MERGED into
+ *   picture-book pages of ~40-75 words (the Page type's documented "~65 words
+ *   / page" target) — a one-line paragraph is a beat, not a page. Text is
+ *   otherwise imported VERBATIM — only markdown emphasis markers are stripped.
+ *   Blockquote paragraphs (signs, letters) always keep their own page.
+ *
+ *   Enrichment on import: each chapter gets a watercolor wash (rotating,
+ *   seeded by the book id) and each vocab word's first page gets `star`
+ *   so MyWords can collect from family books.
  *
  *   Part One: The Chapter Title       ← chapter books; quick stories have none
  *   (also accepts "Chapter 1: ..." )
@@ -132,6 +139,67 @@ function parseStory(raw: string): Parsed {
   return { title, chapters }
 }
 
+// ---------- enrichment ----------
+
+const WORD = (s: string) => s.split(/\s+/).filter(Boolean).length
+
+/** Merge adjacent one-liner paragraphs into ~40-75 word picture-book pages.
+ *  Blockquote pages (multi-line: signs, letters) never merge. A paragraph
+ *  longer than MAX stays whole — we never split sentences. */
+function mergePages(pages: Array<{ text: string }>, target = 55, max = 78): Array<{ text: string }> {
+  const out: Array<{ text: string }> = []
+  let buf = ''
+  const flush = () => {
+    if (buf) out.push({ text: buf })
+    buf = ''
+  }
+  for (const p of pages) {
+    if (p.text.includes('\n')) {
+      // Blockquote / preformatted page — keep alone.
+      flush()
+      out.push({ text: p.text })
+      continue
+    }
+    const bufWords = WORD(buf)
+    const nextWords = WORD(p.text)
+    if (buf && bufWords + nextWords > max && bufWords >= Math.min(28, target / 2)) flush()
+    buf = buf ? `${buf} ${p.text}` : p.text
+    if (WORD(buf) >= target) flush()
+  }
+  flush()
+  return out
+}
+
+const WASHES = ['meadow', 'honey', 'river', 'lilac', 'sunset', 'blush', 'canyon', 'snow'] as const
+
+function hashStr(s: string): number {
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
+  return h
+}
+
+/** Mark the first page containing each vocab word with `star` so the child's
+ *  WordBook can collect from family books. */
+function markStars(chapters: PackChapter[], vocab: Array<{ word?: string }>): number {
+  let marked = 0
+  for (const v of vocab) {
+    const word = (v.word ?? '').trim()
+    if (!word) continue
+    const re = new RegExp(`\\b${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i')
+    outer: for (const c of chapters) {
+      for (const p of c.pages) {
+        if (p.star) continue
+        if (re.test(p.text)) {
+          p.star = word
+          marked++
+          break outer
+        }
+      }
+    }
+  }
+  return marked
+}
+
 function slugify(s: string): string {
   return s
     .toLowerCase()
@@ -145,10 +213,12 @@ function slugify(s: string): string {
 
 interface PackPage {
   text: string
+  star?: string
   [k: string]: unknown
 }
 interface PackChapter {
   title: string
+  wash?: string
   pages: PackPage[]
 }
 interface PackBook {
@@ -202,14 +272,22 @@ function main() {
   const kind = (arg('kind') as 'quick' | 'chapter') ?? (parsed.chapters.length > 1 ? 'chapter' : 'quick')
   const by = arg('by') ?? 'Made by Papa'
 
-  // Quick stories: title the single chapter after the book.
-  const chapters = parsed.chapters.map((c) => ({ title: c.title || title, pages: c.pages }))
+  // Quick stories: title the single chapter after the book. Merge one-liner
+  // paragraphs into ~65-word pages and give each chapter a wash (rotation
+  // seeded by the book id so books don't all start on the same color).
+  const washOffset = hashStr(id) % WASHES.length
+  const rawPages = parsed.chapters.reduce((n, c) => n + c.pages.length, 0)
+  const chapters: PackChapter[] = parsed.chapters.map((c, i) => ({
+    title: c.title || title,
+    wash: WASHES[(washOffset + i) % WASHES.length],
+    pages: mergePages(c.pages),
+  }))
   const pageCount = chapters.reduce((n, c) => n + c.pages.length, 0)
   const words = chapters.reduce((n, c) => n + c.pages.reduce((m, p) => m + p.text.split(/\s+/).length, 0), 0)
 
   console.log(`${id}  [${kind}]  "${title}" by ${by}`)
-  console.log(`  chapters: ${chapters.length}  pages: ${pageCount}  words: ${words}`)
-  chapters.forEach((c, i) => console.log(`    Ch${i + 1}: ${c.title} (${c.pages.length} pages)`))
+  console.log(`  chapters: ${chapters.length}  pages: ${pageCount} (merged from ${rawPages} paragraphs)  words: ${words}  avg ${Math.round(words / Math.max(1, pageCount))} w/page`)
+  chapters.forEach((c, i) => console.log(`    Ch${i + 1}: ${c.title} [${c.wash}] (${c.pages.length} pages)`))
   console.log(`  first page: ${chapters[0]?.pages[0]?.text.slice(0, 100) ?? '(none)'}`)
   console.log(`  last  page: ${chapters.at(-1)?.pages.at(-1)?.text.slice(0, 100) ?? '(none)'}`)
 
@@ -226,10 +304,11 @@ function main() {
   const existing = pack.stories.find((s) => s.id === id)
   if (existing) {
     existing.title = title
-    existing.by = by
+    if (arg('by')) existing.by = by // keep the existing byline unless overridden
     existing.kind = kind
     existing.chapters = chapters
-    console.log(`\nUpdated existing book "${id}" in pack-000 (metadata like vocab preserved).`)
+    const starred = markStars(chapters, (existing.vocab ?? []) as Array<{ word?: string }>)
+    console.log(`\nUpdated existing book "${id}" in pack-000 (vocab preserved, ${starred} star pages marked).`)
   } else {
     pack.stories.push({
       id,
