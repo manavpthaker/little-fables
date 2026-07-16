@@ -93,7 +93,15 @@ export const nativeTranscriptionProvider: TranscriptionProvider = {
 // ---------------- Web TTS via /api/tts ----------------
 
 function b64ToBlob(b64: string, mime: string): Blob {
-  const bin = atob(b64)
+  // Safari's atob throws the cryptic "The string did not match the expected
+  // pattern" on any stray whitespace/invalid char. Sanitize, and rethrow with
+  // a message speak()'s catch can log usefully.
+  let bin: string
+  try {
+    bin = atob((b64 ?? '').replace(/\s+/g, ''))
+  } catch {
+    throw new Error('tts returned invalid audio data')
+  }
   const len = bin.length
   const bytes = new Uint8Array(len)
   for (let i = 0; i < len; i++) bytes[i] = bin.charCodeAt(i)
