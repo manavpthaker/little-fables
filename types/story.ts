@@ -274,6 +274,10 @@ export interface Book {
    *  for the shelf spine treatment (author mark). */
   author?: 'azad' | 'family'
 
+  /** Whole-book visual brief written by the story generator — the anchor for
+   *  every page illustration (protagonist look, setting, palette, moral). */
+  artBrief?: string
+
   createdAt: number
   updatedAt?: number
   /** Optional idea used to generate (for continuations). */
@@ -411,6 +415,9 @@ export interface GenerateResponse {
   retellPrompts?: string[]
   hook?: ChapterHook | string
   recapQuestion?: string
+  /** One-paragraph whole-book visual brief for the illustrator (protagonist
+   *  look, setting, palette/mood, theme + moral). Anchors every page's art. */
+  artBrief?: string
   /** Rubric gate output — filled by the second-pass judge call. */
   rubricScore?: number
   rubricNotes?: string

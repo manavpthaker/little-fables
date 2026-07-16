@@ -484,6 +484,9 @@ function ReaderPages({
               chapterTitle: chapter.title,
               pageText: pages[pi]?.text,
               prevText: pi > 0 ? pages[pi - 1]?.text : undefined,
+              // Whole-book visual brief — anchors every scene in one world.
+              artBrief: book.artBrief,
+              moral: book.teachingGoals?.[0],
             }),
           })
           const j = (await r.json().catch(() => ({}))) as { url?: string; status?: string }
@@ -506,7 +509,7 @@ function ReaderPages({
       }
       void attempt(0)
     },
-    [book.id, book.title, chapter.title, pages],
+    [book.id, book.title, book.artBrief, book.teachingGoals, chapter.title, pages],
   )
   useEffect(() => {
     // Pack books use the server's copy of the text; generated books send
