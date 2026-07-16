@@ -244,29 +244,32 @@ export function Ribbon({ chapter, pageIdx, totalPages, onSeek, className, chapte
             transition: dragIdx == null ? 'width 200ms var(--ease-out, ease-out)' : 'none',
           }}
         />
-        {/* Ticks — one per page. */}
-        {Array.from({ length: totalPages }).map((_, i) => {
-          const tickPct = totalPages > 1 ? (i / (totalPages - 1)) * 100 : 50
-          const done = i <= visIdx
-          return (
-            <span
-              key={i}
-              aria-hidden="true"
-              style={{
-                position: 'absolute',
-                left: `${tickPct}%`,
-                top: '50%',
-                width: 4,
-                height: 10,
-                marginLeft: -2,
-                marginTop: -5,
-                borderRadius: 1,
-                background: done ? 'var(--lf-coral-deep)' : 'var(--lf-espresso-faint)',
-                opacity: done ? 0.85 : 0.55,
-              }}
-            />
-          )
-        })}
+        {/* Ticks — one per page, but only while they read as individual pages.
+            Long imported chapters (40-70 pages) turned this into a solid wall
+            of ticks; past ~24 pages the filled ribbon alone shows progress. */}
+        {totalPages <= 24 &&
+          Array.from({ length: totalPages }).map((_, i) => {
+            const tickPct = totalPages > 1 ? (i / (totalPages - 1)) * 100 : 50
+            const done = i <= visIdx
+            return (
+              <span
+                key={i}
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: `${tickPct}%`,
+                  top: '50%',
+                  width: 4,
+                  height: 10,
+                  marginLeft: -2,
+                  marginTop: -5,
+                  borderRadius: 1,
+                  background: done ? 'var(--lf-coral-deep)' : 'var(--lf-espresso-faint)',
+                  opacity: done ? 0.85 : 0.55,
+                }}
+              />
+            )
+          })}
         {/* Thumb — drawn dog-tag; ≥56px hit is the whole track, this is the visual. */}
         <div
           aria-hidden="true"

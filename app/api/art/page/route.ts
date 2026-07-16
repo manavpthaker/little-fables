@@ -32,6 +32,7 @@ import {
 import { generateGeminiImage, type GeminiImagePart } from '@/lib/art/gemini'
 import {
   detectCharacters,
+  fallbackStoryBrief,
   loadStyleRefs,
   passageScenePrompt,
   type CharacterBibleEntry,
@@ -79,6 +80,8 @@ export async function POST(req: NextRequest) {
     chapterTitle?: string
     pageText?: string
     prevText?: string
+    artBrief?: string
+    moral?: string
   }
   try {
     body = await req.json()
@@ -104,18 +107,28 @@ export async function POST(req: NextRequest) {
   let chapterTitle: string | undefined
   let pageText: string
   let prevText: string | undefined
+  let storyBrief: string | undefined
   if (story && chapter && packPage) {
     if (packPage.img) return NextResponse.json({ url: packPage.img })
     bookTitle = story.title
     chapterTitle = chapter.title
     pageText = packPage.text
     prevText = chapter.pages[pageIdx - 1]?.text
+    // Whole-book anchor from the pack's own text (opening + ending).
+    storyBrief = fallbackStoryBrief({
+      title: story.title,
+      pagesText: (story.chapters ?? []).flatMap((c) => c.pages.map((p) => p.text)),
+    })
   } else {
     pageText = clamp(body.pageText, 1500)
     if (!pageText) return NextResponse.json({ status: 'disabled' })
     bookTitle = clamp(body.bookTitle, 120) || 'A story by Azad'
     chapterTitle = clamp(body.chapterTitle, 120) || undefined
     prevText = clamp(body.prevText, 1500) || undefined
+    // Generated books carry the generator's own visual brief (theme + moral).
+    const brief = clamp(body.artBrief, 1000)
+    const moral = clamp(body.moral, 200)
+    storyBrief = brief || (moral ? `"${bookTitle}". The story's heart: ${moral}` : undefined)
     if (chapterIdx < 0 || chapterIdx > 30 || pageIdx < 0 || pageIdx > 60) {
       return NextResponse.json({ status: 'disabled' })
     }
@@ -193,6 +206,7 @@ export async function POST(req: NextRequest) {
       prevText,
       characters,
       photoRefCount: charRefs.length,
+      storyBrief,
     })
 
     // Flash tier for interiors — fast + cheap; cascade still falls back.

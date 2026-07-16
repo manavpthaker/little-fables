@@ -16,6 +16,7 @@ import { generateGeminiImage, type GeminiImagePart } from '@/lib/art/gemini'
 import {
   characterPrompt,
   detectCharacters,
+  fallbackStoryBrief,
   loadStyleRefs,
   passageScenePrompt,
   type CharacterBibleEntry,
@@ -195,6 +196,9 @@ async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string
   }
 
   const styleRefs = await loadStyleRefs()
+  // One whole-book anchor shared by every scene (and the cover) so the pages
+  // read as one world, not per-page guesses.
+  const storyBrief = fallbackStoryBrief({ title, pagesText: slots.map((s) => s.text) })
   let created = 0
   for (const slot of todo.slice(0, limit)) {
     if (slot.kind === 'cover') {
@@ -221,6 +225,7 @@ async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string
       prevText: entry.prevText,
       characters,
       photoRefCount: Math.max(0, refs.length - styleRefs.length),
+      storyBrief,
     })
     const res = await generateGeminiImage({ apiKey, prompt, referenceImages: refs, preferModel: 'gemini-3.1-flash-image' })
     const cand = res.candidates[0]

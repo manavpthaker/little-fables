@@ -556,6 +556,7 @@ Return ONLY a JSON object matching this TypeScript shape:
   "skillTags"?:    string[],          // SS-taxonomy ids, primary first (1-3)
   "charactersUsed"?:string[],         // universe character ids used in this story
   "mysteryWord"?:  { "word": string, "language": string, "meaning"?: string },
+  "artBrief"?:     string,             // ONE paragraph for the illustrator: protagonist look, setting, palette/mood, and the story's theme+moral. Anchors every page's art in one world.
   "retellPrompts"?:string[],
   "hook"?:         { b: string, c: string } | string,
   "recapQuestion"?:string,
@@ -644,6 +645,8 @@ function startPrompt(body: GenerateRequest): string {
     `Brief:`,
     ...briefLines(body),
     !body.idea && !body.hero ? '- No specific idea from the child — pick an interest from the profile/universe and delight us.' : '',
+    ``,
+    `Also return \`artBrief\` — ONE paragraph for the illustrator: protagonist look, setting, palette/mood, and the story's theme + moral. Every page's art is anchored to it.`,
   ].filter(Boolean)
   return parts.join('\n')
 }
@@ -708,9 +711,12 @@ function kidStoryPrompt(body: GenerateRequest): string {
   const recipe = kidExtra.interview?.recipe
   return [
     `MODE: kid-story`,
-    `Task: The child (Azad, ~4 y/o) drove this story from the STORY KITCHEN interview. Write ONE quick story that faithfully renders their recipe.`,
+    `Task: The child (Azad, ~4 y/o) drove this story from the STORY KITCHEN. Write ONE quick story that faithfully renders their idea.`,
     ``,
-    `Format: QUICK story — 1 chapter of 5-7 pages. Return \`pages\` at the top level. \`done: true\`. No mid-story choice (the child already made the choices in the interview).`,
+    `Format: QUICK story — 1 chapter of 4-6 pages. Return \`pages\` at the top level. \`done: true\`. No mid-story choice (the child already made the choices).`,
+    `Page density: each page is a FULL story beat — 2-4 short read-aloud sentences (roughly 25-55 words). Never a single-line page; never a page that's just a sound effect. A page should feel like one spread of a picture book.`,
+    ``,
+    `Art brief: also return \`artBrief\` — ONE paragraph for the illustrator covering the protagonist's look, the setting, palette/mood words, and the story's theme + moral. Every page's illustration will be anchored to this brief, so make it specific ("a small brown bear cub with a red scarf, rolling green meadows under a big twilight moon, soft dusk blues and warm lantern golds, a story about patience and asking friends for help").`,
     ``,
     `Traceability (PRD R20 — MANDATORY):`,
     recipe?.want ? `  • WANT must be clearly visible: "${recipe.want}"` : '  • WANT must be clearly visible in the hero\'s motivation.',
@@ -967,6 +973,7 @@ function validate(rawRes: unknown, mode: GenerateRequest['mode']): GenerateRespo
   if (Array.isArray(r.retellPrompts)) {
     out.retellPrompts = (r.retellPrompts as unknown[]).filter((g): g is string => typeof g === 'string')
   }
+  if (typeof r.artBrief === 'string' && r.artBrief.trim()) out.artBrief = r.artBrief.trim().slice(0, 1000)
   if (typeof r.recapQuestion === 'string') out.recapQuestion = r.recapQuestion
   const hook = r.hook
   if (typeof hook === 'string') out.hook = hook

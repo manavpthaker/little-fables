@@ -10,7 +10,9 @@
     "art:characters": "tsx scripts/art-characters.ts",
     "art:director": "tsx scripts/art-director.ts",
     "art:generate": "tsx scripts/art-generate.ts",
-    "books:add": "tsx scripts/add-book.ts"
+    "books:add": "tsx scripts/add-book.ts",
+    "audio:check": "tsx scripts/generate-audio.ts --check",
+    "audio:generate": "tsx scripts/generate-audio.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

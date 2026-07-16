@@ -319,6 +319,7 @@ export default function CreateWithBuddy() {
         interview,
         wildcards: (data as Book).wildcards,
         author: 'azad',
+        artBrief: typeof data.artBrief === 'string' ? data.artBrief : undefined,
         createdAt: Date.now(),
         idea,
       }

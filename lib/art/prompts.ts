@@ -165,6 +165,10 @@ export function passageScenePrompt(opts: {
   characters: CharacterBibleEntry[]
   /** How many character reference images precede the style refs. */
   photoRefCount: number
+  /** Whole-book visual brief (theme, moral, setting, palette, protagonist).
+   *  The same brief anchors every scene in the book so pages feel like one
+   *  world; the page text then picks the moment to depict within it. */
+  storyBrief?: string
 }): string {
   const chars = opts.characters.length
     ? opts.characters
@@ -186,16 +190,40 @@ export function passageScenePrompt(opts: {
     refLine,
     '',
     `Book: ${opts.bookTitle}${opts.chapterTitle ? ` — chapter "${opts.chapterTitle}"` : ''}.`,
+    opts.storyBrief
+      ? `\nTHE STORY'S WORLD (every illustration in this book lives here — keep the same protagonist look, setting, palette, and mood on every page):\n${opts.storyBrief.slice(0, 1000)}\n`
+      : '',
     'Characters in this scene:',
     chars,
     '',
-    'Illustrate THIS moment from the story:',
+    'Illustrate THIS moment from the story (a single beat inside that world):',
     opts.prevText ? `(previous beat, for context only: ${opts.prevText.slice(0, 240)})` : '',
     `"${opts.pageText.slice(0, 700)}"`,
     '',
     'One clear focal moment, uncluttered background, generous negative space.',
     'Landscape composition. No text, no captions, no borders, no page numbers.',
     'Cozy and safe for a 4-year-old — nothing frightening.',
+  ]
+    .filter(Boolean)
+    .join('\n')
+}
+
+/** Deterministic whole-book brief for books without a model-written one
+ *  (pack books; generated books from before artBrief existed). How the story
+ *  opens + how it ends + the moral is enough to hold setting, protagonist,
+ *  and mood steady across pages. */
+export function fallbackStoryBrief(opts: {
+  title: string
+  pagesText: string[]
+  moral?: string
+}): string {
+  const opening = opts.pagesText.slice(0, 2).join(' ').slice(0, 420)
+  const closing = opts.pagesText.length > 2 ? (opts.pagesText[opts.pagesText.length - 1] ?? '').slice(0, 240) : ''
+  return [
+    `"${opts.title}".`,
+    opening ? `How it begins: ${opening}` : '',
+    closing ? `How it ends: ${closing}` : '',
+    opts.moral ? `The story's heart: ${opts.moral}` : '',
   ]
     .filter(Boolean)
     .join('\n')

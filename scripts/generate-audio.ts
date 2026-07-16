@@ -11,7 +11,11 @@
  *   public/audio/{bookId}/{chapterIdx}-{pageIdx}.mp3
  *   public/audio/{bookId}/{chapterIdx}-{pageIdx}.timestamps.json
  *
- * Skips files that already exist (resume behavior).
+ * Skips files that already exist (resume behavior) — UNLESS the existing
+ * timestamps no longer match the page's current text (the story was edited
+ * after its audio was made). Stale pages are regenerated so the narration can
+ * never read different words than the page shows. `--check` reports staleness
+ * without calling the API.
  */
 
 import 'dotenv/config'
@@ -47,6 +51,7 @@ interface Pack {
 interface Args {
   book?: string
   dryRun: boolean
+  check: boolean
   packPath: string
   outDir: string
   source: 'pack' | 'starters'
@@ -55,6 +60,7 @@ interface Args {
 function parseArgs(argv: string[]): Args {
   const args: Args = {
     dryRun: false,
+    check: false,
     packPath: 'content/packs/pack-000-family-originals.json',
     outDir: 'public/audio',
     source: 'pack',
@@ -63,17 +69,34 @@ function parseArgs(argv: string[]): Args {
     const a = argv[i]
     if (a === '--book') args.book = argv[++i]
     else if (a === '--dry-run') args.dryRun = true
+    else if (a === '--check') args.check = true
     else if (a === '--pack') args.packPath = argv[++i]
     else if (a === '--out') args.outDir = argv[++i]
     else if (a === '--source') args.source = argv[++i] as 'pack' | 'starters'
     else if (a === '--help' || a === '-h') {
       console.log(
-        'Usage: npx tsx scripts/generate-audio.ts [--book <id>] [--dry-run] [--pack <path>] [--out <dir>] [--source pack|starters]',
+        'Usage: npx tsx scripts/generate-audio.ts [--book <id>] [--dry-run] [--check] [--pack <path>] [--out <dir>] [--source pack|starters]',
       )
       process.exit(0)
     }
   }
   return args
+}
+
+// ---------- Staleness ----------
+// Same normalization the reader uses: audio whose word list doesn't match the
+// page's current text is stale and must be regenerated.
+function normWord(w: string): string {
+  return w.toLowerCase().replace(/[^a-z0-9']/gi, '')
+}
+function timestampsMatchText(timestamps: WordTimestamp[], text: string): boolean {
+  const textWords = text.split(/\s+/).map(normWord).filter(Boolean)
+  const tsWords = timestamps.map((t) => normWord(t.word)).filter(Boolean)
+  if (textWords.length !== tsWords.length) return false
+  for (let i = 0; i < textWords.length; i++) {
+    if (textWords[i] !== tsWords[i]) return false
+  }
+  return true
 }
 
 // ---------- ElevenLabs ----------
@@ -219,7 +242,7 @@ async function main() {
   const narratorVoiceId = process.env.NARRATOR_VOICE_ID
   const modelId = process.env.ELEVENLABS_NARRATOR_MODEL || 'eleven_multilingual_v2'
 
-  if (!args.dryRun) {
+  if (!args.dryRun && !args.check) {
     if (!apiKey || !narratorVoiceId) {
       console.error(
         'Missing ELEVENLABS_API_KEY or NARRATOR_VOICE_ID. Set env or use --dry-run to plan.',
@@ -236,6 +259,7 @@ async function main() {
   let planned = 0
   let generated = 0
   let skipped = 0
+  let stale = 0
   let failed = 0
 
   for (const story of stories) {
@@ -254,10 +278,23 @@ async function main() {
         totalChars += text.length
 
         if ((await exists(audioPath)) && (await exists(tsPath))) {
-          skipped++
-          continue
+          // Resume — but only when the audio still matches the CURRENT text.
+          let fresh = false
+          try {
+            const ts = JSON.parse(await readFile(tsPath, 'utf8')) as WordTimestamp[]
+            fresh = timestampsMatchText(ts, text)
+          } catch {
+            fresh = false
+          }
+          if (fresh) {
+            skipped++
+            continue
+          }
+          stale++
+          console.log(`  STALE ${story.id} ch${ci} p${pi} — text changed since audio was made${args.check ? '' : ', regenerating'}`)
         }
 
+        if (args.check) continue
         if (args.dryRun) {
           console.log(
             `[dry] ${story.id} ch${ci} p${pi} — ${text.length} chars → ${audioPath.replace(projectRoot + '/', '')}`,
@@ -293,7 +330,8 @@ async function main() {
   console.log(`books:       ${stories.length}`)
   console.log(`pages seen:  ${planned}`)
   console.log(`generated:   ${generated}`)
-  console.log(`skipped:     ${skipped} (resume)`)
+  console.log(`skipped:     ${skipped} (resume, still fresh)`)
+  console.log(`stale:       ${stale} (text changed since audio was made)`)
   console.log(`failed:      ${failed}`)
   console.log(`total chars: ${totalChars}`)
   console.log(`est. cost:   $${estCost.toFixed(2)} @ $${COST_PER_1K}/1K chars`)

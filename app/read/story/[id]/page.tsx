@@ -86,11 +86,29 @@ type AskUiState = 'idle' | 'listening' | 'praise' | 'hint'
 // Order: IndexedDB cache → static file → live /api/tts (then cached in
 // IndexedDB so each page is paid for once per device). If everything fails the
 // transport still falls through to speechSynth (allowSpeechSynthFallback).
+//
+// STALENESS GUARD: audio recorded for an older revision of the text is worse
+// than no audio — the voice reads different words than the page shows. Every
+// layer's timestamps are checked against the CURRENT page text (normalized
+// word-by-word); a mismatch falls through to the next layer, ending at live
+// TTS. Stale pages self-heal instead of desyncing.
+function normWord(w: string): string {
+  return w.toLowerCase().replace(/[^a-z0-9']/gi, '')
+}
+function audioMatchesText(timestamps: WordTimestamp[], text: string): boolean {
+  const textWords = text.split(/\s+/).map(normWord).filter(Boolean)
+  const tsWords = timestamps.map((t) => normWord(t.word)).filter(Boolean)
+  if (textWords.length !== tsWords.length) return false
+  for (let i = 0; i < textWords.length; i++) {
+    if (textWords[i] !== tsWords[i]) return false
+  }
+  return true
+}
 function pageTtsSource(bookId: string, chapterIdx: number, pageIdx: number): TtsSource {
   return {
     async fetch(text) {
       const cached = await getCachedAudio(bookId, chapterIdx, pageIdx)
-      if (cached) {
+      if (cached && audioMatchesText(cached.timestamps, text)) {
         return { audio: cached.audio, mimeType: cached.mimeType, timestamps: cached.timestamps }
       }
       try {
@@ -105,9 +123,11 @@ function pageTtsSource(bookId: string, chapterIdx: number, pageIdx: number): Tts
           audioRes.blob(),
           tsRes.json() as Promise<WordTimestamp[]>,
         ])
+        if (!audioMatchesText(timestamps, text)) throw new Error('static audio is stale for this text')
         return { audio, mimeType: audio.type || 'audio/mpeg', timestamps }
       } catch {
-        // Generated book (or missing static file) — synthesize on demand.
+        // Generated book, missing static file, or stale audio — synthesize on
+        // demand and cache the fresh result.
         const result = await webTtsSource.fetch(text, { voice: 'narrator' })
         void putCachedAudio(bookId, chapterIdx, pageIdx, {
           mimeType: result.mimeType,
@@ -122,21 +142,27 @@ function pageTtsSource(bookId: string, chapterIdx: number, pageIdx: number): Tts
 
 /** Try to fetch just the timestamps JSON so we can enable word-seek without
  *  paying for a full audio decode. Falls back to the IndexedDB cache (where
- *  on-demand TTS for generated books lands). Returns null if neither exists. */
+ *  on-demand TTS for generated books lands). Timestamps that don't align with
+ *  the current page text are rejected (stale audio → wrong-word seeks). */
 async function fetchTimestamps(
   bookId: string,
   chapterIdx: number,
   pageIdx: number,
+  pageText: string,
 ): Promise<WordTimestamp[] | null> {
   try {
     const res = await fetch(`/audio/${bookId}/${chapterIdx}-${pageIdx}.timestamps.json`)
-    if (res.ok) return (await res.json()) as WordTimestamp[]
+    if (res.ok) {
+      const ts = (await res.json()) as WordTimestamp[]
+      if (audioMatchesText(ts, pageText)) return ts
+    }
   } catch {
     /* fall through to the cache */
   }
   try {
     const cached = await getCachedAudio(bookId, chapterIdx, pageIdx)
-    return cached?.timestamps ?? null
+    if (cached && audioMatchesText(cached.timestamps, pageText)) return cached.timestamps
+    return null
   } catch {
     return null
   }
@@ -484,6 +510,9 @@ function ReaderPages({
               chapterTitle: chapter.title,
               pageText: pages[pi]?.text,
               prevText: pi > 0 ? pages[pi - 1]?.text : undefined,
+              // Whole-book visual brief — anchors every scene in one world.
+              artBrief: book.artBrief,
+              moral: book.teachingGoals?.[0],
             }),
           })
           const j = (await r.json().catch(() => ({}))) as { url?: string; status?: string }
@@ -506,7 +535,7 @@ function ReaderPages({
       }
       void attempt(0)
     },
-    [book.id, book.title, chapter.title, pages],
+    [book.id, book.title, book.artBrief, book.teachingGoals, chapter.title, pages],
   )
   useEffect(() => {
     // Pack books use the server's copy of the text; generated books send
@@ -597,7 +626,7 @@ function ReaderPages({
     let cancelled = false
     setPageTimestamps(null)
     if (!page) return
-    void fetchTimestamps(book.id, chapterIdx, pageIdx).then((ts) => {
+    void fetchTimestamps(book.id, chapterIdx, pageIdx, page.text).then((ts) => {
       if (!cancelled) setPageTimestamps(ts)
     })
     return () => {
