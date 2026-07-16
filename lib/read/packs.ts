@@ -15,6 +15,7 @@ type PackPage = {
   scene?: string | null
   /** v3.2: real illustration path (starters only — pack-000 has none yet). */
   img?: string
+  wash?: string
   ask?: PackAsk
   choice?: PackChoice
   breathe?: boolean
@@ -22,7 +23,7 @@ type PackPage = {
   star?: string
   fullBleed?: boolean
 }
-type PackChapter = { title: string; pages: PackPage[]; hook?: string; recapQuestion?: string }
+type PackChapter = { title: string; wash?: string; pages: PackPage[]; hook?: string; recapQuestion?: string }
 type PackBook = {
   id: string
   title: string
@@ -115,8 +116,14 @@ function normalizeVocab(v: PackBook['vocab']): VocabWord[] {
     .filter((x): x is VocabWord => x !== null && !!x.word)
 }
 
+const VALID_WASHES = new Set<string>(['canyon', 'sunset', 'meadow', 'lilac', 'blush', 'river', 'snow', 'honey'])
+function coercePackWash(w?: string): WashKey | undefined {
+  return w && VALID_WASHES.has(w) ? (w as WashKey) : undefined
+}
+
 function normalizePage(pp: PackPage, defaultWash: WashKey, bookVocab: VocabWord[]): Page {
-  const wash = washFromKey(pp.scene) || defaultWash
+  // Priority: explicit page wash → scene-key inference → chapter/book default.
+  const wash = coercePackWash(pp.wash) ?? (pp.scene ? washFromKey(pp.scene) : defaultWash)
   // Auto-pick a star word for this page if any vocab appears in the text.
   const star =
     pp.star ??
@@ -151,13 +158,18 @@ function normalizeBook(b: PackBook): Book {
   // backfill can lay in a real cover wash later.
   const bookWash: WashKey = 'meadow'
   const chapters: Chapter[] = b.chapters
-    ? b.chapters.map((c) => ({
-        title: c.title,
-        wash: bookWash,
-        pages: c.pages.map((pp) => normalizePage(pp, bookWash, vocab)),
-        hook: c.hook,
-        recapQuestion: c.recapQuestion,
-      }))
+    ? b.chapters.map((c) => {
+        // Honor the pack's per-chapter wash (imports rotate these); fall back
+        // to the book wash for older pack entries without one.
+        const chapterWash = coercePackWash(c.wash) ?? bookWash
+        return {
+          title: c.title,
+          wash: chapterWash,
+          pages: c.pages.map((pp) => normalizePage(pp, chapterWash, vocab)),
+          hook: c.hook,
+          recapQuestion: c.recapQuestion,
+        }
+      })
     : [
         {
           title: '',
