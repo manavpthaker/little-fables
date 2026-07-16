@@ -1502,13 +1502,16 @@ function ReaderPages({
                 display: 'flex',
                 flexDirection: 'column',
                 minHeight: 0,
-                padding: '20px 32px 0 18px',
+                padding: '20px 32px 14px 18px',
                 overflowY: 'auto',
                 overscrollBehavior: 'contain',
               }}
             >
               <div
-                className="lf-reader-textcard"
+                // Re-keying per page replays the entrance — each page turn the
+                // words settle onto the paper instead of snapping into place.
+                key={`${chapterIdx}-${pageIdx}`}
+                className="lf-reader-textcard lf-page-enter"
                 style={{
                   background: 'var(--paper-bright, var(--lf-cream-card))',
                   border: '1.5px solid var(--lf-cream-line)',

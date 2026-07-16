@@ -383,8 +383,8 @@ export default function Home() {
                   aria-label={b.title}
                   onClick={() => router.push(`/read/story/${b.id}`)}
                 >
+                  {/* Title lives ON the cover now (real book, no caption). */}
                   <HomeBookCover book={b} />
-                  <div className="lfh-book-title">{b.title}</div>
                 </button>
               ))}
               <button
