@@ -64,6 +64,21 @@ export async function POST(req: NextRequest) {
       // Cover only — used by the Art tab's "make all missing covers" sweep.
       return await genCover(db, apiKey, body.bookId)
     }
+    if (body.kind === 'reset-book' && body.bookId) {
+      // Void a book's scenes + cover so the next generation pass (or
+      // generate-while-reading) rebuilds them with the current pipeline.
+      // Rows are marked rejected (history kept), not deleted; character
+      // sheets are untouched — they anchor consistency across the redo.
+      const { data, error } = await db
+        .from(ARTIFACTS_TABLE)
+        .update({ status: 'rejected' })
+        .eq('book_id', body.bookId)
+        .in('kind', ['scene', 'cover'])
+        .in('status', ['pending', 'approved'])
+        .select('id')
+      if (error) throw new Error(error.message)
+      return NextResponse.json({ ok: true, kind: 'reset-book', bookId: body.bookId, cleared: (data ?? []).length })
+    }
     if (body.kind === 'book' && body.bookId) {
       // Chunked: generate up to `limit` missing images per call; the Art tab
       // loops while `remaining > 0`. Keeps each call well inside serverless

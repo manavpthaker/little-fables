@@ -232,8 +232,9 @@ export async function POST(req: NextRequest) {
     const cand = res.candidates[0]
     if (!cand) throw new Error('model returned no image')
 
-    // Publish straight to the PUBLIC live bucket.
-    const livePath = `books/${bookId}/${chapterIdx}-${pageIdx}.${extFor(cand.mimeType)}`
+    // Publish straight to the PUBLIC live bucket. Stamped filename so a
+    // regenerated page gets a fresh URL (never fights browser/CDN cache).
+    const livePath = `books/${bookId}/${chapterIdx}-${pageIdx}-${Math.random().toString(36).slice(2, 8)}.${extFor(cand.mimeType)}`
     const up = await db.storage
       .from(LIVE_BUCKET)
       .upload(livePath, Buffer.from(cand.base64, 'base64'), { contentType: cand.mimeType, upsert: true })
