@@ -45,9 +45,9 @@ export function Transport({ playing, onPlayToggle, onPrev, onNext, canPrev, canN
   )
 }
 
-function PlayBtn({ playing, onPress }: { playing: boolean; onPress: () => void }) {
-  // Terracotta, largest, drawn. 78px hit target (≥72px per spec).
-  const size = 78
+export function PlayBtn({ playing, onPress, size = 78 }: { playing: boolean; onPress: () => void; size?: number }) {
+  // Terracotta, largest, drawn. Default 78px hit target (≥72px per spec);
+  // the inline bottom bar passes a slightly smaller size.
   return (
     <button
       type="button"
@@ -80,9 +80,8 @@ function PlayBtn({ playing, onPress }: { playing: boolean; onPress: () => void }
   )
 }
 
-function ChevronBtn({ dir, onPress, disabled }: { dir: 'prev' | 'next'; onPress: () => void; disabled?: boolean }) {
+export function ChevronBtn({ dir, onPress, disabled, size = 60 }: { dir: 'prev' | 'next'; onPress: () => void; disabled?: boolean; size?: number }) {
   const flip = dir === 'prev'
-  const size = 60
   const style: CSSProperties = {
     width: size,
     height: size,

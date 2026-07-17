@@ -277,9 +277,8 @@
   .lf-reader-ribbon-label button { min-height: 32px !important; padding: 2px 10px 2px 8px !important; }
   .lf-reader-ribbon-track { height: 44px !important; }
 
-  /* Transport: shave the tall bottom padding; the 78px play + 60px chevrons
-     stay full size. */
-  .lf-reader-transport { padding: 6px 0 10px !important; }
+  /* Bottom bar: single row already; just trim its bottom breath. */
+  .lf-reader-bottombar { padding-bottom: 6px !important; }
 
   /* --- Room (home) on a short screen --- */
   /* The spoken-greeting bubble duplicates what the buddy says aloud and the

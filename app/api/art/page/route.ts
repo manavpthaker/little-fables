@@ -220,12 +220,14 @@ export async function POST(req: NextRequest) {
       storyBrief,
     })
 
-    // Flash tier for interiors — fast + cheap; cascade still falls back.
+    // Pro tier by default — it follows the passage far more faithfully than
+    // flash (~$0.13 vs $0.07, cached forever after first read). Set
+    // ART_SCENE_MODEL=gemini-3.1-flash-image to trade fidelity for cost.
     const res = await generateGeminiImage({
       apiKey,
       prompt,
       referenceImages: [...charRefs, ...styleRefs].slice(0, 14),
-      preferModel: 'gemini-3.1-flash-image',
+      preferModel: process.env.ART_SCENE_MODEL || 'gemini-3-pro-image',
     })
     const cand = res.candidates[0]
     if (!cand) throw new Error('model returned no image')

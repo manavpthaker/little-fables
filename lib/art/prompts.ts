@@ -183,22 +183,30 @@ export function passageScenePrompt(opts: {
     opts.photoRefCount > 0
       ? `The FIRST ${opts.photoRefCount === 1 ? 'reference image is' : `${opts.photoRefCount} reference images are`} the character reference sheet(s) — match them exactly (same colors, markings, proportions). The remaining references show the illustration style.`
       : 'The reference images show the illustration style.'
+  // The MOMENT leads and is binding — the picture must show what the page
+  // says. Everything after (world brief, characters, style) serves it.
   return [
-    "One interior illustration for a children's picture book.",
-    'Style: warm hand-drawn watercolor with ink linework, textured paper feel,',
-    'gentle warm palette (paper cream + warm ink + wash pigments — marigold, sage, terracotta, dusk).',
-    refLine,
+    "Illustrate EXACTLY this moment from a children's picture book:",
+    '',
+    `"${opts.pageText.slice(0, 700)}"`,
+    '',
+    'FAITHFULNESS RULE: the picture must literally depict the actions, objects,',
+    'and place this passage describes — who is doing what, with what, where.',
+    'A parent should be able to point at the picture and re-read the passage.',
+    'Do not substitute a generic scene of the same mood.',
+    opts.prevText ? `(the beat just before, for continuity only: ${opts.prevText.slice(0, 240)})` : '',
     '',
     `Book: ${opts.bookTitle}${opts.chapterTitle ? ` — chapter "${opts.chapterTitle}"` : ''}.`,
     opts.storyBrief
-      ? `\nTHE STORY'S WORLD (every illustration in this book lives here — keep the same protagonist look, setting, palette, and mood on every page):\n${opts.storyBrief.slice(0, 1000)}\n`
+      ? `THE STORY'S WORLD (keep the same protagonist look, setting, palette, and mood on every page):\n${opts.storyBrief.slice(0, 1000)}`
       : '',
+    '',
     'Characters in this scene:',
     chars,
     '',
-    'Illustrate THIS moment from the story (a single beat inside that world):',
-    opts.prevText ? `(previous beat, for context only: ${opts.prevText.slice(0, 240)})` : '',
-    `"${opts.pageText.slice(0, 700)}"`,
+    'Style: warm hand-drawn watercolor with ink linework, textured paper feel,',
+    'gentle warm palette (paper cream + warm ink + wash pigments — marigold, sage, terracotta, dusk).',
+    refLine,
     '',
     'One clear focal moment, uncluttered background, generous negative space.',
     'Landscape composition. No text, no captions, no borders, no page numbers.',

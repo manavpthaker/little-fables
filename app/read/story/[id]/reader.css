@@ -172,6 +172,16 @@
   min-height: 0;
 }
 
+/* Inline ribbon inside the single-row bottom bar: it flexes between the
+   play/chevron cluster and the right edge; no outer gutters of its own. */
+.lf-read .lf-ribbon-inline {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 !important;
+}
+.lf-read .lf-ribbon-inline .lf-reader-ribbon-track { height: 44px !important; }
+.lf-read .lf-ribbon-inline .lf-reader-ribbon-label { margin-bottom: 0 !important; }
+
 /* ---------- Portrait phones: stack the spread ----------
    Side-by-side columns squeeze the words into a one-word-per-line sliver on
    a 390px screen. Portrait reads top-to-bottom instead: art above (a third of
@@ -189,6 +199,17 @@
     aspect-ratio: auto;
     max-height: none;
   }
+  /* Bottom bar at phone width: tighter gaps, and drop the "page x of y"
+     span (the folio dog-ear already shows it) so the pill + track fit
+     without pushing the next chevron off-screen. */
+  .lf-read .lf-reader-bottombar {
+    gap: 8px !important;
+    padding: 0 10px 10px !important;
+  }
+  .lf-read .lf-ribbon-inline .lf-reader-ribbon-label > span:last-child {
+    display: none !important;
+  }
+
   /* Tighter gutters at phone width; the card gets the full column. The
      landscape art gutter (32px left) becomes a symmetric frame up top. */
   .lf-read .lf-reader-artcol:not(:has(img)) {

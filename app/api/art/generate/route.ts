@@ -259,7 +259,7 @@ async function genBook(db: NonNullable<ReturnType<typeof admin>>, apiKey: string
       photoRefCount: Math.max(0, refs.length - styleRefs.length),
       storyBrief,
     })
-    const res = await generateGeminiImage({ apiKey, prompt, referenceImages: refs, preferModel: 'gemini-3.1-flash-image' })
+    const res = await generateGeminiImage({ apiKey, prompt, referenceImages: refs, preferModel: process.env.ART_SCENE_MODEL || 'gemini-3-pro-image' })
     const cand = res.candidates[0]
     if (!cand) continue
     const path = `books/${bookId}/${entry.chapterIdx}-${entry.pageIdx}/${stamp()}.${extFor(cand.mimeType)}`
