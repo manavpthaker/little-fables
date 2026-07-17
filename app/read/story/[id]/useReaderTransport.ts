@@ -48,8 +48,9 @@ export interface ReaderTransport {
   toggle: () => void
   /** Seek to `wordIdx` and continue playing from there. */
   seekToWord: (wordIdx: number) => void
-  /** Speak a single word (+ meaning) — no seek, no state change to main narration. */
-  speakOne: (word: string, meaning?: string) => void
+  /** Speak a single word (+ meaning). Pauses main narration; when `wordIdx`
+   *  is given the word highlights while it's spoken (learning feedback). */
+  speakOne: (word: string, meaning?: string, wordIdx?: number) => void
   /** Force a hard stop (used on page nav / unmount). */
   stop: () => void
 }
@@ -161,13 +162,20 @@ export function useReaderTransport({ page, gated, onAutoNext, isLastPage }: Opti
   // the intuition — "wait, tell me this word").
   const speakOneRef = useRef<SpeakHandle | null>(null)
   const speakOne = useCallback(
-    (word: string, meaning?: string) => {
+    (word: string, meaning?: string, idx?: number) => {
       // Pause main narration (don't cancel & set to stopped forever — a
       // subsequent tap of the terracotta play resumes cleanly).
       pause()
       speakOneRef.current?.cancel()
+      // Light the tapped word while it's being said — see-it-hear-it feedback.
+      if (typeof idx === 'number') setWordIdx(idx)
       const utterance = meaning ? `${word}. ${word} means ${meaning}.` : word
-      speakOneRef.current = speak(utterance, { allowSpeechSynthFallback: true })
+      speakOneRef.current = speak(utterance, {
+        allowSpeechSynthFallback: true,
+        onEnd: () => {
+          if (typeof idx === 'number') setWordIdx(-1)
+        },
+      })
     },
     [pause],
   )
