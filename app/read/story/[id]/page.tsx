@@ -68,7 +68,7 @@ import { ReaderScene } from './ReaderScene'
 import './reader.css'
 import { askIntent, dispatchIntent, hasReachedMissCap } from '@/lib/read/intents'
 import { ChapterEnd, ComfortRitualBeat, BookComplete } from './EndPhase'
-import { Transport } from './Transport'
+import { ChevronBtn, PlayBtn } from './Transport'
 import { Ribbon } from './Ribbon'
 import { Folio } from './Folio'
 import { Contents } from './Contents'
@@ -1703,36 +1703,40 @@ function ReaderPages({
           </div>
         </div>
 
-        {/* Ribbon scrubber → chapter timeline (drag to seek by page). */}
-        <Ribbon
-          className="lf-reader-ribbon"
-          chapter={chapterLabel}
-          pageIdx={pageIdx}
-          totalPages={total}
-          onSeek={(i) => {
-            if (gated) return
-            setPageIdx(i)
+        {/* Bottom bar — prev · play · scrubber · next in ONE row. The old
+            stacked ribbon + transport ate ~40% of a phone-landscape screen;
+            this gives that height back to the art and the words. Chevrons are
+            always live (v3.1 P0-1) so a touch-only child can leave the page;
+            auto-turn still respects gates via useReaderTransport. */}
+        <div
+          className="lf-reader-bottombar"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 14,
+            padding: '0 16px 10px',
+            flexShrink: 0,
           }}
-          chapterNav={
-            book.chapters.length > 1
-              ? { idx: chapterIdx, count: book.chapters.length, onOpen: onOpenContents }
-              : undefined
-          }
-        />
-
-        {/* Transport bar — the fixed §A3 controls. */}
-        {/* v3.1 P0-1: canNext ignores `gated`. Chevrons are always live so a
-             touch-only child can leave the page. Auto-turn (in play mode) still
-             respects gates via useReaderTransport. */}
-        <Transport
-          className="lf-reader-transport"
-          playing={transport.playing}
-          onPlayToggle={transport.toggle}
-          onPrev={goPrev}
-          onNext={goNext}
-          canPrev={pageIdx > 0}
-          canNext={true}
-        />
+        >
+          <ChevronBtn dir="prev" onPress={goPrev} disabled={pageIdx === 0} size={50} />
+          <PlayBtn playing={transport.playing} onPress={transport.toggle} size={64} />
+          <Ribbon
+            className="lf-reader-ribbon lf-ribbon-inline"
+            chapter={chapterLabel}
+            pageIdx={pageIdx}
+            totalPages={total}
+            onSeek={(i) => {
+              if (gated) return
+              setPageIdx(i)
+            }}
+            chapterNav={
+              book.chapters.length > 1
+                ? { idx: chapterIdx, count: book.chapters.length, onOpen: onOpenContents }
+                : undefined
+            }
+          />
+          <ChevronBtn dir="next" onPress={goNext} size={50} />
+        </div>
       </div>
     </KidScreen>
   )
