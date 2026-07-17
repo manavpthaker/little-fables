@@ -171,3 +171,36 @@
   flex: 1 1 0;
   min-height: 0;
 }
+
+/* ---------- Portrait phones: stack the spread ----------
+   Side-by-side columns squeeze the words into a one-word-per-line sliver on
+   a 390px screen. Portrait reads top-to-bottom instead: art above (a third of
+   the spread), words below at full width. Landscape keeps the open-book
+   side-by-side layout (its compact rules live in read.css). */
+@media (orientation: portrait) and (max-width: 700px) {
+  .lf-read .lf-reader-spread {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: minmax(0, 34%) minmax(0, 66%);
+  }
+  /* Endpaper fills its shorter row instead of forcing 4:3. */
+  .lf-read .lf-reader-scene {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    max-height: none;
+  }
+  /* Tighter gutters at phone width; the card gets the full column. The
+     landscape art gutter (32px left) becomes a symmetric frame up top. */
+  .lf-read .lf-reader-artcol:not(:has(img)) {
+    padding: 12px 16px 4px !important;
+  }
+  .lf-read .lf-reader-textcol {
+    padding: 12px 16px 12px 16px !important;
+  }
+  .lf-read .lf-reader-textcard {
+    padding: 18px 20px !important;
+  }
+  .lf-read .lf-reader-textcard p {
+    font-size: 21px !important;
+  }
+}

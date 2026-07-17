@@ -1090,14 +1090,21 @@ function ReaderPages({
     [book.vocab],
   )
 
+  // Tap on a word = SAY THAT WORD again (word learning first). It used to
+  // seek narration there, but without exact timestamps seek degraded to
+  // restarting the whole page — and a child learning to read wants the word
+  // repeated, not the story rewound. Narration pauses; the tapped word lights
+  // while it's spoken; play resumes on the terracotta button.
   const onWordSeek = useCallback(
     (wordIdx: number) => {
-      // Tap on a word = seek narration to that word AND start playing.
-      transport.seekToWord(wordIdx)
+      const w = words[wordIdx]?.replace(/[.,!?;:'"]/g, '')
+      if (!w) return
+      transport.speakOne(w, undefined, wordIdx)
     },
-    [transport],
+    [transport, words],
   )
 
+  // Hold = the word plus its meaning (star words) — the deeper dive.
   const onWordHold = useCallback(
     (word: string) => {
       const meaning = wordMeaning(word)
@@ -1424,10 +1431,12 @@ function ReaderPages({
           }}
         >
           <div
+            className="lf-reader-spread"
             style={{
               flex: 1,
               minHeight: 0,
               display: 'grid',
+              // Portrait phones re-stack this via .lf-reader-spread CSS.
               gridTemplateColumns: fullBleed ? '1fr' : 'minmax(0, 46%) minmax(0, 54%)',
               transform: `translateX(${dragDx}px)`,
               transition: dragDx === 0 ? 'transform 260ms var(--ease-slide, ease-out)' : 'none',
@@ -1439,6 +1448,7 @@ function ReaderPages({
                 edge (same as the starters' fullBleed pages); only the
                 endpaper placeholder keeps the floating-panel inset. */}
             <div
+              className="lf-reader-artcol"
               style={{
                 position: 'relative',
                 padding: fullBleed || effectiveImg ? 0 : '20px 14px 14px 32px',
