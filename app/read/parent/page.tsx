@@ -2967,6 +2967,37 @@ function ArtTab() {
     } catch (e) { setMsg((e as Error).message) } finally { setBusy(null); setProgress('') }
   }, [loadScenes])
 
+  // Redo ALL art with the current pipeline: void every book's scenes + cover
+  // (history kept as rejected), then regenerate the 9 covers as candidates.
+  // Page scenes rebuild themselves while reading (auto-published, new prompt
+  // + pro model) — no approval pile-up for interiors.
+  const redoAllArt = useCallback(async () => {
+    if (!window.confirm(
+      'Clear ALL existing page art and covers, and regenerate with the new art pipeline?\n\n' +
+      'Covers regenerate now (review + approve below). Story pages repaint themselves as they are read.',
+    )) return
+    setBusy('redo-all'); setMsg('')
+    try {
+      for (let i = 0; i < books.length; i++) {
+        setProgress(`Clearing old art… ${i + 1}/${books.length} (${books[i].title})`)
+        const r = await fetch('/api/art/generate', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ kind: 'reset-book', bookId: books[i].id }),
+        })
+        if (!r.ok) { const j = await r.json().catch(() => ({})); setMsg(j.error ?? 'Reset failed.'); return }
+      }
+      for (let i = 0; i < books.length; i++) {
+        setProgress(`New covers… ${i + 1}/${books.length} (${books[i].title})`)
+        await fetch('/api/art/generate', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ kind: 'cover', bookId: books[i].id }),
+        })
+      }
+      setMsg('Old art cleared. New covers are ready to review below (pick a book) — pages repaint themselves with the new pipeline as they’re read.')
+      if (bookId) await loadScenes(bookId)
+    } catch (e) { setMsg((e as Error).message) } finally { setBusy(null); setProgress('') }
+  }, [books, bookId, loadScenes])
+
   // One tap → a cover candidate for every pack book that doesn't have one.
   // Candidates land below as pending; approving publishes to the shelf.
   const generateAllCovers = useCallback(async () => {
@@ -3106,6 +3137,9 @@ function ArtTab() {
             )}
             <PButton size="sm" variant="secondary" disabled={busy !== null} onClick={() => void generateAllCovers()}>
               {busy === 'all-covers' ? 'Making covers…' : 'Make all missing covers'}
+            </PButton>
+            <PButton size="sm" variant="ghost" disabled={busy !== null} onClick={() => void redoAllArt()}>
+              {busy === 'redo-all' ? 'Redoing all art…' : 'Redo ALL art (new pipeline)'}
             </PButton>
           </div>
           {bookId && (scenes.pending.length + scenes.approved.length === 0) && (

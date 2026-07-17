@@ -61,12 +61,16 @@ export async function approveArtifact(db: SupabaseClient, id: string): Promise<s
   const row = await fetchById(db, id)
   if (row.status === 'approved' && row.live_url) return row.live_url
   const ext = extOf(row.candidate_path)
+  // Stamped live paths: re-approving a slot must mint a NEW public URL, or
+  // browsers/CDN keep serving the old image from cache. Old files just
+  // orphan in the bucket (the artifacts row is the source of truth).
+  const stamp = Math.random().toString(36).slice(2, 8)
   const livePath =
     row.kind === 'sheet'
-      ? `sheets/${row.character_id}.${ext}`
+      ? `sheets/${row.character_id}-${stamp}.${ext}`
       : row.kind === 'cover'
-        ? `books/${row.book_id}/cover.${ext}`
-        : `books/${row.book_id}/${row.chapter_idx}-${row.page_idx}.${ext}`
+        ? `books/${row.book_id}/cover-${stamp}.${ext}`
+        : `books/${row.book_id}/${row.chapter_idx}-${row.page_idx}-${stamp}.${ext}`
   const liveUrl = await publishToLive(db, row.candidate_path, livePath, contentTypeOf(row.candidate_path))
 
   // Pick-one semantics: approving this candidate retires everything else in
