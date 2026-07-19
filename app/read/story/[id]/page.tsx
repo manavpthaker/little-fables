@@ -449,6 +449,33 @@ function ReaderPages({
     meaning?: string
   }>(null)
   const [mysteryAlready, setMysteryAlready] = useState(false)
+  // Star chip: after the child taps it (hears word + meaning), it flips to
+  // "in your Word Book!" for the rest of the page.
+  const [starChipHeard, setStarChipHeard] = useState(false)
+
+  // R15 — recap on resume. Coming back to a mid-flight book after >24h, the
+  // buddy sets the scene ("Last time, you were in chapter three…") before the
+  // page. MUST run before the progress-save effect stamps updatedAt fresh —
+  // it's declared first, and React runs mount effects in declaration order.
+  const [recapLine, setRecapLine] = useState<string | null>(null)
+  const recapDone = useRef(false)
+  useEffect(() => {
+    if (recapDone.current) return
+    recapDone.current = true
+    const prog = getProgress(book.id)
+    if (!prog || Date.now() - prog.updatedAt < 24 * 3600 * 1000) return
+    if (prog.chapter === 0 && prog.page === 0) return
+    const chTitle = book.chapters[prog.chapter]?.title
+    const line =
+      book.chapters.length > 1 && chTitle
+        ? `Last time, you were in chapter ${prog.chapter + 1}, ${chTitle}. Let's keep going!`
+        : `Welcome back to ${book.title}! Let's keep going.`
+    setRecapLine(line)
+    oneShotSpeakRef.current = speak(line, { allowSpeechSynthFallback: true })
+    const t = setTimeout(() => setRecapLine(null), 7000)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Cached timestamps for the current page (enables exact word-tap seek).
   const [pageTimestamps, setPageTimestamps] = useState<WordTimestamp[] | null>(null)
@@ -486,13 +513,19 @@ function ReaderPages({
   const [artPainting, setArtPainting] = useState<Record<string, boolean>>({})
   const artInflight = useRef<Set<string>>(new Set())
   const artDisabled = useRef(false)
+  // Pages whose art request reached a terminal state (url landed, disabled,
+  // or gave up) — the read-ahead walker waits on this to pace itself.
+  const artSettled = useRef<Set<string>>(new Set())
   const requestPageArt = useCallback(
     (ci: number, pi: number) => {
       const key = `${ci}-${pi}`
       if (artDisabled.current || artInflight.current.has(key)) return
       artInflight.current.add(key)
       setArtPainting((prev) => ({ ...prev, [key]: true }))
-      const settle = () => setArtPainting((prev) => ({ ...prev, [key]: false }))
+      const settle = () => {
+        artSettled.current.add(key)
+        setArtPainting((prev) => ({ ...prev, [key]: false }))
+      }
       const attempt = async (tries: number): Promise<void> => {
         try {
           const r = await fetch('/api/art/page', {
@@ -553,6 +586,56 @@ function ReaderPages({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chapterIdx, pageIdx, page])
+
+  // READ-AHEAD: from the moment a chapter opens, quietly generate art for its
+  // remaining pages — one request in flight at a time, starting at the reading
+  // position — so page turns land on finished art instead of the painting
+  // indicator. Server-side locks dedupe against the visible-page effect above;
+  // 'disabled' (art off / daily budget reached) stops the walk immediately.
+  const artWalker = useRef<number>(0)
+  useEffect(() => {
+    const walkId = ++artWalker.current
+    let cancelled = false
+    const settled = (key: string) =>
+      new Promise<void>((resolve) => {
+        const t0 = Date.now()
+        const iv = setInterval(() => {
+          if (
+            cancelled ||
+            artDisabled.current ||
+            artSettled.current.has(key) ||
+            Date.now() - t0 > 150000
+          ) {
+            clearInterval(iv)
+            resolve()
+          }
+        }, 1200)
+      })
+    const walk = async () => {
+      // Small head start so the visible-page requests always go first.
+      await new Promise((r) => setTimeout(r, 2500))
+      const order = [...pages.keys()].sort((a, b) => {
+        // Start at the current page, walk forward, then wrap to earlier pages.
+        const ra = a >= pageIdx ? a - pageIdx : a + pages.length
+        const rb = b >= pageIdx ? b - pageIdx : b + pages.length
+        return ra - rb
+      })
+      for (const pi of order) {
+        if (cancelled || artDisabled.current || artWalker.current !== walkId) return
+        const key = `${chapterIdx}-${pi}`
+        if (pages[pi]?.img || artOverrides.pages[key] || artSettled.current.has(key)) continue
+        requestPageArt(chapterIdx, pi)
+        await settled(key)
+      }
+    }
+    void walk()
+    return () => {
+      cancelled = true
+    }
+    // Restart the walk only when the chapter changes — pageIdx is read fresh
+    // at start for ordering but shouldn't retrigger the whole walk.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chapterIdx, book.id])
 
   const effectiveImg =
     autoArt[`${chapterIdx}-${pageIdx}`] ?? artOverrides.pages[`${chapterIdx}-${pageIdx}`] ?? page?.img
@@ -643,6 +726,7 @@ function ReaderPages({
     setChoiceGen(false)
     setChoiceError(null)
     setBreatheDone(false)
+    setStarChipHeard(false)
     if (page?.star) {
       const meaning = book.vocab.find((v) => v.word === page.star)
       if (meaning) collectWord(meaning, book.id)
@@ -1328,6 +1412,32 @@ function ReaderPages({
           </div>
         )}
 
+        {/* R15 — resume recap bubble: one warm line, spoken + shown, gone in
+            a few seconds. Never blocks anything. */}
+        {recapLine && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 14,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 7,
+              background: 'var(--lf-cream-card, #FBF5E8)',
+              border: '1.5px solid var(--lf-cream-line, #E4D6B8)',
+              borderRadius: 999,
+              padding: '9px 18px',
+              font: 'italic 600 14px var(--font-body)',
+              color: 'var(--lf-espresso, #3C2E22)',
+              boxShadow: '0 6px 18px rgba(94,62,26,.16)',
+              pointerEvents: 'none',
+              maxWidth: '80%',
+              textAlign: 'center',
+            }}
+          >
+            {recapLine}
+          </div>
+        )}
+
         {/* Top-left: quiet ink back arrow — always up one level. */}
         <button
           type="button"
@@ -1555,22 +1665,43 @@ function ReaderPages({
                 </p>
 
                 {page.star && !isMysteryStar && (
-                  <span
+                  // The star chip is a doorway, not a label: tap → hear the
+                  // word + meaning + where it lives ("it's in your Word
+                  // Book!"), and the chip confirms visually. This makes the
+                  // collect loop legible — words appear HERE, they live in
+                  // My Words (Home → Words), parents can tidy them there.
+                  <button
+                    type="button"
+                    className="lf-press"
+                    aria-label={`Star word ${page.star} — tap to hear it and save it`}
+                    onPointerUp={(e) => {
+                      e.preventDefault()
+                      transport.speakOne(
+                        `${page.star}. ${wordMeaning(page.star!) ? `${page.star} means ${wordMeaning(page.star!)}. ` : ''}It's in your Word Book!`,
+                      )
+                      setStarChipHeard(true)
+                    }}
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: 6,
-                      background: 'rgba(251,191,36,.16)',
+                      background: starChipHeard ? 'rgba(251,191,36,.3)' : 'rgba(251,191,36,.16)',
                       border: '1.5px solid rgba(251,191,36,.5)',
                       borderRadius: 999,
                       padding: '5px 14px',
                       font: '700 13.5px var(--font-body)',
                       color: 'var(--lf-espresso)',
                       marginTop: 12,
+                      cursor: 'pointer',
+                      touchAction: 'manipulation',
                     }}
                   >
-                    ⭐ Star word: <strong>{page.star}</strong>
-                  </span>
+                    {starChipHeard ? (
+                      <>⭐ <strong>{page.star}</strong> is in your Word Book!</>
+                    ) : (
+                      <>⭐ Star word: <strong>{page.star}</strong> — tap to hear</>
+                    )}
+                  </button>
                 )}
 
                 {page.star && isMysteryStar && book.mysteryWord && (

@@ -182,15 +182,15 @@
 .lf-read .lf-ribbon-inline .lf-reader-ribbon-track { height: 44px !important; }
 .lf-read .lf-ribbon-inline .lf-reader-ribbon-label { margin-bottom: 0 !important; }
 
-/* ---------- Portrait phones: stack the spread ----------
-   Side-by-side columns squeeze the words into a one-word-per-line sliver on
-   a 390px screen. Portrait reads top-to-bottom instead: art above (a third of
-   the spread), words below at full width. Landscape keeps the open-book
-   side-by-side layout (its compact rules live in read.css). */
-@media (orientation: portrait) and (max-width: 700px) {
+/* ---------- Portrait: stack the spread (all sizes) ----------
+   Side-by-side columns fight portrait — words per line collapse on phones
+   and the panels float tiny in space on iPads. Portrait reads top-to-bottom:
+   art above (a third of the spread), words below at full width. Landscape
+   keeps the open-book side-by-side layout. */
+@media (orientation: portrait) {
   .lf-read .lf-reader-spread {
     grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: minmax(0, 34%) minmax(0, 66%);
+    grid-template-rows: minmax(0, 36%) minmax(0, 64%);
   }
   /* Endpaper fills its shorter row instead of forcing 4:3. */
   .lf-read .lf-reader-scene {
@@ -199,6 +199,17 @@
     aspect-ratio: auto;
     max-height: none;
   }
+  /* The landscape art gutter (32px left) becomes a symmetric frame up top. */
+  .lf-read .lf-reader-artcol:not(:has(img)) {
+    padding: 12px 18px 4px !important;
+  }
+  .lf-read .lf-reader-textcol {
+    padding: 12px 18px !important;
+  }
+}
+
+/* Portrait PHONES only: compact sizing on top of the stacking. */
+@media (orientation: portrait) and (max-width: 700px) {
   /* Bottom bar at phone width: tighter gaps, and drop the "page x of y"
      span (the folio dog-ear already shows it) so the pill + track fit
      without pushing the next chevron off-screen. */
@@ -209,19 +220,24 @@
   .lf-read .lf-ribbon-inline .lf-reader-ribbon-label > span:last-child {
     display: none !important;
   }
-
-  /* Tighter gutters at phone width; the card gets the full column. The
-     landscape art gutter (32px left) becomes a symmetric frame up top. */
-  .lf-read .lf-reader-artcol:not(:has(img)) {
-    padding: 12px 16px 4px !important;
-  }
   .lf-read .lf-reader-textcol {
-    padding: 12px 16px 12px 16px !important;
+    padding: 12px 16px !important;
   }
   .lf-read .lf-reader-textcard {
     padding: 18px 20px !important;
   }
   .lf-read .lf-reader-textcard p {
     font-size: 21px !important;
+  }
+}
+
+/* Big screens (iPad landscape and up): the spread earns bigger type and a
+   larger endpaper so the composition doesn't float in cream. */
+@media (min-width: 1000px) and (orientation: landscape) {
+  .lf-read .lf-reader-textcard p {
+    font-size: 27px !important;
+  }
+  .lf-read .lf-reader-scene {
+    width: min(100%, 640px);
   }
 }

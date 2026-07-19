@@ -6,7 +6,7 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { loadWordBook, loadLanguageWall, type LanguageWallEntry } from '@/lib/read/storage'
+import { loadWordBook, loadLanguageWall, removeWord, type LanguageWallEntry } from '@/lib/read/storage'
 import { loadShelf } from '@/lib/read/packs'
 import { speak, type SpeakHandle } from '@/lib/read/speech'
 import type { Book, VocabWord } from '@/types/story'
@@ -33,6 +33,9 @@ export default function MyWordsPage() {
   const [words, setWords] = useState<CollectedWord[]>([])
   const [shelf, setShelf] = useState<Book[]>([])
   const [wall, setWall] = useState<LanguageWallEntry[]>([])
+  // Tidy-up mode: reveals a remove ✕ on each star word. Behind an explicit
+  // toggle so a tapping child can't delete words by accident.
+  const [tidy, setTidy] = useState(false)
   const speakRef = useRef<SpeakHandle | null>(null)
 
   useEffect(() => {
@@ -86,8 +89,23 @@ export default function MyWordsPage() {
         )}
 
         <section className="lfw-section">
-          <h2>Star words</h2>
-          <p className="lfw-hint">Tap a word to hear it and what it means</p>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+            <h2 style={{ marginRight: 'auto' }}>Star words</h2>
+            {words.length > 0 && (
+              <button
+                type="button"
+                onClick={() => setTidy((t) => !t)}
+                style={{
+                  border: 'none', background: 'transparent', cursor: 'pointer',
+                  font: '600 13px var(--font-label)', color: 'var(--ink-faint)',
+                  textDecoration: 'underline', padding: '4px 6px',
+                }}
+              >
+                {tidy ? 'Done' : 'Tidy up'}
+              </button>
+            )}
+          </div>
+          <p className="lfw-hint">{tidy ? 'Tap ✕ to remove a word' : 'Tap a word to hear it and what it means'}</p>
           {words.length === 0 ? (
             <div className="lfw-empty">No star words yet — read a story and collect the ⭐ words!</div>
           ) : (
@@ -95,8 +113,32 @@ export default function MyWordsPage() {
               {words.map((w, i) => {
                 const book = bookFor(w)
                 return (
-                  <button key={`${w.word}-${i}`} type="button" className="lfw-card" onClick={() => speakWord(w)}
-                    aria-label={`${w.word} — ${w.meaning}. Tap to hear.`}>
+                  <button
+                    key={`${w.word}-${i}`}
+                    type="button"
+                    className="lfw-card"
+                    style={{ position: 'relative' }}
+                    onClick={() => {
+                      if (tidy) {
+                        removeWord(w.word)
+                        setWords((prev) => prev.filter((x) => x.word !== w.word))
+                      } else {
+                        speakWord(w)
+                      }
+                    }}
+                    aria-label={tidy ? `Remove ${w.word}` : `${w.word} — ${w.meaning}. Tap to hear.`}
+                  >
+                    {tidy && (
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          position: 'absolute', top: 6, right: 8,
+                          font: '700 15px var(--font-label)', color: 'var(--terra-deep, #B4492A)',
+                        }}
+                      >
+                        ✕
+                      </span>
+                    )}
                     <div className="lfw-word"><StarIcon />{w.word}</div>
                     <div className="lfw-mean">{w.meaning}</div>
                     {book && <div className="lfw-from">from {book.title}</div>}

@@ -214,6 +214,14 @@ export function collectWord(w: VocabWord, from?: string) {
   writeJSON(WORDBOOK_KEY, wb)
 }
 
+/** Remove a collected word (parent-facing tidy-up in My Words). */
+export function removeWord(word: string) {
+  const wb = loadWordBook()
+  const next = wb.words.filter((x) => x.word.toLowerCase() !== word.toLowerCase())
+  if (next.length === wb.words.length) return
+  writeJSON(WORDBOOK_KEY, { ...wb, words: next })
+}
+
 // ---------- Language Wall (found mystery words per book — v2.2 item 6) ----------
 // The Wall is a case-insensitive-deduped list of heritage words the child has
 // tapped in the reader when they matched the book's `mysteryWord`. Grouped by
